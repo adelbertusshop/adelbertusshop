@@ -1,10 +1,14 @@
-# Sklep Adelbertus
+# 👕 Sklep Adelbertus
 
-👋 Witaj na stronie głównej sklepu!
+Witaj w naszym sklepie z koszulkami, gadżetami i więcej!
 
-🛍️ Odwiedź nasz sklep:  
-👉 https://adelbertusshop.myspreadshop.pl
+👉 [Odwiedź sklep tutaj](https://adelbertusshop.myspreadshop.pl)
 
 ---
 
-Ta strona powstała z pomocą GitHub Pages.
+🆕 Nowości w ofercie:
+- Koszulka "Legendarny Klimat"
+- Bluza z logo
+- Torba ekologiczna
+
+📦 Wysyłka 24h • Zwroty 30 dni
