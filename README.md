@@ -1,2 +1,2 @@
- ### Nowa koszulka z grafiką
-![Koszulka 1](./nazwa-twojego-pliku.jpg)
+### Nowa grafika 2
+![Koszulka 2](./NazwaNowegoPliku.jpg)
