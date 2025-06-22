@@ -1,55 +1,54 @@
-# 👕 AdelbertusShop – Ubierz swój charakter
 
-Witaj w **AdelbertusShop** – miejscu, gdzie styl spotyka znaczenie.  
-Nasze koszulki, bluzy i gadżety to nie tylko odzież. To **komunikaty**, **nastroje**, to **Ty** – wyrażony w druku.
+<p align="center">
+  <img src="./Resizer_174998270010983.jpg" alt="Baner sklepu" width="80%">
+</p>
 
-🔸 Masz dość nijakich ubrań?  
-🔸 Szukasz wzoru, który mówi więcej niż 1000 słów?  
-🔸 Chcesz wyróżniać się, nie krzycząc?
-
-**To jesteś w dobrym miejscu.**
+<h1 align="center">👕 AdelbertusShop</h1>
+<p align="center"><em>Styl. Grafika. Charakter.</em></p>
 
 ---
 
-## 🧠 Dlaczego to działa?
+## 🧢 Kategorie
 
-- Projektujemy rzeczy, które **wpadają w oko i zostają w głowie**  
-- Tworzymy kolekcje inspirowane **kulturą ulicy, psychologią i przekazem**  
-- Działamy z pasją i szacunkiem do każdego detalu
-
-> 🌟 Ubranie to Twoje pierwsze zdanie bez słów. Spraw, żeby miało sens.
+- 👕 **Koszulki** – z mocnym przekazem
+- 👚 **Bluzy** – unikalne grafiki
+- 🎒 **Akcesoria** – torby, czapki i więcej
 
 ---
 
-## 🚀 Co znajdziesz w sklepie?
+## 🔥 Nowości i Promocje
 
-- Koszulki z autorską grafiką  
-- Bluzy i torby z charakterem  
-- Limitowane dropy, które nie wracają  
-- Nowe wzory co miesiąc
+💣 Bestseller:  
+🎯 <strong>"Legenda ulicy"</strong> – już dostępna!
 
-👉 [**Odwiedź sklep teraz**](https://adelbertusshop.myspreadshop.pl/)
-
----
-
-## 📲 Dołącz do społeczności
-
-Znajdziesz nas na TikToku, Instagramie, YouTube i Facebooku.  
-Zobacz kulisy, poznaj pomysły, bądź z nami.
-
-📘 [Facebook](https://www.facebook.com/share/1GyrZjmqQ1/)  
-📷 [Instagram](https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==)  
-🎵 [TikTok](https://www.tiktok.com/@ja.jestem3?_t=ZN-8xPwC4GFImd&_r=1)  
-▶️ [YouTube](https://www.youtube.com/)
+💰 Letnia zniżka -10%  
+📦 Darmowa wysyłka od 150 zł  
+🕒 Zwroty do 30 dni
 
 ---
 
-## 🧾 Kontakt
+## 🎨 Projekty – Przykładowe Grafiki
 
-📧 mielniczukgrzegosz774@gmail.com  
-📦 Wysyłka 24h • Zwroty do 30 dni  
-💳 Płatności: karta, przelew, BLIK (wkrótce)
+<table>
+  <tr>
+    <td align="center"><img src="./Resizer_174998267451879.jpg" width="200px"><br><strong>Grafika 1</strong></td>
+    <td align="center"><img src="./Resizer_1749902496427151.jpg" width="200px"><br><strong>Grafika 2</strong></td>
+    <td align="center"><img src="./Resizer_174998270010983.jpg" width="200px"><br><strong>Grafika 3</strong></td>
+  </tr>
+</table>
 
 ---
 
-🖤 **AdelbertusShop – Nie ubieramy ludzi. Ubieramy idee.**
+## 📞 Kontakt i Social Media
+
+- 📧 <strong>E-mail:</strong> mielniczukgrzegosz774@gmail.com  
+- 📘 [Facebook](https://www.facebook.com/share/1GyrZjmqQ1/)  
+- 📷 [Instagram](https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==)  
+- 🎵 [TikTok](https://www.tiktok.com/@ja.jestem3?_t=ZN-8xPwC4GFImd&_r=1)  
+- ▶️ [YouTube](https://www.youtube.com/)
+
+---
+
+## 💳 Płatności i Wysyłka
+
+> Płatności online i szybkie zwroty już wkrótce!
