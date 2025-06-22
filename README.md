@@ -1,1 +1,2 @@
-#![Baner sklepu](./Resizer_174998270010983.jpg)
+ ### Nowa koszulka z grafiką
+![Koszulka 1](./nazwa-twojego-pliku.jpg)
