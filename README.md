@@ -1,4 +1,5 @@
 
+
 <p align="center">
   <img src="./Resizer_174998270010983.jpg" alt="Baner sklepu" width="80%">
 </p>
