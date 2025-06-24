@@ -3,10 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adelbertus Shop</title>
+  <title>Sklep Adelbertus</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #000;
+      color: white;
+      padding: 30px;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .produkty {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 40px auto;
+      gap: 30px;
+      max-width: 1200px;
+    }
+
+    .produkt {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      width: 280px;
+      transition: 0.3s;
+    }
+
+    .produkt:hover {
+      transform: scale(1.03);
+    }
+
+    .produkt img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #000;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    .social {
+      margin-top: 40px;
+    }
+
+    .social a {
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 20px;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      background-color: #ddd;
+    }
+  </style>
 </head>
 <body>
-  <h1>Witamy w Adelbertus Shop!</h1>
-  <p>Sklep w budowie... Zapraszamy wkrótce!</p>
+
+  <header>
+    <h1>Sklep Adelbertus</h1>
+    <p>Limitowana kolekcja. Przekaz, który działa.</p>
+  </header>
+
+  <section class="produkty">
+
+    <!-- Przykładowy produkt -->
+    <div class="produkt">
+      <img src="./grafika1.jpg" alt="Koszulka 1" />
+      <h3>Koszulka MOC 1</h3>
+      <a class="btn" href="#">Kup teraz</a>
+    </div>
+
+    <div class="produkt">
+      <img src="./grafika2.jpg" alt="Koszulka 2" />
+      <h3>Koszulka MOC 2</h3>
+      <a class="btn" href="#">Kup teraz</a>
+    </div>
+
+    <!-- Dodaj więcej produktów kopiując blok powyżej -->
+
+  </section>
+
+  <section class="social">
+    <h2>Znajdź nas w sieci</h2>
+    <a href="https://www.instagram.com/mielniczukgrzegosz74/" target="_blank">Instagram</a>
+    <a href="https://www.facebook.com/share/16X9nmSyhv/" target="_blank">Facebook</a>
+    <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
+  </section>
+
+  <footer>
+    <p>Kontakt: mielniczukgrzegosz74@gmail.com | Tel: 604 296 630</p>
+    <p>&copy; 2025 Sklep Adelbertus. Wszelkie prawa zastrzeżone.</p>
+  </footer>
+
 </body>
 </html>
