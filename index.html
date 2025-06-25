@@ -1,73 +1,62 @@
 
 
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sklep Adelbertus</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 2rem;
-      background-color: #ffffff;
-      color: #000000;
-      text-align: center;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.5em;
-    }
-    a {
-      color: #0000ee;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    .opinie, .blog {
-      margin-top: 3rem;
-      font-style: italic;
-    }
-    .opinie p {
-      margin-bottom: 1em;
-    }
-    .cta {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.8rem 1.5rem;
-      background-color: #000000;
-      color: #ffffff;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  </style>
+  <title>Adelbertus Shop</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Sklep Adelberta</h1>
-  <p>Oryginalne ubrania. Limitowane dodatki. Charakter. Styl.</p>
-  <a href="https://www.adelbertusshop.com/#" class="cta">Zobacz kolekcję</a>
+  <header>
+    <h1>Adelbertus Shop</h1>
+    <p>Od grafiki do stylu – koszulki, bluzy, czapki i dodatki</p>
+  </header>
 
-  <h2>Znajdziesz nas:</h2>
-  <a href="https://www.instagram.com/mielniczukgrzegosz74">Instagram</a>
-  <a href="https://www.facebook.com/share/16X9nmSyhv">Facebook</a>
-  <a href="https://www.tiktok.com/@ja.jestem3">TikTok</a>
+  <nav>
+    <a href="#koszulki">Koszulki</a>
+    <a href="#bluzy">Bluzy</a>
+    <a href="#czapki">Czapki</a>
+    <a href="#dodatki">Dodatki</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
 
-  <div class="opinie">
-    <h2>Opinie klientów</h2>
-    <p>★ ★ ★ ★ ★ „Jakość przerosła moje oczekiwania. Koszulki są świetne!” – Michał, Kraków</p>
-    <p>★ ★ ★ ★ ★ „Zamówiłam bluzę – ciepła, miękka i bardzo stylowa. Polecam!” – Kasia, Wrocław</p>
-    <p>★ ★ ★ ★ ★ „Super kontakt, szybka wysyłka. Limitowane dodatki są sztosem.” – Bartek, Poznań</p>
-  </div>
+  <section id="koszulki" class="product-section">
+    <h2>Koszulki</h2>
+    <img src="images/koszulka1.jpg" alt="Koszulka z grafiką">
+  </section>
 
-  <div class="blog">
-    <h2>📰 Blog i Poradniki</h2>
-    <p><strong>Jak nosić bluzy oversize?</strong><br/>
-    Poradnik o tym, jak łączyć styl streetwear z codziennym lookiem.<br/>
-    <a href="https://www.adelbertusshop.com/#">Czytaj więcej</a></p>
+  <section id="bluzy" class="product-section">
+    <h2>Bluzy</h2>
+    <img src="images/bluza1.jpg" alt="Bluza z grafiką">
+  </section>
 
-    <p><strong>Dlaczego limitowane kolekcje są unikalne?</strong><br/>
-    Wyjaśniamy psychologię ekskluzywności i limitowanych serii ubrań.<br/>
-    <a href="https://www.adelbertusshop.com/#">Czytaj więcej</a></p>
-  </div>
+  <section id="czapki" class="product-section">
+    <h2>Czapki</h2>
+    <img src="images/czapka1.jpg" alt="Czapka z grafiką">
+  </section>
+
+  <section id="dodatki" class="product-section">
+    <h2>Dodatki</h2>
+    <img src="images/dodatek1.jpg" alt="Dodatek z grafiką">
+  </section>
+
+  <section id="kontakt" class="contact">
+    <h2>Kontakt</h2>
+    <p>Email: <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a></p>
+    <p>Telefon: <a href="tel:+48604296360">604 296 360</a></p>
+    <p>Social media:</p>
+    <ul>
+      <li><a href="https://www.tiktok.com/@ja.jestem3">TikTok</a></li>
+      <li><a href="https://www.facebook.com/share/1EASTfKxgy/">Facebook</a></li>
+      <li><a href="https://www.instagram.com/mielniczukgrzegosz74">Instagram</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Adelbertus Shop. Wszelkie prawa zastrzeżone.</p>
+  </footer>
 </body>
 </html>
