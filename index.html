@@ -1,62 +1,59 @@
 
 
 
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Adelbertus Shop</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <h1>Adelbertus Shop</h1>
-    <p>Od grafiki do stylu – koszulki, bluzy, czapki i dodatki</p>
-  </header>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f4f4;
+  color: #333;
+}
 
-  <nav>
-    <a href="#koszulki">Koszulki</a>
-    <a href="#bluzy">Bluzy</a>
-    <a href="#czapki">Czapki</a>
-    <a href="#dodatki">Dodatki</a>
-    <a href="#kontakt">Kontakt</a>
-  </nav>
+header {
+  background: #222;
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+}
 
-  <section id="koszulki" class="product-section">
-    <h2>Koszulki</h2>
-    <img src="images/koszulka1.jpg" alt="Koszulka z grafiką">
-  </section>
+nav {
+  background: #444;
+  text-align: center;
+  padding: 1rem;
+}
 
-  <section id="bluzy" class="product-section">
-    <h2>Bluzy</h2>
-    <img src="images/bluza1.jpg" alt="Bluza z grafiką">
-  </section>
+nav a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+}
 
-  <section id="czapki" class="product-section">
-    <h2>Czapki</h2>
-    <img src="images/czapka1.jpg" alt="Czapka z grafiką">
-  </section>
+nav a:hover {
+  text-decoration: underline;
+}
 
-  <section id="dodatki" class="product-section">
-    <h2>Dodatki</h2>
-    <img src="images/dodatek1.jpg" alt="Dodatek z grafiką">
-  </section>
+.product-section {
+  padding: 2rem;
+  background: #fff;
+  margin: 1rem auto;
+  max-width: 900px;
+  text-align: center;
+}
 
-  <section id="kontakt" class="contact">
-    <h2>Kontakt</h2>
-    <p>Email: <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a></p>
-    <p>Telefon: <a href="tel:+48604296360">604 296 360</a></p>
-    <p>Social media:</p>
-    <ul>
-      <li><a href="https://www.tiktok.com/@ja.jestem3">TikTok</a></li>
-      <li><a href="https://www.facebook.com/share/1EASTfKxgy/">Facebook</a></li>
-      <li><a href="https://www.instagram.com/mielniczukgrzegosz74">Instagram</a></li>
-    </ul>
-  </section>
+.product-section img {
+  width: 300px;
+  max-width: 90%;
+  margin-top: 1rem;
+}
 
-  <footer>
-    <p>&copy; 2025 Adelbertus Shop. Wszelkie prawa zastrzeżone.</p>
-  </footer>
-</body>
-</html>
+.contact {
+  padding: 2rem;
+  background: #eee;
+  text-align: center;
+}
+
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
