@@ -1,14 +1,99 @@
-<h2>Nasze produkty</h2>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Adelbertus Shop</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background-color: #333;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .product {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 150px;
+      text-align: center;
+    }
+    .logo {
+      display: block;
+      margin: 2rem auto;
+      max-width: 200px;
+    }
+    .contact {
+      margin-top: 3rem;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+    .social a {
+      margin: 0 0.5rem;
+      color: #333;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
 
-<img src="koszulka.jpg" alt="Koszulka" width="200">
-<p>Koszulka</p>
+<header>
+  <h2>Sklep Adelbertus</h2>
+</header>
 
-<img src="bluza.jpg" alt="Bluza" width="200">
-<p>Bluza</p>
+<main>
+  <img src="logo-sklepu.png" alt="Logo sklepu" class="logo">
 
-<img src="czapka.jpg" alt="Czapka" width="200">
-<p>Czapka</p>
+  <h1>Nasze produkty</h1>
+  <div class="products">
+    <div class="product">Koszulka</div>
+    <div class="product">Koszulka</div>
+    <div class="product">Bluza</div>
+    <div class="product">Bluza</div>
+    <div class="product">Czapka</div>
+    <div class="product">Czapka</div>
+  </div>
 
-<hr>
+  <div class="contact">
+    <h2>Kontakt</h2>
+    <p>Masz pytania? Napisz do nas:</p>
+    <p><strong>Email:</strong> kontakt@adelbertusshop.pl</p>
 
-<img src="logo.jpg" alt="Logo sklepu" width="150">
+    <div class="social">
+      <h3>Znajdź nas w social media:</h3>
+      <a href="https://facebook.com/adelbertusshop" target="_blank">Facebook</a>
+      <a href="https://instagram.com/adelbertusshop" target="_blank">Instagram</a>
+      <a href="https://twitter.com/adelbertusshop" target="_blank">Twitter</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Adelbertus Shop. Wszelkie prawa zastrzeżone.
+</footer>
+
+</body>
+</html>
