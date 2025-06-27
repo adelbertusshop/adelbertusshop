@@ -1,40 +1,167 @@
 
-<!-- 🔥 START: Promocje na stronie produktu -->
-<div style="border: 2px solid #ff4444; padding: 15px; border-radius: 8px; background-color: #fff6f6; max-width: 400px; margin: 20px auto; font-family: Arial, sans-serif;">
-  <h3 style="color: #cc0000; margin-bottom: 10px;">🔥 PROMOCJA DNIA</h3>
-  <p>Użyj kodu <strong>KOSZULKA10</strong> przy zamówieniu – otrzymasz <strong>10% zniżki</strong>!</p>
-  <p><span style="color: #555;">Oferta ważna jeszcze przez:</span></p>
-  <div id="countdown" style="font-size: 20px; font-weight: bold; color: #d90000;"></div>
-  <p style="font-size: 12px; color: gray;">* Oferta resetuje się codziennie</p>
-</div>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AdelbertusShop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      color: #222;
+    }
+    header {
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 10px;
+      color: #fff;
+      text-decoration: none;
+    }
+    .logo {
+      max-height: 80px;
+      margin-bottom: 10px;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .produkty {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .produkt {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 260px;
+      padding: 15px;
+      text-align: center;
+    }
+    .produkt img {
+      width: 100%;
+      border-radius: 6px;
+    }
+    .produkt h3 {
+      margin: 10px 0 5px;
+    }
+    .produkt p {
+      font-size: 14px;
+      margin: 0 0 10px;
+    }
+    .opinie {
+      background-color: #f0f0f0;
+    }
+    .opinia {
+      max-width: 600px;
+      margin: 20px auto;
+      font-style: italic;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: auto;
+    }
+    input, textarea, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      background: #000;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    footer {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+    .social {
+      margin-top: 10px;
+    }
+    .social a {
+      color: #fff;
+      margin: 0 5px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
 
-<!-- 👥 Licznik osób online -->
-<div style="text-align: center; font-size: 14px; color: #444; margin-bottom: 20px;">
-  👁️‍🗨️ <span id="viewerCount">7</span> osób właśnie przegląda ten produkt
-</div>
+<header>
+  <img src="https://i.imgur.com/ogKRCVR.png" alt="AdelbertusShop Logo" class="logo">
+  <nav>
+    <a href="#produkty">Produkty</a>
+    <a href="#opinie">Opinie</a>
+    <a href="#zamowienie">Zamów</a>
+  </nav>
+</header>
 
-<script>
-// ⏳ Odliczanie do końca dnia
-function startCountdown() {
-  const now = new Date();
-  const end = new Date();
-  end.setHours(23, 59, 59, 999);
-  const diff = end - now;
+<section id="produkty">
+  <h2>Nasze produkty</h2>
+  <div class="produkty">
+    <div class="produkt">
+      <img src="https://i.imgur.com/PCId20b.jpg" alt="Koszulka 1">
+      <h3>Koszulka Classic</h3>
+      <p>Limitowana seria z nadrukiem</p>
+    </div>
+    <div class="produkt">
+      <img src="https://i.imgur.com/XGz6oia.jpg" alt="Koszulka 2">
+      <h3>Koszulka Blackout</h3>
+      <p>100% bawełna, czarny design</p>
+    </div>
+    <div class="produkt">
+      <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Koszulka 3">
+      <h3>Bluza StreetStyle</h3>
+      <p>Ciepła, miejski styl</p>
+    </div>
+  </div>
+</section>
 
-  const hours = Math.floor(diff / 1000 / 60 / 60);
-  const minutes = Math.floor((diff / 1000 / 60) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
+<section id="opinie" class="opinie">
+  <h2>Opinie klientów</h2>
+  <div class="opinia">★ ★ ★ ★ ★ „Jakość przerosła moje oczekiwania. Koszulki są świetne!” – Michał, Kraków</div>
+  <div class="opinia">★ ★ ★ ★ ★ „Zamówiłam bluzę – ciepła, miękka i bardzo stylowa. Polecam!” – Kasia, Wrocław</div>
+  <div class="opinia">★ ★ ★ ★ ★ „Super kontakt, szybka wysyłka. Limitowane dodatki są sztosem.” – Bartek, Poznań</div>
+</section>
 
-  document.getElementById('countdown').textContent = `${hours}h ${minutes}m ${seconds}s`;
-}
-setInterval(startCountdown, 1000);
+<section id="zamowienie">
+  <h2>Zamówienie</h2>
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+    <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
+    <input type="email" name="Email" placeholder="Adres email" required>
+    <textarea name="Zamówienie" placeholder="Napisz co chcesz zamówić (np. koszulka XL, bluza M, kolor czarny)" rows="5" required></textarea>
+    <button type="submit">Wyślij zamówienie</button>
+  </form>
+</section>
 
-// 👥 Fake licznik online (między 5–15)
-function randomViewers() {
-  const count = Math.floor(Math.random() * 11) + 5;
-  document.getElementById('viewerCount').textContent = count;
-}
-setInterval(randomViewers, 8000);
-randomViewers();
-</script>
-<!-- 🔥 END: Promocje na stronie produktu -->
+<footer>
+  © 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com
+  <div class="social">
+    <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
+    <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |
+    <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
+  </div>
+</footer>
+
+</body>
+</html>
