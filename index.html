@@ -7,8 +7,10 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
     header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
-    .produkty { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-    .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; }
+    nav { background: #222; padding: 10px; text-align: center; }
+    nav a { color: #fff; margin: 0 10px; text-decoration: none; font-weight: bold; }
+    .produkty, .blog { display: none; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+    .produkt, .post { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; }
     .produkt img { max-width: 100%; border-radius: 8px; }
     .produkt select { margin: 8px 0; padding: 5px; width: 100%; border-radius: 6px; border: 1px solid #ccc; }
     .promocja, .opinie, #zamowienie { padding: 20px; text-align: center; background: #f9f9f9; margin-top: 20px; }
@@ -19,7 +21,6 @@
     .social a { color: #fff; margin: 0 10px; text-decoration: none; }
   </style>
 
-  <!-- PAYPAL SDK -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 </head>
 
@@ -30,34 +31,24 @@
   <p>Moda uliczna dla wyjątkowych ludzi</p>
 </header>
 
-<section class="produkty">
+<nav>
+  <a href="#" onclick="showSection('produkty')">Sklep</a>
+  <a href="#" onclick="showSection('blog')">Blog / Poradnik</a>
+</nav>
 
+<section id="produkty" class="produkty" style="display:flex;">
   <!-- Bluza -->
   <div class="produkt">
     <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza StreetStyle">
     <h3>Bluza StreetStyle – 150 zł</h3>
     <p>Ciepła, miejski styl</p>
-
-    <label for="rozmiar-bluza">Rozmiar:</label>
-    <select id="rozmiar-bluza">
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-
-    <label for="kolor-bluza">Kolor:</label>
-    <select id="kolor-bluza">
-      <option>Czarny</option>
-      <option>Biały</option>
-      <option>Szary</option>
-    </select>
-
+    <label>Rozmiar:</label>
+    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+    <label>Kolor:</label>
+    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
     <div id="paypal-container-bluza" style="margin-top: 10px;"></div>
     <script>
-      paypal.HostedButtons({
-        hostedButtonId: "44SZBZRF7BEK4" // ID bluzy
-      }).render("#paypal-container-bluza");
+      paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");
     </script>
   </div>
 
@@ -66,30 +57,27 @@
     <img src="https://i.imgur.com/U0K7eoh.jpg" alt="Koszulka Adelbertus">
     <h3>Koszulka Adelbertus – 99 zł</h3>
     <p>Limitowana edycja</p>
-
-    <label for="rozmiar-koszulka">Rozmiar:</label>
-    <select id="rozmiar-koszulka">
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-
-    <label for="kolor-koszulka">Kolor:</label>
-    <select id="kolor-koszulka">
-      <option>Czarny</option>
-      <option>Biały</option>
-      <option>Czerwony</option>
-    </select>
-
+    <label>Rozmiar:</label>
+    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+    <label>Kolor:</label>
+    <select><option>Czarny</option><option>Biały</option><option>Czerwony</option></select>
     <div id="paypal-container-koszulka" style="margin-top: 10px;"></div>
     <script>
-      paypal.HostedButtons({
-        hostedButtonId: "WPISZ_TUTAJ_ID_KOSZULKI" // <- podmień na ID z PayPala
-      }).render("#paypal-container-koszulka");
+      paypal.HostedButtons({ hostedButtonId: "WPISZ_TUTAJ_ID_KOSZULKI" }).render("#paypal-container-koszulka");
     </script>
   </div>
+</section>
 
+<!-- BLOG -->
+<section id="blog" class="blog">
+  <div class="post">
+    <h3>Jak dobrać rozmiar streetwearu?</h3>
+    <p>Dowiedz się, jak dobrać idealny rozmiar, by bluzy i koszulki leżały perfekcyjnie.</p>
+  </div>
+  <div class="post">
+    <h3>Historia marki Adelbertus</h3>
+    <p>Skąd się wzięliśmy? Poznaj naszą filozofię i przesłanie ukryte w odzieży.</p>
+  </div>
 </section>
 
 <section class="promocja">
@@ -106,9 +94,9 @@
 
 <section id="opinie" class="opinie">
   <h2>Opinie klientów</h2>
-  <div class="opinia">★ ★ ★ ★ ★ „Jakość przerosła moje oczekiwania. Koszulki są świetne!” – Michał, Kraków</div>
-  <div class="opinia">★ ★ ★ ★ ★ „Zamówiłam bluzę – ciepła, miękka i bardzo stylowa. Polecam!” – Kasia, Wrocław</div>
-  <div class="opinia">★ ★ ★ ★ ★ „Super kontakt, szybka wysyłka. Limitowane dodatki są sztosem.” – Bartek, Poznań</div>
+  <div class="opinia">★ ★ ★ ★ ★ „Jakość przerosła moje oczekiwania.” – Michał</div>
+  <div class="opinia">★ ★ ★ ★ ★ „Zamówiłam bluzę – stylowa i ciepła.” – Kasia</div>
+  <div class="opinia">★ ★ ★ ★ ★ „Super kontakt i szybka wysyłka.” – Bartek</div>
 </section>
 
 <section id="zamowienie">
@@ -116,7 +104,7 @@
   <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
     <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
     <input type="email" name="Email" placeholder="Adres email" required>
-    <textarea name="Zamówienie" placeholder="Napisz co chcesz zamówić (np. koszulka XL, bluza M, kolor czarny)" rows="5" required></textarea>
+    <textarea name="Zamówienie" placeholder="Napisz co chcesz zamówić..." rows="5" required></textarea>
     <button type="submit">Wyślij zamówienie</button>
   </form>
 </section>
@@ -131,26 +119,29 @@
 </footer>
 
 <script>
-  // Odliczanie do końca dnia
   function startCountdown() {
     const now = new Date();
     const end = new Date();
     end.setHours(23, 59, 59, 999);
     const diff = end - now;
-    const hours = Math.floor(diff / 1000 / 60 / 60);
-    const minutes = Math.floor((diff / 1000 / 60) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-    document.getElementById('countdown').textContent = `${hours}h ${minutes}m ${seconds}s`;
+    const h = Math.floor(diff / 1000 / 60 / 60);
+    const m = Math.floor((diff / 1000 / 60) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    document.getElementById('countdown').textContent = `${h}h ${m}m ${s}s`;
   }
   setInterval(startCountdown, 1000);
 
-  // Liczba aktualnych oglądających
   function randomViewers() {
-    const count = Math.floor(Math.random() * 11) + 5;
-    document.getElementById('viewerCount').textContent = count;
+    document.getElementById('viewerCount').textContent = Math.floor(Math.random() * 11) + 5;
   }
   setInterval(randomViewers, 8000);
   randomViewers();
+
+  // Pokaż odpowiednią sekcję (sklep/blog)
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+    document.getElementById(id).style.display = id === "produkty" ? "flex" : "block";
+  }
 </script>
 
 </body>
