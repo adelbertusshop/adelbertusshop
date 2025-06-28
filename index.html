@@ -7,9 +7,8 @@
   <title>AdelbertusShop</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {<div class="koszyk">
-  🛒 Twój koszyk: 0 produktów
-</div>      font-family: 'Roboto', sans-serif;
+    body {
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
       background-color: #fafafa;
@@ -30,6 +29,18 @@
       max-height: 80px;
       margin-bottom: 10px;
     }
+    .koszyk {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #000;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+      font-size: 14px;
+    }
     section {
       padding: 40px 20px;
       max-width: 1100px;
@@ -38,36 +49,14 @@
     h2 {
       text-align: center;
       margin-bottom: 30px;
-    }<div class="koszyk">
-  🛒 Twój koszyk: 0 produktów
-</div>    .produkty {<!-- 🔥 START: Promocja i licznik -->
-<div style="border: 2px solid #ff4444; padding: 15px; border-radius: 8px; background-color: #fff6f6; max-width: 400px; margin: 20px auto 30px; font-family: Arial, sans-serif;">
-  <h3 style="color: #cc0000; margin-bottom: 10px;">🔥 PROMOCJA DNIA</h3>
-  <p>Użyj kodu <strong>KOSZULKA10</strong> przy zamówieniu – otrzymasz <strong>10% zniżki</strong>!</p>
-  <p><span style="color: #555;">Oferta ważna jeszcze przez:</span></p>
-  <div id="countdown" style="font-size: 20px; font-weight: bold; color: #d90000;"></div>
-  <p style="font-size: 12px; color: gray;">* Oferta resetuje się codziennie</p>
-</div>
-
-<div style="text-align: center; font-size: 14px; color: #444; margin-bottom: 20px;">
-  👁️‍🗨️ <span id="viewerCount">7</span> osób właśnie przegląda ten produkt
-</div>
-<!-- 🔥 END: Promocja i licznik -->      display: flex;
+    }
+    .produkty {
+      display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-    }<!-- 🔥 PROMOCJA I LICZNIK -->
-<div style="border: 2px solid #ff4444; padding: 15px; border-radius: 8px; background-color: #fff6f6; max-width: 400px; margin: 20px auto 30px; font-family: Arial, sans-serif;">
-  <h3 style="color: #cc0000; margin-bottom: 10px;">🔥 PROMOCJA DNIA</h3>
-  <p>Użyj kodu <strong>KOSZULKA10</strong> przy zamówieniu – otrzymasz <strong>10% zniżki</strong>!</p>
-  <p><span style="color: #555;">Oferta ważna jeszcze przez:</span></p>
-  <div id="countdown" style="font-size: 20px; font-weight: bold; color: #d90000;"></div>
-  <p style="font-size: 12px; color: gray;">* Oferta resetuje się codziennie</p>
-</div>
-
-<div style="text-align: center; font-size: 14px; color: #444; margin-bottom: 20px;">
-  👁️‍🗨️ <span id="viewerCount">7</span> osób właśnie przegląda ten produkt
-</div>    .produkt {
+    }
+    .produkt {
       background: white;
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -85,45 +74,8 @@
     .produkt p {
       font-size: 14px;
       margin: 0 0 10px;
-    }<!-- 🔥 START: Promocje i licznik -->
-<div style="border: 2px solid #ff4444; padding: 15px; border-radius: 8px; background-color: #fff6f6; max-width: 400px; margin: 20px auto; font-family: Arial, sans-serif;">
-  <h3 style="color: #cc0000; margin-bottom: 10px;">🔥 PROMOCJA DNIA</h3>
-  <p>Użyj kodu <strong>KOSZULKA10</strong> przy zamówieniu – otrzymasz <strong>10% zniżki</strong>!</p>
-  <p><span style="color: #555;">Oferta ważna jeszcze przez:</span></p>
-  <div id="countdown" style="font-size: 20px; font-weight: bold; color: #d90000;"></div>
-  <p style="font-size: 12px; color: gray;">* Oferta resetuje się codziennie</p>
-</div>
-
-<!-- 👥 Licznik osób online -->
-<div style="text-align: center; font-size: 14px; color: #444; margin-bottom: 20px;">
-  👁️‍🗨️ <span id="viewerCount">7</span> osób właśnie przegląda ten produkt
-</div>
-
-<script>
-// ⏳ Odliczanie do końca dnia
-function startCountdown() {
-  const now = new Date();
-  const end = new Date();
-  end.setHours(23, 59, 59, 999);
-  const diff = end - now;
-
-  const hours = Math.floor(diff / 1000 / 60 / 60);
-  const minutes = Math.floor((diff / 1000 / 60) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
-  document.getElementById('countdown').textContent = `${hours}h ${minutes}m ${seconds}s`;
-}
-setInterval(startCountdown, 1000);
-
-// 👥 Fake licznik online (między 5–15)
-function randomViewers() {
-  const count = Math.floor(Math.random() * 11) + 5;
-  document.getElementById('viewerCount').textContent = count;
-}
-setInterval(randomViewers, 8000);
-randomViewers();
-</script>
-<!-- 🔥 END: Promocje i licznik -->    .opinie {
+    }
+    .opinie {
       background-color: #f0f0f0;
     }
     .opinia {
@@ -163,20 +115,31 @@ randomViewers();
       margin: 0 5px;
       text-decoration: none;
     }
-  </style>.koszyk {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #000;
-  color: #fff;
-  padding: 12px 18px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  z-index: 1000;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-}</head>
+    .promocja {
+      border: 2px solid #ff4444;
+      padding: 15px;
+      border-radius: 8px;
+      background-color: #fff6f6;
+      max-width: 400px;
+      margin: 20px auto 30px;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .promocja h3 {
+      color: #cc0000;
+      margin-bottom: 10px;
+    }
+    .viewer {
+      text-align: center;
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
 <body>
+
+<div class="koszyk">🛒 Twój koszyk: 0 produktów</div>
 
 <header>
   <img src="https://i.imgur.com/ogKRCVR.png" alt="AdelbertusShop Logo" class="logo">
@@ -208,6 +171,18 @@ randomViewers();
   </div>
 </section>
 
+<section class="promocja">
+  <h3>🔥 PROMOCJA DNIA</h3>
+  <p>Użyj kodu <strong>KOSZULKA10</strong> przy zamówieniu – otrzymasz <strong>10% zniżki</strong>!</p>
+  <p><span style="color: #555;">Oferta ważna jeszcze przez:</span></p>
+  <div id="countdown" style="font-size: 20px; font-weight: bold; color: #d90000;"></div>
+  <p style="font-size: 12px; color: gray;">* Oferta resetuje się codziennie</p>
+</section>
+
+<div class="viewer">
+  👁️‍🗨️ <span id="viewerCount">7</span> osób właśnie przegląda ten produkt
+</div>
+
 <section id="opinie" class="opinie">
   <h2>Opinie klientów</h2>
   <div class="opinia">★ ★ ★ ★ ★ „Jakość przerosła moje oczekiwania. Koszulki są świetne!” – Michał, Kraków</div>
@@ -216,20 +191,6 @@ randomViewers();
 </section>
 
 <section id="zamowienie">
-  <!-- 🔥 START: Promocje na stronie produktu -->
-  <div style="border: 2px solid #ff4444; padding: 15px; border-radius: 8px; background-color: #fff6f6; max-width: 400px; margin: 20px auto; font-family: Arial, sans-serif;">
-    <h3 style="color: #cc0000; margin-bottom: 10px;">🔥 PROMOCJA DNIA</h3>
-    <p>Użyj kodu <strong>KOSZULKA10</strong> przy zamówieniu – otrzymasz <strong>10% zniżki</strong>!</p>
-    <p><span style="color: #555;">Oferta ważna jeszcze przez:</span></p>
-    <div id="countdown" style="font-size: 20px; font-weight: bold; color: #d90000;"></div>
-    <p style="font-size: 12px; color: gray;">* Oferta resetuje się codziennie</p>
-  </div>
-
-  <div style="text-align: center; font-size: 14px; color: #444; margin-bottom: 20px;">
-    👁️‍🗨️ <span id="viewerCount">7</span> osób właśnie przegląda ten produkt
-  </div>
-  <!-- 🔥 END: Promocje na stronie produktu -->
-
   <h2>Zamówienie</h2>
   <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
     <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
@@ -247,6 +208,7 @@ randomViewers();
     <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
   </div>
 </footer>
+
 <script>
   // Odliczanie do końca dnia
   function startCountdown() {
@@ -254,45 +216,20 @@ randomViewers();
     const end = new Date();
     end.setHours(23, 59, 59, 999);
     const diff = end - now;
-
     const hours = Math.floor(diff / 1000 / 60 / 60);
     const minutes = Math.floor((diff / 1000 / 60) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
-
     document.getElementById('countdown').textContent = `${hours}h ${minutes}m ${seconds}s`;
   }
   setInterval(startCountdown, 1000);
 
-  // Licznik osób online
+  // Liczba aktualnych oglądających
   function randomViewers() {
     const count = Math.floor(Math.random() * 11) + 5;
     document.getElementById('viewerCount').textContent = count;
   }
   setInterval(randomViewers, 8000);
   randomViewers();
-</script><script>
-// ⏳ Odliczanie do końca dnia
-function startCountdown() {
-  const now = new Date();
-  const end = new Date();
-  end.setHours(23, 59, 59, 999);
-  const diff = end - now;
-
-  const hours = Math.floor(diff / 1000 / 60 / 60);
-  const minutes = Math.floor((diff / 1000 / 60) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
-  document.getElementById('countdown').textContent = `${hours}h ${minutes}m ${seconds}s`;
-}
-setInterval(startCountdown, 1000);
-
-// 👥 Fake licznik online (między 5–15)
-function randomViewers() {
-  const count = Math.floor(Math.random() * 11) + 5;
-  document.getElementById('viewerCount').textContent = count;
-}
-setInterval(randomViewers, 8000);
-randomViewers();
 </script>
 
 </body>
