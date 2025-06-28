@@ -62,8 +62,45 @@
     .produkt p {
       font-size: 14px;
       margin: 0 0 10px;
-    }
-    .opinie {
+    }<!-- 🔥 START: Promocje i licznik -->
+<div style="border: 2px solid #ff4444; padding: 15px; border-radius: 8px; background-color: #fff6f6; max-width: 400px; margin: 20px auto; font-family: Arial, sans-serif;">
+  <h3 style="color: #cc0000; margin-bottom: 10px;">🔥 PROMOCJA DNIA</h3>
+  <p>Użyj kodu <strong>KOSZULKA10</strong> przy zamówieniu – otrzymasz <strong>10% zniżki</strong>!</p>
+  <p><span style="color: #555;">Oferta ważna jeszcze przez:</span></p>
+  <div id="countdown" style="font-size: 20px; font-weight: bold; color: #d90000;"></div>
+  <p style="font-size: 12px; color: gray;">* Oferta resetuje się codziennie</p>
+</div>
+
+<!-- 👥 Licznik osób online -->
+<div style="text-align: center; font-size: 14px; color: #444; margin-bottom: 20px;">
+  👁️‍🗨️ <span id="viewerCount">7</span> osób właśnie przegląda ten produkt
+</div>
+
+<script>
+// ⏳ Odliczanie do końca dnia
+function startCountdown() {
+  const now = new Date();
+  const end = new Date();
+  end.setHours(23, 59, 59, 999);
+  const diff = end - now;
+
+  const hours = Math.floor(diff / 1000 / 60 / 60);
+  const minutes = Math.floor((diff / 1000 / 60) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  document.getElementById('countdown').textContent = `${hours}h ${minutes}m ${seconds}s`;
+}
+setInterval(startCountdown, 1000);
+
+// 👥 Fake licznik online (między 5–15)
+function randomViewers() {
+  const count = Math.floor(Math.random() * 11) + 5;
+  document.getElementById('viewerCount').textContent = count;
+}
+setInterval(randomViewers, 8000);
+randomViewers();
+</script>
+<!-- 🔥 END: Promocje i licznik -->    .opinie {
       background-color: #f0f0f0;
     }
     .opinia {
