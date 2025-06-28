@@ -1,173 +1,47 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fafafa;
-      color: #222;
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
+    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
+    .produkty { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+    .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; }
+    .produkt img { max-width: 100%; border-radius: 8px; }
+    .promocja, .opinie, #zamowienie { padding: 20px; text-align: center; background: #f9f9f9; margin-top: 20px; }
+    .viewer { text-align: center; padding: 10px; font-size: 18px; }
+    form input, form textarea, form button {
+      width: 90%; padding: 10px; margin: 10px auto; display: block; border-radius: 6px; border: 1px solid #ccc;
     }
-    header {
-      background-color: #000;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    nav a {
-      margin: 0 10px;
-      color: #fff;
-      text-decoration: none;
-    }
-    .logo {
-      max-height: 80px;
-      margin-bottom: 10px;
-    }
-    .koszyk {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #000;
-      color: #fff;
-      padding: 12px 18px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 1000;
-      font-size: 14px;
-    }
-    section {
-      padding: 40px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .produkty {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .produkt {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      width: 260px;
-      padding: 15px;
-      text-align: center;
-    }
-    .produkt img {
-      width: 100%;
-      border-radius: 6px;
-    }
-    .produkt h3 {
-      margin: 10px 0 5px;
-    }
-    .produkt p {
-      font-size: 14px;
-      margin: 0 0 10px;
-    }
-    .opinie {
-      background-color: #f0f0f0;
-    }
-    .opinia {
-      max-width: 600px;
-      margin: 20px auto;
-      font-style: italic;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 500px;
-      margin: auto;
-    }
-    input, textarea, button {
-      padding: 10px;
-      font-size: 16px;
-    }
-    button {
-      background: #000;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    footer {
-      background: #000;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
-    .social {
-      margin-top: 10px;
-    }
-    .social a {
-      color: #fff;
-      margin: 0 5px;
-      text-decoration: none;
-    }
-    .promocja {
-      border: 2px solid #ff4444;
-      padding: 15px;
-      border-radius: 8px;
-      background-color: #fff6f6;
-      max-width: 400px;
-      margin: 20px auto 30px;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    .promocja h3 {
-      color: #cc0000;
-      margin-bottom: 10px;
-    }
-    .viewer {
-      text-align: center;
-      font-size: 14px;
-      color: #444;
-      margin-bottom: 20px;
-    }
+    .social a { color: #fff; margin: 0 10px; text-decoration: none; }
   </style>
+
+  <!-- PAYPAL SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 </head>
+
 <body>
 
-<div class="koszyk">🛒 Twój koszyk: 0 produktów</div>
-
 <header>
-  <img src="https://i.imgur.com/ogKRCVR.png" alt="AdelbertusShop Logo" class="logo">
-  <nav>
-    <a href="#produkty">Produkty</a>
-    <a href="#opinie">Opinie</a>
-    <a href="#zamowienie">Zamów</a>
-  </nav>
+  <h1>AdelbertusShop</h1>
+  <p>Moda uliczna dla wyjątkowych ludzi</p>
 </header>
 
-<section id="produkty">
-  <h2>Nasze produkty</h2>
-  <div class="produkty">
-    <div class="produkt">
-      <img src="https://i.imgur.com/PCId20b.jpg" alt="Koszulka 1">
-      <h3>Koszulka Classic</h3>
-      <p>Limitowana seria z nadrukiem</p>
-    </div>
-    <div class="produkt">
-      <img src="https://i.imgur.com/XGz6oia.jpg" alt="Koszulka 2">
-      <h3>Koszulka Blackout</h3>
-      <p>100% bawełna, czarny design</p>
-    </div>
-    <div class="produkt">
-      <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Koszulka 3">
-      <h3>Bluza StreetStyle</h3>
-      <p>Ciepła, miejski styl</p>
-    </div>
+<section class="produkty">
+  <div class="produkt">
+    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Koszulka 3">
+    <h3>Bluza StreetStyle</h3>
+    <p>Ciepła, miejski styl</p>
+
+    <!-- PAYPAL BUTTON -->
+    <div id="paypal-container-44SZBZRF7BEK4" style="margin-top: 10px;"></div>
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "44SZBZRF7BEK4",
+      }).render("#paypal-container-44SZBZRF7BEK4");
+    </script>
   </div>
 </section>
 
