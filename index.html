@@ -1,110 +1,95 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AdelbertusShop</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
-    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
-    .produkty { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-    .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; }
-    .produkt img { max-width: 100%; border-radius: 8px; }
-    .promocja, .opinie, #zamowienie { padding: 20px; text-align: center; background: #f9f9f9; margin-top: 20px; }
-    .viewer { text-align: center; padding: 10px; font-size: 18px; }
-    form input, form textarea, form button {
-      width: 90%; padding: 10px; margin: 10px auto; display: block; border-radius: 6px; border: 1px solid #ccc;
-    }
-    .social a { color: #fff; margin: 0 10px; text-decoration: none; }
-  </style>
+<!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
 
-  <!-- PAYPAL SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
-</head>
+<!-- BLUZA -->
+<div class="produkt">
+  <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza StreetStyle">
+  <h3>Bluza StreetStyle – 150 zł</h3>
+  <p>Ciepła, miejski styl</p>
 
-<body>
+  <label>Rozmiar:
+    <select id="rozmiar-bluza">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+    </select>
+  </label><br>
 
-<header>
-  <h1>AdelbertusShop</h1>
-  <p>Moda uliczna dla wyjątkowych ludzi</p>
-</header>
+  <label>Kolor:
+    <select id="kolor-bluza">
+      <option value="Czarny">Czarny</option>
+      <option value="Biały">Biały</option>
+      <option value="Szary">Szary</option>
+    </select>
+  </label>
 
-<section class="produkty">
-  <div class="produkt">
-    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Koszulka 3">
-    <h3>Bluza StreetStyle</h3>
-    <p>Ciepła, miejski styl</p>
-
-    <!-- PAYPAL BUTTON -->
-    <div id="paypal-container-44SZBZRF7BEK4" style="margin-top: 10px;"></div>
-    <script>
-      paypal.HostedButtons({
-        hostedButtonId: "44SZBZRF7BEK4",
-      }).render("#paypal-container-44SZBZRF7BEK4");
-    </script>
-  </div>
-</section>
-
-<section class="promocja">
-  <h3>🔥 PROMOCJA DNIA</h3>
-  <p>Użyj kodu <strong>KOSZULKA10</strong> przy zamówieniu – otrzymasz <strong>10% zniżki</strong>!</p>
-  <p><span style="color: #555;">Oferta ważna jeszcze przez:</span></p>
-  <div id="countdown" style="font-size: 20px; font-weight: bold; color: #d90000;"></div>
-  <p style="font-size: 12px; color: gray;">* Oferta resetuje się codziennie</p>
-</section>
-
-<div class="viewer">
-  👁️‍🗨️ <span id="viewerCount">7</span> osób właśnie przegląda ten produkt
+  <div id="paypal-bluza" style="margin-top: 10px;"></div>
 </div>
 
-<section id="opinie" class="opinie">
-  <h2>Opinie klientów</h2>
-  <div class="opinia">★ ★ ★ ★ ★ „Jakość przerosła moje oczekiwania. Koszulki są świetne!” – Michał, Kraków</div>
-  <div class="opinia">★ ★ ★ ★ ★ „Zamówiłam bluzę – ciepła, miękka i bardzo stylowa. Polecam!” – Kasia, Wrocław</div>
-  <div class="opinia">★ ★ ★ ★ ★ „Super kontakt, szybka wysyłka. Limitowane dodatki są sztosem.” – Bartek, Poznań</div>
-</section>
+<!-- KOSZULKA -->
+<div class="produkt">
+  <img src="https://i.imgur.com/LQFwlCT.jpg" alt="Koszulka Adelbertus">
+  <h3>Koszulka Adelbertus – 99 zł</h3>
+  <p>Limitowana edycja</p>
 
-<section id="zamowienie">
-  <h2>Zamówienie</h2>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-    <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
-    <input type="email" name="Email" placeholder="Adres email" required>
-    <textarea name="Zamówienie" placeholder="Napisz co chcesz zamówić (np. koszulka XL, bluza M, kolor czarny)" rows="5" required></textarea>
-    <button type="submit">Wyślij zamówienie</button>
-  </form>
-</section>
+  <label>Rozmiar:
+    <select id="rozmiar-koszulka">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+    </select>
+  </label><br>
 
-<footer>
-  © 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com
-  <div class="social">
-    <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
-    <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |
-    <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
-  </div>
-</footer>
+  <label>Kolor:
+    <select id="kolor-koszulka">
+      <option value="Czarny">Czarny</option>
+      <option value="Biały">Biały</option>
+      <option value="Czerwony">Czerwony</option>
+    </select>
+  </label>
 
+  <div id="paypal-koszulka" style="margin-top: 10px;"></div>
+</div>
+
+<!-- PAYPAL SKRYPTY -->
 <script>
-  // Odliczanie do końca dnia
-  function startCountdown() {
-    const now = new Date();
-    const end = new Date();
-    end.setHours(23, 59, 59, 999);
-    const diff = end - now;
-    const hours = Math.floor(diff / 1000 / 60 / 60);
-    const minutes = Math.floor((diff / 1000 / 60) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-    document.getElementById('countdown').textContent = `${hours}h ${minutes}m ${seconds}s`;
+paypal.Buttons({
+  style: { layout: 'vertical' },
+  createOrder: function(data, actions) {
+    const rozmiar = document.getElementById("rozmiar-bluza").value;
+    const kolor = document.getElementById("kolor-bluza").value;
+    return actions.order.create({
+      purchase_units: [{
+        amount: { value: "150.00", currency_code: "PLN" },
+        description: `Bluza StreetStyle, Rozmiar: ${rozmiar}, Kolor: ${kolor}`
+      }]
+    });
+  },
+  onApprove: function(data, actions) {
+    return actions.order.capture().then(function(details) {
+      alert("Dziękujemy za zakup, " + details.payer.name.given_name + "!");
+    });
   }
-  setInterval(startCountdown, 1000);
+}).render("#paypal-bluza");
 
-  // Liczba aktualnych oglądających
-  function randomViewers() {
-    const count = Math.floor(Math.random() * 11) + 5;
-    document.getElementById('viewerCount').textContent = count;
+paypal.Buttons({
+  style: { layout: 'vertical' },
+  createOrder: function(data, actions) {
+    const rozmiar = document.getElementById("rozmiar-koszulka").value;
+    const kolor = document.getElementById("kolor-koszulka").value;
+    return actions.order.create({
+      purchase_units: [{
+        amount: { value: "99.00", currency_code: "PLN" },
+        description: `Koszulka Adelbertus, Rozmiar: ${rozmiar}, Kolor: ${kolor}`
+      }]
+    });
+  },
+  onApprove: function(data, actions) {
+    return actions.order.capture().then(function(details) {
+      alert("Dziękujemy za zakup, " + details.payer.name.given_name + "!");
+    });
   }
-  setInterval(randomViewers, 8000);
-  randomViewers();
+}).render("#paypal-koszulka");
 </script>
-
-</body>
-</html>
