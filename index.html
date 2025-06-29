@@ -8,139 +8,87 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #111;
       margin: 0;
       padding: 0;
-      background: #fff;
-      color: #333;
     }
     header, footer {
-      background: #111;
-      color: #fff;
+      background-color: #000;
+      color: white;
+      padding: 1em;
       text-align: center;
-      padding: 20px;
-    }
-    nav {
-      background: #222;
-      text-align: center;
-      padding: 10px;
     }
     nav a {
-      color: #fff;
       margin: 0 10px;
+      color: white;
       text-decoration: none;
-      font-weight: bold;
     }
-    section {
-      display: none;
-      padding: 20px;
-    }
-    section.active {
-      display: block;
-    }
-    .produkt {
-      border: 1px solid #ccc;
-      padding: 15px;
-      margin: 20px auto;
-      border-radius: 8px;
-      width: 250px;
+    .container {
+      padding: 2em;
       text-align: center;
     }
-    .produkt img {
-      max-width: 100%;
+    .product {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1em;
+      margin: 1em auto;
+      width: 300px;
+    }
+    .product img {
+      width: 100%;
+      height: auto;
       border-radius: 8px;
     }
-    input, select, textarea, button {
-      display: block;
-      width: 100%;
+    .price {
+      font-weight: bold;
       margin: 10px 0;
-      padding: 8px;
-    }
-    .socials {
-      margin-top: 20px;
-    }
-    .socials a {
-      color: white;
-      margin: 0 8px;
-      text-decoration: none;
-      font-size: 18px;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>AdelbertusShop</h1>
+    <p>Moda uliczna dla wyjątkowych ludzi</p>
+    <nav>
+      <a href="#">Sklep</a>
+      <a href="#">Projektuj</a>
+      <a href="#">Opinie</a>
+      <a href="#">Blog</a>
+    </nav>
+  </header>
 
-<header>
-  <img src="https://i.imgur.com/C7MDjXK.png" alt="Logo AdelbertusShop" style="max-width: 180px; margin-bottom: 10px;">
-  <h1>AdelbertusShop</h1>
-  <p>Moda uliczna dla wyjątkowych ludzi</p>
-</header>
+  <div class="container">
+    <h2>Nasze Produkty</h2>
 
-<nav>
-  <a href="#" onclick="showSection('sklep')">Sklep</a>
-  <a href="#" onclick="showSection('projektuj')">Projektuj</a>
-  <a href="#" onclick="showSection('opinie')">Opinie</a>
-  <a href="#" onclick="showSection('blog')">Blog</a>
-</nav>
+    <div class="product">
+      <img src="https://raw.githubusercontent.com/adelbertusshop/adelbertusshop/main/assets/Messenger_creation_6365D019-B450-442F-B278-4AF2AB768752.jpeg" alt="Koszulka Pi Logo">
+      <h3>Koszulka Pi Logo</h3>
+      <p class="price">90 zł</p>
+    </div>
 
-<section id="sklep" class="active">
-  <h2>Nasze Produkty</h2>
+    <div class="product">
+      <img src="https://raw.githubusercontent.com/adelbertusshop/adelbertusshop/main/assets/Messenger_creation_DC27CACF-8CDB-4FE5-927D-958ED02429A1.jpeg" alt="Bluza StreetStyle">
+      <h3>Bluza StreetStyle</h3>
+      <p class="price">150 zł</p>
+    </div>
 
-  <div class="produkt">
-    <img src="https://i.imgur.com/yIig81y.png" alt="Koszulka Pi Logo">
-    <h3>Koszulka z Logo Pi – 90 zł</h3>
-    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-    <select><option>Czarny</option><option>Biały</option></select>
+    <div class="product">
+      <img src="https://raw.githubusercontent.com/adelbertusshop/adelbertusshop/main/assets/Messenger_creation_DF1FBCC7-9070-4E6E-B35B-36A6C96B5280.jpeg" alt="Czapka z logo">
+      <h3>Czapka Adelbertus</h3>
+      <p class="price">60 zł</p>
+    </div>
+
+    <!-- Możesz dodać więcej produktów kopiując i podmieniając grafiki -->
   </div>
 
-  <div class="produkt">
-    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza StreetStyle">
-    <h3>Bluza StreetStyle – 150 zł</h3>
-    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-    <select><option>Czarny</option><option>Szary</option></select>
-  </div>
-
-  <div class="produkt">
-    <img src="https://i.imgur.com/ZvmUmtY.png" alt="Czapka z logo">
-    <h3>Czapka Adelbertus – 60 zł</h3>
-    <select><option>Czarna</option><option>Szara</option></select>
-  </div>
-</section>
-
-<section id="projektuj">
-  <h2>Zaprojektuj Sam</h2>
-  <form>
-    <select><option>Kolor: Czarny</option><option>Biały</option></select>
-    <select><option>Rozmiar: S</option><option>M</option><option>L</option></select>
-    <textarea placeholder="Twój projekt"></textarea>
-    <button type="submit">Zamów</button>
-  </form>
-</section>
-
-<section id="opinie">
-  <h2>Opinie</h2>
-  <p>★★★★★ "Świetna jakość i design!"</p>
-</section>
-
-<section id="blog">
-  <h2>Blog i Porady</h2>
-  <p>👉 Jak dobrać idealny rozmiar?</p>
-  <p>👉 Historia marki Adelbertus</p>
-</section>
-
-<footer>
-  <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
-  <div class="socials">
-    <a href="https://www.instagram.com/mielniczukgrzegosz74">Instagram</a> |
-    <a href="https://www.facebook.com/share/16X9nmSyhv">Facebook</a> |
-    <a href="https://www.tiktok.com/@ja.jestem3">TikTok</a>
-  </div>
-</footer>
-
-<script>
-  function showSection(id) {
-    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-</script>
-
+  <footer>
+    <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
+    <p>
+      <a href="https://www.instagram.com/mielniczukgrzegosz74" style="color:white;">Instagram</a> |
+      <a href="https://www.facebook.com/share/16X9nmSyhv" style="color:white;">Facebook</a> |
+      <a href="https://www.tiktok.com/@ja.jestem3" style="color:white;">TikTok</a>
+    </p>
+  </footer>
 </body>
 </html>
