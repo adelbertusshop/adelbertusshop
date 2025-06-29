@@ -5,135 +5,134 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; background: #f9f9f9; color: #333; }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
     header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
-    nav { background: #222; padding: 10px; text-align: center; position: sticky; top: 0; z-index: 100; }
-    nav a { color: #fff; margin: 0 10px; text-decoration: none; font-weight: bold; padding: 8px 12px; }
-    nav a:hover { background: #444; border-radius: 6px; }
-    section { padding: 30px 20px; max-width: 1000px; margin: auto; background: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
-    .produkty, .projektuj { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-    .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 280px; text-align: center; background: #fafafa; }
-    .produkt img { width: 100%; border-radius: 8px; }
-    select, textarea, input, button { width: 100%; padding: 8px; margin: 10px 0; border-radius: 6px; border: 1px solid #ccc; }
-    .social a { color: #fff; margin: 0 8px; text-decoration: none; }
-    .social a:hover { text-decoration: underline; }
+    nav { background: #222; text-align: center; padding: 10px; }
+    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    section { display: none; padding: 20px; }
+    section.active { display: block; }
+    .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
+      padding: 20px;
+    }
+    .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; margin: 20px auto; }
+    .produkt img { max-width: 100%; border-radius: 8px; }
+    .produkt select, form input, form textarea, form button {
+      width: 100%; padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;
+    }
   </style>
   <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 </head>
 <body>
-
 <header>
   <h1>AdelbertusShop</h1>
   <p>Moda uliczna dla wyjątkowych ludzi</p>
 </header>
-
 <nav>
-  <a href="#sklep">🛒 Sklep</a>
-  <a href="#projektuj">🎨 Zaprojektuj Sam</a>
-  <a href="#zamowienie">📩 Zamówienie</a>
-  <a href="#opinie">⭐ Opinie</a>
-  <a href="#blog">📚 Blog</a>
-  <a href="#marketplace">📦 Marketplace</a>
-  <a href="#reklama">📢 Reklama</a>
-  <a href="#zbiorka">❤️ Zbiórka</a>
+  <a href="#" onclick="showSection('sklep')">Sklep</a>
+  <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
+  <a href="#" onclick="showSection('marketplace')">Marketplace</a>
+  <a href="#" onclick="showSection('reklama')">Reklama</a>
+  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
+  <a href="#" onclick="showSection('opinie')">Opinie</a>
+  <a href="#" onclick="showSection('blog')">Blog</a>
+  <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
+  <a href="#" onclick="showSection('regulamin')">Regulamin</a>
 </nav>
 
-<section id="sklep" class="produkty">
+<section id="sklep" class="produkty active">
   <div class="produkt">
-    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza StreetStyle">
+    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
     <h3>Bluza StreetStyle – 150 zł</h3>
-    <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>
-    <select><option>Kolor: Czarny</option><option>Biały</option><option>Szary</option></select>
+    <label>Rozmiar:</label>
+    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+    <label>Kolor:</label>
+    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
     <div id="paypal-container-bluza"></div>
     <script>paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");</script>
   </div>
-  <div class="produkt">
-    <img src="https://i.imgur.com/U0K7eoh.jpg" alt="Koszulka Adelbertus">
-    <h3>Koszulka Adelbertus – 99 zł</h3>
-    <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>
+</section>
+
+<section id="projektuj" class="projektuj">
+  <h2>Zaprojektuj Sam</h2>
+  <p>Wybierz kolor, rozmiar i napisz własny tekst:</p>
+  <form>
     <select><option>Kolor: Czarny</option><option>Biały</option><option>Czerwony</option></select>
-    <div id="paypal-container-koszulka"></div>
-    <script>paypal.HostedButtons({ hostedButtonId: "WPISZ_TUTAJ_ID_KOSZULKI" }).render("#paypal-container-koszulka");</script>
-  </div>
+    <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>
+    <textarea placeholder="Wpisz swój tekst lub projekt"></textarea>
+    <button type="submit">Zamów</button>
+  </form>
 </section>
 
-<section>
-  <h3>🔥 PROMOCJA DNIA</h3>
-  <p>Kod: <strong>KOSZULKA10</strong> – 10% zniżki!</p>
-  <p>Oferta resetuje się codziennie</p>
+<section id="marketplace" class="marketplace">
+  <h2>Marketplace</h2>
+  <p>Sprzedawaj swoje produkty przez nasz sklep. Wypełnij formularz:</p>
+  <form>
+    <input type="text" placeholder="Nazwa produktu">
+    <input type="text" placeholder="Cena">
+    <textarea placeholder="Opis"></textarea>
+    <input type="url" placeholder="Link do zdjęcia">
+    <button type="submit">Wyślij zgłoszenie</button>
+  </form>
 </section>
 
-<section id="projektuj">
-  <h2>🎨 Zaprojektuj sam</h2>
-  <textarea placeholder="Twój tekst tutaj..." id="custom-text"></textarea>
-  <div id="preview" style="padding: 15px; background: #eee; border: 1px dashed #999; margin-top: 10px;">Twój tekst pojawi się tutaj</div>
+<section id="reklama" class="reklama">
+  <h2>Panel Reklamowy</h2>
+  <p>Promuj swój produkt na naszej stronie. Cena: 50 zł / tydzień.</p>
+  <form>
+    <input type="text" placeholder="Twoja nazwa / marka">
+    <textarea placeholder="Opis reklamy"></textarea>
+    <input type="url" placeholder="Link do strony lub social media">
+    <button type="submit">Zgłoś reklamę</button>
+  </form>
+</section>
+
+<section id="zbiorka" class="zbiorka">
+  <h2>Zbiórka charytatywna</h2>
+  <p>Wspieramy dom dziecka – przekaż darowiznę na nr <strong>BLIK 573-939-925</strong> z dopiskiem <strong>"pomoc"</strong>.</p>
+</section>
+
+<section id="opinie" class="opinie">
+  <h2>Opinie klientów</h2>
+  <p>★ ★ ★ ★ ★ „Super jakość – koszulki świetne!”</p>
+  <p>★ ★ ★ ★ ★ „Bluza stylowa i wygodna!”</p>
+</section>
+
+<section id="blog" class="blog">
+  <h2>Blog i Porady</h2>
+  <h3>Jak dobrać rozmiar?</h3>
+  <p>Poradnik rozmiarówki streetwearu...</p>
 </section>
 
 <section id="zamowienie">
-  <h2>📩 Zamówienie</h2>
+  <h2>Zamówienie</h2>
   <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
     <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
-    <input type="email" name="Email" placeholder="Adres email" required>
-    <textarea name="Zamówienie" placeholder="Opis zamówienia" rows="5" required></textarea>
-    <button type="submit">Wyślij zamówienie</button>
+    <input type="email" name="Email" placeholder="Email" required>
+    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" required></textarea>
+    <button type="submit">Wyślij</button>
   </form>
 </section>
 
-<section id="opinie">
-  <h2>⭐ Opinie klientów</h2>
-  <div>★★★★★ „Bluza świetna jakościowo!” – Michał</div>
-  <div>★★★★★ „Koszulka przyszła szybko!” – Kasia</div>
-</section>
-
-<section id="blog">
-  <h2>📚 Blog / Poradnik</h2>
-  <h3>Jak dobrać rozmiar?</h3>
-  <p>Dowiesz się tu, jak dobrze trafić ze streetwear’em.</p>
-  <h3>Historia marki Adelbertus</h3>
-  <p>Poznaj naszą drogę i przesłanie.</p>
-</section>
-
-<section id="marketplace">
-  <h2>📦 Marketplace – sprzedawaj u nas</h2>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-    <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
-    <input type="email" name="Email" placeholder="Adres email" required>
-    <textarea name="Opis produktu" placeholder="Opisz swój produkt" rows="4" required></textarea>
-    <button type="submit">Zgłoś się</button>
-  </form>
-</section>
-
-<section id="reklama">
-  <h2>📢 Panel reklamowy</h2>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-    <input type="text" name="Firma / Osoba" placeholder="Nazwa firmy lub osoba" required>
-    <input type="email" name="Email" placeholder="Adres email" required>
-    <textarea name="Opis reklamy" placeholder="Opisz reklamę (baner/post)" rows="4" required></textarea>
-    <button type="submit">Zamów reklamę</button>
-  </form>
-</section>
-
-<section id="zbiorka">
-  <h2>❤️ Zbiórka charytatywna</h2>
-  <p>Wspieramy dom dziecka. Wesprzyj BLIKiem:</p>
-  <p><strong>573-939-925</strong> z dopiskiem <em>„pomoc”</em></p>
+<section id="regulamin" class="regulamin">
+  <h2>Regulamin i Polityka Prywatności</h2>
+  <p>Przetwarzamy dane tylko w celu realizacji zamówienia. Nie udostępniamy danych osobom trzecim.</p>
+  <p>Reklamacje przyjmujemy mailowo do 14 dni od zakupu.</p>
 </section>
 
 <footer>
   <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
-  <div class="social">
+  <p>
     <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
     <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |
     <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
-  </div>
+  </p>
 </footer>
 
 <script>
-  document.getElementById('custom-text').addEventListener('input', e => {
-    document.getElementById('preview').textContent = e.target.value || "Twój tekst pojawi się tutaj";
-  });
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
 </script>
-
 </body>
 </html>
