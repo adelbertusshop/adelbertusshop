@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -6,29 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
   <style>
-    * { box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f9f9f9; color: #333; }
     header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
-    nav { background: #222; text-align: center; padding: 10px; position: sticky; top: 0; z-index: 100; }
-    nav a { color: #fff; margin: 0 10px; text-decoration: none; font-weight: bold; padding: 8px 12px; display: inline-block; }
+    nav { background: #222; padding: 10px; text-align: center; position: sticky; top: 0; z-index: 100; }
+    nav a { color: #fff; margin: 0 10px; text-decoration: none; font-weight: bold; padding: 8px 12px; }
     nav a:hover { background: #444; border-radius: 6px; }
-    section { padding: 30px 20px; max-width: 1000px; margin: auto; }
-    .produkty { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    section { padding: 30px 20px; max-width: 1000px; margin: auto; background: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    .produkty, .projektuj { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
     .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 280px; text-align: center; background: #fafafa; }
-    .produkt img { max-width: 100%; border-radius: 8px; }
-    .produkt select { margin: 6px 0; padding: 6px; width: 100%; border-radius: 6px; border: 1px solid #ccc; }
-    .promocja, .opinie, .blog, #zamowienie, #projektuj { background: #f9f9f9; margin-top: 20px; border-radius: 10px; }
-    form input, form textarea, form button {
-      width: 90%; padding: 10px; margin: 10px auto; display: block; border-radius: 6px; border: 1px solid #ccc;
-    }
-    .viewer { text-align: center; padding: 10px; font-size: 18px; }
-    .social a { color: #fff; margin: 0 10px; text-decoration: none; }
+    .produkt img { width: 100%; border-radius: 8px; }
+    select, textarea, input, button { width: 100%; padding: 8px; margin: 10px 0; border-radius: 6px; border: 1px solid #ccc; }
+    .social a { color: #fff; margin: 0 8px; text-decoration: none; }
     .social a:hover { text-decoration: underline; }
-    textarea { resize: vertical; }
   </style>
   <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 </head>
-
 <body>
 
 <header>
@@ -42,47 +34,40 @@
   <a href="#zamowienie">📩 Zamówienie</a>
   <a href="#opinie">⭐ Opinie</a>
   <a href="#blog">📚 Blog</a>
+  <a href="#marketplace">📦 Marketplace</a>
+  <a href="#reklama">📢 Reklama</a>
+  <a href="#zbiorka">❤️ Zbiórka</a>
 </nav>
 
 <section id="sklep" class="produkty">
   <div class="produkt">
     <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza StreetStyle">
     <h3>Bluza StreetStyle – 150 zł</h3>
-    <p>Ciepła, miejski styl</p>
-    <label>Rozmiar: <select><option>S</option><option>M</option><option>L</option><option>XL</option></select></label>
-    <label>Kolor: <select><option>Czarny</option><option>Biały</option><option>Szary</option></select></label>
+    <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>
+    <select><option>Kolor: Czarny</option><option>Biały</option><option>Szary</option></select>
     <div id="paypal-container-bluza"></div>
     <script>paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");</script>
   </div>
-
   <div class="produkt">
     <img src="https://i.imgur.com/U0K7eoh.jpg" alt="Koszulka Adelbertus">
     <h3>Koszulka Adelbertus – 99 zł</h3>
-    <p>Limitowana edycja</p>
-    <label>Rozmiar: <select><option>S</option><option>M</option><option>L</option><option>XL</option></select></label>
-    <label>Kolor: <select><option>Czarny</option><option>Biały</option><option>Czerwony</option></select></label>
+    <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>
+    <select><option>Kolor: Czarny</option><option>Biały</option><option>Czerwony</option></select>
     <div id="paypal-container-koszulka"></div>
     <script>paypal.HostedButtons({ hostedButtonId: "WPISZ_TUTAJ_ID_KOSZULKI" }).render("#paypal-container-koszulka");</script>
   </div>
 </section>
 
-<section class="promocja">
+<section>
   <h3>🔥 PROMOCJA DNIA</h3>
   <p>Kod: <strong>KOSZULKA10</strong> – 10% zniżki!</p>
-  <p><span style="color: #555;">Oferta ważna jeszcze przez:</span></p>
-  <div id="countdown" style="font-size: 20px; font-weight: bold; color: #d90000;"></div>
-  <p style="font-size: 12px; color: gray;">* Oferta resetuje się codziennie</p>
+  <p>Oferta resetuje się codziennie</p>
 </section>
 
 <section id="projektuj">
   <h2>🎨 Zaprojektuj sam</h2>
-  <p>Wpisz tekst, który ma pojawić się na Twojej koszulce lub kubku:</p>
-  <textarea placeholder="Np. Moja pasja – matematyka" oninput="document.getElementById('preview').textContent = this.value"></textarea>
-  <div id="preview" style="margin-top: 20px; padding: 20px; background: #eee; border: 1px dashed #999;">Twój tekst pojawi się tutaj</div>
-</section>
-
-<section class="viewer">
-  👁️‍🗨️ <span id="viewerCount">7</span> osób właśnie przegląda ten produkt
+  <textarea placeholder="Twój tekst tutaj..." id="custom-text"></textarea>
+  <div id="preview" style="padding: 15px; background: #eee; border: 1px dashed #999; margin-top: 10px;">Twój tekst pojawi się tutaj</div>
 </section>
 
 <section id="zamowienie">
@@ -90,24 +75,49 @@
   <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
     <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
     <input type="email" name="Email" placeholder="Adres email" required>
-    <textarea name="Zamówienie" placeholder="Np. koszulka L czarna + tekst: Kocham Matmę" rows="5" required></textarea>
+    <textarea name="Zamówienie" placeholder="Opis zamówienia" rows="5" required></textarea>
     <button type="submit">Wyślij zamówienie</button>
   </form>
 </section>
 
-<section id="opinie" class="opinie">
+<section id="opinie">
   <h2>⭐ Opinie klientów</h2>
-  <div>★ ★ ★ ★ ★ „Jakość przerosła moje oczekiwania.” – Michał, Kraków</div>
-  <div>★ ★ ★ ★ ★ „Bluza jest ciepła, miękka i stylowa. Polecam!” – Kasia, Wrocław</div>
-  <div>★ ★ ★ ★ ★ „Super kontakt i szybka wysyłka!” – Bartek, Poznań</div>
+  <div>★★★★★ „Bluza świetna jakościowo!” – Michał</div>
+  <div>★★★★★ „Koszulka przyszła szybko!” – Kasia</div>
 </section>
 
-<section id="blog" class="blog">
+<section id="blog">
   <h2>📚 Blog / Poradnik</h2>
-  <h3>Jak dobrać rozmiar streetwearu?</h3>
-  <p>Dowiedz się, jak dobrać idealny rozmiar, by Twoje ubrania leżały perfekcyjnie.</p>
+  <h3>Jak dobrać rozmiar?</h3>
+  <p>Dowiesz się tu, jak dobrze trafić ze streetwear’em.</p>
   <h3>Historia marki Adelbertus</h3>
-  <p>Poznaj naszą filozofię i przesłanie ukryte w odzieży.</p>
+  <p>Poznaj naszą drogę i przesłanie.</p>
+</section>
+
+<section id="marketplace">
+  <h2>📦 Marketplace – sprzedawaj u nas</h2>
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+    <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
+    <input type="email" name="Email" placeholder="Adres email" required>
+    <textarea name="Opis produktu" placeholder="Opisz swój produkt" rows="4" required></textarea>
+    <button type="submit">Zgłoś się</button>
+  </form>
+</section>
+
+<section id="reklama">
+  <h2>📢 Panel reklamowy</h2>
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+    <input type="text" name="Firma / Osoba" placeholder="Nazwa firmy lub osoba" required>
+    <input type="email" name="Email" placeholder="Adres email" required>
+    <textarea name="Opis reklamy" placeholder="Opisz reklamę (baner/post)" rows="4" required></textarea>
+    <button type="submit">Zamów reklamę</button>
+  </form>
+</section>
+
+<section id="zbiorka">
+  <h2>❤️ Zbiórka charytatywna</h2>
+  <p>Wspieramy dom dziecka. Wesprzyj BLIKiem:</p>
+  <p><strong>573-939-925</strong> z dopiskiem <em>„pomoc”</em></p>
 </section>
 
 <footer>
@@ -120,24 +130,9 @@
 </footer>
 
 <script>
-  function startCountdown() {
-    const now = new Date();
-    const end = new Date();
-    end.setHours(23, 59, 59, 999);
-    const diff = end - now;
-    const hours = Math.floor(diff / 1000 / 60 / 60);
-    const minutes = Math.floor((diff / 1000 / 60) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-    document.getElementById('countdown').textContent = `${hours}h ${minutes}m ${seconds}s`;
-  }
-  setInterval(startCountdown, 1000);
-
-  function randomViewers() {
-    const count = Math.floor(Math.random() * 11) + 5;
-    document.getElementById('viewerCount').textContent = count;
-  }
-  setInterval(randomViewers, 8000);
-  randomViewers();
+  document.getElementById('custom-text').addEventListener('input', e => {
+    document.getElementById('preview').textContent = e.target.value || "Twój tekst pojawi się tutaj";
+  });
 </script>
 
 </body>
