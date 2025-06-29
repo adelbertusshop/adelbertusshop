@@ -55,19 +55,6 @@
       margin: 10px 0;
       padding: 8px;
     }
-    .blog-entry {
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 6px;
-    }
-    .delete-btn {
-      background: red;
-      color: white;
-      border: none;
-      padding: 5px;
-      cursor: pointer;
-    }
     .socials {
       margin-top: 20px;
     }
@@ -82,37 +69,39 @@
 <body>
 
 <header>
-  <img src="/images/Messenger_creation_FD0395A1-A5D3-4063-A025-C2FF75C5C75F.jpeg" alt="Logo AdelbertusShop" style="max-width: 180px; margin-bottom: 10px; border-radius: 12px;">
+  <img src="https://i.imgur.com/C7MDjXK.png" alt="Logo AdelbertusShop" style="max-width: 180px; margin-bottom: 10px;">
   <h1>AdelbertusShop</h1>
   <p>Moda uliczna dla wyjątkowych ludzi</p>
-  <p style="font-style: italic; margin-top: 10px; color: #ccc;">
-    Nie jesteś częścią tłumu – jesteś liczbą, która robi różnicę.
-  </p>
 </header>
 
 <nav>
   <a href="#" onclick="showSection('sklep')">Sklep</a>
   <a href="#" onclick="showSection('projektuj')">Projektuj</a>
-  <a href="#" onclick="showSection('marketplace')">Marketplace</a>
-  <a href="#" onclick="showSection('reklama')">Reklama</a>
-  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
   <a href="#" onclick="showSection('opinie')">Opinie</a>
   <a href="#" onclick="showSection('blog')">Blog</a>
-  <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
-  <a href="#" onclick="showSection('regulamin')">Regulamin</a>
 </nav>
 
 <section id="sklep" class="active">
+  <h2>Nasze Produkty</h2>
+
   <div class="produkt">
-    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
+    <img src="https://i.imgur.com/yIig81y.png" alt="Koszulka Pi Logo">
+    <h3>Koszulka z Logo Pi – 90 zł</h3>
+    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+    <select><option>Czarny</option><option>Biały</option></select>
+  </div>
+
+  <div class="produkt">
+    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza StreetStyle">
     <h3>Bluza StreetStyle – 150 zł</h3>
     <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
-    <div id="paypal-container-bluza"></div>
-    <script src="https://www.paypal.com/sdk/js?client-id=test&components=hosted-buttons"></script>
-    <script>
-      paypal.HostedButtons({ hostedButtonId: "test" }).render("#paypal-container-bluza");
-    </script>
+    <select><option>Czarny</option><option>Szary</option></select>
+  </div>
+
+  <div class="produkt">
+    <img src="https://i.imgur.com/ZvmUmtY.png" alt="Czapka z logo">
+    <h3>Czapka Adelbertus – 60 zł</h3>
+    <select><option>Czarna</option><option>Szara</option></select>
   </div>
 </section>
 
@@ -126,68 +115,23 @@
   </form>
 </section>
 
-<section id="marketplace">
-  <h2>Marketplace</h2>
-  <form>
-    <input type="text" placeholder="Nazwa produktu">
-    <input type="text" placeholder="Cena">
-    <textarea placeholder="Opis"></textarea>
-    <input type="url" placeholder="Link do zdjęcia">
-    <button type="submit">Wyślij</button>
-  </form>
-</section>
-
-<section id="reklama">
-  <h2>Reklama</h2>
-  <form>
-    <input type="text" placeholder="Nazwa">
-    <textarea placeholder="Opis reklamy"></textarea>
-    <input type="url" placeholder="Link">
-    <button type="submit">Zgłoś</button>
-  </form>
-</section>
-
-<section id="zbiorka">
-  <h2>Zbiórka</h2>
-  <p>Pomóż domowi dziecka. Przelew BLIK na 573-939-925 z dopiskiem "pomoc".</p>
-</section>
-
 <section id="opinie">
   <h2>Opinie</h2>
-  <p>★★★★★ "Super jakość!"</p>
+  <p>★★★★★ "Świetna jakość i design!"</p>
 </section>
 
 <section id="blog">
   <h2>Blog i Porady</h2>
-  <form onsubmit="addPost(event)">
-    <input id="blog-title" placeholder="Tytuł wpisu" required>
-    <textarea id="blog-content" placeholder="Treść wpisu" required></textarea>
-    <button type="submit">Dodaj wpis</button>
-  </form>
-  <div id="blog-posts"></div>
-</section>
-
-<section id="zamowienie">
-  <h2>Zamówienie</h2>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post">
-    <input type="text" name="Imię" placeholder="Imię i nazwisko">
-    <input type="email" name="Email" placeholder="Email">
-    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?"></textarea>
-    <button type="submit">Wyślij</button>
-  </form>
-</section>
-
-<section id="regulamin">
-  <h2>Regulamin</h2>
-  <p>Dane są przetwarzane tylko w celu realizacji zamówień.</p>
+  <p>👉 Jak dobrać idealny rozmiar?</p>
+  <p>👉 Historia marki Adelbertus</p>
 </section>
 
 <footer>
-  © 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com  
+  <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
   <div class="socials">
-    <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
-    <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |
-    <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
+    <a href="https://www.instagram.com/mielniczukgrzegosz74">Instagram</a> |
+    <a href="https://www.facebook.com/share/16X9nmSyhv">Facebook</a> |
+    <a href="https://www.tiktok.com/@ja.jestem3">TikTok</a>
   </div>
 </footer>
 
@@ -195,17 +139,6 @@
   function showSection(id) {
     document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-  }
-
-  function addPost(event) {
-    event.preventDefault();
-    const title = document.getElementById("blog-title").value;
-    const content = document.getElementById("blog-content").value;
-    const entry = document.createElement("div");
-    entry.className = "blog-entry";
-    entry.innerHTML = `<h4>${title}</h4><p>${content}</p><button class="delete-btn" onclick="this.parentElement.remove()">Usuń</button>`;
-    document.getElementById("blog-posts").appendChild(entry);
-    event.target.reset();
   }
 </script>
 
