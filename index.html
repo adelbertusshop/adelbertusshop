@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -81,7 +82,7 @@
 <body>
 
 <header>
-  <img src="logo.png" alt="Logo AdelbertusShop" style="max-width: 150px; margin-bottom: 10px;">
+  <img src="/images/Messenger_creation_FD0395A1-A5D3-4063-A025-C2FF75C5C75F.jpeg" alt="Logo AdelbertusShop" style="max-width: 180px; margin-bottom: 10px; border-radius: 12px;">
   <h1>AdelbertusShop</h1>
   <p>Moda uliczna dla wyjątkowych ludzi</p>
   <p style="font-style: italic; margin-top: 10px; color: #ccc;">
@@ -181,24 +182,30 @@
   <p>Dane są przetwarzane tylko w celu realizacji zamówień.</p>
 </section>
 
+<footer>
+  © 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com  
+  <div class="socials">
+    <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
+    <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |
+    <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
+  </div>
+</footer>
+
 <script>
   function showSection(id) {
-    document.querySelectorAll("section").forEach(section => {
-      section.classList.remove("active");
-    });
-    document.getElementById(id).classList.add("active");
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
   }
 
   function addPost(event) {
     event.preventDefault();
-    const title = document.getElementById('blog-title').value;
-    const content = document.getElementById('blog-content').value;
-    const post = document.createElement('div');
-    post.classList.add('blog-entry');
-    post.innerHTML = `<h3>${title}</h3><p>${content}</p><button class="delete-btn" onclick="this.parentElement.remove()">Usuń</button>`;
-    document.getElementById('blog-posts').appendChild(post);
-    document.getElementById('blog-title').value = '';
-    document.getElementById('blog-content').value = '';
+    const title = document.getElementById("blog-title").value;
+    const content = document.getElementById("blog-content").value;
+    const entry = document.createElement("div");
+    entry.className = "blog-entry";
+    entry.innerHTML = `<h4>${title}</h4><p>${content}</p><button class="delete-btn" onclick="this.parentElement.remove()">Usuń</button>`;
+    document.getElementById("blog-posts").appendChild(entry);
+    event.target.reset();
   }
 </script>
 
