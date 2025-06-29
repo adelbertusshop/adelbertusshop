@@ -1,191 +1,189 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AdelbertusShop</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fff;
-      color: #333;
-    }
-    header, footer {
-      background: #111;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-    nav {
-      background: #222;
-      text-align: center;
-      padding: 10px;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section {
-      display: none;
-      padding: 20px;
-    }
-    section.active {
-      display: block;
-    }
-    .produkt {
-      border: 1px solid #ccc;
-      padding: 15px;
-      margin: 20px auto;
-      border-radius: 8px;
-      width: 250px;
-      text-align: center;
-    }
-    .produkt img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-    input, select, textarea, button {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-      padding: 8px;
-    }
-    .blog-entry {
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 6px;
-    }
-    .delete-btn {
-      background: red;
-      color: white;
-      border: none;
-      padding: 5px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>AdelbertusShop</h1>
-    <p>Moda uliczna dla wyjątkowych ludzi</p>
-  </header>
 
-  <nav>
-    <a href="#" onclick="showSection('sklep')">Sklep</a>
-    <a href="#" onclick="showSection('projektuj')">Projektuj</a>
-    <a href="#" onclick="showSection('marketplace')">Marketplace</a>
-    <a href="#" onclick="showSection('reklama')">Reklama</a>
-    <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
-    <a href="#" onclick="showSection('opinie')">Opinie</a>
-    <a href="#" onclick="showSection('blog')">Blog</a>
-    <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
-    <a href="#" onclick="showSection('regulamin')">Regulamin</a>
-  </nav>
-
-  <section id="sklep" class="active">
-    <div class="produkt">
-      <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
-      <h3>Bluza StreetStyle – 150 zł</h3>
-      <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-      <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
-      <div id="paypal-container-bluza"></div>
-    </div>
-  </section>
-
-  <section id="projektuj">
-    <h2>Zaprojektuj Sam</h2>
-    <form>
-      <select><option>Kolor: Czarny</option><option>Biały</option></select>
-      <select><option>Rozmiar: S</option><option>M</option><option>L</option></select>
-      <textarea placeholder="Twój projekt"></textarea>
-      <button type="submit">Zamów</button>
-    </form>
-  </section>
-
-  <section id="marketplace">
-    <h2>Marketplace</h2>
-    <form>
-      <input type="text" placeholder="Nazwa produktu">
-      <input type="text" placeholder="Cena">
-      <textarea placeholder="Opis"></textarea>
-      <input type="url" placeholder="Link do zdjęcia">
-      <button type="submit">Wyślij</button>
-    </form>
-  </section>
-
-  <section id="reklama">
-    <h2>Reklama</h2>
-    <form>
-      <input type="text" placeholder="Nazwa">
-      <textarea placeholder="Opis reklamy"></textarea>
-      <input type="url" placeholder="Link">
-      <button type="submit">Zgłoś</button>
-    </form>
-  </section>
-
-  <section id="zbiorka">
-    <h2>Zbiórka</h2>
-    <p>Pomóż domowi dziecka. Przelew BLIK na 573-939-925 z dopiskiem "pomoc".</p>
-  </section>
-
-  <section id="opinie">
-    <h2>Opinie</h2>
-    <p>★★★★★ "Super jakość!"</p>
-  </section>
-
-  <section id="blog">
-    <h2>Blog i Porady</h2>
-    <form onsubmit="addPost(event)">
-      <input id="blog-title" placeholder="Tytuł wpisu" required>
-      <textarea id="blog-content" placeholder="Treść wpisu" required></textarea>
-      <button type="submit">Dodaj wpis</button>
-    </form>
-    <div id="blog-posts"></div>
-  </section>
-
-  <section id="zamowienie">
-    <h2>Zamówienie</h2>
-    <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post">
-      <input type="text" name="Imię" placeholder="Imię i nazwisko">
-      <input type="email" name="Email" placeholder="Email">
-      <textarea name="Zamówienie" placeholder="Co chcesz zamówić?"></textarea>
-      <button type="submit">Wyślij</button>
-    </form>
-  </section>
-
-  <section id="regulamin">
-    <h2>Regulamin</h2>
-    <p>Dane są przetwarzane tylko w celu realizacji zamówień.</p>
-  </section>
-
-  <footer>
-    <p>© 2025 AdelbertusShop - mielniczukgrzegosz74@gmail.com</p>
-  </footer>
-
-  <script src="https://www.paypal.com/sdk/js?client-id=test&components=hosted-buttons"></script>
-  <script>
-    paypal.HostedButtons({ hostedButtonId: "test" }).render("#paypal-container-bluza");
-
-    function showSection(id) {
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-
-    function addPost(event) {
-      event.preventDefault();
-      const title = document.getElementById('blog-title').value;
-      const content = document.getElementById('blog-content').value;
-      const post = document.createElement('div');
-      post.classList.add('blog-entry');
-      post.innerHTML = `<h3>${title}</h3><p>${content}</p><button class='delete-btn' onclick='this.parentElement.remove()'>Usuń</button>`;
-      document.getElementById('blog-posts').appendChild(post);
-      event.target.reset();
-    }
-  </script>
-</body>
-</html>
+<!DOCTYPE html>  <html lang="pl">  
+<head>  
+<meta charset="UTF-8" />  
+<meta name="viewport" content="width=device-width, initial-scale=1" />  
+<title>Adelbertus Shop - Twój sklep</title>  
+<style>  
+  body {  
+    font-family: Arial, sans-serif;  
+    max-width: 900px;  
+    margin: auto;  
+    padding: 20px;  
+    background: #f4f4f4;  
+  }  
+  header, nav, footer {  
+    text-align: center;  
+    margin-bottom: 20px;  
+  }  
+  nav button {  
+    margin: 0 5px;  
+    padding: 8px 12px;  
+    background: #0066cc;  
+    color: white;  
+    border: none;  
+    cursor: pointer;  
+  }  
+  nav button.active {  
+    background: #004999;  
+  }  
+  section {  
+    background: white;  
+    padding: 15px;  
+    border-radius: 6px;  
+    box-shadow: 0 0 5px #ccc;  
+    display: none;  
+  }  
+  section.active {  
+    display: block;  
+  }  
+  .product {  
+    border: 1px solid #ddd;  
+    padding: 10px;  
+    margin-bottom: 15px;  
+    border-radius: 5px;  
+  }  
+  .product img {  
+    max-width: 100%;  
+    max-height: 150px;  
+    display: block;  
+    margin-bottom: 10px;  
+  }  
+  .product button {  
+    background: #28a745;  
+    color: white;  
+    border: none;  
+    padding: 8px 12px;  
+    cursor: pointer;  
+    border-radius: 4px;  
+  }  
+  #cart-items div {  
+    border-bottom: 1px solid #ccc;  
+    padding: 5px 0;  
+  }  
+  #cart-items div span {  
+    margin-right: 10px;  
+  }  
+  #cart-items div button {  
+    background: #dc3545;  
+    color: white;  
+    border: none;  
+    cursor: pointer;  
+    padding: 3px 6px;  
+    border-radius: 3px;  
+  }  
+  label {  
+    display: block;  
+    margin-top: 10px;  
+  }  
+  input, textarea {  
+    width: 100%;  
+    padding: 7px;  
+    margin-top: 5px;  
+    box-sizing: border-box;  
+  }  
+  #designer-text {  
+    width: 100%;  
+    height: 60px;  
+  }  
+  #preview-box {  
+    border: 1px solid #333;  
+    margin-top: 10px;  
+    padding: 20px;  
+    font-size: 20px;  
+    text-align: center;  
+    min-height: 60px;  
+    background: #eef;  
+  }  
+  button:disabled {  
+    background: #888;  
+    cursor: default;  
+  }  
+</style>  
+</head>  
+<body>  <header>  
+  <h1>Adelbertus Shop</h1>  
+  <nav>  
+    <button id="nav-products" class="active">Produkty</button>  
+    <button id="nav-cart">Koszyk</button>  
+    <button id="nav-order">Zamówienie</button>  
+    <button id="nav-designer">Zaprojektuj to sam</button>  
+    <button id="nav-about">O nas</button>  
+  </nav>  
+</header>  <section id="products" class="active">  
+  <h2>Produkty</h2>  
+  <div id="product-list"></div>  
+</section>  <section id="cart">  
+  <h2>Koszyk</h2>  
+  <div id="cart-items">Twój koszyk jest pusty.</div>  
+  <p><strong>Razem: <span id="cart-total">0</span> zł</strong></p>  
+</section>  <section id="order">  
+  <h2>Formularz zamówienia</h2>  
+  <form id="order-form">  
+    <label>Imię i nazwisko:  
+      <input type="text" id="order-name" required />  
+    </label>  
+    <label>Email:  
+      <input type="email" id="order-email" required />  
+    </label>  
+    <label>Adres dostawy:  
+      <textarea id="order-address" rows="3" required></textarea>  
+    </label>  
+    <button type="submit" id="order-submit" disabled>Złóż zamówienie</button>  
+  </form>  
+</section>  <section id="designer">  
+  <h2>Zaprojektuj to sam</h2>  
+  <label>Wpisz swój tekst na koszulkę/kubek:</label>  
+  <textarea id="designer-text" placeholder="Twój tekst tutaj..."></textarea>  
+  <div id="preview-box">Podgląd pojawi się tutaj</div>  
+</section>  <section id="about">  
+  <h2>Kim jesteśmy?</h2>  
+  <p>Adelbertus Shop to niezależna przestrzeń twórcza, w której łączymy styl, przekaz i symbolikę. Naszym celem jest inspirować do refleksji i pokazywać to, czego nie widać na pierwszy rzut oka. Działamy prosto, ale z sensem.</p>  
+  <p>Witaj w naszym świecie.</p>  
+</section>  <footer>  
+  <p>Adelbertus Shop &copy; 2025</p>  
+</footer>  <script>  
+  // Dane produktów  
+  const products = [  
+    { id: 1, name: "Koszulka Adelbertus", price: 49, img: "https://via.placeholder.com/200x150?text=Koszulka" },  
+    { id: 2, name: "Kubek z liczbą Pi", price: 29, img: "https://via.placeholder.com/200x150?text=Kubek" },  
+    { id: 3, name: "Torba na zakupy", price: 39, img: "https://via.placeholder.com/200x150?text=Torba" }  
+  ];  
+  
+  let cart = [];  
+  
+  // Wyświetlanie produktów  
+  const productList = document.getElementById("product-list");  
+  function renderProducts() {  
+    productList.innerHTML = "";  
+    products.forEach(p => {  
+      const div = document.createElement("div");  
+      div.className = "product";  
+      div.innerHTML = `  
+        <img src="${p.img}" alt="${p.name}" />  
+        <h3>${p.name}</h3>  
+        <p>Cena: ${p.price} zł</p>  
+        <button data-id="${p.id}">Dodaj do koszyka</button>  
+      `;  
+      productList.appendChild(div);  
+    });  
+  }  
+  
+  // Dodawanie do koszyka  
+  function addToCart(id) {  
+    const prod = products.find(p => p.id === id);  
+    const inCart = cart.find(item => item.id === id);  
+    if (inCart) {  
+      inCart.quantity++;  
+    } else {  
+      cart.push({...prod, quantity:1});  
+    }  
+    renderCart();  
+    checkOrderButton();  
+  }  
+  
+  // Renderowanie koszyka  
+  const cartItems = document.getElementById("cart-items");  
+  const cartTotal = document.getElementById("cart-total");  
+  function renderCart() {  
+    To do przechowania 
