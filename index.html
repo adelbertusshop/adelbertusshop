@@ -181,19 +181,12 @@
   <p>Dane są przetwarzane tylko w celu realizacji zamówień.</p>
 </section>
 
-<footer>
-  <p>© 2025 AdelbertusShop - mielniczukgrzegosz74@gmail.com</p>
-  <div class="socials">
-    <a href="https://facebook.com" target="_blank">Facebook</a>
-    <a href="https://instagram.com" target="_blank">Instagram</a>
-    <a href="https://tiktok.com" target="_blank">TikTok</a>
-  </div>
-</footer>
-
 <script>
   function showSection(id) {
-    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
+    document.querySelectorAll("section").forEach(section => {
+      section.classList.remove("active");
+    });
+    document.getElementById(id).classList.add("active");
   }
 
   function addPost(event) {
@@ -202,9 +195,10 @@
     const content = document.getElementById('blog-content').value;
     const post = document.createElement('div');
     post.classList.add('blog-entry');
-    post.innerHTML = `<h3>${title}</h3><p>${content}</p><button class='delete-btn' onclick='this.parentElement.remove()'>Usuń</button>`;
+    post.innerHTML = `<h3>${title}</h3><p>${content}</p><button class="delete-btn" onclick="this.parentElement.remove()">Usuń</button>`;
     document.getElementById('blog-posts').appendChild(post);
-    event.target.reset();
+    document.getElementById('blog-title').value = '';
+    document.getElementById('blog-content').value = '';
   }
 </script>
 
