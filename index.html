@@ -1,9 +1,10 @@
 
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
   <style>
     body {
@@ -20,8 +21,9 @@
       padding: 20px;
     }
     header img {
-      height: 60px;
+      height: 50px;
       vertical-align: middle;
+      margin-right: 10px;
     }
     nav {
       background: #222;
@@ -30,18 +32,24 @@
     }
     nav a {
       color: #fff;
-      margin: 0 8px;
+      margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
     }
     section {
-      padding: 40px 20px;
+      display: none;
+      padding: 20px;
+    }
+    section.active {
+      display: block;
+    }
+    .product-category {
+      margin-bottom: 40px;
     }
     .products {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-      justify-content: center;
     }
     .product {
       border: 1px solid #ccc;
@@ -55,116 +63,100 @@
       height: auto;
       border-radius: 8px;
     }
-    button, select {
-      width: 100%;
-      padding: 10px;
+    button {
       margin-top: 10px;
+      background-color: black;
+      color: white;
+      padding: 10px 15px;
       border: none;
       border-radius: 5px;
+      cursor: pointer;
     }
-    .social-links a {
-      color: white;
+    .social-media a {
       margin: 0 10px;
+      color: #fff;
       text-decoration: none;
-    }
-    .paypal-button {
-      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Logo">
-    <h1>AdelbertusShop</h1>
-    <p>Moda uliczna dla wyjątkowych ludzi</p>
-  </header>
 
-  <nav>
-    <a href="#sklep">Sklep</a>
-    <a href="#projektuj">Projektuj</a>
-    <a href="#marketplace">Marketplace</a>
-    <a href="#reklama">Reklama</a>
-    <a href="#zbiorka">Zbiórka</a>
-    <a href="#opinie">Opinie</a>
-    <a href="#blog">Blog</a>
-    <a href="#zamowienie">Zamówienie</a>
-    <a href="#regulamin">Regulamin</a>
-  </nav>
+<header>
+  <img src="logo.png" alt="Logo">
+  <h1>AdelbertusShop</h1>
+  <p>Moda uliczna dla wyjątkowych ludzi</p>
+</header>
 
-  <section id="sklep">
-    <h2>Sklep</h2>
+<nav>
+  <a href="#" onclick="showSection('start')">Start</a>
+  <a href="#" onclick="showSection('sklep')">Sklep</a>
+  <a href="#" onclick="showSection('projektuj')">Projektuj</a>
+  <a href="#" onclick="showSection('marketplace')">Marketplace</a>
+  <a href="#" onclick="showSection('reklama')">Reklama</a>
+  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
+  <a href="#" onclick="showSection('opinie')">Opinie</a>
+  <a href="#" onclick="showSection('blog')">Blog</a>
+  <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
+  <a href="#" onclick="showSection('regulamin')">Regulamin</a>
+</nav>
+
+<section id="start" class="active">
+  <img src="https://i.ibb.co/0RPcKnCP/file-0000000016b061f7bec1fc14456918bb-1.png" alt="Baner reklamowy" style="width: 100%; height: auto; display: block;" />
+</section>
+
+<section id="sklep">
+  <h2>Sklep</h2>
+  <div class="product-category">
+    <h3>Koszulki</h3>
     <div class="products">
       <div class="product">
-        <img src="koszulka1.jpg" alt="Koszulka 1">
+        <img src="URL_DO_OBRAZU_KOSZULKI_1" alt="Uliczna Prawda">
         <h4>Uliczna Prawda</h4>
         <p>Cena: 99 zł</p>
         <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
         <button>Dodaj do koszyka</button>
       </div>
-      <div class="product">
-        <img src="bluza1.jpg" alt="Bluza 1">
-        <h4>Cień Miasta</h4>
-        <p>Cena: 150 zł</p>
-        <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-        <button>Dodaj do koszyka</button>
-      </div>
+      <!-- więcej produktów -->
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="projektuj">
-    <h2>Projektuj</h2>
-    <p>Zaprojektuj własne ubrania z unikalnymi wzorami.</p>
-  </section>
+<section id="blog">
+  <h2>Blog</h2>
+  <p>Witaj na blogu AdelbertusShop!</p>
+</section>
 
-  <section id="marketplace">
-    <h2>Marketplace</h2>
-    <p>Dodaj swoje projekty do naszego sklepu.</p>
-  </section>
+<section id="zamowienie">
+  <h2>Zamówienie</h2>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="TWOJE_ID_PAYPAL">
+    <input type="submit" value="Zapłać przez PayPal">
+  </form>
+</section>
 
-  <section id="reklama">
-    <h2>Reklama</h2>
-    <p>Współpracuj z nami jako influencer lub partner.</p>
-  </section>
+<section id="regulamin">
+  <h2>Regulamin</h2>
+  <p>Tutaj będzie treść regulaminu sklepu.</p>
+</section>
 
-  <section id="zbiorka">
-    <h2>Zbiórka</h2>
-    <p>Pomóż nam rozwijać markę. Wspieraj nas.</p>
-  </section>
+<footer>
+  <p>© 2025 AdelbertusShop</p>
+  <div class="social-media">
+    <a href="https://www.facebook.com/share/1HUYSqhW4W/">Facebook</a>
+    <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8xdcAh2AeAQ&_r=1">TikTok</a>
+  </div>
+</footer>
 
-  <section id="opinie">
-    <h2>Opinie</h2>
-    <p>Przeczytaj co mówią o nas klienci.</p>
-  </section>
+<script>
+  function showSection(id) {
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => section.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
 
-  <section id="blog">
-    <h2>Blog</h2>
-    <p>Nowinki ze świata mody ulicznej i życia marki.</p>
-  </section>
-
-  <section id="zamowienie">
-    <h2>Zamówienie</h2>
-    <p>Skontaktuj się z nami, by złożyć indywidualne zamówienie.</p>
-  </section>
-
-  <section id="regulamin">
-    <h2>Regulamin</h2>
-    <p>Zapoznaj się z zasadami korzystania ze sklepu.</p>
-  </section>
-
-  <section class="paypal-button">
-    <h2>Płatność</h2>
-    <p>Zapłać bezpiecznie przez PayPal:</p>
-    <form action="https://www.paypal.com/paypalme/adelbertusshop" method="get" target="_blank">
-      <button type="submit">Zapłać przez PayPal</button>
-    </form>
-  </section>
-
-  <footer>
-    <div class="social-links">
-      <a href="https://www.facebook.com/share/1HUYSqhW4W/" target="_blank">Facebook</a>
-      <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
-    </div>
-    <p>&copy; 2025 AdelbertusShop</p>
-  </footer>
 </body>
 </html>
+
