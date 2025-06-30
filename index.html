@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AdelbertusShop</title>
   <style>
     body {
@@ -20,9 +20,8 @@
       padding: 20px;
     }
     header img {
-      height: 50px;
+      height: 60px;
       vertical-align: middle;
-      margin-right: 10px;
     }
     nav {
       background: #222;
@@ -31,16 +30,18 @@
     }
     nav a {
       color: #fff;
-      margin: 0 10px;
+      margin: 0 8px;
       text-decoration: none;
       font-weight: bold;
+    }
+    section {
+      padding: 40px 20px;
     }
     .products {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       justify-content: center;
-      padding: 20px;
     }
     .product {
       border: 1px solid #ccc;
@@ -54,76 +55,116 @@
       height: auto;
       border-radius: 8px;
     }
-    button {
-      background-color: black;
-      color: white;
-      padding: 10px 15px;
+    button, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
       border: none;
       border-radius: 5px;
-      cursor: pointer;
     }
-    footer .social-icons {
-      margin-top: 10px;
-    }
-    .social-icons a {
-      margin: 0 10px;
+    .social-links a {
       color: white;
+      margin: 0 10px;
       text-decoration: none;
-      font-size: 20px;
+    }
+    .paypal-button {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
+  <header>
+    <img src="logo.png" alt="Logo">
+    <h1>AdelbertusShop</h1>
+    <p>Moda uliczna dla wyjątkowych ludzi</p>
+  </header>
 
-<header>
-  <img src="logo.png" alt="Logo AdelbertusShop">
-  <h1>AdelbertusShop</h1>
-  <p>Moda uliczna dla wyjątkowych ludzi</p>
-</header>
+  <nav>
+    <a href="#sklep">Sklep</a>
+    <a href="#projektuj">Projektuj</a>
+    <a href="#marketplace">Marketplace</a>
+    <a href="#reklama">Reklama</a>
+    <a href="#zbiorka">Zbiórka</a>
+    <a href="#opinie">Opinie</a>
+    <a href="#blog">Blog</a>
+    <a href="#zamowienie">Zamówienie</a>
+    <a href="#regulamin">Regulamin</a>
+  </nav>
 
-<nav>
-  <a href="#">Sklep</a>
-  <a href="#">Projektuj</a>
-  <a href="#">Marketplace</a>
-  <a href="#">Reklama</a>
-  <a href="#">Zbiórka</a>
-  <a href="#">Opinie</a>
-  <a href="#">Blog</a>
-  <a href="#">Zamówienie</a>
-  <a href="#">Regulamin</a>
-</nav>
+  <section id="sklep">
+    <h2>Sklep</h2>
+    <div class="products">
+      <div class="product">
+        <img src="koszulka1.jpg" alt="Koszulka 1">
+        <h4>Uliczna Prawda</h4>
+        <p>Cena: 99 zł</p>
+        <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+        <button>Dodaj do koszyka</button>
+      </div>
+      <div class="product">
+        <img src="bluza1.jpg" alt="Bluza 1">
+        <h4>Cień Miasta</h4>
+        <p>Cena: 150 zł</p>
+        <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+        <button>Dodaj do koszyka</button>
+      </div>
+    </div>
+  </section>
 
-<section class="products">
-  <div class="product">
-    <img src="koszulka1.jpg" alt="Uliczna Prawda">
-    <h4>Uliczna Prawda</h4>
-    <p>Cena: 99 zł</p>
-    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-    <button>Dodaj do koszyka</button>
-  </div>
-  <div class="product">
-    <img src="bluza1.jpg" alt="Cień Miasta">
-    <h4>Cień Miasta</h4>
-    <p>Cena: 150 zł</p>
-    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-    <button>Dodaj do koszyka</button>
-  </div>
-  <div class="product">
-    <img src="czapka1.jpg" alt="Blokowa Ikona">
-    <h4>Blokowa Ikona</h4>
-    <p>Cena: 59 zł</p>
-    <button>Dodaj do koszyka</button>
-  </div>
-</section>
+  <section id="projektuj">
+    <h2>Projektuj</h2>
+    <p>Zaprojektuj własne ubrania z unikalnymi wzorami.</p>
+  </section>
 
-<footer>
-  <p>&copy; 2025 AdelbertusShop</p>
-  <div class="social-icons">
-    <a href="https://facebook.com/adelbertusshop" target="_blank">Facebook</a>
-    <a href="https://instagram.com/adelbertusshop" target="_blank">Instagram</a>
-    <a href="https://tiktok.com/@adelbertusshop" target="_blank">TikTok</a>
-  </div>
-</footer>
+  <section id="marketplace">
+    <h2>Marketplace</h2>
+    <p>Dodaj swoje projekty do naszego sklepu.</p>
+  </section>
 
+  <section id="reklama">
+    <h2>Reklama</h2>
+    <p>Współpracuj z nami jako influencer lub partner.</p>
+  </section>
+
+  <section id="zbiorka">
+    <h2>Zbiórka</h2>
+    <p>Pomóż nam rozwijać markę. Wspieraj nas.</p>
+  </section>
+
+  <section id="opinie">
+    <h2>Opinie</h2>
+    <p>Przeczytaj co mówią o nas klienci.</p>
+  </section>
+
+  <section id="blog">
+    <h2>Blog</h2>
+    <p>Nowinki ze świata mody ulicznej i życia marki.</p>
+  </section>
+
+  <section id="zamowienie">
+    <h2>Zamówienie</h2>
+    <p>Skontaktuj się z nami, by złożyć indywidualne zamówienie.</p>
+  </section>
+
+  <section id="regulamin">
+    <h2>Regulamin</h2>
+    <p>Zapoznaj się z zasadami korzystania ze sklepu.</p>
+  </section>
+
+  <section class="paypal-button">
+    <h2>Płatność</h2>
+    <p>Zapłać bezpiecznie przez PayPal:</p>
+    <form action="https://www.paypal.com/paypalme/adelbertusshop" method="get" target="_blank">
+      <button type="submit">Zapłać przez PayPal</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://www.facebook.com/share/1HUYSqhW4W/" target="_blank">Facebook</a>
+      <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
+    </div>
+    <p>&copy; 2025 AdelbertusShop</p>
+  </footer>
 </body>
 </html>
