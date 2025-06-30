@@ -5,159 +5,141 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AdelbertusShop - Ekskluzywny Sklep</title>
+  <title>AdelbertusShop</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-
+    /* Reset i podstawy */
+    * {
+      box-sizing: border-box;
+    }
     body {
+      font-family: Arial, sans-serif;
       margin: 0; padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #f9d342;
+      background-color: #f9f9f9;
+      color: #222;
+      line-height: 1.5;
     }
-
     a {
-      color: #f9d342;
+      color: #e63946;
       text-decoration: none;
-      transition: color 0.3s ease;
     }
-
-    a:hover { color: #ffea70; }
-
+    a:hover {
+      text-decoration: underline;
+    }
     header {
       background-color: #000;
+      color: white;
+      padding: 10px 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 15px 30px;
+      justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
     }
-
     header img {
-      height: 60px;
-      object-fit: contain;
+      height: 50px;
     }
-
-    nav {
-      display: flex;
-      gap: 20px;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
     nav a {
-      padding: 6px 10px;
-      border-radius: 4px;
+      color: white;
+      margin: 0 10px;
+      font-weight: bold;
+      font-size: 0.9rem;
     }
-
-    nav a:hover, nav a:focus {
-      background-color: #f9d342;
-      color: #121212;
+    nav a:hover {
+      color: #e63946;
     }
-
     .hero {
       width: 100%;
-      height: 300px;
-      background: url('https://i.ibb.co/0RPcKnCP/file-0000000016b061f7bec1fc14456918bb-1.png') center center/cover no-repeat;
-      filter: brightness(0.6);
-      position: relative;
+      max-height: 400px;
+      overflow: hidden;
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-
-    section.products {
+    .hero img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.85;
+    }
+    main {
+      padding: 20px;
       max-width: 1200px;
-      margin: 40px auto 80px auto;
-      padding: 0 20px;
+      margin: 0 auto;
+      background: white;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      margin-bottom: 40px;
     }
-
-    h2.category-title {
-      font-size: 2rem;
-      font-weight: 700;
-      border-bottom: 3px solid #f9d342;
+    h2.section-title {
+      margin-top: 40px;
+      border-bottom: 3px solid #e63946;
       padding-bottom: 8px;
-      margin-bottom: 25px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+      font-size: 2rem;
+      color: #222;
     }
-
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
       gap: 25px;
+      margin-top: 25px;
     }
-
     .product {
-      background-color: #1a1a1a;
-      border-radius: 15px;
+      background: #fff;
       padding: 15px;
-      box-shadow: 0 0 20px #f9d342aa;
+      border-radius: 12px;
+      box-shadow: 0 3px 7px rgba(0,0,0,0.1);
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease;
+      cursor: pointer;
     }
-
     .product:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 40px #f9d342cc;
+      transform: translateY(-6px);
+      box-shadow: 0 12px 20px rgba(230,57,70,0.3);
     }
-
     .product img {
-      width: 100%;
-      max-height: 280px;
+      width: 180px;
+      height: 220px;
       object-fit: contain;
-      border-radius: 15px;
-      margin-bottom: 15px;
-      background-color: #222;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      background: #f5f5f5;
     }
-
     .product h3 {
-      font-size: 1.3rem;
-      margin: 0 0 8px 0;
+      margin: 10px 0 6px;
+      font-size: 1.1rem;
+      color: #111;
     }
-
     .product p.price {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #e5a828;
-      margin: 0;
-    }
-
-    footer {
-      background-color: #000;
-      color: #f9d342;
-      padding: 30px 20px;
-      text-align: center;
-      font-weight: 600;
-      font-size: 1rem;
-      margin-top: 60px;
-    }
-
-    .social {
-      margin-bottom: 15px;
-    }
-
-    .social a {
-      margin: 0 15px;
       font-weight: 700;
       font-size: 1.1rem;
+      color: #e63946;
     }
-
-    .social a:hover {
-      color: #ffea70;
+    .mannequins {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 15px;
     }
-
-    @media (max-width: 700px) {
-      nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
+    .mannequin {
+      width: 120px;
+      text-align: center;
+    }
+    .mannequin img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: contain;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+    @media (max-width: 600px) {
+      .mannequins {
+        flex-direction: column;
+        align-items: center;
       }
-      section.products {
-        margin: 30px 10px 50px 10px;
-      }
-      .products-grid {
-        grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
-        gap: 15px;
+      .product img {
+        width: 100%;
+        height: auto;
       }
     }
   </style>
@@ -167,55 +149,58 @@
 <header>
   <img src="https://i.ibb.co/0RPcKnCP/file-0000000016b061f7bec1fc14456918bb-1.png" alt="Logo AdelbertusShop" />
   <nav>
-    <a href="#sklep">Sklep</a>
-    <a href="#projektuj">Projektuj</a>
-    <a href="#marketplace">Marketplace</a>
-    <a href="#reklama">Reklama</a>
-    <a href="#zbiorka">Zbiórka</a>
-    <a href="#opinie">Opinie</a>
-    <a href="#blog">Blog</a>
-    <a href="#zamowienie">Zamówienie</a>
-    <a href="#regulamin">Regulamin</a>
+    <a href="#sklep" class="nav-link">Sklep</a>
+    <a href="#projektuj" class="nav-link">Projektuj sam</a>
+    <a href="#marketplace" class="nav-link">Marketplace</a>
+    <a href="#reklama" class="nav-link">Panel reklamowy</a>
+    <a href="#zbiorka" class="nav-link">Zbiórka</a>
+    <a href="#opinie" class="nav-link">Opinie</a>
+    <a href="#blog" class="nav-link">Blog</a>
+    <a href="#zamowienie" class="nav-link">Zamówienia</a>
+    <a href="#regulamin" class="nav-link">Regulamin</a>
   </nav>
 </header>
 
-<div class="hero" aria-label="Baner reklamowy sklepu AdelbertusShop"></div>
+<div class="hero">
+  <img src="https://i.ibb.co/6vH8N3c/banner-simple-black-red.jpg" alt="Baner reklamowy" />
+</div>
 
-<section class="products" id="sklep">
+<main>
+  <section id="sklep">
+    <h2 class="section-title">Sklep</h2>
 
-  <h2 class="category-title">Koszulki</h2>
-  <div class="products-grid">
-    <div class="product">
-      <img src="https://i.ibb.co/wZpmgGfj/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg" alt="Koszulka Classic Męska" />
-      <h3>Koszulka Classic (Męska)</h3>
-      <p class="price">99 zł</p>
+    <h3>Akcesoria</h3>
+    <div class="products-grid">
+      <div class="product">
+        <img src="https://i.ibb.co/q0NnDKf/necklace.jpg" alt="Naszyjnik Classic" />
+        <h3>Naszyjnik Classic</h3>
+        <p class="price">49 zł</p>
+        <div class="mannequins" style="justify-content: center;">
+          <div class="mannequin">
+            <img src="https://i.ibb.co/8zKZs1M/male-mannequin.png" alt="Manekin męski" />
+          </div>
+          <div class="mannequin">
+            <img src="https://i.ibb.co/d7h1RWV/female-mannequin.png" alt="Manekin damski" />
+          </div>
+        </div>
+      </div>
+      <div class="product">
+        <img src="https://i.ibb.co/WgYszj9/bracelet.jpg" alt="Bransoletka" />
+        <h3>Bransoletka</h3>
+        <p class="price">39 zł</p>
+        <div class="mannequins" style="justify-content: center;">
+          <div class="mannequin">
+            <img src="https://i.ibb.co/8zKZs1M/male-mannequin.png" alt="Manekin męski" />
+          </div>
+          <div class="mannequin">
+            <img src="https://i.ibb.co/d7h1RWV/female-mannequin.png" alt="Manekin damski" />
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="product">
-      <img src="https://i.ibb.co/7W6xG5g/female-tshirt.jpg" alt="Koszulka Classic Damska" />
-      <h3>Koszulka Classic (Damska)</h3>
-      <p class="price">99 zł</p>
-    </div>
-  </div>
-
-  <h2 class="category-title">Bluzy</h2>
-  <div class="products-grid">
-    <div class="product">
-      <img src="https://i.ibb.co/M528N18G/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg" alt="Bluza Męska" />
-      <h3>Bluza Classic (Męska)</h3>
-      <p class="price">149 zł</p>
-    </div>
-  </div>
-
-</section>
-
-<footer>
-  <div class="social">
-    <a href="#">Facebook</a>
-    <a href="#">Instagram</a>
-    <a href="#">TikTok</a>
-  </div>
-  &copy; 2025 AdelbertusShop. Wszelkie prawa zastrzeżone.
-</footer>
+  </section>
+</main>
 
 </body>
 </html>
+
