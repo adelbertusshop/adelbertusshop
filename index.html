@@ -1,162 +1,362 @@
 
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #fff;
-      color: #333;
+      background-color: #f9f9f9;
     }
-    header, footer {
-      background: #111;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
+    header {
+      background-color: #000;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     header img {
       height: 50px;
-      vertical-align: middle;
-      margin-right: 10px;
-    }
-    nav {
-      background: #222;
-      text-align: center;
-      padding: 10px;
     }
     nav a {
-      color: #fff;
+      color: white;
       margin: 0 10px;
       text-decoration: none;
-      font-weight: bold;
     }
-    section {
-      display: none;
-      padding: 20px;
+    .hero {
+      width: 100%;
+      max-height: 400px;
+      overflow: hidden;
     }
-    section.active {
+    .hero img {
+      width: 100%;
+      height: auto;
       display: block;
     }
-    .product-category {
-      margin-bottom: 40px;
-    }
     .products {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
+      padding: 20px;
     }
     .product {
-      border: 1px solid #ccc;
+      background: white;
+      padding: 10px;
       border-radius: 10px;
-      padding: 15px;
-      width: 200px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       text-align: center;
     }
     .product img {
-      width: 100%;
+      max-width: 100%;
       height: auto;
       border-radius: 8px;
     }
-    button {
-      margin-top: 10px;
-      background-color: black;
+    footer {
+      background-color: #111;
       color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      padding: 20px;
+      text-align: center;
     }
-    .social-media a {
+    .social a {
+      color: white;
       margin: 0 10px;
-      color: #fff;
       text-decoration: none;
+    }
+
+    /* --- Sekcja Projektuj sam --- */
+    #projektuj {
+      padding: 40px 20px;
+      background: #222;
+      color: #f9d342;
+      font-family: Arial, sans-serif;
+    }
+    #projektuj h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+    #projektuj .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #projektuj .tools {
+      flex: 1;
+      min-width: 280px;
+      background: #111;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #f9d342aa;
+    }
+    #projektuj .tools h3 {
+      margin-bottom: 15px;
+    }
+    #projektuj .tools label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    #projektuj .tools input[type="file"],
+    #projektuj .tools input[type="text"],
+    #projektuj .tools input[type="color"],
+    #projektuj .tools input[type="number"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 6px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+    #projektuj .tools button {
+      width: 100%;
+      padding: 10px;
+      font-weight: 700;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background-color 0.3s ease;
+    }
+    #projektuj .tools button#add-text-btn {
+      background: #f9d342;
+      color: #111;
+    }
+    #projektuj .tools button#add-text-btn:hover {
+      background: #e0c734;
+    }
+    #projektuj .tools button#download-btn {
+      background: #000;
+      color: #f9d342;
+      border: 2px solid #f9d342;
+    }
+    #projektuj .tools button#download-btn:hover {
+      background: #222;
+    }
+    #projektuj .workspace-wrapper {
+      flex: 2;
+      min-width: 300px;
+      background: #111;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 30px #f9d342aa;
+      position: relative;
+      user-select: none;
+    }
+    #projektuj .workspace-wrapper h3 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    #workspace {
+      width: 100%;
+      height: 500px;
+      background: #333 url('https://i.ibb.co/TmpGWPP/male-mannequin-tshirt.jpg') center/contain no-repeat;
+      border: 3px solid #f9d342;
+      border-radius: 15px;
+      position: relative;
+      overflow: hidden;
+      cursor: grab;
+    }
+    #projektuj .note {
+      color: #bbb;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
+  <header>
+    <img src="https://i.ibb.co/0RPcKnCP/file-0000000016b061f7bec1fc14456918bb-1.png" alt="Logo AdelbertusShop" />
+    <nav>
+      <a href="#sklep">Sklep</a>
+      <a href="#projektuj">Projektuj</a>
+      <a href="#marketplace">Marketplace</a>
+      <a href="#reklama">Reklama</a>
+      <a href="#zbiorka">Zbiórka</a>
+      <a href="#opinie">Opinie</a>
+      <a href="#blog">Blog</a>
+      <a href="#zamowienie">Zamówienie</a>
+      <a href="#regulamin">Regulamin</a>
+    </nav>
+  </header>
 
-<header>
-  <img src="logo.png" alt="Logo">
-  <h1>AdelbertusShop</h1>
-  <p>Moda uliczna dla wyjątkowych ludzi</p>
-</header>
+  <div class="hero">
+    <img src="https://i.ibb.co/0RPcKnCP/file-0000000016b061f7bec1fc14456918bb-1.png" alt="Baner reklamowy" />
+  </div>
 
-<nav>
-  <a href="#" onclick="showSection('start')">Start</a>
-  <a href="#" onclick="showSection('sklep')">Sklep</a>
-  <a href="#" onclick="showSection('projektuj')">Projektuj</a>
-  <a href="#" onclick="showSection('marketplace')">Marketplace</a>
-  <a href="#" onclick="showSection('reklama')">Reklama</a>
-  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
-  <a href="#" onclick="showSection('opinie')">Opinie</a>
-  <a href="#" onclick="showSection('blog')">Blog</a>
-  <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
-  <a href="#" onclick="showSection('regulamin')">Regulamin</a>
-</nav>
-
-<section id="start" class="active">
-  <img src="https://i.ibb.co/0RPcKnCP/file-0000000016b061f7bec1fc14456918bb-1.png" alt="Baner reklamowy" style="width: 100%; height: auto; display: block;" />
-</section>
-
-<section id="sklep">
-  <h2>Sklep</h2>
-  <div class="product-category">
-    <h3>Koszulki</h3>
-    <div class="products">
-      <div class="product">
-        <img src="URL_DO_OBRAZU_KOSZULKI_1" alt="Uliczna Prawda">
-        <h4>Uliczna Prawda</h4>
-        <p>Cena: 99 zł</p>
-        <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-        <button>Dodaj do koszyka</button>
-      </div>
-      <!-- więcej produktów -->
+  <section class="products" id="sklep">
+    <div class="product">
+      <img src="https://i.ibb.co/wZpmgGfj/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg" alt="Koszulka" />
+      <h3>Koszulka Classic</h3>
     </div>
-  </div>
-</section>
+    <div class="product">
+      <img src="https://i.ibb.co/M528N18G/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg" alt="Bluza" />
+      <h3>Bluza Street</h3>
+    </div>
+  </section>
 
-<section id="blog">
-  <h2>Blog</h2>
-  <p>Witaj na blogu AdelbertusShop!</p>
-</section>
+  <section id="projektuj">
+    <h2>Projektuj sam</h2>
+    <div class="container">
+      <div class="tools">
+        <h3>Narzędzia projektowe</h3>
+        <label for="upload-image">Wgraj grafikę</label>
+        <input type="file" id="upload-image" accept="image/*" />
+        
+        <label for="text-input">Dodaj tekst</label>
+        <input type="text" id="text-input" placeholder="Twój tekst" />
+        
+        <label for="text-color">Kolor tekstu</label>
+        <input type="color" id="text-color" value="#f9d342" />
+        
+        <label for="text-size">Rozmiar tekstu (px)</label>
+        <input type="number" id="text-size" value="24" min="10" max="100" />
+        
+        <button id="add-text-btn">Dodaj tekst</button>
+        <button id="download-btn">Pobierz projekt</button>
+      </div>
+      <div class="workspace-wrapper">
+        <h3>Podgląd projektu</h3>
+        <div id="workspace"></div>
+        <p class="note">Przeciągnij, aby przesunąć projekt.</p>
+      </div>
+    </div>
+  </section>
 
-<section id="zamowienie">
-  <h2>Zamówienie</h2>
-  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="hosted_button_id" value="TWOJE_ID_PAYPAL">
-    <input type="submit" value="Zapłać przez PayPal">
-  </form>
-</section>
+  <footer>
+    <p>&copy; 2025 AdelbertusShop. Wszelkie prawa zastrzeżone.</p>
+    <div class="social">
+      <a href="https://facebook.com" target="_blank">📘</a>
+      <a href="https://instagram.com" target="_blank">📸</a>
+      <a href="https://tiktok.com" target="_blank">🎵</a>
+      <a href="https://youtube.com" target="_blank">▶️</a>
+    </div>
+  </footer>
 
-<section id="regulamin">
-  <h2>Regulamin</h2>
-  <p>Tutaj będzie treść regulaminu sklepu.</p>
-</section>
+  <script>
+    // Prosty skrypt do dodawania tekstu na workspace
+    const addTextBtn = document.getElementById('add-text-btn');
+    const workspace = document.getElementById('workspace');
+    const textInput = document.getElementById('text-input');
+    const textColor = document.getElementById('text-color');
+    const textSize = document.getElementById('text-size');
+    const uploadImage = document.getElementById('upload-image');
 
-<footer>
-  <p>© 2025 AdelbertusShop</p>
-  <div class="social-media">
-    <a href="https://www.facebook.com/share/1HUYSqhW4W/">Facebook</a>
-    <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8xdcAh2AeAQ&_r=1">TikTok</a>
-  </div>
-</footer>
+    addTextBtn.addEventListener('click', () => {
+      if (!textInput.value.trim()) return alert('Wpisz tekst!');
+      const span = document.createElement('span');
+      span.textContent = textInput.value;
+      span.style.color = textColor.value;
+      span.style.fontSize = textSize.value + 'px';
+      span.style.position = 'absolute';
+      span.style.top = '50%';
+      span.style.left = '50%';
+      span.style.transform = 'translate(-50%, -50%)';
+      span.style.cursor = 'move';
+      span.style.userSelect = 'none';
 
-<script>
-  function showSection(id) {
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => section.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    window.scrollTo(0, 0);
-  }
-</script>
+      // Dodaj drag & drop
+      let isDragging = false;
+      let offsetX, offsetY;
 
+      span.addEventListener('mousedown', e => {
+        isDragging = true;
+        offsetX = e.clientX - span.offsetLeft;
+        offsetY = e.clientY - span.offsetTop;
+        span.style.cursor = 'grabbing';
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+        span.style.cursor = 'move';
+      });
+
+      window.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        let x = e.clientX - offsetX;
+        let y = e.clientY - offsetY;
+
+        // Ograniczenia wewnątrz workspace
+        const rect = workspace.getBoundingClientRect();
+        const spanRect = span.getBoundingClientRect();
+        x = Math.min(Math.max(0, x), rect.width - spanRect.width);
+        y = Math.min(Math.max(0, y), rect.height - spanRect.height);
+
+        span.style.left = x + 'px';
+        span.style.top = y + 'px';
+      });
+
+      workspace.appendChild(span);
+      textInput.value = '';
+    });
+
+    // Obsługa wgrywania obrazu
+    uploadImage.addEventListener('change', e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const img = document.createElement('img');
+        img.src = event.target.result;
+        img.style.position = 'absolute';
+        img.style.top = '50%';
+        img.style.left = '50%';
+        img.style.transform = 'translate(-50%, -50%)';
+        img.style.maxWidth = '80%';
+        img.style.maxHeight = '80%';
+        img.style.cursor = 'move';
+
+        // Drag & drop dla obrazu
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        img.addEventListener('mousedown', e => {
+          isDragging = true;
+          offsetX = e.clientX - img.offsetLeft;
+          offsetY = e.clientY - img.offsetTop;
+          img.style.cursor = 'grabbing';
+        });
+
+        window.addEventListener('mouseup', () => {
+          isDragging = false;
+          img.style.cursor = 'move';
+        });
+
+        window.addEventListener('mousemove', e => {
+          if (!isDragging) return;
+          let x = e.clientX - offsetX;
+          let y = e.clientY - offsetY;
+
+          // Ograniczenia wewnątrz workspace
+          const rect = workspace.getBoundingClientRect();
+          const imgRect = img.getBoundingClientRect();
+          x = Math.min(Math.max(0, x), rect.width - imgRect.width);
+          y = Math.min(Math.max(0, y), rect.height - imgRect.height);
+
+          img.style.left = x + 'px';
+          img.style.top = y + 'px';
+        });
+
+        workspace.appendChild(img);
+        uploadImage.value = '';
+      }
+      reader.readAsDataURL(file);
+    });
+
+    // Pobierz projekt jako obrazek
+    const downloadBtn = document.getElementById('download-btn');
+    downloadBtn.addEventListener('click', () => {
+      alert('Opcja pobierania projektu jeszcze nie jest zaimplementowana.');
+      // Tutaj można dodać funkcjonalność eksportu canvas lub SVG, ale wymaga dodatkowych bibliotek.
+    });
+  </script>
 </body>
 </html>
-
