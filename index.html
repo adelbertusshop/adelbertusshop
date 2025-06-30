@@ -7,64 +7,129 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
-    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
-    header img { height: 50px; vertical-align: middle; margin-right: 10px; }
-    nav { background: #222; text-align: center; padding: 10px; }
-    nav a { color: #fff; margin: 0 8px; text-decoration: none; font-weight: bold; }
-    section { display: none; padding: 20px; }
-    section.active { display: block; }
-    .product-category { margin-bottom: 40px; }
-    .products { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-    .product { border: 1px solid #ccc; border-radius: 10px; padding: 15px; width: 250px; text-align: center; }
-    .product img { width: 100%; height: auto; border-radius: 8px; }
-    label, select, button { margin-top: 8px; width: 100%; }
-    button { background: #222; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #333;
+    }
+    header, footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    header img {
+      height: 50px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    nav {
+      background: #222;
+      text-align: center;
+      padding: 10px;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      display: none;
+      padding: 20px;
+    }
+    section.active {
+      display: block;
+    }
+    section h2::before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+      background-image: url('logo.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 8px;
+    }
+    .product-category {
+      margin-bottom: 40px;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .product {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      width: 200px;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 10px;
+      background-color: black;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    input, select, textarea, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <img src="logo.png" alt="Logo AdelbertusShop">
+  <img src="logo.png" alt="Logo">
   <h1>AdelbertusShop</h1>
   <p>Moda uliczna dla wyjątkowych ludzi</p>
 </header>
 
 <nav>
-  <a href="#" onclick="showSection('koszulki')">Koszulki</a>
-  <a href="#" onclick="showSection('bluzy')">Bluzy</a>
-  <a href="#" onclick="showSection('czapki')">Czapki</a>
+  <a href="#" onclick="showSection('sklep')">Sklep</a>
+  <a href="#" onclick="showSection('projektuj')">Projektuj</a>
+  <a href="#" onclick="showSection('marketplace')">Marketplace</a>
+  <a href="#" onclick="showSection('reklama')">Reklama</a>
+  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
+  <a href="#" onclick="showSection('opinie')">Opinie</a>
+  <a href="#" onclick="showSection('blog')">Blog</a>
+  <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
+  <a href="#" onclick="showSection('regulamin')">Regulamin</a>
 </nav>
 
-<main>
+<section id="sklep" class="active">
+  <h2>Sklep</h2>
+
   <!-- Koszulki -->
-  <section id="koszulki" class="product-category active">
-    <h2>Koszulki</h2>
+  <section class="product-category">
+    <h3>Koszulki</h3>
     <div class="products">
-      <!-- Uliczna Prawda -->
       <div class="product">
         <img src="https://i.ibb.co/wZpmgGfj/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg" alt="Uliczna Prawda">
-        <h3>T‑SHIRT "Uliczna Prawda"</h3>
+        <h4>Uliczna Prawda</h4>
         <p>Cena: 99 zł</p>
         <label>Rozmiar:
           <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
         </label>
         <button>Dodaj do koszyka</button>
       </div>
-      <!-- Betonowy Styl -->
       <div class="product">
         <img src="https://i.ibb.co/pjcmRbm8/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg" alt="Betonowy Styl">
-        <h3>T‑SHIRT "Betonowy Styl"</h3>
-        <p>Cena: 99 zł</p>
-        <label>Rozmiar:
-          <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-        </label>
-        <button>Dodaj do koszyka</button>
-      </div>
-      <!-- Miasto Nie Śpi -->
-      <div class="product">
-        <img src="https://i.ibb.co/d0kDtLf7/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg" alt="Miasto Nie Śpi">
-        <h3>T‑SHIRT "Miasto Nie Śpi"</h3>
+        <h4>Betonowy Styl</h4>
         <p>Cena: 99 zł</p>
         <label>Rozmiar:
           <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
@@ -75,12 +140,12 @@
   </section>
 
   <!-- Bluzy -->
-  <section id="bluzy" class="product-category">
-    <h2>Bluzy z kapturem</h2>
+  <section class="product-category">
+    <h3>Bluzy z Kapturem</h3>
     <div class="products">
       <div class="product">
         <img src="https://i.ibb.co/M528N18G/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg" alt="Cień Miasta">
-        <h3>BLUZA "Cień Miasta"</h3>
+        <h4>Cień Miasta</h4>
         <p>Cena: 150 zł</p>
         <label>Rozmiar:
           <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
@@ -89,16 +154,7 @@
       </div>
       <div class="product">
         <img src="https://i.ibb.co/rGkBpBxH/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Bez Kompromisów">
-        <h3>BLUZA "Bez Kompromisów"</h3>
-        <p>Cena: 150 zł</p>
-        <label>Rozmiar:
-          <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-        </label>
-        <button>Dodaj do koszyka</button>
-      </div>
-      <div class="product">
-        <img src="https://i.ibb.co/0RYbgQ99/Messenger-creation-3-E45-BD0-B-6396-4-A75-825-F-17-A5-A3-C0-FEB1.jpg" alt="Mrok w Oczach">
-        <h3>BLUZA "Mrok w Oczach"</h3>
+        <h4>Bez Kompromisów</h4>
         <p>Cena: 150 zł</p>
         <label>Rozmiar:
           <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
@@ -109,30 +165,34 @@
   </section>
 
   <!-- Czapki -->
-  <section id="czapki" class="product-category">
-    <h2>Czapki</h2>
+  <section class="product-category">
+    <h3>Czapki</h3>
     <div class="products">
       <div class="product">
         <img src="https://i.ibb.co/k2M8N4mK/Messenger-creation-ED9-AC5-E7-83-B6-45-AC-B26-B-C3-A0-E3-DAE46-F.jpg" alt="Blokowa Ikona">
-        <h3>CZAPKA "Blokowa Ikona"</h3>
-        <p>Cena: 69 zł</p>
+        <h4>Blokowa Ikona</h4>
+        <p>Cena: 59 zł</p>
         <button>Dodaj do koszyka</button>
       </div>
       <div class="product">
         <img src="https://i.ibb.co/hRD7DS0h/Screenshot-20250609-112831-Chat-GPT-3.jpg" alt="Urbantica">
-        <h3>CZAPKA "Urbantica"</h3>
-        <p>Cena: 69 zł</p>
-        <button>Dodaj do koszyka</button>
-      </div>
-      <div class="product">
-        <img src="https://i.ibb.co/CTs1XNf/Messenger-creation-29-D673-BA-1-DB0-4-CDB-A1-F7-3-ED2-DB92-F6-C8.jpg" alt="Na Beton">
-        <h3>CZAPKA "Na Beton"</h3>
-        <p>Cena: 69 zł</p>
+        <h4>Urbantica</h4>
+        <p>Cena: 59 zł</p>
         <button>Dodaj do koszyka</button>
       </div>
     </div>
   </section>
-</main>
+</section>
+
+<!-- Puste sekcje (możesz je później rozbudować) -->
+<section id="projektuj"><h2>Projektuj</h2></section>
+<section id="marketplace"><h2>Marketplace</h2></section>
+<section id="reklama"><h2>Reklama</h2></section>
+<section id="zbiorka"><h2>Zbiórka</h2></section>
+<section id="opinie"><h2>Opinie</h2></section>
+<section id="blog"><h2>Blog</h2></section>
+<section id="zamowienie"><h2>Zamówienie</h2></section>
+<section id="regulamin"><h2>Regulamin</h2></section>
 
 <footer>
   <p>© 2025 AdelbertusShop</p>
@@ -140,7 +200,10 @@
 
 <script>
   function showSection(id) {
-    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
+    document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
   }
 </script>
+
+</body>
+</html>
