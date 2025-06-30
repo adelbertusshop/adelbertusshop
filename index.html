@@ -8,87 +8,206 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #fff;
-      color: #111;
       margin: 0;
       padding: 0;
+      background: #fff;
+      color: #333;
     }
     header, footer {
-      background-color: #000;
-      color: white;
-      padding: 1em;
+      background: #111;
+      color: #fff;
       text-align: center;
+      padding: 20px;
+    }
+    header img {
+      height: 50px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    nav {
+      background: #222;
+      text-align: center;
+      padding: 10px;
     }
     nav a {
+      color: #fff;
       margin: 0 10px;
-      color: white;
       text-decoration: none;
+      font-weight: bold;
     }
-    .container {
-      padding: 2em;
+    section {
+      display: none;
+      padding: 20px;
+    }
+    section.active {
+      display: block;
+    }
+    section h2::before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+      background-image: url('logo.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 8px;
+    }
+    .produkt {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 20px auto;
+      border-radius: 8px;
+      width: 250px;
       text-align: center;
     }
-    .product {
-      border: 1px solid #ccc;
+    .produkt img {
+      max-width: 100%;
       border-radius: 8px;
-      padding: 1em;
-      margin: 1em auto;
-      width: 300px;
     }
-    .product img {
+    input, select, textarea, button {
+      display: block;
       width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-    .price {
-      font-weight: bold;
       margin: 10px 0;
+      padding: 8px;
+    }
+    .blog-entry {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+    }
+    .delete-btn {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>AdelbertusShop</h1>
-    <p>Moda uliczna dla wyjątkowych ludzi</p>
-    <nav>
-      <a href="#">Sklep</a>
-      <a href="#">Projektuj</a>
-      <a href="#">Opinie</a>
-      <a href="#">Blog</a>
-    </nav>
-  </header>
 
-  <div class="container">
-    <h2>Nasze Produkty</h2>
+<header>
+  <img src="logo.png" alt="Logo">
+  <h1>AdelbertusShop</h1>
+  <p>Moda uliczna dla wyjątkowych ludzi</p>
+</header>
 
-    <div class="product">
-      <img src="https://raw.githubusercontent.com/adelbertusshop/adelbertusshop/main/assets/Messenger_creation_6365D019-B450-442F-B278-4AF2AB768752.jpeg" alt="Koszulka Pi Logo">
-      <h3>Koszulka Pi Logo</h3>
-      <p class="price">90 zł</p>
-    </div>
+<nav>
+  <a href="#" onclick="showSection('sklep')">Sklep</a>
+  <a href="#" onclick="showSection('projektuj')">Projektuj</a>
+  <a href="#" onclick="showSection('marketplace')">Marketplace</a>
+  <a href="#" onclick="showSection('reklama')">Reklama</a>
+  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
+  <a href="#" onclick="showSection('opinie')">Opinie</a>
+  <a href="#" onclick="showSection('blog')">Blog</a>
+  <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
+  <a href="#" onclick="showSection('regulamin')">Regulamin</a>
+</nav>
 
-    <div class="product">
-      <img src="https://raw.githubusercontent.com/adelbertusshop/adelbertusshop/main/assets/Messenger_creation_DC27CACF-8CDB-4FE5-927D-958ED02429A1.jpeg" alt="Bluza StreetStyle">
-      <h3>Bluza StreetStyle</h3>
-      <p class="price">150 zł</p>
-    </div>
-
-    <div class="product">
-      <img src="https://raw.githubusercontent.com/adelbertusshop/adelbertusshop/main/assets/Messenger_creation_DF1FBCC7-9070-4E6E-B35B-36A6C96B5280.jpeg" alt="Czapka z logo">
-      <h3>Czapka Adelbertus</h3>
-      <p class="price">60 zł</p>
-    </div>
-
-    <!-- Możesz dodać więcej produktów kopiując i podmieniając grafiki -->
+<section id="sklep" class="active">
+  <h2>Sklep</h2>
+  <div class="produkt">
+    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
+    <h3>Bluza StreetStyle – 150 zł</h3>
+    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
+    <div id="paypal-container-bluza"></div>
+    <script src="https://www.paypal.com/sdk/js?client-id=test&components=hosted-buttons"></script>
+    <script>
+      paypal.HostedButtons({ hostedButtonId: "test" }).render("#paypal-container-bluza");
+    </script>
   </div>
+</section>
 
-  <footer>
-    <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
-    <p>
-      <a href="https://www.instagram.com/mielniczukgrzegosz74" style="color:white;">Instagram</a> |
-      <a href="https://www.facebook.com/share/16X9nmSyhv" style="color:white;">Facebook</a> |
-      <a href="https://www.tiktok.com/@ja.jestem3" style="color:white;">TikTok</a>
-    </p>
-  </footer>
+<section id="projektuj">
+  <h2>Zaprojektuj Sam</h2>
+  <form>
+    <select><option>Kolor: Czarny</option><option>Biały</option></select>
+    <select><option>Rozmiar: S</option><option>M</option><option>L</option></select>
+    <textarea placeholder="Twój projekt"></textarea>
+    <button type="submit">Zamów</button>
+  </form>
+</section>
+
+<section id="marketplace">
+  <h2>Marketplace</h2>
+  <form>
+    <input type="text" placeholder="Nazwa produktu">
+    <input type="text" placeholder="Cena">
+    <textarea placeholder="Opis"></textarea>
+    <input type="url" placeholder="Link do zdjęcia">
+    <button type="submit">Wyślij</button>
+  </form>
+</section>
+
+<section id="reklama">
+  <h2>Reklama</h2>
+  <form>
+    <input type="text" placeholder="Nazwa">
+    <textarea placeholder="Opis reklamy"></textarea>
+    <input type="url" placeholder="Link">
+    <button type="submit">Zgłoś</button>
+  </form>
+</section>
+
+<section id="zbiorka">
+  <h2>Zbiórka</h2>
+  <p>Pomóż domowi dziecka. Przelew BLIK na 573-939-925 z dopiskiem "pomoc".</p>
+</section>
+
+<section id="opinie">
+  <h2>Opinie</h2>
+  <p>★★★★★ "Super jakość!"</p>
+</section>
+
+<section id="blog">
+  <h2>Blog i Porady</h2>
+  <form onsubmit="addPost(event)">
+    <input id="blog-title" placeholder="Tytuł wpisu" required>
+    <textarea id="blog-content" placeholder="Treść wpisu" required></textarea>
+    <button type="submit">Dodaj wpis</button>
+  </form>
+  <div id="blog-posts"></div>
+</section>
+
+<section id="zamowienie">
+  <h2>Zamówienie</h2>
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post">
+    <input type="text" name="Imię" placeholder="Imię i nazwisko">
+    <input type="email" name="Email" placeholder="Email">
+    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?"></textarea>
+    <button type="submit">Wyślij</button>
+  </form>
+</section>
+
+<section id="regulamin">
+  <h2>Regulamin</h2>
+  <p>Dane są przetwarzane tylko w celu realizacji zamówień.</p>
+</section>
+
+<footer>
+  <p>© 2025 AdelbertusShop - mielniczukgrzegosz74@gmail.com</p>
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function addPost(event) {
+    event.preventDefault();
+    const title = document.getElementById('blog-title').value;
+    const content = document.getElementById('blog-content').value;
+    const post = document.createElement('div');
+    post.classList.add('blog-entry');
+    post.innerHTML = `<h3>${title}</h3><p>${content}</p><button class='delete-btn' onclick='this.parentElement.remove()'>Usuń</button>`;
+    document.getElementById('blog-posts').appendChild(post);
+    event.target.reset();
+  }
+</script>
+
 </body>
 </html>
