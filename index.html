@@ -81,7 +81,7 @@
     .product p.price {
       font-weight: bold;
       font-size: 1.1rem;
-      color: #e63946; /* intensywna czerwień, przyciąga uwagę */
+      color: #e63946;
     }
     footer {
       background-color: #111;
@@ -95,6 +95,91 @@
       margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
+    }
+
+    /* Sekcja Projektuj */
+    #projektuj {
+      padding: 40px 20px;
+      background: #222;
+      color: #f9d342;
+      font-family: Arial, sans-serif;
+    }
+    #projektuj h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+    #projektuj > div {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #projektuj .tools {
+      flex: 1;
+      min-width: 280px;
+      background: #111;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #f9d342aa;
+    }
+    #projektuj .tools h3 {
+      margin-bottom: 15px;
+    }
+    #projektuj .tools label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    #projektuj .tools input,
+    #projektuj .tools button {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 6px;
+      border-radius: 4px;
+      border: none;
+      box-sizing: border-box;
+    }
+    #projektuj .tools button {
+      background: #f9d342;
+      color: #111;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #projektuj .tools button#download-btn {
+      background: #000;
+      color: #f9d342;
+      border: 2px solid #f9d342;
+    }
+    #projektuj .tools button:hover {
+      background-color: #e0c031;
+    }
+    #projektuj .workspace-container {
+      flex: 2;
+      min-width: 300px;
+      background: #111;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 30px #f9d342aa;
+    }
+    #workspace {
+      width: 100%;
+      height: 500px;
+      background: #333 url('https://i.ibb.co/TmpGWPP/male-mannequin-tshirt.jpg') center/contain no-repeat;
+      border: 3px solid #f9d342;
+      border-radius: 15px;
+      position: relative;
+      overflow: hidden;
+      cursor: grab;
+    }
+    #projektuj p.description {
+      color: #bbb;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      text-align: center;
     }
   </style>
 </head>
@@ -119,8 +204,8 @@
   <img src="https://i.ibb.co/0RPcKnCP/file-0000000016b061f7bec1fc14456918bb-1.png" alt="Baner reklamowy" />
 </div>
 
+<!-- Sklep -->
 <section class="products" id="sklep">
-
   <h2 class="category-title">Koszulki (99 zł)</h2>
   <div class="products-grid">
     <div class="product">
@@ -134,35 +219,31 @@
       <p class="price">99 zł</p>
     </div>
   </div>
+</section>
 
-  <h2 class="category-title">Bluzy i bluzy z kapturem (150 zł)</h2>
-  <div class="products-grid">
-    <div class="product">
-      <img src="https://i.ibb.co/M528N18G/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg" alt="Bluza Street Męska" />
-      <h3>Bluza Street (Męska)</h3>
-      <p class="price">150 zł</p>
+<!-- Projektuj -->
+<section id="projektuj">
+  <h2>Projektuj własny produkt</h2>
+  <div>
+    <div class="tools">
+      <h3>Narzędzia projektowe</h3>
+      <label for="upload">Dodaj grafikę:</label>
+      <input type="file" id="upload" />
+      <label for="text">Dodaj tekst:</label>
+      <input type="text" id="text" placeholder="Wpisz swój tekst" />
+      <label for="color">Kolor tekstu:</label>
+      <input type="color" id="color" />
+      <label for="size">Rozmiar tekstu:</label>
+      <input type="number" id="size" value="24" min="10" max="100" />
+      <button>Dodaj na produkt</button>
+      <button id="download-btn">Pobierz projekt</button>
     </div>
-    <div class="product">
-      <img src="https://i.ibb.co/NKVkXG6/female-hoodie.jpg" alt="Bluza Street Damska" />
-      <h3>Bluza Street (Damska)</h3>
-      <p class="price">150 zł</p>
+    <div class="workspace-container">
+      <h3>Podgląd produktu</h3>
+      <div id="workspace"></div>
+      <p class="description">Tutaj pojawi się Twój projekt.</p>
     </div>
   </div>
-
-  <h2 class="category-title">Czapki (79 zł)</h2>
-  <div class="products-grid">
-    <div class="product">
-      <img src="https://i.ibb.co/4RCxkLP/male-cap.jpg" alt="Czapka Męska" />
-      <h3>Czapka Classic (Męska)</h3>
-      <p class="price">79 zł</p>
-    </div>
-    <div class="product">
-      <img src="https://i.ibb.co/7XV5LcS/female-cap.jpg" alt="Czapka Damska" />
-      <h3>Czapka Classic (Damska)</h3>
-      <p class="price">79 zł</p>
-    </div>
-  </div>
-
 </section>
 
 <footer>
