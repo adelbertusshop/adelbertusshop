@@ -10,7 +10,6 @@
       font-family: Arial, sans-serif;
       margin: 0; padding: 0;
       background-color: #f9f9f9;
-      color: #333;
     }
     header {
       background-color: #000;
@@ -19,7 +18,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
     }
     header img {
       height: 50px;
@@ -29,7 +27,6 @@
       margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
-      white-space: nowrap;
     }
     nav a:hover {
       text-decoration: underline;
@@ -45,12 +42,7 @@
       display: block;
     }
     footer {
-      background:#222;
-      color:#eee;
-      padding: 40px 20px;
-      text-align:center;
-      margin-top: 80px;
-      font-size: 0.9rem;
+      background:#222; color:#eee; padding: 40px 20px; text-align:center; margin-top: 80px;
     }
     footer a {
       color:#2a9d8f;
@@ -60,56 +52,21 @@
     footer a:hover {
       text-decoration: underline;
     }
-    /* Sekcja zbiórka */
-    #zbiórka {
+    section {
       padding: 40px 20px;
-      background:#f0f4f8;
-      text-align:center;
-      border-radius:10px;
-      margin:40px auto;
+      max-width: 1200px;
+      margin: auto;
+    }
+    #zbiorka {
+      background:#f0f4f8; text-align:center; border-radius:10px; margin:40px auto;
       max-width: 600px;
-      font-family: Arial, sans-serif;
     }
-    #zbiórka h2 {
-      margin-bottom: 15px;
+    #zbiorka button {
+      background:#2a9d8f; color:#fff; border:none; padding: 12px 30px; border-radius: 8px;
+      font-weight:700; cursor:pointer;
     }
-    #zbiórka p {
-      font-size: 1.2rem;
-      margin: 20px 0;
-    }
-    #zbiórka .blik-number {
-      font-size: 2rem;
-      font-weight: 700;
-      color:#e76f51;
-      margin-bottom: 20px;
-      user-select: all;
-    }
-    #zbiórka button {
-      background:#2a9d8f;
-      color:#fff;
-      border:none;
-      padding: 12px 30px;
-      border-radius: 8px;
-      font-weight:700;
-      cursor:pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s;
-    }
-    #zbiórka button:hover {
-      background:#1e6a70;
-    }
-    /* Sekcja projektuj sam */
     .projektuj-sam-section {
-      padding:40px 20px;
       background:#fff;
-      max-width: 960px;
-      margin: 40px auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
-    }
-    .projektuj-sam-section h2 {
-      text-align: center;
-      margin-bottom: 30px;
     }
     .projektuj-sam-section > div {
       display:flex;
@@ -119,85 +76,12 @@
       align-items:flex-start;
     }
     #tshirtPreview {
-      position:relative;
-      width:300px;
-      height:350px;
-      background:#eee;
-      border-radius:12px;
-      box-shadow:0 4px 8px rgba(0,0,0,0.15);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-size:24px;
-      font-weight:bold;
-      color:#333;
-      text-align:center;
+      position:relative; width:300px; height:350px; background:#eee; border-radius:12px;
+      box-shadow:0 4px 8px rgba(0,0,0,0.15); display:flex; justify-content:center;
+      align-items:center; font-size:24px; font-weight:bold; color:#333; text-align:center;
       padding:20px;
-      user-select:none;
     }
-    #customText {
-      word-break: break-word;
-      max-width: 90%;
-    }
-    .projektuj-sam-section label {
-      display:block;
-      margin-bottom:8px;
-      font-weight:600;
-    }
-    .projektuj-sam-section input[type="text"],
-    .projektuj-sam-section select {
-      width:100%;
-      padding:10px;
-      font-size:16px;
-      margin-bottom:20px;
-      border:1px solid #ccc;
-      border-radius:6px;
-      box-sizing: border-box;
-    }
-    #addToCartCustom {
-      margin-top:30px;
-      width:100%;
-      background:#2a9d8f;
-      color:#fff;
-      font-weight:700;
-      padding:12px;
-      border:none;
-      border-radius:8px;
-      cursor:pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s;
-    }
-    #addToCartCustom:hover {
-      background:#1e6a70;
-    }
-    /* Marketplace */
-    .marketplace-section {
-      padding: 40px 20px;
-      background-color: #f9f9f9;
-      max-width: 1200px;
-      margin: 40px auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgb(0 0 0 / 0.05);
-    }
-    .marketplace-section h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .filters {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .filters select {
-      padding: 10px;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      min-width: 180px;
-    }
-    .products-list {
+    #productsList {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
@@ -209,10 +93,6 @@
       padding: 15px;
       display: flex;
       flex-direction: column;
-      transition: box-shadow 0.3s;
-    }
-    .product-card:hover {
-      box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
     }
     .product-card img {
       width: 100%;
@@ -238,90 +118,119 @@
       cursor: pointer;
       font-size: 1.3rem;
       color: #ccc;
-      user-select: none;
-      transition: color 0.3s;
     }
     .btn-favorite.active {
       color: #e76f51;
-    }
-    /* Sklep */
-    #sklep {
-      padding:20px;
-      max-width:1200px;
-      margin: 60px auto 80px auto;
-      font-family: Arial, sans-serif;
-    }
-    #sklep h2 {
-      text-align:center;
-      margin-bottom:30px;
-    }
-    #sklep nav {
-      text-align:center;
-      margin-bottom:40px;
     }
     #sklep nav button {
       margin:5px 10px;
       padding:10px 20px;
       cursor:pointer;
-      font-weight: 600;
-      font-size: 1rem;
-      border: 1px solid #2a9d8f;
-      background: white;
-      border-radius: 6px;
-      color: #2a9d8f;
-      transition: background-color 0.3s, color 0.3s;
     }
-    #sklep nav button:hover {
-      background-color: #2a9d8f;
-      color: white;
-    }
-    #sklep nav button.active {
-      background-color: #2a9d8f;
-      color: white;
-    }
-    .kategoria {
+    #produkty .kategoria {
       margin-bottom: 40px;
     }
-    .kategoria h3 {
-      margin-bottom: 20px;
-      color: #2a9d8f;
-      text-align: center;
-      font-size: 1.4rem;
-    }
-    .grid {
+    #produkty .grid {
       display:flex;
       flex-wrap:wrap;
       gap:20px;
-      justify-content: center;
     }
-    .produkt {
+    #produkty .produkt {
       width:200px;
       border:1px solid #ddd;
       padding:10px;
       text-align:center;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
-      transition: box-shadow 0.3s;
-      cursor: pointer;
     }
-    .produkt:hover {
-      box-shadow: 0 8px 18px rgb(0 0 0 / 0.15);
+    #produkty .produkt img {
+      width: 100%;
+      height: auto;
     }
-    .produkt img {
-      width:100%;
-      height:auto;
-      margin-bottom: 10px;
-      border-radius: 6px;
-    }
-    .produkt p {
-      margin: 6px 0;
-      font-weight: 600;
-    }
-    .produkt p strong {
-      color: #2a9d8f;
-      font-weight: 700;
-    }
-    /* Responsive */
-    @media(max-width: 650px){
-      header {
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://i.ibb.co/0RPcKnCP/file-0000000016b061f7bec1fc14456918bb-1.png" alt="Logo AdelbertusShop" />
+  <nav>
+    <a href="#sklep">Sklep</a>
+    <a href="#projektuj-sam">Projektuj</a>
+    <a href="#marketplace">Marketplace</a>
+    <a href="#zbiorka">Zbiórka</a>
+    <a href="#opinie">Opinie</a>
+    <a href="#blog">Blog</a>
+    <a href="#zamowienie">Zamówienie</a>
+    <a href="#regulamin">Regulamin</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <img src="https://i.ibb.co/0RPcKnCP/file-0000000016b061f7bec1fc14456918bb-1.png" alt="Baner reklamowy" />
+</div>
+
+<section id="zbiorka">
+  <h2>Pomagamy dzieciom z domu dziecka</h2>
+  <p style="font-size: 1.2rem; margin: 20px 0;">Wesprzyj naszą zbiórkę charytatywną — każda złotówka ma znaczenie!</p>
+  <div style="font-size: 2rem; font-weight: 700; color:#e76f51; margin-bottom: 20px;">BLIK: <span style="user-select: all;">573-939-925</span></div>
+  <button onclick="navigator.clipboard.writeText('573-939-925').then(() => alert('Numer BLIK skopiowany!'))">
+    Kopiuj numer BLIK
+  </button>
+</section>
+
+<section id="projektuj-sam" class="projektuj-sam-section">
+  <h2>Projektuj sam</h2>
+  <div>
+    <div id="tshirtPreview">
+      <span id="customText">Twój tekst tutaj</span>
+    </div>
+    <div style="max-width:320px; width:100%;">
+      <label for="textInput" style="display:block; margin-bottom:8px; font-weight:600;">Dodaj tekst:</label>
+      <input id="textInput" type="text" placeholder="Wpisz swój tekst" style="width:100%; padding:10px; font-size:16px; margin-bottom:20px; border:1px solid #ccc; border-radius:6px;">
+
+      <label for="colorSelect" style="display:block; margin-bottom:8px; font-weight:600;">Wybierz kolor koszulki:</label>
+      <select id="colorSelect" style="width:100%; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:6px;">
+        <option value="#eee">Szary (domyślny)</option>
+        <option value="#f44336">Czerwony</option>
+        <option value="#2196f3">Niebieski</option>
+        <option value="#4caf50">Zielony</option>
+        <option value="#ffeb3b">Żółty</option>
+        <option value="#000">Czarny</option>
+      </select>
+
+      <button id="addToCartCustom" style="margin-top:30px; width:100%; background:#2a9d8f; color:#fff; font-weight:700; padding:12px; border:none; border-radius:8px; cursor:pointer;">Dodaj do koszyka</button>
+    </div>
+  </div>
+</section>
+
+<section id="marketplace">
+  <h2>Marketplace</h2>
+  <div class="filters">
+    <select id="categoryFilter" aria-label="Filtruj po kategorii">
+      <option value="all">Wszystkie kategorie</option>
+      <option value="koszulki">Koszulki</option>
+      <option value="bluzy">Bluzy</option>
+      <option value="czapki">Czapki</option>
+      <option value="akcesoria">Akcesoria</option>
+    </select>
+
+    <select id="sortFilter" aria-label="Sortuj produkty">
+      <option value="popular">Popularne</option>
+      <option value="newest">Najnowsze</option>
+      <option value="priceAsc">Cena rosnąco</option>
+      <option value="priceDesc">Cena malejąco</option>
+    </select>
+  </div>
+
+  <div id="productsList"></div>
+</section>
+
+<section id="sklep">
+  <h2 style="text-align:center; margin-bottom:30px;">Nasze produkty</h2>
+  <nav style="text-align:center; margin-bottom:40px;">
+    <button onclick="showCategory('bluzy')">Bluzy</button>
+    <button onclick="showCategory('koszulki')">Koszulki</button>
+    <button onclick="showCategory('czapki')">Czapki</button>
+    <button onclick="showCategory('akcesoria')">Akcesoria</button>
+  </nav>
+  <div id="produkty">
+    <div class="kategoria" id="bluzy" style="display:block;">
+      <h3>Bluzy — 150 zł</h3
