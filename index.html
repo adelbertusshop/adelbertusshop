@@ -1,197 +1,132 @@
 
 
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AdelbertusShop - Sklep</title>
-<style>
-  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; }
-  header { background:#222; color:#fff; padding:15px; display:flex; align-items:center; justify-content:space-between; }
-  header .logo { font-size:1.5rem; font-weight:bold; }
-  nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:500; }
-  nav a:hover { text-decoration:underline; }
-  main { padding:20px; max-width:1200px; margin:auto; }
-  section { margin-bottom:40px; background:#fff; padding:20px; border-radius:8px; box-shadow: 0 0 8px rgba(0,0,0,0.1);}
-  h2 { margin-top:0; border-bottom: 2px solid #ddd; padding-bottom: 5px;}
-  .product-list { display:flex; flex-wrap:wrap; gap:20px; }
-  .product-card { border:1px solid #ddd; border-radius:6px; padding:10px; width:calc(25% - 20px); background:#fafafa; display:flex; flex-direction:column; align-items:center; }
-  .product-card img { max-width:100%; border-radius:6px; }
-  .product-card button { margin-top: auto; padding: 10px 15px; background:#28a745; color:#fff; border:none; border-radius:4px; cursor:pointer; }
-  .product-card button:hover { background:#218838; }
-  /* Formularz Projektuj Sam */
-  #projektuj form { display:flex; flex-direction: column; max-width: 400px; }
-  #projektuj label { margin: 10px 0 5px; }
-  #projektuj input[type="text"], #projektuj select { padding:8px; font-size:1rem; }
-  #projektuj button { margin-top:15px; padding:10px; background:#007bff; color:#fff; border:none; border-radius:4px; cursor:pointer; }
-  #projektuj button:hover { background:#0056b3; }
-  /* Koszyk */
-  #cart { position: fixed; right: 20px; top: 80px; background: white; border: 1px solid #ddd; padding: 15px; border-radius: 8px; width: 300px; max-height: 80vh; overflow-y: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1);}
-  #cart h3 { margin-top:0; }
-  #cart ul { list-style:none; padding:0; margin:0; }
-  #cart li { display:flex; justify-content: space-between; margin-bottom:10px; }
-  #cart button { background:#dc3545; border:none; color:#fff; border-radius:4px; cursor:pointer; }
-  #cart button:hover { background:#c82333; }
-  /* Responsywność */
-  @media(max-width: 900px) {
-    .product-card { width: calc(50% - 20px); }
-  }
-  @media(max-width: 500px) {
-    .product-card { width: 100%; }
-    header { flex-direction: column; align-items: flex-start; }
-    nav { margin-top: 10px; }
-    #cart { position: static; width: 100%; max-height: none; margin-top: 20px; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AdelbertusShop</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; background:#f9f9f9; }
+    header { background: #222; color: white; padding: 1em; display: flex; align-items: center; justify-content: space-between; }
+    header .logo { font-weight: bold; font-size: 1.5em; }
+    nav a { color: white; margin: 0 10px; text-decoration: none; cursor: pointer; }
+    nav a.active { text-decoration: underline; }
+    main { padding: 1em; max-width: 900px; margin: auto; background: white; min-height: 70vh; }
+    section { display: none; }
+    section.active { display: block; }
+    h2 { border-bottom: 2px solid #222; padding-bottom: 0.3em; margin-top: 0; }
+    button { cursor: pointer; background: #222; color: white; border: none; padding: 0.5em 1em; margin-top: 1em; }
+    input, select, textarea { width: 100%; padding: 0.5em; margin: 0.5em 0; }
+    .product { border: 1px solid #ccc; padding: 1em; margin-bottom: 1em; }
+    .cart-list { list-style: none; padding-left: 0; }
+    .cart-list li { margin-bottom: 0.5em; }
+    footer { background:#222; color:white; text-align:center; padding:1em; margin-top:2em; }
+    .blik-copy { cursor: pointer; background: #ffc107; border: none; padding: 0.3em 0.7em; margin-left: 0.5em; }
+    .comment { border-top: 1px solid #ccc; padding-top: 0.5em; margin-top: 0.5em; }
+    .comment p { margin: 0.2em 0; }
+  </style>
 </head>
 <body>
 
 <header>
   <div class="logo">AdelbertusShop</div>
   <nav>
-    <a href="#sklep">Sklep</a><section id="gallery-mannequins" style="padding: 20px; background: #f9f9f9;">
-  <h2>Galeria Manekinów z Koszulkami i Bluzami</h2>
-  <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
-    <!-- Każdy obrazek -->
-    <a href="https://ibb.co/6RZyN8KC" target="_blank" rel="noopener noreferrer" style="flex: 1 1 200px; max-width: 220px;">
-      <img src="https://i.ibb.co/jv58HzCX/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg" alt="Manekin 1" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
-    </a>
-    <a href="https://ibb.co/MxyRYNzf" target="_blank" rel="noopener noreferrer" style="flex: 1 1 200px; max-width: 220px;">
-      <img src="https://i.ibb.co/sdpF03TC/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg" alt="Manekin 2" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
-    </a>
-    <!-- Dodaj kolejne obrazki podobnie -->
-    <a href="https://ibb.co/GvGQ449S" target="_blank" rel="noopener noreferrer" style="flex: 1 1 200px; max-width: 220px;">
-      <img src="https://i.ibb.co/pvNjBBQF/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg" alt="Manekin 3" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
-    </a>
-    <!-- Wklej tutaj wszystkie pozostałe -->
-    <!-- ... -->
-  </div>
-</section>    <a href="#projektuj">Projektuj sam</a>
-    <a href="#marketplace">Marketplace</a>
-    <a href="#zbiorka">Zbiórka</a>
-    <a href="#opinie">Opinie</a>
-    <a href="#blog">Blog</a>
-    <a href="#zamowienia">Zamówienia</a>
-    <a href="#regulamin">Regulamin</a>
+    <a href="#" data-section="marketplace" class="active">Sklep</a>
+    <a href="#" data-section="projektuj">Projektuj sam</a>
+    <a href="#" data-section="marketplace">Marketplace</a>
+    <a href="#" data-section="zbiorka">Zbiórka</a>
+    <a href="#" data-section="opinie">Opinie</a>
+    <a href="#" data-section="blog">Blog</a>
+    <a href="#" data-section="zamowienia">Zamówienia</a>
+    <a href="#" data-section="regulamin">Regulamin</a>
   </nav>
 </header>
 
 <main>
-  <section id="sklep">
-    <h2>Sklep - Nasze produkty</h2>
-    <div class="product-list" id="product-list">
-      <!-- Produkty dodane z JS -->
-    </div>
-  </section>
 
+  <!-- PROJEKTUJ SAM -->
   <section id="projektuj">
     <h2>Projektuj sam</h2>
-    <form id="design-form">
-      <label for="custom-text">Twój tekst na koszulce:</label>
-      <input type="text" id="custom-text" name="custom-text" placeholder="Wpisz tekst" />
-      <label for="color-select">Wybierz kolor koszulki:</label>
-      <select id="color-select" name="color-select">
-        <option value="szary" selected>Szary (domyślny)</option>
-        <option value="czerwony">Czerwony</option>
-        <option value="niebieski">Niebieski</option>
-        <option value="zielony">Zielony</option>
-        <option value="żółty">Żółty</option>
-        <option value="czarny">Czarny</option>
-      </select>
-      <button type="submit">Dodaj do koszyka</button>
-    </form>
+    <p>Twój tekst tutaj:</p>
+    <textarea id="customText" placeholder="Wpisz swój tekst..."></textarea>
+    <p>Wybierz kolor koszulki:</p>
+    <select id="shirtColor">
+      <option value="szary">Szary (domyślny)</option>
+      <option value="czerwony">Czerwony</option>
+      <option value="niebieski">Niebieski</option>
+      <option value="zielony">Zielony</option>
+      <option value="zolty">Żółty</option>
+      <option value="czarny">Czarny</option>
+    </select>
+    <button id="addCustomToCart">Dodaj do koszyka</button>
   </section>
 
-  <section id="marketplace">
+  <!-- MARKETPLACE -->
+  <section id="marketplace" class="active">
     <h2>Marketplace</h2>
-    <p>Wszystkie kategorie: Koszulki, Bluzy, Czapki, Akcesoria</p>
-    <!-- Można rozwinąć -->
+    <p>Wszystkie kategorie: <strong>Koszulki, Bluzy, Czapki, Akcesoria</strong></p>
+    <p>Sortowanie: 
+      <select id="marketplaceSort">
+        <option value="popularne">Popularne</option>
+        <option value="najnowsze">Najnowsze</option>
+        <option value="cena-rosnaco">Cena rosnąco</option>
+        <option value="cena-malejaco">Cena malejąco</option>
+      </select>
+    </p>
+    <p>(Funkcjonalność filtrowania i sortowania do rozbudowy.)</p>
   </section>
 
+  <!-- ZBIÓRKA -->
   <section id="zbiorka">
     <h2>Zbiórka na dom dziecka</h2>
+    <p>Pomagamy dzieciom z domu dziecka.</p>
     <p>Wesprzyj naszą zbiórkę charytatywną — każda złotówka ma znaczenie!</p>
-    <p><strong>BLIK:</strong> 573-939-925 <button onclick="copyBlik()">Kopiuj numer BLIK</button></p>
+    <p>BLIK: <strong id="blikCode">573-939-925</strong> 
+      <button class="blik-copy" title="Kopiuj numer BLIK">Kopiuj</button>
+    </p>
   </section>
 
+  <!-- OPINIE -->
   <section id="opinie">
     <h2>Opinie klientów</h2>
-    <div id="reviews">
-      <p><strong>Jan Kowalski:</strong> Świetny sklep, bardzo szybka wysyłka!</p>
-      <p><strong>Anna Nowak:</strong> Koszulki bardzo dobrej jakości, polecam!</p>
+    <div id="opinie-list">
+      <p>Brak opinii — bądź pierwszy!</p>
+    </div>
+    <h3>Dodaj opinię</h3>
+    <textarea id="opiniaText" placeholder="Twoja opinia..." rows="3"></textarea>
+    <button id="addOpinionBtn">Dodaj opinię</button>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <h2>Blog</h2>
+    <div id="blog-posts">
+      <article>
+        <h3>Witaj na naszym blogu!</h3>
+        <p>Tu pojawią się ciekawe wpisy.</p>
+      </article>
     </div>
   </section>
 
-  <section id="blog">
-    <h2>Blog</h2>
-    <article>
-      <h3>Nowości w naszym sklepie</h3>
-      <p>Dodaliśmy nowe wzory koszulek i bluz!</p>
-    </article>
-    <article>
-      <h3>Jak dbać o ubrania?</h3>
-      <p>Porady dotyczące prania i pielęgnacji naszych produktów.</p>
-    </article>
-  </section>
-
+  <!-- ZAMÓWIENIA -->
   <section id="zamowienia">
     <h2>Zamówienia</h2>
-    <p>Tu będzie panel zarządzania zamówieniami (do rozbudowy).</p>
+    <p>Tu możesz sprawdzić status swoich zamówień.</p>
   </section>
 
+  <!-- REGULAMIN -->
   <section id="regulamin">
-    <h2>Regulamin sklepu</h2>
-    <p>Treść regulaminu sklepu. Tutaj umieść wszystkie zasady dotyczące zakupów, reklamacji, zwrotów itp.</p>
+    <h2>Regulamin</h2>
+    <p>Pełen regulamin sklepu znajdziesz tutaj.</p>
   </section>
+
 </main>
 
-<div id="cart" style="display:none;">
-  <h3>Koszyk</h3>
-  <ul id="cart-items"></ul>
-  <p><strong>Razem:</strong> <span id="cart-total">0</span> zł</p>
-  <button onclick="clearCart()">Wyczyść koszyk</button>
-</div>
+<footer>
+  &copy; 2025 AdelbertusShop. Wszelkie prawa zastrzeżone.
+</footer>
 
-<script>
-  const products = [
-    {
-      id: 1,
-      name: "Koszulka Szara",
-      price: 50,
-      img: "https://i.ibb.co/sdpF03TC/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg",
-      category: "Koszulki",
-    },
-    {
-      id: 2,
-      name: "Bluza Czarna",
-      price: 150,
-      img: "https://i.ibb.co/pvNjBBQF/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg",
-      category: "Bluzy",
-    },
-    {
-      id: 3,
-      name: "Czapka Niebieska",
-      price: 40,
-      img: "https://i.ibb.co/xvV9xmH/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg",
-      category: "Czapki",
-    },
-    {
-      id: 4,
-      name: "Akcesorium 1",
-      price: 20,
-      img: "https://i.ibb.co/S4ytLCvT/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg",
-      category: "Akcesoria",
-    }
-  ];
-
-  const productListEl = document.getElementById("product-list");
-  const cartEl = document.getElementById("cart");
-  const cartItemsEl = document.getElementById("cart-items");
-  const cartTotalEl = document.getElementById("cart-total");
-  let cart = [];
-
-  function renderProducts() {
-    productListEl.innerHTML = "";
-    products.forEach(p => {
-      const card = document
+</body>
+</html>
