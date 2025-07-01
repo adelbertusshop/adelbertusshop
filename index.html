@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -8,125 +7,136 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop</title>
   <style>
-    body { font-family: Arial, sans-serif; margin:0; background:#f9f9f9; }
-    header { background: #222; color: white; padding: 1em; display: flex; align-items: center; justify-content: space-between; }
-    header .logo { font-weight: bold; font-size: 1.5em; }
-    nav a { color: white; margin: 0 10px; text-decoration: none; cursor: pointer; }
-    nav a.active { text-decoration: underline; }
-    main { padding: 1em; max-width: 900px; margin: auto; background: white; min-height: 70vh; }
-    section { display: none; }
-    section.active { display: block; }
-    h2 { border-bottom: 2px solid #222; padding-bottom: 0.3em; margin-top: 0; }
-    button { cursor: pointer; background: #222; color: white; border: none; padding: 0.5em 1em; margin-top: 1em; }
-    input, select, textarea { width: 100%; padding: 0.5em; margin: 0.5em 0; }
-    .product { border: 1px solid #ccc; padding: 1em; margin-bottom: 1em; }
-    .cart-list { list-style: none; padding-left: 0; }
-    .cart-list li { margin-bottom: 0.5em; }
-    footer { background:#222; color:white; text-align:center; padding:1em; margin-top:2em; }
-    .blik-copy { cursor: pointer; background: #ffc107; border: none; padding: 0.3em 0.7em; margin-left: 0.5em; }
-    .comment { border-top: 1px solid #ccc; padding-top: 0.5em; margin-top: 0.5em; }
-    .comment p { margin: 0.2em 0; }
+    body { font-family: Arial, sans-serif; margin:0; padding:0; }
+    header, nav, main, footer { padding: 10px 20px; }
+    header { background: #333; color: white; display: flex; align-items: center; justify-content: space-between; }
+    header a.logo { font-weight: bold; font-size: 24px; color: white; text-decoration: none; }
+    nav a { margin: 0 10px; color: white; text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    main section { display: none; padding: 20px 0; }
+    main section.active { display: block; }
+    .button { cursor: pointer; background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; }
+    .button:hover { background-color: #0056b3; }
+    footer { background: #222; color: #aaa; text-align: center; padding: 15px; margin-top: 20px; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+    .gallery img { max-width: 150px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; transition: transform 0.2s; }
+    .gallery img:hover { transform: scale(1.05); }
+    label { display: block; margin: 10px 0 5px; }
+    input[type="text"], textarea, select { width: 100%; padding: 8px; box-sizing: border-box; }
+    form { max-width: 600px; }
+    .social-links a { margin: 0 5px; text-decoration: none; color: #007bff; }
   </style>
 </head>
 <body>
+  <header>
+    <a href="#" class="logo" onclick="showSection('sklep')">AdelbertusShop</a>
+    <nav>
+      <a href="#" onclick="showSection('sklep')">Sklep</a>
+      <a href="#" onclick="showSection('projektuj')">Projektuj sam</a>
+      <a href="#" onclick="showSection('marketplace')">Marketplace</a>
+      <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
+      <a href="#" onclick="showSection('opinie')">Opinie</a>
+      <a href="#" onclick="showSection('blog')">Blog</a>
+      <a href="#" onclick="showSection('zamowienia')">Zamówienia</a>
+      <a href="#" onclick="showSection('regulamin')">Regulamin</a>
+    </nav>
+  </header>
 
-<header>
-  <div class="logo">AdelbertusShop</div>
-  <nav>
-    <a href="#" data-section="marketplace" class="active">Sklep</a>
-    <a href="#" data-section="projektuj">Projektuj sam</a>
-    <a href="#" data-section="marketplace">Marketplace</a>
-    <a href="#" data-section="zbiorka">Zbiórka</a>
-    <a href="#" data-section="opinie">Opinie</a>
-    <a href="#" data-section="blog">Blog</a>
-    <a href="#" data-section="zamowienia">Zamówienia</a>
-    <a href="#" data-section="regulamin">Regulamin</a>
-  </nav>
-</header>
+  <main>
+    <!-- Sklep -->
+    <section id="sklep" class="active">
+      <h2>Nasze produkty</h2>
+      <div>
+        <h3>Bluzy — 150 zł</h3>
+        <p>Wysokiej jakości bluzy z nadrukiem.</p>
+      </div>
+      <div>
+        <h3>Koszulki — 70 zł</h3>
+        <p>Bawełniane koszulki w różnych kolorach.</p>
+      </div>
+      <div>
+        <h3>Czapki — 40 zł</h3>
+        <p>Modne czapki z logo AdelbertusShop.</p>
+      </div>
+      <div>
+        <h3>Akcesoria</h3>
+        <p>Torby, breloczki i inne dodatki.</p>
+      </div>
 
-<main>
+      <h3>Galeria projektów</h3>
+      <div class="gallery" id="gallery">
+        <img src="img1.jpg" alt="Projekt 1" />
+        <img src="img2.jpg" alt="Projekt 2" />
+        <img src="img3.jpg" alt="Projekt 3" />
+      </div>
+    </section>
 
-  <!-- PROJEKTUJ SAM -->
-  <section id="projektuj">
-    <h2>Projektuj sam</h2>
-    <p>Twój tekst tutaj:</p>
-    <textarea id="customText" placeholder="Wpisz swój tekst..."></textarea>
-    <p>Wybierz kolor koszulki:</p>
-    <select id="shirtColor">
-      <option value="szary">Szary (domyślny)</option>
-      <option value="czerwony">Czerwony</option>
-      <option value="niebieski">Niebieski</option>
-      <option value="zielony">Zielony</option>
-      <option value="zolty">Żółty</option>
-      <option value="czarny">Czarny</option>
-    </select>
-    <button id="addCustomToCart">Dodaj do koszyka</button>
-  </section>
+    <!-- Inne sekcje -->
+    <section id="projektuj">
+      <h2>Projektuj sam</h2>
+      <form id="projektujForm">
+        <label for="tekstNadruku">Twój tekst:</label>
+        <input type="text" id="tekstNadruku" placeholder="Wpisz tekst" required />
+        <label>Kolor koszulki:</label>
+        <select id="kolorKoszulki">
+          <option value="Szary">Szary</option>
+          <option value="Czerwony">Czerwony</option>
+          <option value="Zielony">Zielony</option>
+        </select>
+        <button class="button" type="submit">Dodaj do koszyka</button>
+      </form>
+    </section>
 
-  <!-- MARKETPLACE -->
-  <section id="marketplace" class="active">
-    <h2>Marketplace</h2>
-    <p>Wszystkie kategorie: <strong>Koszulki, Bluzy, Czapki, Akcesoria</strong></p>
-    <p>Sortowanie: 
-      <select id="marketplaceSort">
-        <option value="popularne">Popularne</option>
-        <option value="najnowsze">Najnowsze</option>
-        <option value="cena-rosnaco">Cena rosnąco</option>
-        <option value="cena-malejaco">Cena malejąco</option>
-      </select>
-    </p>
-    <p>(Funkcjonalność filtrowania i sortowania do rozbudowy.)</p>
-  </section>
+    <section id="marketplace">
+      <h2>Marketplace</h2>
+      <p>Lista produktów wkrótce.</p>
+    </section>
 
-  <!-- ZBIÓRKA -->
-  <section id="zbiorka">
-    <h2>Zbiórka na dom dziecka</h2>
-    <p>Pomagamy dzieciom z domu dziecka.</p>
-    <p>Wesprzyj naszą zbiórkę charytatywną — każda złotówka ma znaczenie!</p>
-    <p>BLIK: <strong id="blikCode">573-939-925</strong> 
-      <button class="blik-copy" title="Kopiuj numer BLIK">Kopiuj</button>
-    </p>
-  </section>
+    <section id="zbiorka">
+      <h2>Zbiórka na dom dziecka</h2>
+      <p>BLIK: <strong>573-939-925</strong></p>
+      <button class="button" onclick="copyToClipboard('573-939-925')">Kopiuj numer BLIK</button>
+      <p id="copyMessage" style="color:green;"></p>
+    </section>
 
-  <!-- OPINIE -->
-  <section id="opinie">
-    <h2>Opinie klientów</h2>
-    <div id="opinie-list">
-      <p>Brak opinii — bądź pierwszy!</p>
-    </div>
-    <h3>Dodaj opinię</h3>
-    <textarea id="opiniaText" placeholder="Twoja opinia..." rows="3"></textarea>
-    <button id="addOpinionBtn">Dodaj opinię</button>
-  </section>
+    <section id="opinie">
+      <h2>Opinie klientów</h2>
+      <textarea id="opinia" rows="3" placeholder="Dodaj opinię..."></textarea>
+      <button class="button">Dodaj</button>
+    </section>
 
-  <!-- BLOG -->
-  <section id="blog">
-    <h2>Blog</h2>
-    <div id="blog-posts">
-      <article>
-        <h3>Witaj na naszym blogu!</h3>
-        <p>Tu pojawią się ciekawe wpisy.</p>
-      </article>
-    </div>
-  </section>
+    <section id="blog">
+      <h2>Blog</h2>
+      <p>Wkrótce nowe wpisy!</p>
+    </section>
 
-  <!-- ZAMÓWIENIA -->
-  <section id="zamowienia">
-    <h2>Zamówienia</h2>
-    <p>Tu możesz sprawdzić status swoich zamówień.</p>
-  </section>
+    <section id="zamowienia">
+      <h2>Zamówienia</h2>
+      <p>Panel użytkownika – sprawdzanie statusu zamówień</p>
+    </section>
 
-  <!-- REGULAMIN -->
-  <section id="regulamin">
-    <h2>Regulamin</h2>
-    <p>Pełen regulamin sklepu znajdziesz tutaj.</p>
-  </section>
+    <section id="regulamin">
+      <h2>Regulamin</h2>
+      <p>Pełny regulamin sklepu zostanie tu wkrótce opublikowany.</p>
+    </section>
+  </main>
 
-</main>
+  <footer>
+    <p>&copy; 2025 AdelbertusShop. Wszelkie prawa zastrzeżone.</p>
+  </footer>
 
-<footer>
-  &copy; 2025 AdelbertusShop. Wszelkie prawa zastrzeżone.
-</footer>
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
 
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        document.getElementById('copyMessage').innerText = 'Skopiowano!';
+        setTimeout(() => document.getElementById('copyMessage').innerText = '', 3000);
+      });
+    }
+  </script>
 </body>
 </html>
