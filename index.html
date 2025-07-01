@@ -1,164 +1,294 @@
 
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AdelbertusShop - Ekskluzywny Sklep</title>
+  <title>AdelbertusShop</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-
     body {
+      font-family: Arial, sans-serif;
       margin: 0; padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #f9d342;
+      background-color: #f9f9f9;
+      color: #333;
     }
-
-    a {
-      color: #f9d342;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    a:hover { color: #ffea70; }
-
     header {
       background-color: #000;
+      color: white;
+      padding: 10px 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 15px 30px;
+      justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
     }
-
     header img {
-      height: 60px;
-      object-fit: contain;
+      height: 50px;
     }
-
-    nav {
-      display: flex;
-      gap: 20px;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
     nav a {
-      padding: 6px 10px;
-      border-radius: 4px;
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
     }
-
-    nav a:hover, nav a:focus {
-      background-color: #f9d342;
-      color: #121212;
+    nav a:hover {
+      text-decoration: underline;
     }
-
     .hero {
       width: 100%;
-      height: 300px;
-      background: url('https://i.ibb.co/0RPcKnCP/file-0000000016b061f7bec1fc14456918bb-1.png') center center/cover no-repeat;
-      filter: brightness(0.6);
-      position: relative;
+      max-height: 400px;
+      overflow: hidden;
+    }
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    footer {
+      background:#222; 
+      color:#eee; 
+      padding: 40px 20px; 
+      text-align:center; 
+      margin-top: 80px;
+    }
+    footer a {
+      color:#2a9d8f;
+      text-decoration:none;
+      margin: 0 10px;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
 
-    section {
+    /* Zbiórka */
+    #zbiórka {
+      padding: 40px 20px; 
+      background:#f0f4f8; 
+      text-align:center; 
+      border-radius:10px; 
+      margin:40px auto; 
+      max-width: 600px;
+    }
+    #zbiórka h2 {
+      margin-bottom: 10px;
+    }
+    #zbiórka p {
+      font-size: 1.2rem; 
+      margin: 20px 0;
+    }
+    #zbiórka button {
+      background:#2a9d8f; 
+      color:#fff; 
+      border:none; 
+      padding: 12px 30px; 
+      border-radius: 8px; 
+      font-weight:700; 
+      cursor:pointer;
+    }
+
+    /* Projektuj sam */
+    #projektuj-sam {
+      padding:40px 20px; 
+      background:#fff;
+      max-width: 960px;
+      margin: 40px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    #projektuj-sam h2 {
+      text-align:center;
+      margin-bottom: 30px;
+    }
+    #projektuj-sam .projektuj-sam-section {
+      display:flex; 
+      flex-wrap:wrap; 
+      gap:30px; 
+      justify-content:center; 
+      align-items:flex-start;
+    }
+    #tshirtPreview {
+      position:relative; 
+      width:300px; 
+      height:350px; 
+      background:#eee; 
+      border-radius:12px; 
+      box-shadow:0 4px 8px rgba(0,0,0,0.15); 
+      display:flex; 
+      justify-content:center; 
+      align-items:center; 
+      font-size:24px; 
+      font-weight:bold; 
+      color:#333; 
+      text-align:center; 
+      padding:20px;
+    }
+    #projektuj-sam label {
+      display:block; 
+      margin-bottom:8px; 
+      font-weight:600;
+    }
+    #projektuj-sam input[type="text"],
+    #projektuj-sam select {
+      width:100%; 
+      padding:10px; 
+      font-size:16px; 
+      margin-bottom:20px; 
+      border:1px solid #ccc; 
+      border-radius:6px;
+    }
+    #addToCartCustom {
+      margin-top:30px; 
+      width:100%; 
+      background:#2a9d8f; 
+      color:#fff; 
+      font-weight:700; 
+      padding:12px; 
+      border:none; 
+      border-radius:8px; 
+      cursor:pointer;
+    }
+
+    /* Marketplace */
+    #marketplace {
+      padding: 40px 20px;
+      background-color: #f9f9f9;
       max-width: 1200px;
       margin: 40px auto;
-      padding: 0 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
-    h2.category-title {
-      font-size: 2rem;
-      font-weight: 700;
-      border-bottom: 3px solid #f9d342;
-      padding-bottom: 8px;
-      margin-bottom: 25px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+    #marketplace h2 {
+      text-align: center;
+      margin-bottom: 30px;
     }
-
-    .products-grid {
+    .filters {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .filters select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .products-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
     }
-
-    .product {
-      background-color: #1a1a1a;
-      border-radius: 15px;
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
       padding: 15px;
-      box-shadow: 0 0 20px #f9d342aa;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
     }
-
-    .product:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 40px #f9d342cc;
+    .product-card:hover {
+      transform: translateY(-5px);
     }
-
-    .product img {
+    .product-card img {
       width: 100%;
-      max-height: 280px;
-      object-fit: contain;
-      border-radius: 15px;
-      margin-bottom: 15px;
-      background-color: #222;
+      border-radius: 6px;
+      object-fit: cover;
+      height: 180px;
+      margin-bottom: 10px;
     }
-
-    .product h3 {
-      font-size: 1.3rem;
-      margin: 0 0 8px 0;
-    }
-
-    .product p.price {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #e5a828;
-      margin: 0;
-    }
-
-    footer {
-      background-color: #000;
-      color: #f9d342;
-      padding: 30px 20px;
-      text-align: center;
+    .product-name {
       font-weight: 600;
-      font-size: 1rem;
-      margin-top: 60px;
-    }
-
-    .social {
-      margin-bottom: 15px;
-    }
-
-    .social a {
-      margin: 0 15px;
-      font-weight: 700;
+      margin-bottom: 8px;
       font-size: 1.1rem;
     }
-
-    .social a:hover {
-      color: #ffea70;
+    .product-price {
+      color: #2a9d8f;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .btn-favorite {
+      align-self: flex-end;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: #ccc;
+      transition: color 0.3s ease;
+    }
+    .btn-favorite.active {
+      color: #e76f51;
     }
 
-    @media (max-width: 700px) {
-      nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-      }
-      section {
-        margin: 30px 10px;
-      }
-      .products-grid {
-        grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
-        gap: 15px;
-      }
+    /* Sklep (sekcja z kategoriami) */
+    #sklep {
+      padding:20px; 
+      max-width:1200px; 
+      margin:auto;
+    }
+    #sklep h2 {
+      text-align:center; 
+      margin-bottom:30px;
+    }
+    #sklep nav {
+      text-align:center; 
+      margin-bottom:40px;
+    }
+    #sklep nav button {
+      margin:5px 10px; 
+      padding:10px 20px; 
+      cursor:pointer;
+      background-color: #2a9d8f;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+    #sklep nav button:hover {
+      background-color: #1e6a73;
+    }
+    .kategoria {
+      margin-bottom: 40px;
+    }
+    .kategoria h3 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #2a9d8f;
+    }
+    .grid {
+      display:flex; 
+      flex-wrap:wrap; 
+      gap:20px; 
+      justify-content:center;
+    }
+    .produkt {
+      width:200px; 
+      border:1px solid #ddd; 
+      padding:10px; 
+      text-align:center;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+      transition: box-shadow 0.3s ease;
+    }
+    .produkt:hover {
+      box-shadow: 0 6px 12px rgb(0 0 0 / 0.15);
+    }
+    .produkt img {
+      width:100%; 
+      height:auto;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .produkt p {
+      margin: 5px 0;
+      font-weight: 600;
+    }
+    .produkt strong {
+      color: #e76f51;
     }
   </style>
 </head>
@@ -168,92 +298,28 @@
   <img src="https://i.ibb.co/0RPcKnCP/file-0000000016b061f7bec1fc14456918bb-1.png" alt="Logo AdelbertusShop" />
   <nav>
     <a href="#sklep">Sklep</a>
-    <a href="#projektuj">Projektuj</a>
+    <a href="#projektuj-sam">Projektuj</a>
     <a href="#marketplace">Marketplace</a>
-    <a href="#reklama">Reklama</a>
-    <a href="#zbiorka">Zbiórka</a>
-    <a href="#opinie">Opinie</a>
-    <a href="#blog">Blog</a>
-    <a href="#zamowienie">Zamówienie</a>
-    <a href="#regulamin">Regulamin</a>
+    <a href="#zbiórka">Zbiórka</a>
+    <a href="#footer">Kontakt</a>
   </nav>
 </header>
 
-<div class="hero" aria-label="Baner reklamowy sklepu AdelbertusShop"></div>
+<div class="hero">
+  <img src="https://i.ibb.co/0RPcKnCP/file-0000000016b061f7bec1fc14456918bb-1.png" alt="Baner reklamowy" />
+</div>
 
-<section id="sklep">
-  <h2 class="category-title">Koszulki</h2>
-  <div class="products-grid">
-    <div class="product">
-      <img src="https://i.ibb.co/wZpmgGfj/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg" alt="Koszulka Classic Męska" />
-      <h3>Koszulka Classic (Męska)</h3>
-      <p class="price">99 zł</p>
-    </div>
-    <div class="product">
-      <img src="https://i.ibb.co/7W6xG5g/female-tshirt.jpg" alt="Koszulka Classic Damska" />
-      <h3>Koszulka Classic (Damska)</h3>
-      <p class="price">99 zł</p>
-    </div>
+<section id="zbiórka">
+  <h2>Pomagamy dzieciom z domu dziecka</h2>
+  <p>Wesprzyj naszą zbiórkę charytatywną — każda złotówka ma znaczenie!</p>
+  <div style="font-size: 2rem; font-weight: 700; color:#e76f51; margin-bottom: 20px;">
+    BLIK: <span style="user-select: all;">573-939-925</span>
   </div>
-
-  <h2 class="category-title">Bluzy</h2>
-  <div class="products-grid">
-    <div class="product">
-      <img src="https://i.ibb.co/M528N18G/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg" alt="Bluza Męska" />
-      <h3>Bluza Classic (Męska)</h3>
-      <p class="price">149 zł</p>
-    </div>
-  </div>
+  <button onclick="navigator.clipboard.writeText('573-939-925').then(() => alert('Numer BLIK skopiowany!'))">
+    Kopiuj numer BLIK
+  </button>
 </section>
 
-<section id="projektuj">
-  <h2 class="category-title">Projektuj</h2>
-  <p>Tu znajdziesz kreator ubrań – stwórz własny wzór na koszulki, bluzy i akcesoria.</p>
-</section>
-
-<section id="marketplace">
-  <h2 class="category-title">Marketplace</h2>
-  <p>Odkryj projekty innych twórców, wspieraj artystów i kupuj unikalne produkty.</p>
-</section>
-
-<section id="reklama">
-  <h2 class="category-title">Reklama</h2>
-  <p>Chcesz reklamować się na naszych produktach lub stronie? Skontaktuj się z nami!</p>
-</section>
-
-<section id="zbiorka">
-  <h2 class="category-title">Zbiórka</h2>
-  <p>Dołącz do naszych kampanii społecznych – wspieraj ważne cele razem z AdelbertusShop.</p>
-</section>
-
-<section id="opinie">
-  <h2 class="category-title">Opinie</h2>
-  <p>Przeczytaj, co nasi klienci mówią o jakości i stylu naszych produktów.</p>
-</section>
-
-<section id="blog">
-  <h2 class="category-title">Blog</h2>
-  <p>Najnowsze trendy, porady modowe, nowości i aktualności z życia sklepu.</p>
-</section>
-
-<section id="zamowienie">
-  <h2 class="category-title">Zamówienie</h2>
-  <p>Formularz zamówienia oraz szczegóły dostawy i płatności.</p>
-</section>
-
-<section id="regulamin">
-  <h2 class="category-title">Regulamin</h2>
-  <p>Zapoznaj się z naszym regulaminem – zasady zakupów i korzystania z serwisu.</p>
-</section>
-
-<footer>
-  <div class="social">
-    <a href="#">Facebook</a>
-    <a href="#">Instagram</a>
-    <a href="#">TikTok</a>
-  </div>
-  &copy; 2025 AdelbertusShop. Wszelkie prawa zastrzeżone.
-</footer>
-
-</body>
-</html>
+<section id="projektuj-sam" class="projektuj-sam-section">
+  <h2>Projektuj sam</h2>
+  <div style="display:flex; flex-wrap:wrap; gap:30
