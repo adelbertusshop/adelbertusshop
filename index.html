@@ -1,73 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AdelbertusShop</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background: #f4f4f4; }
+    header { background: #333; color: white; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; }
+    nav { background: #555; display: flex; justify-content: center; flex-wrap: wrap; }
+    nav a { color: white; padding: 10px 15px; text-decoration: none; display: block; }
+    nav a:hover { background: #444; }
+    section { display: none; padding: 20px; }
+    section.active { display: block; }
+    .product { background: white; margin: 10px; padding: 10px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    .product img { width: 100%; max-width: 200px; border-radius: 5px; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .gallery img { width: 150px; border-radius: 5px; cursor: pointer; transition: transform 0.2s; }
+    .gallery img:hover { transform: scale(1.05); }
+    footer { background: #222; color: #ccc; text-align: center; padding: 15px; margin-top: 30px; }
+    form input, form select, form textarea, form button {
+      display: block; width: 100%; margin: 10px 0; padding: 8px;
+    }
+    .button { background: #007bff; color: white; border: none; cursor: pointer; border-radius: 4px; }
+    .button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+
+<header>AdelbertusShop</header>
+<nav>
+  <a href="#" onclick="showSection('sklep')">Sklep</a>
+  <a href="#" onclick="showSection('projektuj')">Projektuj</a>
+  <a href="#" onclick="showSection('marketplace')">Marketplace</a>
+  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
+  <a href="#" onclick="showSection('opinie')">Opinie</a>
+</nav>
+
+<main>
+  <section id="sklep" class="active">
+    <h2>Nasze Produkty</h2>
+    <div class="product">
+      <h3>Bluzy – 150 zł</h3>
+      <p>Wysokiej jakości bluzy z nadrukiem</p>
+    </div>
+    <div class="product">
+      <h3>Koszulki – 70 zł</h3>
+      <p>Bawełniane koszulki w różnych kolorach</p>
+    </div>
+    <div class="product">
+      <h3>Czapki – 40 zł</h3>
+      <p>Modne czapki z logo AdelbertusShop</p>
+    </div>
+    <div class="gallery">
+      <img src="https://i.ibb.co/jv58HzCX/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg" alt="Koszulka 1" />
+      <img src="https://i.ibb.co/S4ytLCvT/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Bluza 1" />
+    </div>
+  </section>
+
+  <section id="projektuj">
+    <h2>Projektuj własny nadruk</h2>
+    <form>
+      <input type="text" placeholder="Twój tekst na nadruku" required />
+      <select>
+        <option value="">Wybierz kolor koszulki</option>
+        <option>Czarny</option>
+        <option>Biały</option>
+        <option>Czerwony</option>
+      </select>
+      <button class="button">Dodaj do koszyka</button>
+    </form>
+  </section>
+
+  <section id="marketplace">
+    <h2>Marketplace</h2>
+    <p>Tutaj wkrótce pojawią się projekty od naszych klientów!</p>
+  </section>
+
+  <section id="zbiorka">
+    <h2>Zbiórka dla dzieci z domu dziecka</h2>
+    <p>Wesprzyj nas: <strong>BLIK: 573-939-925</strong></p>
+    <button onclick="copyToClipboard('573-939-925')" class="button">Kopiuj numer BLIK</button>
+    <p id="copyInfo" style="color:green;"></p>
+  </section>
+
+  <section id="opinie">
+    <h2>Opinie klientów</h2>
+    <form>
+      <textarea rows="4" placeholder="Napisz swoją opinię..." required></textarea>
+      <button class="button">Wyślij opinię</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 AdelbertusShop — Wszelkie prawa zastrzeżone.
+</footer>
+
 <script>
-function renderProducts(category = 'all') {
-  productsContainer.innerHTML = '';
-  const filtered = category === 'all' ? products : products.filter(p => p.category === category);
-
-  filtered.forEach(product => {
-    const div = document.createElement('div');
-    div.className = 'product';
-    div.innerHTML = `
-      <img src="${product.img}" alt="${product.name}" />
-      <div class="product-name">${product.name}</div>
-    `;
-    div.onclick = () => openModal(product);
-    productsContainer.appendChild(div);
-  });
-}
-
-// Obsługa filtrów
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const category = btn.dataset.category;
-    renderProducts(category);
-  });
-});
-
-// Modal
-const modal = document.getElementById('product-modal');
-const modalImage = document.getElementById('modal-image');
-const modalName = document.getElementById('modal-name');
-const addToCartBtn = document.getElementById('add-to-cart-btn');
-let currentProduct = null;
-
-function openModal(product) {
-  currentProduct = product;
-  modalImage.src = product.img;
-  modalName.textContent = product.name;
-  modal.classList.add('show');
-}
-
-document.getElementById('modal-close').addEventListener('click', () => {
-  modal.classList.remove('show');
-});
-
-// Koszyk
-function updateCart() {
-  cartItemsContainer.innerHTML = '';
-  if (cart.length === 0) {
-    cartItemsContainer.appendChild(cartEmptyMsg);
-    return;
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
   }
 
-  cart.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = `${item.name} (${item.color}, ${item.size})`;
-    cartItemsContainer.appendChild(li);
-  });
-}
-
-addToCartBtn.addEventListener('click', () => {
-  const color = document.getElementById('color-select').value;
-  const size = document.getElementById('size-select').value;
-  cart.push({ name: currentProduct.name, color, size });
-  updateCart();
-  modal.classList.remove('show');
-});
-
-// Początkowe załadowanie
-renderProducts();
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      document.getElementById("copyInfo").textContent = "Skopiowano!";
+      setTimeout(() => document.getElementById("copyInfo").textContent = "", 2000);
+    });
+  }
 </script>
+
 </body>
 </html>
