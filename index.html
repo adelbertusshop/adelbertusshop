@@ -7,257 +7,224 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>AdelbertusShop - Sklep</title>
 <style>
-  body { font-family: Arial, sans-serif; margin:0; background:#f9f9f9; }
-  header { background: #222; color: white; padding: 1em; display: flex; align-items: center; justify-content: space-between; }
-  header .logo { font-weight: bold; font-size: 1.5em; }
-  nav a { color: white; margin: 0 10px; text-decoration: none; cursor: pointer; }
-  nav a.active { text-decoration: underline; }
-  main { padding: 1em; max-width: 900px; margin: auto; background: white; min-height: 70vh; }
-  section { display: none; }
-  section.active { display: block; }
-  h2 { border-bottom: 2px solid #222; padding-bottom: 0.3em; margin-top: 0; }
-  button { cursor: pointer; background: #222; color: white; border: none; padding: 0.5em 1em; margin-top: 1em; }
-  input, select, textarea { width: 100%; padding: 0.5em; margin: 0.5em 0; }
-  .product { border: 1px solid #ccc; padding: 1em; margin-bottom: 1em; }
-  .cart-list { list-style: none; padding-left: 0; }
-  .cart-list li { margin-bottom: 0.5em; }
-  footer { background:#222; color:white; text-align:center; padding:1em; margin-top:2em; }
-  .blik-copy { cursor: pointer; background: #ffc107; border: none; padding: 0.3em 0.7em; margin-left: 0.5em; }
-  .comment { border-top: 1px solid #ccc; padding-top: 0.5em; margin-top: 0.5em; }
-  .comment p { margin: 0.2em 0; }
+  body {
+    font-family: Arial, sans-serif;
+    margin:0; padding:0; background:#f5f5f5;
+  }
+  header {
+    background:#333;
+    color:#fff;
+    padding: 1rem;
+    text-align:center;
+    font-size:1.5rem;
+    font-weight:bold;
+  }
+  .filters {
+    display:flex;
+    justify-content:center;
+    gap:1rem;
+    margin: 1rem 0;
+  }
+  .filters button {
+    padding:0.5rem 1rem;
+    border:none;
+    cursor:pointer;
+    background:#ccc;
+    border-radius:4px;
+    transition: background 0.3s;
+  }
+  .filters button.active, .filters button:hover {
+    background:#333;
+    color:#fff;
+  }
+  .products {
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    gap:1rem;
+    padding: 0 1rem 2rem;
+  }
+  .product {
+    background:#fff;
+    border-radius:8px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    cursor:pointer;
+    overflow:hidden;
+    display:flex;
+    flex-direction: column;
+  }
+  .product img {
+    width:100%;
+    height: auto;
+    object-fit: contain;
+  }
+  .product-name {
+    padding:0.5rem 1rem;
+    font-weight: 600;
+    flex-grow: 1;
+  }
+  /* Modal */
+  .modal {
+    position: fixed;
+    top:0; left:0;
+    width:100vw;
+    height:100vh;
+    background: rgba(0,0,0,0.6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 9999;
+  }
+  .modal.show {
+    visibility: visible;
+    opacity: 1;
+  }
+  .modal-content {
+    background:#fff;
+    border-radius:10px;
+    max-width: 600px;
+    width: 90%;
+    padding:1rem;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    cursor:pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .modal img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  .modal-details {
+    margin-top: 1rem;
+  }
+  label {
+    display:block;
+    margin: 0.5rem 0 0.2rem;
+  }
+  select {
+    padding: 0.3rem;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  button.add-to-cart {
+    margin-top: 1rem;
+    padding: 0.7rem 1rem;
+    width: 100%;
+    background:#28a745;
+    color:#fff;
+    font-weight: bold;
+    border:none;
+    border-radius: 4px;
+    cursor:pointer;
+  }
+  button.add-to-cart:hover {
+    background:#218838;
+  }
+  /* Koszyk */
+  #cart {
+    position: fixed;
+    right: 0;
+    top: 60px;
+    background: #fff;
+    width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    border-left: 1px solid #ddd;
+    padding: 1rem;
+    font-size: 14px;
+  }
+  #cart h2 {
+    margin-top: 0;
+  }
+  #cart-items {
+    list-style:none;
+    padding: 0;
+    margin: 0;
+  }
+  #cart-items li {
+    border-bottom: 1px solid #eee;
+    padding: 0.5rem 0;
+  }
+  #cart-empty {
+    color: #666;
+  }
 </style>
 </head>
 <body>
+<header>AdelbertusShop - Sklep</header>
 
-<header>
-  <div class="logo">AdelbertusShop</div>
-  <nav>
-    <a href="#" data-section="sklep" class="active">Sklep</a>
-    <a href="#" data-section="projektuj">Projektuj sam</a>
-    <a href="#" data-section="marketplace">Marketplace</a>
-    <a href="#" data-section="zbiorka">Zbiórka</a>
-    <a href="#" data-section="opinie">Opinie</a>
-    <a href="#" data-section="blog">Blog</a>
-    <a href="#" data-section="zamowienia">Zamówienia</a>
-    <a href="#" data-section="regulamin">Regulamin</a>
-  </nav>
-</header>
+<div class="filters">
+  <button class="filter-btn active" data-category="all">Wszystkie</button>
+  <button class="filter-btn" data-category="koszulki">Koszulki</button>
+  <button class="filter-btn" data-category="bluzy">Bluzy</button>
+  <button class="filter-btn" data-category="czapki">Czapki</button>
+</div>
 
-<main>
-  <!-- SKLEP -->
-  <section id="sklep" class="active">
-    <h2>Sklep - Nasze produkty</h2>
-    <div class="product" data-id="bluzy">
-      <h3>Bluzy — 150 zł</h3>
-      <p>Wygodne i ciepłe bluzy.</p>
-      <button data-add="Bluza">Dodaj do koszyka</button>
-    </div>
-    <div class="product" data-id="koszulki">
-      <h3>Koszulki — 70 zł</h3>
-      <p>Wysokiej jakości bawełniane koszulki.</p>
-      <button data-add="Koszulka">Dodaj do koszyka</button>
-    </div>
-    <div class="product" data-id="czapki">
-      <h3>Czapki — 40 zł</h3>
-      <p>Stylowe czapki na każdą porę roku.</p>
-      <button data-add="Czapka">Dodaj do koszyka</button>
-    </div>
-    <h3>Twój koszyk:</h3>
-    <ul class="cart-list"></ul>
-    <button class="clear-cart">Wyczyść koszyk</button>
-  </section>
+<div class="products" id="products"></div>
 
-  <!-- PROJEKTUJ SAM -->
-  <section id="projektuj">
-    <h2>Projektuj sam</h2>
-    <p>Twój tekst tutaj:</p>
-    <textarea id="customText" placeholder="Wpisz swój tekst..."></textarea>
-    <p>Wybierz kolor koszulki:</p>
-    <select id="shirtColor">
-      <option value="szary">Szary (domyślny)</option>
-      <option value="czerwony">Czerwony</option>
-      <option value="niebieski">Niebieski</option>
-      <option value="zielony">Zielony</option>
-      <option value="zolty">Żółty</option>
-      <option value="czarny">Czarny</option>
-    </select>
-    <button id="addCustomToCart">Dodaj do koszyka</button>
-  </section>
-
-  <!-- MARKETPLACE -->
-  <section id="marketplace">
-    <h2>Marketplace</h2>
-    <p>Wszystkie kategorie: <strong>Koszulki, Bluzy, Czapki, Akcesoria</strong></p>
-    <p>Sortowanie: 
-      <select id="marketplaceSort">
-        <option value="popularne">Popularne</option>
-        <option value="najnowsze">Najnowsze</option>
-        <option value="cena-rosnaco">Cena rosnąco</option>
-        <option value="cena-malejaco">Cena malejąco</option>
+<!-- Modal produktu -->
+<div class="modal" id="product-modal">
+  <div class="modal-content">
+    <span class="modal-close" id="modal-close">&times;</span>
+    <img src="" alt="Produkt" id="modal-image" />
+    <div class="modal-details">
+      <h3 id="modal-name"></h3>
+      <label for="color-select">Wybierz kolor:</label>
+      <select id="color-select">
+        <option value="szary">Szary (domyślny)</option>
+        <option value="czerwony">Czerwony</option>
+        <option value="niebieski">Niebieski</option>
+        <option value="zielony">Zielony</option>
+        <option value="zolty">Żółty</option>
+        <option value="czarny">Czarny</option>
       </select>
-    </p>
-    <p>(Funkcjonalność filtrowania i sortowania do rozbudowy.)</p>
-  </section>
-
-  <!-- ZBIÓRKA -->
-  <section id="zbiorka">
-    <h2>Zbiórka na dom dziecka</h2>
-    <p>Pomagamy dzieciom z domu dziecka.</p>
-    <p>Wesprzyj naszą zbiórkę charytatywną — każda złotówka ma znaczenie!</p>
-    <p>BLIK: <strong id="blikCode">573-939-925</strong> 
-      <button class="blik-copy" title="Kopiuj numer BLIK">Kopiuj</button>
-    </p>
-  </section>
-
-  <!-- OPINIE -->
-  <section id="opinie">
-    <h2>Opinie klientów</h2>
-    <div id="opinie-list">
-      <p>Brak opinii — bądź pierwszy!</p>
+      <label for="size-select">Wybierz rozmiar:</label>
+      <select id="size-select">
+        <option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+        <option value="XXL">XXL</option>
+      </select>
+      <button class="add-to-cart" id="add-to-cart-btn">Dodaj do koszyka</button>
     </div>
-    <h3>Dodaj opinię</h3>
-    <textarea id="opiniaText" placeholder="Twoja opinia..." rows="3"></textarea>
-    <button id="addOpinionBtn">Dodaj opinię</button>
-  </section>
+  </div>
+</div>
 
-  <!-- BLOG -->
-  <section id="blog">
-    <h2>Blog</h2>
-    <div id="blog-posts">
-      <article>
-        <h3>Witaj na naszym blogu!</h3>
-        <p>Tu pojawią się ciekawe wpisy.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ZAMÓWIENIA -->
-  <section id="zamowienia">
-    <h2>Zamówienia</h2>
-    <p>Tu możesz sprawdzić status swoich zamówień.</p>
-    <form id="orderForm">
-      <label>Numer zamówienia:<br /><input type="text" id="orderNumber" required /></label><br />
-      <button type="submit">Sprawdź status</button>
-    </form>
-    <div id="orderStatus"></div>
-  </section>
-
-  <!-- REGULAMIN -->
-  <section id="regulamin">
-    <h2>Regulamin sklepu</h2>
-    <p>Tu wpisz swój regulamin.</p>
-    <p>Przykładowo: Wszystkie zamówienia są realizowane w ciągu 3 dni roboczych. Prawo do zwrotu przysługuje w ciągu 14 dni...</p>
-  </section>
-</main>
-
-<footer>
-  <p>© 2025 AdelbertusShop | <a href="https://www.adelbertusshop.com" style="color:#ffc107;">Strona główna</a></p>
-</footer>
+<!-- Koszyk -->
+<div id="cart">
+  <h2>Koszyk</h2>
+  <ul id="cart-items"><li id="cart-empty">Koszyk jest pusty</li></ul>
+</div>
 
 <script>
-  // Nawigacja i przełączanie sekcji
-  const navLinks = document.querySelectorAll('nav a');
-  const sections = document.querySelectorAll('main section');
+// Lista produktów - Twoje grafiki z kategoriami i nazwami
+const products = [
+  {id: 1, name: "Koszulka 1", category: "koszulki", img: "https://i.ibb.co/jv58HzCX/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg"},
+  {id: 2, name: "Koszulka 2", category: "koszulki", img: "https://i.ibb.co/sdpF03TC/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg"},
+  {id: 3, name: "Koszulka 3", category: "koszulki", img: "https://i.ibb.co/pvNjBBQF/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg"},
+  {id: 4, name: "Bluza 1", category: "bluzy", img: "https://i.ibb.co/xvV9xmH/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg"},
+  {id: 5, name: "Bluza 2", category: "bluzy", img: "https://i.ibb.co/S4ytLCvT/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg"},
+  {id: 6, name: "Bluza 3", category: "bluzy", img: "https://i.ibb.co/HDpRxc1n/Messenger-creation-9-B935-AD4-1-D3-B-4785-BBA4-6928-E5614-E31.jpg"},
+  {id: 7, name: "Czapka 1", category: "czapki", img: "https://i.ibb.co/WN4YhrXK/Messenger-creation-3-E45-BD0-B-6396-4-A75-825-F-17-A5-A3-C0-FEB1.jpg"},
+  {id: 8, name: "Czapka 2", category: "czapki", img: "https://i.ibb.co/fGkDSkN0/Messenger-creation-ED9-AC5-E7-83-B6-45-AC-B26-B-C3-A0-E3-DAE46-F.jpg"},
+  // Dodaj więcej, jak chcesz
+];
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = link.getAttribute('data-section');
+// Wczytaj produkty na stronę
+const productsContainer = document.getElementById('products');
+const cartItemsContainer = document.getElementById('cart-items');
+const cartEmptyMsg = document.getElementById('cart-empty');
+let cart = [];
 
-      navLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-
-      sections.forEach(s => s.classList.remove('active'));
-      document.getElementById(target).classList.add('active');
-    });
-  });
-
-  // Koszyk prosty
-  let cart = [];
-  const cartList = document.querySelector('.cart-list');
-
-  function renderCart() {
-    if(cart.length === 0){
-      cartList.innerHTML = '<li>Twój koszyk jest pusty.</li>';
-    } else {
-      cartList.innerHTML = cart.map(item => `<li>${item}</li>`).join('');
-    }
-  }
-  renderCart();
-
-  document.querySelectorAll('button[data-add]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const product = btn.getAttribute('data-add');
-      cart.push(product);
-      renderCart();
-    });
-  });
-
-  document.querySelector('.clear-cart').addEventListener('click', () => {
-    cart = [];
-    renderCart();
-  });
-
-  // Projektuj sam - dodawanie do koszyka
-  document.getElementById('addCustomToCart').addEventListener('click', () => {
-    const text = document.getElementById('customText').value.trim();
-    const color = document.getElementById('shirtColor').value;
-    if(text === ''){
-      alert('Wpisz tekst do koszulki!');
-      return;
-    }
-    cart.push(`Koszulka "${text}" - kolor: ${color}`);
-    renderCart();
-    alert('Dodano do koszyka!');
-    document.getElementById('customText').value = '';
-    document.getElementById('shirtColor').value = 'szary';
-  });
-
-  // Kopiowanie numeru BLIK
-  document.querySelector('.blik-copy').addEventListener('click', () => {
-    const blik = document.getElementById('blikCode').textContent;
-    navigator.clipboard.writeText(blik).then(() => {
-      alert('Numer BLIK skopiowany do schowka!');
-    });
-  });
-
-  // Opinie
-  const opinieList = document.getElementById('opinie-list');
-  const addOpinionBtn = document.getElementById('addOpinionBtn');
-
-  function renderOpinie() {
-    if(opinieList.children.length === 1 && opinieList.textContent.includes('Brak opinii')){
-      opinieList.innerHTML = '';
-    }
-  }
-
-  addOpinionBtn.addEventListener('click', () => {
-    const text = document.getElementById('opiniaText').value.trim();
-    if(text === ''){
-      alert('Wpisz opinię!');
-      return;
-    }
-    const div = document.createElement('div');
-    div.classList.add('comment');
-    div.innerHTML = `<p>${text}</p>`;
-    opinieList.appendChild(div);
-    document.getElementById('opiniaText').value = '';
-    renderOpinie();
-  });
-
-  // Zamówienia - przykładowe sprawdzanie statusu
-  document.getElementById('orderForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const nr = document.getElementById('orderNumber').value.trim();
-    const statusDiv = document.getElementById('orderStatus');
-    if(nr === ''){
-      statusDiv.textContent = 'Wpisz numer zamówienia.';
-      return;
-    }
-    // Tu można podpiąć API lub backend
-    statusDiv.textContent = `Status zamówienia ${nr}: W trakcie realizacji.`;
-  });
-</script>
-
-</body>
-</html>
+function renderProducts(category = 'all') {
+  products
