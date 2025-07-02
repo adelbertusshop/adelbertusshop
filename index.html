@@ -4,71 +4,96 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
-  <style>
+<style>
   body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #000; /* czarne tło */
-    color: #fff;      /* biały tekst */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+    background: #121212; /* bardzo ciemny, prawie czarny */
+    color: #e0e0e0; /* jasnoszary tekst */
   }
-
   header, footer {
-    background: #111;
-    color: #0f0; /* zielony tekst */
+    background: #1e1e2f; /* ciemny granatowy */
+    color: #c0a0ff; /* delikatny fiolet */
     text-align: center;
     padding: 20px;
+    font-weight: 600;
   }
-
   nav {
-    background: #222;
+    background: #2a2a40; /* trochę jaśniejszy granat */
     text-align: center;
-    padding: 10px;
+    padding: 15px 0;
   }
-
   nav a {
-    color: #0f0; /* zielone linki */
-    margin: 0 15px;
+    color: #c0a0ff; /* fioletowy */
+    margin: 0 18px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
   }
-
+  nav a:hover {
+    color: #ff77ff; /* bardziej żywy różowy przy najechaniu */
+  }
   section {
     display: none;
-    padding: 20px;
+    padding: 25px;
+    background: #1a1a2e; /* ciemne tło sekcji */
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 900px;
+    box-shadow: 0 0 15px #7200ca99;
   }
-
   section.active {
     display: block;
   }
-
-  .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
-    padding: 20px;
-  }
-
   .produkt {
-    border: 1px solid #444;
-    background: #111;
-    color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    width: 250px;
+    border: 1px solid #7200ca; /* fioletowy obrys */
+    padding: 20px;
+    border-radius: 10px;
+    width: 280px;
     text-align: center;
     margin: 20px auto;
+    background: #2c2c44;
+    box-shadow: 0 0 10px #a05aff88;
   }
-
   .produkt img {
     max-width: 100%;
-    border-radius: 8px;
+    border-radius: 10px;
   }
-
   .produkt select, form input, form textarea, form button {
     width: 100%;
-    padding: 8px;
-    margin: 8px 0;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #7200ca;
+    background: #3b3b59;
+    color: #e0dfff;
+    font-weight: 600;
+    font-size: 1em;
   }
+  .produkt select:hover, form input:hover, form textarea:hover, form button:hover {
+    border-color: #ff77ff;
+    background: #4e4e7a;
+    cursor: pointer;
+  }
+  form button {
+    background: #7200ca;
+    color: #fff;
+    border: none;
+    transition: background 0.4s ease;
+  }
+  form button:hover {
+    background: #d147ff;
+  }
+  footer p a {
+    color: #c0a0ff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  footer p a:hover {
+    color: #ff77ff;
+  }
+</style>  }
 
   button {
     background-color: #0f0;
