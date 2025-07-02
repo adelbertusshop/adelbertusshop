@@ -5,10 +5,102 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
-    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
-    nav { background: #222; text-align: center; padding: 10px; }
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
+   <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0d0d0d;
+    color: #e6e6e6;
+  }
+
+  header, footer {
+    background: #000;
+    color: #ffd700;
+    text-align: center;
+    padding: 20px;
+  }
+
+  nav {
+    background: #1a1a1a;
+    text-align: center;
+    padding: 10px;
+  }
+
+  nav a {
+    color: #ffffff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: #8a2be2;
+  }
+
+  h1, h2, h3 {
+    color: #ffd700;
+  }
+
+  section {
+    display: none;
+    padding: 20px;
+  }
+
+  section.active {
+    display: block;
+  }
+
+  .produkt {
+    border: 1px solid #333;
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    width: 250px;
+    text-align: center;
+    margin: 20px auto;
+  }
+
+  .produkt img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .produkt select,
+  form input,
+  form textarea,
+  form button {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #666;
+    background: #262626;
+    color: #e6e6e6;
+  }
+
+  form button {
+    background: #8a2be2;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  form button:hover {
+    background: #5c1aa8;
+  }
+
+  footer a {
+    color: #ffd700;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+
+  footer a:hover {
+    color: #8a2be2;
+  }
+</style>    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
     section { display: none; padding: 20px; }
     section.active { display: block; }
     .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
