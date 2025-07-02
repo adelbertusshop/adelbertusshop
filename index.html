@@ -6,38 +6,79 @@
   <title>AdelbertusShop</title>
   <style>
    <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #0d0d0d;
-    color: #e6e6e6;
-  }
+ body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9; /* jaśniejsze tło */
+  color: #222; /* ciemniejszy tekst dla lepszej czytelności */
+}
 
-  header, footer {
-    background: #000;
-    color: #ffd700;
-    text-align: center;
-    padding: 20px;
-  }
+header, footer {
+  background: #222; /* ciemniejsze tło nagłówka i stopki */
+  color: #f0f0f0; /* jasny tekst */
+  text-align: center;
+  padding: 20px;
+}
 
-  nav {
-    background: #1a1a1a;
-    text-align: center;
-    padding: 10px;
-  }
+nav {
+  background: #333; /* ciemne tło nawigacji */
+  text-align: center;
+  padding: 12px 0;
+}
 
-  nav a {
-    color: #ffffff;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-  }
+nav a {
+  color: #f0f0f0; /* jasny kolor linków */
+  margin: 0 18px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
 
-  nav a:hover {
-    color: #8a2be2;
-  }
+nav a:hover {
+  color: #ff6600; /* efekt podświetlenia linków przy najechaniu */
+}
+
+section {
+  display: none;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+section.active {
+  display: block;
+}
+
+.produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
+  padding: 20px;
+}
+
+.produkt {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  margin: 20px auto;
+  background: #fafafa;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.produkt img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.produkt select, form input, form textarea, form button {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}  }
 
   h1, h2, h3 {
     color: #ffd700;
