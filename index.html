@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -5,95 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      margin: 0; 
-      padding: 0; 
-      background: linear-gradient(135deg, #1a1a2e, #16213e); /* tajemniczy, głęboki granat */
-      color: #eee; 
-    }
-    header, footer { 
-      background: #0f3460; /* ekskluzywny granat */
-      color: #f0e68c; /* subtelny złoty */
-      text-align: center; 
-      padding: 20px; 
-    }
-    nav { 
-      background: #53354a; /* ciemny fiolet z nutą bordo */
-      text-align: center; 
-      padding: 10px; 
-    }
-    nav a { 
-      color: #f0e68c; /* złoty */
-      margin: 0 15px; 
-      text-decoration: none; 
-      font-weight: bold; 
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #ffd700; /* jasne złoto na hover */
-    }
-    section { 
-      display: none; 
-      padding: 20px; 
-    }
-    section.active { 
-      display: block; 
-    }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
+    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
+    nav { background: #222; text-align: center; padding: 10px; }
+    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    section { display: none; padding: 20px; }
+    section.active { display: block; }
     .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
       padding: 20px;
-      background: rgba(15, 52, 96, 0.8);
-      border-radius: 12px;
-      box-shadow: 0 0 10px #53354a;
-      margin: 20px auto;
-      max-width: 900px;
     }
-    .produkt { 
-      border: 1px solid #f0e68c; 
-      padding: 15px; 
-      border-radius: 8px; 
-      width: 250px; 
-      text-align: center; 
-      margin: 20px auto; 
-      background: rgba(25, 25, 112, 0.7);
-      color: #f0e68c;
-      box-shadow: 0 0 10px #f0e68c;
-    }
-    .produkt img { 
-      max-width: 100%; 
-      border-radius: 8px; 
-    }
+    .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; margin: 20px auto; }
+    .produkt img { max-width: 100%; border-radius: 8px; }
     .produkt select, form input, form textarea, form button {
-      width: 100%; 
-      padding: 8px; 
-      margin: 8px 0; 
-      border-radius: 6px; 
-      border: 1px solid #f0e68c;
-      background: #16213e;
-      color: #f0e68c;
-      font-weight: bold;
-    }
-    form button {
-      cursor: pointer;
-      background: #53354a;
-      border: none;
-      transition: background 0.3s;
-    }
-    form button:hover {
-      background: #f0e68c;
-      color: #16213e;
-    }
-    /* Logo pod header */
-    #logo-container {
-      margin: 15px auto;
-      max-width: 200px;
-      text-align: center;
-    }
-    #logo-container img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #f0e68c;
+      width: 100%; padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;
     }
   </style>
   <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
@@ -103,11 +28,6 @@
   <h1>AdelbertusShop</h1>
   <p>Moda uliczna dla wyjątkowych ludzi</p>
 </header>
-
-<div id="logo-container">
-  <img src="https://i.ibb.co/r2qzSjRc/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Logo AdelbertusShop" />
-</div>
-
 <nav>
   <a href="#" onclick="showSection('sklep')">Sklep</a>
   <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
@@ -186,4 +106,34 @@
 
 <section id="zamowienie">
   <h2>Zamówienie</h2>
-  <form action="mailto:mielniczukgr
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+    <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
+    <input type="email" name="Email" placeholder="Email" required>
+    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" required></textarea>
+    <button type="submit">Wyślij</button>
+  </form>
+</section>
+
+<section id="regulamin" class="regulamin">
+  <h2>Regulamin i Polityka Prywatności</h2>
+  <p>Przetwarzamy dane tylko w celu realizacji zamówienia. Nie udostępniamy danych osobom trzecim.</p>
+  <p>Reklamacje przyjmujemy mailowo do 14 dni od zakupu.</p>
+</section>
+
+<footer>
+  <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
+  <p>
+    <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
+    <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |
+    <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
+  </p>
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+</body>
+</html>
