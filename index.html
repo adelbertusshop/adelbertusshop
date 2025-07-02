@@ -5,30 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
   <style>
-   <style>
- body {
+  body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: #f9f9f9; /* jaśniejsze tło */
-  color: #222; /* ciemniejszy tekst dla lepszej czytelności */
+  background: #f9f9f9;
+  color: #222;
 }
 
 header, footer {
-  background: #222; /* ciemniejsze tło nagłówka i stopki */
-  color: #f0f0f0; /* jasny tekst */
+  background: #222;
+  color: #f0f0f0;
   text-align: center;
   padding: 20px;
 }
 
 nav {
-  background: #333; /* ciemne tło nawigacji */
+  background: #333;
   text-align: center;
   padding: 12px 0;
 }
 
 nav a {
-  color: #f0f0f0; /* jasny kolor linków */
+  color: #f0f0f0;
   margin: 0 18px;
   text-decoration: none;
   font-weight: bold;
@@ -36,8 +35,77 @@ nav a {
 }
 
 nav a:hover {
-  color: #ff6600; /* efekt podświetlenia linków przy najechaniu */
+  color: #ff6600;
 }
+
+section {
+  display: none;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+section.active {
+  display: block;
+}
+
+.produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
+  padding: 20px;
+}
+
+.produkt {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  margin: 20px auto;
+  background: #fafafa;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.produkt img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.produkt select,
+form input,
+form textarea,
+form button {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+h1, h2, h3 {
+  color: #ffd700;
+}
+
+form button {
+  background: #8a2be2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #5c1aa8;
+}
+
+footer a {
+  color: #ffd700;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  color: #8a2be2;
+}}
 
 section {
   display: none;
