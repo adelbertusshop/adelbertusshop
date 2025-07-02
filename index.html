@@ -8,19 +8,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
-    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
-    nav { background: #222; text-align: center; padding: 10px; }
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    section { display: none; padding: 20px; }
-    section.active { display: block; }
-    .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+      color: #f0f0f0;
+    }
+    header, footer {
+      background: #000;
+      color: #fff;
+      text-align: center;
       padding: 20px;
     }
-    .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; margin: 20px auto; }
-    .produkt img { max-width: 100%; border-radius: 8px; }
+    header img {
+      margin-top: 10px;
+      max-height: 100px;
+    }
+    nav {
+      background: #111;
+      text-align: center;
+      padding: 10px;
+    }
+    nav a {
+      color: #e0e0e0;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffcc00;
+    }
+    section {
+      display: none;
+      padding: 20px;
+    }
+    section.active {
+      display: block;
+    }
+    .produkt {
+      border: 1px solid #444;
+      padding: 15px;
+      border-radius: 8px;
+      width: 250px;
+      text-align: center;
+      margin: 20px auto;
+      background-color: #1e1e1e;
+    }
+    .produkt img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
     .produkt select, form input, form textarea, form button {
-      width: 100%; padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #333;
+      background-color: #2b2b2b;
+      color: #fff;
+    }
+    form button {
+      background-color: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #e6b800;
+    }
+    a {
+      color: #ffcc00;
     }
   </style>
   <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
@@ -29,6 +88,7 @@
 <header>
   <h1>AdelbertusShop</h1>
   <p>Moda uliczna dla wyjątkowych ludzi</p>
+  <img src="https://i.ibb.co/r2qzSjRc/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Logo AdelbertusShop">
 </header>
 <nav>
   <a href="#" onclick="showSection('sklep')">Sklep</a>
@@ -57,7 +117,6 @@
 
 <section id="projektuj" class="projektuj">
   <h2>Zaprojektuj Sam</h2>
-  <p>Wybierz kolor, rozmiar i napisz własny tekst:</p>
   <form>
     <select><option>Kolor: Czarny</option><option>Biały</option><option>Czerwony</option></select>
     <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>
@@ -68,7 +127,6 @@
 
 <section id="marketplace" class="marketplace">
   <h2>Marketplace</h2>
-  <p>Sprzedawaj swoje produkty przez nasz sklep. Wypełnij formularz:</p>
   <form>
     <input type="text" placeholder="Nazwa produktu">
     <input type="text" placeholder="Cena">
@@ -80,7 +138,6 @@
 
 <section id="reklama" class="reklama">
   <h2>Panel Reklamowy</h2>
-  <p>Promuj swój produkt na naszej stronie. Cena: 50 zł / tydzień.</p>
   <form>
     <input type="text" placeholder="Twoja nazwa / marka">
     <textarea placeholder="Opis reklamy"></textarea>
@@ -134,8 +191,4 @@
 <script>
   function showSection(id) {
     document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-</script>
-</body>
-</html>
+    document.getElement
