@@ -4,16 +4,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AdelbertusShop</title>
-  <style>
-    <style>
   body {
-   body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-  color: #e0dede;
+  background: #1a1a2e; /* głęboki, ciemny granat */
+  color: #e0e0e0; /* jasnoszary, przyjemny dla oka */
+}
+header, footer {
+  background: #0f3460; /* ekskluzywny, ciemny niebieski */
+  color: #f0f0f0; /* jasny tekst */
+  text-align: center;
+  padding: 20px;
+}
+nav {
+  background: #16213e; /* tajemniczy granat */
+  text-align: center;
+  padding: 10px;
+}
+nav a {
+  color: #e94560; /* intensywny, przyciągający uwagę różowy/czerwony */
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+nav a:hover {
+  color: #0f3460; /* zmiana koloru przy najechaniu */
+}
+section {
+  display: none;
+  padding: 20px;
+}
+section.active {
+  display: block;
+}
+.produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
+  padding: 20px;
+}
+.produkt {
+  border: 1px solid #4a4e69; /* subtelny fioletowy odcień */
+  padding: 15px;
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  margin: 20px auto;
+  background: #0f3460; /* ciemne tło dla produktów */
+  color: #f0f0f0;
+}
+.produkt img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+.produkt select, form input, form textarea, form button {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #4a4e69;
+  background: #16213e;
+  color: #e0e0e0;
+}
+.produkt select option, form select option {
+  background: #16213e;
+  color: #e0e0e0;
+}
+form button {
+  background: #e94560;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+form button:hover {
+  background: #0f3460;
+}
 }
 
 header, footer {
