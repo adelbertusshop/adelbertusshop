@@ -6,7 +6,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
+    <style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0a0a0a; /* bardzo ciemny */
+    color: #e0e0e0; /* jasnoszary tekst */
+  }
+
+  header, footer {
+    background: #111111;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 20px;
+  }
+
+  nav {
+    background: #1a1a1a;
+    text-align: center;
+    padding: 10px;
+  }
+
+  nav a {
+    color: #d4af37; /* złoty odcień */
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  section {
+    display: none;
+    padding: 20px;
+  }
+
+  section.active {
+    display: block;
+  }
+
+  .produkt {
+    border: 1px solid #444;
+    background: #131313;
+    padding: 15px;
+    border-radius: 8px;
+    width: 250px;
+    text-align: center;
+    margin: 20px auto;
+  }
+
+  .produkt img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .produkt select, form input, form textarea, form button {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #555;
+    background: #1e1e1e;
+    color: #f0f0f0;
+  }
+
+  form button {
+    background-color: #d4af37;
+    color: #000;
+    font-weight: bold;
+    border: none;
+  }
+
+  form button:hover {
+    background-color: #bfa133;
+  }
+</style>    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
     header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
     nav { background: #222; text-align: center; padding: 10px; }
     nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
@@ -28,7 +101,9 @@
   <h1>AdelbertusShop</h1>
   <p>Moda uliczna dla wyjątkowych ludzi</p>
 </header>
-<nav>
+  <div style="text-align:center; margin-top:10px;">
+  <img src="https://i.ibb.co/r2qzSjRc/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Logo AdelbertusShop" style="max-width:200px;">
+</div><nav>
   <a href="#" onclick="showSection('sklep')">Sklep</a>
   <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
   <a href="#" onclick="showSection('marketplace')">Marketplace</a>
