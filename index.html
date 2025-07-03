@@ -5,22 +5,99 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
-    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
-    nav { background: #222; text-align: center; padding: 10px; }
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    section { display: none; padding: 20px; }
-    section.active { display: block; }
-    .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
-      padding: 20px;
-    }
-    .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; margin: 20px auto; }
-    .produkt img { max-width: 100%; border-radius: 8px; }
-    .produkt select, form input, form textarea, form button {
-      width: 100%; padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;
-    }
-  </style>
-  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+  :root {
+    --bg-dark: #0a0a0a;
+    --bg-header: #121212;
+    --accent-gold: #d4af37;
+    --accent-purple: #5d3a9b;
+    --text-light: #f0f0f0;
+    --border-dark: #333;
+  }
+  body { 
+    font-family: Arial, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    background: var(--bg-dark); 
+    color: var(--text-light);
+  }
+  header, footer { 
+    background: var(--bg-header); 
+    color: var(--text-light); 
+    text-align: center; 
+    padding: 20px; 
+    border-bottom: 2px solid var(--accent-gold);
+  }
+  nav { 
+    background: linear-gradient(to right, var(--accent-purple), #3a1b6b);
+    text-align: center; 
+    padding: 10px; 
+  }
+  nav a { 
+    color: var(--text-light); 
+    margin: 0 15px; 
+    text-decoration: none; 
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: all 0.3s;
+  }
+  nav a:hover { 
+    color: var(--accent-gold);
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.7);
+  }
+  section { 
+    display: none; 
+    padding: 20px; 
+  }
+  section.active { 
+    display: block; 
+  }
+  .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
+    padding: 20px;
+  }
+  .produkt { 
+    border: 1px solid var(--border-dark); 
+    padding: 15px; 
+    border-radius: 8px; 
+    width: 250px; 
+    text-align: center; 
+    margin: 20px auto;
+    background: rgba(18, 18, 18, 0.8);
+    box-shadow: 0 4px 15px rgba(93, 58, 155, 0.3);
+    transition: transform 0.3s;
+  }
+  .produkt:hover {
+    transform: translateY(-5px);
+  }
+  .produkt img { 
+    max-width: 100%; 
+    border-radius: 8px; 
+  }
+  .produkt select, form input, form textarea, form button {
+    width: 100%; 
+    padding: 8px; 
+    margin: 8px 0; 
+    border-radius: 6px; 
+    border: 1px solid var(--border-dark);
+    background: #1a1a1a;
+    color: var(--text-light);
+  }
+  button {
+    background: var(--accent-purple);
+    color: var(--text-light);
+    border: 1px solid var(--accent-gold);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  button:hover {
+    background: var(--accent-gold);
+    color: var(--bg-dark);
+  }
+  @media (max-width: 600px) {
+    .produkt { width: 90%; }
+    nav a { display: inline-block; margin: 5px; }
+  }
+</style>  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 </head>
 <body>
 <header>
