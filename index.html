@@ -119,9 +119,8 @@
   <a href="#" onclick="showSection('regulamin')">Regulamin</a>
 </nav>
 
-<!-- NOWY SKLEP Z KATEGORIAMI - WKLEJ TUTAJ -->
+<!-- ==== WKLEJ TEN FRAGMENT ==== -->
 <section id="sklep" class="produkty active">
-  <!-- Kategorie -->
   <div class="kategorie">
     <button class="kat-btn active" data-kat="wszystkie">Wszystkie</button>
     <button class="kat-btn" data-kat="koszulki">Koszulki (99 zł)</button>
@@ -131,6 +130,32 @@
     <button class="kat-btn" data-kat="akcesoria">Akcesoria (49-99 zł)</button>
   </div>
 
+  <div class="produkty-grid">
+    <!-- Koszulka 1 -->
+    <div class="produkt" data-kategoria="koszulki">
+      <img src="https://i.ibb.co/Fq4Q02mB/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg" 
+           alt="Koszulka Basic" style="height:250px;object-fit:cover">
+      <h3>Koszulka Basic - 99 zł</h3>
+      <label>Rozmiar:</label>
+      <select><option>S</option><option>M</option><option>L</option></select>
+      <label>Kolor:</label>
+      <select><option>Czarny</option><option>Biały</option></select>
+      <div class="paypal-container"></div>
+    </div>
+
+    <!-- Bluza 1 -->
+    <div class="produkt" data-kategoria="bluzy">
+      <img src="https://i.ibb.co/qMxqmQ4F/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg" 
+           alt="Bluza Classic" style="height:250px;object-fit:cover">
+      <h3>Bluza Classic - 150 zł</h3>
+      <label>Rozmiar:</label>
+      <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+      <div class="paypal-container"></div>
+    </div>
+    <!-- ... inne produkty ... -->
+  </div>
+</section>
+<!-- ==== KONIEC FRAGMENTU DO WKLEJENIA ==== -->
   <!-- Produkty -->
   <div class="produkty-grid">
     <!-- Koszulki -->
