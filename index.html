@@ -119,19 +119,91 @@
   <a href="#" onclick="showSection('regulamin')">Regulamin</a>
 </nav>
 
+<!-- NOWY SKLEP Z KATEGORIAMI - WKLEJ TUTAJ -->
 <section id="sklep" class="produkty active">
-  <div class="produkt">
-    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
-    <h3>Bluza StreetStyle – 150 zł</h3>
-    <label>Rozmiar:</label>
-    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-    <label>Kolor:</label>
-    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
-    <div id="paypal-container-bluza"></div>
-    <script>paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");</script>
+  <!-- Kategorie -->
+  <div class="kategorie">
+    <button class="kat-btn active" data-kat="wszystkie">Wszystkie</button>
+    <button class="kat-btn" data-kat="koszulki">Koszulki (99 zł)</button>
+    <button class="kat-btn" data-kat="bluzy">Bluzy (150 zł)</button>
+    <button class="kat-btn" data-kat="bluzy-kaptur">Bluzy z kapturem (170 zł)</button>
+    <button class="kat-btn" data-kat="czapki">Czapki (79 zł)</button>
+    <button class="kat-btn" data-kat="akcesoria">Akcesoria (49-99 zł)</button>
+  </div>
+
+  <!-- Produkty -->
+  <div class="produkty-grid">
+    <!-- Koszulki -->
+    <div class="produkt" data-kategoria="koszulki">
+      <img src="https://via.placeholder.com/250x300/333/fff?text=Koszulka+Basic" alt="Koszulka Basic">
+      <h3>Koszulka Basic - 99 zł</h3>
+      <label>Rozmiar:</label>
+      <select>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+      </select>
+      <label>Kolor:</label>
+      <select>
+        <option>Czarny</option>
+        <option>Biały</option>
+      </select>
+      <div class="paypal-container"></div>
+    </div>
+
+    <!-- Bluzy -->
+    <div class="produkt" data-kategoria="bluzy">
+      <img src="https://via.placeholder.com/250x300/333/fff?text=Bluza+Classic" alt="Bluza Classic">
+      <h3>Bluza Classic - 150 zł</h3>
+      <label>Rozmiar:</label>
+      <select>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+      </select>
+      <div class="paypal-container"></div>
+    </div>
+
+    <!-- Bluzy z kapturem -->
+    <div class="produkt" data-kategoria="bluzy-kaptur">
+      <img src="https://via.placeholder.com/250x300/333/fff?text=Bluza+Hoodie" alt="Bluza Hoodie">
+      <h3>Bluza Hoodie - 170 zł</h3>
+      <label>Rozmiar:</label>
+      <select>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+      </select>
+      <div class="paypal-container"></div>
+    </div>
+
+    <!-- Czapki -->
+    <div class="produkt" data-kategoria="czapki">
+      <img src="https://via.placeholder.com/250x250/333/fff?text=Czapka+Snapback" alt="Czapka Snapback">
+      <h3>Czapka Snapback - 79 zł</h3>
+      <label>Kolor:</label>
+      <select>
+        <option>Czarny</option>
+        <option>Khaki</option>
+      </select>
+      <div class="paypal-container"></div>
+    </div>
+
+    <!-- Akcesoria -->
+    <div class="produkt" data-kategoria="akcesoria">
+      <img src="https://via.placeholder.com/250x250/333/fff?text=Torba+Mini" alt="Torba Mini">
+      <h3>Torba Mini - 89 zł</h3>
+      <div class="paypal-container"></div>
+    </div>
+
+    <div class="produkt" data-kategoria="akcesoria">
+      <img src="https://via.placeholder.com/250x250/333/fff?text=Portfel" alt="Portfel Skórzany">
+      <h3>Portfel Skórzany - 99 zł</h3>
+      <div class="paypal-container"></div>
+    </div>
   </div>
 </section>
-
 <section id="projektuj" class="projektuj">
   <h2>Zaprojektuj Sam</h2>
   <p>Wybierz kolor, rozmiar i napisz własny tekst:</p>
