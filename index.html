@@ -1,222 +1,210 @@
-7<!DOCTYPE html>
+```html
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AdelbertusShop</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; padding: 0;
-    background: #121212; /* bardzo ciemny, prawie czarny */
-    color: #e0e0e0; /* jasnoszary tekst */
-  }
-  header, footer {
-    background: #1e1e2f; /* ciemny granatowy */
-    color: #c0a0ff; /* delikatny fiolet */
-    text-align: center;
-    padding: 20px;
-    font-weight: 600;
-  }
-  nav {
-    background: #2a2a40; /* trochę jaśniejszy granat */
-    text-align: center;
-    padding: 15px 0;
-  }
-  nav a {
-    color: #c0a0ff; /* fioletowy */
-    margin: 0 18px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1em;
-    transition: color 0.3s ease;
-  }
-  nav a:hover {
-    color: #ff77ff; /* bardziej żywy różowy przy najechaniu */
-  }
-  section {
-    display: none;
-    padding: 25px;
-    background: #1a1a2e; /* ciemne tło sekcji */
-    border-radius: 10px;
-    margin: 20px auto;
-    max-width: 900px;
-    box-shadow: 0 0 15px #7200ca99;
-  }
-  section.active {
-    display: block;
-  }
-  .produkt {
-    border: 1px solid #7200ca; /* fioletowy obrys */
-    padding: 20px;
-    border-radius: 10px;
-    width: 280px;
-    text-align: center;
-    margin: 20px auto;
-    background: #2c2c44;
-    box-shadow: 0 0 10px #a05aff88;
-  }
-  .produkt img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
-  .produkt select, form input, form textarea, form button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 1px solid #7200ca;
-    background: #3b3b59;
-    color: #e0dfff;
-    font-weight: 600;
-    font-size: 1em;
-  }
-  .produkt select:hover, form input:hover, form textarea:hover, form button:hover {
-    border-color: #ff77ff;
-    background: #4e4e7a;
-    cursor: pointer;
-  }
-  form button {
-    background: #7200ca;
-    color: #fff;
-    border: none;
-    transition: background 0.4s ease;
-  }
-  form button:hover {
-    background: #d147ff;
-  }
-  footer p a {
-    color: #c0a0ff;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  footer p a:hover {
-    color: #ff77ff;
-  }
-</style>  }
-
-  button {
-    background-color: #0f0;
-    color: #000;
-    border: none;
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-</style>  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreetStyle Sklep</title>
+  <style>
+    :root {
+      --primary-color: #000;
+      --secondary-color: #f8f8f8;
+      --accent-color: #ff5a5f;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--secondary-color);
+    }
+    header {
+      background: var(--primary-color);
+      color: white;
+      padding: 15px 0;
+      position: relative;
+    }
+    #cart-counter {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: var(--accent-color);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .produkty {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .produkt {
+      border: 1px solid #ddd;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .produkt img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      cursor: zoom-in;
+    }
+    .add-to-cart {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 10px 0;
+      width: 100%;
+    }
+    .search-bar {
+      padding: 20px;
+      text-align: center;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    #search-input {
+      padding: 10px;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .zoom-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      cursor: zoom-out;
+    }
+    .zoomed-img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .review-section {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 8px;
+    }
+    .review-form input, .review-form textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .review {
+      background: white;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+    #cart-page {
+      display: none;
+      padding: 20px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .discount-section {
+      margin: 20px 0;
+      padding: 15px;
+      background: #f0f8ff;
+      border-radius: 8px;
+    }
+    .tab {
+      cursor: pointer;
+      padding: 10px 20px;
+      background: #ddd;
+      display: inline-block;
+    }
+    .tab.active {
+      background: var(--primary-color);
+      color: white;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <h1 style="text-align: center;">StreetStyle Sklep</h1>
+    <div id="cart-counter" onclick="toggleCart()">0</div>
+  </header>
 
-<nav><header>
-  <h1>AdelbertusShop</h1>
-  <p>Moda uliczna dla wyjątkowych ludzi</p>
-  <img src="https://i.ibb.co/d1K8knH/F971760-B-8-B36-44-C3-B574-17-F914899-C58.png" alt="Logo Adelbertus" style="max-width: 150px; margin-top: 10px;" />
-</header>
-  <a href="#" onclick="showSection('sklep')">Sklep</a>
-  <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
-  <a href="#" onclick="showSection('marketplace')">Marketplace</a>
-  <a href="#" onclick="showSection('reklama')">Reklama</a>
-  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
-  <a href="#" onclick="showSection('opinie')">Opinie</a>
-  <a href="#" onclick="showSection('blog')">Blog</a>
-  <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
-  <a href="#" onclick="showSection('regulamin')">Regulamin</a>
-</nav>
-
-section id="sklep" class="produkty active">
-  <div class="produkt">
-    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
-    <h3>Bluza StreetStyle – 150 zł</h3>
-    <label>Rozmiar:</label>
-    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-    <label>Kolor:</label>
-    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
-    <div id="paypal-container-bluza"></div>
-    <script>paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");</script>
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="Szukaj produktów...">
   </div>
-</section>
 
-<section id="projektuj" class="projektuj">
-  <h2>Zaprojektuj Sam</h2>
-  <p>Wybierz kolor, rozmiar i napisz własny tekst:</p>
-  <form>
-    <select><option>Kolor: Czarny</option><option>Biały</option><option>Czerwony</option></select>
-    <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>
-    <textarea placeholder="Wpisz swój tekst lub projekt"></textarea>
-    <button type="submit">Zamów</button>
-  </form>
-</section>
+  <div style="padding: 10px 20px;">
+    <span class="tab active" onclick="showTab('sklep')">Sklep</span>
+    <span class="tab" onclick="showTab('cart-page')">Koszyk</span>
+  </div>
 
-<section id="marketplace" class="marketplace">
-  <h2>Marketplace</h2>
-  <p>Sprzedawaj swoje produkty przez nasz sklep. Wypełnij formularz:</p>
-  <form>
-    <input type="text" placeholder="Nazwa produktu">
-    <input type="text" placeholder="Cena">
-    <textarea placeholder="Opis"></textarea>
-    <input type="url" placeholder="Link do zdjęcia">
-    <button type="submit">Wyślij zgłoszenie</button>
-  </form>
-</section>
+  <section id="sklep" class="produkty">
+    <!-- Produkty ładowane dynamicznie -->
+  </section>
 
-<section id="reklama" class="reklama">
-  <h2>Panel Reklamowy</h2>
-  <p>Promuj swój produkt na naszej stronie. Cena: 50 zł / tydzień.</p>
-  <form>
-    <input type="text" placeholder="Twoja nazwa / marka">
-    <textarea placeholder="Opis reklamy"></textarea>
-    <input type="url" placeholder="Link do strony lub social media">
-    <button type="submit">Zgłoś reklamę</button>
-  </form>
-</section>
+  <section id="cart-page">
+    <h2>Twój koszyk</h2>
+    <div id="cart-items"></div>
+    <div class="discount-section">
+      <h3>Kod rabatowy</h3>
+      <input type="text" id="discount-code" placeholder="Wprowadź kod">
+      <button onclick="applyDiscount()">Zastosuj</button>
+      <p id="discount-message"></p>
+    </div>
+    <div id="cart-total">
+      <h3>Suma: <span id="total-amount">0</span> zł</h3>
+    </div>
+    <div id="paypal-checkout"></div>
+  </section>
 
-<section id="zbiorka" class="zbiorka">
-  <h2>Zbiórka charytatywna</h2>
-  <p>Wspieramy dom dziecka – przekaż darowiznę na nr <strong>BLIK 573-939-925</strong> z dopiskiem <strong>"pomoc"</strong>.</p>
-</section>
+  <script src="https://www.paypal.com/sdk/js?client-id=TWÓJ_CLIENT_ID&currency=PLN"></script>
+  <script>
+    // Dane produktów
+    const produkty = [
+      { 
+        id: 1, 
+        nazwa: "Koszulka StreetStyle", 
+        cena: 99, 
+        img: "https://i.imgur.com/YOUR_TSHIRT_IMAGE.jpg",
+        opis: "Męska koszulka bawełniana",
+        kategoria: "koszulki"
+      },
+      { 
+        id: 2, 
+        nazwa: "Bluza StreetStyle", 
+        cena: 150, 
+        img: "https://i.imgur.com/YOUR_SWEATSHIRT_IMAGE.jpg",
+        opis: "Bluza z polaru z nadrukiem",
+        kategoria: "bluzy"
+      }
+      // Dodaj więcej produktów...
+    ];
 
-<section id="opinie" class="opinie">
-  <h2>Opinie klientów</h2>
-  <p>★ ★ ★ ★ ★ „Super jakość – koszulki świetne!”</p>
-  <p>★ ★ ★ ★ ★ „Bluza stylowa i wygodna!”</p>
-</section>
+    // Koszyk i stan aplikacji
+    let koszyk = JSON.parse(localStorage.getItem('koszyk')) || [];
+    let activeTab = 'sklep';
+    const discountCodes = {
+      "STREET10": 10,
+      "STREET20": 20
+    };
 
-<section id="blog" class="blog">
-  <h2>Blog i Porady</h2>
-  <h3>Jak dobrać rozmiar?</h3>
-  <p>Poradnik rozmiarówki streetwearu...</p>
-</section>
-
-<section id="zamowienie">
-  <h2>Zamówienie</h2>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-    <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
-    <input type="email" name="Email" placeholder="Email" required>
-    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" required></textarea>
-    <button type="submit">Wyślij</button>
-  </form>
-</section>
-
-<section id="regulamin" class="regulamin">
-  <h2>Regulamin i Polityka Prywatności</h2>
-  <p>Przetwarzamy dane tylko w celu realizacji zamówienia. Nie udostępniamy danych osobom trzecim.</p>
-  <p>Reklamacje przyjmujemy mailowo do 14 dni od zakupu.</p>
-</section>
-
-<footer>
-  <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
-  <p>
-    <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
-    <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |
-    <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
-  </p>
-</footer>
-
-<script>
-  function showSection(id) {
-    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-</script>
-</body>
-</html>
+    // Funkcje
+    function renderProducts(productsToRender = produkty) {
+      const skle
