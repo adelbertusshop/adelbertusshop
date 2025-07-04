@@ -152,8 +152,12 @@
 </script>    </div>
     <!-- ... inne produkty ... -->
   </div>
-<section id="sklep" class="produkty active">
-  <div class="kategorie">
+<div id="koszyk" style="position:fixed; bottom:20px; right:20px; background:#121212; padding:15px; border-radius:8px; box-shadow:0 0 15px #d4af37; z-index:1000; display:none;">
+  <h3 style="margin-top:0; color:#d4af37;">🛒 Twój koszyk</h3>
+  <div id="koszyk-lista"></div>
+  <p>Suma: <span id="koszyk-suma">0</span> zł</p>
+  <button onclick="zamow()" style="background:#5d3a9b; color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer;">Złóż zamówienie</button>
+</div>  <div class="kategorie">
     <button class="kat-btn active" data-kat="wszystkie">Wszystkie</button>
     <button class="kat-btn" data-kat="koszulki">Koszulki (99 zł)</button>
     <button class="kat-btn" data-kat="bluzy">Bluzy (150 zł)</button>
