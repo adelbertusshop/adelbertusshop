@@ -157,34 +157,43 @@
     <button class="kat-btn active" data-kat="wszystkie">Wszystkie</button>
     <button class="kat-btn" data-kat="koszulki">Koszulki (99 zł)</button>
     <button class="kat-btn" data-kat="bluzy">Bluzy (150 zł)</button>
-    <button class="kat-btn" data-kat="bluzy-kaptur">Bluzy z kapturem (170 zł)</button>
-    <button class="kat-btn" data-kat="czapki">Czapki (79 zł)</button>
-    <button class="kat-btn" data-kat="akcesoria">Akcesoria (49-99 zł)</button>
   </div>
 
   <div class="produkty-grid">
-    <!-- Bluza Classic -->
+    <!-- Bluza Classic (Twoje zdjęcie) -->
     <div class="produkt" data-kategoria="bluzy">
-      <img src="https://i.ibb.co/4zVWmW7/file-0000000084d4620a821ed9fedffa9e71-1.png" 
-           alt="Bluza Classic na manekinie" 
+      <img src="https://i.ibb.co/qMxqmQ4F/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg" 
+           alt="Bluza Classic" 
            style="height:300px;object-fit:cover">
       <h3>Bluza Classic - 150 zł</h3>
       <label>Rozmiar:</label>
-      <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-      <div class="paypal-container"></div>
+      <select><option>S</option><option>M</option><option>L</option></select>
+      <div id="paypal-container-bluza"></div>
     </div>
 
-    <!-- Koszulka Premium -->
+    <!-- Koszulka Premium (Twoje zdjęcie) -->
     <div class="produkt" data-kategoria="koszulki">
-      <img src="https://i.ibb.co/7N00gWvf/file-000000000e80620a81c44e5e9bcb1df7-1.png" 
-           alt="Koszulka Premium na manekinie" 
+      <img src="https://i.ibb.co/LXfkhJ3B/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg" 
+           alt="Koszulka Premium" 
            style="height:300px;object-fit:cover">
       <h3>Koszulka Premium - 99 zł</h3>
       <label>Rozmiar:</label>
       <select><option>S</option><option>M</option><option>L</option></select>
-      <div class="paypal-container"></div>
+      <div id="paypal-container-koszulka"></div>
     </div>
+  </div>
+</section>
 
+<script>
+  // Inicjalizacja PayPal (Twój oryginalny kod)
+  paypal.HostedButtons({
+    hostedButtonId: "44SZBZRF7BEK4"
+  }).render("#paypal-container-bluza");
+  
+  paypal.HostedButtons({
+    hostedButtonId: "44SZBZRF7BEK4" 
+  }).render("#paypal-container-koszulka");
+</script>
     <!-- Czapka Snapback -->
     <div class="produkt" data-kategoria="czapki">
       <img src="https://i.ibb.co/mCFyY352/file-000000005a6c62468071bf9532a0d994-1.png" 
