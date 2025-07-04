@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -5,109 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
   <style>
-  :root {
-    --bg-dark: #0a0a0a;
-    --bg-header: #121212;
-    --accent-gold: #d4af37;
-    --accent-purple: #5d3a9b;
-    --text-light: #f0f0f0;
-    --border-dark: #333;
-  }
-  body { 
-    font-family: Arial, sans-serif; 
-    margin: 0; 
-    padding: 0; 
-    background: var(--bg-dark); 
-    color: var(--text-light);
-  }
-  header, footer { 
-    background: var(--bg-header); 
-    color: var(--text-light); 
-    text-align: center; 
-    padding: 20px; 
-    border-bottom: 2px solid var(--accent-gold);
-  }
-  nav { 
-    background: linear-gradient(to right, var(--accent-purple), #3a1b6b);
-    text-align: center; 
-    padding: 10px; 
-  }
-  nav a { 
-    color: var(--text-light); 
-    margin: 0 15px; 
-    text-decoration: none; 
-    font-weight: bold;
-    padding: 5px 10px;
-    transition: all 0.3s;
-  }
-  nav a:hover { 
-    color: var(--accent-gold);
-    text-shadow: 0 0 8px rgba(212, 175, 55, 0.7);
-  }
-  section { 
-    display: none; 
-    padding: 20px; 
-  }
-  section.active { 
-    display: block; 
-  }
-  .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
-    padding: 20px;
-  }
-  .produkt { 
-    border: 1px solid var(--border-dark); 
-    padding: 15px; 
-    border-radius: 8px; 
-    width: 250px; 
-    text-align: center; 
-    margin: 20px auto;
-    background: rgba(18, 18, 18, 0.8);
-    box-shadow: 0 4px 15px rgba(93, 58, 155, 0.3);
-    transition: transform 0.3s;
-  }
-  .produkt:hover {
-    transform: translateY(-5px);
-  }
-  .produkt img { 
-    max-width: 100%; 
-    border-radius: 8px; 
-  }
-  .produkt select, form input, form textarea, form button {
-    width: 100%; 
-    padding: 8px; 
-    margin: 8px 0; 
-    border-radius: 6px; 
-    border: 1px solid var(--border-dark);
-    background: #1a1a1a;
-    color: var(--text-light);
-  }
-  button {
-    background: var(--accent-purple);
-    color: var(--text-light);
-    border: 1px solid var(--accent-gold);
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  button:hover {
-    background: var(--accent-gold);
-    color: var(--bg-dark);
-  }
-  @media (max-width: 600px) {
-    .produkt { width: 90%; }
-    nav a { display: inline-block; margin: 5px; }
-  }
-</style>  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
+    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
+    nav { background: #222; text-align: center; padding: 10px; }
+    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    section { display: none; padding: 20px; }
+    section.active { display: block; }
+    .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
+      padding: 20px;
+    }
+    .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; margin: 20px auto; }
+    .produkt img { max-width: 100%; border-radius: 8px; }
+    .produkt select, form input, form textarea, form button {
+      width: 100%; padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;
+    }
+  </style>
+  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 </head>
 <body>
 <header>
   <h1>AdelbertusShop</h1>
-  <!-- Logo dodane tutaj -->
-  <img src="https://i.ibb.co/XZ8NbFV1/Screenshot-20250608-161603-Chat-GPT-3.jpg" 
-       alt="Logo AdelbertusShop" 
-       style="max-width: 150px; margin: 10px auto; display: block; border-radius: 8px;">
   <p>Moda uliczna dla wyjątkowych ludzi</p>
-</header><nav>
+</header>
+<nav>
   <a href="#" onclick="showSection('sklep')">Sklep</a>
   <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
   <a href="#" onclick="showSection('marketplace')">Marketplace</a>
@@ -119,109 +40,19 @@
   <a href="#" onclick="showSection('regulamin')">Regulamin</a>
 </nav>
 
-<!-- ==== WKLEJ TEN FRAGMENT ==== -->
-< <div class="produkty-grid">
-    <!-- Koszulka 1 -->
-    <div class="produkt" data-kategoria="koszulki">
-      <img src="https://i.ibb.co/Fq4Q02mB/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg" 
-           alt="Koszulka Basic" style="height:250px;object-fit:cover">
-      <h3>Koszulka Basic - 99 zł</h3>
-      <label>Rozmiar:</label>
-      <select><option>S</option><option>M</option><option>L</option></select>
-      <label>Kolor:</label>
-      <select><option>Czarny</option><option>Biały</option></select>
-      <div id="paypal-container-bluza"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "44SZBZRF7BEK4"  <!-- Twój oryginalny ID -->
-  }).render("#paypal-container-bluza");
-</script>    </div>
-
-    <!-- Bluza 1 -->
-    <div class="produkt" data-kategoria="bluzy">
-      <img src="https://i.ibb.co/qMxqmQ4F/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg" 
-           alt="Bluza Classic" style="height:250px;object-fit:cover">
-      <h3>Bluza Classic - 150 zł</h3>
-      <label>Rozmiar:</label>
-      <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-     <div id="paypal-container-bluza"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "44SZBZRF7BEK4"  <!-- Twój oryginalny ID -->
-  }).render("#paypal-container-bluza");
-</script>    </div>
-    <!-- ... inne produkty ... -->
-  </div>
-<div id="koszyk" style="position:fixed; bottom:20px; right:20px; background:#121212; padding:15px; border-radius:8px; box-shadow:0 0 15px #d4af37; z-index:1000; display:none;">
-  <h3 style="margin-top:0; color:#d4af37;">🛒 Twój koszyk</h3>
-  <div id="koszyk-lista"></div>
-  <p>Suma: <span id="koszyk-suma">0</span> zł</p>
-  <button onclick="zamow()" style="background:#5d3a9b; color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer;">Złóż zamówienie</button>
-</div>  <div class="kategorie">
-    <button class="kat-btn active" data-kat="wszystkie">Wszystkie</button>
-    <button class="kat-btn" data-kat="koszulki">Koszulki (99 zł)</button>
-    <button class="kat-btn" data-kat="bluzy">Bluzy (150 zł)</button>
-  </div>
-
-  <div class="produkty-grid">
-    <!-- Bluza Classic (Twoje zdjęcie) -->
-    <div class="produkt" data-kategoria="bluzy">
-      <img src="https://i.ibb.co/qMxqmQ4F/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg" 
-           alt="Bluza Classic" 
-           style="height:300px;object-fit:cover">
-      <h3>Bluza Classic - 150 zł</h3>
-      <label>Rozmiar:</label>
-      <select><option>S</option><option>M</option><option>L</option></select>
-      <div id="paypal-container-bluza"></div>
-    </div>
-
-    <!-- Koszulka Premium (Twoje zdjęcie) -->
-    <div class="produkt" data-kategoria="koszulki">
-      <img src="https://i.ibb.co/LXfkhJ3B/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg" 
-           alt="Koszulka Premium" 
-           style="height:300px;object-fit:cover">
-      <h3>Koszulka Premium - 99 zł</h3>
-      <label>Rozmiar:</label>
-      <select><option>S</option><option>M</option><option>L</option></select>
-      <div id="paypal-container-koszulka"></div>
-    </div>
+<section id="sklep" class="produkty active">
+  <div class="produkt">
+    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
+    <h3>Bluza StreetStyle – 150 zł</h3>
+    <label>Rozmiar:</label>
+    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+    <label>Kolor:</label>
+    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
+    <div id="paypal-container-bluza"></div>
+    <script>paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");</script>
   </div>
 </section>
 
-<script>
-  // Inicjalizacja PayPal (Twój oryginalny kod)
-  paypal.HostedButtons({
-    hostedButtonId: "44SZBZRF7BEK4"
-  }).render("#paypal-container-bluza");
-  
-  paypal.HostedButtons({
-    hostedButtonId: "44SZBZRF7BEK4" 
-  }).render("#paypal-container-koszulka");
-</script>
-    <!-- Czapka Snapback -->
-    <div class="produkt" data-kategoria="czapki">
-      <img src="https://i.ibb.co/mCFyY352/file-000000005a6c62468071bf9532a0d994-1.png" 
-           alt="Czapka Snapback na manekinie" 
-           style="height:300px;object-fit:cover">
-      <h3>Czapka Snapback - 79 zł</h3>
-      <label>Kolor:</label>
-      <select><option>Czarny</option><option>Khaki</option></select>
-      <div class="paypal-container"></div>
-    </div>
-  </div>
-</section>      <div class="paypal-container"></div>    </div>
-
-    <!-- Akcesoria -->
-    <div class="produkt" data-kategoria="akcesoria">
-    <img src="https://i.ibb.co/ycTvmMsB/0-B75964-F-8214-4832-B9-D1-435-B6-E8321-EE.png" alt="Torba Mini" style="height:250px;object-fit:cover">      <h3>Torba Mini - 89 zł</h3>
-      <div class="paypal-container"></div>    </div>
-
-    <div class="produkt" data-kategoria="akcesoria">
-      <img src="https://i.ibb.co/8nwLR0np/AD884137-AE6-E-41-BF-8-F03-10217816-E5-ED.png" alt="Portfel Skórzany" style="height:250px;object-fit:cover">      <h3>Portfel Skórzany - 99 zł</h3>
-      <div class="paypal-container"></div>
-    </div>
-  </div>
-</section>
 <section id="projektuj" class="projektuj">
   <h2>Zaprojektuj Sam</h2>
   <p>Wybierz kolor, rozmiar i napisz własny tekst:</p>
