@@ -119,20 +119,44 @@
   <h3>Jak dobrać rozmiar?</h3>
   <p>Poradnik rozmiarówki streetwearu...</p>
 </section>
+<section id="zamowienie" style="padding: 20px; max-width: 800px; margin: 0 auto;">
+  <h2 style="font-family: 'Chopin Script', cursive; color: #D4AF37; text-align: center; margin-bottom: 30px; text-transform: uppercase;">
+    ZŁÓŻ ZAMÓWIENIE
+  </h2>
 
-<form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-  <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
-  <input type="email" name="Email" placeholder="Email" required>
-  <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" required></textarea>
-  
-  <label style="display: block; margin: 15px 0;">
-    <input type="checkbox" required> 
-    Akceptuję <a href="regulamin.html" style="color: #D4AF37;">regulamin sklepu</a>
-  </label>
-  
-  <button type="submit">Wyślij zamówienie</button>
-</form>
-<section id="regulamin" class="regulamin">
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+    <!-- Sekcja danych -->
+    <fieldset style="border: 1px solid #D4AF37; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+      <legend style="font-weight: bold; color: #D4AF37; padding: 0 10px;">Twoje dane</legend>
+      <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko*" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
+      <input type="email" name="Email" placeholder="Email*" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
+      <input type="tel" name="Telefon" placeholder="Telefon (opcjonalnie)" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
+    </fieldset>
+
+    <!-- Sekcja zamówienia -->
+    <fieldset style="border: 1px solid #D4AF37; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+      <legend style="font-weight: bold; color: #D4AF37; padding: 0 10px;">Twoje zamówienie</legend>
+      <textarea name="Zamówienie" placeholder="Wpisz listę produktów (np. Bluza StreetStyle, rozmiar L, kolor czarny)*" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; height: 100px;"></textarea>
+      <select name="Dostawa" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
+        <option value="">-- Wybierz dostawę --</option>
+        <option value="paczkomat">Paczkomat InPost (+15 zł)</option>
+        <option value="poczta">Poczta Polska (+12 zł)</option>
+        <option value="odbiór">Odbiór osobisty (Strzegom, Rynek 5/11)</option>
+      </select>
+    </fieldset>
+
+    <!-- Akceptacja -->
+    <label style="display: block; margin: 20px 0; font-size: 0.9em;">
+      <input type="checkbox" required style="margin-right: 10px;">
+      Akceptuję <a href="regulamin.html" style="color: #D4AF37;">regulamin</a> i wyrażam zgodę na przetwarzanie danych*
+    </label>
+
+    <!-- Przycisk -->
+    <button type="submit" style="background: #D4AF37; color: #000; border: none; padding: 12px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 4px;">
+      POTWIERDŹ ZAMÓWIENIE
+    </button>
+  </form>
+</section><section id="regulamin" class="regulamin">
   <h2>REGULAMIN SKLEPU ADELBERTUSSHOP</h2>
   
   <h3>§1. POSTANOWIENIA OGÓLNE</h3>
