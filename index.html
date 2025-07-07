@@ -120,16 +120,18 @@
   <p>Poradnik rozmiarówki streetwearu...</p>
 </section>
 
-<section id="zamowienie">
-  <h2>Zamówienie</h2>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-    <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
-    <input type="email" name="Email" placeholder="Email" required>
-    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" required></textarea>
-    <button type="submit">Wyślij</button>
-  </form>
-</section>
-
+<form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+  <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
+  <input type="email" name="Email" placeholder="Email" required>
+  <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" required></textarea>
+  
+  <label style="display: block; margin: 15px 0;">
+    <input type="checkbox" required> 
+    Akceptuję <a href="regulamin.html" style="color: #D4AF37;">regulamin sklepu</a>
+  </label>
+  
+  <button type="submit">Wyślij zamówienie</button>
+</form>
 <section id="regulamin" class="regulamin">
   <h2>REGULAMIN SKLEPU ADELBERTUSSHOP</h2>
   
