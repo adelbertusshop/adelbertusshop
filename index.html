@@ -7,75 +7,193 @@
   <title>AdelbertusShop</title>
   <link href="https://fonts.cdnfonts.com/css/chopin-script" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
-    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
-    nav { background: #222; text-align: center; padding: 10px; }
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    section { display: none; padding: 20px; max-width: 1200px; margin: 0 auto; }
-    section.active { display: block; }
-    .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; margin: 20px auto; }
-    .post { background: #fff; padding: 30px; margin-bottom: 40px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-    h1 { font-family: 'Chopin Script', cursive; color: #D4AF37; font-size: 2.5em; }
-    button { background: #D4AF37; color: #000; border: none; padding: 10px 20px; cursor: pointer; }
+    :root {
+      --gold: #D4AF37;
+      --black: #000;
+      --white: #fff;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--white);
+      color: var(--black);
+    }
+    header {
+      background: var(--black);
+      text-align: center;
+      padding: 40px 0;
+      border-bottom: 3px solid var(--gold);
+    }
+    h1 {
+      font-family: 'Chopin Script', cursive;
+      color: var(--gold);
+      font-size: 3em;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    nav {
+      background: #222;
+      text-align: center;
+      padding: 15px 0;
+    }
+    nav a {
+      color: var(--white);
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    section {
+      display: none;
+      padding: 30px;
+      max-width: 1200px;
+      margin: 30px auto;
+    }
+    section.active {
+      display: block;
+    }
+    .produkt {
+      border: 1px solid #ddd;
+      padding: 25px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+      margin: 30px auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .post {
+      background: var(--white);
+      padding: 40px;
+      margin-bottom: 50px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--gold);
+    }
+    button, .paypal-button {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 12px 25px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 1em;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: #c0a030;
+      transform: translateY(-2px);
+    }
+    select, input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
   </style>
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=PLN"></script>
 </head>
 <body>
   <!-- HEADER -->
   <header>
     <h1>ADELBERTUSSHOP</h1>
-    <p style="font-family: 'Chopin Script', cursive; color: #D4AF37;">Moda uliczna dla wyjątkowych ludzi</p>
+    <p style="font-family: 'Chopin Script', cursive; color: var(--gold); font-size: 1.3em;">
+      Moda uliczna dla wyjątkowych ludzi
+    </p>
   </header>
 
   <!-- MENU -->
   <nav>
-    <a href="#" onclick="showSection('sklep')">Sklep</a>
-    <a href="#" onclick="showSection('blog')">Blog</a>
-    <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
-    <a href="#" onclick="showSection('regulamin')">Regulamin</a>
+    <a href="#" onclick="showSection('sklep'); return false;">Sklep</a>
+    <a href="#" onclick="showSection('blog'); return false;">Blog</a>
+    <a href="#" onclick="showSection('zamowienie'); return false;">Zamówienie</a>
+    <a href="#" onclick="showSection('regulamin'); return false;">Regulamin</a>
   </nav>
 
   <!-- SKLEP -->
   <section id="sklep" class="active">
     <div class="produkt">
-      <h3>Bluza StreetStyle – 150 zł</h3>
-      <select><option>S</option><option>M</option></select>
-      <div id="paypal-container"></div>
+      <h3>Bluza Premium - 250 zł</h3>
+      <label>Rozmiar:</label>
+      <select>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+      </select>
+      <div id="paypal-button-container" style="margin-top: 20px;"></div>
     </div>
   </section>
 
   <!-- BLOG -->
   <section id="blog">
     <div class="post">
-      <h2>Nowości w kolekcji</h2>
-      <p>Odkryj nasze najnowsze projekty...</p>
-      <button>Zalajkuj</button>
+      <h2>Limitowana Kolekcja Zima 2024</h2>
+      <p>Odkryj naszą ekskluzywną serię projektów...</p>
+      <button>Zobacz więcej</button>
+    </div>
+    <div class="post">
+      <h2>Jak stylizować streetwear?</h2>
+      <p>5 zasad od naszych stylistów...</p>
+      <button>Zobacz więcej</button>
     </div>
   </section>
 
   <!-- ZAMÓWIENIE -->
   <section id="zamowienie">
-    <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post">
+    <h2 style="color: var(--gold);">Formularz zamówienia</h2>
+    <form action="https://formsubmit.co/mielniczukgrzegosz74@gmail.com" method="POST">
       <input type="text" name="name" placeholder="Imię i nazwisko" required>
-      <textarea name="order" placeholder="Zamówienie"></textarea>
-      <button type="submit">Wyślij</button>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Twoje zamówienie" required></textarea>
+      <button type="submit">Wyślij zamówienie</button>
     </form>
   </section>
 
   <!-- REGULAMIN -->
   <section id="regulamin">
-    <h2>Regulamin</h2>
-    <p>1. Sklep prowadzony przez... (tutaj Twój tekst)</p>
+    <h2 style="color: var(--gold);">Regulamin sklepu</h2>
+    <div style="text-align: left; line-height: 1.6;">
+      <h3>§1. Postanowienia ogólne</h3>
+      <p>1.1 Sklep internetowy AdelbertusShop...</p>
+      <!-- Tutaj pełna treść regulaminu -->
+    </div>
   </section>
 
   <!-- SKRYPT -->
   <script>
+    // Przełączanie sekcji
     function showSection(id) {
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('section').forEach(s => {
+        s.classList.remove('active');
+      });
       document.getElementById(id).classList.add('active');
     }
-    
+
     // Inicjalizacja PayPal
-    paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container");
+    paypal.Buttons({
+      style: {
+        color: 'gold',
+        shape: 'rect',
+        label: 'pay'
+      },
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '250.00'
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Płatność zakończona przez ' + details.payer.name.given_name);
+        });
+      }
+    }).render('#paypal-button-container');
   </script>
 </body>
 </html>
