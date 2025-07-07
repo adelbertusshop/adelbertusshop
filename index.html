@@ -2,244 +2,80 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AdelbertusShop</title>
+  <link href="https://fonts.cdnfonts.com/css/chopin-script" rel="stylesheet">
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
     header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
     nav { background: #222; text-align: center; padding: 10px; }
     nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    section { display: none; padding: 20px; }
+    section { display: none; padding: 20px; max-width: 1200px; margin: 0 auto; }
     section.active { display: block; }
-    .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
-      padding: 20px;
-    }
     .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; margin: 20px auto; }
-    .produkt img { max-width: 100%; border-radius: 8px; }
-    .produkt select, form input, form textarea, form button {
-      width: 100%; padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;
-    }
+    .post { background: #fff; padding: 30px; margin-bottom: 40px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    h1 { font-family: 'Chopin Script', cursive; color: #D4AF37; font-size: 2.5em; }
+    button { background: #D4AF37; color: #000; border: none; padding: 10px 20px; cursor: pointer; }
   </style>
-  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 </head>
 <body>
-<header style="text-align: center; padding: 20px 0;">
-  <h1 style="font-family: 'Chopin Script', cursive; 
-             color: #D4AF37;
-             margin: 0;
-             font-size: 2.5em;
-             text-transform: uppercase;">
-   <header style="text-align: center; padding: 20px 0;">
-  <h1 style="font-family: 'Chopin Script', cursive; 
-             color: #D4AF37;
-             margin: 0;
-             font-size: 2.5em;
-             text-transform: uppercase;">
-    ADELBERTUSSHOP
-  </h1>
- style="height: 150px; margin: 10px auto; display: block;">  <p style="font-family: 'Chopin Script', cursive;
-            color: #D4AF37;
-            margin: 0;
-            font-size: 1.2em;">
-    Moda uliczna dla wyjątkowych ludzi
-  </p>
-</header></header><nav>
-  <a href="#" onclick="showSection('sklep')">Sklep</a>
-  <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
-  <a href="#" onclick="showSection('marketplace')">Marketplace</a>
-  <a href="#" onclick="showSection('reklama')">Reklama</a>
-  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
-  <a href="#" onclick="showSection('opinie')">Opinie</a>
-  <a href="#" onclick="showSection('blog')">Blog</a>
-  <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
-  <a href="#" onclick="showSection('regulamin')">Regulamin</a>
-</nav>
+  <!-- HEADER -->
+  <header>
+    <h1>ADELBERTUSSHOP</h1>
+    <p style="font-family: 'Chopin Script', cursive; color: #D4AF37;">Moda uliczna dla wyjątkowych ludzi</p>
+  </header>
 
-<section id="sklep" class="produkty active">
-  <div class="produkt">
-    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
-    <h3>Bluza StreetStyle – 150 zł</h3>
-    <label>Rozmiar:</label>
-    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-    <label>Kolor:</label>
-    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
-    <div id="paypal-container-bluza"></div>
-    <script>paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");</script>
-  </div>
-</section>
+  <!-- MENU -->
+  <nav>
+    <a href="#" onclick="showSection('sklep')">Sklep</a>
+    <a href="#" onclick="showSection('blog')">Blog</a>
+    <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
+    <a href="#" onclick="showSection('regulamin')">Regulamin</a>
+  </nav>
 
-<section id="projektuj" class="projektuj">
-  <h2>Zaprojektuj Sam</h2>
-  <p>Wybierz kolor, rozmiar i napisz własny tekst:</p>
-  <form>
-    <select><option>Kolor: Czarny</option><option>Biały</option><option>Czerwony</option></select>
-    <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>
-    <textarea placeholder="Wpisz swój tekst lub projekt"></textarea>
-    <button type="submit">Zamów</button>
-  </form>
-</section>
+  <!-- SKLEP -->
+  <section id="sklep" class="active">
+    <div class="produkt">
+      <h3>Bluza StreetStyle – 150 zł</h3>
+      <select><option>S</option><option>M</option></select>
+      <div id="paypal-container"></div>
+    </div>
+  </section>
 
-<section id="marketplace" class="marketplace">
-  <h2>Marketplace</h2>
-  <p>Sprzedawaj swoje produkty przez nasz sklep. Wypełnij formularz:</p>
-  <form>
-    <input type="text" placeholder="Nazwa produktu">
-    <input type="text" placeholder="Cena">
-    <textarea placeholder="Opis"></textarea>
-    <input type="url" placeholder="Link do zdjęcia">
-    <button type="submit">Wyślij zgłoszenie</button>
-  </form>
-</section>
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="post">
+      <h2>Nowości w kolekcji</h2>
+      <p>Odkryj nasze najnowsze projekty...</p>
+      <button>Zalajkuj</button>
+    </div>
+  </section>
 
-<section id="reklama" class="reklama">
-  <h2>Panel Reklamowy</h2>
-  <p>Promuj swój produkt na naszej stronie. Cena: 50 zł / tydzień.</p>
-  <form>
-    <input type="text" placeholder="Twoja nazwa / marka">
-    <textarea placeholder="Opis reklamy"></textarea>
-    <input type="url" placeholder="Link do strony lub social media">
-    <button type="submit">Zgłoś reklamę</button>
-  </form>
-</section>
+  <!-- ZAMÓWIENIE -->
+  <section id="zamowienie">
+    <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post">
+      <input type="text" name="name" placeholder="Imię i nazwisko" required>
+      <textarea name="order" placeholder="Zamówienie"></textarea>
+      <button type="submit">Wyślij</button>
+    </form>
+  </section>
 
-<section id="zbiorka" class="zbiorka">
-  <h2>Zbiórka charytatywna</h2>
-  <p>Wspieramy dom dziecka – przekaż darowiznę na nr <strong>BLIK 573-939-925</strong> z dopiskiem <strong>"pomoc"</strong>.</p>
-</section>
+  <!-- REGULAMIN -->
+  <section id="regulamin">
+    <h2>Regulamin</h2>
+    <p>1. Sklep prowadzony przez... (tutaj Twój tekst)</p>
+  </section>
 
-<section id="opinie" class="opinie">
-  <h2>Opinie klientów</h2>
-  <p>★ ★ ★ ★ ★ „Super jakość – koszulki świetne!”</p>
-  <p>★ ★ ★ ★ ★ „Bluza stylowa i wygodna!”</p>
-<!-- ===== SEKCJA BLOGA - START ===== -->
-<section id="blog" class="blog" style="display: none; padding: 20px; max-width: 1200px; margin: 0 auto;">
-  <div style="text-align: center; margin-bottom: 40px;">
-    <h2 style="font-family: 'Chopin Script', cursive; color: #D4AF37; font-size: 3em; margin: 0;">ADELBERTUSBLOG</h2>
-    <p style="color: #D4AF37;">Streetwear dla wtajemniczonych</p>
-  </div>
-
-  <!-- POST 1 -->
-  <div style="background: #fff; padding: 30px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 4px solid #D4AF37;">
-    <h3 style="color: #000; font-size: 1.8em; margin-top: 0;">LIMITOWANA KOLEKCJA 2024</h3>
-    <p style="color: #666; font-size: 0.9em; margin-bottom: 20px;">15.07.2024 | Autor: Grzegorz</p>
-    <img src="https://i.imgur.com/9zqbXaR.jpg" alt="Kolekcja" style="max-width: 100%; border-radius: 6px; margin-bottom: 20px;">
-    <p style="line-height: 1.7;">Tylko u nas - ekskluzywne projekty ręcznie robione w Polsce. Każda sztuka numerowana.</p>
-    <button style="background: #D4AF37; color: #000; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; margin-top: 15px;">CZYTAJ WIĘCEJ</button>
-  </div>
-
-  <!-- POST 2 -->
-  <div style="background: #fff; padding: 30px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 4px solid #D4AF37;">
-    <h3 style="color: #000; font-size: 1.8em; margin-top: 0;">JAK NOSIĆ OVERSIZE?</h3>
-    <p style="color: #666; font-size: 0.9em; margin-bottom: 20px;">10.07.2024 | Autor: Grzegorz</p>
-    <img src="https://i.imgur.com/5Kv1WbB.jpg" alt="Stylówka" style="max-width: 100%; border-radius: 6px; margin-bottom: 20px;">
-    <p style="line-height: 1.7;">Poznaj 5 zasad, które zmienią Twoje stylówki. Odkryj moc streetwearu.</p>
-    <button style="background: #D4AF37; color: #000; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; margin-top: 15px;">CZYTAJ WIĘCEJ</button>
-  </div>
-</section>
-<!-- ===== SEKCJA BLOGA - KONIEC ===== -->
-<section id="zamowienie" style="padding: 20px; max-width: 800px; margin: 0 auto;">
-  <h2 style="font-family: 'Chopin Script', cursive; color: #D4AF37; text-align: center; margin-bottom: 30px; text-transform: uppercase;">
-    ZŁÓŻ ZAMÓWIENIE
-  </h2>
-
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-    <!-- Sekcja danych -->
-    <fieldset style="border: 1px solid #D4AF37; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
-      <legend style="font-weight: bold; color: #D4AF37; padding: 0 10px;">Twoje dane</legend>
-      <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko*" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
-      <input type="email" name="Email" placeholder="Email*" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
-      <input type="tel" name="Telefon" placeholder="Telefon (opcjonalnie)" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
-    </fieldset>
-
-    <!-- Sekcja zamówienia -->
-    <fieldset style="border: 1px solid #D4AF37; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
-      <legend style="font-weight: bold; color: #D4AF37; padding: 0 10px;">Twoje zamówienie</legend>
-      <textarea name="Zamówienie" placeholder="Wpisz listę produktów (np. Bluza StreetStyle, rozmiar L, kolor czarny)*" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; height: 100px;"></textarea>
-      <select name="Dostawa" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;">
-        <option value="">-- Wybierz dostawę --</option>
-        <option value="paczkomat">Paczkomat InPost (+15 zł)</option>
-        <option value="poczta">Poczta Polska (+12 zł)</option>
-        <option value="odbiór">Odbiór osobisty (Strzegom, Rynek 5/11)</option>
-      </select>
-    </fieldset>
-
-    <!-- Akceptacja -->
-    <label style="display: block; margin: 20px 0; font-size: 0.9em;">
-      <input type="checkbox" required style="margin-right: 10px;">
-      Akceptuję <a href="regulamin.html" style="color: #D4AF37;">regulamin</a> i wyrażam zgodę na przetwarzanie danych*
-    </label>
-
-    <!-- Przycisk -->
-    <button type="submit" style="background: #D4AF37; color: #000; border: none; padding: 12px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 4px;">
-      POTWIERDŹ ZAMÓWIENIE
-    </button>
-  </form>
-</section><section id="regulamin" class="regulamin">
-  <h2>REGULAMIN SKLEPU ADELBERTUSSHOP</h2>
-  
-  <h3>§1. POSTANOWIENIA OGÓLNE</h3>
-  <p>
-    1.1. Sklep internetowy AdelbertusShop, prowadzony przez Grzegorza Mielniczuk, ul. Rynek 5/11, 58-150 Strzegom, działalność nieewidencjonowana, NIP: brak<br>
-    1.2. Kontakt: email mielniczukgrzegosz74@gmail.com, tel. 604-296-360<br>
-    1.3. Regulamin obowiązuje od 01.07.2024 r.
-  </p>
-
-  <h3>§2. ZAMÓWIENIA</h3>
-  <p>
-    2.1. Zamówienia przyjmowane są 24/7 poprzez stronę internetową<br>
-    2.2. Każde zamówienie wymaga potwierdzenia dostępności towaru<br>
-    2.3. Cena obowiązująca to cena w dniu złożenia zamówienia
-  </p>
-
-  <h3>§3. PŁATNOŚCI</h3>
-  <p>
-    3.1. Akceptowane formy płatności:<br>
-    - PayPal<br>
-    - Płatność BLIK na nr 573-939-925<br>
-    - Przelew tradycyjny (dane do przelewu w mailu potwierdzającym)<br>
-    3.2. Termin płatności: 48h od złożenia zamówienia
-  </p>
-
-  <h3>§4. DOSTAWA</h3>
-  <p>
-    4.1. Koszt i czas dostawy:<br>
-    - Paczkomat InPost: 15 zł (1-3 dni robocze)<br>
-    - Poczta Polska: 12 zł (3-5 dni roboczych)<br>
-    4.2. Wysyłka następuje po zaksięgowaniu płatności
-  </p>
-
-  <h3>§5. REKLAMACJE I ZWROTY</h3>
-  <p>
-    5.1. Przysługuje prawo do odstąpienia od umowy w ciągu 14 dni<br>
-    5.2. Towar zwrotny musi być kompletny i nieużywany<br>
-    5.3. Reklamacje prosimy zgłaszać na adres email sklepu
-  </p>
-
-  <h3>§6. DANE OSOBOWE</h3>
-  <p>
-    6.1. Dane przetwarzane są wyłącznie w celu realizacji zamówienia<br>
-    6.2. Podanie danych jest dobrowolne, ale konieczne do zawarcia umowy<br>
-    6.3. Administratorem danych jest właściciel sklepu
-  </p>
-
-  <p style="text-align: center; margin-top: 30px;">
-    <strong>Grzegorz Mielniczuk<br>
-    AdelbertusShop</strong>
-  </p>
-</section>
-<footer>
-  <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
-  <p>
-    <a href="regulamin.html" style="color: #D4AF37; text-decoration: none;">Regulamin</a> | 
-    Instagram | Facebook | TikTok  <!-- Twoje oryginalne linki pozostają -->
-  </p>
-</footer>
-<script>
-  function showSection(id) {
-    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-</script>
+  <!-- SKRYPT -->
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+    
+    // Inicjalizacja PayPal
+    paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container");
+  </script>
 </body>
 </html>
