@@ -6,10 +6,56 @@
   <title>AdelbertusShop</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
-    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
-    nav { background: #222; text-align: center; padding: 10px; }
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    section { display: none; padding: 20px; }
+    header {
+  background: #111;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.logo-area {
+  display: flex;
+  flex-direction: column;
+}
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  display: none;
+}
+nav#main-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+nav#main-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav#main-menu a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  nav#main-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+  nav#main-menu.show {
+    display: flex;
+  }
+}    section { display: none; padding: 20px; }
     section.active { display: block; }
     .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
       padding: 20px;
@@ -22,13 +68,34 @@
   </style>
   <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 </head>
-<body>
-<header>
-  <h1>AdelbertusShop</h1>
-  <p>Moda uliczna dla wyjątkowych ludzi</p>
-</header>
-<nav>
-  <a href="#" onclick="showSection('sklep')">Sklep</a>
+<body><script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function toggleMenu() {
+    const menu = document.getElementById('main-menu');
+    menu.classList.toggle('show');
+  }
+</script><header>
+  <div class="logo-area">
+    <h1>AdelbertusShop</h1>
+    <p>Moda uliczna dla wyjątkowych ludzi</p>
+  </div>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <nav id="main-menu">
+    <a href="#" onclick="showSection('sklep')">Sklep</a>
+    <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
+    <a href="#" onclick="showSection('marketplace')">Marketplace</a>
+    <a href="#" onclick="showSection('reklama')">Reklama</a>
+    <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
+    <a href="#" onclick="showSection('opinie')">Opinie</a>
+    <a href="#" onclick="showSection('blog')">Blog</a>
+    <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
+    <a href="#" onclick="showSection('regulamin')">Regulamin</a>
+  </nav>
+</header>  <a href="#" onclick="showSection('sklep')">Sklep</a>
   <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
   <a href="#" onclick="showSection('marketplace')">Marketplace</a>
   <a href="#" onclick="showSection('reklama')">Reklama</a>
