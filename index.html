@@ -182,6 +182,13 @@
     document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
   }
-</script>
-</body>
+
+  // komunikat po wysłaniu formularza
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector('#zamowienie form');
+    form.addEventListener('submit', function () {
+      alert("Dziękujemy za zamówienie! Odpowiemy jak najszybciej.");
+    });
+  });
+</script></body>
 </html>
