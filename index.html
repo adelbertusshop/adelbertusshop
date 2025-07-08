@@ -104,16 +104,41 @@
   <p>Poradnik rozmiarówki streetwearu...</p>
 </section>
 
-<section id="zamowienie">
-  <h2>Zamówienie</h2>
+<section id="zamowienie" class="zamowienie">
+  <h2>Formularz zamówienia</h2>
   <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
     <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
-    <input type="email" name="Email" placeholder="Email" required>
-    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" required></textarea>
-    <button type="submit">Wyślij</button>
+    <input type="email" name="Email" placeholder="Adres e-mail" required>
+    <input type="tel" name="Telefon" placeholder="Telefon (opcjonalnie)">
+    
+    <label for="produkt">Produkt:</label>
+    <select name="Produkt" required>
+      <option value="Bluza">Bluza</option>
+      <option value="Koszulka">Koszulka</option>
+      <option value="Czapka">Czapka</option>
+      <option value="Inny">Inny</option>
+    </select>
+
+    <label for="rozmiar">Rozmiar:</label>
+    <select name="Rozmiar" required>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+    </select>
+
+    <label for="kolor">Kolor:</label>
+    <select name="Kolor">
+      <option value="Czarny">Czarny</option>
+      <option value="Biały">Biały</option>
+      <option value="Szary">Szary</option>
+      <option value="Inny">Inny (wpisz w szczegółach)</option>
+    </select>
+
+    <textarea name="Szczegóły zamówienia" placeholder="Szczegóły: projekt, tekst, ilość itd." rows="4" required></textarea>
+    <button type="submit">Wyślij zamówienie</button>
   </form>
 </section>
-
 <section id="regulamin" class="regulamin">
   <h2>Regulamin sklepu AdelbertusShop</h2>
 
