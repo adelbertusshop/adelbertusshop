@@ -101,26 +101,68 @@
 <section id="blog" class="blog">
   <h2>Blog i Porady</h2>
 
-  <article style="border-bottom:1px solid #ccc; margin-bottom:20px; padding-bottom:15px;">
-    <h3>🧢 Streetwear na lato 2025</h3>
-    <small>Data: 8 lipca 2025</small>
-    <p>Lato to czas luźnych koszulek, bucket hatów i lekkich materiałów. Sprawdź naszą nową kolekcję inspirowaną miejską energią!</p>
-  </article>
+  <form id="blogForm">
+    <input type="text" id="blogTitle" placeholder="Tytuł wpisu" required />
+    <textarea id="blogContent" placeholder="Treść wpisu" required></textarea>
+    <button type="submit">Dodaj wpis</button>
+  </form>
 
-  <article style="border-bottom:1px solid #ccc; margin-bottom:20px; padding-bottom:15px;">
-    <h3>🎨 Zaprojektuj własny nadruk</h3>
-    <small>Data: 2 lipca 2025</small>
-    <p>W sekcji „Zaprojektuj” możesz stworzyć własny tekst, grafikę i wybrać kolor. Twoja kreatywność = Twój styl.</p>
-  </article>
+  <div id="blogPosts" style="margin-top: 30px;"></div>
 
-  <article style="border-bottom:1px solid #ccc; margin-bottom:20px; padding-bottom:15px;">
-    <h3>💬 Opinie naszych klientów</h3>
-    <small>Data: 28 czerwca 2025</small>
-    <p>Wasze komentarze inspirują nas każdego dnia. Dziękujemy za 5/5 gwiazdek – to motywuje nas do dalszej pracy!</p>
-  </article>
+  <script>
+    const blogForm = document.getElementById('blogForm');
+    const blogPosts = document.getElementById('blogPosts');
 
-</section>
-<section id="zamowienie" class="zamowienie">
+    // Pobierz wpisy z localStorage
+    let posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+
+    // Usuń wpisy starsze niż 2 dni
+    posts = posts.filter(post => {
+      const now = new Date();
+      const postDate = new Date(post.date);
+      const diffTime = Math.abs(now - postDate);
+      const diffDays = diffTime / (1000 * 60 * 60 * 24);
+      return diffDays <= 2;
+    });
+
+    // Zapisz przefiltrowane wpisy
+    localStorage.setItem('blogPosts', JSON.stringify(posts));
+
+    function renderPosts() {
+      blogPosts.innerHTML = '';
+      posts.forEach((post, index) => {
+        const article = document.createElement('article');
+        article.innerHTML = `
+          <h3>${post.title}</h3>
+          <small>Dodano: ${new Date(post.date).toLocaleDateString()}</small>
+          <p>${post.content}</p>
+          <hr />
+        `;
+        blogPosts.appendChild(article);
+      });
+    }
+
+    blogForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const title = document.getElementById('blogTitle').value;
+      const content = document.getElementById('blogContent').value;
+
+      const newPost = {
+        title,
+        content,
+        date: new Date().toISOString()
+      };
+
+      posts.unshift(newPost);
+      localStorage.setItem('blogPosts', JSON.stringify(posts));
+      renderPosts();
+
+      blogForm.reset();
+    });
+
+    renderPosts();
+  </script>
+</section><section id="zamowienie" class="zamowienie">
   <h2>Formularz zamówienia</h2>
   <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
     <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
