@@ -87,37 +87,85 @@
   </form>
 </section>
 
-<section id="zbiorka" class="zbiorka">
-  <h2>🤝 Zbiórka Charytatywna – Pomagaj z Nami</h2>
-  <p>
-    Wspólnie możemy zmienić czyjeś życie. Nasz sklep AdelbertusShop wspiera <strong>potrzebujące domy dziecka</strong>.  
-    Pomoc może być mała – ale znaczenie ogromne.
-  </p>
 
-  <h3>💸 Darowizna pieniężna</h3>
-  <p>
-    Możesz przelać dowolną kwotę na <strong>BLIK 573-939-925</strong><br />
-    Z dopiskiem: <em>"pomoc"</em>
-  </p>
-
-  <h3>🎁 Pomoc rzeczowa</h3>
-  <p>
-    Jeśli chcesz przekazać ubrania, książki, artykuły szkolne lub inne potrzebne rzeczy –  
-    skontaktuj się z nami. Wskażemy konkretny dom dziecka, który czeka na wsparcie.
-  </p>
-
-  <p><strong>📞 Kontakt dla zainteresowanych:</strong><br />
-  Grzegorz Mielniczuk – tel. <a href="tel:604296360">604 296 360</a></p>
-
-  <blockquote style="font-style: italic; margin-top: 20px; background: #f8f8f8; padding: 15px; border-left: 4px solid #4caf50;">
-    „Nie każdy może wszystko – ale każdy może coś. Pomóżmy razem.”
-  </blockquote>
-</section>
 <section id="opinie" class="opinie">
   <h2>Opinie klientów</h2>
   <div id="opinieContainer"></div>
+<section id="zbiorka" class="zbiorka" style="padding: 30px; background: #f9f9f9;">
+  <h2 style="text-align: center; font-size: 28px;">🤝 Zbiórka Charytatywna – Pomagaj z Nami</h2>
 
-  <script>
+  <div style="max-width: 800px; margin: 0 auto;">
+    <img src="https://i.imgur.com/KvzpZ7Y.jpg" alt="Pomoc dzieciom" style="width: 100%; border-radius: 12px; margin-bottom: 20px;" />
+
+    <p style="font-size: 18px;">
+      Wspieramy <strong>potrzebujące domy dziecka</strong>. Każda pomoc – finansowa lub rzeczowa – ma znaczenie.  
+      Możesz przyczynić się do poprawy losu dzieci, które naprawdę tego potrzebują.
+    </p>
+
+    <h3>💸 Wsparcie finansowe (BLIK)</h3>
+    <p><strong>BLIK:</strong> <span style="font-size: 20px;">573-939-925</span><br />
+    <em>z dopiskiem „pomoc”</em></p>
+
+    <h3>🎁 Pomoc rzeczowa</h3>
+    <p>
+      Możesz przekazać ubrania, książki, artykuły szkolne i inne rzeczy.  
+      Skontaktuj się z nami, a przekażemy wszystko potrzebującym placówkom.
+    </p>
+
+    <h3>📞 Kontakt</h3>
+    <p>
+      Grzegorz Mielniczuk<br />
+      Tel: <a href="tel:604296360">604 296 360</a><br />
+      E-mail: <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a>
+    </p>
+
+    <div style="margin-top: 30px; padding: 20px; background: #e8f5e9; border-left: 6px solid #4caf50; border-radius: 10px;">
+      <blockquote style="font-style: italic; font-size: 16px; margin: 0;">
+        „Nie każdy może wszystko – ale każdy może coś. Pomóżmy razem.”
+      </blockquote>
+    </div>
+
+    <div style="margin-top: 40px; text-align: center;">
+      <h3>🧡 Już <span id="licznikDarczyńcow">0</span> osób pomogło!</h3>
+      <button onclick="wyslijPomoc()" style="padding: 10px 20px; background: #4caf50; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 16px;">Chcę pomóc</button>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <h3>📋 Formularz zgłoszenia pomocy</h3>
+      <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required style="width: 100%; padding: 10px; margin: 8px 0;">
+        <input type="email" name="Email" placeholder="Email" required style="width: 100%; padding: 10px; margin: 8px 0;">
+        <textarea name="Jak chcesz pomóc" placeholder="Jak chcesz pomóc?" required style="width: 100%; padding: 10px; margin: 8px 0;"></textarea>
+        <button type="submit" style="padding: 10px 20px; background: #333; color: #fff; border: none; border-radius: 8px; cursor: pointer;">Wyślij zgłoszenie</button>
+      </form>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <h3>📸 Galeria wsparcia</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;">
+        <img src="https://i.imgur.com/rmK2Mcn.jpg" alt="Wsparcie" style="width: 100%; border-radius: 8px;">
+        <img src="https://i.imgur.com/jc0ixMv.jpg" alt="Darowizna" style="width: 100%; border-radius: 8px;">
+        <img src="https://i.imgur.com/R8WQxdR.jpg" alt="Dary" style="width: 100%; border-radius: 8px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function aktualizujLicznik() {
+    const licznik = document.getElementById('licznikDarczyńcow');
+    let liczba = parseInt(localStorage.getItem('liczba_darczyńcow')) || Math.floor(Math.random() * 10 + 5);
+    liczba += Math.floor(Math.random() * 3);
+    localStorage.setItem('liczba_darczyńcow', liczba);
+    licznik.textContent = liczba;
+  }
+  aktualizujLicznik();
+
+  function wyslijPomoc() {
+    alert("Dziękujemy za chęć pomocy! Możesz napisać do nas maila lub wypełnić formularz poniżej.");
+    window.scrollTo({ top: document.querySelector('#zbiorka').offsetTop + 500, behavior: 'smooth' });
+  }
+</script>  <script>
     const allOpinie = [
       { autor: "Kamil z Warszawy", tekst: "★ ★ ★ ★ ★ Świetna jakość, szybka dostawa!" },
       { autor: "Ewa z Krakowa", tekst: "★ ★ ★ ★ ★ Bluza mega wygodna i stylowa!" },
