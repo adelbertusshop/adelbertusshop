@@ -63,8 +63,135 @@
     <button type="submit">Zamów</button>
   </form>
 </section>
+<section id="marketplace" class="marketplace">
+  <h2>🌟 Marketplace</h2>
+  <p>Dodaj swój produkt – po akceptacji admina będzie widoczny publicznie.</p>
 
+  <!-- FORMULARZ ZGŁOSZENIA -->
+  <form id="marketplaceForm" style="max-width:500px; margin:auto;">
+    <input type="text" id="nazwa" placeholder="Nazwa produktu" required>
+    <input type="text" id="cena" placeholder="Cena (np. 120 zł)" required>
+    <textarea id="opis" placeholder="Opis produktu" required></textarea>
+    <input type="url" id="obraz" placeholder="Link do zdjęcia (https://...)" required>
+    <button type="submit">Wyślij zgłoszenie</button>
+  </form>
 
+  <hr style="margin: 40px 0;">
+
+  <!-- PANEL ADMINA -->
+  <div id="adminPanel" style="text-align:center; margin-bottom:30px;">
+    <h3>🔐 Panel Admina</h3>
+    <input type="password" id="adminPass" placeholder="Wpisz hasło admina">
+    <button onclick="pokazZgloszenia()">Zaloguj</button>
+  </div>
+
+  <!-- LISTA ZGŁOSZEŃ (widoczna tylko po zalogowaniu) -->
+  <div id="zgloszeniaLista" style="display:none; max-width: 900px; margin:auto;"></div>
+
+  <!-- PUBLICZNE PRODUKTY -->
+  <div>
+    <h3 style="text-align:center;">🛍 Zatwierdzone produkty</h3>
+    <div id="produktyMarketplace" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;"></div>
+  </div>
+</section>
+
+<script>
+  const hasloAdmina = "Wojownik.03";
+  let adminZalogowany = false;
+
+  // Obsługa formularza
+  document.getElementById("marketplaceForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const nazwa = document.getElementById("nazwa").value;
+    const cena = document.getElementById("cena").value;
+    const opis = document.getElementById("opis").value;
+    const obraz = document.getElementById("obraz").value;
+
+    const zg = { nazwa, cena, opis, obraz };
+    const obecne = JSON.parse(localStorage.getItem("zgloszenia")) || [];
+    obecne.push(zg);
+    localStorage.setItem("zgloszenia", JSON.stringify(obecne));
+    alert("Zgłoszenie wysłane!");
+    this.reset();
+  });
+
+  // Pokazanie listy zgłoszeń po zalogowaniu
+  function pokazZgloszenia() {
+    const haslo = document.getElementById("adminPass").value;
+    if (haslo === hasloAdmina) {
+      adminZalogowany = true;
+      const lista = document.getElementById("zgloszeniaLista");
+      lista.innerHTML = "";
+      lista.style.display = "block";
+
+      const zgloszenia = JSON.parse(localStorage.getItem("zgloszenia")) || [];
+
+      if (zgloszenia.length === 0) {
+        lista.innerHTML = "<p>Brak zgłoszeń.</p>";
+        return;
+      }
+
+      zgloszenia.forEach((z, index) => {
+        const div = document.createElement("div");
+        div.style.border = "1px solid #ccc";
+        div.style.borderRadius = "10px";
+        div.style.padding = "10px";
+        div.style.margin = "10px 0";
+        div.style.background = "#f9f9f9";
+        div.innerHTML = `
+          <img src="${z.obraz}" alt="${z.nazwa}" style="width:100px; float:left; margin-right:15px; border-radius:8px;">
+          <strong>${z.nazwa}</strong><br>
+          <em>${z.cena}</em><br>
+          <p>${z.opis}</p>
+          <button onclick="zatwierdzProdukt(${index})">✅ Zatwierdź</button>
+          <div style="clear:both;"></div>
+        `;
+        lista.appendChild(div);
+      });
+    } else {
+      alert("Niepoprawne hasło");
+    }
+  }
+
+  // Zatwierdzanie produktu
+  function zatwierdzProdukt(index) {
+    const zgloszenia = JSON.parse(localStorage.getItem("zgloszenia")) || [];
+    const zatwierdzone = JSON.parse(localStorage.getItem("produktyMarketplace")) || [];
+    zatwierdzone.push(zgloszenia[index]);
+    localStorage.setItem("produktyMarketplace", JSON.stringify(zatwierdzone));
+
+    // usuń z listy zgłoszeń
+    zgloszenia.splice(index, 1);
+    localStorage.setItem("zgloszenia", JSON.stringify(zgloszenia));
+    pokazZgloszenia();
+    pokazZatwierdzone();
+  }
+
+  // Pokazanie zatwierdzonych produktów
+  function pokazZatwierdzone() {
+    const kontener = document.getElementById("produktyMarketplace");
+    kontener.innerHTML = "";
+    const produkty = JSON.parse(localStorage.getItem("produktyMarketplace")) || [];
+    produkty.forEach(p => {
+      const div = document.createElement("div");
+      div.style.border = "1px solid #ccc";
+      div.style.borderRadius = "10px";
+      div.style.padding = "10px";
+      div.style.width = "250px";
+      div.style.textAlign = "center";
+      div.innerHTML = `
+        <img src="${p.obraz}" alt="${p.nazwa}" style="width:100%; border-radius:8px;">
+        <h4>${p.nazwa}</h4>
+        <p><strong>${p.cena}</strong></p>
+        <p>${p.opis}</p>
+      `;
+      kontener.appendChild(div);
+    });
+  }
+
+  // Uruchom po załadowaniu strony
+  document.addEventListener("DOMContentLoaded", pokazZatwierdzone);
+</script>
 <section id="reklama" class="reklama">
   <h2 style="text-align:center; font-size: 28px;">💥 Promuj się na AdelbertusShop 💥</h2>
   <p style="text-align:center; font-size: 18px;">
