@@ -53,17 +53,83 @@
   </div>
 </section>
 
-<section id="projektuj" class="projektuj">
-  <h2>Zaprojektuj Sam</h2>
-  <p>Wybierz kolor, rozmiar i napisz własny tekst:</p>
-  <form>
-    <select><option>Kolor: Czarny</option><option>Biały</option><option>Czerwony</option></select>
-    <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>
-    <textarea placeholder="Wpisz swój tekst lub projekt"></textarea>
-    <button type="submit">Zamów</button>
+<section id="projektuj" class="projektuj active" style="padding: 40px; background: #f4f4f4;">
+  <h2 style="text-align: center; font-size: 32px; margin-bottom: 20px;">🛠️ Zaprojektuj Swój Produkt</h2>
+  <p style="text-align: center; font-size: 18px; margin-bottom: 30px;">Stwórz własny design – wybierz parametry, dodaj tekst lub grafikę i zamów!</p>
+
+  <form id="projektForm" style="max-width: 700px; margin: auto; background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
+    <label>Wybierz typ produktu:</label>
+    <select name="typ" required>
+      <option value="Bluza">Bluza</option>
+      <option value="Koszulka">Koszulka</option>
+      <option value="Czapka">Czapka</option>
+    </select>
+
+    <label>Kolor:</label>
+    <select name="kolor" required>
+      <option value="Czarny">Czarny</option>
+      <option value="Biały">Biały</option>
+      <option value="Czerwony">Czerwony</option>
+    </select>
+
+    <label>Rozmiar:</label>
+    <select name="rozmiar" required>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+    </select>
+
+    <label>Dodaj tekst (opcjonalnie):</label>
+    <input type="text" name="tekst" placeholder="Np. Moje hasło, ksywa..." maxlength="30" />
+
+    <label>Upload grafiki (opcjonalne):</label>
+    <input type="file" name="grafika" accept="image/*" />
+
+    <label>Szczegóły projektu:</label>
+    <textarea name="opis" placeholder="Opisz swój projekt: umiejscowienie grafiki, preferencje itd." required></textarea>
+
+    <h4 style="margin-top: 30px;">📩 Dane kontaktowe</h4>
+    <input type="text" name="imię" placeholder="Imię i nazwisko" required />
+    <input type="email" name="email" placeholder="Adres e-mail" required />
+    <input type="tel" name="telefon" placeholder="Numer telefonu (opcjonalnie)" />
+
+    <button type="submit" style="margin-top: 20px; background: #111; color: #fff; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px;">Wyślij projekt</button>
   </form>
+
+  <div id="podgladProjektu" style="margin-top: 50px; text-align: center; display: none;">
+    <h3>📸 Podgląd Twojego projektu:</h3>
+    <div style="max-width: 400px; margin: auto;">
+      <img id="mockupPreview" src="https://i.imgur.com/BZDtOMU.jpg" style="width: 100%; border-radius: 12px;" alt="Mockup" />
+      <p id="tekstPreview" style="font-weight: bold; font-size: 20px; margin-top: 10px;"></p>
+    </div>
+  </div>
 </section>
-<section id="marketplace" class="marketplace">
+
+<script>
+  const projektForm = document.getElementById("projektForm");
+  const podglad = document.getElementById("podgladProjektu");
+  const tekstPreview = document.getElementById("tekstPreview");
+
+  projektForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(projektForm);
+    const tekst = formData.get("tekst");
+    const typ = formData.get("typ");
+
+    document.getElementById("mockupPreview").src =
+      typ === "Bluza" ? "https://i.imgur.com/BZDtOMU.jpg" :
+      typ === "Koszulka" ? "https://i.imgur.com/tGCQ4TT.jpg" :
+      "https://i.imgur.com/2GUW1dl.jpg";
+
+    tekstPreview.textContent = tekst || "";
+    podglad.style.display = "block";
+
+    alert("Dziękujemy! Twój projekt został przesłany. Skontaktujemy się wkrótce.");
+    projektForm.reset();
+  });
+</script><section id="marketplace" class="marketplace">
   <h2>🌟 Marketplace</h2>
   <p>Dodaj swój produkt – po akceptacji admina będzie widoczny publicznie.</p>
 
