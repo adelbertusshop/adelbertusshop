@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -41,9 +42,8 @@
 </nav>
 
 <section id="sklep" class="produkty active">
-
   <div class="produkt">
-    <img src="https://i.ibb.co/60jxkmBD/Screenshot-20250525-154245-Chat-GPT-2.jpg" alt="Bluza StreetStyle">
+    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
     <h3>Bluza StreetStyle – 150 zł</h3>
     <label>Rozmiar:</label>
     <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
@@ -52,547 +52,75 @@
     <div id="paypal-container-bluza"></div>
     <script>paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");</script>
   </div>
-
-  <div class="produkt">
-    <img src="https://i.ibb.co/KpRSFxMJ/Screenshot-20250529-222346-Chat-GPT-3.jpg" alt="Bluza z kapturem">
-    <h3>Bluza z kapturem – 150 zł</h3>
-    <label>Rozmiar:</label>
-    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-    <label>Kolor:</label>
-    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
-    <div id="paypal-container-bluzakaptur"></div>
-    <script>paypal.HostedButtons({ hostedButtonId: "XYZ-BLUZA-KAPTUR" }).render("#paypal-container-bluzakaptur");</script>
-  </div>
-
-  <div class="produkt">
-    <img src="https://i.ibb.co/SD0H8887/1462669754-ads-media-59323ae9-0ff3-46e8-8825-e399f1b2746a.jpg" alt="Koszulka z grafiką wojownika">
-    <h3>Koszulka „Filius Molitoris” – 99 zł</h3>
-    <label>Rozmiar:</label>
-    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-    <label>Kolor:</label>
-    <select><option>Czarny</option><option>Biały</option><option>Czerwony</option></select>
-    <div id="paypal-container-koszulka"></div>
-    <script>paypal.HostedButtons({ hostedButtonId: "XYZ-KOSZULKA" }).render("#paypal-container-koszulka");</script>
-  </div>
-
-  <div class="produkt">
-    <img src="https://i.ibb.co/GfMW91cJ/Screenshot-20250609-154137-Chat-GPT-2.jpg" alt="Czapka z grafiką wojownika">
-    <h3>Czapka „Filius Molitoris” – 79 zł</h3>
-    <label>Kolor:</label>
-    <select><option>Czarna</option><option>Biała</option><option>Czerwona</option></select>
-    <div id="paypal-container-czapka"></div>
-    <script>paypal.HostedButtons({ hostedButtonId: "XYZ-CZAPKA" }).render("#paypal-container-czapka");</script>
-  </div>
-
-
-
-<section id="projektuj" class="projektuj active" style="padding: 40px; background: #f4f4f4;">
-  <h2 style="text-align: center; font-size: 32px; margin-bottom: 20px;">🛠️ Zaprojektuj Swój Produkt</h2>
-  <p style="text-align: center; font-size: 18px; margin-bottom: 30px;">Stwórz własny design – wybierz parametry, dodaj tekst lub grafikę i zamów!</p>
-
-  <form id="projektForm" style="max-width: 700px; margin: auto; background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
-    <label>Wybierz typ produktu:</label>
-    <select name="typ" required>
-      <option value="Bluza">Bluza</option>
-      <option value="Koszulka">Koszulka</option>
-      <option value="Czapka">Czapka</option>
-    </select>
-
-    <label>Kolor:</label>
-    <select name="kolor" required>
-      <option value="Czarny">Czarny</option>
-      <option value="Biały">Biały</option>
-      <option value="Czerwony">Czerwony</option>
-    </select>
-
-    <label>Rozmiar:</label>
-    <select name="rozmiar" required>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="XL">XL</option>
-    </select>
-
-    <label>Dodaj tekst (opcjonalnie):</label>
-    <input type="text" name="tekst" placeholder="Np. Moje hasło, ksywa..." maxlength="30" />
-
-    <label>Upload grafiki (opcjonalne):</label>
-    <input type="file" name="grafika" accept="image/*" />
-
-    <label>Szczegóły projektu:</label>
-    <textarea name="opis" placeholder="Opisz swój projekt: umiejscowienie grafiki, preferencje itd." required></textarea>
-
-    <h4 style="margin-top: 30px;">📩 Dane kontaktowe</h4>
-    <input type="text" name="imię" placeholder="Imię i nazwisko" required />
-    <input type="email" name="email" placeholder="Adres e-mail" required />
-    <input type="tel" name="telefon" placeholder="Numer telefonu (opcjonalnie)" />
-
-    <button type="submit" style="margin-top: 20px; background: #111; color: #fff; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px;">Wyślij projekt</button>
-  </form>
-
-  <div id="podgladProjektu" style="margin-top: 50px; text-align: center; display: none;">
-    <h3>📸 Podgląd Twojego projektu:</h3>
-    <div style="max-width: 400px; margin: auto;">
-      <img id="mockupPreview" src="https://i.imgur.com/BZDtOMU.jpg" style="width: 100%; border-radius: 12px;" alt="Mockup" />
-      <p id="tekstPreview" style="font-weight: bold; font-size: 20px; margin-top: 10px;"></p>
-    </div>
-  </div>
 </section>
 
-<script>
-  const projektForm = document.getElementById("projektForm");
-  const podglad = document.getElementById("podgladProjektu");
-  const tekstPreview = document.getElementById("tekstPreview");
+<section id="projektuj" class="projektuj">
+  <h2>Zaprojektuj Sam</h2>
+  <p>Wybierz kolor, rozmiar i napisz własny tekst:</p>
+  <form>
+    <select><option>Kolor: Czarny</option><option>Biały</option><option>Czerwony</option></select>
+    <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>
+    <textarea placeholder="Wpisz swój tekst lub projekt"></textarea>
+    <button type="submit">Zamów</button>
+  </form>
+</section>
 
-  projektForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(projektForm);
-    const tekst = formData.get("tekst");
-    const typ = formData.get("typ");
-
-    document.getElementById("mockupPreview").src =
-      typ === "Bluza" ? "https://i.imgur.com/BZDtOMU.jpg" :
-      typ === "Koszulka" ? "https://i.imgur.com/tGCQ4TT.jpg" :
-      "https://i.imgur.com/2GUW1dl.jpg";
-
-    tekstPreview.textContent = tekst || "";
-    podglad.style.display = "block";
-
-    alert("Dziękujemy! Twój projekt został przesłany. Skontaktujemy się wkrótce.");
-    projektForm.reset();
-  });
-</script><section id="marketplace" class="marketplace">
-  <h2>🌟 Marketplace</h2>
-  <p>Dodaj swój produkt – po akceptacji admina będzie widoczny publicznie.</p>
-
-  <!-- FORMULARZ ZGŁOSZENIA -->
-  <form id="marketplaceForm" style="max-width:500px; margin:auto;">
-    <input type="text" id="nazwa" placeholder="Nazwa produktu" required>
-    <input type="text" id="cena" placeholder="Cena (np. 120 zł)" required>
-    <textarea id="opis" placeholder="Opis produktu" required></textarea>
-    <input type="url" id="obraz" placeholder="Link do zdjęcia (https://...)" required>
+<section id="marketplace" class="marketplace">
+  <h2>Marketplace</h2>
+  <p>Sprzedawaj swoje produkty przez nasz sklep. Wypełnij formularz:</p>
+  <form>
+    <input type="text" placeholder="Nazwa produktu">
+    <input type="text" placeholder="Cena">
+    <textarea placeholder="Opis"></textarea>
+    <input type="url" placeholder="Link do zdjęcia">
     <button type="submit">Wyślij zgłoszenie</button>
   </form>
-
-  <hr style="margin: 40px 0;">
-
-  <!-- PANEL ADMINA -->
-  <div id="adminPanel" style="text-align:center; margin-bottom:30px;">
-    <h3>🔐 Panel Admina</h3>
-    <input type="password" id="adminPass" placeholder="Wpisz hasło admina">
-    <button onclick="pokazZgloszenia()">Zaloguj</button>
-  </div>
-
-  <!-- LISTA ZGŁOSZEŃ (widoczna tylko po zalogowaniu) -->
-  <div id="zgloszeniaLista" style="display:none; max-width: 900px; margin:auto;"></div>
-
-  <!-- PUBLICZNE PRODUKTY -->
-  <div>
-    <h3 style="text-align:center;">🛍 Zatwierdzone produkty</h3>
-    <div id="produktyMarketplace" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;"></div>
-  </div>
 </section>
 
-<script>
-  const hasloAdmina = "Wojownik.03";
-  let adminZalogowany = false;
-
-  // Obsługa formularza
-  document.getElementById("marketplaceForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const nazwa = document.getElementById("nazwa").value;
-    const cena = document.getElementById("cena").value;
-    const opis = document.getElementById("opis").value;
-    const obraz = document.getElementById("obraz").value;
-
-    const zg = { nazwa, cena, opis, obraz };
-    const obecne = JSON.parse(localStorage.getItem("zgloszenia")) || [];
-    obecne.push(zg);
-    localStorage.setItem("zgloszenia", JSON.stringify(obecne));
-    alert("Zgłoszenie wysłane!");
-    this.reset();
-  });
-
-  // Pokazanie listy zgłoszeń po zalogowaniu
-  function pokazZgloszenia() {
-    const haslo = document.getElementById("adminPass").value;
-    if (haslo === hasloAdmina) {
-      adminZalogowany = true;
-      const lista = document.getElementById("zgloszeniaLista");
-      lista.innerHTML = "";
-      lista.style.display = "block";
-
-      const zgloszenia = JSON.parse(localStorage.getItem("zgloszenia")) || [];
-
-      if (zgloszenia.length === 0) {
-        lista.innerHTML = "<p>Brak zgłoszeń.</p>";
-        return;
-      }
-
-      zgloszenia.forEach((z, index) => {
-        const div = document.createElement("div");
-        div.style.border = "1px solid #ccc";
-        div.style.borderRadius = "10px";
-        div.style.padding = "10px";
-        div.style.margin = "10px 0";
-        div.style.background = "#f9f9f9";
-        div.innerHTML = `
-          <img src="${z.obraz}" alt="${z.nazwa}" style="width:100px; float:left; margin-right:15px; border-radius:8px;">
-          <strong>${z.nazwa}</strong><br>
-          <em>${z.cena}</em><br>
-          <p>${z.opis}</p>
-          <button onclick="zatwierdzProdukt(${index})">✅ Zatwierdź</button>
-          <div style="clear:both;"></div>
-        `;
-        lista.appendChild(div);
-      });
-    } else {
-      alert("Niepoprawne hasło");
-    }
-  }
-
-  // Zatwierdzanie produktu
-  function zatwierdzProdukt(index) {
-    const zgloszenia = JSON.parse(localStorage.getItem("zgloszenia")) || [];
-    const zatwierdzone = JSON.parse(localStorage.getItem("produktyMarketplace")) || [];
-    zatwierdzone.push(zgloszenia[index]);
-    localStorage.setItem("produktyMarketplace", JSON.stringify(zatwierdzone));
-
-    // usuń z listy zgłoszeń
-    zgloszenia.splice(index, 1);
-    localStorage.setItem("zgloszenia", JSON.stringify(zgloszenia));
-    pokazZgloszenia();
-    pokazZatwierdzone();
-  }
-
-  // Pokazanie zatwierdzonych produktów
-  function pokazZatwierdzone() {
-    const kontener = document.getElementById("produktyMarketplace");
-    kontener.innerHTML = "";
-    const produkty = JSON.parse(localStorage.getItem("produktyMarketplace")) || [];
-    produkty.forEach(p => {
-      const div = document.createElement("div");
-      div.style.border = "1px solid #ccc";
-      div.style.borderRadius = "10px";
-      div.style.padding = "10px";
-      div.style.width = "250px";
-      div.style.textAlign = "center";
-      div.innerHTML = `
-        <img src="${p.obraz}" alt="${p.nazwa}" style="width:100%; border-radius:8px;">
-        <h4>${p.nazwa}</h4>
-        <p><strong>${p.cena}</strong></p>
-        <p>${p.opis}</p>
-      `;
-      kontener.appendChild(div);
-    });
-  }
-
-  // Uruchom po załadowaniu strony
-  document.addEventListener("DOMContentLoaded", pokazZatwierdzone);
-</script>
 <section id="reklama" class="reklama">
-  <h2 style="text-align:center; font-size: 28px;">💥 Promuj się na AdelbertusShop 💥</h2>
-  <p style="text-align:center; font-size: 18px;">
-    Twoja marka. Twoja historia. Twoja szansa.<br>
-    Udostępnij swój produkt, projekt, profil lub usługę tysięcom naszych odwiedzających!
-  </p>
-  <div style="text-align:center; margin: 20px 0;">
-    <strong>Cennik reklam:</strong><br>
-    🔸 Banner główny – 100 zł / tydzień<br>
-    🔸 Wpis sponsorowany – 70 zł / tydzień<br>
-    🔸 Reklama w blogu – 50 zł / wpis<br>
-    🔸 Promowany produkt – 40 zł / tydzień
-  </div>
-  
-  <form style="max-width:500px; margin:auto; background:#f9f9f9; padding:20px; border-radius:12px;">
-    <h3>Zgłoś swoją reklamę:</h3>
-    <input type="text" placeholder="Nazwa lub marka" required>
-    <input type="text" placeholder="E-mail do kontaktu" required>
-    <textarea placeholder="Opis reklamy i link do zdjęcia/produktu" required></textarea>
-    <button type="submit" style="background:#111; color:white; padding:10px; border:none; border-radius:6px;">Wyślij zgłoszenie</button>
+  <h2>Panel Reklamowy</h2>
+  <p>Promuj swój produkt na naszej stronie. Cena: 50 zł / tydzień.</p>
+  <form>
+    <input type="text" placeholder="Twoja nazwa / marka">
+    <textarea placeholder="Opis reklamy"></textarea>
+    <input type="url" placeholder="Link do strony lub social media">
+    <button type="submit">Zgłoś reklamę</button>
   </form>
+</section>
 
-  <div style="margin-top: 40px; text-align:center;">
-    <h3>Przykład reklamy sponsorowanej:</h3>
-    <div style="border: 2px dashed #555; padding: 15px; max-width: 600px; margin: auto;">
-      <img src="https://i.imgur.com/QdS7XjR.jpg" alt="Reklama przykładowa" style="max-width:100%; border-radius: 10px;">
-      <p style="font-size: 16px;">🎯 Marka XYZ – Nowa kolekcja już dostępna! Sprawdź ich profil na <a href="#" target="_blank">Instagramie</a></p>
-    </div>
-  </div>
+<section id="zbiorka" class="zbiorka">
+  <h2>Zbiórka charytatywna</h2>
+  <p>Wspieramy dom dziecka – przekaż darowiznę na nr <strong>BLIK 573-939-925</strong> z dopiskiem <strong>"pomoc"</strong>.</p>
 </section>
 
 <section id="opinie" class="opinie">
   <h2>Opinie klientów</h2>
-  <div id="opinieContainer"></div>
+  <p>★ ★ ★ ★ ★ „Super jakość – koszulki świetne!”</p>
+  <p>★ ★ ★ ★ ★ „Bluza stylowa i wygodna!”</p>
 </section>
 
-<section id="zbiorka" class="zbiorka" style="padding: 30px; background: #f9f9f9;">  <h2 style="text-align: center; font-size: 28px;">🤝 Zbiórka Charytatywna – Pomagaj z Nami</h2>
-
-  <div style="max-width: 800px; margin: 0 auto;">
-    <img src="https://i.imgur.com/KvzpZ7Y.jpg" alt="Pomoc dzieciom" style="width: 100%; border-radius: 12px; margin-bottom: 20px;" />
-
-    <p style="font-size: 18px;">
-      Wspieramy <strong>potrzebujące domy dziecka</strong>. Każda pomoc – finansowa lub rzeczowa – ma znaczenie.  
-      Możesz przyczynić się do poprawy losu dzieci, które naprawdę tego potrzebują.
-    </p>
-
-    <h3>💸 Wsparcie finansowe (BLIK)</h3>
-    <p><strong>BLIK:</strong> <span style="font-size: 20px;">573-939-925</span><br />
-    <em>z dopiskiem „pomoc”</em></p>
-
-    <h3>🎁 Pomoc rzeczowa</h3>
-    <p>
-      Możesz przekazać ubrania, książki, artykuły szkolne i inne rzeczy.  
-      Skontaktuj się z nami, a przekażemy wszystko potrzebującym placówkom.
-    </p>
-
-    <h3>📞 Kontakt</h3>
-    <p>
-      Grzegorz Mielniczuk<br />
-      Tel: <a href="tel:604296360">604 296 360</a><br />
-      E-mail: <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a>
-    </p>
-
-    <div style="margin-top: 30px; padding: 20px; background: #e8f5e9; border-left: 6px solid #4caf50; border-radius: 10px;">
-      <blockquote style="font-style: italic; font-size: 16px; margin: 0;">
-        „Nie każdy może wszystko – ale każdy może coś. Pomóżmy razem.”
-      </blockquote>
-    </div>
-
-    <div style="margin-top: 40px; text-align: center;">
-      <h3>🧡 Już <span id="licznikDarczyńcow">0</span> osób pomogło!</h3>
-      <button onclick="wyslijPomoc()" style="padding: 10px 20px; background: #4caf50; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 16px;">Chcę pomóc</button>
-    </div>
-
-    <div style="margin-top: 40px;">
-      <h3>📋 Formularz zgłoszenia pomocy</h3>
-      <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-        <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required style="width: 100%; padding: 10px; margin: 8px 0;">
-        <input type="email" name="Email" placeholder="Email" required style="width: 100%; padding: 10px; margin: 8px 0;">
-        <textarea name="Jak chcesz pomóc" placeholder="Jak chcesz pomóc?" required style="width: 100%; padding: 10px; margin: 8px 0;"></textarea>
-        <button type="submit" style="padding: 10px 20px; background: #333; color: #fff; border: none; border-radius: 8px; cursor: pointer;">Wyślij zgłoszenie</button>
-      </form>
-    </div>
-
-    <div style="margin-top: 40px;">
-      <h3>📸 Galeria wsparcia</h3>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;">
-        <img src="https://i.imgur.com/rmK2Mcn.jpg" alt="Wsparcie" style="width: 100%; border-radius: 8px;">
-        <img src="https://i.imgur.com/jc0ixMv.jpg" alt="Darowizna" style="width: 100%; border-radius: 8px;">
-        <img src="https://i.imgur.com/R8WQxdR.jpg" alt="Dary" style="width: 100%; border-radius: 8px;">
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-  function aktualizujLicznik() {
-    const licznik = document.getElementById('licznikDarczyńcow');
-    let liczba = parseInt(localStorage.getItem('liczba_darczyńcow')) || Math.floor(Math.random() * 10 + 5);
-    liczba += Math.floor(Math.random() * 3);
-    localStorage.setItem('liczba_darczyńcow', liczba);
-    licznik.textContent = liczba;
-  }
-  aktualizujLicznik();
-
-  function wyslijPomoc() {
-    alert("Dziękujemy za chęć pomocy! Możesz napisać do nas maila lub wypełnić formularz poniżej.");
-    window.scrollTo({ top: document.querySelector('#zbiorka').offsetTop + 500, behavior: 'smooth' });
-  }
-</script>  <script>
-    const allOpinie = [
-      { autor: "Kamil z Warszawy", tekst: "★ ★ ★ ★ ★ Świetna jakość, szybka dostawa!" },
-      { autor: "Ewa z Krakowa", tekst: "★ ★ ★ ★ ★ Bluza mega wygodna i stylowa!" },
-      { autor: "Łukasz z Wrocławia", tekst: "★ ★ ★ ★ ★ Polecam każdemu, petarda styl!" },
-      { autor: "Ola z Gdyni", tekst: "★ ★ ★ ★ ★ Projekt na zamówienie wyszedł super!" },
-      { autor: "Michał z Poznania", tekst: "★ ★ ★ ★ ★ Bardzo dobry kontakt, polecam zakupy!" }
-    ];
-
-    function shuffle(array) {
-      return array.sort(() => Math.random() - 0.5);
-    }
-
-    function getLastUpdateKey() {
-      return localStorage.getItem('opinieLastUpdate');
-    }
-
-    function setLastUpdateKey(dateStr) {
-      localStorage.setItem('opinieLastUpdate', dateStr);
-    }
-
-    function getStoredOpinie() {
-      const stored = localStorage.getItem('opinieDisplay');
-      return stored ? JSON.parse(stored) : null;
-    }
-
-    function setStoredOpinie(opinie) {
-      localStorage.setItem('opinieDisplay', JSON.stringify(opinie));
-    }
-
-    function shouldUpdateOpinie() {
-      const last = getLastUpdateKey();
-      if (!last) return true;
-      const lastDate = new Date(last);
-      const now = new Date();
-      const diffTime = now - lastDate;
-      const diffDays = diffTime / (1000 * 60 * 60 * 24);
-      return diffDays >= 2;
-    }
-
-    function displayOpinie(opinie) {
-      const container = document.getElementById('opinieContainer');
-      container.innerHTML = '';
-      opinie.forEach(o => {
-        const p = document.createElement('p');
-        p.textContent = `${o.tekst} – ${o.autor}`;
-        container.appendChild(p);
-      });
-    }
-
-    function updateOpinieIfNeeded() {
-      if (shouldUpdateOpinie()) {
-        const nowe = shuffle([...allOpinie]).slice(0, 3);
-        setStoredOpinie(nowe);
-        setLastUpdateKey(new Date().toISOString());
-        displayOpinie(nowe);
-      } else {
-        const aktualne = getStoredOpinie();
-        if (aktualne) displayOpinie(aktualne);
-      }
-    }
-
-    updateOpinieIfNeeded();
-  </script>
-</section>
 <section id="blog" class="blog">
   <h2>Blog i Porady</h2>
+  <h3>Jak dobrać rozmiar?</h3>
+  <p>Poradnik rozmiarówki streetwearu...</p>
+</section>
 
-  <form id="blogForm">
-    <input type="text" id="blogTitle" placeholder="Tytuł wpisu" required />
-    <textarea id="blogContent" placeholder="Treść wpisu" required></textarea>
-    <button type="submit">Dodaj wpis</button>
-  </form>
-
-  <div id="blogPosts" style="margin-top: 30px;"></div>
-
-  <script>
-    const blogForm = document.getElementById('blogForm');
-    const blogPosts = document.getElementById('blogPosts');
-
-    // Pobierz wpisy z localStorage
-    let posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
-
-    // Usuń wpisy starsze niż 2 dni
-    posts = posts.filter(post => {
-      const now = new Date();
-      const postDate = new Date(post.date);
-      const diffTime = Math.abs(now - postDate);
-      const diffDays = diffTime / (1000 * 60 * 60 * 24);
-      return diffDays <= 2;
-    });
-
-    // Zapisz przefiltrowane wpisy
-    localStorage.setItem('blogPosts', JSON.stringify(posts));
-
-    function renderPosts() {
-      blogPosts.innerHTML = '';
-      posts.forEach((post, index) => {
-        const article = document.createElement('article');
-        article.innerHTML = `
-          <h3>${post.title}</h3>
-          <small>Dodano: ${new Date(post.date).toLocaleDateString()}</small>
-          <p>${post.content}</p>
-          <hr />
-        `;
-        blogPosts.appendChild(article);
-      });
-    }
-
-    blogForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const title = document.getElementById('blogTitle').value;
-      const content = document.getElementById('blogContent').value;
-
-      const newPost = {
-        title,
-        content,
-        date: new Date().toISOString()
-      };
-
-      posts.unshift(newPost);
-      localStorage.setItem('blogPosts', JSON.stringify(posts));
-      renderPosts();
-
-      blogForm.reset();
-    });
-
-    renderPosts();
-  </script>
-</section><section id="zamowienie" class="zamowienie">
-  <h2>Formularz zamówienia</h2>
+<section id="zamowienie">
+  <h2>Zamówienie</h2>
   <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
     <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
-    <input type="email" name="Email" placeholder="Adres e-mail" required>
-    <input type="tel" name="Telefon" placeholder="Telefon (opcjonalnie)">
-    
-    <label for="produkt">Produkt:</label>
-    <select name="Produkt" required>
-      <option value="Bluza">Bluza</option>
-      <option value="Koszulka">Koszulka</option>
-      <option value="Czapka">Czapka</option>
-      <option value="Inny">Inny</option>
-    </select>
-
-    <label for="rozmiar">Rozmiar:</label>
-    <select name="Rozmiar" required>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="XL">XL</option>
-    </select>
-
-    <label for="kolor">Kolor:</label>
-    <select name="Kolor">
-      <option value="Czarny">Czarny</option>
-      <option value="Biały">Biały</option>
-      <option value="Szary">Szary</option>
-      <option value="Inny">Inny (wpisz w szczegółach)</option>
-    </select>
-
-    <textarea name="Szczegóły zamówienia" placeholder="Szczegóły: projekt, tekst, ilość itd." rows="4" required></textarea>
-    <button type="submit">Wyślij zamówienie</button>
+    <input type="email" name="Email" placeholder="Email" required>
+    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" required></textarea>
+    <button type="submit">Wyślij</button>
   </form>
 </section>
+
 <section id="regulamin" class="regulamin">
-  <h2>Regulamin sklepu AdelbertusShop</h2>
-
-  <h3>1. Informacje ogólne</h3>
-  <p>Sklep internetowy AdelbertusShop działa jako działalność nierejestrowana.</p>
-  <p>Właściciel sklepu: Grzegosz Mielniczuk</p>
-  <p>Kontakt: Mielniczukgrzegosz74@gmail.com | tel. 604 296 360</p>
-
-  <h3>2. Składanie zamówień</h3>
-  <p>Zamówienia można składać przez stronę www.adelbertusshop.com.</p>
-  <p>Zamówienie jest realizowane po jego potwierdzeniu i opłaceniu.</p>
-
-  <h3>3. Płatność</h3>
-  <p>Obsługujemy płatności wyłącznie przez PayPal.</p>
-
-  <h3>4. Realizacja zamówień</h3>
-  <p>Czas realizacji wynosi zazwyczaj 3–7 dni roboczych.</p>
-
-  <h3>5. Reklamacje i zwroty</h3>
-  <p>Reklamacje należy składać mailowo w ciągu 14 dni od otrzymania towaru.</p>
-  <p>Zwroty przyjmujemy tylko w przypadku wadliwego produktu.</p>
-
-  <h3>6. Dane osobowe</h3>
-  <p>Dane klientów wykorzystywane są wyłącznie w celu realizacji zamówień.</p>
-
-  <h3>7. Postanowienia końcowe</h3>
-  <p>Sklep zastrzega sobie prawo do zmian w regulaminie.</p>
-  <p>Aktualny regulamin dostępny jest na tej stronie.</p>
+  <h2>Regulamin i Polityka Prywatności</h2>
+  <p>Przetwarzamy dane tylko w celu realizacji zamówienia. Nie udostępniamy danych osobom trzecim.</p>
+  <p>Reklamacje przyjmujemy mailowo do 14 dni od zakupu.</p>
 </section>
+
 <footer>
   <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
   <p>
@@ -607,13 +135,6 @@
     document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
   }
-
-  // komunikat po wysłaniu formularza
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector('#zamowienie form');
-    form.addEventListener('submit', function () {
-      alert("Dziękujemy za zamówienie! Odpowiemy jak najszybciej.");
-    });
-  });
-</script></body>
+</script>
+</body>
 </html>
