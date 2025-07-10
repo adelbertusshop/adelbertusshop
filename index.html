@@ -95,10 +95,39 @@
 
 <section id="opinie" class="opinie">
   <h2>Opinie klientów</h2>
-  <p>★ ★ ★ ★ ★ „Super jakość – koszulki świetne!”</p>
-  <p>★ ★ ★ ★ ★ „Bluza stylowa i wygodna!”</p>
-</section>
+  <div id="opinia-box">
+    <p id="opinia-tekst">Ładowanie opinii...</p>
+    <p id="opinia-klient" style="font-weight: bold;"></p>
+  </div>
 
+  <script>
+    const opinie = [
+      {
+        tekst: "★ ★ ★ ★ ★ Świetna bluza! Nadruk wygląda jeszcze lepiej na żywo, a materiał miękki jak chmurka.",
+        klient: "– Karolina z Wrocławia"
+      },
+      {
+        tekst: "★ ★ ★ ★ ★ Zamówiłem czapkę z wojownikiem – każdy się pyta, gdzie ją kupiłem. Mega projekt!",
+        klient: "– Bartek z Gdańska"
+      },
+      {
+        tekst: "★ ★ ★ ★ ★ Kontakt błyskawiczny, indywidualny projekt zrobiony w 2 dni. Polecam każdemu, kto ceni styl.",
+        klient: "– Natalia z Warszawy"
+      },
+      {
+        tekst: "★ ★ ★ ★ ★ Koszulka idealna na prezent – jakość 10/10. Mój brat był zachwycony!",
+        klient: "– Tomek z Krakowa"
+      }
+    ];
+
+    const today = new Date();
+    const index = Math.floor(today.getTime() / (1000 * 60 * 60 * 24 * 2)) % opinie.length;
+    const opinia = opinie[index];
+
+    document.getElementById("opinia-tekst").innerText = opinia.tekst;
+    document.getElementById("opinia-klient").innerText = opinia.klient;
+  </script>
+</section>
 <section id="blog" class="blog">
   <h2>Blog i Porady</h2>
 
