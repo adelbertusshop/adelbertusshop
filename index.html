@@ -106,15 +106,38 @@
 </section>
 
 <section id="zamowienie">
-  <h2>Zamówienie</h2>
+  <h2>Zamówienie indywidualne</h2>
+  <p>Masz pomysł? Chcesz coś specjalnego? Wypełnij formularz – odpowiem w ciągu 24h.</p>
   <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-    <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
-    <input type="email" name="Email" placeholder="Email" required>
-    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" required></textarea>
-    <button type="submit">Wyślij</button>
+    
+    <label for="name">Imię i nazwisko:</label>
+    <input type="text" id="name" name="Imię i nazwisko" placeholder="Jan Kowalski" required>
+
+    <label for="email">Adres e-mail:</label>
+    <input type="email" id="email" name="Email" placeholder="jan@example.com" required>
+
+    <label for="produkt">Opis zamówienia:</label>
+    <textarea id="produkt" name="Zamówienie" rows="5" placeholder="Np. czarna bluza z grafiką wojownika, rozmiar L, z napisem na plecach" required></textarea>
+
+    <label for="rozmiar">Rozmiar:</label>
+    <select id="rozmiar" name="Rozmiar">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+    </select>
+
+    <label for="kolor">Kolor produktu:</label>
+    <select id="kolor" name="Kolor">
+      <option value="Czarny">Czarny</option>
+      <option value="Biały">Biały</option>
+      <option value="Szary">Szary</option>
+      <option value="Inny">Inny (opisz w treści zamówienia)</option>
+    </select>
+
+    <button type="submit">Wyślij zamówienie</button>
   </form>
 </section>
-
 <section id="regulamin" class="regulamin">
   <h2>Regulamin sklepu AdelbertusShop</h2>
   <p><strong>1. Informacje o sprzedawcy</strong><br>
