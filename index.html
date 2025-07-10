@@ -304,5 +304,34 @@
     document.getElementById(id).classList.add('active');
   }
 </script>
-</body>
+  <!-- Panel Admina (Ukryty) -->
+<section id="admin" class="admin" style="display: none; padding: 30px;">
+  <h2>🔧 Panel Admina – AdelbertusShop</h2>
+  <p>Witaj, Wojowniku. Tu możesz przeglądać zgłoszenia i zarządzać sklepem. (Opcje do rozbudowy)</p>
+  <ul>
+    <li>📝 Zgłoszenia z Reklamy: przeglądaj maile od klientów</li>
+    <li>🎁 Zgłoszenia pomocy: odczytuj kto chce pomóc</li>
+    <li>📢 Zarządzaj blogiem i opiniami (wkrótce)</li>
+  </ul>
+</section>
+
+<!-- Okno logowania -->
+<div id="admin-login" style="text-align: center; padding: 40px;">
+  <h2>🔐 Wpisz hasło, by otworzyć panel Admina</h2>
+  <input type="password" id="adminPassword" placeholder="Wpisz hasło..." style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+  <button onclick="checkAdminPassword()" style="padding: 10px 20px; background: #111; color: white; border: none; border-radius: 6px;">Zaloguj</button>
+  <p id="wrongPass" style="color: red; display: none; margin-top: 10px;">Błędne hasło. Spróbuj ponownie.</p>
+</div>
+
+<script>
+  function checkAdminPassword() {
+    const haslo = document.getElementById("adminPassword").value;
+    if (haslo === "Wojownik.03") {
+      document.getElementById("admin").style.display = "block";
+      document.getElementById("admin-login").style.display = "none";
+    } else {
+      document.getElementById("wrongPass").style.display = "block";
+    }
+  }
+</script></body>
 </html>
