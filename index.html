@@ -66,17 +66,44 @@
 </section>
 
 <section id="marketplace" class="marketplace">
-  <h2>Marketplace</h2>
-  <p>Sprzedawaj swoje produkty przez nasz sklep. Wypełnij formularz:</p>
-  <form>
-    <input type="text" placeholder="Nazwa produktu">
-    <input type="text" placeholder="Cena">
-    <textarea placeholder="Opis"></textarea>
-    <input type="url" placeholder="Link do zdjęcia">
-    <button type="submit">Wyślij zgłoszenie</button>
-  </form>
-</section>
+  <h2>🛒 Marketplace – Sprzedawaj razem z AdelbertusShop!</h2>
+  <p>
+    Masz swój własny projekt, markę, produkt?  
+    Zgłoś go do naszego Marketplace – pokaż się światu!  
+    My promujemy – Ty zarabiasz. To takie proste.
+  </p>
 
+  <h3>📤 Zgłoszenie produktu do sprzedaży</h3>
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="margin-bottom: 30px;">
+    <input type="text" name="Nazwa produktu" placeholder="Nazwa produktu" required style="width:100%;padding:10px;margin:8px 0;border-radius:6px;">
+    <input type="text" name="Cena" placeholder="Cena (np. 99 zł)" required style="width:100%;padding:10px;margin:8px 0;border-radius:6px;">
+    <select name="Rodzaj" required style="width:100%;padding:10px;margin:8px 0;border-radius:6px;">
+      <option value="">Rodzaj produktu</option>
+      <option>Produkt fizyczny</option>
+      <option>Produkt cyfrowy (np. ebook, grafika)</option>
+    </select>
+    <textarea name="Opis" placeholder="Opis produktu..." required rows="4" style="width:100%;padding:10px;margin:8px 0;border-radius:6px;"></textarea>
+    <input type="url" name="Link do zdjęcia" placeholder="Link do zdjęcia produktu" style="width:100%;padding:10px;margin:8px 0;border-radius:6px;">
+    <input type="email" name="Email kontaktowy" placeholder="Twój e-mail" required style="width:100%;padding:10px;margin:8px 0;border-radius:6px;">
+    <button type="submit" style="padding: 10px 20px; background: #111; color: white; border: none; border-radius: 6px;">Wyślij zgłoszenie</button>
+  </form>
+
+  <h3>🌟 Przykładowe produkty wystawione w Marketplace:</h3>
+  <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding: 15px; width: 250px;">
+      <img src="https://i.imgur.com/BZDtOMU.jpg" style="width:100%; border-radius: 8px;" alt="Produkt">
+      <h4>Koszulka „Krzyk ulicy”</h4>
+      <p>Limitowana koszulka z ilustracją miejskiego wojownika.</p>
+      <p><strong>99 zł</strong></p>
+    </div>
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding: 15px; width: 250px;">
+      <img src="https://i.imgur.com/n2oyvGV.jpg" style="width:100%; border-radius: 8px;" alt="Produkt">
+      <h4>Projekt graficzny „Zodiak Barana”</h4>
+      <p>Plik PNG gotowy do nadruku lub użytku cyfrowego.</p>
+      <p><strong>49 zł</strong></p>
+    </div>
+  </div>
+</section>
 <section id="reklama" class="reklama">
   <h2>Panel Reklamowy</h2>
   <p>Promuj swój produkt na naszej stronie. Cena: 50 zł / tydzień.</p>
@@ -87,8 +114,36 @@
     <button type="submit">Zgłoś reklamę</button>
   </form>
 </section>
+<!-- Panel Admina Marketplace -->
+<section id="marketplace-admin" style="display: none; padding: 30px;">
+  <h2>🔐 Admin Marketplace – Zarządzanie zgłoszeniami</h2>
+  <p>Tu możesz sprawdzać, które produkty zaakceptować, wystawić lub odrzucić. Na razie zgłoszenia trafiają na e-mail.</p>
+  <ul>
+    <li>📩 Sprawdź zgłoszenia przychodzące na: <strong>mielniczukgrzegosz74@gmail.com</strong></li>
+    <li>✍️ Wklej zaakceptowany produkt ręcznie do Marketplace powyżej</li>
+  </ul>
+  <p style="font-style: italic;">(W przyszłości możemy dodać pełne zarządzanie online, jeśli chcesz.)</p>
+</section>
 
-<section id="zbiorka" class="zbiorka">
+<!-- Login do Admin Marketplace -->
+<div id="marketplace-login" style="text-align: center; padding: 40px;">
+  <h2>🛡️ Logowanie do panelu Marketplace</h2>
+  <input type="password" id="marketplacePassword" placeholder="Wpisz hasło..." style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+  <button onclick="checkMarketplacePassword()" style="padding: 10px 20px; background: #111; color: white; border: none; border-radius: 6px;">Zaloguj</button>
+  <p id="wrongPassMarket" style="color: red; display: none; margin-top: 10px;">Błędne hasło. Spróbuj jeszcze raz.</p>
+</div>
+
+<script>
+  function checkMarketplacePassword() {
+    const haslo = document.getElementById("marketplacePassword").value;
+    if (haslo === "Wojownik.03") {
+      document.getElementById("marketplace-admin").style.display = "block";
+      document.getElementById("marketplace-login").style.display = "none";
+    } else {
+      document.getElementById("wrongPassMarket").style.display = "block";
+    }
+  }
+</script><section id="zbiorka" class="zbiorka">
   <h2>
     <span style="animation: beat 1.5s infinite; display: inline-block; color: red;">❤️</span>
     Zbiórka charytatywna – Pomoc dla Domu Dziecka
