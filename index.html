@@ -89,10 +89,71 @@
 </section>
 
 <section id="zbiorka" class="zbiorka">
-  <h2>Zbiórka charytatywna</h2>
-  <p>Wspieramy dom dziecka – przekaż darowiznę na nr <strong>BLIK 573-939-925</strong> z dopiskiem <strong>"pomoc"</strong>.</p>
-</section>
+  <h2>
+    <span style="animation: beat 1.5s infinite; display: inline-block; color: red;">❤️</span>
+    Zbiórka charytatywna – Pomoc dla Domu Dziecka
+  </h2>
 
+  <p style="font-size: 1.1em; margin-top: 10px;">
+    Każde dziecko zasługuje na ciepło, radość i szansę. Pomóż nam wesprzeć dom dziecka, który potrzebuje najprostszych rzeczy – ubrań, zeszytów, zabawek, a czasem po prostu uśmiechu.
+  </p>
+
+  <h3>💸 Wsparcie finansowe</h3>
+  <p>
+    Możesz przesłać darowiznę na numer <strong>BLIK: 573-939-925</strong>  
+    z dopiskiem: <strong>"pomoc"</strong>  
+  </p>
+
+  <h3>🎁 Wsparcie rzeczowe</h3>
+  <p>
+    Przyjmujemy również paczki – zabawki, ubrania, przybory szkolne.  
+    Skontaktuj się z nami, a podamy adres domu dziecka, który aktualnie wspieramy.
+  </p>
+  <ul style="list-style: none; padding-left: 0;">
+    <li>📞 Telefon: <strong>604-296-360</strong></li>
+    <li>✉️ E-mail: <strong>mielniczukgrzegosz74@gmail.com</strong></li>
+  </ul>
+
+  <h3>🧑‍🤝‍🧑 Chcesz pomóc? Zgłoś się:</h3>
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="margin-bottom: 30px;">
+    <input type="text" name="Imię i nazwisko" placeholder="Twoje imię i nazwisko" required style="width: 100%; padding: 8px; margin: 6px 0; border-radius: 6px;">
+    <input type="email" name="Email" placeholder="Twój e-mail" required style="width: 100%; padding: 8px; margin: 6px 0; border-radius: 6px;">
+    <textarea name="Treść pomocy" placeholder="Jak chcesz pomóc? Opisz krótko." rows="4" required style="width: 100%; padding: 8px; margin: 6px 0; border-radius: 6px;"></textarea>
+    <button type="submit" style="padding: 10px 20px; background: #111; color: #fff; border: none; border-radius: 6px;">Zgłoś pomoc</button>
+  </form>
+
+  <h3>❤️ Już pomogli:</h3>
+  <ul style="padding-left: 20px;">
+    <li>✔️ Anna z Opola – 3 paczki z odzieżą dziecięcą</li>
+    <li>✔️ „Firma XYZ” – darowizna 500 zł</li>
+    <li>✔️ Marek z Legnicy – 12 zeszytów i 5 piórników</li>
+    <li>✔️ Ola i Kacper – komplet zabawek i maskotek</li>
+  </ul>
+
+  <blockquote style="margin-top: 20px; font-style: italic; background: #f9f9f9; border-left: 5px solid #ccc; padding: 15px;">
+    „Dobro mnoży się, gdy się je dzieli.” – Dziękujemy każdemu, kto choćby myślą wspiera naszą misję.
+  </blockquote>
+
+  <div id="countdown" style="margin-top: 30px; font-size: 1.1em; font-weight: bold;"></div>
+
+  <style>
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+  </style>
+
+  <script>
+    function updateCountdown() {
+      const today = new Date();
+      const target = new Date(today.getFullYear(), today.getMonth(), today.getDate() + (7 - (today.getDay() % 7)));
+      const diff = Math.floor((target - today) / (1000 * 60 * 60 * 24));
+      document.getElementById("countdown").innerText =
+        "🕒 Kolejna dostawa pomocy już za " + diff + " dni!";
+    }
+    updateCountdown();
+  </script>
+</section>
 <section id="opinie" class="opinie">
   <h2>Opinie klientów</h2>
   <div id="opinia-box">
