@@ -55,16 +55,52 @@
 </section>
 
 <section id="projektuj" class="projektuj">
-  <h2>Zaprojektuj Sam</h2>
-  <p>Wybierz kolor, rozmiar i napisz własny tekst:</p>
-  <form>
-    <select><option>Kolor: Czarny</option><option>Biały</option><option>Czerwony</option></select>
-    <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>
-    <textarea placeholder="Wpisz swój tekst lub projekt"></textarea>
-    <button type="submit">Zamów</button>
-  </form>
-</section>
+  <h2>🎨 Zaprojektuj własny produkt</h2>
+  <p>Stwórz coś wyjątkowego – dodaj swój tekst, wybierz kolor, rozmiar i prześlij własną grafikę. Twój styl, Twoje zasady.</p>
 
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="margin-top: 20px;">
+    <label><strong>Wybierz typ produktu:</strong></label><br>
+    <select name="Typ produktu" required style="width: 100%; padding: 10px; border-radius: 6px; margin: 6px 0;">
+      <option value="">-- Wybierz --</option>
+      <option>Koszulka</option>
+      <option>Bluza</option>
+      <option>Czapka</option>
+    </select>
+
+    <label><strong>Wybierz kolor:</strong></label><br>
+    <select name="Kolor" required style="width: 100%; padding: 10px; border-radius: 6px; margin: 6px 0;">
+      <option value="">-- Wybierz --</option>
+      <option>Czarny</option>
+      <option>Biały</option>
+      <option>Czerwony</option>
+      <option>Szary</option>
+    </select>
+
+    <label><strong>Wybierz rozmiar:</strong></label><br>
+    <select name="Rozmiar" required style="width: 100%; padding: 10px; border-radius: 6px; margin: 6px 0;">
+      <option value="">-- Wybierz --</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+    </select>
+
+    <label><strong>Wpisz swój tekst lub hasło:</strong></label>
+    <textarea name="Tekst własny" rows="3" placeholder="Twój tekst (np. 'Wolność albo śmierć')" style="width: 100%; padding: 10px; border-radius: 6px; margin: 6px 0;"></textarea>
+
+    <label><strong>Link do własnej grafiki (np. z Imgur, Dropbox):</strong></label>
+    <input type="url" name="Link do grafiki" placeholder="https://..." style="width: 100%; padding: 10px; border-radius: 6px; margin: 6px 0;">
+
+    <label><strong>Twój e-mail (dla potwierdzenia):</strong></label>
+    <input type="email" name="Email" required placeholder="twoj@email.com" style="width: 100%; padding: 10px; border-radius: 6px; margin: 6px 0;">
+
+    <button type="submit" style="padding: 10px 20px; background: #111; color: white; border: none; border-radius: 6px;">Wyślij projekt</button>
+  </form>
+
+  <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
+    📩 Po otrzymaniu zgłoszenia skontaktujemy się z Tobą w celu omówienia szczegółów i potwierdzenia zamówienia.
+  </p>
+</section>
 <section id="marketplace" class="marketplace">
   <h2>🛒 Marketplace – Sprzedawaj razem z AdelbertusShop!</h2>
   <p>
