@@ -24,7 +24,111 @@
   </style>
   <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 </head>
-<body>
+  <!-- 🔥 KOSZYK: FULL WYPAS (ikona + popup + skrypt + style) -->
+<style>
+  .cart-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 22px;
+  }
+  .cart-popup {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    width: 300px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    z-index: 1000;
+    display: none;
+  }
+  .cart-popup h3 {
+    margin-top: 0;
+  }
+  .cart-popup ul {
+    list-style: none;
+    padding: 0;
+  }
+  .cart-popup li {
+    border-bottom: 1px solid #ddd;
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .cart-popup .total {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  .cart-popup button {
+    background: #c00;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+</style>
+
+<div class="cart-icon" onclick="toggleCart()">
+  🛒 <span id="cart-count">0</span>
+</div>
+
+<div class="cart-popup" id="cart-popup">
+  <h3>Twój koszyk</h3>
+  <ul id="cart-items"></ul>
+  <p class="total">Suma: <span id="cart-total">0</span> zł</p>
+  <hr>
+  <p><strong>Zapłać BLIK:</strong> 573-939-925<br><em>dopiskiem: „pomoc”</em></p>
+</div>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  function toggleCart() {
+    const popup = document.getElementById('cart-popup');
+    popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+    renderCart();
+  }
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    alert('Dodano do koszyka: ' + name);
+  }
+
+  function updateCartCount() {
+    document.getElementById('cart-count').textContent = cart.length;
+  }
+
+  function renderCart() {
+    const cartList = document.getElementById('cart-items');
+    const totalEl = document.getElementById('cart-total');
+    cartList.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, index) => {
+      total += parseFloat(item.price);
+      const li = document.createElement('li');
+      li.innerHTML = `${item.name} – ${item.price} zł <button onclick="removeFromCart(${index})">X</button>`;
+      cartList.appendChild(li);
+    });
+    totalEl.textContent = total.toFixed(2);
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    renderCart();
+  }
+
+  updateCartCount();
+</script><body>
 <header style="background: #111; color: #fff; padding: 20px; display: flex; align-items: center; justify-content: center; gap: 30px;">
   <!-- Lewy kod QR -->
   <a href="https://adelbertusshop.com" target="_blank">
