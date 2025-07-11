@@ -22,7 +22,27 @@
       width: 100%; padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;
     }
   </style>
-  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+  <style>
+  .mockup-container {
+    position: relative;
+    width: 250px;
+    margin: auto;
+  }
+
+  .mockup-base {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .mockup-overlay {
+    position: absolute;
+    top: 22%;
+    left: 18%;
+    width: 64%;
+    opacity: 0.95;
+    pointer-events: none;
+  }
+</style>  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 </head>
   <!-- 🔥 KOSZYK: FULL WYPAS (ikona + popup + skrypt + style) -->
 <style>
@@ -609,9 +629,24 @@
   const sklepSection = document.getElementById("sklep");
 
   const produktHTML = `
-    <div class="produkt">
-      <img src="${image}" alt="${name}">
-      <h3>${type}: ${name} – ${price} zł</h3>
+const baseMockup = {
+  "Koszulka": "https://i.imgur.com/0CVi7Ux.jpg",
+  "Bluza": "https://i.imgur.com/BZDtOMU.jpg",
+  "Czapka": "https://i.imgur.com/LrO1GHF.jpg"
+}[type];
+
+const produktHTML = `
+  <div class="produkt">
+    <div class="mockup-container">
+      <img src="${baseMockup}" alt="${type}" class="mockup-base">
+      <img src="${image}" class="mockup-overlay" alt="Grafika">
+    </div>
+    <h3>${type}: ${name} – ${price} zł</h3>
+    <p>${desc}</p>
+    <p><strong>Kolor:</strong> ${color} | <strong>Rozmiar:</strong> ${size}</p>
+    <button onclick="addToCart('${name}', ${price})">Dodaj do koszyka</button>
+  </div>
+`;      <h3>${type}: ${name} – ${price} zł</h3>
       <p>${desc}</p>
       <p><strong>Kolor:</strong> ${color} | <strong>Rozmiar:</strong> ${size}</p>
       <button onclick="addToCart('${name}', ${price})">Dodaj do koszyka</button>
