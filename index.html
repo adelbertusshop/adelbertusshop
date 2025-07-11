@@ -717,3 +717,37 @@ const produktHTML = `
     produkty.forEach(p => container.appendChild(p));
   }
 </script>
+  <script>
+  function addToCart(name, price) {
+    alert(`Dodano do koszyka: ${name} za ${price} zł`);
+  }
+
+  function filterProducts(type) {
+    const produkty = document.querySelectorAll('.produkt');
+    produkty.forEach(p => {
+      const produktType = p.getAttribute('data-type');
+      if (type === 'all' || produktType === type) {
+        p.style.display = 'block';
+      } else {
+        p.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+<script>
+  function sortProducts(order) {
+    const container = document.getElementById('sklep');
+    const produkty = Array.from(container.querySelectorAll('.produkt'));
+
+    produkty.sort((a, b) => {
+      const priceA = parseFloat(a.querySelector('h3').textContent.match(/(\d+)\s?zł/)[1]);
+      const priceB = parseFloat(b.querySelector('h3').textContent.match(/(\d+)\s?zł/)[1]);
+      return order === 'asc' ? priceA - priceB : priceB - priceA;
+    });
+
+    produkty.forEach(p => container.appendChild(p));
+  }
+</script>
+</body>
+</html>
