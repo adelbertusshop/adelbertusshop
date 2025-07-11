@@ -177,7 +177,45 @@
   <a href="#" onclick="showSection('regulamin')">Regulamin</a>
   <a href="#" onclick="showSection('login-admin')">Admin</a></nav>
 
-<section id="sklep" class="produkty active">
+<section id="sklep" class="produkty<!-- Czysta Koszulka AdelbertusShop -->
+<div class="produkt" data-type="Koszulka">
+  <div class="mockup-container">
+    <img id="mainImage-czysta-koszulka" class="mockup-base" src="https://i.imgur.com/j9cynsS.png" alt="Czysta Koszulka AdelbertusShop">
+    <div style="margin-top: 10px;">
+      <img onclick="changeImage('mainImage-czysta-koszulka','https://i.imgur.com/j9cynsS.png')" src="https://i.imgur.com/j9cynsS.png" style="width: 40px; cursor: pointer;">
+      <img onclick="changeImage('mainImage-czysta-koszulka','https://i.imgur.com/NgG0MLZ.png')" src="https://i.imgur.com/NgG0MLZ.png" style="width: 40px; cursor: pointer;">
+    </div>
+  </div>
+
+  <h3>Koszulka Basic – 99 zł</h3>
+
+  <label>Rozmiar:</label>
+  <select>
+    <option>S</option><option>M</option><option>L</option><option>XL</option>
+  </select>
+
+  <label>Kolor:</label>
+  <select>
+    <option>Biała</option><option>Czarna</option>
+  </select>
+
+  <p style="color: green;"><strong>Dostępna od ręki!</strong></p>
+
+  <button onclick="addToCart('Koszulka Basic', 99)">Dodaj do koszyka</button>
+
+  <div>
+    <button onclick="toggleOpis(this)" style="margin-top: 10px;">Pokaż więcej</button>
+    <div class="opis" style="display: none; margin-top: 10px;">
+      <p><strong>Opis:</strong> Czysta koszulka do nadruku własnych grafik. Krój unisex, bawełna 100%. Idealna pod personalizację przez AdelbertusShop.</p>
+      <p>Wybierz kolor, dodaj grafikę i gotowe – Twoja sztuka, Twoja marka.</p>
+    </div>
+  </div>
+
+  <div id="paypal-container-koszulka-basic"></div>
+  <script>
+    paypal.HostedButtons({ hostedButtonId: "9WYYD3GH6ZC6C" }).render("#paypal-container-koszulka-basic");
+  </script>
+</div>active">
   <div style="text-align: center; margin-bottom: 20px;">
   <button onclick="filterProducts('all')">Wszystko</button>
   <button onclick="filterProducts('Bluza')">Bluzy</button>
