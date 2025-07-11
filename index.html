@@ -178,8 +178,12 @@
   <a href="#" onclick="showSection('login-admin')">Admin</a></nav>
 
 <section id="sklep" class="produkty active">
-  <div class="produkt">
-    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
+  <div style="text-align: center; margin-bottom: 20px;">
+  <button onclick="filterProducts('all')">Wszystkie</button>
+  <button onclick="filterProducts('Koszulka')">Koszulki</button>
+  <button onclick="filterProducts('Bluza')">Bluzy</button>
+  <button onclick="filterProducts('Czapka')">Czapki</button>
+</div> <div class="produkt" data-type="${type}">    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
     <h3>Bluza StreetStyle – 150 zł</h3>
     <label>Rozmiar:</label>
     <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
@@ -678,5 +682,16 @@ const produktHTML = `
   // Koszyk – przycisk działa, ale funkcję addToCart możesz rozbudować później
   function addToCart(name, price) {
     alert(`Dodano do koszyka: ${name} za ${price} zł`);
+  }<script>
+  function filterProducts(type) {
+    const produkty = document.querySelectorAll('.produkt');
+    produkty.forEach(p => {
+      const produktType = p.getAttribute('data-type');
+      if (type === 'all' || produktType === type) {
+        p.style.display = 'block';
+      } else {
+        p.style.display = 'none';
+      }
+    });
   }
-</script>
+</script></script>
