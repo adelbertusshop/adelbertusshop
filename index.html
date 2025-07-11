@@ -598,8 +598,27 @@
   // 🔥 Po dodaniu produktu, twórz dynamicznie jego kafelek w sekcji Sklep
   document.getElementById("product-form").addEventListener("submit", function(e) {
     e.preventDefault();
-    const name = document.getElementById("product-name").value;
-    const price = document.getElementById("product-price").value;
+   const type = document.getElementById("product-type").value;
+  const color = document.getElementById("product-color").value;
+  const size = document.getElementById("product-size").value;
+  const name = document.getElementById("product-name").value;
+  const price = document.getElementById("product-price").value;
+  const image = document.getElementById("product-image").value;
+  const desc = document.getElementById("product-desc").value;
+
+  const sklepSection = document.getElementById("sklep");
+
+  const produktHTML = `
+    <div class="produkt">
+      <img src="${image}" alt="${name}">
+      <h3>${type}: ${name} – ${price} zł</h3>
+      <p>${desc}</p>
+      <p><strong>Kolor:</strong> ${color} | <strong>Rozmiar:</strong> ${size}</p>
+      <button onclick="addToCart('${name}', ${price})">Dodaj do koszyka</button>
+    </div>
+  `;
+
+  sklepSection.insertAdjacentHTML("beforeend", produktHTML);    const price = document.getElementById("product-price").value;
     const image = document.getElementById("product-image").value;
     const desc = document.getElementById("product-desc").value;
 
