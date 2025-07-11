@@ -183,7 +183,13 @@
   <button onclick="filterProducts('Koszulka')">Koszulki</button>
   <button onclick="filterProducts('Bluza')">Bluzy</button>
   <button onclick="filterProducts('Czapka')">Czapki</button>
-</div> <div class="produkt" data-type="${type}">    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
+
+  <select onchange="sortProducts(this.value)" style="margin-left: 20px; padding: 5px;">
+    <option value="">Sortuj wg ceny</option>
+    <option value="asc">Cena rosnąco</option>
+    <option value="desc">Cena malejąco</option>
+  </select>
+</div>   <div class="produkt" data-type="${type}">    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
     <h3>Bluza StreetStyle – 150 zł</h3>
     <label>Rozmiar:</label>
     <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
@@ -679,10 +685,12 @@ const produktHTML = `
     document.getElementById("preview-product").innerHTML = `<p style="color:green;">Produkt dodany do sklepu!</p>`;
   });
 
+<script>
   // Koszyk – przycisk działa, ale funkcję addToCart możesz rozbudować później
   function addToCart(name, price) {
     alert(`Dodano do koszyka: ${name} za ${price} zł`);
-  }<script>
+  }
+
   function filterProducts(type) {
     const produkty = document.querySelectorAll('.produkt');
     produkty.forEach(p => {
@@ -694,4 +702,18 @@ const produktHTML = `
       }
     });
   }
-</script></script>
+</script>
+<script>
+  function sortProducts(order) {
+    const container = document.getElementById('sklep');
+    const produkty = Array.from(container.querySelectorAll('.produkt'));
+
+    produkty.sort((a, b) => {
+      const priceA = parseFloat(a.querySelector('h3').textContent.match(/(\d+)\s?zł/)[1]);
+      const priceB = parseFloat(b.querySelector('h3').textContent.match(/(\d+)\s?zł/)[1]);
+      return order === 'asc' ? priceA - priceB : priceB - priceA;
+    });
+
+    produkty.forEach(p => container.appendChild(p));
+  }
+</script>
