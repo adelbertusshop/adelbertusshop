@@ -155,7 +155,7 @@
   <a href="#" onclick="showSection('blog')">Blog</a>
   <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
   <a href="#" onclick="showSection('regulamin')">Regulamin</a>
-</nav>
+  <a href="#" onclick="showSection('login-admin')">Admin</a></nav>
 
 <section id="sklep" class="produkty active">
   <div class="produkt">
@@ -541,4 +541,63 @@
     }
   }
 </script></body>
-</html>
+  <!-- 🔐 PANEL ADMINISTRATORA: Wersja 1 -->
+<section id="admin-panel" class="admin" style="padding: 40px; display: none;">
+  <h2>Panel Administratora</h2>
+  <p>Witaj, Wojowniku! Tutaj możesz dodawać produkty do sklepu.</p>
+
+  <form id="product-form">
+    <label>Nazwa produktu:</label>
+    <input type="text" id="product-name" required><br>
+
+    <label>Cena (zł):</label>
+    <input type="number" id="product-price" required><br>
+
+    <label>Link do grafiki (mockup):</label>
+    <input type="url" id="product-image" required><br>
+
+    <label>Opis:</label>
+    <textarea id="product-desc" rows="3"></textarea><br>
+
+    <button type="submit">Dodaj produkt</button>
+  </form>
+
+  <div id="preview-product" style="margin-top: 30px;"></div>
+</section>
+
+<!-- 🔑 EKRAN LOGOWANIA -->
+<section id="login-admin" style="padding: 40px;">
+  <h2>Logowanie do panelu administratora</h2>
+  <input type="password" id="admin-pass" placeholder="Hasło"><br><br>
+  <button onclick="loginAdmin()">Zaloguj</button>
+  <p id="login-error" style="color:red;"></p>
+</section>
+
+<script>
+  function loginAdmin() {
+    const pass = document.getElementById("admin-pass").value;
+    if (pass === "Wojownik.03") {
+      document.getElementById("login-admin").style.display = "none";
+      document.getElementById("admin-panel").style.display = "block";
+    } else {
+      document.getElementById("login-error").textContent = "Nieprawidłowe hasło. Spróbuj ponownie.";
+    }
+  }
+
+  // Obsługa formularza dodawania produktu – TEST (wyświetla dane w podglądzie)
+  document.getElementById("product-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("product-name").value;
+    const price = document.getElementById("product-price").value;
+    const image = document.getElementById("product-image").value;
+    const desc = document.getElementById("product-desc").value;
+
+    const preview = document.getElementById("preview-product");
+    preview.innerHTML = `
+      <h3>Nowy produkt:</h3>
+      <img src="${image}" style="max-width:200px;"><br>
+      <strong>${name}</strong> – ${price} zł<br>
+      <p>${desc}</p>
+    `;
+  });
+</script></html>
