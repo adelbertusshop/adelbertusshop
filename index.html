@@ -177,17 +177,19 @@
   <a href="#" onclick="showSection('regulamin')">Regulamin</a>
   <a href="#" onclick="showSection('login-admin')">Admin</a></nav>
 
-<section id="sklep" class="produkty<!-- Czysta Koszulka AdelbertusShop -->
+<section id="sklep" class="produkty<!
+<div active"
+  <!-- NOWA KOSZULKA -->
 <div class="produkt" data-type="Koszulka">
   <div class="mockup-container">
-    <img id="mainImage-czysta-koszulka" class="mockup-base" src="https://i.imgur.com/j9cynsS.png" alt="Czysta Koszulka AdelbertusShop">
+    <img id="mainImage-koszulka-nowa" class="mockup-base" src="https://i.imgur.com/XXXXXXX.jpg" alt="Koszulka z nową grafiką">
     <div style="margin-top: 10px;">
-      <img onclick="changeImage('mainImage-czysta-koszulka','https://i.imgur.com/j9cynsS.png')" src="https://i.imgur.com/j9cynsS.png" style="width: 40px; cursor: pointer;">
-      <img onclick="changeImage('mainImage-czysta-koszulka','https://i.imgur.com/NgG0MLZ.png')" src="https://i.imgur.com/NgG0MLZ.png" style="width: 40px; cursor: pointer;">
+      <img onclick="changeImage('mainImage-koszulka-nowa','https://i.imgur.com/XXXXXXX.jpg')" src="https://i.imgur.com/XXXXXXX.jpg" style="width: 40px; cursor: pointer;">
+      <img onclick="changeImage('mainImage-koszulka-nowa','https://i.imgur.com/YYYYYYY.jpg')" src="https://i.imgur.com/YYYYYYY.jpg" style="width: 40px; cursor: pointer;">
     </div>
   </div>
 
-  <h3>Koszulka Basic – 99 zł</h3>
+  <h3>Koszulka Wojownika – 119 zł</h3>
 
   <label>Rozmiar:</label>
   <select>
@@ -196,27 +198,16 @@
 
   <label>Kolor:</label>
   <select>
-    <option>Biała</option><option>Czarna</option>
+    <option>Czarny</option><option>Biały</option><option>Czerwony</option>
   </select>
 
-  <p style="color: green;"><strong>Dostępna od ręki!</strong></p>
+  <p style="color: red;"><strong>Limitowana edycja!🔥</strong></p>
 
-  <button onclick="addToCart('Koszulka Basic', 99)">Dodaj do koszyka</button>
+  <button onclick="addToCart('Koszulka Wojownika', 119)">Dodaj do koszyka</button>
 
-  <div>
-    <button onclick="toggleOpis(this)" style="margin-top: 10px;">Pokaż więcej</button>
-    <div class="opis" style="display: none; margin-top: 10px;">
-      <p><strong>Opis:</strong> Czysta koszulka do nadruku własnych grafik. Krój unisex, bawełna 100%. Idealna pod personalizację przez AdelbertusShop.</p>
-      <p>Wybierz kolor, dodaj grafikę i gotowe – Twoja sztuka, Twoja marka.</p>
-    </div>
-  </div>
-
-  <div id="paypal-container-koszulka-basic"></div>
-  <script>
-    paypal.HostedButtons({ hostedButtonId: "9WYYD3GH6ZC6C" }).render("#paypal-container-koszulka-basic");
-  </script>
-</div>active">
-  <div style="text-align: center; margin-bottom: 20px;">
+  <div id="paypal-container-koszulka-nowa"></div>
+  <script>paypal.HostedButtons({ hostedButtonId: "NOWE_ID" }).render("#paypal-container-koszulka-nowa");</script>
+</div>  <div style="text-align: center; margin-bottom: 20px;">
   <button onclick="filterProducts('all')">Wszystko</button>
   <button onclick="filterProducts('Bluza')">Bluzy</button>
     <!-- Koszulka AdelbertusShop -->
