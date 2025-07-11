@@ -213,10 +213,39 @@
     <button onclick="addToCart('Bluza StreetStyle', 150)">Dodaj do koszyka</button>
   </div>
 
-  <div class="produkt" data-type="Koszulka">
-    <img src="https://i.imgur.com/FsOHmVv.jpg" alt="Koszulka AdelbertusShop">
-    <h3>Koszulka AdelbertusShop – 99 zł</h3>
+  <div class="produkt" data-type="Bluza">
+  <div class="mockup-container">
+    <img id="mainImage-bluza" class="mockup-base" src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza StreetStyle">
+    <div style="margin-top: 10px;">
+      <img onclick="changeImage('mainImage-bluza','https://i.imgur.com/BZDtOMU.jpg')" src="https://i.imgur.com/BZDtOMU.jpg" style="width: 40px; cursor: pointer;">
+      <img onclick="changeImage('mainImage-bluza','https://i.imgur.com/FsOHmVv.jpg')" src="https://i.imgur.com/FsOHmVv.jpg" style="width: 40px; cursor: pointer;">
+    </div>
+  </div>
 
+  <h3>Bluza StreetStyle – 150 zł</h3>
+
+  <label>Rozmiar:</label>
+  <select>
+    <option>S</option><option>M</option><option>L</option><option>XL</option>
+  </select>
+
+  <label>Kolor:</label>
+  <select>
+    <option>Czarny</option><option>Biały</option><option>Szary</option>
+  </select>
+
+  <p style="color: red;"><strong>Zostały tylko 3 sztuki!</strong></p>
+
+  <button onclick="addToCart('Bluza StreetStyle', 150)">Dodaj do koszyka</button>
+
+  <div>
+    <button onclick="toggleOpis(this)" style="margin-top: 10px;">Pokaż więcej</button>
+    <div class="opis" style="display: none; margin-top: 10px;">
+      <p><strong>Opis:</strong> Klasyczna bluza streetwearowa z grafiką AdelbertusShop. Wysokiej jakości bawełna, krój oversize, nadruk odporny na pranie.</p>
+      <p>100% Made in Poland. Idealna na każdą porę roku – od podziemia po szczyt Góry Krzyżowej!</p>
+    </div>
+  </div>
+</div>
     <label>Rozmiar:</label>
     <select>
       <option>S</option>
@@ -802,5 +831,16 @@ const produktHTML = `
     produkty.forEach(p => container.appendChild(p));
   }
 </script>
-</body>
+  <script>
+  function changeImage(targetId, newSrc) {
+    document.getElementById(targetId).src = newSrc;
+  }
+
+  function toggleOpis(btn) {
+    const opis = btn.nextElementSibling;
+    const widoczny = opis.style.display === "block";
+    opis.style.display = widoczny ? "none" : "block";
+    btn.textContent = widoczny ? "Pokaż więcej" : "Ukryj opis";
+  }
+</script></body>
 </html>
