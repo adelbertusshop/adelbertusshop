@@ -178,28 +178,70 @@
   <a href="#" onclick="showSection('login-admin')">Admin</a></nav>
 
 <section id="sklep" class="produkty active">
-  <div style="text-align: center; margin-bottom: 20px;">
-  <button onclick="filterProducts('all')">Wszystkie</button>
-  <button onclick="filterProducts('Koszulka')">Koszulki</button>
-  <button onclick="filterProducts('Bluza')">Bluzy</button>
-  <button onclick="filterProducts('Czapka')">Czapki</button>
-
-  <select onchange="sortProducts(this.value)" style="margin-left: 20px; padding: 5px;">
-    <option value="">Sortuj wg ceny</option>
-    <option value="asc">Cena rosnąco</option>
-    <option value="desc">Cena malejąco</option>
-  </select>
-</div>   <div class="produkt" data-type="${type}">    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
+  <div class="produkt" data-type="Bluza">
+    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza StreetStyle">
     <h3>Bluza StreetStyle – 150 zł</h3>
-    <label>Rozmiar:</label>
-    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-    <label>Kolor:</label>
-    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
-    <div id="paypal-container-bluza"></div>
-    <script>paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");</script>
-    <button onclick="addToCart('Bluza StreetStyle', 150)">Dodaj do koszyka</button>  </div>
-</section>
 
+    <label>Rozmiar:</label>
+    <select>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+    </select>
+
+    <label>Kolor:</label>
+    <select>
+      <option>Czarny</option>
+      <option>Biały</option>
+      <option>Szary</option>
+    </select>
+
+    <p style="color: red;"><strong>Zostały tylko 3 sztuki!</strong></p>
+
+    <button onclick="addToCart('Bluza StreetStyle', 150)">Dodaj do koszyka</button>
+  </div>
+
+  <div class="produkt" data-type="Koszulka">
+    <img src="https://i.imgur.com/FsOHmVv.jpg" alt="Koszulka AdelbertusShop">
+    <h3>Koszulka AdelbertusShop – 99 zł</h3>
+
+    <label>Rozmiar:</label>
+    <select>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+    </select>
+
+    <label>Kolor:</label>
+    <select>
+      <option>Czarny</option>
+      <option>Biały</option>
+      <option>Czerwony</option>
+    </select>
+
+    <p style="color: orange;"><strong>Zostały tylko 5 sztuk!</strong></p>
+
+    <button onclick="addToCart('Koszulka AdelbertusShop', 99)">Dodaj do koszyka</button>
+  </div>
+
+  <div class="produkt" data-type="Czapka">
+    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Czapka">
+    <h3>Czapka Classic – 79 zł</h3>
+
+    <label>Kolor:</label>
+    <select>
+      <option>Czarna</option>
+      <option>Biała</option>
+      <option>Beżowa</option>
+    </select>
+
+    <p style="color: green;"><strong>Ostatnie sztuki!</strong></p>
+
+    <button onclick="addToCart('Czapka Classic', 79)">Dodaj do koszyka</button>
+  </div>
+</section>
 <section id="projektuj" class="projektuj">
   <h2>🎨 Zaprojektuj własny produkt</h2>
   <p>Stwórz coś wyjątkowego – dodaj swój tekst, wybierz kolor, rozmiar i prześlij własną grafikę. Twój styl, Twoje zasady.</p>
