@@ -195,8 +195,84 @@
     },
     // Można dodać więcej...
   ];
-
-  produktyAuto.forEach(prod => {
+<!-- START: produktyAuto -->
+<script>
+const produktyAuto = [
+  {
+    nazwa: "Koszulka – Wojownik #1",
+    cena: 105,
+    grafika: "https://i.ibb.co/9mMbh0fs/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg",
+    typ: "Koszulka"
+  },
+  {
+    nazwa: "Bluza – Wojownik #1",
+    cena: 150,
+    grafika: "https://i.ibb.co/9mMbh0fs/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg",
+    typ: "Bluza"
+  },
+  {
+    nazwa: "Czapka – Wojownik #1",
+    cena: 79,
+    grafika: "https://i.ibb.co/9mMbh0fs/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg",
+    typ: "Czapka"
+  },
+  {
+    nazwa: "Koszulka – Wojownik #2",
+    cena: 105,
+    grafika: "https://i.ibb.co/XrdGQdvM/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg",
+    typ: "Koszulka"
+  },
+  {
+    nazwa: "Bluza – Wojownik #2",
+    cena: 150,
+    grafika: "https://i.ibb.co/XrdGQdvM/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg",
+    typ: "Bluza"
+  },
+  {
+    nazwa: "Czapka – Wojownik #2",
+    cena: 79,
+    grafika: "https://i.ibb.co/XrdGQdvM/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg",
+    typ: "Czapka"
+  },
+  {
+    nazwa: "Koszulka – Wojownik #3",
+    cena: 105,
+    grafika: "https://i.ibb.co/7N1PJ0DQ/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg",
+    typ: "Koszulka"
+  },
+  {
+    nazwa: "Bluza – Wojownik #3",
+    cena: 150,
+    grafika: "https://i.ibb.co/7N1PJ0DQ/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg",
+    typ: "Bluza"
+  },
+  {
+    nazwa: "Czapka – Wojownik #3",
+    cena: 79,
+    grafika: "https://i.ibb.co/7N1PJ0DQ/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg",
+    typ: "Czapka"
+  },
+  {
+    nazwa: "Koszulka – Wojownik #4",
+    cena: 105,
+    grafika: "https://i.ibb.co/5XgHv00z/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg",
+    typ: "Koszulka"
+  },
+  {
+    nazwa: "Bluza – Wojownik #4",
+    cena: 150,
+    grafika: "https://i.ibb.co/5XgHv00z/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg",
+    typ: "Bluza"
+  },
+  {
+    nazwa: "Czapka – Wojownik #4",
+    cena: 79,
+    grafika: "https://i.ibb.co/5XgHv00z/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg",
+    typ: "Czapka"
+  }
+];
+</script>
+<!-- END: produktyAuto -->  produktyAuto.forEach(prod => {
     const html = `
       <div class="produkt" data-type="${prod.typ}">
         <img class="mockup-base" src="${prod.grafika}" alt="${prod.nazwa}" style="width: 200px;" />
