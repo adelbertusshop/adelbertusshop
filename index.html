@@ -203,8 +203,7 @@ const produktyAuto = [
   }
 ];
 </script>
-<!-- END: produktyAuto -->  produktyAuto.forEach(prod => {
-    const html = `
+}
       <div class="produkt" data-type="${prod.typ}">
         <img class="mockup-base" src="${prod.grafika}" alt="${prod.nazwa}" style="width: 200px;" />
         <h3>${prod.nazwa} – ${prod.cena} zł</h3>
@@ -214,9 +213,8 @@ const produktyAuto = [
         <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
         <button onclick="addToCart('${prod.nazwa}', ${prod.cena})">Dodaj do koszyka</button>
       </div>
-    `;
-    document.getElementById("produkty-auto").innerHTML += html;
-  });
+    }
+   
 </script><script>
   const produktyAuto = [
     {
@@ -424,9 +422,7 @@ const produktyAuto = [
         <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
         <button onclick="addToCart('${prod.nazwa}', ${prod.cena})">Dodaj do koszyka</button>
       </div>
-    `;
-    document.getElementById("produkty-auto").innerHTML += html;
-  });
+    }
 </script>  <!-- NOWA KOSZULKA -->
 <div class="produkt" data-type="Koszulka">
   <div class="mockup-container">
