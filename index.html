@@ -178,8 +178,65 @@
   <a href="#" onclick="showSection('login-admin')">Admin</a></nav>
 
 <section id="sklep" class="produkty<!
-<div active"
-  <!-- NOWA KOSZULKA -->
+<div active">
+  <div id="produkty-auto"></div>
+
+<script>
+  const produktyAuto = [
+    {
+      nazwa: "Koszulka z Wojownikiem",
+      cena: 99,
+      grafika: "https://i.ibb.co/kVvGKcz/file-00000000b05862468692775a467c9e6d.png",
+      typ: "Koszulka"
+    },
+    {
+      nazwa: "Bluza Mistrza",
+      cena: 150,
+      grafika: "https://i.ibb.co/bMPm2Bwr/file-000000004d38620a9f9d0d8d43926ba0.png",
+      typ: "Bluza"
+    },
+    {
+      nazwa: "Czapka Legendy",
+      cena: 79,
+      grafika: "https://i.ibb.co/DPfsc60f/file-00000000c71c6246b9d78afc2a6c0a39.png",
+      typ: "Czapka"
+    }
+    
+    {
+      nazwa: "Czapka Legendy",
+      cena: 79,
+      grafika: "https://i.ibb.co/DPfsc60f/file-00000000c71c6246b9d78afc2a6c0a39.png",
+      typ: "Czapka"
+    },
+    {
+      nazwa: "Koszulka z Baranem",
+      cena: 105,
+      grafika: "https://i.ibb.co/mVc0W4cQ/file-0000000086bc620a9620103c34ef3e1a-1.png",
+      typ: "Koszulka"
+    }  ];
+</script>
+  {
+      nazwa: "Czapka Legendy",
+      cena: 79,
+      grafika: "https://i.ibb.co/DPfsc60f/file-00000000c71c6246b9d78afc2a6c0a39.png",
+      typ: "Czapka"
+    }  produktyAuto.forEach(prod => {
+    const html = `
+      <div class="produkt" data-type="${prod.typ}">
+        <div class="mockup-container">
+          <img class="mockup-base" src="${prod.grafika}" alt="${prod.nazwa}">
+        </div>
+        <h3>${prod.nazwa} – ${prod.cena} zł</h3>
+        <label>Rozmiar:</label>
+        <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+        <label>Kolor:</label>
+        <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
+        <button onclick="addToCart('${prod.nazwa}', ${prod.cena})">Dodaj do koszyka</button>
+      </div>
+    `;
+    document.getElementById("produkty-auto").innerHTML += html;
+  });
+</script>  <!-- NOWA KOSZULKA -->
 <div class="produkt" data-type="Koszulka">
   <div class="mockup-container">
     <img id="mainImage-koszulka-nowa" class="mockup-base" src="https://i.imgur.com/XXXXXXX.jpg" alt="Koszulka z nową grafiką">
