@@ -6,561 +6,229 @@
   <title>AdelbertusShop</title>
   <style>
     body {
-      background-color: #0f0f0f;
-      color: #e5e5e5;
-      font-family: 'Helvetica Neue', sans-serif;
-      letter-spacing: 0.03em;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      background: #fff;
+      color: #333;
     }
 
-    header {
-      background-color: #1a1a1a;
-      color: #d6b36a;
-      border-bottom: 2px solid #b8a07f;
+    header, footer {
+      background: #111;
+      color: #fff;
       text-align: center;
       padding: 20px;
     }
 
     nav {
-      margin-top: 10px;
+      background: #222;
+      text-align: center;
+      padding: 10px;
     }
 
     nav a {
-      color: #c0a165;
-      margin: 0 10px;
+      color: #fff;
+      margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
     }
 
-    nav a:hover {
-      color: #e5e5e5;
-      text-shadow: 0 0 5px #c0a165;
+    section {
+      display: none;
+      padding: 20px;
     }
 
-   section {
-  background-color: #1a1a1a;
-  padding: 30px 20px;
-  border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(184, 160, 127, 0.15);
-  margin: 0 auto;
-  max-width: 1200px;
-  box-sizing: border-box;
-}
-    h2.category-title {
-      color: #d6b36a;
-      border-bottom: 1px solid #b8a07f;
-      font-size: 2rem;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    section.active {
+      display: block;
     }
 
-    .product {
-      background-color: #121212;
-      color: #e5e5e5;
-      box-shadow: 0 0 10px rgba(255,255,255,0.05);
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
+      padding: 20px;
+    }
+
+    .produkt {
+      border: 1px solid #ccc;
       padding: 15px;
       border-radius: 8px;
-      margin-bottom: 20px;
+      width: 250px;
+      text-align: center;
+      margin: 20px auto;
     }
 
-    .product:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 15px rgba(214, 179, 106, 0.3);
+    .produkt img {
+      max-width: 100%;
+      border-radius: 8px;
     }
 
-    .product p.price {
-      color: #d6b36a;
+    .produkt select, form input, form textarea, form button {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .mockup-container {
+      position: relative;
+      width: 250px;
+      margin: auto;
+    }
+
+    .mockup-base {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .mockup-overlay {
+      position: absolute;
+      top: 22%;
+      left: 18%;
+      width: 64%;
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    .cart-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      color: white;
+      font-size: 22px;
+    }
+
+    .cart-popup {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      width: 300px;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      z-index: 1000;
+      display: none;
+    }
+
+    .cart-popup h3 {
+      margin-top: 0;
+    }
+
+    .cart-popup ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cart-popup li {
+      border-bottom: 1px solid #ddd;
+      padding: 8px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .cart-popup .total {
       font-weight: bold;
+      margin-top: 10px;
     }
 
-    button,
-    form button {
-      background: #b8a07f;
-      color: #0f0f0f;
+    .cart-popup button {
+      background: #c00;
+      color: white;
       border: none;
-      padding: 10px 20px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      border-radius: 5px;
+      padding: 5px 10px;
+      border-radius: 4px;
       cursor: pointer;
     }
-
-    button:hover,
-    form button:hover {
-      background: #cdbb9e;
-    }
   </style>
+
+  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 </head>
+
 <body>
 
-<header>
-  <h1>AdelbertusShop</h1>
-  <p>Moda uliczna z przekazem</p>
-  <nav>
-    <a href="#sklep">Sklep</a>
-    <a href="#zaprojektuj">Zaprojektuj</a>
-    <a href="#marketplace">Marketplace</a>
-    <a href="#reklama">Reklama</a>
-    <a href="#zbiorka">Zbiórka</a>
-    <a href="#opinie">Opinie</a>
-    <a href="#blog">Blog</a>
-    <a href="#zamowienia">Zamówienia</a>
-    <a href="#regulamin">Regulamin</a>
-  </nav>
+<div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+
+<div class="cart-popup" id="cart-popup">
+  <h3>Twój koszyk</h3>
+  <ul id="cart-items"></ul>
+  <p class="total">Suma: <span id="cart-total">0</span> zł</p>
+  <hr>
+  <p><strong>Zapłać BLIK:</strong> 573-939-925<br><em>dopiskiem: „pomoc”</em></p>
+</div>
+
+<header style="background: #111; color: #fff; padding: 20px; display: flex; align-items: center; justify-content: center; gap: 30px;">
+  <a href="https://adelbertusshop.com" target="_blank">
+    <img src="https://i.imgur.com/FsOHmVv.jpg" alt="Kod QR AdelbertusShop" style="width:80px; border-radius: 8px;">
+  </a>
+
+  <div style="text-align: center;">
+    <h1 style="margin: 0;">AdelbertusShop</h1>
+    <p style="margin: 0;">Moda uliczna dla wyjątkowych ludzi</p>
+  </div>
+
+  <a href="https://adelbertusshop.com" target="_blank">
+    <img src="https://i.imgur.com/FsOHmVv.jpg" alt="Kod QR AdelbertusShop" style="width:80px; border-radius: 8px;">
+  </a>
 </header>
 
-<section id="sklep">
-  <h2 class="category-title">Sklep</h2>
-  <!-- 🔥 Tutaj wkleisz swoje produkty -->
-  <div class="product">
-    <h3>Koszulka Pi</h3>
-    <p>Limitowana edycja z symbolem liczby π</p>
-    <p class="price">99 zł</p>
-    <button>Kup teraz</button>
-  </div>
-</section>
+<nav>
+  <a href="#" onclick="showSection('sklep')">Sklep</a>
+  <a href="#" onclick="showSection('zaprojektuj')">Zaprojektuj</a>
+  <a href="#" onclick="showSection('marketplace')">Marketplace</a>
+  <a href="#" onclick="showSection('reklama')">Reklama</a>
+  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
+  <a href="#" onclick="showSection('opinie')">Opinie</a>
+  <a href="#" onclick="showSection('blog')">Blog</a>
+  <a href="#" onclick="showSection('zamowienie')">Zamówienia</a>
+  <a href="#" onclick="showSection('regulamin')">Regulamin</a>
+</nav>
 
-</body>
-</html>  </style>
-</head>
-<body>
-<!-- ✨ Tu możesz wkleić dalszą część strony --></style>  
-  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>  
-</head>  
-  <!-- 🔥 KOSZYK: FULL WYPAS (ikona + popup + skrypt + style) -->  
-<style>  
-  .cart-icon {  
-    position: absolute;  
-    top: 20px;  
-    right: 20px;  
-    cursor: pointer;  
-    color: white;  
-    font-size: 22px;  
-  }  
-  .cart-popup {  
-    position: fixed;  
-    top: 70px;  
-    right: 20px;  
-    width: 300px;  
-    background: #fff;  
-    border: 1px solid #ccc;  
-    padding: 15px;  
-    border-radius: 10px;  
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);  
-    z-index: 1000;  
-    display: none;  
-  }  
-  .cart-popup h3 {  
-    margin-top: 0;  
-  }  
-  .cart-popup ul {  
-    list-style: none;  
-    padding: 0;  
-  }  
-  .cart-popup li {  
-    border-bottom: 1px solid #ddd;  
-    padding: 8px 0;  
-    display: flex;  
-    justify-content: space-between;  
-  }  
-  .cart-popup .total {  
-    font-weight: bold;  
-    margin-top: 10px;  
-  }  
-  .cart-popup button {  
-    background: #c00;  
-    color: white;  
-    border: none;  
-    padding: 5px 10px;  
-    border-radius: 4px;  
-    cursor: pointer;  
-  }  
-</style>  <div class="cart-icon" onclick="toggleCart()">  
-  🛒 <span id="cart-count">0</span>  
-</div>  <div class="cart-popup" id="cart-popup">  
-  <h3>Twój koszyk</h3>  
-  <ul id="cart-items"></ul>  
-  <p class="total">Suma: <span id="cart-total">0</span> zł</p>  
-  <hr>  
-  <p><strong>Zapłać BLIK:</strong> 573-939-925<br><em>dopiskiem: „pomoc”</em></p>  
-</div>  <script>  
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];  
-  
-  function toggleCart() {  
-    const popup = document.getElementById('cart-popup');  
-    popup.style.display = popup.style.display === 'block' ? 'none' : 'block';  
-    renderCart();  
-  }  
-  
-  function addToCart(name, price) {  
-    cart.push({ name, price });  
-    localStorage.setItem('cart', JSON.stringify(cart));  
-    updateCartCount();  
-    alert('Dodano do koszyka: ' + name);  
-  }  
-  
-  function updateCartCount() {  
-    document.getElementById('cart-count').textContent = cart.length;  
-  }  
-  
-  function renderCart() {  
-    const cartList = document.getElementById('cart-items');  
-    const totalEl = document.getElementById('cart-total');  
-    cartList.innerHTML = '';  
-    let total = 0;  
-    cart.forEach((item, index) => {  
-      total += parseFloat(item.price);  
-      const li = document.createElement('li');  
-      li.innerHTML = `${item.name} – ${item.price} zł <button onclick="removeFromCart(${index})">X</button>`;  
-      cartList.appendChild(li);  
-    });  
-    totalEl.textContent = total.toFixed(2);  
-  }  
-  
-  function removeFromCart(index) {  
-    cart.splice(index, 1);  
-    localStorage.setItem('cart', JSON.stringify(cart));  
-    updateCartCount();  
-    renderCart();  
-  }  
-  
-  updateCartCount();  
-</script><body>  <header style="background: #111; color: #fff; padding: 20px; display: flex; align-items: center; justify-content: center; gap: 30px;">  
-  <!-- Lewy kod QR -->  
-  <a href="https://adelbertusshop.com" target="_blank">  
-    <img src="https://i.imgur.com/FsOHmVv.jpg" alt="Kod QR AdelbertusShop" style="width:80px; border-radius: 8px;">  
-  </a>    <!-- Tytuł sklepu -->    <div style="text-align: center;">  
-    <h1 style="margin: 0;">AdelbertusShop</h1>  
-    <p style="margin: 0;">Moda uliczna dla wyjątkowych ludzi</p>  
-  </div>    <!-- Prawy kod QR -->    <a href="https://adelbertusshop.com" target="_blank">  
-    <img src="https://i.imgur.com/FsOHmVv.jpg" alt="Kod QR AdelbertusShop" style="width:80px; border-radius: 8px;">  
-  </a>  
-</header><nav>  
-  <a href="#" onclick="showSection('sklep')">Sklep</a>  
-  <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>  
-  <a href="#" onclick="showSection('marketplace')">Marketplace</a>  
-  <a href="#" onclick="showSection('reklama')">Reklama</a>  
-  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>  
-  <a href="#" onclick="showSection('opinie')">Opinie</a>  
-  <a href="#" onclick="showSection('blog')">Blog</a>  
-  <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>  
-  <a href="#" onclick="showSection('regulamin')">Regulamin</a>  
-</nav>  <section id="sklep" class="produkty active">  
-  <div class="produkt">  
-    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">  
-    <h3>Bluza StreetStyle – 150 zł</h3>  
-    <label>Rozmiar:</label>  
-    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>  
-    <label>Kolor:</label>  
-    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>  
-    <div id="paypal-container-bluza"></div>  
-    <script>paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");</script>  
-    <button onclick="addToCart('Bluza StreetStyle', 150)">Dodaj do koszyka</button>  </div>  
-</section>  <section id="projektuj" class="projektuj">  
-  <h2>🎨 Zaprojektuj własny produkt</h2>  
-  <p>Stwórz coś wyjątkowego – dodaj swój tekst, wybierz kolor, rozmiar i prześlij własną grafikę. Twój styl, Twoje zasady.</p>    <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="margin-top: 20px;">  
-    <label><strong>Wybierz typ produktu:</strong></label><br>  
-    <select name="Typ produktu" required style="width: 100%; padding: 10px; border-radius: 6px; margin: 6px 0;">  
-      <option value="">-- Wybierz --</option>  
-      <option>Koszulka</option>  
-      <option>Bluza</option>  
-      <option>Czapka</option>  
-    </select>  <label><strong>Wybierz kolor:</strong></label><br>  
-<select name="Kolor" required style="width: 100%; padding: 10px; border-radius: 6px; margin: 6px 0;">  
-  <option value="">-- Wybierz --</option>  
-  <option>Czarny</option>  
-  <option>Biały</option>  
-  <option>Czerwony</option>  
-  <option>Szary</option>  
-</select>  
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-<label><strong>Wybierz rozmiar:</strong></label><br>  
-<select name="Rozmiar" required style="width: 100%; padding: 10px; border-radius: 6px; margin: 6px 0;">  
-  <option value="">-- Wybierz --</option>  
-  <option>S</option>  
-  <option>M</option>  
-  <option>L</option>  
-  <option>XL</option>  
-</select>  
+  function toggleCart() {
+    const popup = document.getElementById('cart-popup');
+    popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+    renderCart();
+  }
 
-<label><strong>Wpisz swój tekst lub hasło:</strong></label>  
-<textarea name="Tekst własny" rows="3" placeholder="Twój tekst (np. 'Wolność albo śmierć')" style="width: 100%; padding: 10px; border-radius: 6px; margin: 6px 0;"></textarea>  
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    alert('Dodano do koszyka: ' + name);
+  }
 
-<label><strong>Link do własnej grafiki (np. z Imgur, Dropbox):</strong></label>  
-<input type="url" name="Link do grafiki" placeholder="https://..." style="width: 100%; padding: 10px; border-radius: 6px; margin: 6px 0;">  
+  function updateCartCount() {
+    document.getElementById('cart-count').textContent = cart.length;
+  }
 
-<label><strong>Twój e-mail (dla potwierdzenia):</strong></label>  
-<input type="email" name="Email" required placeholder="twoj@email.com" style="width: 100%; padding: 10px; border-radius: 6px; margin: 6px 0;">  
+  function renderCart() {
+    const cartList = document.getElementById('cart-items');
+    const totalEl = document.getElementById('cart-total');
+    cartList.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, index) => {
+      total += parseFloat(item.price);
+      const li = document.createElement('li');
+      li.innerHTML = `${item.name} – ${item.price} zł <button onclick="removeFromCart(${index})">X</button>`;
+      cartList.appendChild(li);
+    });
+    totalEl.textContent = total.toFixed(2);
+  }
 
-<button type="submit" style="padding: 10px 20px; background: #111; color: white; border: none; border-radius: 6px;">Wyślij projekt</button>
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    renderCart();
+  }
 
-  </form>    <p style="margin-top: 20px; font-size: 0.9em; color: #666;">  
-    📩 Po otrzymaniu zgłoszenia skontaktujemy się z Tobą w celu omówienia szczegółów i potwierdzenia zamówienia.  
-  </p>  
-</section>  
-<section id="marketplace" class="marketplace">  
-  <h2>🛒 Marketplace – Sprzedawaj razem z AdelbertusShop!</h2>  
-  <p>  
-    Masz swój własny projekt, markę, produkt?    
-    Zgłoś go do naszego Marketplace – pokaż się światu!    
-    My promujemy – Ty zarabiasz. To takie proste.  
-  </p>    <h3>📤 Zgłoszenie produktu do sprzedaży</h3>  
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="margin-bottom: 30px;">  
-    <input type="text" name="Nazwa produktu" placeholder="Nazwa produktu" required style="width:100%;padding:10px;margin:8px 0;border-radius:6px;">  
-    <input type="text" name="Cena" placeholder="Cena (np. 99 zł)" required style="width:100%;padding:10px;margin:8px 0;border-radius:6px;">  
-    <select name="Rodzaj" required style="width:100%;padding:10px;margin:8px 0;border-radius:6px;">  
-      <option value="">Rodzaj produktu</option>  
-      <option>Produkt fizyczny</option>  
-      <option>Produkt cyfrowy (np. ebook, grafika)</option>  
-    </select>  
-    <textarea name="Opis" placeholder="Opis produktu..." required rows="4" style="width:100%;padding:10px;margin:8px 0;border-radius:6px;"></textarea>  
-    <input type="url" name="Link do zdjęcia" placeholder="Link do zdjęcia produktu" style="width:100%;padding:10px;margin:8px 0;border-radius:6px;">  
-    <input type="email" name="Email kontaktowy" placeholder="Twój e-mail" required style="width:100%;padding:10px;margin:8px 0;border-radius:6px;">  
-    <button type="submit" style="padding: 10px 20px; background: #111; color: white; border: none; border-radius: 6px;">Wyślij zgłoszenie</button>  
-  </form>    <h3>🌟 Przykładowe produkty wystawione w Marketplace:</h3>  
-  <div style="display: flex; flex-wrap: wrap; gap: 20px;">  
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding: 15px; width: 250px;">  
-      <img src="https://i.imgur.com/BZDtOMU.jpg" style="width:100%; border-radius: 8px;" alt="Produkt">  
-      <h4>Koszulka „Krzyk ulicy”</h4>  
-      <p>Limitowana koszulka z ilustracją miejskiego wojownika.</p>  
-      <p><strong>99 zł</strong></p>  
-    </div>  
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding: 15px; width: 250px;">  
-      <img src="https://i.imgur.com/n2oyvGV.jpg" style="width:100%; border-radius: 8px;" alt="Produkt">  
-      <h4>Projekt graficzny „Zodiak Barana”</h4>  
-      <p>Plik PNG gotowy do nadruku lub użytku cyfrowego.</p>  
-      <p><strong>49 zł</strong></p>  
-    </div>  
-  </div>  
-</section>  
-<section id="reklama" class="reklama">  
-  <h2>Panel Reklamowy</h2>  
-  <p>Promuj swój produkt na naszej stronie. Cena: 50 zł / tydzień.</p>  
-  <form>  
-    <input type="text" placeholder="Twoja nazwa / marka">  
-    <textarea placeholder="Opis reklamy"></textarea>  
-    <input type="url" placeholder="Link do strony lub social media">  
-    <button type="submit">Zgłoś reklamę</button>  
-  </form>  
-</section>  
-<!-- Panel Admina Marketplace -->  
-<section id="marketplace-admin" style="display: none; padding: 30px;">  
-  <h2>🔐 Admin Marketplace – Zarządzanie zgłoszeniami</h2>  
-  <p>Tu możesz sprawdzać, które produkty zaakceptować, wystawić lub odrzucić. Na razie zgłoszenia trafiają na e-mail.</p>  
-  <ul>  
-    <li>📩 Sprawdź zgłoszenia przychodzące na: <strong>mielniczukgrzegosz74@gmail.com</strong></li>  
-    <li>✍️ Wklej zaakceptowany produkt ręcznie do Marketplace powyżej</li>  
-  </ul>  
-  <p style="font-style: italic;">(W przyszłości możemy dodać pełne zarządzanie online, jeśli chcesz.)</p>  
-</section>  <!-- Login do Admin Marketplace -->  <div id="marketplace-login" style="text-align: center; padding: 40px;">  
-  <h2>🛡️ Logowanie do panelu Marketplace</h2>  
-  <input type="password" id="marketplacePassword" placeholder="Wpisz hasło..." style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">  
-  <button onclick="checkMarketplacePassword()" style="padding: 10px 20px; background: #111; color: white; border: none; border-radius: 6px;">Zaloguj</button>  
-  <p id="wrongPassMarket" style="color: red; display: none; margin-top: 10px;">Błędne hasło. Spróbuj jeszcze raz.</p>  
-</div>  <script>  
-  function checkMarketplacePassword() {  
-    const haslo = document.getElementById("marketplacePassword").value;  
-    if (haslo === "Wojownik.03") {  
-      document.getElementById("marketplace-admin").style.display = "block";  
-      document.getElementById("marketplace-login").style.display = "none";  
-    } else {  
-      document.getElementById("wrongPassMarket").style.display = "block";  
-    }  
-  }  
-</script><section id="zbiorka" class="zbiorka">    <h2>  
-    <span style="animation: beat 1.5s infinite; display: inline-block; color: red;">❤️</span>  
-    Zbiórka charytatywna – Pomoc dla Domu Dziecka  
-  </h2>    <p style="font-size: 1.1em; margin-top: 10px;">  
-    Każde dziecko zasługuje na ciepło, radość i szansę. Pomóż nam wesprzeć dom dziecka, który potrzebuje najprostszych rzeczy – ubrań, zeszytów, zabawek, a czasem po prostu uśmiechu.  
-  </p>    <h3>💸 Wsparcie finansowe</h3>  
-  <p>  
-    Możesz przesłać darowiznę na numer <strong>BLIK: 573-939-925</strong>    
-    z dopiskiem: <strong>"pomoc"</strong>    
-  </p>    <h3>🎁 Wsparcie rzeczowe</h3>  
-  <p>  
-    Przyjmujemy również paczki – zabawki, ubrania, przybory szkolne.    
-    Skontaktuj się z nami, a podamy adres domu dziecka, który aktualnie wspieramy.  
-  </p>  
-  <ul style="list-style: none; padding-left: 0;">  
-    <li>📞 Telefon: <strong>604-296-360</strong></li>  
-    <li>✉️ E-mail: <strong>mielniczukgrzegosz74@gmail.com</strong></li>  
-  </ul>    <h3>🧑‍🤝‍🧑 Chcesz pomóc? Zgłoś się:</h3>  
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="margin-bottom: 30px;">  
-    <input type="text" name="Imię i nazwisko" placeholder="Twoje imię i nazwisko" required style="width: 100%; padding: 8px; margin: 6px 0; border-radius: 6px;">  
-    <input type="email" name="Email" placeholder="Twój e-mail" required style="width: 100%; padding: 8px; margin: 6px 0; border-radius: 6px;">  
-    <textarea name="Treść pomocy" placeholder="Jak chcesz pomóc? Opisz krótko." rows="4" required style="width: 100%; padding: 8px; margin: 6px 0; border-radius: 6px;"></textarea>  
-    <button type="submit" style="padding: 10px 20px; background: #111; color: #fff; border: none; border-radius: 6px;">Zgłoś pomoc</button>  
-  </form>    <h3>❤️ Już pomogli:</h3>  
-  <ul style="padding-left: 20px;">  
-    <li>✔️ Anna z Opola – 3 paczki z odzieżą dziecięcą</li>  
-    <li>✔️ „Firma XYZ” – darowizna 500 zł</li>  
-    <li>✔️ Marek z Legnicy – 12 zeszytów i 5 piórników</li>  
-    <li>✔️ Ola i Kacper – komplet zabawek i maskotek</li>  
-  </ul>    <blockquote style="margin-top: 20px; font-style: italic; background: #f9f9f9; border-left: 5px solid #ccc; padding: 15px;">  
-    „Dobro mnoży się, gdy się je dzieli.” – Dziękujemy każdemu, kto choćby myślą wspiera naszą misję.  
-  </blockquote>    <div id="countdown" style="margin-top: 30px; font-size: 1.1em; font-weight: bold;"></div>    <style>  
-    @keyframes beat {  
-      0%, 100% { transform: scale(1); }  
-      50% { transform: scale(1.3); }  
-    }  
-  </style>    <script>  
-    function updateCountdown() {  
-      const today = new Date();  
-      const target = new Date(today.getFullYear(), today.getMonth(), today.getDate() + (7 - (today.getDay() % 7)));  
-      const diff = Math.floor((target - today) / (1000 * 60 * 60 * 24));  
-      document.getElementById("countdown").innerText =  
-        "🕒 Kolejna dostawa pomocy już za " + diff + " dni!";  
-    }  
-    updateCountdown();  
-  </script>  </section>  
-<section id="opinie" class="opinie">  
-  <h2>Opinie klientów</h2>  
-  <div id="opinia-box">  
-    <p id="opinia-tekst">Ładowanie opinii...</p>  
-    <p id="opinia-klient" style="font-weight: bold;"></p>  
-  </div>    <script>  
-    const opinie = [  
-      {  
-        tekst: "★ ★ ★ ★ ★ Świetna bluza! Nadruk wygląda jeszcze lepiej na żywo, a materiał miękki jak chmurka.",  
-        klient: "– Karolina z Wrocławia"  
-      },  
-      {  
-        tekst: "★ ★ ★ ★ ★ Zamówiłem czapkę z wojownikiem – każdy się pyta, gdzie ją kupiłem. Mega projekt!",  
-        klient: "– Bartek z Gdańska"  
-      },  
-      {  
-        tekst: "★ ★ ★ ★ ★ Kontakt błyskawiczny, indywidualny projekt zrobiony w 2 dni. Polecam każdemu, kto ceni styl.",  
-        klient: "– Natalia z Warszawy"  
-      },  
-      {  
-        tekst: "★ ★ ★ ★ ★ Koszulka idealna na prezent – jakość 10/10. Mój brat był zachwycony!",  
-        klient: "– Tomek z Krakowa"  
-      }  
-    ];  
-  
-    const today = new Date();  
-    const index = Math.floor(today.getTime() / (1000 * 60 * 60 * 24 * 2)) % opinie.length;  
-    const opinia = opinie[index];  
-  
-    document.getElementById("opinia-tekst").innerText = opinia.tekst;  
-    document.getElementById("opinia-klient").innerText = opinia.klient;  
-  </script>  </section><section id="blog" class="blog">  
-  <h2>Blog i Porady</h2>    <article style="border: 1px solid #ccc; padding: 15px; border-radius: 10px; margin-bottom: 20px;">  
-    <h3>Jak dobrać idealny rozmiar bluzy?</h3>  
-    <p><em>Data publikacji: 10 lipca 2025</em></p>  
-    <img src="https://i.imgur.com/zZbFQZI.jpg" alt="Rozmiarówka" style="width:100%; max-width:600px; border-radius:8px;">  
-    <p>Nie wiesz, czy brać M czy L? Ten poradnik pomoże Ci dobrać bluzę, która będzie pasować idealnie – niezależnie czy jesteś wojownikiem czy poetą.</p>  
-    <a href="mailto:mielniczukgrzegosz74@gmail.com?subject=Blog - Rozmiar bluzy" style="display:inline-block; margin-top:10px; padding:10px 20px; background:#111; color:#fff; text-decoration:none; border-radius:6px;">Czytaj więcej</a>  
-  </article>    <article style="border: 1px solid #ccc; padding: 15px; border-radius: 10px; margin-bottom: 20px;">  
-    <h3>Co oznacza symbol π w naszej modzie?</h3>  
-    <p><em>Data publikacji: 8 lipca 2025</em></p>  
-    <img src="https://i.imgur.com/vVHJt8h.jpg" alt="Symbol Pi" style="width:100%; max-width:600px; border-radius:8px;">  
-    <p>Wiele z naszych projektów zawiera symbol π – nie bez powodu. To więcej niż matematyka. To symbol nieskończoności, harmonii i porządku świata.</p>  
-    <a href="mailto:mielniczukgrzegosz74@gmail.com?subject=Blog - Symbol Pi" style="display:inline-block; margin-top:10px; padding:10px 20px; background:#111; color:#fff; text-decoration:none; border-radius:6px;">Czytaj więcej</a>  
-  </article>    <article style="border: 1px solid #ccc; padding: 15px; border-radius: 10px;">  
-    <h3>Historia Góry Krzyżowej w Strzegomiu</h3>  
-    <p><em>Data publikacji: 5 lipca 2025</em></p>  
-    <img src="https://i.imgur.com/K0i1PKg.jpg" alt="Góra Krzyżowa" style="width:100%; max-width:600px; border-radius:8px;">  
-    <p>To nie tylko miejsce – to symbol. Tutaj rodzi się duch AdelbertusShop. Poznaj historię świętej góry, która inspiruje nasze projekty.</p>  
-    <a href="mailto:mielniczukgrzegosz74@gmail.com?subject=Blog - Góra Krzyżowa" style="display:inline-block; margin-top:10px; padding:10px 20px; background:#111; color:#fff; text-decoration:none; border-radius:6px;">Czytaj więcej</a>  
-  </article>  
-</section>  
-<section id="zamowienie">  
-  <h2>Zamówienie indywidualne</h2>  
-  <p>Masz pomysł? Chcesz coś specjalnego? Wypełnij formularz – odpowiem w ciągu 24h.</p>  
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">  <label for="name">Imię i nazwisko:</label>  
-<input type="text" id="name" name="Imię i nazwisko" placeholder="Jan Kowalski" required>  
+  updateCartCount();
 
-<label for="email">Adres e-mail:</label>  
-<input type="email" id="email" name="Email" placeholder="jan@example.com" required>  
-
-<label for="produkt">Opis zamówienia:</label>  
-<textarea id="produkt" name="Zamówienie" rows="5" placeholder="Np. czarna bluza z grafiką wojownika, rozmiar L, z napisem na plecach" required></textarea>  
-
-<label for="rozmiar">Rozmiar:</label>  
-<select id="rozmiar" name="Rozmiar">  
-  <option value="S">S</option>  
-  <option value="M">M</option>  
-  <option value="L">L</option>  
-  <option value="XL">XL</option>  
-</select>  
-
-<label for="kolor">Kolor produktu:</label>  
-<select id="kolor" name="Kolor">  
-  <option value="Czarny">Czarny</option>  
-  <option value="Biały">Biały</option>  
-  <option value="Szary">Szary</option>  
-  <option value="Inny">Inny (opisz w treści zamówienia)</option>  
-</select>  
-
-<button type="submit">Wyślij zamówienie</button>
-
-  </form>  
-</section>  
-<section id="regulamin" class="regulamin">  
-  <h2>Regulamin sklepu AdelbertusShop</h2>  
-  <p><strong>1. Informacje o sprzedawcy</strong><br>  
-  AdelbertusShop, działalność nierejestrowana prowadzona przez Wojciecha Mielniczuka.<br>  
-  Kontakt: mielniczukgrzegosz74@gmail.com</p>    <p><strong>2. Oferta i zawarcie umowy</strong><br>  
-  a) Oferta produktów dostępna jest na stronie sklepu.<br>  
-  b) Zamówienia można składać przez formularz zamówienia lub PayPal.<br>  
-  c) Umowa sprzedaży zostaje zawarta w momencie potwierdzenia zamówienia przez sprzedawcę lub automatycznie po dokonaniu płatności.</p>    <p><strong>3. Ceny i płatności</strong><br>  
-  a) Wszystkie ceny podane są w złotych polskich i zawierają podatek VAT, jeśli obowiązuje.<br>  
-  b) Płatności realizowane są przez PayPal lub inne wskazane metody.<br>  
-  c) Sprzedawca zastrzega sobie prawo do zmiany cen, jednak zmiany nie dotyczą zamówień już złożonych.</p>    <p><strong>4. Realizacja zamówień i dostawa</strong><br>  
-  a) Zamówienia realizowane są w terminie do 7 dni roboczych od potwierdzenia płatności.<br>  
-  b) W przypadku problemów ze realizacją sprzedawca poinformuje klienta mailowo.<br>  
-  c) Koszty dostawy oraz sposób wysyłki określone są indywidualnie w formularzu zamówienia.</p>    <p><strong>5. Prawo odstąpienia od umowy</strong><br>  
-  a) Klient będący konsumentem ma prawo odstąpić od umowy w ciągu 14 dni od otrzymania produktu bez podania przyczyny.<br>  
-  b) Zwrot należy zgłosić mailowo na adres sprzedawcy i odesłać produkt w stanie niezmienionym.<br>  
-  c) Koszty zwrotu ponosi klient, chyba że strony postanowią inaczej.</p>    <p><strong>6. Reklamacje i gwarancje</strong><br>  
-  a) Sprzedawca odpowiada za wady fizyczne i prawne produktu zgodnie z obowiązującymi przepisami.<br>  
-  b) Reklamacje należy zgłaszać mailowo z opisem wady oraz zdjęciami produktu.<br>  
-  c) Sprzedawca rozpatrzy reklamację w terminie 14 dni roboczych.</p>    <p><strong>7. Ochrona danych osobowych</strong><br>  
-  a) Dane klientów przetwarzane są wyłącznie w celu realizacji zamówienia i kontaktu.<br>  
-  b) Dane nie są udostępniane osobom trzecim i nie są wykorzystywane do celów marketingowych bez zgody klienta.<br>  
-  c) Klient ma prawo dostępu do swoich danych oraz ich poprawiania.</p>    <p><strong>8. Postanowienia końcowe</strong><br>  
-  a) Regulamin może być zmieniany, o czym klienci będą informowani na stronie sklepu.<br>  
-  b) W sprawach nieuregulowanych stosuje się przepisy Kodeksu cywilnego i innych obowiązujących aktów prawnych.<br>  
-  c) Wszelkie spory rozstrzygane będą polubownie, a w razie potrzeby przez sąd właściwy dla miejsca prowadzenia działalności.</p>  
-</section>  
-<footer>  
-  <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>  
-  <p>  
-    <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |  
-    <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |  
-    <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>  
-  </p>  
-</footer>  <script>  
-  function showSection(id) {  
-    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));  
-    document.getElementById(id).classList.add('active');  
-  }  
-</script>    <!-- Panel Admina (Ukryty) -->  <section id="admin" class="admin" style="display: none; padding: 30px;">  
-  <h2>🔧 Panel Admina – AdelbertusShop</h2>  
-  <p>Witaj, Wojowniku. Tu możesz przeglądać zgłoszenia i zarządzać sklepem. (Opcje do rozbudowy)</p>  
-  <ul>  
-    <li>📝 Zgłoszenia z Reklamy: przeglądaj maile od klientów</li>  
-    <li>🎁 Zgłoszenia pomocy: odczytuj kto chce pomóc</li>  
-    <li>📢 Zarządzaj blogiem i opiniami (wkrótce)</li>  
-  </ul>  
-</section>  <!-- Okno logowania -->  <div id="admin-login" style="text-align: center; padding: 40px;">  
-  <h2>🔐 Wpisz hasło, by otworzyć panel Admina</h2>  
-  <input type="password" id="adminPassword" placeholder="Wpisz hasło..." style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">  
-  <button onclick="checkAdminPassword()" style="padding: 10px 20px; background: #111; color: white; border: none; border-radius: 6px;">Zaloguj</button>  
-  <p id="wrongPass" style="color: red; display: none; margin-top: 10px;">Błędne hasło. Spróbuj ponownie.</p>  
-</div>  <script>  
-  function checkAdminPassword() {  
-    const haslo = document.getElementById("adminPassword").value;  
-    if (haslo === "Wojownik.03") {  
-      document.getElementById("admin").style.display = "block";  
-      document.getElementById("admin-login").style.display = "none";  
-    } else {  
-      document.getElementById("wrongPass").style.display = "block";  
-    }  
-  }  
-</script></body>  </html>  
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id)?.classList.add('active');
+  }
+</script>
