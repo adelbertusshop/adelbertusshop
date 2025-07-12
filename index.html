@@ -1,234 +1,99 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AdelbertusShop</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fff;
-      color: #333;
-    }
-
-    header, footer {
-      background: #111;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-
-    nav {
-      background: #222;
-      text-align: center;
-      padding: 10px;
-    }
-
-    nav a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    section {
-      display: none;
-      padding: 20px;
-    }
-
-    section.active {
-      display: block;
-    }
-
-    .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
-      padding: 20px;
-    }
-
-    .produkt {
-      border: 1px solid #ccc;
-      padding: 15px;
-      border-radius: 8px;
-      width: 250px;
-      text-align: center;
-      margin: 20px auto;
-    }
-
-    .produkt img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-
-    .produkt select, form input, form textarea, form button {
-      width: 100%;
-      padding: 8px;
-      margin: 8px 0;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-
-    .mockup-container {
-      position: relative;
-      width: 250px;
-      margin: auto;
-    }
-
-    .mockup-base {
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .mockup-overlay {
-      position: absolute;
-      top: 22%;
-      left: 18%;
-      width: 64%;
-      opacity: 0.95;
-      pointer-events: none;
-    }
-
-    .cart-icon {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      cursor: pointer;
-      color: white;
-      font-size: 22px;
-    }
-
-    .cart-popup {
-      position: fixed;
-      top: 70px;
-      right: 20px;
-      width: 300px;
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      z-index: 1000;
-      display: none;
-    }
-
-    .cart-popup h3 {
-      margin-top: 0;
-    }
-
-    .cart-popup ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .cart-popup li {
-      border-bottom: 1px solid #ddd;
-      padding: 8px 0;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .cart-popup .total {
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    .cart-popup button {
-      background: #c00;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  </style>
-
-  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
-</head>
-
-<body>
-
-<div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
-
-<div class="cart-popup" id="cart-popup">
-  <h3>Twój koszyk</h3>
-  <ul id="cart-items"></ul>
-  <p class="total">Suma: <span id="cart-total">0</span> zł</p>
-  <hr>
-  <p><strong>Zapłać BLIK:</strong> 573-939-925<br><em>dopiskiem: „pomoc”</em></p>
-</div>
-
-<header style="background: #111; color: #fff; padding: 20px; display: flex; align-items: center; justify-content: center; gap: 30px;">
-  <a href="https://adelbertusshop.com" target="_blank">
-    <img src="https://i.imgur.com/FsOHmVv.jpg" alt="Kod QR AdelbertusShop" style="width:80px; border-radius: 8px;">
-  </a>
-
-  <div style="text-align: center;">
-    <h1 style="margin: 0;">AdelbertusShop</h1>
-    <p style="margin: 0;">Moda uliczna dla wyjątkowych ludzi</p>
-  </div>
-
-  <a href="https://adelbertusshop.com" target="_blank">
-    <img src="https://i.imgur.com/FsOHmVv.jpg" alt="Kod QR AdelbertusShop" style="width:80px; border-radius: 8px;">
-  </a>
-</header>
-
-<nav>
-  <a href="#" onclick="showSection('sklep')">Sklep</a>
-  <a href="#" onclick="showSection('zaprojektuj')">Zaprojektuj</a>
-  <a href="#" onclick="showSection('marketplace')">Marketplace</a>
-  <a href="#" onclick="showSection('reklama')">Reklama</a>
-  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
-  <a href="#" onclick="showSection('opinie')">Opinie</a>
-  <a href="#" onclick="showSection('blog')">Blog</a>
-  <a href="#" onclick="showSection('zamowienie')">Zamówienia</a>
-  <a href="#" onclick="showSection('regulamin')">Regulamin</a>
-</nav>
-
-<script>
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  function toggleCart() {
-    const popup = document.getElementById('cart-popup');
-    popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-    renderCart();
-  }
-
-  function addToCart(name, price) {
-    cart.push({ name, price });
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    alert('Dodano do koszyka: ' + name);
-  }
-
-  function updateCartCount() {
-    document.getElementById('cart-count').textContent = cart.length;
-  }
-
-  function renderCart() {
-    const cartList = document.getElementById('cart-items');
-    const totalEl = document.getElementById('cart-total');
-    cartList.innerHTML = '';
-    let total = 0;
-    cart.forEach((item, index) => {
-      total += parseFloat(item.price);
-      const li = document.createElement('li');
-      li.innerHTML = `${item.name} – ${item.price} zł <button onclick="removeFromCart(${index})">X</button>`;
-      cartList.appendChild(li);
-    });
-    totalEl.textContent = total.toFixed(2);
-  }
-
-  function removeFromCart(index) {
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    renderCart();
-  }
-
-  updateCartCount();
-
-  function showSection(id) {
-    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-    document.getElementById(id)?.classList.add('active');
-  }
-</script>
+<!DOCTYPE html>  <html lang="pl">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <title>AdelbertusShop</title>  
+  <style>  
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }  
+    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }  
+    nav { background: #222; text-align: center; padding: 10px; }  
+    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }  
+    section { display: none; padding: 20px; }  
+    section.active { display: block; }  
+    .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {  
+      padding: 20px;  
+    }  
+    .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; margin: 20px auto; }  
+    .produkt img { max-width: 100%; border-radius: 8px; }  
+    .produkt select, form input, form textarea, form button {  
+      width: 100%; padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;  
+    }  
+  </style>  
+  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>  
+</head>  
+<body>  
+<header>  
+  <h1>AdelbertusShop</h1>  
+  <p>Moda uliczna dla wyjątkowych ludzi</p>  
+</header>  
+<nav>  
+  <a href="#" onclick="showSection('sklep')">Sklep</a>  
+  <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>  
+  <a href="#" onclick="showSection('marketplace')">Marketplace</a>  
+  <a href="#" onclick="showSection('reklama')">Reklama</a>  
+  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>  
+  <a href="#" onclick="showSection('opinie')">Opinie</a>  
+  <a href="#" onclick="showSection('blog')">Blog</a>  
+  <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>  
+  <a href="#" onclick="showSection('regulamin')">Regulamin</a>  
+</nav>  <section id="sklep" class="produkty active">  
+  <div class="produkt">  
+    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">  
+    <h3>Bluza StreetStyle – 150 zł</h3>  
+    <label>Rozmiar:</label>  
+    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>  
+    <label>Kolor:</label>  
+    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>  
+    <div id="paypal-container-bluza"></div>  
+    <script>paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");</script>  
+  </div>  
+</section>  <section id="projektuj" class="projektuj">  
+  <h2>Zaprojektuj Sam</h2>  
+  <p>Wybierz kolor, rozmiar i napisz własny tekst:</p>  
+  <form>  
+    <select><option>Kolor: Czarny</option><option>Biały</option><option>Czerwony</option></select>  
+    <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>  
+    <textarea placeholder="Wpisz swój tekst lub projekt"></textarea>  
+    <button type="submit">Zamów</button>  
+  </form>  
+</section>  <section id="marketplace" class="marketplace">  
+  <h2>Marketplace</h2>  
+  <p>Sprzedawaj swoje produkty przez nasz sklep. Wypełnij formularz:</p>  
+  <form>  
+    <input type="text" placeholder="Nazwa produktu">  
+    <input type="text" placeholder="Cena">  
+    <textarea placeholder="Opis"></textarea>  
+    <input type="url" placeholder="Link do zdjęcia">  
+    <button type="submit">Wyślij zgłoszenie</button>  
+  </form>  
+</section>  <section id="reklama" class="reklama">  
+  <h2>Panel Reklamowy</h2>  
+  <p>Promuj swój produkt na naszej stronie. Cena: 50 zł / tydzień.</p>  
+  <form>  
+    <input type="text" placeholder="Twoja nazwa / marka">  
+    <textarea placeholder="Opis reklamy"></textarea>  
+    <input type="url" placeholder="Link do strony lub social media">  
+    <button type="submit">Zgłoś reklamę</button>  
+  </form>  
+</section>  <section id="zbiorka" class="zbiorka">  
+  <h2>Zbiórka charytatywna</h2>  
+  <p>Wspieramy dom dziecka – przekaż darowiznę na nr <strong>BLIK 573-939-925</strong> z dopiskiem <strong>"pomoc"</strong>.</p>  
+</section>  <section id="opinie" class="opinie">  
+  <h2>Opinie klientów</h2>  
+  <p>★ ★ ★ ★ ★ „Super jakość – koszulki świetne!”</p>  
+  <p>★ ★ ★ ★ ★ „Bluza stylowa i wygodna!”</p>  
+</section>  <section id="blog" class="blog">  
+  <h2>Blog i Porady</h2>  
+  <h3>Jak dobrać rozmiar?</h3>  
+  <p>Poradnik rozmiarówki streetwearu...</p>  
+</section>  <section id="zamowienie">  
+  <h2>Zamówienie</h2>  
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">  
+    <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>  
+    <input type="email" name="Email" placeholder="Email" required>  
+    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" required></textarea>  
+    <button type="submit">Wyślij</button>  
+  </form>  
+</section>  <section id="regulamin" class="regulamin">  
+  <h2>Regulamin i Polityka Prywatności</h2>  
+  <p>Przetwarzamy dane tylko w celu realizacji zamówienia. Nie udostępniamy danych osobom trzecim.
