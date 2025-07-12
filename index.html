@@ -4,23 +4,95 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
-    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
-    nav { background: #222; text-align: center; padding: 10px; }
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    section { display: none; padding: 20px; }
-    section.active { display: block; }
-    .produkty, .projektuj, .marketplace, .reklama, .zbiorka, .regulamin, .opinie, .blog, #zamowienie {
-      padding: 20px;
-    }
-    .produkt { border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center; margin: 20px auto; }
-    .produkt img { max-width: 100%; border-radius: 8px; }
-    .produkt select, form input, form textarea, form button {
-      width: 100%; padding: 8px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;
-    }
-  </style>
-  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+  body {
+    font-family: 'Cinzel', serif;
+    margin: 0;
+    padding: 0;
+    background: #0d0d0d;
+    color: #e0cfa9;
+  }
+
+  header, footer {
+    background: #1a1a1a;
+    color: #e0cfa9;
+    text-align: center;
+    padding: 20px;
+    border-bottom: 2px solid #5c4b28;
+  }
+
+  nav {
+    background: #222;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #5c4b28;
+  }
+
+  nav a {
+    color: #f5deb3;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  nav a:hover {
+    color: #ffd700;
+  }
+
+  section {
+    display: none;
+    padding: 30px;
+  }
+
+  section.active {
+    display: block;
+  }
+
+  .produkt {
+    border: 2px solid #5c4b28;
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 10px;
+    width: 270px;
+    text-align: center;
+    margin: 20px auto;
+    color: #f5f5dc;
+  }
+
+  .produkt img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .produkt select, form input, form textarea, form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #5c4b28;
+    background: #0f0f0f;
+    color: #f5f5dc;
+  }
+
+  form button {
+    background: #5c4b28;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  form button:hover {
+    background: #806b3a;
+  }
+
+  h1, h2, h3 {
+    color: #ffd700;
+    text-shadow: 1px 1px #000;
+  }
+</style>  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 </head>
 <body>
 <header>
