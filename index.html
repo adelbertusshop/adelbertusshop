@@ -8,13 +8,12 @@
   @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
   body {
-    font-family: 'Cinzel', serif;
-    margin: 0;
-    padding: 0;
-    background: #0d0d0d;
-    color: #e0cfa9;
-  }
-
+  font-family: 'Georgia', serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+  color: #f5f5dc;
+}
   header, footer {
     background: #1a1a1a;
     color: #e0cfa9;
@@ -30,14 +29,36 @@
     border-bottom: 1px solid #5c4b28;
   }
 
-  nav a {
-    color: #f5deb3;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1em;
-  }
+ nav a {
+  color: #f5deb3;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
 
+nav a::after {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 2px;
+  background: #ffd700;
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+}
+
+nav a:hover {
+  color: #fff8dc;
+  text-shadow: 0 0 8px #ffd700;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
   nav a:hover {
     color: #ffd700;
   }
@@ -96,10 +117,9 @@
 </head>
 <body>
 <header>
-  <h1>AdelbertusShop</h1>
-  <p>Moda uliczna dla wyjątkowych ludzi</p>
-</header>
-<nav>
+  <h1 class="logo-blask">AdelbertusShop</h1>
+  <p class="haslo-mistyczne">Moda uliczna dla wyjątkowych ludzi</p>
+</header><nav>
   <a href="#" onclick="showSection('sklep')">Sklep</a>
   <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
   <a href="#" onclick="showSection('marketplace')">Marketplace</a>
