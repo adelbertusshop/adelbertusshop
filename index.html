@@ -180,7 +180,32 @@
 <section id="sklep" class="produkty<!
 <div active">
   <div id="produkty-auto"></div>
-<script>
+  <script>
+  const produktyAuto = [
+    {
+      nazwa: "Czapka Legendy",
+      cena: 79,
+      grafika: "https://i.ibb.co/DPfsc60f/file-00000000c71c6246b9d78afc2a6c0a39.png",
+      typ: "Czapka"
+    },
+    // Można dodać więcej...
+  ];
+
+  produktyAuto.forEach(prod => {
+    const html = `
+      <div class="produkt" data-type="${prod.typ}">
+        <img class="mockup-base" src="${prod.grafika}" alt="${prod.nazwa}" style="width: 200px;" />
+        <h3>${prod.nazwa} – ${prod.cena} zł</h3>
+        <label>Rozmiar:</label>
+        <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+        <label>Kolor:</label>
+        <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
+        <button onclick="addToCart('${prod.nazwa}', ${prod.cena})">Dodaj do koszyka</button>
+      </div>
+    `;
+    document.getElementById("produkty-auto").innerHTML += html;
+  });
+</script><script>
   const produktyAuto = [
     {
   nazwa: "Wojownik 1 – Koszulka",
