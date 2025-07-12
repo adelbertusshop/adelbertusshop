@@ -1,83 +1,133 @@
-
-
-<!DOCTYPE html>  <html lang="pl">  
-<head>  
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-  <title>AdelbertusShop</title>  
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdelbertusShop</title>
   <style>
-body {
-  background-color: #0f0f0f;
-  color: #e5e5e5;
-  font-family: 'Helvetica Neue', sans-serif;
-  letter-spacing: 0.03em;
-}
+    body {
+      background-color: #0f0f0f;
+      color: #e5e5e5;
+      font-family: 'Helvetica Neue', sans-serif;
+      letter-spacing: 0.03em;
+      margin: 0;
+      padding: 0;
+    }
 
-header {
-  background-color: #1a1a1a;
-  color: #d6b36a;
-  border-bottom: 2px solid #b8a07f;
-}
+    header {
+      background-color: #1a1a1a;
+      color: #d6b36a;
+      border-bottom: 2px solid #b8a07f;
+      text-align: center;
+      padding: 20px;
+    }
 
-nav a {
-  color: #c0a165;
-}
+    nav {
+      margin-top: 10px;
+    }
 
-nav a:hover {
-  color: #e5e5e5;
-  text-shadow: 0 0 5px #c0a165;
-}
+    nav a {
+      color: #c0a165;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-section {
-  background-color: #1a1a1a;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(184, 160, 127, 0.1);
-}
+    nav a:hover {
+      color: #e5e5e5;
+      text-shadow: 0 0 5px #c0a165;
+    }
 
-h2.category-title {
-  color: #d6b36a;
-  border-bottom: 1px solid #b8a07f;
-  font-size: 2rem;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
+    section {
+      background-color: #1a1a1a;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(184, 160, 127, 0.1);
+      margin: 20px;
+    }
 
-.product {
-  background-color: #121212;
-  color: #e5e5e5;
-  box-shadow: 0 0 10px rgba(255,255,255,0.05);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
+    h2.category-title {
+      color: #d6b36a;
+      border-bottom: 1px solid #b8a07f;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
 
-.product:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 15px rgba(214, 179, 106, 0.3);
-}
+    .product {
+      background-color: #121212;
+      color: #e5e5e5;
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
 
-.product p.price {
-  color: #d6b36a;
-}
+    .product:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px rgba(214, 179, 106, 0.3);
+    }
 
-button,
-form button {
-  background: #b8a07f;
-  color: #0f0f0f;
-  border: none;
-  padding: 10px 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-radius: 5px;
-  cursor: pointer;
-}
+    .product p.price {
+      color: #d6b36a;
+      font-weight: bold;
+    }
 
-button:hover,
-form button:hover {
-  background: #cdbb9e;
-}
-</style>  
+    button,
+    form button {
+      background: #b8a07f;
+      color: #0f0f0f;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover,
+    form button:hover {
+      background: #cdbb9e;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>AdelbertusShop</h1>
+  <p>Moda uliczna z przekazem</p>
+  <nav>
+    <a href="#sklep">Sklep</a>
+    <a href="#zaprojektuj">Zaprojektuj</a>
+    <a href="#marketplace">Marketplace</a>
+    <a href="#reklama">Reklama</a>
+    <a href="#zbiorka">Zbiórka</a>
+    <a href="#opinie">Opinie</a>
+    <a href="#blog">Blog</a>
+    <a href="#zamowienia">Zamówienia</a>
+    <a href="#regulamin">Regulamin</a>
+  </nav>
+</header>
+
+<section id="sklep">
+  <h2 class="category-title">Sklep</h2>
+  <!-- 🔥 Tutaj wkleisz swoje produkty -->
+  <div class="product">
+    <h3>Koszulka Pi</h3>
+    <p>Limitowana edycja z symbolem liczby π</p>
+    <p class="price">99 zł</p>
+    <button>Kup teraz</button>
+  </div>
+</section>
+
+</body>
+</html>  </style>
+</head>
+<body>
+<!-- ✨ Tu możesz wkleić dalszą część strony --></style>  
   <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>  
 </head>  
   <!-- 🔥 KOSZYK: FULL WYPAS (ikona + popup + skrypt + style) -->  
