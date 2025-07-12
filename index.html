@@ -188,7 +188,13 @@
       grafika: "https://i.ibb.co/DPfsc60f/file-00000000c71c6246b9d78afc2a6c0a39.png",
       typ: "Czapka"
     }
-  ];
+    
+{                                             // Otwiera obiekt produktu
+    nazwa: "Koszulka Wojownika",               // nazwa – tekst w cudzysłowie zakończony przecinkiem ,
+    cena: 105,                                 // cena – liczba zakończona przecinkiem ,
+    grafika: "https://i.ibb.co/mVc0W4cQ/file-0000000086bc620a9620103c34ef3e1a-1.png",  // adres obrazka zakończony przecinkiem ,
+    typ: "Koszulka"                            // typ – tekst bez przecinka, bo to ostatnia właściwość w obiekcie
+  }                                             // Zamyka obiekt produktu – UWAGA: po nim może być przecinek, jeśli są kolejne produkty];
 
   produktyAuto.forEach(prod => {
     const html = `
