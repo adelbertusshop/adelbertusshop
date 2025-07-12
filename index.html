@@ -25,23 +25,42 @@ header, footer {
   border-top: 2px solid #d4af37;
   border-bottom: 2px solid #d4af37;
 }
-  nav {
-    background: #222;
-    text-align: center;
-    padding: 10px;
-    border-bottom: 1px solid #5c4b28;
-  }
-
- nav a {
-  color: #f5deb3;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: bold;
-  font-family: 'Georgia', serif;
-  transition: all 0.3s ease-in-out;
-  position: relative;
+ nav {
+  background: linear-gradient(to right, #3a2d1f, #2b2118);
+  padding: 15px;
+  text-align: center;
+  border-top: 2px solid #d4af37;
+  border-bottom: 2px solid #d4af37;
 }
 
+nav a {
+  color: #d4af37;
+  margin: 0 20px;
+  text-decoration: none;
+  font-family: 'Georgia', serif;
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 2px;
+  background: #d4af37;
+  transition: width 0.3s;
+  margin: 0 auto;
+}
+
+nav a:hover {
+  color: #fff8dc;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
 nav a::after {
   content: '';
   display: block;
