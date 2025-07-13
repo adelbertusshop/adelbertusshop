@@ -308,11 +308,35 @@
     }
   }
 </script>
-  <section id="zamowienie">
-    <h2>Zamówienie</h2>
-    <p>Formularz zamówienia + płatność BLIK / PayPal.</p>
-  </section>
+  <section id="zamowienie" style="background-color: #12100e; color: #fff; padding: 50px 20px;">
+  <h2 style="text-align: center; font-size: 30px; color: #d4af37;">Zamówienie produktu</h2>
+  <p style="text-align: center; max-width: 600px; margin: auto;">Złóż swoje zamówienie szybko i wygodnie. Po wysłaniu formularza wybierz formę płatności: <strong>BLIK</strong> lub <strong>PayPal</strong>.</p>
 
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 600px; margin: 40px auto; background: #1e1a16; padding: 25px; border-radius: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2);">
+    <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px;">
+    <input type="email" name="Email" placeholder="Adres e-mail" required style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px;">
+    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" rows="4" required style="width: 100%; padding: 10px; border-radius: 8px;"></textarea>
+    <button type="submit" style="margin-top: 20px; background-color: #d4af37; color: #000; font-weight: bold; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer;">Wyślij zamówienie</button>
+  </form>
+
+  <div style="max-width: 600px; margin: 0 auto; padding: 20px; background: #1e1a16; border: 2px dashed #d4af37; border-radius: 12px; text-align: center;">
+    <h3 style="color: #d4af37;">💸 Płatność BLIK</h3>
+    <p>Przelej <strong>BLIK: <span style="color: #d4af37;">573-939-925</span></strong></p>
+    <p>W tytule przelewu wpisz: <em>"AdelbertusShop – zamówienie"</em></p>
+  </div>
+
+  <div style="max-width: 600px; margin: 30px auto; padding: 20px; background: #1e1a16; border-radius: 12px; text-align: center;">
+    <h3 style="color: #d4af37;">🌐 Lub zapłać przez PayPal</h3>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="mielniczukgrzegosz74@gmail.com">
+      <input type="hidden" name="item_name" value="Zamówienie z AdelbertusShop">
+      <input type="hidden" name="currency_code" value="PLN">
+      <input type="number" name="amount" placeholder="Kwota PLN" required style="padding: 10px; border-radius: 8px; width: 200px;"><br><br>
+      <input type="submit" value="Zapłać PayPal" style="background: #d4af37; color: #000; font-weight: bold; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer;">
+    </form>
+  </div>
+</section>
   <section id="regulamin">
     <h2>Regulamin</h2>
     <p>Twoja polityka prywatności i zasady sklepu.</p>
