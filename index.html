@@ -530,19 +530,43 @@ nav a:hover::after {
     <script>paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");</script>
   </div>
 </section>
-
 <section id="projektuj" class="projektuj">
-  <h2>Zaprojektuj Sam</h2>
-  <p>Wybierz kolor, rozmiar i napisz własny tekst:</p>
-  <form>
-    <select><option>Kolor: Czarny</option><option>Biały</option><option>Czerwony</option></select>
-    <select><option>Rozmiar: S</option><option>M</option><option>L</option><option>XL</option></select>
-    <textarea placeholder="Wpisz swój tekst lub projekt"></textarea>
-    <button type="submit">Zamów</button>
-  </form>
-</section>
+  <h2 style="font-size: 28px; color: #d4af37; text-align: center;">Stwórz swój unikalny projekt</h2>
+  <p style="text-align: center; color: #ccc;">Wybierz typ produktu, kolor, rozmiar i dodaj swój tekst lub grafikę!</p>
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 500px; margin: auto; background: #1e1a16; padding: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.3); color: #fff;">
+    
+    <label for="typ">Typ produktu:</label>
+    <select id="typ" name="Typ produktu" required>
+      <option value="Koszulka">Koszulka</option>
+      <option value="Bluza">Bluza</option>
+      <option value="Czapka">Czapka</option>
+    </select>
 
-<section id="marketplace" class="marketplace">
+    <label for="kolor">Kolor:</label>
+    <select id="kolor" name="Kolor" required>
+      <option value="Czarny">Czarny</option>
+      <option value="Biały">Biały</option>
+      <option value="Beżowy">Beżowy</option>
+      <option value="Czerwony">Czerwony</option>
+    </select>
+
+    <label for="rozmiar">Rozmiar:</label>
+    <select id="rozmiar" name="Rozmiar" required>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+    </select>
+
+    <label for="tekst">Twój tekst / hasło:</label>
+    <textarea id="tekst" name="Tekst" rows="3" placeholder="Wpisz swój tekst lub przesłanie..." required></textarea>
+
+    <label for="grafika">Link do własnej grafiki (opcjonalnie):</label>
+    <input type="url" id="grafika" name="Link do grafiki" placeholder="https://...">
+
+    <button type="submit" style="background: #d4af37; border: none; padding: 10px; margin-top: 10px; border-radius: 8px; color: #000; font-weight: bold; cursor: pointer;">Wyślij projekt</button>
+  </form>
+</section><section id="marketplace" class="marketplace">
   <h2>Marketplace</h2>
   <p>Sprzedawaj swoje produkty przez nasz sklep. Wypełnij formularz:</p>
   <form>
