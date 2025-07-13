@@ -582,15 +582,47 @@ nav a:hover::after {
 </section></script>
 <section id="reklama" class="reklama">
   <h2>Panel Reklamowy</h2>
-  <p>Promuj swój produkt na naszej stronie. Cena: 50 zł / tydzień.</p>
-  <form>
-    <input type="text" placeholder="Twoja nazwa / marka">
-    <textarea placeholder="Opis reklamy"></textarea>
-    <input type="url" placeholder="Link do strony lub social media">
+  <p>Promuj swój produkt lub markę w sklepie <strong>AdelbertusShop</strong>.</p>
+  <div style="background: #1e1a16; color: #fff; padding: 20px; border-radius: 12px;">
+    <h3>Cennik Reklam:</h3>
+    <ul>
+      <li>📅 1 dzień – 20 zł</li>
+      <li>📆 1 tydzień – 100 zł</li>
+      <li>📅 1 miesiąc – 350 zł</li>
+    </ul>
+    <p>Płatność BLIK na numer: <strong style="color: #d4af37;">573-939-925</strong>  
+    <br>W tytule wpisz: <em>"Reklama AdelbertusShop"</em></p>
+  </div>
+
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="margin-top: 20px;">
+    <input type="text" name="Nazwa reklamy" placeholder="Nazwa reklamy" required>
+    <textarea name="Opis" placeholder="Opis reklamy" required></textarea>
+    <input type="url" name="Link do strony" placeholder="Link do strony / social media" required>
+    <input type="text" name="Dane kontaktowe" placeholder="Email lub numer telefonu" required>
     <button type="submit">Zgłoś reklamę</button>
   </form>
-</section>
 
+  <p style="margin-top: 20px; color: #ccc;">
+    Reklamy są zatwierdzane ręcznie przez administratora.  
+    W razie braku płatności – reklama zostaje odrzucona lub usunięta.
+  </p>
+
+  <div style="margin-top: 30px;">
+    <h3>🔎 Reklamy aktywne</h3>
+    <div id="reklamy-aktywne">
+     <div class="reklama-box" style="border: 2px dashed #d4af37; padding: 10px; margin-bottom: 10px;">
+  <strong>🔥 Nazwa Reklamy</strong><br>
+  <a href="https://linkdokampanii.pl" target="_blank" style="color: #d4af37;">Sprawdź teraz</a>
+</div>      <!-- Tu ręcznie dodajesz zaakceptowane reklamy -->
+      <!-- Przykład:
+      <div class="reklama-box" style="border: 2px dashed #d4af37; padding: 10px; margin-bottom: 10px;">
+        <strong>🔥 Marka XYZ</strong><br>
+        <a href="https://xyz.com" target="_blank" style="color: #d4af37;">Sprawdź teraz</a>
+      </div>
+      -->
+    </div>
+  </div>
+</section>
 <section id="zbiorka" class="zbiorka">
   <h2>Zbiórka charytatywna</h2>
   <p>Wspieramy dom dziecka – przekaż darowiznę na nr <strong>BLIK 573-939-925</strong> z dopiskiem <strong>"pomoc"</strong>.</p>
