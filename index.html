@@ -147,12 +147,59 @@
   <p style="margin-top:20px; text-align:center; color:#999;">
     ✉️ Zgłoszenie trafi do administratora. Po akceptacji zostanie opublikowane w sklepie.
   </p>
-</section>
-  <section id="reklama">
-    <h2>Reklama</h2>
-    <p>Panel reklamowy z cennikiem i opcją zgłoszenia.</p>
-  </section>
+<section id="reklama" class="reklama" style="background-color: #12100e; padding: 40px 20px; color: #fff;">
+  <h2 style="text-align: center; font-size: 32px; color: #d4af37;">Panel Reklamowy</h2>
+  <p style="text-align: center; font-size: 18px; color: #ccc; margin-bottom: 30px;">
+    Promuj swój produkt lub markę na stronie <strong>AdelbertusShop</strong>. Twoja marka, nasza widoczność.
+  </p>
 
+  <div style="max-width: 600px; margin: auto; background: #1e1a16; padding: 25px; border-radius: 16px; box-shadow: 0 0 25px rgba(212,175,55,0.2);">
+    <h3 style="color: #d4af37;">💰 Cennik reklam:</h3>
+    <ul style="line-height: 1.8;">
+      <li>📅 1 dzień – 20 zł</li>
+      <li>📆 1 tydzień – 100 zł</li>
+      <li>🗓️ 1 miesiąc – 350 zł</li>
+    </ul>
+    <p style="color: #ccc;">Płatność BLIK: <strong style="color: #d4af37;">573-939-925</strong><br>
+    W tytule: <em>"Reklama AdelbertusShop"</em></p>
+  </div>
+
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain"
+        style="margin: 30px auto 10px auto; max-width: 600px; background: #1e1a16; padding: 25px; border-radius: 16px; box-shadow: 0 0 15px rgba(212,175,55,0.2);">
+    <label for="nazwa">📛 Nazwa reklamy:</label>
+    <input type="text" id="nazwa" name="Nazwa reklamy" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+
+    <label for="opis">📝 Opis:</label>
+    <textarea id="opis" name="Opis" rows="3" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;"></textarea>
+
+    <label for="link">🔗 Link do strony:</label>
+    <input type="url" id="link" name="Link do strony" placeholder="https://..." required style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
+
+    <label for="kontakt">📞 Dane kontaktowe:</label>
+    <input type="text" id="kontakt" name="Dane kontaktowe" placeholder="Email / telefon / Instagram" required style="width:100%; padding:10px; margin-bottom:15px; border-radius:8px;">
+
+    <button type="submit" style="width:100%; padding:12px; background:#d4af37; color:#000; font-weight:bold; border:none; border-radius:12px; font-size:16px;">
+      Zgłoś reklamę
+    </button>
+  </form>
+
+  <p style="text-align: center; color: #999; font-size: 0.9em; margin-top: 20px;">
+    Wszystkie zgłoszenia są zatwierdzane ręcznie przez administratora. <br>
+    W przypadku braku płatności – reklama zostanie usunięta.
+  </p>
+
+  <div style="margin-top: 40px;">
+    <h3 style="color: #d4af37;">📢 Reklamy aktywne</h3>
+    <div id="reklamy-aktywne" style="margin-top: 20px;">
+      <!-- Ręcznie dodajesz zaakceptowane reklamy poniżej -->
+      <!-- Przykład: -->
+      <div class="reklama-box" style="border: 2px dashed #d4af37; padding: 15px; margin-bottom: 20px; border-radius: 10px;">
+        <strong>🔥 Marka XYZ</strong><br>
+        <a href="https://markaxyz.pl" target="_blank" style="color: #d4af37;">Sprawdź teraz</a>
+      </div>
+    </div>
+  </div>
+</section>
   <section id="zbiorka">
     <h2>Zbórka</h2>
     <p>Darowizny BLIK: 573-939-925 z dopiskiem "pomoc".</p>
