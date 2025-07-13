@@ -80,11 +80,52 @@
     <p>Tu będą Twoje produkty.</p>
   </section>
 
-  <section id="projektuj">
-    <h2>Zaprojektuj</h2>
-    <p>Tu użytkownik stworzy własny projekt.</p>
-  </section>
+ <section id="projektuj" class="projektuj" style="background-color: #12100e; padding: 40px 20px; color: #fff;">
+  <h2 style="text-align: center; font-size: 32px; color: #d4af37;">Stwórz swój unikalny projekt</h2>
+  <p style="text-align: center; font-size: 18px; color: #ccc; margin-bottom: 30px;">
+    Zaprojektuj koszulkę, bluzę lub czapkę według własnej wizji. Wybierz kolor, rozmiar, dodaj tekst lub własną grafikę.
+  </p>
 
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain"
+        style="max-width: 600px; margin: auto; background: #1e1a16; padding: 25px; border-radius: 16px; box-shadow: 0 0 25px rgba(212,175,55,0.2);">
+
+    <label for="typ" style="display:block; margin-top:10px;">🧥 Typ produktu:</label>
+    <select id="typ" name="Typ produktu" required style="width: 100%; padding: 10px; border-radius: 8px;">
+      <option value="Koszulka">Koszulka</option>
+      <option value="Bluza">Bluza</option>
+      <option value="Czapka">Czapka</option>
+    </select>
+
+    <label for="kolor" style="display:block; margin-top:20px;">🎨 Kolor:</label>
+    <select id="kolor" name="Kolor" required style="width: 100%; padding: 10px; border-radius: 8px;">
+      <option value="Czarny">Czarny</option>
+      <option value="Biały">Biały</option>
+      <option value="Beżowy">Beżowy</option>
+      <option value="Czerwony">Czerwony</option>
+    </select>
+
+    <label for="rozmiar" style="display:block; margin-top:20px;">📏 Rozmiar:</label>
+    <select id="rozmiar" name="Rozmiar" required style="width: 100%; padding: 10px; border-radius: 8px;">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+    </select>
+
+    <label for="tekst" style="display:block; margin-top:20px;">✍️ Tekst / Hasło:</label>
+    <textarea id="tekst" name="Tekst" rows="3" placeholder="Wpisz swój tekst..." required
+              style="width: 100%; padding: 10px; border-radius: 8px;"></textarea>
+
+    <label for="grafika" style="display:block; margin-top:20px;">🖼️ Link do grafiki (opcjonalnie):</label>
+    <input type="url" id="grafika" name="Link do grafiki" placeholder="https://..."
+           style="width: 100%; padding: 10px; border-radius: 8px;">
+
+    <button type="submit"
+            style="margin-top: 25px; background: #d4af37; color: #000; padding: 12px; width: 100%; border: none; border-radius: 12px; font-weight: bold; font-size: 18px;">
+      Wyślij projekt
+    </button>
+  </form>
+</section>
   <section id="marketplace" class="marketplace">
   <h2 style="text-align:center; color:#d4af37;">Marketplace – Zgłoś swój produkt</h2>
   <p style="text-align:center; color:#ccc;">Dołącz jako twórca! My go wystawimy.</p>
