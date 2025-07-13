@@ -255,11 +255,59 @@
 
   document.getElementById("opinieBox").innerHTML = opinie[index];
 </script>
-  <section id="blog">
-    <h2>Blog</h2>
-    <p>Porady i inspiracje modowe.</p>
-  </section>
+ <section id="blog" class="blog" style="background-color: #12100e; color: #fff; padding: 50px 20px;">
+  <h2 style="text-align: center; font-size: 30px; color: #d4af37;">Blog AdelbertusShop</h2>
 
+  <article style="background-color: #1e1a16; padding: 25px; border-radius: 12px; margin: 30px auto; max-width: 800px;">
+    <h3 style="color: #d4af37;">Jak dobrać rozmiar streetwearu?</h3>
+    <p>W tym artykule pomożemy Ci dobrać idealny rozmiar do Twojej sylwetki – czy to bluza, koszulka, czy czapka. Streetwear to nie tylko styl, ale i wygoda!</p>
+    
+    <div class="komentarze" style="margin-top: 30px;">
+      <h4>Komentarze:</h4>
+      <ul id="listaKomentarzy" style="list-style: none; padding-left: 0;"></ul>
+
+      <form id="formularzKomentarza" style="margin-top: 20px;">
+        <input type="text" id="autor" placeholder="Twoje imię" required style="padding: 10px; width: 100%; margin-bottom: 10px; border-radius: 8px;">
+        <textarea id="tresc" placeholder="Twój komentarz..." required style="padding: 10px; width: 100%; border-radius: 8px;"></textarea>
+        <button type="submit" style="background-color: #d4af37; color: #000; padding: 10px 20px; border: none; border-radius: 8px; margin-top: 10px;">Dodaj komentarz</button>
+      </form>
+    </div>
+  </article>
+</section>
+
+<script>
+  const listaKomentarzy = document.getElementById("listaKomentarzy");
+  const formularz = document.getElementById("formularzKomentarza");
+
+  formularz.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const autor = document.getElementById("autor").value;
+    const tresc = document.getElementById("tresc").value;
+
+    const li = document.createElement("li");
+    li.style.marginTop = "15px";
+    li.innerHTML = `<strong>${autor}</strong>: ${tresc}<br><button onclick="odpowiedzNaKomentarz(this)" style="margin-top: 5px; background: none; border: none; color: #d4af37; cursor: pointer;">Odpowiedz</button><ul></ul>`;
+
+    listaKomentarzy.appendChild(li);
+    formularz.reset();
+  });
+
+  function odpowiedzNaKomentarz(button) {
+    const parentLi = button.parentElement;
+    const subUl = parentLi.querySelector("ul");
+
+    const imie = prompt("Twoje imię:");
+    const odpowiedz = prompt("Twoja odpowiedź:");
+
+    if (imie && odpowiedz) {
+      const odpLi = document.createElement("li");
+      odpLi.style.marginTop = "10px";
+      odpLi.innerHTML = `<strong>${imie}</strong> (odpowiedź): ${odpowiedz}`;
+      subUl.appendChild(odpLi);
+    }
+  }
+</script>
   <section id="zamowienie">
     <h2>Zamówienie</h2>
     <p>Formularz zamówienia + płatność BLIK / PayPal.</p>
