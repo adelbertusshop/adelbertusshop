@@ -209,7 +209,54 @@ nav a:hover::after {
        alt="Logo AdelbertusShop" 
        style="max-width: 150px; margin-top: 10px;" />
 </a>  <p class="haslo-mistyczne">Moda uliczna dla wyjątkowych ludzi</p>
-</header><nav>
+</header>
+  <!-- TU WKLEJ -->
+<div id="koszyk-popup">
+  <h3>Twój Koszyk</h3>
+  <ul id="koszyk-lista"></ul>
+  <p><strong>Suma:</strong> <span id="koszyk-suma">0</span> zł</p>
+  <button onclick="zlozZamowienie()">Zamów</button>
+</div>
+
+<script>
+  let koszyk = [];
+
+  function toggleKoszyk() {
+    const popup = document.getElementById('koszyk-popup');
+    popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function dodajDoKoszyka(nazwa, cena) {
+    koszyk.push({nazwa, cena});
+    aktualizujKoszyk();
+  }
+
+  function aktualizujKoszyk() {
+    const lista = document.getElementById('koszyk-lista');
+    const sumaElem = document.getElementById('koszyk-suma');
+    const licznik = document.getElementById('koszyk-licznik');
+
+    lista.innerHTML = '';
+    let suma = 0;
+
+    koszyk.forEach(item => {
+      const el = document.createElement('li');
+      el.textContent = `${item.nazwa} - ${item.cena} zł`;
+      lista.appendChild(el);
+      suma += parseFloat(item.cena);
+    });
+
+    sumaElem.textContent = suma.toFixed(2);
+    licznik.textContent = koszyk.length;
+  }
+
+  function zlozZamowienie() {
+    alert("Zamówienie złożone! Skontaktujemy się z Tobą.");
+    koszyk = [];
+    aktualizujKoszyk();
+    toggleKoszyk();
+  }
+</script>  <nav>
   <a href="#" onclick="showSection('sklep')">Sklep</a>
   <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
   <a href="#" onclick="showSection('marketplace')">Marketplace</a>
