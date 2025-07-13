@@ -180,7 +180,31 @@
     <p style="text-align: right; font-style: italic;">– Adelbertus</p>
   </div>
 </section>
-<footer>
+  <section id="opinie">
+  <h2 style="text-align: center; color: #d4af37;">✨ Głosy Uznania – Opinie</h2>
+
+  <div style="max-width: 800px; margin: auto; background: #1e1a16; padding: 20px; border-radius: 12px; box-shadow: 0 0 20px rgba(212,175,55,0.15); color: #ddd;">
+
+    <div style="margin-bottom: 25px;">
+      <p style="font-size: 18px;">★ ★ ★ ★ ★</p>
+      <p><em>„Ta bluza zmieniła mój sposób patrzenia na siebie. Czuję się silniejszy.”</em></p>
+      <p style="text-align: right;">– A.K., Warszawa</p>
+    </div>
+
+    <div style="margin-bottom: 25px;">
+      <p style="font-size: 18px;">★ ★ ★ ★ ★</p>
+      <p><em>„Nie towar. To manifest. Ludzie pytają, gdzie kupiłam.”</em></p>
+      <p style="text-align: right;">– N.M., Gdańsk</p>
+    </div>
+
+    <div>
+      <p style="font-size: 18px;">★ ★ ★ ★ ★</p>
+      <p><em>„Jakość nie do opisania. Ubrania niosą energię, to się czuje.”</em></p>
+      <p style="text-align: right;">– K.Z., Kraków</p>
+    </div>
+
+  </div>
+</section><footer>
   <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
   <p>
     <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
@@ -191,4 +215,9 @@
 
 
 </body>
-</html>
+  <script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+</script></html>
