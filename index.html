@@ -2,194 +2,138 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AdelbertusShop</title>
   <style>
     body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #121212;
-      color: #f0f0f0;
+      padding: 0;
     }
-
     header {
-      background-color: #1e1a16;
       text-align: center;
-      padding: 30px 20px 20px;
+      padding: 20px;
+      background-color: #1e1a16;
     }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-      color: #d4af37;
-    }
-
-    .haslo-mistyczne {
+    header img {
+      max-width: 150px;
       margin-top: 10px;
-      font-style: italic;
-      color: #ccc;
     }
-
     nav {
+      background-color: #111;
+      padding: 10px;
       display: flex;
       justify-content: center;
-      background-color: #000;
-      padding: 10px 0;
-      gap: 15px;
+      gap: 20px;
       flex-wrap: wrap;
     }
-
-    nav button {
-      background-color: #d4af37;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 20px;
-      cursor: pointer;
+    nav a {
+      color: #d4af37;
+      text-decoration: none;
       font-weight: bold;
-      color: #000;
-      transition: 0.3s;
     }
-
-    nav button:hover {
-      background-color: #fff;
-    }
-
     section {
       display: none;
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
+      padding: 20px;
     }
-
     section.active {
       display: block;
     }
-
-    footer {
-      background-color: #1e1a16;
-      text-align: center;
-      color: #999;
-      padding: 20px;
-      font-size: 0.9em;
-    }
-
-    footer a {
+    h2 {
       color: #d4af37;
-      text-decoration: none;
-      margin: 0 5px;
     }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    form input,
-    form select,
-    form textarea,
-    form button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: none;
-      font-size: 1em;
-    }
-
-    form button {
-      background-color: #d4af37;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    form button:hover {
-      background-color: #fff;
+    footer {
+      background-color: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>AdelbertusShop</h1>
+    <a href="https://ibb.co/k2B9J6Qx">
+      <img src="https://i.ibb.co/whgw7rMR/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Logo AdelbertusShop" />
+    </a>
+    <p class="haslo-mistyczne">Moda uliczna dla wyjątkowych ludzi</p>
+  </header>
 
-<header>
-  <h1>AdelbertusShop</h1>
-  <img src="https://i.ibb.co/whgw7rMR/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" 
-       alt="Logo AdelbertusShop" style="max-width: 150px; margin-top: 10px;" />
-  <p class="haslo-mistyczne">Moda uliczna dla wyjątkowych ludzi</p>
-</header>
+  <nav>
+    <a href="#" onclick="showSection('sklep')">Sklep</a>
+    <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
+    <a href="#" onclick="showSection('marketplace')">Marketplace</a>
+    <a href="#" onclick="showSection('reklama')">Reklama</a>
+    <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
+    <a href="#" onclick="showSection('opinie')">Opinie</a>
+    <a href="#" onclick="showSection('blog')">Blog</a>
+    <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
+    <a href="#" onclick="showSection('regulamin')">Regulamin</a>
+  </nav>
 
-<nav>
-  <button onclick="showSection('sklep')">Sklep</button>
-  <button onclick="showSection('projektuj')">Zaprojektuj</button>
-  <button onclick="showSection('marketplace')">Marketplace</button>
-  <button onclick="showSection('reklama')">Reklama</button>
-  <button onclick="showSection('zbiorka')">Zbiórka</button>
-  <button onclick="showSection('opinie')">Opinie</button>
-  <button onclick="showSection('blog')">Blog</button>
-  <button onclick="showSection('zamowienie')">Zamówienie</button>
-  <button onclick="showSection('regulamin')">Regulamin</button>
-</nav>
+  <!-- SEKCJE DO UZUPEŁNIENIA -->
+  <section id="sklep" class="active">
+    <h2>Sklep</h2>
+    <p>Tu będą Twoje produkty.</p>
+  </section>
 
-<!-- SEKCJE -->
+  <section id="projektuj">
+    <h2>Zaprojektuj</h2>
+    <p>Tu użytkownik stworzy własny projekt.</p>
+  </section>
 
-<section id="sklep" class="active">
-  <h2>Sklep</h2>
-  <p>Tu pojawią się Twoje produkty do zakupu. 🚀</p>
-</section>
+  <section id="marketplace">
+    <h2>Marketplace</h2>
+    <p>Dodawanie produktów przez społeczność.</p>
+  </section>
 
-<section id="projektuj">
-  <h2>Zaprojektuj swój produkt</h2>
-  <p>Formularz kreatora – dodamy tutaj projektowanie od zera.</p>
-</section>
+  <section id="reklama">
+    <h2>Reklama</h2>
+    <p>Panel reklamowy z cennikiem i opcją zgłoszenia.</p>
+  </section>
 
-<section id="marketplace">
-  <h2>Marketplace</h2>
-  <p>Tu pojawią się produkty od niezależnych twórców.</p>
-</section>
+  <section id="zbiorka">
+    <h2>Zbórka</h2>
+    <p>Darowizny BLIK: 573-939-925 z dopiskiem "pomoc".</p>
+  </section>
 
-<section id="reklama">
-  <h2>Panel Reklamowy</h2>
-  <p>Tutaj możesz wykupić reklamę w AdelbertusShop.</p>
-</section>
+  <section id="opinie">
+    <h2>Opinie</h2>
+    <p>★ ★ ★ ★ ★ "Super jakość!"</p>
+  </section>
 
-<section id="zbiorka">
-  <h2>Zbiórka charytatywna</h2>
-  <p>Pomagamy razem – więcej informacji wkrótce.</p>
-</section>
+  <section id="blog">
+    <h2>Blog</h2>
+    <p>Porady i inspiracje modowe.</p>
+  </section>
 
-<section id="opinie">
-  <h2>Opinie klientów</h2>
-  <p>„Bluza sztos” – Jarek</p>
-</section>
+  <section id="zamowienie">
+    <h2>Zamówienie</h2>
+    <p>Formularz zamówienia + płatność BLIK / PayPal.</p>
+  </section>
 
-<section id="blog">
-  <h2>Blog i Porady</h2>
-  <p>Jak dobrać rozmiar? Jak prać? Jak nosić? Będzie tu wszystko!</p>
-</section>
+  <section id="regulamin">
+    <h2>Regulamin</h2>
+    <p>Twoja polityka prywatności i zasady sklepu.</p>
+  </section>
 
-<section id="zamowienie">
-  <h2>Zamówienie</h2>
-  <p>Formularz zamówienia będzie dostępny wkrótce.</p>
-</section>
+  <footer>
+    <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
+    <p>
+      <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
+      <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |
+      <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
+    </p>
+  </footer>
 
-<section id="regulamin">
-  <h2>Regulamin i Polityka Prywatności</h2>
-  <p>Szanujemy Twoje dane. Tutaj znajdziesz wszystkie informacje.</p>
-</section>
-
-<footer>
-  <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
-  <p>
-    <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
-    <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |
-    <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
-  </p>
-</footer>
-
-<script>
-  function showSection(id) {
-    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-</script>
-
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 </body>
 </html>
