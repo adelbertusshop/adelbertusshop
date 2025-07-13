@@ -2,179 +2,154 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AdelbertusShop</title>
-
   <style>
     body {
-      background-color: #0f0f0f;
-      color: #e5e5e5;
-      font-family: 'Helvetica Neue', sans-serif;
-      letter-spacing: 0.03em;
+      margin: 0;
+      background-color: #121212;
+      font-family: Arial, sans-serif;
+      color: #fff;
     }
 
     header {
-      background-color: #1a1a1a;
-      color: #d6b36a;
-      border-bottom: 2px solid #b8a07f;
       text-align: center;
       padding: 20px;
+      background-color: #1e1a16;
     }
 
-    nav {
-      background-color: #1a1a1a;
-      text-align: center;
-      padding: 10px 0;
+    header img {
+      max-width: 150px;
     }
 
-    nav a {
-      color: #c0a165;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      color: #e5e5e5;
-      text-shadow: 0 0 5px #c0a165;
-    }
-
-    section {
-      background-color: #1a1a1a;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(184, 160, 127, 0.1);
-      margin: 20px auto;
-      max-width: 900px;
-    }
-
-    h2.category-title {
-      color: #d6b36a;
-      border-bottom: 1px solid #b8a07f;
-      font-size: 2rem;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      text-align: center;
-    }
-
-    .product {
-      background-color: #121212;
-      color: #e5e5e5;
-      box-shadow: 0 0 10px rgba(255,255,255,0.05);
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      margin: 20px auto;
-      max-width: 300px;
-    }
-
-    .product:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 15px rgba(214, 179, 106, 0.3);
-    }
-
-    .product img {
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .product p.price {
-      color: #d6b36a;
-      font-weight: bold;
+    .haslo-mistyczne {
+      color: #d4af37;
+      font-size: 18px;
       margin-top: 10px;
     }
 
-    button,
-    form button {
-      background: #b8a07f;
-      color: #0f0f0f;
-      border: none;
-      padding: 10px 20px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      border-radius: 5px;
-      cursor: pointer;
+    nav {
+      background-color: #000;
+      text-align: center;
+      padding: 10px;
     }
 
-    button:hover,
-    form button:hover {
-      background: #cdbb9e;
+    nav button {
+      background-color: #d4af37;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+
+    section {
+      display: none;
+      padding: 20px;
+    }
+
+    section.active {
+      display: block;
     }
 
     footer {
-      background-color: #1a1a1a;
-      color: #b8a07f;
       text-align: center;
+      background-color: #1e1a16;
       padding: 20px;
-      font-size: 14px;
-      margin-top: 40px;
+      color: #888;
     }
 
     footer a {
-      color: #d6b36a;
-      text-decoration: none;
+      color: #d4af37;
       margin: 0 5px;
+      text-decoration: none;
     }
 
-    footer a:hover {
-      text-decoration: underline;
+    input, textarea, select, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>AdelbertusShop</h1>
-    <p>Moda uliczna dla wyjątkowych ludzi</p>
-  </header>
+<header>
+  <h1>AdelbertusShop</h1>
+  <img src="https://i.ibb.co/whgw7rMR/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Logo AdelbertusShop" />
+  <p class="haslo-mistyczne">Moda uliczna dla wyjątkowych ludzi</p>
+</header>
 
-  <nav>
-    <a href="#sklep">Sklep</a>
-    <a href="#projektuj">Zaprojektuj</a>
-    <a href="#opinie">Opinie</a>
-  </nav>
+<nav>
+  <button onclick="showSection('sklep')">Sklep</button>
+  <button onclick="showSection('projektuj')">Zaprojektuj</button>
+  <button onclick="showSection('marketplace')">Marketplace</button>
+  <button onclick="showSection('reklama')">Reklama</button>
+  <button onclick="showSection('zbiorka')">Zbiórka</button>
+  <button onclick="showSection('opinie')">Opinie</button>
+  <button onclick="showSection('blog')">Blog</button>
+  <button onclick="showSection('zamowienie')">Zamówienie</button>
+  <button onclick="showSection('regulamin')">Regulamin</button>
+</nav>
 
-  <section id="sklep">
-    <h2 class="category-title">Sklep</h2>
-    <div class="product">
-      <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
-      <h3>Bluza StreetStyle</h3>
-      <p class="price">150 zł</p>
-      <button>Kup teraz</button>
-    </div>
-  </section>
+<section id="sklep" class="active">
+  <h2>Sklep</h2>
+  <!-- Produkty będą tu dodane -->
+</section>
 
-  <section id="projektuj">
-    <h2 class="category-title">Zaprojektuj</h2>
-    <form>
-      <input type="text" placeholder="Własny napis" />
-      <select>
-        <option>Rozmiar S</option>
-        <option>M</option>
-        <option>L</option>
-        <option>XL</option>
-      </select>
-      <button type="submit">Zamów</button>
-    </form>
-  </section>
+<section id="projektuj">
+  <h2>Zaprojektuj</h2>
+</section>
 
-  <section id="opinie">
-    <h2 class="category-title">Opinie klientów</h2>
-    <p>★ ★ ★ ★ ★ „Super jakość – koszulki świetne!”</p>
-    <p>★ ★ ★ ★ ★ „Bluza stylowa i wygodna!”</p>
-  </section>
+<section id="marketplace">
+  <h2>Marketplace</h2>
+</section>
 
-  <footer>
-    <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
-    <p>
-      <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
-      <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |
-      <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
-    </p>
-  </footer>
+<section id="reklama">
+  <h2>Reklama</h2>
+</section>
+
+<section id="zbiorka">
+  <h2>Zbiórka</h2>
+</section>
+
+<section id="opinie">
+  <h2>Opinie</h2>
+</section>
+
+<section id="blog">
+  <h2>Blog</h2>
+</section>
+
+<section id="zamowienie">
+  <h2>Zamówienie</h2>
+</section>
+
+<section id="regulamin">
+  <h2>Regulamin</h2>
+</section>
+
+<footer>
+  <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
+  <p>
+    <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
+    <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |
+    <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
+  </p>
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+</script>
 
 </body>
 </html>
