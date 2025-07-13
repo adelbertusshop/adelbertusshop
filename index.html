@@ -4,667 +4,175 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #f0f0f0;
+    }
 
-  body {
-  font-family: 'Georgia', serif;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
-  color: #f5f5dc;
-}
-header, footer {
-  background: linear-gradient(to right, #1a1a1a, #2c2c2c);
-  color: #d4af37;
-  text-align: center;
-  padding: 30px 20px;
-  font-family: 'Georgia', serif;
-  letter-spacing: 1px;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-  border-top: 2px solid #d4af37;
-  border-bottom: 2px solid #d4af37;
-}
- nav {
-  background: linear-gradient(to right, #3a2d1f, #2b2118);
-  padding: 15px;
-  text-align: center;
-  border-top: 2px solid #d4af37;
-  border-bottom: 2px solid #d4af37;
-}
+    header {
+      background-color: #1e1a16;
+      text-align: center;
+      padding: 30px 20px 20px;
+    }
 
-nav a {
-  color: #d4af37;
-  margin: 0 20px;
-  text-decoration: none;
-  font-family: 'Georgia', serif;
-  font-size: 18px;
-  font-weight: bold;
-  position: relative;
-  transition: color 0.3s ease;
-}
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #d4af37;
+    }
 
-nav a::after {
-  content: '';
-  display: block;
-  width: 0%;
-  height: 2px;
-  background: #d4af37;
-  transition: width 0.3s;
-  margin: 0 auto;
-}
+    .haslo-mistyczne {
+      margin-top: 10px;
+      font-style: italic;
+      color: #ccc;
+    }
 
-nav a:hover {
-  color: #fff8dc;
-}
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #000;
+      padding: 10px 0;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-nav a:hover::after {
-  width: 100%;
-}
-nav a::after {
-  content: '';
-  display: block;
-  width: 0%;
-  height: 2px;
-  background: #ffd700;
-  transition: width 0.3s ease;
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-}
+    nav button {
+      background-color: #d4af37;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #000;
+      transition: 0.3s;
+    }
 
-nav a:hover {
-  color: #fff8dc;
-  text-shadow: 0 0 8px #ffd700;
-}
+    nav button:hover {
+      background-color: #fff;
+    }
 
-nav a:hover::after {
-  width: 100%;
-}
-  nav a:hover {
-    color: #ffd700;
-  }
+    section {
+      display: none;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
 
-  section {
-    display: none;
-    padding: 30px;
-  }
+    section.active {
+      display: block;
+    }
 
-  section.active {
-    display: block;
-  }
+    footer {
+      background-color: #1e1a16;
+      text-align: center;
+      color: #999;
+      padding: 20px;
+      font-size: 0.9em;
+    }
 
-  .produkt {
-  background: #1e1a16;
-  border: 2px solid #d4af37;
-  padding: 20px;
-  border-radius: 12px;
-  width: 300px;
-  text-align: center;
-  margin: 30px auto;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    footer a {
+      color: #d4af37;
+      text-decoration: none;
+      margin: 0 5px;
+    }
 
-.produkt:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.7);
-}
+    footer a:hover {
+      text-decoration: underline;
+    }
 
-.produkt img {
-  max-width: 100%;
-  border-radius: 10px;
-  border: 2px solid #444;
-}
+    form input,
+    form select,
+    form textarea,
+    form button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+    }
 
-.produkt h3 {
-  color: #f3e5ab;
-  font-family: 'Georgia', serif;
-  font-size: 20px;
-  margin-top: 15px;
-}
+    form button {
+      background-color: #d4af37;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-.projektuj {
-  background: linear-gradient(to right, #1a1a1a, #2e2e2e);
-  color: #f3e5ab;
-  font-family: 'Georgia', serif;
-  padding: 30px;
-  border-top: 3px solid #d4af37;
-}
-
-.projektuj h2 {
-  text-align: center;
-  font-size: 28px;
-  color: #d4af37;
-  margin-bottom: 10px;
-}
-
-.projektuj p {
-  text-align: center;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-.projektuj form {
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.projektuj select,
-.projektuj textarea,
-.projektuj button {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  background: #2d261f;
-  border: 1px solid #d4af37;
-  color: #f3e5ab;
-  border-radius: 8px;
-  font-size: 16px;
-  font-family: 'Georgia', serif;
-}
-
-.projektuj button {
-  background-color: #d4af37;
-  color: #1e1a16;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.projektuj button:hover {
-  background-color: #bfa334;
-}  .produkt select, form input, form textarea, form button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 6px;
-    border: 1px solid #5c4b28;
-    background: #0f0f0f;
-    color: #f5f5dc;
-  }
-
-  form button {
-    background: #5c4b28;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  form button:hover {
-    background: #806b3a;
-  }
-
-  h1, h2, h3 {
-    color: #ffd700;
-    text-shadow: 1px 1px #000;
-  }
-</style>  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+    form button:hover {
+      background-color: #fff;
+    }
+  </style>
 </head>
 <body>
+
 <header>
- <h1>AdelbertusShop</h1>
-<a href="https://ibb.co/k2B9J6Qx">
+  <h1>AdelbertusShop</h1>
   <img src="https://i.ibb.co/whgw7rMR/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" 
-       alt="Logo AdelbertusShop" 
-       style="max-width: 150px; margin-top: 10px;" />
-</a>  <p class="haslo-mistyczne">Moda uliczna dla wyjątkowych ludzi</p>
-  <body>
-<div id="cart-icon" onclick="toggleCart()">🛒</div>
+       alt="Logo AdelbertusShop" style="max-width: 150px; margin-top: 10px;" />
+  <p class="haslo-mistyczne">Moda uliczna dla wyjątkowych ludzi</p>
+</header>
 
-<div id="cart-popup">
-  <h3>Twój koszyk</h3>
-  <p>Na razie pusty.</p>
-</div>
-<script>
-  let koszyk = [];
+<nav>
+  <button onclick="showSection('sklep')">Sklep</button>
+  <button onclick="showSection('projektuj')">Zaprojektuj</button>
+  <button onclick="showSection('marketplace')">Marketplace</button>
+  <button onclick="showSection('reklama')">Reklama</button>
+  <button onclick="showSection('zbiorka')">Zbiórka</button>
+  <button onclick="showSection('opinie')">Opinie</button>
+  <button onclick="showSection('blog')">Blog</button>
+  <button onclick="showSection('zamowienie')">Zamówienie</button>
+  <button onclick="showSection('regulamin')">Regulamin</button>
+</nav>
 
-  function toggleKoszyk() {
-    const popup = document.getElementById('koszyk-popup');
-    popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
-  }
+<!-- SEKCJE -->
 
-  function dodajDoKoszyka(nazwa, cena) {
-    koszyk.push({nazwa, cena});
-    aktualizujKoszyk();
-  }
-
-  function aktualizujKoszyk() {
-    const lista = document.getElementById('koszyk-lista');
-    const sumaElem = document.getElementById('koszyk-suma');
-    const licznik = document.getElementById('koszyk-licznik');
-
-    lista.innerHTML = '';
-    let suma = 0;
-
-    koszyk.forEach(item => {
-      const el = document.createElement('li');
-      el.textContent = `${item.nazwa} - ${item.cena} zł`;
-      lista.appendChild(el);
-      suma += parseFloat(item.cena);
-    });
-
-    sumaElem.textContent = suma.toFixed(2);
-    licznik.textContent = koszyk.length;
-  }
-
-  function zlozZamowienie() {
-    alert("Zamówienie złożone! Skontaktujemy się z Tobą.");
-    koszyk = [];
-    aktualizujKoszyk();
-    toggleKoszyk();
-  }
-</script> <nav>
-  <a href="#" onclick="showSection('sklep')">Sklep</a>
-  <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
-  <a href="#" onclick="showSection('marketplace')">Marketplace</a>
-  <a href="#" onclick="showSection('reklama')">Reklama</a>
-  <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
-  <a href="#" onclick="showSection('opinie')">Opinie</a>
-  <a href="#" onclick="showSection('blog')">Blog</a>
-  <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
-  <a href="#" onclick="showSection('regulamin')">Regulamin</a>
-</nav>    
-
-<section id="sklep" class="produkty active">
-  <div class="produkt">
-    <div class="produkt">
-    <img src="https://i.ibb.co/TB49WCsM/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Zakazana">
-    <h3>Koszulka "Zakazana" – 99 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Biały</option>
-      <option>Czerwony</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div> 
-    <div class="produkt">
-    <img src="https://i.ibb.co/k2pbJctY/file-000000007e84620a86b41cfadc98dc4a.png" alt="Koszulka Rzymianin">
-    <h3>Koszulka "Rzymianin" – 99 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Biały</option>
-      <option>Szary</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div><div class="produkt">
-    <img src="https://i.ibb.co/7xR4WDPt/file-00000000b05862468692775a467c9e6d.png" alt="Bluza Kod QR">
-    <h3>Bluza "Kod QR" – 120 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Biały</option>
-      <option>Beżowy</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div>
-    <div class="produkt">
-    <img src="https://i.ibb.co/QFLDMknR/file-000000009774620a872442c13e6fb0c4.png" alt="Bluza Symbol Pi">
-    <h3>Bluza "Symbol Pi" – 120 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Szary</option>
-      <option>Granatowy</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div> 
-    <div class="produkt">
-    <img src="https://i.ibb.co/GvHYkXV9/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Koszulka Disco">
-    <h3>Koszulka "Disco" – 99 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Biały</option>
-      <option>Czarny</option>
-      <option>Różowy</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div> 
-    <div class="produkt">
-    <img src="https://i.ibb.co/LDfxrY24/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka Disco z symbolem Pi">
-    <h3>Koszulka "Disco z symbolem Pi" – 99 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Biały</option>
-      <option>Złoty</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div>  
-    <div class="produkt">
-    <img src="https://i.ibb.co/v6ByDb95/file-0000000057e061f490d9d37cd8e6a2e5-1.png" alt="Bluza z kapturem Syn Młynarza">
-    <h3>Bluza z kapturem "Syn Młynarza" – 120 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Szary</option>
-      <option>Beżowy</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div>  
-    <div class="produkt">
-    <img src="https://i.ibb.co/RGhNdwzK/file-0000000086bc620a9620103c34ef3e1a-1.png" alt="Koszulka Wojownik">
-    <h3>Koszulka "Wojownik" – 99 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Biały</option>
-      <option>Khaki</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div> 
-    <div class="produkt">
-    <img src="https://i.ibb.co/gMnmGY0z/Messenger-creation-70-F10-D9-F-4277-40-C0-A888-01-E8535-FF028.jpg" alt="Koszulka AdelbertusShop">
-    <h3>Koszulka "AdelbertusShop" – 99 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Biały</option>
-      <option>Granatowy</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div> 
-    <div class="produkt">
-    <img src="https://i.ibb.co/5xttPJzc/file-000000004b086246b2f6ebdeefb1586f.png" alt="Koszulka AdelbertusShop 2">
-    <h3>Koszulka "AdelbertusShop" – 99 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Biały</option>
-      <option>Beżowy</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div> 
-    <div class="produkt">
-    <img src="https://i.ibb.co/rKZvqBYz/file-000000005d2c620abbbd46a4320f6a59.png" alt="Koszulka Buntownik">
-    <h3>Koszulka "Buntownik" – 120 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Biały</option>
-      <option>Grafitowy</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div>  
-    <div class="produkt">
-    <img src="https://i.ibb.co/v6ByDb95/file-0000000057e061f490d9d37cd8e6a2e5-1.png" alt="Bluza z kapturem AdelbertusShop">
-    <h3>Bluza z kapturem "AdelbertusShop" – 120 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Szary</option>
-      <option>Biały</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div> 
-    <div class="produkt">
-    <img src="https://i.ibb.co/v6ByDb95/file-0000000057e061f490d9d37cd8e6a2e5-1.png" alt="Bluza z kapturem AdelbertusShop">
-    <h3>Bluza z kapturem "AdelbertusShop" – 120 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Szary</option>
-      <option>Biały</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div>  
-    <div class="produkt">
-    <img src="https://i.ibb.co/QjFnt03L/file-00000000f74c6246b28b53d21a15741a.png" alt="Koszulka Bunt">
-    <h3>Koszulka "Bunt" – 99 zł</h3>
-    <label>Rozmiar:</label>
-    <select>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
-    <label>Kolor:</label>
-    <select>
-      <option>Czarny</option>
-      <option>Biały</option>
-      <option>Czerwony</option>
-    </select>
-    <button type="button">Dodaj do zamówienia</button>
-  </div>    <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
-    <h3>Bluza StreetStyle – 150 zł</h3>
-    <label>Rozmiar:</label>
-    <select><option>S</option><option>M</option><option>L</option><option>XL</option></select>
-    <label>Kolor:</label>
-    <select><option>Czarny</option><option>Biały</option><option>Szary</option></select>
-    <div id="paypal-container-bluza"></div>
-    <script>paypal.HostedButtons({ hostedButtonId: "44SZBZRF7BEK4" }).render("#paypal-container-bluza");</script>
-  </div>
+<section id="sklep" class="active">
+  <h2>Sklep</h2>
+  <p>Tu pojawią się Twoje produkty do zakupu. 🚀</p>
 </section>
-<section id="projektuj" class="projektuj">
-  <h2 style="font-size: 28px; color: #d4af37; text-align: center;">Stwórz swój unikalny projekt</h2>
-  <p style="text-align: center; color: #ccc;">Wybierz typ produktu, kolor, rozmiar i dodaj swój tekst lub grafikę!</p>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 500px; margin: auto; background: #1e1a16; padding: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.3); color: #fff;">
-    
-    <label for="typ">Typ produktu:</label>
-    <select id="typ" name="Typ produktu" required>
-      <option value="Koszulka">Koszulka</option>
-      <option value="Bluza">Bluza</option>
-      <option value="Czapka">Czapka</option>
-    </select>
 
-    <label for="kolor">Kolor:</label>
-    <select id="kolor" name="Kolor" required>
-      <option value="Czarny">Czarny</option>
-      <option value="Biały">Biały</option>
-      <option value="Beżowy">Beżowy</option>
-      <option value="Czerwony">Czerwony</option>
-    </select>
+<section id="projektuj">
+  <h2>Zaprojektuj swój produkt</h2>
+  <p>Formularz kreatora – dodamy tutaj projektowanie od zera.</p>
+</section>
 
-    <label for="rozmiar">Rozmiar:</label>
-    <select id="rozmiar" name="Rozmiar" required>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="XL">XL</option>
-    </select>
+<section id="marketplace">
+  <h2>Marketplace</h2>
+  <p>Tu pojawią się produkty od niezależnych twórców.</p>
+</section>
 
-    <label for="tekst">Twój tekst / hasło:</label>
-    <textarea id="tekst" name="Tekst" rows="3" placeholder="Wpisz swój tekst lub przesłanie..." required></textarea>
-
-    <label for="grafika">Link do własnej grafiki (opcjonalnie):</label>
-    <input type="url" id="grafika" name="Link do grafiki" placeholder="https://...">
-
-    <button type="submit" style="background: #d4af37; border: none; padding: 10px; margin-top: 10px; border-radius: 8px; color: #000; font-weight: bold; cursor: pointer;">Wyślij projekt</button>
-  </form>
-  <section id="marketplace" class="marketplace">
-  <h2>Marketplace – Zgłoś swój produkt</h2>
-  <p>Tworzysz ubrania, grafikę, rękodzieło? Dołącz do AdelbertusShop!</p>
-  <form id="formMarketplace">
-    <input type="text" name="nazwa" placeholder="Nazwa produktu" required>
-    <input type="text" name="cena" placeholder="Cena (PLN)" required>
-    <textarea name="opis" placeholder="Opis produktu" required></textarea>
-    <input type="url" name="zdjecie" placeholder="Link do zdjęcia" required>
-    <input type="text" name="kontakt" placeholder="E-mail lub Instagram" required>
-    <button type="submit">Wyślij zgłoszenie</button>
-    <p style="margin-top: 10px; font-size: 0.9em; color: #999;">
-      *Zgłoszenie trafi do administratora i zostanie rozpatrzone.
-    </p>
-  </form>
-  <div id="marketplaceWiadomosc" style="margin-top: 15px; color: green;"></div>
-</section></script>
-<section id="reklama" class="reklama">
+<section id="reklama">
   <h2>Panel Reklamowy</h2>
-  <p>Promuj swój produkt lub markę w sklepie <strong>AdelbertusShop</strong>.</p>
-  <div style="background: #1e1a16; color: #fff; padding: 20px; border-radius: 12px;">
-    <h3>Cennik Reklam:</h3>
-    <ul>
-      <li>📅 1 dzień – 20 zł</li>
-      <li>📆 1 tydzień – 100 zł</li>
-      <li>📅 1 miesiąc – 350 zł</li>
-    </ul>
-    <p>Płatność BLIK na numer: <strong style="color: #d4af37;">573-939-925</strong>  
-    <br>W tytule wpisz: <em>"Reklama AdelbertusShop"</em></p>
-  </div>
-
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="margin-top: 20px;">
-    <input type="text" name="Nazwa reklamy" placeholder="Nazwa reklamy" required>
-    <textarea name="Opis" placeholder="Opis reklamy" required></textarea>
-    <input type="url" name="Link do strony" placeholder="Link do strony / social media" required>
-    <input type="text" name="Dane kontaktowe" placeholder="Email lub numer telefonu" required>
-    <button type="submit">Zgłoś reklamę</button>
-  </form>
-
-  <p style="margin-top: 20px; color: #ccc;">
-    Reklamy są zatwierdzane ręcznie przez administratora.  
-    W razie braku płatności – reklama zostaje odrzucona lub usunięta.
-  </p>
-
-  <div style="margin-top: 30px;">
-    <h3>🔎 Reklamy aktywne</h3>
-    <div id="reklamy-aktywne">
-     <div class="reklama-box" style="border: 2px dashed #d4af37; padding: 10px; margin-bottom: 10px;">
-  <strong>🔥 Nazwa Reklamy</strong><br>
-  <a href="https://linkdokampanii.pl" target="_blank" style="color: #d4af37;">Sprawdź teraz</a>
-</div>      <!-- Tu ręcznie dodajesz zaakceptowane reklamy -->
-      <!-- Przykład:
-      <div class="reklama-box" style="border: 2px dashed #d4af37; padding: 10px; margin-bottom: 10px;">
-        <strong>🔥 Marka XYZ</strong><br>
-        <a href="https://xyz.com" target="_blank" style="color: #d4af37;">Sprawdź teraz</a>
-      </div>
-      -->
-    </div>
-  </div>
+  <p>Tutaj możesz wykupić reklamę w AdelbertusShop.</p>
 </section>
-<section id="zbiorka" class="zbiorka">
+
+<section id="zbiorka">
   <h2>Zbiórka charytatywna</h2>
-  <p>Wspieramy dom dziecka – przekaż darowiznę na nr <strong>BLIK 573-939-925</strong> z dopiskiem <strong>"pomoc"</strong>.</p>
+  <p>Pomagamy razem – więcej informacji wkrótce.</p>
 </section>
 
-<section id="opinie" class="opinie">
+<section id="opinie">
   <h2>Opinie klientów</h2>
-  <p>★ ★ ★ ★ ★ „Super jakość – koszulki świetne!”</p>
-  <p>★ ★ ★ ★ ★ „Bluza stylowa i wygodna!”</p>
+  <p>„Bluza sztos” – Jarek</p>
 </section>
 
-<section id="blog" class="blog">
+<section id="blog">
   <h2>Blog i Porady</h2>
-  <h3>Jak dobrać rozmiar?</h3>
-  <p>Poradnik rozmiarówki streetwearu...</p>
+  <p>Jak dobrać rozmiar? Jak prać? Jak nosić? Będzie tu wszystko!</p>
 </section>
 
 <section id="zamowienie">
   <h2>Zamówienie</h2>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-    <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
-    <input type="email" name="Email" placeholder="Email" required>
-    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" required></textarea>
-    <button type="submit">Wyślij</button>
-  </form>
-
-  <div style="margin-top: 20px; padding: 15px; border: 2px dashed gold; background-color: #1e1a16; color: #fff; border-radius: 12px; text-align: center;">
-    <h3 style="margin-bottom: 10px;">Płatność BLIK</h3>
-    <p>Przelej <strong>na numer BLIK: <span style="color: #d4af37;">573-939-925</span></strong></p>
-    <p>W tytule wpisz: <em>"AdelbertusShop – zamówienie"</em></p>
-  </div>
-</section> 
-
-  <div style="margin-top: 20px; padding: 15px; border: 2px dashed gold; background-color: #1e1a16; color: #fff; border-radius: 12px; text-align: center;">
-    <h3 style="margin-bottom: 10px;">Płatność BLIK</h3>
-    <p>Przelej <strong>na numer BLIK: <span style="color: #d4af37;">573-939-925</span></strong></p>
-    <p>W tytule wpisz: <em>"AdelbertusShop – zamówienie"</em></p>
- </div>
+  <p>Formularz zamówienia będzie dostępny wkrótce.</p>
 </section>
-<section id="regulamin" class="regulamin">
+
+<section id="regulamin">
   <h2>Regulamin i Polityka Prywatności</h2>
-  <p>Przetwarzamy dane tylko w celu realizacji zamówienia. Nie udostępniamy danych osobom trzecim.</p>
+  <p>Szanujemy Twoje dane. Tutaj znajdziesz wszystkie informacje.</p>
 </section>
 
 <footer>
@@ -682,32 +190,6 @@ nav a:hover::after {
     document.getElementById(id).classList.add('active');
   }
 </script>
-    <script>
-  document.getElementById('formMarketplace').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const haslo = prompt("Podaj hasło administratora, jeśli chcesz zatwierdzić zgłoszenie (pozostaw puste jeśli jesteś zgłaszającym):");
-    
-    if (haslo === "Wojownik.03") {
-      const dane = new FormData(this);
-      const produkt = {
-        nazwa: dane.get("nazwa"),
-        cena: dane.get("cena"),
-        opis: dane.get("opis"),
-        zdjecie: dane.get("zdjecie"),
-        kontakt: dane.get("kontakt")
-      };
 
-      const komunikat = document.getElementById("marketplaceWiadomosc");
-      komunikat.innerHTML = "✅ Produkt zatwierdzony przez admina. Dodaj go teraz do sekcji SKLEP.";
-
-      console.log("Admin dodał produkt:", produkt);
-      // Tu możesz dodać logikę zapisu lub przesłania do backendu (jeśli będziemy chcieli później).
-
-    } else {
-      document.getElementById("marketplaceWiadomosc").innerHTML = "✔️ Dziękujemy! Zgłoszenie zostało przesłane do weryfikacji.";
-      this.reset();
-    }
-  });
-</script></body>
+</body>
 </html>
