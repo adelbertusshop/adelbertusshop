@@ -2,372 +2,172 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
+
   <style>
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+      background-color: #0f0f0f;
+      color: #e5e5e5;
+      font-family: 'Helvetica Neue', sans-serif;
+      letter-spacing: 0.03em;
     }
+
     header {
+      background-color: #1a1a1a;
+      color: #d6b36a;
+      border-bottom: 2px solid #b8a07f;
       text-align: center;
       padding: 20px;
-      background-color: #1e1a16;
     }
-    header img {
-      max-width: 150px;
-      margin-top: 10px;
-    }
+
     nav {
-      background-color: #111;
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
+      background-color: #1a1a1a;
+      text-align: center;
+      padding: 10px 0;
     }
+
     nav a {
-      color: #d4af37;
+      color: #c0a165;
+      margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
     }
+
+    nav a:hover {
+      color: #e5e5e5;
+      text-shadow: 0 0 5px #c0a165;
+    }
+
     section {
-      display: none;
+      background-color: #1a1a1a;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(184, 160, 127, 0.1);
+      margin: 20px auto;
+      max-width: 900px;
+    }
+
+    h2.category-title {
+      color: #d6b36a;
+      border-bottom: 1px solid #b8a07f;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+
+    .product {
+      background-color: #121212;
+      color: #e5e5e5;
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
       padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 20px auto;
+      max-width: 300px;
     }
-    section.active {
-      display: block;
+
+    .product:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px rgba(214, 179, 106, 0.3);
     }
-    h2 {
-      color: #d4af37;
+
+    .product img {
+      width: 100%;
+      border-radius: 8px;
     }
+
+    .product p.price {
+      color: #d6b36a;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    button,
+    form button {
+      background: #b8a07f;
+      color: #0f0f0f;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover,
+    form button:hover {
+      background: #cdbb9e;
+    }
+
     footer {
-      background-color: #111;
-      color: #aaa;
+      background-color: #1a1a1a;
+      color: #b8a07f;
       text-align: center;
       padding: 20px;
+      font-size: 14px;
       margin-top: 40px;
+    }
+
+    footer a {
+      color: #d6b36a;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>AdelbertusShop</h1>
-    <a href="https://ibb.co/k2B9J6Qx">
-      <img src="https://i.ibb.co/whgw7rMR/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Logo AdelbertusShop" />
-    </a>
-    <p class="haslo-mistyczne">Moda uliczna dla wyjątkowych ludzi</p>
+    <p>Moda uliczna dla wyjątkowych ludzi</p>
   </header>
 
   <nav>
-    <a href="#" onclick="showSection('sklep')">Sklep</a>
-    <a href="#" onclick="showSection('projektuj')">Zaprojektuj</a>
-    <a href="#" onclick="showSection('marketplace')">Marketplace</a>
-    <a href="#" onclick="showSection('reklama')">Reklama</a>
-    <a href="#" onclick="showSection('zbiorka')">Zbiórka</a>
-    <a href="#" onclick="showSection('opinie')">Opinie</a>
-    <a href="#" onclick="showSection('blog')">Blog</a>
-    <a href="#" onclick="showSection('zamowienie')">Zamówienie</a>
-    <a href="#" onclick="showSection('regulamin')">Regulamin</a>
+    <a href="#sklep">Sklep</a>
+    <a href="#projektuj">Zaprojektuj</a>
+    <a href="#opinie">Opinie</a>
   </nav>
 
-  <!-- SEKCJE DO UZUPEŁNIENIA -->
-  <section id="sklep" class="active">
-    <h2>Sklep</h2>
-    <p>Tu będą Twoje produkty.</p>
+  <section id="sklep">
+    <h2 class="category-title">Sklep</h2>
+    <div class="product">
+      <img src="https://i.imgur.com/BZDtOMU.jpg" alt="Bluza">
+      <h3>Bluza StreetStyle</h3>
+      <p class="price">150 zł</p>
+      <button>Kup teraz</button>
+    </div>
   </section>
 
- <section id="projektuj" class="projektuj" style="background-color: #12100e; padding: 40px 20px; color: #fff;">
-  <h2 style="text-align: center; font-size: 32px; color: #d4af37;">Stwórz swój unikalny projekt</h2>
-  <p style="text-align: center; font-size: 18px; color: #ccc; margin-bottom: 30px;">
-    Zaprojektuj koszulkę, bluzę lub czapkę według własnej wizji. Wybierz kolor, rozmiar, dodaj tekst lub własną grafikę.
-  </p>
-
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain"
-        style="max-width: 600px; margin: auto; background: #1e1a16; padding: 25px; border-radius: 16px; box-shadow: 0 0 25px rgba(212,175,55,0.2);">
-
-    <label for="typ" style="display:block; margin-top:10px;">🧥 Typ produktu:</label>
-    <select id="typ" name="Typ produktu" required style="width: 100%; padding: 10px; border-radius: 8px;">
-      <option value="Koszulka">Koszulka</option>
-      <option value="Bluza">Bluza</option>
-      <option value="Czapka">Czapka</option>
-    </select>
-
-    <label for="kolor" style="display:block; margin-top:20px;">🎨 Kolor:</label>
-    <select id="kolor" name="Kolor" required style="width: 100%; padding: 10px; border-radius: 8px;">
-      <option value="Czarny">Czarny</option>
-      <option value="Biały">Biały</option>
-      <option value="Beżowy">Beżowy</option>
-      <option value="Czerwony">Czerwony</option>
-    </select>
-
-    <label for="rozmiar" style="display:block; margin-top:20px;">📏 Rozmiar:</label>
-    <select id="rozmiar" name="Rozmiar" required style="width: 100%; padding: 10px; border-radius: 8px;">
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="XL">XL</option>
-    </select>
-
-    <label for="tekst" style="display:block; margin-top:20px;">✍️ Tekst / Hasło:</label>
-    <textarea id="tekst" name="Tekst" rows="3" placeholder="Wpisz swój tekst..." required
-              style="width: 100%; padding: 10px; border-radius: 8px;"></textarea>
-
-    <label for="grafika" style="display:block; margin-top:20px;">🖼️ Link do grafiki (opcjonalnie):</label>
-    <input type="url" id="grafika" name="Link do grafiki" placeholder="https://..."
-           style="width: 100%; padding: 10px; border-radius: 8px;">
-
-    <button type="submit"
-            style="margin-top: 25px; background: #d4af37; color: #000; padding: 12px; width: 100%; border: none; border-radius: 12px; font-weight: bold; font-size: 18px;">
-      Wyślij projekt
-    </button>
-  </form>
-</section>
-  <section id="marketplace" class="marketplace">
-  <h2 style="text-align:center; color:#d4af37;">Marketplace – Zgłoś swój produkt</h2>
-  <p style="text-align:center; color:#ccc;">Dołącz jako twórca! My go wystawimy.</p>
-  
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width:500px; margin:auto; background:#1e1a16; padding:20px; border-radius:12px; color:#fff;">
-    <input type="text" name="Nazwa produktu" placeholder="Nazwa produktu" required style="width:100%; padding:10px; margin-bottom:10px;"><br>
-    
-    <input type="text" name="Cena" placeholder="Cena (PLN)" required style="width:100%; padding:10px; margin-bottom:10px;"><br>
-    
-    <textarea name="Opis" placeholder="Opis produktu" required style="width:100%; padding:10px; margin-bottom:10px;"></textarea><br>
-    
-    <input type="url" name="Link do zdjęcia" placeholder="Link do zdjęcia" required style="width:100%; padding:10px; margin-bottom:10px;"><br>
-    
-    <input type="text" name="Dane kontaktowe" placeholder="E-mail lub Instagram" required style="width:100%; padding:10px; margin-bottom:10px;"><br>
-    
-    <button type="submit" style="background:#d4af37; color:#000; padding:10px; border:none; border-radius:6px; width:100%; font-weight:bold;">Wyślij zgłoszenie</button>
-  </form>
-
-  <p style="margin-top:20px; text-align:center; color:#999;">
-    ✉️ Zgłoszenie trafi do administratora. Po akceptacji zostanie opublikowane w sklepie.
-  </p>
-<section id="reklama" class="reklama" style="background-color: #12100e; padding: 40px 20px; color: #fff;">
-  <h2 style="text-align: center; font-size: 32px; color: #d4af37;">Panel Reklamowy</h2>
-  <p style="text-align: center; font-size: 18px; color: #ccc; margin-bottom: 30px;">
-    Promuj swój produkt lub markę na stronie <strong>AdelbertusShop</strong>. Twoja marka, nasza widoczność.
-  </p>
-
-  <div style="max-width: 600px; margin: auto; background: #1e1a16; padding: 25px; border-radius: 16px; box-shadow: 0 0 25px rgba(212,175,55,0.2);">
-    <h3 style="color: #d4af37;">💰 Cennik reklam:</h3>
-    <ul style="line-height: 1.8;">
-      <li>📅 1 dzień – 20 zł</li>
-      <li>📆 1 tydzień – 100 zł</li>
-      <li>🗓️ 1 miesiąc – 350 zł</li>
-    </ul>
-    <p style="color: #ccc;">Płatność BLIK: <strong style="color: #d4af37;">573-939-925</strong><br>
-    W tytule: <em>"Reklama AdelbertusShop"</em></p>
-  </div>
-
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain"
-        style="margin: 30px auto 10px auto; max-width: 600px; background: #1e1a16; padding: 25px; border-radius: 16px; box-shadow: 0 0 15px rgba(212,175,55,0.2);">
-    <label for="nazwa">📛 Nazwa reklamy:</label>
-    <input type="text" id="nazwa" name="Nazwa reklamy" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
-
-    <label for="opis">📝 Opis:</label>
-    <textarea id="opis" name="Opis" rows="3" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;"></textarea>
-
-    <label for="link">🔗 Link do strony:</label>
-    <input type="url" id="link" name="Link do strony" placeholder="https://..." required style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px;">
-
-    <label for="kontakt">📞 Dane kontaktowe:</label>
-    <input type="text" id="kontakt" name="Dane kontaktowe" placeholder="Email / telefon / Instagram" required style="width:100%; padding:10px; margin-bottom:15px; border-radius:8px;">
-
-    <button type="submit" style="width:100%; padding:12px; background:#d4af37; color:#000; font-weight:bold; border:none; border-radius:12px; font-size:16px;">
-      Zgłoś reklamę
-    </button>
-  </form>
-
-  <p style="text-align: center; color: #999; font-size: 0.9em; margin-top: 20px;">
-    Wszystkie zgłoszenia są zatwierdzane ręcznie przez administratora. <br>
-    W przypadku braku płatności – reklama zostanie usunięta.
-  </p>
-
-  <div style="margin-top: 40px;">
-    <h3 style="color: #d4af37;">📢 Reklamy aktywne</h3>
-    <div id="reklamy-aktywne" style="margin-top: 20px;">
-      <!-- Ręcznie dodajesz zaakceptowane reklamy poniżej -->
-      <!-- Przykład: -->
-      <div class="reklama-box" style="border: 2px dashed #d4af37; padding: 15px; margin-bottom: 20px; border-radius: 10px;">
-        <strong>🔥 Marka XYZ</strong><br>
-        <a href="https://markaxyz.pl" target="_blank" style="color: #d4af37;">Sprawdź teraz</a>
-      </div>
-    </div>
-  </div>
-</section>
- <section id="zbiorka" class="zbiorka" style="background-color: #12100e; padding: 50px 20px; color: #fff;">
-  <h2 style="text-align: center; font-size: 32px; color: #d4af37;">Zbiórka Charytatywna: Pomoc dla Dzieci</h2>
-  
-  <p style="text-align: center; font-size: 18px; margin-top: 20px;">
-    Każda koszulka, każda bluza to część większej opowieści. Ale tu — tu chodzi o coś więcej niż moda.  
-    Wspieramy dzieci, które potrzebują ciepła, wsparcia i zwyczajnego ludzkiego dobra.
-  </p>
-
-  <div style="max-width: 650px; margin: 40px auto; background: #1e1a16; padding: 30px; border-radius: 16px; box-shadow: 0 0 20px rgba(212,175,55,0.2);">
-    <h3 style="color: #d4af37; text-align: center;">Jak możesz pomóc?</h3>
-    <ul style="line-height: 1.8; font-size: 16px;">
-      <li>📦 Przekaż paczki – zabawki, ubrania, książki</li>
-      <li>💸 Wesprzyj finansowo – przelew <strong>BLIK: <span style="color: #d4af37;">573 939 925</span></strong></li>
-      <li>✍️ W tytule przelewu: <em>"Pomoc"</em></li>
-      <li>📞 Kontakt bezpośredni: <strong>604 296 360</strong></li>
-      <li>📧 E-mail: <a href="mailto:mielniczukgrzegosz74@gmail.com" style="color: #d4af37;">mielniczukgrzegosz74@gmail.com</a></li>
-    </ul>
-  </div>
-
-  <div style="margin-top: 30px;">
-    <h3 style="text-align: center; color: #d4af37;">❤️ Fikcyjni Darczyńcy – Dziękujemy!</h3>
-    <div style="max-width: 600px; margin: auto; font-style: italic; color: #ccc;">
-      <p>„Dzieci zasługują na wszystko, co najlepsze.” – <strong>Anna K., Wrocław</strong></p>
-      <p>„Wzruszająca inicjatywa. Będę wspierać co miesiąc.” – <strong>Marek T., Gdynia</strong></p>
-      <p>„Kiedyś też potrzebowałem pomocy. Teraz ją oddaję.” – <strong>Monika L., Lublin</strong></p>
-      <p>„Uśmiech dziecka wart więcej niż złoto.” – <strong>Jacek Z., Strzegom</strong></p>
-    </div>
-  </div>
-
-  <p style="text-align: center; margin-top: 40px; font-size: 14px; color: #999;">
-    Każda pomoc się liczy. Dziękujemy za Twoje serce.
-  </p>
-</section>
- <section id="opinie" class="opinie" style="padding: 50px 20px; background-color: #12100e; color: #fff;">
-  <h2 style="text-align: center; font-size: 30px; color: #d4af37;">Opinie naszych klientów</h2>
-  <div id="opinieBox" style="max-width: 700px; margin: 30px auto; background: #1e1a16; padding: 30px; border-radius: 16px; box-shadow: 0 0 15px rgba(212,175,55,0.3); font-size: 18px; line-height: 1.6;"></div>
-</section>
-
-<script>
-  const opinie = [
-    "★ ★ ★ ★ ★ „Super jakość – koszulki świetne!” – <strong>Karolina, Wrocław</strong>",
-    "★ ★ ★ ★ ★ „Bluza stylowa i wygodna!” – <strong>Marek, Poznań</strong>",
-    "★ ★ ★ ★ ★ „Projekt unikatowy – widać pasję w detalach!” – <strong>Ada, Kraków</strong>",
-    "★ ★ ★ ★ ★ „Wrócę tu na pewno. Klimat tego sklepu jest niesamowity.” – <strong>Filip, Gdańsk</strong>",
-    "★ ★ ★ ★ ★ „Obsługa błyskawiczna, produkty na najwyższym poziomie.” – <strong>Basia, Lublin</strong>",
-    "★ ★ ★ ★ ★ „Widać, że tworzy to artysta z duszą.” – <strong>Janek, Strzegom</strong>"
-  ];
-
-  const startDate = new Date('2025-07-01');
-  const today = new Date();
-  const daysPassed = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-  const index = Math.floor(daysPassed / 3) % opinie.length;
-
-  document.getElementById("opinieBox").innerHTML = opinie[index];
-</script>
- <section id="blog" class="blog" style="background-color: #12100e; color: #fff; padding: 50px 20px;">
-  <h2 style="text-align: center; font-size: 30px; color: #d4af37;">Blog AdelbertusShop</h2>
-
-  <article style="background-color: #1e1a16; padding: 25px; border-radius: 12px; margin: 30px auto; max-width: 800px;">
-    <h3 style="color: #d4af37;">Jak dobrać rozmiar streetwearu?</h3>
-    <p>W tym artykule pomożemy Ci dobrać idealny rozmiar do Twojej sylwetki – czy to bluza, koszulka, czy czapka. Streetwear to nie tylko styl, ale i wygoda!</p>
-    
-    <div class="komentarze" style="margin-top: 30px;">
-      <h4>Komentarze:</h4>
-      <ul id="listaKomentarzy" style="list-style: none; padding-left: 0;"></ul>
-
-      <form id="formularzKomentarza" style="margin-top: 20px;">
-        <input type="text" id="autor" placeholder="Twoje imię" required style="padding: 10px; width: 100%; margin-bottom: 10px; border-radius: 8px;">
-        <textarea id="tresc" placeholder="Twój komentarz..." required style="padding: 10px; width: 100%; border-radius: 8px;"></textarea>
-        <button type="submit" style="background-color: #d4af37; color: #000; padding: 10px 20px; border: none; border-radius: 8px; margin-top: 10px;">Dodaj komentarz</button>
-      </form>
-    </div>
-  </article>
-</section>
-
-<script>
-  const listaKomentarzy = document.getElementById("listaKomentarzy");
-  const formularz = document.getElementById("formularzKomentarza");
-
-  formularz.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const autor = document.getElementById("autor").value;
-    const tresc = document.getElementById("tresc").value;
-
-    const li = document.createElement("li");
-    li.style.marginTop = "15px";
-    li.innerHTML = `<strong>${autor}</strong>: ${tresc}<br><button onclick="odpowiedzNaKomentarz(this)" style="margin-top: 5px; background: none; border: none; color: #d4af37; cursor: pointer;">Odpowiedz</button><ul></ul>`;
-
-    listaKomentarzy.appendChild(li);
-    formularz.reset();
-  });
-
-  function odpowiedzNaKomentarz(button) {
-    const parentLi = button.parentElement;
-    const subUl = parentLi.querySelector("ul");
-
-    const imie = prompt("Twoje imię:");
-    const odpowiedz = prompt("Twoja odpowiedź:");
-
-    if (imie && odpowiedz) {
-      const odpLi = document.createElement("li");
-      odpLi.style.marginTop = "10px";
-      odpLi.innerHTML = `<strong>${imie}</strong> (odpowiedź): ${odpowiedz}`;
-      subUl.appendChild(odpLi);
-    }
-  }
-</script>
-  <section id="zamowienie" style="background-color: #12100e; color: #fff; padding: 50px 20px;">
-  <h2 style="text-align: center; font-size: 30px; color: #d4af37;">Zamówienie produktu</h2>
-  <p style="text-align: center; max-width: 600px; margin: auto;">Złóż swoje zamówienie szybko i wygodnie. Po wysłaniu formularza wybierz formę płatności: <strong>BLIK</strong> lub <strong>PayPal</strong>.</p>
-
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 600px; margin: 40px auto; background: #1e1a16; padding: 25px; border-radius: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2);">
-    <input type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px;">
-    <input type="email" name="Email" placeholder="Adres e-mail" required style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px;">
-    <textarea name="Zamówienie" placeholder="Co chcesz zamówić?" rows="4" required style="width: 100%; padding: 10px; border-radius: 8px;"></textarea>
-    <button type="submit" style="margin-top: 20px; background-color: #d4af37; color: #000; font-weight: bold; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer;">Wyślij zamówienie</button>
-  </form>
-
-  <div style="max-width: 600px; margin: 0 auto; padding: 20px; background: #1e1a16; border: 2px dashed #d4af37; border-radius: 12px; text-align: center;">
-    <h3 style="color: #d4af37;">💸 Płatność BLIK</h3>
-    <p>Przelej <strong>BLIK: <span style="color: #d4af37;">573-939-925</span></strong></p>
-    <p>W tytule przelewu wpisz: <em>"AdelbertusShop – zamówienie"</em></p>
-  </div>
-
-  <div style="max-width: 600px; margin: 30px auto; padding: 20px; background: #1e1a16; border-radius: 12px; text-align: center;">
-    <h3 style="color: #d4af37;">🌐 Lub zapłać przez PayPal</h3>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="mielniczukgrzegosz74@gmail.com">
-      <input type="hidden" name="item_name" value="Zamówienie z AdelbertusShop">
-      <input type="hidden" name="currency_code" value="PLN">
-      <input type="number" name="amount" placeholder="Kwota PLN" required style="padding: 10px; border-radius: 8px; width: 200px;"><br><br>
-      <input type="submit" value="Zapłać PayPal" style="background: #d4af37; color: #000; font-weight: bold; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer;">
+  <section id="projektuj">
+    <h2 class="category-title">Zaprojektuj</h2>
+    <form>
+      <input type="text" placeholder="Własny napis" />
+      <select>
+        <option>Rozmiar S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+      </select>
+      <button type="submit">Zamów</button>
     </form>
-  </div>
-</section>
-  Dodano nową sekcję Zamówienie z formularzem, płatnością BLIK i PayPal
-<section id="regulamin" class="regulamin" style="background: #12100e; color: #fff; padding: 50px 20px;">
-  <h2 style="text-align: center; color: #d4af37;">Regulamin i Polityka Prywatności</h2>
-  <div style="max-width: 800px; margin: auto; font-size: 0.95em; line-height: 1.6;">
-    <p><strong>1. Informacje ogólne</strong><br>
-    Sklep <em>AdelbertusShop</em> prowadzony jest w ramach działalności nierejestrowanej przez osobę fizyczną zgodnie z art. 5 ust. 1 ustawy Prawo przedsiębiorców.</p>
+  </section>
 
-    <p><strong>2. Kontakt</strong><br>
-    W sprawach dotyczących zamówień, płatności, reklamacji lub zapytań – prosimy o kontakt:<br>
-    ✉️ <strong>mielniczukgrzegosz74@gmail.com</strong><br>
-    ☎️ <strong>604 296 360</strong></p>
+  <section id="opinie">
+    <h2 class="category-title">Opinie klientów</h2>
+    <p>★ ★ ★ ★ ★ „Super jakość – koszulki świetne!”</p>
+    <p>★ ★ ★ ★ ★ „Bluza stylowa i wygodna!”</p>
+  </section>
 
-    <p><strong>3. Zamówienia i płatności</strong><br>
-    Zamówienia można składać poprzez formularz na stronie. Dostępne formy płatności to:<br>
-    – BLIK: <strong>573-939-925</strong><br>
-    – PayPal: mielniczukgrzegosz74@gmail.com<br>
-    Zamówienie zostaje przekazane do realizacji po zaksięgowaniu płatności.</p>
-
-    <p><strong>4. Czas realizacji i dostawa</strong><br>
-    Czas realizacji zamówienia wynosi od 2 do 7 dni roboczych. Produkty wysyłane są pocztą lub paczkomatem – po indywidualnym uzgodnieniu.</p>
-
-    <p><strong>5. Zwroty i reklamacje</strong><br>
-    Klient ma prawo do zwrotu towaru w ciągu 14 dni od otrzymania paczki. W przypadku reklamacji prosimy o kontakt w celu ustalenia szczegółów.</p>
-
-    <p><strong>6. Ochrona danych osobowych</strong><br>
-    Dane osobowe są przetwarzane wyłącznie w celu realizacji zamówienia i nie są udostępniane osobom trzecim. Administratorem danych jest właściciel sklepu – osoba prowadząca działalność nierejestrowaną.</p>
-
-    <p><strong>7. Postanowienia końcowe</strong><br>
-    Złożenie zamówienia oznacza akceptację niniejszego regulaminu. Sklep zastrzega sobie prawo do zmian regulaminu w dowolnym czasie.</p>
-  </div>
-</section>  <footer>
+  <footer>
     <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
     <p>
       <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
@@ -376,11 +176,5 @@
     </p>
   </footer>
 
-  <script>
-    function showSection(id) {
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-  </script>
 </body>
 </html>
