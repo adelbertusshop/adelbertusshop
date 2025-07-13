@@ -85,11 +85,28 @@
     <p>Tu użytkownik stworzy własny projekt.</p>
   </section>
 
-  <section id="marketplace">
-    <h2>Marketplace</h2>
-    <p>Dodawanie produktów przez społeczność.</p>
-  </section>
+  <section id="marketplace" class="marketplace">
+  <h2 style="text-align:center; color:#d4af37;">Marketplace – Zgłoś swój produkt</h2>
+  <p style="text-align:center; color:#ccc;">Dołącz jako twórca! My go wystawimy.</p>
+  
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width:500px; margin:auto; background:#1e1a16; padding:20px; border-radius:12px; color:#fff;">
+    <input type="text" name="Nazwa produktu" placeholder="Nazwa produktu" required style="width:100%; padding:10px; margin-bottom:10px;"><br>
+    
+    <input type="text" name="Cena" placeholder="Cena (PLN)" required style="width:100%; padding:10px; margin-bottom:10px;"><br>
+    
+    <textarea name="Opis" placeholder="Opis produktu" required style="width:100%; padding:10px; margin-bottom:10px;"></textarea><br>
+    
+    <input type="url" name="Link do zdjęcia" placeholder="Link do zdjęcia" required style="width:100%; padding:10px; margin-bottom:10px;"><br>
+    
+    <input type="text" name="Dane kontaktowe" placeholder="E-mail lub Instagram" required style="width:100%; padding:10px; margin-bottom:10px;"><br>
+    
+    <button type="submit" style="background:#d4af37; color:#000; padding:10px; border:none; border-radius:6px; width:100%; font-weight:bold;">Wyślij zgłoszenie</button>
+  </form>
 
+  <p style="margin-top:20px; text-align:center; color:#999;">
+    ✉️ Zgłoszenie trafi do administratora. Po akceptacji zostanie opublikowane w sklepie.
+  </p>
+</section>
   <section id="reklama">
     <h2>Reklama</h2>
     <p>Panel reklamowy z cennikiem i opcją zgłoszenia.</p>
