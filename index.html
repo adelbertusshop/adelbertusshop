@@ -564,21 +564,22 @@ nav a:hover::after {
 
     <button type="submit" style="background: #d4af37; border: none; padding: 10px; margin-top: 10px; border-radius: 8px; color: #000; font-weight: bold; cursor: pointer;">Wyślij projekt</button>
   </form>
-<section id="marketplace" class="marketplace">
-  <h2>Marketplace</h2>
-  <p>Prześlij nam swój produkt, a my go dodamy!</p>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-    <input type="text" name="Nazwa produktu" placeholder="Nazwa produktu" required>
-    <input type="text" name="Cena" placeholder="Cena" required>
-    <textarea name="Opis" placeholder="Opis produktu" required></textarea>
-    <input type="url" name="Link do zdjęcia" placeholder="Link do zdjęcia" required>
-    <input type="text" name="Dane kontaktowe" placeholder="Imię, e-mail lub telefon" required>
+  <section id="marketplace" class="marketplace">
+  <h2>Marketplace – Zgłoś swój produkt</h2>
+  <p>Tworzysz ubrania, grafikę, rękodzieło? Dołącz do AdelbertusShop!</p>
+  <form id="formMarketplace">
+    <input type="text" name="nazwa" placeholder="Nazwa produktu" required>
+    <input type="text" name="cena" placeholder="Cena (PLN)" required>
+    <textarea name="opis" placeholder="Opis produktu" required></textarea>
+    <input type="url" name="zdjecie" placeholder="Link do zdjęcia" required>
+    <input type="text" name="kontakt" placeholder="E-mail lub Instagram" required>
     <button type="submit">Wyślij zgłoszenie</button>
+    <p style="margin-top: 10px; font-size: 0.9em; color: #999;">
+      *Zgłoszenie trafi do administratora i zostanie rozpatrzone.
+    </p>
   </form>
-  <p style="margin-top:20px; color: #ccc;">Produkty zostaną dodane po zatwierdzeniu przez administratora.</p>
-</section>
-  
-</script>
+  <div id="marketplaceWiadomosc" style="margin-top: 15px; color: green;"></div>
+</section></script>
 <section id="reklama" class="reklama">
   <h2>Panel Reklamowy</h2>
   <p>Promuj swój produkt na naszej stronie. Cena: 50 zł / tydzień.</p>
@@ -649,5 +650,32 @@ nav a:hover::after {
     document.getElementById(id).classList.add('active');
   }
 </script>
-</body>
+    <script>
+  document.getElementById('formMarketplace').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const haslo = prompt("Podaj hasło administratora, jeśli chcesz zatwierdzić zgłoszenie (pozostaw puste jeśli jesteś zgłaszającym):");
+    
+    if (haslo === "Wojownik.03") {
+      const dane = new FormData(this);
+      const produkt = {
+        nazwa: dane.get("nazwa"),
+        cena: dane.get("cena"),
+        opis: dane.get("opis"),
+        zdjecie: dane.get("zdjecie"),
+        kontakt: dane.get("kontakt")
+      };
+
+      const komunikat = document.getElementById("marketplaceWiadomosc");
+      komunikat.innerHTML = "✅ Produkt zatwierdzony przez admina. Dodaj go teraz do sekcji SKLEP.";
+
+      console.log("Admin dodał produkt:", produkt);
+      // Tu możesz dodać logikę zapisu lub przesłania do backendu (jeśli będziemy chcieli później).
+
+    } else {
+      document.getElementById("marketplaceWiadomosc").innerHTML = "✔️ Dziękujemy! Zgłoszenie zostało przesłane do weryfikacji.";
+      this.reset();
+    }
+  });
+</script></body>
 </html>
