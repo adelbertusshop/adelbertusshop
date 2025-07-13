@@ -564,88 +564,20 @@ nav a:hover::after {
 
     <button type="submit" style="background: #d4af37; border: none; padding: 10px; margin-top: 10px; border-radius: 8px; color: #000; font-weight: bold; cursor: pointer;">Wyślij projekt</button>
   </form>
-  <section id="marketplace" class="marketplace">
+<section id="marketplace" class="marketplace">
   <h2>Marketplace</h2>
-  <p>Każdy może dodać swój produkt. Wypełnij formularz:</p>
-  <form onsubmit="dodajProdukt(event)">
-    <input type="text" id="nazwa-produktu" placeholder="Nazwa produktu" required>
-    <input type="text" id="cena-produktu" placeholder="Cena" required>
-    <textarea id="opis-produktu" placeholder="Opis" required></textarea>
-    <input type="url" id="zdjecie-produktu" placeholder="Link do zdjęcia" required>
-    <button type="submit">Dodaj produkt</button>
+  <p>Prześlij nam swój produkt, a my go dodamy!</p>
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+    <input type="text" name="Nazwa produktu" placeholder="Nazwa produktu" required>
+    <input type="text" name="Cena" placeholder="Cena" required>
+    <textarea name="Opis" placeholder="Opis produktu" required></textarea>
+    <input type="url" name="Link do zdjęcia" placeholder="Link do zdjęcia" required>
+    <input type="text" name="Dane kontaktowe" placeholder="Imię, e-mail lub telefon" required>
+    <button type="submit">Wyślij zgłoszenie</button>
   </form>
-
-  <h3 style="margin-top:40px;">🛒 Lista produktów Marketplace:</h3>
-  <div id="lista-produktow"></div>
-
-  <h3 style="margin-top:40px;">🔐 Panel administratora:</h3>
-  <input type="password" id="admin-haslo" placeholder="Wpisz hasło">
-  <button onclick="pokazPanel()">Zaloguj</button>
-
-  <div id="panel-admina" style="display:none; margin-top:20px;">
-    <h4>Zarządzaj produktami:</h4>
-    <p>Kliknij 🗑️ by usunąć produkt</p>
-  </div>
+  <p style="margin-top:20px; color: #ccc;">Produkty zostaną dodane po zatwierdzeniu przez administratora.</p>
 </section>
-
-<script>
-  let produkty = JSON.parse(localStorage.getItem("produktyMarketplace") || "[]");
-
-  function zapiszProdukty() {
-    localStorage.setItem("produktyMarketplace", JSON.stringify(produkty));
-  }
-
-  function dodajProdukt(e) {
-    e.preventDefault();
-    const nazwa = document.getElementById("nazwa-produktu").value;
-    const cena = document.getElementById("cena-produktu").value;
-    const opis = document.getElementById("opis-produktu").value;
-    const zdjecie = document.getElementById("zdjecie-produktu").value;
-
-    produkty.push({ nazwa, cena, opis, zdjecie });
-    zapiszProdukty();
-    pokazProdukty();
-    e.target.reset();
-  }
-
-  function pokazProdukty() {
-    const lista = document.getElementById("lista-produktow");
-    lista.innerHTML = "";
-
-    produkty.forEach((prod, index) => {
-      const el = document.createElement("div");
-      el.innerHTML = `
-        <div style="border:2px solid #d4af37; margin:10px 0; padding:10px; background:#1e1a16; border-radius:8px;">
-          <img src="${prod.zdjecie}" alt="" style="max-width:100px;"><br>
-          <strong>${prod.nazwa}</strong> – ${prod.cena} zł
-          <p>${prod.opis}</p>
-          <span style="display:none;" class="admin-kasuj" onclick="usunProdukt(${index})">🗑️ Usuń</span>
-        </div>
-      `;
-      lista.appendChild(el);
-    });
-  }
-
-  function pokazPanel() {
-    const haslo = document.getElementById("admin-haslo").value;
-    if (haslo === "Wojownik.03") {
-      document.querySelectorAll(".admin-kasuj").forEach(el => el.style.display = "inline");
-      document.getElementById("panel-admina").style.display = "block";
-      alert("Zalogowano jako administrator!");
-    } else {
-      alert("Nieprawidłowe hasło.");
-    }
-  }
-
-  function usunProdukt(index) {
-    if (confirm("Czy na pewno chcesz usunąć ten produkt?")) {
-      produkty.splice(index, 1);
-      zapiszProdukty();
-      pokazProdukty();
-    }
-  }
-
-  pokazProdukty();
+  
 </script>
 <section id="reklama" class="reklama">
   <h2>Panel Reklamowy</h2>
