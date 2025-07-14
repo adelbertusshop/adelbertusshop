@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AdelbertusShop - Sklep</title>
+  <title>AdelbertusShop</title>
   <style>
     body {
       margin: 0;
@@ -56,25 +56,6 @@
       color: #d4af37;
       margin-top: 0;
     }
-    form input, form textarea, form select, form button {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 6px;
-      border: none;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-    form button {
-      background-color: #d4af37;
-      font-weight: bold;
-      color: #000;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    form button:hover {
-      background-color: #b08e25;
-    }
     footer {
       text-align: center;
       padding: 15px;
@@ -94,192 +75,53 @@
 
 <nav>
   <button class="active" data-section="sklep">Sklep</button>
-  <button data-section="zamowienia">Zamówienia</button>
   <button data-section="projektuj">Zaprojektuj</button>
   <button data-section="zbiorka">Zbiórka</button>
   <button data-section="reklama">Reklama</button>
   <button data-section="opinie">Opinie</button>
   <button data-section="blog">Blog</button>
+  <button data-section="zamowienia">Zamówienia</button>
   <button data-section="regulamin">Regulamin</button>
 </nav>
 
 <section id="sklep" class="active">
-  <h2>Sklep AdelbertusShop</h2>
-
-  <!-- Produkt 1 -->
-  <div style="border: 2px solid #d4af37; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
-    <h3>Mistyczna Bluza</h3>
-    <p>Cena: <strong>150 zł</strong></p>
-
-    <!-- PayPal -->
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="mielniczukgrzegosz74@gmail.com">
-      <input type="hidden" name="item_name" value="Mistyczna Bluza">
-      <input type="hidden" name="currency_code" value="PLN">
-      <input type="hidden" name="amount" value="150">
-      <button type="submit" style="background:#d4af37; color:#000; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">Kup przez PayPal</button>
-    </form>
-
-    <!-- BLIK -->
-    <p style="margin-top:10px;">💳 Lub zapłać BLIK na numer <strong style="color:#d4af37;">573-939-925</strong><br>
-    Tytuł: <em>„Mistyczna Bluza – AdelbertusShop”</em></p>
-  </div>
-
-  <!-- Produkt 2 -->
-  <div style="border: 2px solid #d4af37; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
-    <h3>Koszulka z symbolem Pi</h3>
-    <p>Cena: <strong>99 zł</strong></p>
-
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="mielniczukgrzegosz74@gmail.com">
-      <input type="hidden" name="item_name" value="Koszulka z symbolem Pi">
-      <input type="hidden" name="currency_code" value="PLN">
-      <input type="hidden" name="amount" value="99">
-      <button type="submit" style="background:#d4af37; color:#000; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">Kup przez PayPal</button>
-    </form>
-
-    <p style="margin-top:10px;">💳 BLIK: <strong style="color:#d4af37;">573-939-925</strong><br>
-    Tytuł: <em>„Koszulka – AdelbertusShop”</em></p>
-  </div>
-
-  <!-- Produkt 3 -->
-  <div style="border: 2px solid #d4af37; padding: 15px; border-radius: 12px;">
-    <h3>Czapka „Strażnik Świątyni”</h3>
-    <p>Cena: <strong>60 zł</strong></p>
-
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="mielniczukgrzegosz74@gmail.com">
-      <input type="hidden" name="item_name" value="Czapka Strażnik Świątyni">
-      <input type="hidden" name="currency_code" value="PLN">
-      <input type="hidden" name="amount" value="60">
-      <button type="submit" style="background:#d4af37; color:#000; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">Kup przez PayPal</button>
-    </form>
-
-    <p style="margin-top:10px;">💳 BLIK: <strong style="color:#d4af37;">573-939-925</strong><br>
-    Tytuł: <em>„Czapka – AdelbertusShop”</em></p>
-  </div>
+  <h2>Sklep</h2>
+  <p>Tu będą wyświetlane Twoje produkty.</p>
 </section>
+
 <section id="projektuj">
-  <h2 style="text-align: center; color: #d4af37; font-size: 32px;">Zaprojektuj Swój Unikalny Produkt</h2>
-  <p style="text-align: center; font-size: 18px; color: #ccc;">Ty wybierasz – my tworzymy. Każdy projekt to osobna historia.</p>
-
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain"
-        style="max-width: 600px; margin: auto; background: #1e1a16; padding: 25px; border-radius: 14px; box-shadow: 0 0 15px rgba(212,175,55,0.4); color: #fff;">
-
-    <label for="imie">Imię i nazwisko:</label>
-    <input type="text" id="imie" name="Imię i nazwisko" required placeholder="Wprowadź imię i nazwisko" />
-
-    <label for="email">E-mail:</label>
-    <input type="email" id="email" name="Email" required placeholder="Twój adres e-mail" />
-
-    <label for="typ">Typ produktu:</label>
-    <select id="typ" name="Typ produktu" required>
-      <option value="">-- Wybierz --</option>
-      <option>Koszulka premium</option>
-      <option>Bluza z haftem</option>
-      <option>Czapka limitowana</option>
-      <option>Torba bawełniana</option>
-    </select>
-
-    <label for="kolor">Kolor produktu:</label>
-    <select id="kolor" name="Kolor">
-      <option value="">-- Wybierz --</option>
-      <option>Czarny</option>
-      <option>Biały</option>
-      <option>Beżowy</option>
-      <option>Granatowy</option>
-      <option>Butelkowa zieleń</option>
-      <option>Szary melanż</option>
-    </select>
-
-    <label for="rozmiar">Rozmiar:</label>
-    <select id="rozmiar" name="Rozmiar">
-      <option value="">-- Wybierz --</option>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-      <option>XXL</option>
-    </select>
-
-    <label for="haslo">Hasło / Tekst na produkcie:</label>
-    <input type="text" id="haslo" name="Tekst" placeholder="Np. Siła, Honor, Wiara..." />
-
-    <label for="grafika">Link do własnej grafiki (opcjonalnie):</label>
-    <input type="url" id="grafika" name="Grafika" placeholder="https://linkdowizualizacji.pl" />
-
-    <label for="dodatki">Uwagi specjalne:</label>
-    <textarea id="dodatki" name="Uwagi" rows="3" placeholder="Czy chcesz coś dodać?"></textarea>
-
-    <button type="submit" style="margin-top: 15px;">Wyślij projekt</button>
-  </form>
-
-  <div style="margin-top: 30px; padding: 20px; background: #111; border-left: 5px solid #d4af37; max-width: 600px; margin-left: auto; margin-right: auto;">
-    <h3 style="margin-top: 0; color: #d4af37;">💡 Co dalej?</h3>
-    <p>Po otrzymaniu Twojego projektu – skontaktujemy się w celu potwierdzenia i ustalenia szczegółów. Możesz spodziewać się wstępnej wizualizacji produktu do akceptacji.</p>
-    <p style="margin-top: 10px;">Wyjątkowość to standard w AdelbertusShop.</p>
-  </div>
+  <h2>Zaprojektuj</h2>
+  <p>Sekcja do projektowania własnych produktów.</p>
 </section>
-</section>
+
 <section id="zbiorka">
-  <h2>Zbiórka Mistyczna</h2>
-  <p>Wspieraj naszą świątynię! Każda złotówka się liczy.</p>
-  <p><strong>Numer BLIK: 573-939-925</strong></p>
-  <p>W tytule wpisz: "Adelbertus – pomoc"</p>
+  <h2>Zbiórka</h2>
+  <p>Miejsce na darowizny i wsparcie.</p>
 </section>
 
 <section id="reklama">
-  <h2>Zamieść swoją Reklamę</h2>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-    <label for="ad-company">Nazwa firmy/produktu:</label>
-    <input type="text" id="ad-company" name="Nazwa firmy" required placeholder="Wpisz nazwę" />
-    
-    <label for="ad-desc">Opis reklamy:</label>
-    <textarea id="ad-desc" name="Opis reklamy" rows="4" required placeholder="Opisz swoją reklamę"></textarea>
-    
-    <label for="ad-duration">Czas emisji reklamy:</label>
-    <select id="ad-duration" name="Czas emisji" required>
-      <option value="">-- wybierz --</option>
-      <option>1 dzień – 10 zł</option>
-      <option>7 dni – 30 zł</option>
-      <option>30 dni – 80 zł</option>
-    </select>
-    
-    <button type="submit">Wyślij reklamę</button>
-  </form>
+  <h2>Reklama</h2>
+  <p>Tu możesz zamieścić swoją reklamę.</p>
 </section>
 
 <section id="opinie">
-  <h2>Opinie naszych klientów</h2>
-  <blockquote>„Ta bluza zmieniła mój sposób patrzenia na świat.” – A.K.</blockquote>
-  <blockquote>„Uwielbiam symbolikę na koszulkach.” – M.N.</blockquote>
-  <blockquote>„Wysoka jakość i magia w jednym.” – K.Z.</blockquote>
+  <h2>Opinie</h2>
+  <p>Tu pojawią się opinie klientów.</p>
 </section>
 
 <section id="blog">
-  <h2>Blog AdelbertusShop</h2>
-  <article>
-    <h3>Jak dobrać rozmiar bluzy?</h3>
-    <p>W naszym przewodniku znajdziesz idealny rozmiar na swoje mistyczne przygody.</p>
-  </article>
-  <article>
-    <h3>Znaczenie symboli</h3>
-    <p>Dowiedz się, co oznaczają symbole na naszych produktach.</p>
-  </article>
+  <h2>Blog</h2>
+  <p>Aktualności i wpisy blogowe.</p>
+</section>
+
+<section id="zamowienia">
+  <h2>Zamówienia</h2>
+  <p>Formularz składania zamówień.</p>
 </section>
 
 <section id="regulamin">
-  <h2>Regulamin sklepu AdelbertusShop</h2>
-  <ol>
-    <li>Zamówienia realizujemy w ciągu 2-5 dni roboczych.</li>
-    <li>Płatności przyjmujemy tylko przez BLIK pod numerem 573-939-925.</li>
-    <li>Masz 14 dni na zwrot produktu bez podania przyczyny.</li>
-    <li>Twoje dane osobowe są bezpieczne i nie są udostępniane osobom trzecim.</li>
-    <li>Sprzedajemy tylko unikalne i pełne magii produkty.</li>
-  </ol>
+  <h2>Regulamin</h2>
+  <p>Tu znajdziesz zasady funkcjonowania sklepu.</p>
 </section>
 
 <footer>
@@ -287,22 +129,16 @@
 </footer>
 
 <script>
-  // Prosta funkcja do pokazywania sekcji
   const buttons = document.querySelectorAll('nav button');
   const sections = document.querySelectorAll('section');
 
   buttons.forEach(button => {
     button.addEventListener('click', () => {
-      // Usuwamy klasę active ze wszystkich przycisków
       buttons.forEach(btn => btn.classList.remove('active'));
-      // Dodajemy active do klikniętego
       button.classList.add('active');
       const target = button.getAttribute('data-section');
-      // Ukrywamy wszystkie sekcje
       sections.forEach(section => section.classList.remove('active'));
-      // Pokazujemy wybraną sekcję
       document.getElementById(target).classList.add('active');
-      // Scroll do góry strony po zmianie sekcji
       window.scrollTo(0, 0);
     });
   });
