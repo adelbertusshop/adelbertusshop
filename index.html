@@ -3,114 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AdelbertusShop</title>
+  <title>AdelbertusShop - Sklep</title>
   <style>
     body {
       margin: 0;
-      background-color: #121212;
       font-family: Arial, sans-serif;
-      color: #fff;
+      background-color: #121212;
+      color: #eee;
+      line-height: 1.5;
     }
     header {
-      text-align: center;
-      padding: 20px;
       background-color: #1e1a16;
-    }
-    header img {
-      max-width: 150px;
-    }
-    .haslo-mistyczne {
+      padding: 20px;
+      text-align: center;
       color: #d4af37;
-      font-size: 18px;
-      margin-top: 10px;
     }
     nav {
       background-color: #000;
-      text-align: center;
-      padding: 10px;
+      display: flex;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 0;
     }
     nav button {
       background-color: #d4af37;
       border: none;
-      padding: 10px 20px;
-      margin: 5px;
+      padding: 10px 15px;
       cursor: pointer;
-      color: #000;
       font-weight: bold;
-      border-radius: 6px;
+      color: #000;
+      border-radius: 5px;
       transition: background-color 0.3s ease;
     }
-    nav button:hover {
+    nav button:hover,
+    nav button.active {
       background-color: #b08e25;
     }
     section {
-      display: none;
-      padding: 20px;
       max-width: 900px;
       margin: 20px auto;
+      padding: 20px;
       background-color: #1e1a16;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(212,175,55,0.15);
-      color: #ddd;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+      display: none;
     }
     section.active {
       display: block;
     }
-    footer {
-      text-align: center;
-      background-color: #1e1a16;
-      padding: 20px;
-      color: #888;
-      font-size: 14px;
-    }
-    footer a {
+    h2 {
       color: #d4af37;
-      margin: 0 5px;
-      text-decoration: none;
+      margin-top: 0;
     }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    input, textarea, select, button {
-      display: block;
+    form input, form textarea, form select, form button {
       width: 100%;
-      margin: 10px 0;
       padding: 10px;
+      margin: 10px 0;
       border-radius: 6px;
       border: none;
       font-size: 16px;
       box-sizing: border-box;
     }
-    button[type="submit"] {
-      background: #d4af37;
-      color: #000;
+    form button {
+      background-color: #d4af37;
       font-weight: bold;
+      color: #000;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    button[type="submit"]:hover {
-      background: #b08e25;
+    form button:hover {
+      background-color: #b08e25;
     }
-    h2, h3 {
-      color: #d4af37;
-      margin-top: 0;
-    }
-    /* Opinie style */
-    .opinie-item {
-      margin-bottom: 25px;
-      font-style: italic;
-    }
-    .opinie-stars {
-      font-size: 18px;
-      color: #d4af37;
-      margin-bottom: 5px;
-    }
-    .opinie-author {
-      text-align: right;
-      color: #bbb;
-      font-style: normal;
-      margin-top: 5px;
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #1e1a16;
+      color: #888;
+      font-size: 14px;
+      margin-top: 40px;
     }
   </style>
 </head>
@@ -118,199 +89,146 @@
 
 <header>
   <h1>AdelbertusShop</h1>
-  <img src="https://i.ibb.co/whgw7rMR/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Logo AdelbertusShop" />
-  <p class="haslo-mistyczne">Moda uliczna dla wyjątkowych ludzi</p>
+  <p>Twój mistyczny sklep online</p>
 </header>
 
 <nav>
-  <button onclick="showSection('sklep')">Sklep</button>
-  <button onclick="showSection('projektuj')">Zaprojektuj</button>
-  <button onclick="showSection('reklama')">Reklama</button>
-  <button onclick="showSection('zbiorka')">Zbiórka</button>
-  <button onclick="showSection('opinie')">Opinie</button>
-  <button onclick="showSection('blog')">Blog</button>
-  <button onclick="showSection('zamowienie')">Zamówienie</button>
-  <button onclick="showSection('regulamin')">Regulamin</button>
+  <button class="active" data-section="sklep">Sklep</button>
+  <button data-section="zamowienia">Zamówienia</button>
+  <button data-section="projektuj">Zaprojektuj</button>
+  <button data-section="zbiorka">Zbiórka</button>
+  <button data-section="reklama">Reklama</button>
+  <button data-section="opinie">Opinie</button>
+  <button data-section="blog">Blog</button>
+  <button data-section="regulamin">Regulamin</button>
 </nav>
 
 <section id="sklep" class="active">
   <h2>Sklep</h2>
-  <p>Tu dodasz produkty do sklepu.</p>
+  <p>Tu pojawią się produkty. Na razie to miejsce na Twoją ofertę.</p>
+  <!-- Przykładowa lista produktów -->
+  <ul>
+    <li>Mistyczna bluza – 150 zł</li>
+    <li>Koszulka z symbolem Pi – 80 zł</li>
+    <li>Czapka „Strażnik Świątyni” – 60 zł</li>
+  </ul>
+</section>
+
+<section id="zamowienia">
+  <h2>Zamówienia</h2>
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+    <label for="order-name">Imię i nazwisko:</label>
+    <input type="text" id="order-name" name="Imię i nazwisko" required placeholder="Wpisz swoje imię i nazwisko" />
+    
+    <label for="order-email">E-mail:</label>
+    <input type="email" id="order-email" name="Email" required placeholder="Wpisz swój e-mail" />
+    
+    <label for="order-desc">Opis zamówienia:</label>
+    <textarea id="order-desc" name="Opis zamówienia" rows="4" required placeholder="Opisz, co chcesz zamówić"></textarea>
+    
+    <button type="submit">Wyślij zamówienie</button>
+  </form>
 </section>
 
 <section id="projektuj">
-  <h2 style="text-align: center;">🔮 Zaprojektuj Swój Mistyczny Artefakt</h2>
-
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 600px; margin: auto; color: #fff;">
-    <label for="name">Imię i nazwisko:</label>
-    <input type="text" id="name" name="Imię i nazwisko" placeholder="np. Wojownik Cienia" required>
-
-    <label for="email">Adres e-mail:</label>
-    <input type="email" id="email" name="Email" placeholder="np. wojownik@tajemnica.com" required>
-
-    <label for="telefon">Numer telefonu:</label>
-    <input type="tel" id="telefon" name="Telefon" placeholder="np. 573 000 000" required>
-
-    <label for="zamysl">Opis Twojego projektu:</label>
-    <textarea id="zamysl" name="Opis projektu" placeholder="Napisz, co ma zawierać Twój projekt – symbole, hasła, kolory..." rows="5" required></textarea>
-
-    <label for="kwota">Kwota BLIK (weryfikacja płatności):</label>
-    <input type="text" id="kwota" name="Kwota BLIK" placeholder="np. 35 zł">
-
-    <label><input type="checkbox" name="Wizualizacja" value="Tak"> Chcę wizualizację mojego projektu (na grafikę poczekam 1-3 dni)</label>
-    <label><input type="checkbox" name="Zgoda_na_publikację" value="Tak"> Wyrażam zgodę na pokazanie mojego projektu w galerii Adelbertus</label>
-    <label><input type="checkbox" name="Brak_pomysłu" value="Tak"> Nie mam pomysłu – chcę, żebyście stworzyli coś unikalnego dla mnie</label>
-
-    <button type="submit">Wyślij Projekt</button>
-  </form>
-
-  <p style="text-align: center; font-style: italic; color: #999; margin-top: 30px;">
-    „Tworzenie to magia, której nie widać – ale czuć ją w duszy.” – Adelbertus
-  </p>
-</section>
-
-<section id="reklama">
-  <h2 style="text-align: center;">📢 Zamieść swoją Reklamę w Świątyni Adelbertus</h2>
-
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 600px; margin: auto; color: #fff;">
-    <label for="nazwa">Nazwa firmy / produktu:</label>
-    <input type="text" id="nazwa" name="Nazwa" placeholder="np. Mistyczne Koszulki™" required>
-
-    <label for="opisReklama">Opis reklamy:</label>
-    <textarea id="opisReklama" name="Opis" placeholder="Napisz co oferujesz, co przyciąga klientów..." rows="4" required></textarea>
-
-    <label for="czas">Czas emisji reklamy:</label>
-    <select id="czas" name="Czas emisji" required>
-      <option value="">-- Wybierz --</option>
-      <option>1 dzień – 10 zł</option>
-      <option>7 dni – 30 zł</option>
-      <option>30 dni – 80 zł</option>
-    </select>
-
-    <label for="kategoria">Kategoria (ikona):</label>
-    <select id="kategoria" name="Kategoria" required>
-      <option>🛒 Produkty</option>
-      <option>📱 Elektronika</option>
-      <option>🍔 Jedzenie</option>
-      <option>💡 Usługi</option>
-      <option>🎨 Artystyczne</option>
-    </select>
-
-    <p style="margin-top: 20px;">💸 <strong>Płatność:</strong> BLIK na numer <strong>573 939 925</strong><br>
-    z dopiskiem <em>"Reklama – [Twoja nazwa]"</em></p>
-
-    <button type="submit">Wyślij Reklamę do Zatwierdzenia</button>
+  <h2>Zaprojektuj Swój Mistyczny Artefakt</h2>
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+    <label for="design-name">Imię i nazwisko:</label>
+    <input type="text" id="design-name" name="Imię i nazwisko" required placeholder="Wpisz swoje imię i nazwisko" />
+    
+    <label for="design-email">E-mail:</label>
+    <input type="email" id="design-email" name="Email" required placeholder="Wpisz swój e-mail" />
+    
+    <label for="design-desc">Opis projektu:</label>
+    <textarea id="design-desc" name="Opis projektu" rows="5" required placeholder="Napisz, co chcesz zaprojektować"></textarea>
+    
+    <button type="submit">Wyślij projekt</button>
   </form>
 </section>
 
 <section id="zbiorka">
-  <h2 style="text-align: center;">🔥 Zbiórka Mistyczna – Wspieraj Świątynię Adelbertus</h2>
+  <h2>Zbiórka Mistyczna</h2>
+  <p>Wspieraj naszą świątynię! Każda złotówka się liczy.</p>
+  <p><strong>Numer BLIK: 573-939-925</strong></p>
+  <p>W tytule wpisz: "Adelbertus – pomoc"</p>
+</section>
 
-  <div style="max-width: 800px; margin: auto; color: #ddd;">
-    <p style="font-size: 18px; text-align: center;">
-      Każda złotówka to dar. Każdy dar to cegła w budowie Świątyni Stylu i Ducha. Jeśli czujesz, że nasze przesłanie ma moc – dołącz.
-    </p>
-
-    <div style="margin-top: 30px; text-align: center;">
-      <h3 style="color: #d4af37;">Wspieraj BLIKiem</h3>
-      <p style="font-size: 20px;"><strong>Numer BLIK: 573-939-925</strong></p>
-      <p>W tytule przelewu wpisz: <em>Adelbertus – pomoc</em></p>
-    </div>
-
-    <div style="margin-top: 40px;">
-      <h3 style="color: #d4af37;">🎁 Przekaż fizyczny dar</h3>
-      <p>
-        Możesz również wysłać paczkę z odzieżą, słodyczami lub artykułami codziennego użytku. Trafi ona do wybranego Domu Dziecka.
-      </p>
-      <p style="font-style: italic; color: #aaa;">Skontaktuj się z nami mailowo lub przez social media, by otrzymać adres placówki i szczegóły wysyłki.</p>
-    </div>
-
-    <div style="margin-top: 40px; text-align: center;">
-      <p style="font-style: italic;">Twoja pomoc budzi magię. Dziękujemy Ci w imieniu wszystkich, którzy czują się niewidzialni.</p>
-      <p style="text-align: right;">– Zespół Adelbertus</p>
-    </div>
-  </div>
+<section id="reklama">
+  <h2>Zamieść swoją Reklamę</h2>
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+    <label for="ad-company">Nazwa firmy/produktu:</label>
+    <input type="text" id="ad-company" name="Nazwa firmy" required placeholder="Wpisz nazwę" />
+    
+    <label for="ad-desc">Opis reklamy:</label>
+    <textarea id="ad-desc" name="Opis reklamy" rows="4" required placeholder="Opisz swoją reklamę"></textarea>
+    
+    <label for="ad-duration">Czas emisji reklamy:</label>
+    <select id="ad-duration" name="Czas emisji" required>
+      <option value="">-- wybierz --</option>
+      <option>1 dzień – 10 zł</option>
+      <option>7 dni – 30 zł</option>
+      <option>30 dni – 80 zł</option>
+    </select>
+    
+    <button type="submit">Wyślij reklamę</button>
+  </form>
 </section>
 
 <section id="opinie">
-  <h2>✨ Głosy Uznania – Opinie</h2>
-
-  <div class="opinie-item">
-    <div class="opinie-stars">★ ★ ★ ★ ★</div>
-    <p>„Ta bluza zmieniła mój sposób patrzenia na siebie. Czuję się silniejszy.”</p>
-    <p class="opinie-author">– A.K., Warszawa</p>
-  </div>
-
-  <div class="opinie-item">
-    <div class="opinie-stars">★ ★ ★ ★ ★</div>
-    <p>„Nie towar. To manifest. Ludzie pytają, gdzie kupiłam.”</p>
-    <p class="opinie-author">– N.M., Gdańsk</p>
-  </div>
-
-  <div class="opinie-item">
-    <div class="opinie-stars">★ ★ ★ ★ ★</div>
-    <p>„Jakość nie do opisania. Ubrania niosą energię, to się czuje.”</p>
-    <p class="opinie-author">– K.Z., Kraków</p>
-  </div>
+  <h2>Opinie naszych klientów</h2>
+  <blockquote>„Ta bluza zmieniła mój sposób patrzenia na świat.” – A.K.</blockquote>
+  <blockquote>„Uwielbiam symbolikę na koszulkach.” – M.N.</blockquote>
+  <blockquote>„Wysoka jakość i magia w jednym.” – K.Z.</blockquote>
 </section>
 
 <section id="blog">
-  <h2>🕯️ Kroniki Adelbertusa – Blog</h2>
-
+  <h2>Blog AdelbertusShop</h2>
   <article>
-    <h3>Jak dobrać rozmiar do swojego stylu?</h3>
-    <p>
-      Rozmiar to nie tylko liczba — to manifest. Bluza oversize to zbroja buntownika, a koszulka dopasowana to wyznanie odwagi. Sprawdź nasz <strong>mistyczny przewodnik po rozmiarach</strong> i znajdź swój rytuał ubioru.
-    </p>
+    <h3>Jak dobrać rozmiar bluzy?</h3>
+    <p>W naszym przewodniku znajdziesz idealny rozmiar na swoje mistyczne przygody.</p>
   </article>
-
   <article>
-    <h3>Znaczenie symboli w odzieży Adelbertus</h3>
-    <p>
-      Każdy symbol na naszych ubraniach ma swoją moc: liczba Pi – nieskończoność, korona – wewnętrzna potęga, oko – przebudzenie. To więcej niż moda. To zaszyfrowane przesłanie. Czy potrafisz je odczytać?
-    </p>
+    <h3>Znaczenie symboli</h3>
+    <p>Dowiedz się, co oznaczają symbole na naszych produktach.</p>
   </article>
-
-  <article>
-    <h3>Dlaczego nosimy czerń?</h3>
-    <p>
-      Czerń to tło dla światła, tajemnicy i siły. Nosząc czarne ubrania, pokazujesz, że jesteś poza schematem. U nas nie kupujesz bluzy. Kupujesz tożsamość.
-    </p>
-  </article>
-</section>
-
-<section id="zamowienie">
-  <h2>Zamówienie Twojego Mistycznego Artefaktu</h2>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 600px; margin: auto; color: #fff;">
-    
-    <label for="order-name">Imię i nazwisko:</label>
-    <input type="text" id="order-name" name="Imię i nazwisko" placeholder="np. Wojownik Cienia" required>
-
-    <label for="order-email">Adres e-mail:</label>
-    <input type="email" id="order-email" name="Email" placeholder="np. wojownik@tajemnica.com" required>
-
-    <label for="order-desc">Opis zamówienia:</label>
-    <textarea id="order-desc" name="Zamówienie" placeholder="Opisz swój artefakt, rozmiar, kolor, wzór..." rows="4" required></textarea>
-
-    <button type="submit">Wyślij Zaklęcie Zamówienia</button>
-  </form>
-
-  <div style="margin-top: 30px; padding: 20px; border: 2px dashed #d4af37; border-radius: 12px; text-align: center; color: #ddd;">
-    <h3 style="color: #d4af37;">Płatność BLIK</h3>
-    <p>Wyślij darowiznę za swój artefakt na numer <strong style="font-size: 20px;">573-939-925</strong></p>
-    <p>W tytule przelewu wpisz: <em>AdelbertusShop – zamówienie</em></p>
-    <p style="margin-top: 10px; font-style: italic; color: #aaa;">Twoja ofiara zostanie odczytana przez Strażnika Świątyni...</p>
-  </div>
 </section>
 
 <section id="regulamin">
-  <h2>Regulamin Zakazanej Świątyni Adelbertus</h2>
-  <p>Wejście do AdelbertusShop to jak przekroczenie starożytnych wrót ukrytej świątyni. Zanim złożysz ofiarę w postaci zakupu, przeczytaj nasze zasady:</p>
+  <h2>Regulamin sklepu AdelbertusShop</h2>
   <ol>
-    <li><strong>Zakupy są rytuałem:</strong> każde zamówienie jest traktowane z czcią i powagą. Realizacja następuje w ciągu 2–5 dni od złożenia ofiary (czytaj: przelewu).</li>
-    <li><strong>Forma zapłaty:</strong> BLIK na numer <strong>573-939-925</strong> z dopiskiem "AdelbertusShop – zamówienie". To nasz złoty kanał zasilenia mocy.</li>
-    <li><strong>Zwroty:</strong> Jeśli artefakt (czyli produkt) okaże się niewłaściwy – odeślij go w ciągu 14 dni. Nie pytamy. Każdy ma prawo do zmiany ścieżki.</li>
-    <li><strong>Dane osobowe:</strong> Imiona, e-maile i adresy są traktowane jak święte zwoje – nigdy nie opuszczą murów świątyni.</li>
-    <li><strong>Mroczna etyka:</strong> Sprzedajemy tylko to, co wywołuje emocje – grzech, bunt, pasję, podziw i ciekawość. Nic, co letnie – tylko ogień lub lód.</li>
+    <li>Zamówienia realizujemy w ciągu 2-5 dni roboczych.</li>
+    <li>Płatności przyjmujemy tylko przez BLIK pod numerem 573-939-925.</li>
+    <li>Masz 14 dni na zwrot produktu bez podania przyczyny.</li>
+    <li>Twoje dane osobowe są bezpieczne i nie są udostępniane osobom trzecim.</li>
+    <li>Sprzedajemy tylko unikalne i pełne magii produkty.</li>
   </ol>
-  <p>Wejście do tej przestrzeni oznacza akce
+</section>
+
+<footer>
+  &copy; 2025 AdelbertusShop — Wszystkie prawa zastrzeżone.
+</footer>
+
+<script>
+  // Prosta funkcja do pokazywania sekcji
+  const buttons = document.querySelectorAll('nav button');
+  const sections = document.querySelectorAll('section');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Usuwamy klasę active ze wszystkich przycisków
+      buttons.forEach(btn => btn.classList.remove('active'));
+      // Dodajemy active do klikniętego
+      button.classList.add('active');
+      const target = button.getAttribute('data-section');
+      // Ukrywamy wszystkie sekcje
+      sections.forEach(section => section.classList.remove('active'));
+      // Pokazujemy wybraną sekcję
+      document.getElementById(target).classList.add('active');
+      // Scroll do góry strony po zmianie sekcji
+      window.scrollTo(0, 0);
+    });
+  });
+</script>
+
+</body>
+</html>
