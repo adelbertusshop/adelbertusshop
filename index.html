@@ -144,11 +144,44 @@
   <p>Stwórz swój mistyczny projekt.</p>
 </section>
 
-<section id="marketplace">
-  <h2>Marketplace</h2>
-  <p>Twoje miejsce wymiany energii.</p>
+<section id="reklama">
+  <h2 style="color: #d4af37; text-align: center;">📣 Mistyczna Reklama – Twoja Szansa na Widoczność</h2>
+
+  <div style="max-width: 800px; margin: auto; background-color: #1e1a16; padding: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.3); color: #ddd;">
+    <p style="text-align: center;">
+      Umieść swoją reklamę w Świątyni Adelbertus – gdzie trafiają wybrani. Po opłacie i akceptacji przez Strażnika, Twoje przesłanie stanie się widoczne.
+    </p>
+
+    <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+      <label for="firma">Nazwa firmy / osoby:</label>
+      <input type="text" id="firma" name="Firma" required>
+
+      <label for="opis">Treść reklamy:</label>
+      <textarea id="opis" name="Reklama" placeholder="Np. opis oferty, link do strony, nr tel..." rows="4" required></textarea>
+
+      <label for="kontakt">E-mail do kontaktu:</label>
+      <input type="email" id="kontakt" name="Email kontaktowy" required>
+
+      <p style="font-style: italic; color: #aaa;">Po wypełnieniu formularza wyślij BLIK na <strong>573-939-925</strong> z dopiskiem <em>"reklama + nazwa firmy"</em>.</p>
+
+      <button type="submit" style="background: #d4af37; color: #000; font-weight: bold;">Wyślij zgłoszenie do Strażnika</button>
+    </form>
+  </div>
+
+  <!-- Panel administratora -->
+  <div id="adminPanel" style="display: none; margin-top: 30px; background: #26221c; padding: 20px; border-radius: 12px;">
+    <h3 style="color: #d4af37;">🛡️ Panel Administratora – Zatwierdzanie Reklam</h3>
+    <p>Tu będą wyświetlane nowe zgłoszenia po opłacie.</p>
+    <p style="color: #aaa;">(Dostęp tylko dla Strażnika po wpisaniu hasła)</p>
+  </div>
 </section>
 
+<script>
+  const haslo = prompt("Podaj hasło administratora:");
+  if (haslo === "Wojownik.03") {
+    document.getElementById("adminPanel").style.display = "block";
+  }
+</script>
 <!-- SEKCJA REKLAMA -->
 <section id="reklama">
   <h2 style="color: #d4af37; text-align: center;">🌟 Reklama w Świątyni Adelbertus</h2>
