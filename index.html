@@ -162,54 +162,6 @@
     Tytuł: <em>„Czapka – AdelbertusShop”</em></p>
   </div>
 </section>
-<section id="zamowienia">
-  <h2>Zamówienie ekskluzywne</h2>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-
-    <label for="order-name">Imię i nazwisko:</label>
-    <input type="text" id="order-name" name="Imię i nazwisko" required placeholder="Wpisz swoje imię i nazwisko" />
-
-    <label for="order-email">E-mail:</label>
-    <input type="email" id="order-email" name="Email" required placeholder="Wpisz swój e-mail" />
-
-    <label for="produkt">Wybierz produkt:</label>
-    <select id="produkt" name="Produkt" required>
-      <option value="">-- Wybierz --</option>
-      <option>Bluza Mistyczna – 150 zł</option>
-      <option>Koszulka z symbolem Pi – 80 zł</option>
-      <option>Czapka Strażnika – 60 zł</option>
-    </select>
-
-    <label for="order-desc">Opis zamówienia:</label>
-    <textarea id="order-desc" name="Opis zamówienia" rows="4" required placeholder="Opisz, co chcesz zamówić"></textarea>
-
-    <label for="grafika">Link do własnej grafiki (opcjonalnie):</label>
-    <input type="url" id="grafika" name="Link do grafiki" placeholder="https://..." />
-
-    <label for="uwagi">Dodatkowe uwagi (opcjonalnie):</label>
-    <textarea id="uwagi" name="Uwagi" placeholder="Np. specjalne życzenia, kolor nadruku, zapakować na prezent..."></textarea>
-
-    <button type="submit">Wyślij zamówienie</button>
-  </form>
-
-  <div style="margin-top: 20px; padding: 15px; border: 2px dashed gold; background-color: #1e1a16; color: #fff; border-radius: 12px; text-align: center;">
-    <h3 style="margin-bottom: 10px;">Płatność BLIK</h3>
-    <p>Przelej <strong>na numer BLIK: <span style="color: #d4af37;">573-939-925</span></strong></p>
-    <p>W tytule wpisz: <em>"AdelbertusShop – zamówienie"</em></p>
-  </div>
-
-  <div id="potwierdzenie" style="margin-top: 15px; color: #66ff66; display: none; font-weight: bold;">
-    ✅ Zamówienie zostało wysłane. Dziękujemy!
-  </div>
-</section>
-
-<script>
-  // Dodanie potwierdzenia (symulacja wysyłki)
-  document.querySelector('#zamowienia form')?.addEventListener('submit', function(e) {
-    setTimeout(() => {
-      document.getElementById('potwierdzenie').style.display = 'block';
-    }, 300);
-  });
 <section id="projektuj">
   <h2 style="text-align: center; color: #d4af37; font-size: 32px;">Zaprojektuj Swój Unikalny Produkt</h2>
   <p style="text-align: center; font-size: 18px; color: #ccc;">Ty wybierasz – my tworzymy. Każdy projekt to osobna historia.</p>
@@ -232,6 +184,37 @@
       <option>Torba bawełniana</option>
     </select>
 
+    <label for="kolor">Kolor produktu:</label>
+    <select id="kolor" name="Kolor">
+      <option value="">-- Wybierz --</option>
+      <option>Czarny</option>
+      <option>Biały</option>
+      <option>Beżowy</option>
+      <option>Granatowy</option>
+    </select>
+
+    <label for="rozmiar">Rozmiar:</label>
+    <select id="rozmiar" name="Rozmiar">
+      <option value="">-- Wybierz --</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+      <option>XXL</option>
+    </select>
+
+    <label for="haslo">Hasło / Tekst na produkcie:</label>
+    <input type="text" id="haslo" name="Tekst" placeholder="Np. Siła, Honor, Wiara..." />
+
+    <label for="grafika">Link do własnej grafiki (opcjonalnie):</label>
+    <input type="url" id="grafika" name="Grafika" placeholder="https://linkdowizualizacji.pl" />
+
+    <label for="dodatki">Uwagi specjalne:</label>
+    <textarea id="dodatki" name="Uwagi" rows="3" placeholder="Czy chcesz coś dodać?"></textarea>
+
+    <button type="submit">Wyślij Projekt</button>
+  </form>
+</section>
     <label for="kolor">Kolor bazowy:</label>
     <select id="kolor" name="Kolor">
       <option>Czarny</option>
