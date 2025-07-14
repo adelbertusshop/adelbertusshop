@@ -149,11 +149,72 @@
   <p>Twoje miejsce wymiany energii.</p>
 </section>
 
+<!-- SEKCJA REKLAMA -->
 <section id="reklama">
-  <h2>Reklama</h2>
-  <p>Tu zamieścisz ogłoszenia i promocje.</p>
+  <h2 style="color: #d4af37; text-align: center;">🌟 Reklama w Świątyni Adelbertus</h2>
+  <div style="max-width: 800px; margin: auto; background-color: #1e1a16; padding: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2); color: #ccc;">
+
+    <p style="text-align: center;">Wypełnij formularz, opłać przez BLIK i Twoja reklama pojawi się w naszej świątyni!</p>
+
+    <form onsubmit="return wyslijReklame(event)">
+      <label for="nazwa">Nazwa reklamy:</label>
+      <input type="text" id="nazwa" name="nazwa" required>
+
+      <label for="opis">Opis reklamy:</label>
+      <textarea id="opis" name="opis" rows="3" required></textarea>
+
+      <label for="link">Link do produktu lub strony:</label>
+      <input type="url" id="link" name="link" required>
+
+      <p><strong>Płatność:</strong> BLIK na numer <span style="color: #d4af37; font-weight: bold;">573 939 925</span><br>
+      W tytule przelewu wpisz: <em>"reklama"</em></p>
+
+      <button type="submit" style="background: #d4af37; color: #000; font-weight: bold;">Wyślij reklamę do zatwierdzenia</button>
+    </form>
+
+    <p style="margin-top: 15px; font-size: 14px; color: #888; text-align: center;">Po opłacie reklama trafi do administratora. Zostaniesz powiadomiony e-mailem po zatwierdzeniu.</p>
+  </div>
+
+  <!-- PANEL ADMINA (ukryty do momentu wpisania hasła) -->
+  <div id="admin-login" style="margin-top: 40px; text-align: center;">
+    <input type="password" id="admin-password" placeholder="Hasło administratora" style="max-width: 300px;">
+    <button onclick="sprawdzHaslo()" style="background: #d4af37; color: #000; margin-top: 10px;">Zaloguj się</button>
+  </div>
+
+  <div id="admin-panel" style="display: none; margin-top: 30px; background: #2a221c; padding: 20px; border-radius: 12px;">
+    <h3 style="color: #d4af37; text-align: center;">🛡️ Panel Administratora Reklam</h3>
+    <p style="text-align: center; color: #aaa;">Tylko dla właściciela sklepu – możesz zatwierdzać, edytować lub usuwać reklamy.</p>
+
+    <!-- Tu będą wyświetlane przesłane reklamy (symulacja) -->
+    <div id="lista-reklam">
+      <div style="border: 1px solid #555; padding: 10px; margin-bottom: 10px; border-radius: 8px;">
+        <p><strong>Nazwa:</strong> Przykładowa Reklama</p>
+        <p><strong>Opis:</strong> Super produkt dla wojowników cienia.</p>
+        <p><strong>Link:</strong> <a href="#" style="color: #d4af37;">Kliknij</a></p>
+        <button style="background: green; color: white;">Zatwierdź</button>
+        <button style="background: red; color: white;">Usuń</button>
+      </div>
+    </div>
+  </div>
 </section>
 
+<script>
+  function sprawdzHaslo() {
+    const haslo = document.getElementById('admin-password').value;
+    if (haslo === 'Wojownik.03') {
+      document.getElementById('admin-login').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
+    } else {
+      alert('Nieprawidłowe hasło.');
+    }
+  }
+
+  function wyslijReklame(e) {
+    e.preventDefault();
+    alert('Reklama została wysłana do zatwierdzenia. Potwierdzenie otrzymasz na e-mail: mielniczukgrzegosz74@gmail.com');
+    return false;
+  }
+</script>
 <section id="zbiorka">
   <h2 style="color: #d4af37; text-align: center;">🔥 Zbiórka Mistyczna – Wspieraj Świątynię Adelbertus</h2>
 
