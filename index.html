@@ -104,16 +104,64 @@
 </nav>
 
 <section id="sklep" class="active">
-  <h2>Sklep</h2>
-  <p>Tu pojawią się produkty. Na razie to miejsce na Twoją ofertę.</p>
-  <!-- Przykładowa lista produktów -->
-  <ul>
-    <li>Mistyczna bluza – 150 zł</li>
-    <li>Koszulka z symbolem Pi – 80 zł</li>
-    <li>Czapka „Strażnik Świątyni” – 60 zł</li>
-  </ul>
-</section>
+  <h2>Sklep AdelbertusShop</h2>
 
+  <!-- Produkt 1 -->
+  <div style="border: 2px solid #d4af37; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
+    <h3>Mistyczna Bluza</h3>
+    <p>Cena: <strong>150 zł</strong></p>
+
+    <!-- PayPal -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="mielniczukgrzegosz74@gmail.com">
+      <input type="hidden" name="item_name" value="Mistyczna Bluza">
+      <input type="hidden" name="currency_code" value="PLN">
+      <input type="hidden" name="amount" value="150">
+      <button type="submit" style="background:#d4af37; color:#000; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">Kup przez PayPal</button>
+    </form>
+
+    <!-- BLIK -->
+    <p style="margin-top:10px;">💳 Lub zapłać BLIK na numer <strong style="color:#d4af37;">573-939-925</strong><br>
+    Tytuł: <em>„Mistyczna Bluza – AdelbertusShop”</em></p>
+  </div>
+
+  <!-- Produkt 2 -->
+  <div style="border: 2px solid #d4af37; padding: 15px; margin-bottom: 20px; border-radius: 12px;">
+    <h3>Koszulka z symbolem Pi</h3>
+    <p>Cena: <strong>99 zł</strong></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="mielniczukgrzegosz74@gmail.com">
+      <input type="hidden" name="item_name" value="Koszulka z symbolem Pi">
+      <input type="hidden" name="currency_code" value="PLN">
+      <input type="hidden" name="amount" value="99">
+      <button type="submit" style="background:#d4af37; color:#000; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">Kup przez PayPal</button>
+    </form>
+
+    <p style="margin-top:10px;">💳 BLIK: <strong style="color:#d4af37;">573-939-925</strong><br>
+    Tytuł: <em>„Koszulka – AdelbertusShop”</em></p>
+  </div>
+
+  <!-- Produkt 3 -->
+  <div style="border: 2px solid #d4af37; padding: 15px; border-radius: 12px;">
+    <h3>Czapka „Strażnik Świątyni”</h3>
+    <p>Cena: <strong>60 zł</strong></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="mielniczukgrzegosz74@gmail.com">
+      <input type="hidden" name="item_name" value="Czapka Strażnik Świątyni">
+      <input type="hidden" name="currency_code" value="PLN">
+      <input type="hidden" name="amount" value="60">
+      <button type="submit" style="background:#d4af37; color:#000; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">Kup przez PayPal</button>
+    </form>
+
+    <p style="margin-top:10px;">💳 BLIK: <strong style="color:#d4af37;">573-939-925</strong><br>
+    Tytuł: <em>„Czapka – AdelbertusShop”</em></p>
+  </div>
+</section>
 <section id="zamowienia">
   <h2>Zamówienia</h2>
   <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
