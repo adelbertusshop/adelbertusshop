@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -29,6 +28,7 @@
       background-color: #000;
       text-align: center;
       padding: 10px;
+      flex-wrap: wrap;
     }
     nav button {
       background-color: #d4af37;
@@ -125,7 +125,6 @@
 <nav>
   <button onclick="showSection('sklep')">Sklep</button>
   <button onclick="showSection('projektuj')">Zaprojektuj</button>
-  <button onclick="showSection('marketplace')">Marketplace</button>
   <button onclick="showSection('reklama')">Reklama</button>
   <button onclick="showSection('zbiorka')">Zbiórka</button>
   <button onclick="showSection('opinie')">Opinie</button>
@@ -140,10 +139,9 @@
 </section>
 
 <section id="projektuj">
-  <h2 style="color: #d4af37; text-align: center;">🔮 Zaprojektuj Swój Mistyczny Artefakt</h2>
+  <h2 style="text-align: center;">🔮 Zaprojektuj Swój Mistyczny Artefakt</h2>
 
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 600px; margin: auto; background-color: #1e1a16; padding: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2); color: #fff;">
-
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 600px; margin: auto; color: #fff;">
     <label for="name">Imię i nazwisko:</label>
     <input type="text" id="name" name="Imię i nazwisko" placeholder="np. Wojownik Cienia" required>
 
@@ -159,78 +157,27 @@
     <label for="kwota">Kwota BLIK (weryfikacja płatności):</label>
     <input type="text" id="kwota" name="Kwota BLIK" placeholder="np. 35 zł">
 
-    <label>
-      <input type="checkbox" name="Wizualizacja" value="Tak">
-      Chcę wizualizację mojego projektu (na grafikę poczekam 1-3 dni)
-    </label>
+    <label><input type="checkbox" name="Wizualizacja" value="Tak"> Chcę wizualizację mojego projektu (na grafikę poczekam 1-3 dni)</label>
+    <label><input type="checkbox" name="Zgoda_na_publikację" value="Tak"> Wyrażam zgodę na pokazanie mojego projektu w galerii Adelbertus</label>
+    <label><input type="checkbox" name="Brak_pomysłu" value="Tak"> Nie mam pomysłu – chcę, żebyście stworzyli coś unikalnego dla mnie</label>
 
-    <label>
-      <input type="checkbox" name="Zgoda_na_publikację" value="Tak">
-      Wyrażam zgodę na pokazanie mojego projektu w galerii Adelbertus
-    </label>
-
-    <label>
-      <input type="checkbox" name="Brak_pomysłu" value="Tak">
-      Nie mam pomysłu – chcę, żebyście stworzyli coś unikalnego dla mnie
-    </label>
-
-    <button type="submit" style="background: #d4af37; color: #000; font-weight: bold;">Wyślij Projekt</button>
+    <button type="submit">Wyślij Projekt</button>
   </form>
 
   <p style="text-align: center; font-style: italic; color: #999; margin-top: 30px;">
     „Tworzenie to magia, której nie widać – ale czuć ją w duszy.” – Adelbertus
   </p>
 </section>
-  <p style="text-align: center; max-width: 700px; margin: auto; font-style: italic; color: #ccc;">
-    Nie kupujesz ubrania. Tworzysz zaklęcie. Nadajesz mu symbol, intencję i moc. Zaprojektuj coś, czego jeszcze nie było. A my przekształcimy to w artefakt.
-  </p>
 
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 600px; margin: 30px auto; background-color: #1e1a16; padding: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2); color: #fff;">
-
-    <label for="imie">Imię lub pseudonim twórcy:</label>
-    <input type="text" id="imie" name="Twórca" placeholder="np. Mistrz Cieni" required>
-
-    <label for="typ">Typ artefaktu:</label>
-    <select id="typ" name="Typ artefaktu" required>
-      <option value="">-- Wybierz --</option>
-      <option>Bluza z kapturem</option>
-      <option>Koszulka</option>
-      <option>Torba</option>
-      <option>Czapka</option>
-      <option>Inne</option>
-    </select>
-
-    <label for="kolor">Preferowany kolor:</label>
-    <input type="text" id="kolor" name="Kolor" placeholder="np. głęboka czerń, złoto, purpura...">
-
-    <label for="symbol">Symbol / motyw:</label>
-    <input type="text" id="symbol" name="Symbol" placeholder="np. liczba Pi, oko, korona, smok...">
-
-    <label for="opis">Opis twojego projektu:</label>
-    <textarea id="opis" name="Opis projektu" rows="4" placeholder="Napisz z serca: jaka idea, co chcesz przekazać, co ma poczuć odbiorca..."></textarea>
-
-    <p style="margin-top: 20px;">💸 <strong>Płatność:</strong> BLIK na numer <strong>573 939 925</strong><br>
-    z dopiskiem <em>"Projekt – [Twoje imię]"</em></p>
-
-    <p style="font-style: italic; color: #aaa;">Po otrzymaniu darowizny – projekt trafi do Strażnika Świątyni. Jeśli przemówi do serca, zostanie zrealizowany.</p>
-
-    <button type="submit" style="background: #d4af37; color: #000; font-weight: bold;">Prześlij Zaklęcie</button>
-  </form>
-
-  <div style="text-align: center; color: #aaa; margin-top: 30px;">
-    🧙‍♂️ Twórz, bo świat potrzebuje Twojej wizji. Twój projekt może trafić na oficjalną linię Adelbertus.
-  </div>
-</section>
 <section id="reklama">
-  <h2 style="text-align: center; color: #d4af37;">📢 Zamieść swoją Reklamę w Świątyni Adelbertus</h2>
-  
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 600px; margin: auto; background-color: #1e1a16; padding: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2); color: #fff;">
+  <h2 style="text-align: center;">📢 Zamieść swoją Reklamę w Świątyni Adelbertus</h2>
 
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 600px; margin: auto; color: #fff;">
     <label for="nazwa">Nazwa firmy / produktu:</label>
     <input type="text" id="nazwa" name="Nazwa" placeholder="np. Mistyczne Koszulki™" required>
 
-    <label for="opis">Opis reklamy:</label>
-    <textarea id="opis" name="Opis" placeholder="Napisz co oferujesz, co przyciąga klientów..." rows="4" required></textarea>
+    <label for="opisReklama">Opis reklamy:</label>
+    <textarea id="opisReklama" name="Opis" placeholder="Napisz co oferujesz, co przyciąga klientów..." rows="4" required></textarea>
 
     <label for="czas">Czas emisji reklamy:</label>
     <select id="czas" name="Czas emisji" required>
@@ -252,123 +199,14 @@
     <p style="margin-top: 20px;">💸 <strong>Płatność:</strong> BLIK na numer <strong>573 939 925</strong><br>
     z dopiskiem <em>"Reklama – [Twoja nazwa]"</em></p>
 
-    <p style="font-style: italic; color: #aaa;">Po otrzymaniu płatności – reklama trafi do administratora i zostanie zatwierdzona.</p>
-
-    <button type="submit" style="background: #d4af37; color: #000; font-weight: bold;">Wyślij Reklamę do Zatwierdzenia</button>
+    <button type="submit">Wyślij Reklamę do Zatwierdzenia</button>
   </form>
-
-  <div style="margin-top: 40px; text-align: center;">
-    <h3 style="color: #d4af37;">🔐 Panel Administratora (hasło: <em>Wojownik.03</em>)</h3>
-    <p style="color: #aaa;">Tu pojawią się zgłoszenia do zatwierdzenia. Widoczne tylko dla administratora.</p>
-    <!-- Tu później możemy dodać panel admina, np. z listą zgłoszonych reklam -->
-  </div>
-</section>
-  <div style="max-width: 800px; margin: auto; background-color: #1e1a16; padding: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.3); color: #ddd;">
-    <p style="text-align: center;">
-      Umieść swoją reklamę w Świątyni Adelbertus – gdzie trafiają wybrani. Po opłacie i akceptacji przez Strażnika, Twoje przesłanie stanie się widoczne.
-    </p>
-
-    <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-      <label for="firma">Nazwa firmy / osoby:</label>
-      <input type="text" id="firma" name="Firma" required>
-
-      <label for="opis">Treść reklamy:</label>
-      <textarea id="opis" name="Reklama" placeholder="Np. opis oferty, link do strony, nr tel..." rows="4" required></textarea>
-
-      <label for="kontakt">E-mail do kontaktu:</label>
-      <input type="email" id="kontakt" name="Email kontaktowy" required>
-
-      <p style="font-style: italic; color: #aaa;">Po wypełnieniu formularza wyślij BLIK na <strong>573-939-925</strong> z dopiskiem <em>"reklama + nazwa firmy"</em>.</p>
-
-      <button type="submit" style="background: #d4af37; color: #000; font-weight: bold;">Wyślij zgłoszenie do Strażnika</button>
-    </form>
-  </div>
-
-  <!-- Panel administratora -->
-  <div id="adminPanel" style="display: none; margin-top: 30px; background: #26221c; padding: 20px; border-radius: 12px;">
-    <h3 style="color: #d4af37;">🛡️ Panel Administratora – Zatwierdzanie Reklam</h3>
-    <p>Tu będą wyświetlane nowe zgłoszenia po opłacie.</p>
-    <p style="color: #aaa;">(Dostęp tylko dla Strażnika po wpisaniu hasła)</p>
-  </div>
 </section>
 
-<script>
-  const haslo = prompt("Podaj hasło administratora:");
-  if (haslo === "Wojownik.03") {
-    document.getElementById("adminPanel").style.display = "block";
-  }
-</script>
-<!-- SEKCJA REKLAMA -->
-<section id="reklama">
-  <h2 style="color: #d4af37; text-align: center;">🌟 Reklama w Świątyni Adelbertus</h2>
-  <div style="max-width: 800px; margin: auto; background-color: #1e1a16; padding: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2); color: #ccc;">
-
-    <p style="text-align: center;">Wypełnij formularz, opłać przez BLIK i Twoja reklama pojawi się w naszej świątyni!</p>
-
-    <form onsubmit="return wyslijReklame(event)">
-      <label for="nazwa">Nazwa reklamy:</label>
-      <input type="text" id="nazwa" name="nazwa" required>
-
-      <label for="opis">Opis reklamy:</label>
-      <textarea id="opis" name="opis" rows="3" required></textarea>
-
-      <label for="link">Link do produktu lub strony:</label>
-      <input type="url" id="link" name="link" required>
-
-      <p><strong>Płatność:</strong> BLIK na numer <span style="color: #d4af37; font-weight: bold;">573 939 925</span><br>
-      W tytule przelewu wpisz: <em>"reklama"</em></p>
-
-      <button type="submit" style="background: #d4af37; color: #000; font-weight: bold;">Wyślij reklamę do zatwierdzenia</button>
-    </form>
-
-    <p style="margin-top: 15px; font-size: 14px; color: #888; text-align: center;">Po opłacie reklama trafi do administratora. Zostaniesz powiadomiony e-mailem po zatwierdzeniu.</p>
-  </div>
-
-  <!-- PANEL ADMINA (ukryty do momentu wpisania hasła) -->
-  <div id="admin-login" style="margin-top: 40px; text-align: center;">
-    <input type="password" id="admin-password" placeholder="Hasło administratora" style="max-width: 300px;">
-    <button onclick="sprawdzHaslo()" style="background: #d4af37; color: #000; margin-top: 10px;">Zaloguj się</button>
-  </div>
-
-  <div id="admin-panel" style="display: none; margin-top: 30px; background: #2a221c; padding: 20px; border-radius: 12px;">
-    <h3 style="color: #d4af37; text-align: center;">🛡️ Panel Administratora Reklam</h3>
-    <p style="text-align: center; color: #aaa;">Tylko dla właściciela sklepu – możesz zatwierdzać, edytować lub usuwać reklamy.</p>
-
-    <!-- Tu będą wyświetlane przesłane reklamy (symulacja) -->
-    <div id="lista-reklam">
-      <div style="border: 1px solid #555; padding: 10px; margin-bottom: 10px; border-radius: 8px;">
-        <p><strong>Nazwa:</strong> Przykładowa Reklama</p>
-        <p><strong>Opis:</strong> Super produkt dla wojowników cienia.</p>
-        <p><strong>Link:</strong> <a href="#" style="color: #d4af37;">Kliknij</a></p>
-        <button style="background: green; color: white;">Zatwierdź</button>
-        <button style="background: red; color: white;">Usuń</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-  function sprawdzHaslo() {
-    const haslo = document.getElementById('admin-password').value;
-    if (haslo === 'Wojownik.03') {
-      document.getElementById('admin-login').style.display = 'none';
-      document.getElementById('admin-panel').style.display = 'block';
-    } else {
-      alert('Nieprawidłowe hasło.');
-    }
-  }
-
-  function wyslijReklame(e) {
-    e.preventDefault();
-    alert('Reklama została wysłana do zatwierdzenia. Potwierdzenie otrzymasz na e-mail: mielniczukgrzegosz74@gmail.com');
-    return false;
-  }
-</script>
 <section id="zbiorka">
-  <h2 style="color: #d4af37; text-align: center;">🔥 Zbiórka Mistyczna – Wspieraj Świątynię Adelbertus</h2>
+  <h2 style="text-align: center;">🔥 Zbiórka Mistyczna – Wspieraj Świątynię Adelbertus</h2>
 
-  <div style="max-width: 800px; margin: auto; background-color: #1e1a16; padding: 20px; border-radius: 12px; box-shadow: 0 0 20px rgba(212,175,55,0.15); color: #ddd;">
-
+  <div style="max-width: 800px; margin: auto; color: #ddd;">
     <p style="font-size: 18px; text-align: center;">
       Każda złotówka to dar. Każdy dar to cegła w budowie Świątyni Stylu i Ducha. Jeśli czujesz, że nasze przesłanie ma moc – dołącz.
     </p>
@@ -391,9 +229,9 @@
       <p style="font-style: italic;">Twoja pomoc budzi magię. Dziękujemy Ci w imieniu wszystkich, którzy czują się niewidzialni.</p>
       <p style="text-align: right;">– Zespół Adelbertus</p>
     </div>
-
   </div>
 </section>
+
 <section id="opinie">
   <h2>✨ Głosy Uznania – Opinie</h2>
 
@@ -443,21 +281,21 @@
 
 <section id="zamowienie">
   <h2>Zamówienie Twojego Mistycznego Artefaktu</h2>
-  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+  <form action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain" style="max-width: 600px; margin: auto; color: #fff;">
     
-    <label for="name">Imię i nazwisko:</label>
-    <input type="text" id="name" name="Imię i nazwisko" placeholder="np. Wojownik Cienia" required>
+    <label for="order-name">Imię i nazwisko:</label>
+    <input type="text" id="order-name" name="Imię i nazwisko" placeholder="np. Wojownik Cienia" required>
 
-    <label for="email">Adres e-mail:</label>
-    <input type="email" id="email" name="Email" placeholder="np. wojownik@tajemnica.com" required>
+    <label for="order-email">Adres e-mail:</label>
+    <input type="email" id="order-email" name="Email" placeholder="np. wojownik@tajemnica.com" required>
 
-    <label for="zamowienie">Opis zamówienia:</label>
-    <textarea id="zamowienie" name="Zamówienie" placeholder="Opisz swój artefakt, rozmiar, kolor, wzór..." rows="4" required></textarea>
+    <label for="order-desc">Opis zamówienia:</label>
+    <textarea id="order-desc" name="Zamówienie" placeholder="Opisz swój artefakt, rozmiar, kolor, wzór..." rows="4" required></textarea>
 
     <button type="submit">Wyślij Zaklęcie Zamówienia</button>
   </form>
 
-  <div style="margin-top: 30px; padding: 20px; border: 2px dashed #d4af37; border-radius: 12px; text-align: center;">
+  <div style="margin-top: 30px; padding: 20px; border: 2px dashed #d4af37; border-radius: 12px; text-align: center; color: #ddd;">
     <h3 style="color: #d4af37;">Płatność BLIK</h3>
     <p>Wyślij darowiznę za swój artefakt na numer <strong style="font-size: 20px;">573-939-925</strong></p>
     <p>W tytule przelewu wpisz: <em>AdelbertusShop – zamówienie</em></p>
@@ -475,28 +313,4 @@
     <li><strong>Dane osobowe:</strong> Imiona, e-maile i adresy są traktowane jak święte zwoje – nigdy nie opuszczą murów świątyni.</li>
     <li><strong>Mroczna etyka:</strong> Sprzedajemy tylko to, co wywołuje emocje – grzech, bunt, pasję, podziw i ciekawość. Nic, co letnie – tylko ogień lub lód.</li>
   </ol>
-  <p>Wejście do tej przestrzeni oznacza akceptację powyższych zasad. Jeśli się boisz – wyjdź. Jeśli jesteś gotów – zostań i poczuj magię.</p>
-  <p style="text-align: right; font-style: italic;">– Adelbertus</p>
-</section>
-
-<footer>
-  <p>© 2025 AdelbertusShop – kontakt: mielniczukgrzegosz74@gmail.com</p>
-  <p>
-    <a href="https://www.instagram.com/mielniczukgrzegosz74" target="_blank">Instagram</a> |
-    <a href="https://www.facebook.com/share/16X9nmSyhv" target="_blank">Facebook</a> |
-    <a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a>
-  </p>
-</footer>
-
-<script>
-  function showSection(id) {
-    document.querySelectorAll('section').forEach(section => section.classList.remove('active'));
-    const target = document.getElementById(id);
-    if(target) {
-      target.classList.add('active');
-    }
-  }
-</script>
-
-</body>
-</html>
+  <p>Wejście do tej przestrzeni oznacza akce
