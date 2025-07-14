@@ -10,14 +10,14 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #1b0f1a;
       color: #f5f0e1;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     header, footer {
       background-color: #2a1a14;
       color: #d4af37;
+      padding: 10px;
       text-align: center;
-      padding: 15px 0;
     }
 
     nav {
@@ -26,18 +26,18 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      padding: 10px;
+      padding: 10px 0;
     }
 
     nav button {
       background-color: #d4af37;
       border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      color: #1b0f1a;
-      font-weight: bold;
+      padding: 10px 15px;
       cursor: pointer;
-      transition: 0.3s;
+      font-weight: bold;
+      color: #1b0f1a;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
     }
 
     nav button:hover,
@@ -51,7 +51,7 @@
       padding: 20px;
       background-color: #2a1a14;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
       display: none;
     }
 
@@ -66,85 +66,133 @@
 
     form input,
     form textarea,
+    form select,
     form button {
       width: 100%;
       padding: 10px;
-      margin: 8px 0;
+      margin: 10px 0;
       border-radius: 6px;
       border: none;
       font-size: 16px;
+      box-sizing: border-box;
     }
 
     form button {
       background-color: #d4af37;
-      color: #1b0f1a;
       font-weight: bold;
+      color: #1b0f1a;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     form button:hover {
       background-color: #cfae5b;
     }
+
+    a {
+      color: #b44343;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #f5f0e1;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>AdelbertusShop</h1>
-    <p>Ekskluzywna moda z symbolem Pi – inspiracja, estetyka, przekaz</p>
-  </header>
 
-  <nav>
-    <button class="active" data-section="sklep">Sklep</button>
-    <button data-section="projekty">Projekty</button>
-    <button data-section="pomoc">Pomoc dzieciom</button>
-    <button data-section="kontakt">Kontakt</button>
-  </nav>
+<header>
+  <img src="https://i.ibb.co/sSX3qN2/file-0000000016b061f7bec1fc14456918bb-1.png" alt="AdelbertusShop Baner" style="width: 100%; height: auto; display: block; border: none;" />
+  <h1>AdelbertusShop</h1>
+</header>
 
-  <section id="sklep" class="active">
-    <h2>Sklep</h2>
-    <p>Tu pojawią się Twoje unikalne projekty koszulek, bluz i akcesoriów z symbolem Pi.</p>
-    <p>Przygotowujemy nową kolekcję – odwiedzaj nas regularnie!</p>
-  </section>
+<nav>
+  <button class="active" data-section="sklep">Sklep</button>
+  <button data-section="projektuj">Zaprojektuj</button>
+  <button data-section="zbiorka">Zbiórka</button>
+  <button data-section="reklama">Reklama</button>
+  <button data-section="opinie">Opinie</button>
+  <button data-section="blog">Blog</button>
+  <button data-section="zamowienia">Zamówienia</button>
+  <button data-section="artysta">Artysta</button>
+  <button data-section="kontakt">Kontakt</button>
+  <button data-section="regulamin">Regulamin</button>
+</nav>
 
-  <section id="projekty">
-    <h2>O Artyście</h2>
-    <p>Nazywam się Grzegosz Mielniczuk. Wykonuję portrety na zamówienie – ołówek, kredka, technika mieszana. Jeśli chcesz zareklamować swoją sztukę – napisz!</p>
-  </section>
+<section id="sklep" class="active">
+  <h2>Sklep</h2>
+  <p>Tu będą wyświetlane Twoje produkty.</p>
+</section>
 
-  <section id="pomoc">
-    <h2>Pomoc dla Domów Dziecka</h2>
-    <p>Sam byłem wychowankiem domu dziecka. Jeśli chcesz wesprzeć dzieci – możesz przesłać dowolny datek na BLIK:</p>
-    <p><strong>BLIK:</strong> 573939925</p>
-  </section>
+<section id="projektuj">
+  <h2>Zaprojektuj</h2>
+  <p>Sekcja do projektowania własnych koszulek i bluz z przekazem.</p>
+</section>
 
-  <section id="kontakt">
-    <h2>Kontakt i Social Media</h2>
-    <ul>
-      <li><a href="https://www.facebook.com/share/1F2YP6dXJi/?mibextid=wwXIfr" target="_blank">Facebook</a></li>
-      <li><a href="https://www.instagram.com/adelbertusshop?igsh=ZXZxMzNkNXpoY2l1&utm_source=qr" target="_blank">Instagram</a></li>
-      <li><a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8x0tFzBEEre&_r=1" target="_blank">TikTok</a></li>
-      <li><a href="https://wa.me/48604296650" target="_blank">WhatsApp</a></li>
-    </ul>
-  </section>
+<section id="zbiorka">
+  <h2>Zbiórka</h2>
+  <p>Pomóż domom dziecka. Wpłać dowolną kwotę BLIK: <strong>573939925</strong></p>
+</section>
 
-  <footer>
-    <p>&copy; 2025 AdelbertusShop — Wszystkie prawa zastrzeżone.</p>
-  </footer>
+<section id="reklama">
+  <h2>Reklama</h2>
+  <p>Tu możesz zamieścić swoją reklamę lub współpracować z AdelbertusShop.</p>
+</section>
 
-  <script>
-    const buttons = document.querySelectorAll('nav button');
-    const sections = document.querySelectorAll('section');
+<section id="opinie">
+  <h2>Opinie</h2>
+  <p>Tu pojawią się opinie klientów.</p>
+</section>
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        buttons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        const target = button.getAttribute('data-section');
-        sections.forEach(section => section.classList.remove('active'));
-        document.getElementById(target).classList.add('active');
-        window.scrollTo(0, 0);
-      });
+<section id="blog">
+  <h2>Blog</h2>
+  <p>Aktualności, przemyślenia, refleksje — inspirujące teksty z sercem i duszą.</p>
+</section>
+
+<section id="zamowienia">
+  <h2>Zamówienia</h2>
+  <p>Formularz do składania indywidualnych zamówień — np. na portrety lub projekty.</p>
+</section>
+
+<section id="artysta">
+  <h2>Artysta: Grzegosz Mielniczuk</h2>
+  <p>Specjalizuję się w rysunkach ołówkiem i kredką. Przyjmuję zamówienia portretów.</p>
+</section>
+
+<section id="kontakt">
+  <h2>Kontakt i Social Media</h2>
+  <ul>
+    <li><a href="https://www.facebook.com/share/1F2YP6dXJi/?mibextid=wwXIfr" target="_blank">Facebook</a></li>
+    <li><a href="https://www.instagram.com/adelbertusshop?igsh=ZXZxMzNkNXpoY2l1&utm_source=qr" target="_blank">Instagram</a></li>
+    <li><a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8x0tFzBEEre&_r=1" target="_blank">TikTok</a></li>
+    <li><a href="https://wa.me/48604296650" target="_blank">WhatsApp</a></li>
+  </ul>
+</section>
+
+<section id="regulamin">
+  <h2>Regulamin</h2>
+  <p>Tu znajdziesz zasady funkcjonowania sklepu AdelbertusShop.</p>
+</section>
+
+<footer>
+  &copy; 2025 AdelbertusShop. Symbol Pi — mądrość, ekskluzywność, przekaz. Właściciel: Grzegosz Mielniczuk
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('nav button');
+  const sections = document.querySelectorAll('section');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      const target = button.getAttribute('data-section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(target).classList.add('active');
+      window.scrollTo(0, 0);
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
-
