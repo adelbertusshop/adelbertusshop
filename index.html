@@ -1,380 +1,124 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
-  
+  <link rel="icon" href="https://i.ibb.co/PZHhxxcD/Screenshot-20250608-161603-Chat-GPT-3.jpg" type="image/jpeg" />
   <style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #fff8e7; /* kremowe tło */
-    color: #4a3f2a; /* ciemny złotobrązowy tekst */
-    line-height: 1.5;
-  }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8e7;
+      color: #4a3f2a;
+    }
 
-  header, footer {
-    background-color: #f5deb3; /* jasne złoto */
-    color: #4a3f2a;
-  }
+    header, footer {
+      background-color: #f5deb3;
+      text-align: center;
+      padding: 20px 10px;
+    }
 
-  nav {
-    background-color: #f5deb3;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px 0;
-  }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #d4af37;
+      padding: 10px;
+      gap: 8px;
+    }
 
-  nav button {
-    background-color: #d4af37; /* klasyczne złoto */
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #fff8e7;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
+    nav button {
+      background-color: #fff8e7;
+      color: #4a3f2a;
+      border: 2px solid #4a3f2a;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-  nav button:hover,
-  nav button.active {
-    background-color: #caa84f; /* jaśniejsze złoto */
-  }
+    nav button.active,
+    nav button:hover {
+      background-color: #caa84f;
+      color: #fff8e7;
+    }
 
-  section {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fffaf0; /* kremowe wnętrze */
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-    display: none;
-  }
+    section {
+      display: none;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fffaf0;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
 
-  section.active {
-    display: block;
-  }
+    section.active {
+      display: block;
+    }
 
-  h2 {
-    color: #d4af37;
-    margin-top: 0;
-  }
-
-  form input,
-  form textarea,
-  form select,
-  form button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 6px;
-    border: 1px solid #d4af37;
-    font-size: 16px;
-    box-sizing: border-box;
-  }
-
-  form button {
-    background-color: #d4af37;
-    font-weight: bold;
-    color: #fff8e7;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  form button:hover {
-    background-color: #caa84f;
-  }
-
-  a {
-    color: #a67c00;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #4a3f2a;
-  }
-</style></head>
+    h2 {
+      color: #d4af37;
+    }
+  </style>
+</head>
 <body>
+  <header>
+    <h1>AdelbertusShop</h1>
+    <p>Tworzone z pasją, sprzedawane z sercem.</p>
+  </header>
 
-<header style="position: relative; padding: 0; margin: 0; border: none;">
+  <nav>
+    <button data-section="sklep" class="active">Sklep</button>
+    <button data-section="projektuj">Projektuj</button>
+    <button data-section="kontakt">Kontakt</button>
+    <button data-section="regulamin">Regulamin</button>
+  </nav>
 
-  <!-- Logo lewy górny róg -->
-  <img src="https://i.ibb.co/Y4w1Q2SH/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg"
-       alt="Logo Adelbertus Pi"
-       style="position: absolute; top: 10px; left: 10px; width: 60px; height: auto; z-index: 10;" />
+  <section id="sklep" class="active">
+    <h2>Sklep</h2>
+    <p>Twoje produkty będą tu prezentowane w eleganckiej formie.</p>
+  </section>
 
-  <!-- Logo prawy górny róg -->
-  <img src="https://i.ibb.co/Y4w1Q2SH/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg"
-       alt="Logo Adelbertus Pi"
-       style="position: absolute; top: 10px; right: 10px; width: 60px; height: auto; z-index: 10;" />
+  <section id="projektuj">
+    <h2>Projektuj</h2>
+    <p>Stwórz własny unikalny wzór i zamów go na bluzie lub koszulce.</p>
+  </section>
 
-  <!-- Baner -->
-  <img src="https://i.ibb.co/sSX3qN2/file-0000000016b061f7bec1fc14456918bb-1.png"
-       alt="AdelbertusShop Baner"
-       style="width: 100%; height: auto; display: block; border: none;" />
+  <section id="kontakt">
+    <h2>Kontakt</h2>
+    <p>Napisz do nas: <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a></p>
+  </section>
 
-</header>
+  <section id="regulamin">
+    <h2>Regulamin</h2>
+    <p>Tu znajdzie się regulamin sklepu.</p>
+  </section>
 
+  <footer>
+    &copy; 2025 AdelbertusShop. Wszelkie prawa zastrzeżone.
+  </footer>
 
-<nav>
-  <button class="active" data-section="sklep">Sklep</button>
-  <button data-section="projektuj">Zaprojektuj</button>
-  <button data-section="zbiorka">Zbiórka</button>
-  <button data-section="reklama">Reklama</button>
-  <button data-section="opinie">Opinie</button>
-  <button data-section="blog">Blog</button>
-  <button data-section="zamowienia">Zamówienia</button>
-  <button data-section="artysta">Artysta</button>
-  <button data-section="dzieci">Dzieci & Młodzież</button>  <button data-section="kontakt">Kontakt</button>
-  <button data-section="regulamin">Regulamin</button>
-  <button data-section="premium">LIMITOWANA KOLEKCJA</button></nav>
+  <script>
+    const buttons = document.querySelectorAll('nav button');
+    const sections = document.querySelectorAll('section');
 
-<section id="sklep" class="active">
-  <h2>Sklep</h2>
-  <p>Tu będą wyświetlane Twoje produkty.</p>
-</section>
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
 
-<section id="projektuj">
-  <h2>Zaprojektuj</h2>
-  <p>Sekcja do projektowania własnych koszulek i bluz z przekazem.</p>
-</section>
-
-<section id="zbiorka">
-  <h2>Zbiórka</h2>
-  <p>Pomóż domom dziecka. Wpłać dowolną kwotę BLIK: <strong>573939925</strong></p>
-</section>
-
-<section id="reklama">
-  <h2>Reklama</h2>
-  <p>Tu możesz zamieścić swoją reklamę lub współpracować z AdelbertusShop.</p>
-</section>
-
-<section id="opinie">
-  <h2>Opinie</h2>
-  <p>Tu pojawią się opinie klientów.</p>
-</section>
-
-<section id="blog">
-  <h2>Blog</h2>
-  <p>Aktualności, przemyślenia, refleksje — inspirujące teksty z sercem i duszą.</p>
-</section>
-
-<section id="zamowienia">
-  <h2>Zamówienia</h2>
-  <p>Formularz do składania indywidualnych zamówień — np. na portrety lub projekty.</p>
-</section>
-<!-- OD: SEK. PREMIUM -->
-<section id="premium">
-  <h2 style="text-align: center; color: #d4af37;">LIMITOWANA KOLEKCJA</h2>
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
-    Tylko dla tych, którzy rozumieją — Symbol Φ (Fi) to nie tylko estetyka. To kod duszy, harmonia i przekaz zaklęty w liczbie.
-</p>
-</div>
-</section>
-  <!-- Miejsce na grafikę / mockup -->
-  <div style="text-align: center; margin: 20px 0;">
-    <img src="https://i.ibb.co/3d7dxqd/premium-hoodie-fi.png" alt="Bluza Fi" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);" />
-  </div>
-
-<!-- Miejsce na grafikę / mockup -->
-  <div style="text-align: center; margin: 20px 0;">
-    <img src="https://i.ibb.co/3d7dxqd/premium-hoodie-fi.png" alt="Bluza Fi" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);" />
-  </div>
-
-  <!-- Produkt: Bluza Fi -->
-  <div style="border: 2px solid #d4af37; padding: 20px; border-radius: 12px; background: #fffaf0; margin-bottom: 30px;">
-    <h3 style="color: #4a3f2a;">Ekskluzywna bluza z symbolem Fi</h3>
-    <p>Cena: <strong>199 zł</strong></p>
-    <p style="font-style: italic;">Nie każdy może ją nosić — to bluza dla tych, którzy czują, a nie tylko widzą.</p>
-
-    <!-- PayPal -->
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="mielniczukgrzegosz74@gmail.com">
-      <input type="hidden" name="item_name" value="Bluza Premium z symbolem Fi">
-      <input type="hidden" name="currency_code" value="PLN">
-      <input type="hidden" name="amount" value="199">
-      <button type="submit" style="background:#d4af37; color:#000; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">Kup przez PayPal</button>
-    </form>
-
-    <!-- BLIK -->
-    <p style="margin-top:10px;">💳 Lub zapłać BLIK na numer <strong style="color:#d4af37;">573-939-925</strong><br>
-    Tytuł: <em>„Bluza Premium – AdelbertusShop”</em></p>
-  </div>
-</section>
-<!-- DO: SEK. PREMIUM --><!-- OD: SEK. ARTYSTA -->
-<section id="artysta">
-  <h2 style="text-align: center; color: #d4af37;">Artysta: Wojciech "Wojownik"</h2>
-
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
-    Nazywam się Wojciech – „Wojownik”. Od zawsze jestem związany ze sztuką, która nie jest tylko moją pasją, ale sensem życia. Rysuję, maluję, tworzę grafikę i tatuaże. Urodziłem się, by tworzyć. Jestem samoukiem, byłym wychowankiem domu dziecka, który dziś spełnia swoje marzenie – buduje miejsce, gdzie sztuka spotyka człowieczeństwo.
-  </p>
-
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
-    AdelbertusShop to moja świątynia twórczości – przestrzeń, w której dzielę się z Wami swoimi pracami. Pragnę uszczęśliwiać ludzi, sprawiać, by się uśmiechali. Dla mnie uśmiech to dar – rzadki, piękny, bezcenny. Dlatego tworzę. Dla tych chwil, kiedy czyjeś serce drgnie.
-  </p>
-
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
-    Jeśli odwiedzasz mój sklep – dziękuję. Jeśli wesprzesz dom dziecka – tym bardziej. Każdy, nawet najmniejszy gest dobroci ma znaczenie. Wiem, bo byłem tam, gdzie dzieci nie mają nic – oprócz marzeń.
-  </p>
-
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px; font-weight: bold;">
-    Zapraszam Cię serdecznie w imieniu własnym i całego zespołu AdelbertusShop. Dziękuję, że jesteś.
-  </p>
-</section>
-<!-- DO: SEK. ARTYSTA -->  <ul>
-    <li><a href="https://www.facebook.com/share/1F2YP6dXJi/?mibextid=wwXIfr" target="_blank">Facebook</a></li>
-    <li><a href="https://www.instagram.com/adelbertusshop?igsh=ZXZxMzNkNXpoY2l1&utm_source=qr" target="_blank">Instagram</a></li>
-    <li><a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8x0tFzBEEre&_r=1" target="_blank">TikTok</a></li>
-    <li><a href="https://wa.me/48604296650" target="_blank">WhatsApp</a></li>
-  </ul>
-</section>
-<!-- OD: SEK. DZIECI -->
-<section id="dzieci">
-  <h2 style="text-align: center; color: #d4af37;">Dzieci & Młodzież</h2>
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
-    Produkty stworzone z myślą o najmłodszych wojownikach światła i młodych poszukiwaczach prawdy.
-  </p>
-
-  <!-- Miejsce na grafikę / mockup -->
-  <div style="text-align: center; margin: 20px 0;">
-    <img src="https://i.ibb.co/vYy4Cxh/mockup-kids-shirt.png" alt="Koszulka dziecięca Adelbertus" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);" />
-  </div>
-
-  <!-- Produkt 1 -->
-  <div style="border: 2px solid #d4af37; padding: 20px; border-radius: 12px; background: #fffaf0; margin-bottom: 30px;">
-    <h3 style="color: #4a3f2a;">Koszulka dziecięca z symbolem Pi</h3>
-    <p>Cena: <strong>89 zł</strong></p>
-
-    <!-- PayPal -->
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="mielniczukgrzegosz74@gmail.com">
-      <input type="hidden" name="item_name" value="Koszulka dziecięca z symbolem Pi">
-      <input type="hidden" name="currency_code" value="PLN">
-      <input type="hidden" name="amount" value="89">
-      <button type="submit" style="background:#d4af37; color:#000; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">Kup przez PayPal</button>
-    </form>
-
-    <!-- BLIK -->
-    <p style="margin-top:10px;">💳 Lub zapłać BLIK na numer <strong style="color:#d4af37;">573-939-925</strong><br>
-    Tytuł: <em>„Koszulka dziecięca – AdelbertusShop”</em></p>
-  </div>
-</section>
-<!-- DO: SEK. DZIECI --><!-- OD: REGULAMIN -->
-<section id="regulamin">
-  <h2 style="color: #d4af37;">Regulamin sklepu AdelbertusShop</h2>
-
-  <p><strong>1. Informacje ogólne</strong></p>
-  <p>
-    Sklep internetowy AdelbertusShop prowadzony jest przez osobę fizyczną w ramach działalności nierejestrowanej, zgodnie z art. 5 ustawy Prawo przedsiębiorców. Sprzedawca: Grzegosz Mielniczuk.
-  </p>
-
-<!-- OD: SEK. KONTAKT -->
-<section id="kontakt">
-  <h2 style="text-align: center; color: #d4af37;">Kontakt i Social Media</h2>
-
-  <div style="text-align: center; margin-bottom: 20px;">
-    <p style="font-size: 18px; color: #4a3f2a;">
-      Masz pytanie? Napisz do nas mailowo lub skontaktuj się przez social media.
-    </p>
-  </div>
-
-  <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-    <a href="mailto:mielniczukgrzegosz74@gmail.com" style="color: #a67c00; font-weight: bold;">✉️ meilniczukgrzegosz74@gmail.com</a>
-
-    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://www.facebook.com/share/1F2YP6dXJi/?mibextid=wwXIfr" target="_blank">
-        <img src="https://i.ibb.co/T4M82Nv/facebook-gold.png" alt="Facebook" style="width: 40px; height: 40px;" />
-      </a>
-
-      <a href="https://www.instagram.com/adelbertusshop?igsh=ZXZxMzNkNXpoY2l1&utm_source=qr" target="_blank">
-        <img src="https://i.ibb.co/ZBGCrYm/instagram-gold.png" alt="Instagram" style="width: 40px; height: 40px;" />
-      </a>
-
-      <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8x0tFzBEEre&_r=1" target="_blank">
-        <img src="https://i.ibb.co/F8HqRrL/tiktok-gold.png" alt="TikTok" style="width: 40px; height: 40px;" />
-      </a>
-
-      <a href="https://wa.me/48604296650" target="_blank">
-        <img src="https://i.ibb.co/FWW9KTg/whatsapp-gold.png" alt="WhatsApp" style="width: 40px; height: 40px;" />
-      </a>
-    </div>
-  </div>
-</section>
-<!-- DO: SEK. KONTAKT --><!-- DO: SEK. KONTAKT -->
-  <p><strong>3. Składanie zamówień</strong></p>
-  <p>
-    Zamówienia można składać przez formularz zamówień, sekcję produktów z przyciskiem PayPal lub poprzez kontakt bezpośredni (np. BLIK, e-mail).
-    Po złożeniu zamówienia klient otrzymuje potwierdzenie na podany adres e-mail.
-  </p>
-
-  <p><strong>4. Płatności</strong></p>
-  <ul>
-    <li>PayPal – płatność elektroniczna z natychmiastowym zaksięgowaniem</li>
-    <li>BLIK – na numer telefonu: <strong>573-939-925</strong></li>
-    <li>Przelew tradycyjny – na życzenie (kontakt mailowy)</li>
-  </ul>
-
-  <p><strong>5. Dostawa</strong></p>
-  <p>
-    Produkty są wysyłane w terminie do 7 dni roboczych od otrzymania płatności. Czas dostawy zależy od wybranego sposobu przesyłki.
-  </p>
-
-  <p><strong>6. Zwroty i reklamacje</strong></p>
-  <p>
-    Jako osoba prowadząca działalność nierejestrowaną informuję, że:
-  </p>
-  <ul>
-    <li>Konsument ma prawo odstąpić od umowy w terminie 14 dni bez podania przyczyny (zgodnie z ustawą o prawach konsumenta), z wyjątkiem produktów personalizowanych (np. nadruki na życzenie).</li>
-    <li>Reklamacje można składać mailowo. Każda zostanie rozpatrzona w ciągu 14 dni kalendarzowych.</li>
-    <li>Koszty zwrotu ponosi klient, chyba że reklamacja zostanie uznana za zasadną.</li>
-  </ul>
-
-  <p><strong>7. Dane osobowe</strong></p>
-  <p>
-    Dane osobowe klientów są przetwarzane wyłącznie w celu realizacji zamówienia. Nie są przekazywane podmiotom trzecim. Kontaktując się ze sklepem lub składając zamówienie, klient wyraża zgodę na przetwarzanie swoich danych.
-  </p>
-
-  <p><strong>8. Postanowienia końcowe</strong></p>
-  <ul>
-    <li>W sprawach nieuregulowanych w niniejszym regulaminie zastosowanie mają przepisy Kodeksu cywilnego i ustawy o prawach konsumenta.</li>
-    <li>Sprzedawca zastrzega sobie prawo do zmiany regulaminu z ważnych przyczyn (np. zmiana przepisów).</li>
-  </ul>
-
-  <p style="margin-top: 20px; font-style: italic;">Dziękujemy za zaufanie – jesteśmy tu po to, by tworzyć z sensem i wartością.</p>
-</section>
-<!-- DO: REGULAMIN -->
-<footer>
-  &copy; 2025 AdelbertusShop. Symbol Pi — mądrość, ekskluzywność, przekaz. Właściciel: Grzegosz Mielniczuk
-</footer>
-
-<script>
-  const buttons = document.querySelectorAll('nav button');
-  const sections = document.querySelectorAll('section');
-
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Usuń klasę active z przycisków
-      buttons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-
-      // Pokaż właściwą sekcję
-      const target = button.getAttribute('data-section');
-      sections.forEach(section => {
-        if (section.id === target) {
-          section.classList.add('active');
-        } else {
+        const target = button.getAttribute('data-section');
+        sections.forEach(section => {
           section.classList.remove('active');
-        }
+          if (section.id === target) {
+            section.classList.add('active');
+          }
+        });
       });
-
-      // Przewiń na górę
-      window.scrollTo(0, 0);
     });
-  });
-</script></body>
+  </script>
+</body>
 </html>
