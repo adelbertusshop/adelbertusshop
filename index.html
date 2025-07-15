@@ -20,8 +20,28 @@
     padding: 10px 0;
     border-bottom: 2px solid #444;
   }
+nav button {
+  background-color: #d4af37;
+  border: none;
+  padding: 10px 15px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-  nav {
+nav button:hover {
+  background-color: #ffd700; /* jaśniejsze złoto przy hoverze */
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+}
+
+/* Styl dla linków np. w headerze */
+a:hover {
+  color: #d4af37;
+  transition: color 0.3s ease;
+}  nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
