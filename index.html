@@ -1,155 +1,166 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AdelbertusShop</title>
-  <link rel="icon" href="https://i.ibb.co/PZHhxxcD/Screenshot-20250608-161603-Chat-GPT-3.jpg" type="image/jpeg" />
+  <link rel="icon" href="https://i.ibb.co/PZHhxxcD/Screenshot-20250608-161603-Chat-GPT-3.jpg" type="image/jpeg">
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #fff8e7;
       color: #4a3f2a;
+      line-height: 1.6;
     }
-
     header, footer {
       background-color: #f5deb3;
-      text-align: center;
-      padding: 20px 10px;
+      color: #4a3f2a;
     }
-
     nav {
+      background-color: #f5deb3;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      background-color: #d4af37;
+      gap: 10px;
       padding: 10px;
-      gap: 8px;
     }
-
     nav button {
-      background-color: #fff8e7;
-      color: #4a3f2a;
-      border: 2px solid #4a3f2a;
+      background-color: #d4af37;
+      border: none;
       padding: 10px 15px;
-      border-radius: 6px;
-      cursor: pointer;
+      color: #fff;
       font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
     }
-
-    nav button.active,
-    nav button:hover {
+    nav button.active, nav button:hover {
       background-color: #caa84f;
-      color: #fff8e7;
     }
-
     section {
-      display: none;
       max-width: 900px;
       margin: 20px auto;
       padding: 20px;
       background-color: #fffaf0;
       border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgba(212,175,55,0.2);
+      display: none;
     }
-
     section.active {
       display: block;
     }
-
     h2 {
       color: #d4af37;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>AdelbertusShop</h1>
-    <p>Tworzone z pasją, sprzedawane z sercem.</p>
-  </header>
 
- <nav>
-    <button data-section="sklep" class="active">Sklep</button>
-    <button data-section="projektuj">Projektuj</button>
-    <button data-section="kontakt">Kontakt</button>
-    <button data-section="regulamin">Regulamin</button>
-    <button data-section="marketplace">Marketplace</button>
-    <button data-section="reklama">Reklama</button>
-</nav>  <section id="sklep" class="active">
-    <h2>Sklep</h2>
-    <p>Twoje produkty będą tu prezentowane w eleganckiej formie.</p>
-  </section>
+<header>
+  <img src="https://i.ibb.co/Y4w1Q2SH/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Logo Adelbertus" style="width: 60px; margin: 10px; float: left;">
+  <img src="https://i.ibb.co/sSX3qN2/file-0000000016b061f7bec1fc14456918bb-1.png" alt="Baner Adelbertus" style="width: 100%; height: auto;">
+</header>
 
-  <section id="projektuj">
-    <h2>Projektuj</h2>
-    <p>Stwórz własny unikalny wzór i zamów go na bluzie lub koszulce.</p>
-  </section>
+<nav>
+  <button class="active" data-section="sklep">Sklep</button>
+  <button data-section="projektuj">Projektuj</button>
+  <button data-section="zbiorka">Zbiórka</button>
+  <button data-section="reklama">Reklama</button>
+  <button data-section="opinie">Opinie</button>
+  <button data-section="blog">Blog</button>
+  <button data-section="zamowienia">Zamówienia</button>
+  <button data-section="artysta">Artysta</button>
+  <button data-section="dzieci">Dzieci & Młodzież</button>
+  <button data-section="kontakt">Kontakt</button>
+  <button data-section="regulamin">Regulamin</button>
+  <button data-section="premium">LIMITOWANA KOLEKCJA</button>
+</nav>
 
-  <section id="kontakt">
-    <h2>Kontakt</h2>
-    <p>Napisz do nas: <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a></p>
-  </section>
-
- <section id="regulamin">
-  <h2>Regulamin</h2>
-  
-  <h3>§1. Postanowienia ogólne</h3>
-  <p>
-    1.1. Sklep "AdelbertusShop" prowadzi sprzedaż na zasadach działalności nierejestrowanej zgodnie z art. 5 ustawy o swobodzie działalności gospodarczej.<br>
-    1.2. Sprzedawca nie jest VAT-owcem.
-  </p>
-
-  <h3>§2. Warunki zakupów</h3>
-  <p>
-    2.1. Ceny produktów są podane w PLN i zawierają podatki (np. VAT) – o ile wynikają z prawa.<br>
-    2.2. Płatności: przelew bankowy, BLIK lub gotówka przy odbiorze.<br>
-    2.3. Termin realizacji zamówienia: do 3 dni roboczych.
-  </p>
-
-  <h3>§3. Zwroty i reklamacje</h3>
-  <p>
-    3.1. Reklamacje przyjmowane są mailowo w ciągu 14 dni od otrzymania produktu.<br>
-    3.2. Produkty muszą być zwrócone w stanie nienaruszonym.<br>
-    3.3. Koszt zwrotu pokrywa Kupujący.
-  </p>
-
-  <h3>§4. Ochrona danych</h3>
-  <p>
-    4.1. Dane osobowe przetwarzane są wyłącznie w celu realizacji zamówienia.<br>
-    4.2. Nie prowadzimy bazy danych klientów – dane są usuwane po realizacji zamówienia.
-  </p>
-
-  <h3>§5. Postanowienia końcowe</h3>
-  <p>
-    5.1. Sprzedawca nie odpowiada za opóźnienia spowodowane przez operatorów pocztowych.<br>
-    5.2. Zmiany regulaminu obowiązują od momentu opublikowania na stronie.<br>
-    5.3. Kontakt: <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a>.
-  </p>
+<section id="sklep" class="active">
+  <h2>Sklep</h2>
+  <p>Tu będą wyświetlane Twoje produkty.</p>
 </section>
-  <footer>
-    &copy; 2025 AdelbertusShop. Wszelkie prawa zastrzeżone.
-  </footer>
 
-  <script>
-    const buttons = document.querySelectorAll('nav button');
-    const sections = document.querySelectorAll('section');
+<section id="projektuj"><h2>Projektuj</h2><p>Stwórz własny projekt produktu.</p></section>
+<section id="zbiorka"><h2>Zbiórka</h2><p>Wpłać BLIK: <strong>573939925</strong></p></section>
+<section id="reklama"><h2>Reklama</h2><p>Możliwość współpracy reklamowej.</p></section>
+<section id="opinie"><h2>Opinie</h2><p>Opinie klientów.</p></section>
+<section id="blog"><h2>Blog</h2><p>Refleksje, inspiracje, wartości.</p></section>
+<section id="zamowienia"><h2>Zamówienia</h2><p>Zamów unikalne dzieła.</p></section>
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        buttons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+<section id="artysta">
+  <h2>Artysta: Wojciech "Wojownik"</h2>
+  <p>Tworzę z potrzeby serca. Rysuję, maluję, projektuję i walczę światłem. AdelbertusShop to świątynia twórczości – dla Ciebie.</p>
+</section>
 
-        const target = button.getAttribute('data-section');
-        sections.forEach(section => {
-          section.classList.remove('active');
-          if (section.id === target) {
-            section.classList.add('active');
-          }
-        });
+<section id="dzieci">
+  <h2>Dzieci & Młodzież</h2>
+  <p>Ubrania z przesłaniem dla najmłodszych wojowników.</p>
+</section>
+
+<section id="kontakt">
+  <h2>Kontakt i Social Media</h2>
+  <ul>
+    <li><a href="mailto:mielniczukgrzegosz74@gmail.com">✉️ meilniczukgrzegosz74@gmail.com</a></li>
+    <li><a href="https://www.facebook.com/share/1F2YP6dXJi/?mibextid=wwXIfr" target="_blank">Facebook</a></li>
+    <li><a href="https://www.instagram.com/adelbertusshop" target="_blank">Instagram</a></li>
+    <li><a href="https://www.tiktok.com/@ja.jestem3" target="_blank">TikTok</a></li>
+    <li><a href="https://wa.me/48604296650" target="_blank">WhatsApp</a></li>
+  </ul>
+</section>
+
+<section id="regulamin">
+  <h2>Regulamin</h2>
+  <p>Regulamin sklepu AdelbertusShop – prawa i obowiązki obu stron.</p>
+</section>
+
+<section id="premium">
+  <h2 style="text-align: center; color: #d4af37;">LIMITOWANA KOLEKCJA</h2>
+  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
+    Symbol Φ (Fi) – kod duszy, harmonia i przekaz zaklęty w liczbie.
+  </p>
+  <div style="text-align: center; margin: 20px 0;">
+    <img src="https://i.ibb.co/3d7dxqd/premium-hoodie-fi.png" alt="Bluza Fi" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);" />
+  </div>
+  <div style="border: 2px solid #d4af37; padding: 20px; border-radius: 12px; background: #fffaf0; margin-bottom: 30px;">
+    <h3 style="color: #4a3f2a;">Ekskluzywna bluza z symbolem Fi</h3>
+    <p>Cena: <strong>199 zł</strong></p>
+    <p style="font-style: italic;">Nie każdy może ją nosić — to bluza dla tych, którzy czują, a nie tylko widzą.</p>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="mielniczukgrzegosz74@gmail.com">
+      <input type="hidden" name="item_name" value="Bluza Premium z symbolem Fi">
+      <input type="hidden" name="currency_code" value="PLN">
+      <input type="hidden" name="amount" value="199">
+      <button type="submit" style="background:#d4af37; color:#000; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">Kup przez PayPal</button>
+    </form>
+    <p style="margin-top:10px;">💳 Lub zapłać BLIK na numer <strong style="color:#d4af37;">573-939-925</strong><br>
+    Tytuł: <em>„Bluza Premium – AdelbertusShop”</em></p>
+  </div>
+</section>
+
+<footer style="text-align: center; padding: 20px;">
+  &copy; 2025 AdelbertusShop. Symbol Pi — mądrość, ekskluzywność, przekaz. Właściciel: Grzegosz Mielniczuk
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('nav button');
+  const sections = document.querySelectorAll('section');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      const target = button.getAttribute('data-section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+        if (section.id === target) section.classList.add('active');
       });
+      window.scrollTo(0, 0);
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
+
