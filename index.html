@@ -353,15 +353,23 @@
 
   buttons.forEach(button => {
     button.addEventListener('click', () => {
+      // Usuń klasę active z przycisków
       buttons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
+
+      // Pokaż właściwą sekcję
       const target = button.getAttribute('data-section');
-      sections.forEach(section => section.classList.remove('active'));
-      document.getElementById(target).classList.add('active');
+      sections.forEach(section => {
+        if (section.id === target) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      });
+
+      // Przewiń na górę
       window.scrollTo(0, 0);
     });
   });
-</script>
-
-</body>
+</script></body>
 </html>
