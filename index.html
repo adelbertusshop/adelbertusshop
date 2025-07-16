@@ -112,7 +112,19 @@ a:hover {
 
 <body>
 <!-- 🔷 Nagłówek z logo po bokach i banerem po środku -->
-<header style="background-color: #0f0f0f; padding: 10px 0; border-bottom: 2px solid #444;">
+  <!-- 🔷 Koszyk – ikona i popup -->
+<div style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+  <button onclick="toggleCart()" style="background-color: #d4af37; border: none; padding: 10px 15px; color: #fff; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+    🛒 Koszyk (<span id="cart-count">0</span>)
+  </button>
+</div>
+
+<div id="cart-popup" style="display: none; position: fixed; top: 70px; right: 20px; width: 300px; max-height: 400px; overflow-y: auto; background-color: #fffaf0; color: #4a3f2a; border: 2px solid #d4af37; border-radius: 8px; padding: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.4); z-index: 1001;">
+  <h3 style="text-align: center; color: #d4af37;">Twój Koszyk</h3>
+  <div id="cart-contents">
+    <p>Twój koszyk jest pusty.</p>
+  </div>
+</div><header style="background-color: #0f0f0f; padding: 10px 0; border-bottom: 2px solid #444;">
   <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
     
     <!-- Logo po lewej stronie -->
