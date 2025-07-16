@@ -223,7 +223,55 @@
     „Sztuka rodzi się z duszy. A dusza – z rozmowy.”<br><br>
     Dziękuję, że jesteś tutaj. – Wojciech „Wojownik”
   </div>
-</section><section id="zamowienia">
+</section>
+  <section id="opinie">
+  <h2 style="text-align: center; color: #d4af37;">Opinie Klientów</h2>
+
+  <div id="opinia" style="margin: 20px auto; padding: 25px; background-color: #fffaf0; border: 2px solid #d4af37; border-radius: 12px; max-width: 700px; text-align: center;">
+    <p id="opinia-tekst" style="font-size: 18px; color: #4a3f2a; font-style: italic;"></p>
+    <p id="opinia-autor" style="font-size: 16px; color: #a52a2a; font-weight: bold;"></p>
+  </div>
+
+  <div style="text-align: center; margin-top: 30px;">
+    <p style="font-size: 17px; color: #4a3f2a;">Chcesz dodać swoją opinię? Prześlij ją na:</p>
+    <p style="font-size: 17px; color: #4a3f2a;">
+      ✉️ <a href="mailto:meilniczukgrzegosz74@gmail.com">meilniczukgrzegosz74@gmail.com</a><br>
+      📞 <a href="https://wa.me/48604296650">WhatsApp: +48 604 296 650</a>
+    </p>
+    <p style="font-size: 14px; color: #888;">
+      Twoje słowa mogą być inspiracją dla innych.
+    </p>
+  </div>
+
+  <div style="text-align: center; margin-top: 40px; font-style: italic; font-size: 16px; color: #4a3f2a;">
+    „Prawda klientów jest najpiękniejszą recenzją artysty.”
+  </div>
+
+  <script>
+    const opinie = [
+      {
+        tekst: "Bluza przyszła po tygodniu – jakość przewyższyła moje oczekiwania. Czuć, że to ręka artysty.",
+        autor: "– Marta z Krakowa"
+      },
+      {
+        tekst: "Projekt koszulki? Cudo! Aż nie chcę jej nosić, żeby nie zniszczyć. Dziękuję, Wojowniku.",
+        autor: "– Janek, Łódź"
+      },
+      {
+        tekst: "Dziecko z domu dziecka, które tworzy coś tak pięknego... Szacunek. Kupiłem z potrzeby serca.",
+        autor: "– Tomek, Poznań"
+      },
+      {
+        tekst: "Zamówiłam obraz na ścianę – to nie tylko sztuka, to symbol. Prawdziwy przekaz.",
+        autor: "– Ela, Gdańsk"
+      }
+    ];
+
+    const index = Math.floor(new Date().getTime() / (1000 * 60 * 60 * 24 * 2)) % opinie.length;
+    document.getElementById('opinia-tekst').textContent = opinie[index].tekst;
+    document.getElementById('opinia-autor').textContent = opinie[index].autor;
+  </script>
+</section>  <section id="zamowienia">
   <h2 style="text-align: center; color: #d4af37;">Zamówienia Ekskluzywne</h2>
 
   <p style="text-align: center; font-size: 18px; color: #4a3f2a;">
