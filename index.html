@@ -429,21 +429,8 @@
       const popup = document.getElementById("cart-popup");
       popup.style.display = popup.style.display === "none" ? "block" : "none";
     }
-    const opinie = [
-    { tekst: "Doskonała jakość i artystyczna dusza w każdym detalu. Polecam!", autor: "– Magdalena K." },
-    { tekst: "Zamówienie dotarło szybko, a projekt przerósł moje oczekiwania!", autor: "– Tomasz L." },
-    { tekst: "Wyjątkowy styl i świetny kontakt z artystą. Na pewno wrócę.", autor: "– Anna M." },
-    { tekst: "Adelbertus to nie sklep – to manifest twórczej wolności.", autor: "– Jarek Z." }
-  ];
-
-  const index = Math.floor(new Date().getTime() / (1000 * 60 * 60 * 24 * 2)) % opinie.length;
-  const opiniaTekst = document.getElementById("opinia-tekst");
-  const opiniaAutor = document.getElementById("opinia-autor");
-
-  if (opiniaTekst && opiniaAutor) {
-    opiniaTekst.textContent = opinie[index].tekst;
-    opiniaAutor.textContent = opinie[index].autor;
-  }  </script>
+  
+    </script>
 </body>
 </html>
 
