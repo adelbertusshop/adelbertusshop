@@ -13,8 +13,46 @@
     color: #4a3f2a; /* ziemisty brąz, klasyczny jak stara książka */
     line-height: 1.6;
   }
+   ...
+  nav a:hover {
+    color: #d4af37;
+    background-color: #2a2a2a;
+    transform: scale(1.1);
+  }
 
-  header, footer {
+  img.ikonka {
+    transition: filter 0.3s ease, transform 0.3s ease;
+    border-radius: 8px;
+  }
+
+  /* 👇 TU WKLEJ NOWY KOD */
+
+  .produkt {
+    border: 1px solid #d4af37;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #fffaf0;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.1);
+    text-align: center;
+  }
+
+  .produkt button {
+    background-color: #d4af37;
+    color: white;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .produkt button:hover {
+    background-color: #ffd700;
+  }
+
+</style>  header, footer {
     background-color: #0f0f0f; /* tło ciemne, jak noc w świątyni */
     color: #e5e5e5;
     padding: 10px 0;
