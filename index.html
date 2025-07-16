@@ -317,6 +317,56 @@ a:hover {
   function checkout() {
     alert("Tu będzie płatność (np. BLIK, PayPal itp.)");
   }
-</script> 
-  </body>
+</script>
+
+<script>
+  // Koszyk – logika działania
+  const cartItems = [];
+  const cartCount = document.getElementById("cart-count");
+  const cartPopup = document.getElementById("cart-popup");
+  const cartContents = document.getElementById("cart-contents");
+
+  function addToCart(productName, productPrice) {
+    cartItems.push({ name: productName, price: productPrice });
+    updateCartDisplay();
+  }
+
+  function removeFromCart(index) {
+    cartItems.splice(index, 1);
+    updateCartDisplay();
+  }
+
+  function updateCartDisplay() {
+    cartCount.textContent = cartItems.length;
+    cartContents.innerHTML = "";
+
+    if (cartItems.length === 0) {
+      cartContents.innerHTML = "<p>Twój koszyk jest pusty.</p>";
+      return;
+    }
+
+    let total = 0;
+    cartItems.forEach((item, index) => {
+      total += item.price;
+      const itemDiv = document.createElement("div");
+      itemDiv.innerHTML = `
+        <p style="margin-bottom: 8px;"><strong>${item.name}</strong> – ${item.price} zł
+          <button onclick="removeFromCart(${index})" style="margin-left: 10px; color: #fff; background-color: #a00; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">Usuń</button>
+        </p>
+      `;
+      cartContents.appendChild(itemDiv);
+    });
+
+    const totalDiv = document.createElement("div");
+    totalDiv.innerHTML = `<hr><p><strong>Łącznie: ${total} zł</strong></p>`;
+    cartContents.appendChild(totalDiv);
+  }
+
+  function toggleCart() {
+    const popup = document.getElementById("cart-popup");
+    popup.classList.toggle("show");
+  }
+</script>
+
+</body>
 </html>
