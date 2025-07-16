@@ -32,12 +32,14 @@ nav button {
 }
 
 nav button:hover {
-  background-color: #ffd700; /* jaśniejsze złoto przy hoverze */
+  background-color: #ffd700; /* jaśniejsze złoto */
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
 }
 
-/* Styl dla linków np. w headerze */
+nav button.active {
+  background-color: #caa84f; /* lekko ciemniejsze złoto jako aktywne */
+}/* Styl dla linków np. w headerze */
 a:hover {
   color: #d4af37;
   transition: color 0.3s ease;
@@ -135,8 +137,18 @@ a:hover {
            alt="Logo Adelbertus" 
            style="height: 80px; border-radius: 50%; border: 2px solid #d4af37;">
     </div>
-
- 
+<nav>
+  <button class="active" data-section="sklep">Sklep</button>
+  <button data-section="projektuj">Projektuj</button>
+  <button data-section="marketplace">Marketplace</button>
+  <button data-section="reklama">Reklama</button>
+  <button data-section="opinie">Opinie</button>
+  <button data-section="blog">Blog</button>
+  <button data-section="zamowienia">Zamówienia</button>
+  <button data-section="artysta">Artysta</button>
+  <button data-section="kontakt">Kontakt</button>
+  <button data-section="regulamin">Regulamin</button>
+</nav> 
   <h2>Sklep</h2>
   <p>Tu będą wyświetlane Twoje produkty.</p>
 </section>
