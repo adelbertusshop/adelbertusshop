@@ -266,6 +266,48 @@ a:hover {
     });
   });
 </script>
+<!-- 🔶 Ikonka koszyka (zawsze widoczna) -->
+<div id="cart-icon" style="position: fixed; top: 20px; right: 20px; z-index: 9999; cursor: pointer;">
+  <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Koszyk" style="width: 40px; height: 40px;">
+  <span id="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: #d4af37; color: white; font-weight: bold; border-radius: 50%; padding: 3px 7px; font-size: 12px;">0</span>
+</div>
 
-</body>
+<!-- 🔶 Popup koszyka -->
+<div id="cart-popup" style="display: none; position: fixed; top: 70px; right: 20px; background: #fffaf0; border: 2px solid #d4af37; border-radius: 10px; padding: 20px; width: 300px; z-index: 9999; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+  <h3 style="margin-top: 0; color: #4a3f2a;">Twój koszyk</h3>
+  <div id="cart-items" style="max-height: 200px; overflow-y: auto;"></div>
+  <button onclick="checkout()" style="margin-top: 10px; background-color: #d4af37; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Przejdź do płatności</button>
+</div>
+    <script>
+  const cartIcon = document.getElementById("cart-icon");
+  const cartPopup = document.getElementById("cart-popup");
+  const cartItems = document.getElementById("cart-items");
+  const cartCount = document.getElementById("cart-count");
+
+  let cart = [];
+
+  cartIcon.addEventListener("click", () => {
+    cartPopup.style.display = cartPopup.style.display === "none" ? "block" : "none";
+  });
+
+  function addToCart(nazwa, cena) {
+    cart.push({ nazwa, cena });
+    updateCartDisplay();
+  }
+
+  function updateCartDisplay() {
+    cartItems.innerHTML = "";
+    cart.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.textContent = `${item.nazwa} - ${item.cena} zł`;
+      cartItems.appendChild(div);
+    });
+    cartCount.textContent = cart.length;
+  }
+
+  function checkout() {
+    alert("Tu będzie płatność (np. BLIK, PayPal itp.)");
+  }
+</script> 
+  </body>
 </html>
