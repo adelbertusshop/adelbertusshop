@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -6,290 +5,249 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
   <link rel="icon" href="logo.png" type="image/png" />
- <style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #fff8e7; /* kremowy jak pergamin */
-    color: #4a3f2a; /* ziemisty brąz, klasyczny jak stara książka */
-    line-height: 1.6;
-  }
-   ...
-  nav a:hover {
-    color: #d4af37;
-    background-color: #2a2a2a;
-    transform: scale(1.1);
-  }
-
-  img.ikonka {
-    transition: filter 0.3s ease, transform 0.3s ease;
-    border-radius: 8px;
-  }
-
-  /* 👇 TU WKLEJ NOWY KOD */
-
-  .produkt {
-    border: 1px solid #d4af37;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    background-color: #fffaf0;
-    box-shadow: 0 0 8px rgba(212, 175, 55, 0.1);
-    text-align: center;
-  }
-
-  .produkt button {
-    background-color: #d4af37;
-    color: white;
-    padding: 10px 14px;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .produkt button:hover {
-    background-color: #ffd700;
-  }
-
-
-  }
-</style></head>
-<body>
-
-<body>
-
-  <!-- 🔷 Koszyk – ikona i popup -->
-<div style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
-  <button onclick="toggleCart()" style="background-color: #d4af37; border: none; padding: 10px 15px; color: #fff; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
-    🛒 Koszyk (<span id="cart-count">0</span>)
-  </button>
-</div>
-
-<div id="cart-popup" style="display: none; position: fixed; top: 70px; right: 20px; width: 300px; max-height: 400px; overflow-y: auto; background-color: #fffaf0; color: #4a3f2a; border: 2px solid #d4af37; border-radius: 8px; padding: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.4); z-index: 1001;">
-  <h3 style="text-align: center; color: #d4af37;">Twój Koszyk</h3>
-  <div id="cart-contents">
-    <p>Twój koszyk jest pusty.</p>
-  </div>
-</div><header style="background-color: #0f0f0f; padding: 10px 0; border-bottom: 2px solid #444;">
-  <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
-    
-    <!-- Logo po lewej stronie -->
-    <div>
-      <img src="https://i.ibb.co/B5RKjcWS/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" 
-           alt="Logo Adelbertus" 
-           style="height: 80px; border-radius: 50%; border: 2px solid #d4af37;">
-    </div>
-
-    <!-- Baner po środku -->
-    <div>
-      <a href="https://ibb.co/0pqd3kBJ" target="_blank">
-        <img src="https://i.ibb.co/6cYf52vs/Resizer-175015896433527.jpg" 
-             alt="AdelbertusShop Baner" 
-             style="max-width: 100%; height: auto; border: 3px solid #555; border-radius: 8px;">
-      </a>
-    </div>
-
-    <!-- Logo po prawej stronie -->
-    <div>
-      <img src="https://i.ibb.co/B5RKjcWS/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" 
-           alt="Logo Adelbertus" 
-           style="height: 80px; border-radius: 50%; border: 2px solid #d4af37;">
-    </div>
-<nav>
-  <button class="active" data-section="sklep">Sklep</button>
-  <button data-section="projektuj">Projektuj</button>
-  <button data-section="marketplace">Marketplace</button>
-  <button data-section="reklama">Reklama</button>
-  <button data-section="opinie">Opinie</button>
-  <button data-section="blog">Blog</button>
-<button data-section="zamowienia">Zamówienia</button>
-  <button data-section="artysta">Artysta</button>
-  <button data-section="kontakt">Kontakt</button>
-  <button data-section="regulamin">Regulamin</button>
-</nav> 
-<section id="sklep" class="active">
-  <h2>Sklep</h2>
-  
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-    
-   
-  </div>
-</section>
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 20px;">
-    <!-- Przykładowy produkt -->
-    <div style="background-color: #fffaf0; border: 2px solid #d4af37; border-radius: 10px; padding: 20px; width: 220px; text-align: center; box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);">
-      <img src="https://i.ibb.co/6cYf52vs/Resizer-175015896433527.jpg" alt="Koszulka Wojownika" style="width: 100%; border-radius: 8px;">
-      <h3 style="color: #4a3f2a;">Koszulka Wojownika</h3>
-      <p style="color: #4a3f2a;">Cena: 99 zł</p>
-      <button onclick="addToCart('Koszulka Wojownika', 99)" style="background-color: #d4af37; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Dodaj do koszyka</button>
-    </div>
-  </div>
-</section>
-<section id="projektuj">
-  <h2>Zaprojektuj</h2>
-  <p>Twoja osobista Świątynia stylu.</p>
-</section>
-<section id="marketplace">
-  <h2>Marketplace</h2>
-  <p>Tu będzie prezentacja dzieł innych twórców, dostępnych w sklepie AdelbertusShop.</p>
-</section>
-    <section id="zbiorka">
-  <h2>Zbiórka</h2>
-  <p>Pomoc dla domu dziecka: BLIK <strong>573-939-925</strong> z dopiskiem: <em>pomoc</em>.</p>
-</section>
-
-<section id="reklama">
-  <h2>Reklama</h2>
-  <p>Możliwość współpracy reklamowej.</p>
-</section>
-
-<section id="opinie">
-  <h2>Opinie</h2>
-  <p>Opinie klientów o produktach i sklepie.</p>
-</section>
-
-<section id="blog">
-  <h2>Blog</h2>
-  <p>Refleksje, inspiracje, wartości.</p>
-</section>
-
-<section id="zamowienia">
-  <h2>Zamówienia</h2>
-  <p>Złóż indywidualne zamówienie.</p>
-</section>
-
-<!-- OD: SEK. ARTYSTA -->
-<section id="artysta">
-  <h2 style="text-align: center; color: #d4af37;">Artysta: Wojciech "Wojownik"</h2>
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
-    Nazywam się Wojciech – „Wojownik”. Od zawsze jestem związany ze sztuką, która nie jest tylko moją pasją, ale sensem życia. Rysuję, maluję, tworzę grafikę i tatuaże. Urodziłem się, by tworzyć. Jestem samoukiem, byłym wychowankiem domu dziecka, który dziś spełnia swoje marzenie – buduje miejsce, gdzie sztuka spotyka człowieczeństwo.
-  </p>
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
-    AdelbertusShop to moja Świątynia twórczości – przestrzeń, w której dzielę się z Wami swoimi pracami. Pragnę uszczęśliwiać ludzi, sprawiać, by się uśmiechali. Dla mnie uśmiech to dar – rzadki, piękny, bezcenny. Dlatego tworzę. Dla tych chwil, kiedy czyjeś serce drgnie.
-  </p>
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
-    Jeśli odwiedzasz mój sklep – dziękuję. Jeśli wesprzesz dom dziecka – tym bardziej. Każdy, nawet najmniejszy gest dobroci ma znaczenie. Wiem, bo byłem tam, gdzie dzieci nie mają nic – oprócz marzeń.
-  </p>
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px; font-weight: bold;">
-    Zapraszam Cię serdecznie w imieniu własnym i całego zespołu AdelbertusShop. Dziękuję, że jesteś.
-  </p>
-</section>
-<!-- DO: SEK. ARTYSTA -->
-
-<section id="kontakt">
-  <h2>Kontakt</h2>
-  <ul>
-    <li><a href="mailto:mielniczukgrzegosz74@gmail.com">✉️ meilniczukgrzegosz74@gmail.com</a></li>
-    <li>📞 WhatsApp: <a href="https://wa.me/48604296650">+48 604 296 650</a></li>
-  </ul>
-</section>
-
-<!-- OD: SEK. REGULAMIN -->
-<section id="regulamin">
-  <h2 style="text-align: center; color: #d4af37;">Regulamin AdelbertusShop</h2>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    1. Sklep AdelbertusShop prowadzony jest przez Wojciecha – artystę, twórcę i właściciela marki. Celem sklepu jest sprzedaż produktów artystycznych oraz wspieranie działań społecznych (m.in. pomoc dzieciom z domów dziecka).
-  </p>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    2. Każdy zakup jest świadomym wsparciem artysty i jego misji. Produkty są unikalne, wykonywane z pasją i dbałością o detal.
-  </p>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    3. Płatności obsługiwane są przez system PayPal oraz BLIK na numer <strong>573-939-925</strong>. Każdy zakup jest potwierdzany mailowo.
-  </p>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    4. Czas realizacji zamówień wynosi od 3 do 14 dni roboczych. Wszystkie produkty są tworzone na zamówienie – z szacunkiem do pracy i czasu.
-  </p>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    5. Klient ma prawo do zwrotu towaru w ciągu 14 dni od otrzymania zamówienia, o ile produkt nie nosi śladów użytkowania i został zwrócony w stanie nienaruszonym.
-  </p>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    6. Regulamin może być modyfikowany. Każda zmiana zostanie ogłoszona na stronie głównej sklepu.
-  </p>
-
-  <p style="text-align: center; font-weight: bold; font-size: 18px; color: #d4af37;">
-    Dziękujemy za szacunek, wsparcie i wspólną drogę. Twoja obecność ma znaczenie.
-  </p>
-</section>
-<!-- DO: SEK. REGULAMIN -->
-<footer style="text-align: center; padding: 20px;">
-  &copy; 2025 AdelbertusShop. Właściciel: Wojciech "Wojownik"
-</footer>
-
-<script>
-  const buttons = document.querySelectorAll('nav button');
-  const sections = document.querySelectorAll('section');
-
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      buttons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      const target = button.getAttribute('data-section');
-      sections.forEach(section => {
-        section.classList.remove('active');
-        if (section.id === target) section.classList.add('active');
-      });
-      window.scrollTo(0, 0);
-    });
-  });
-</script>
-
-    
-<script>
-  // Koszyk – logika działania
-  const cartItems = [];
-  const cartCount = document.getElementById("cart-count");
-  const cartPopup = document.getElementById("cart-popup");
-  const cartContents = document.getElementById("cart-contents");
-
-  function addToCart(productName, productPrice) {
-    cartItems.push({ name: productName, price: productPrice });
-    updateCartDisplay();
-  }
-
-  function removeFromCart(index) {
-    cartItems.splice(index, 1);
-    updateCartDisplay();
-  }
-
-  function updateCartDisplay() {
-    cartCount.textContent = cartItems.length;
-    cartContents.innerHTML = "";
-
-    if (cartItems.length === 0) {
-      cartContents.innerHTML = "<p>Twój koszyk jest pusty.</p>";
-      return;
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8e7;
+      color: #4a3f2a;
+      line-height: 1.6;
     }
 
-    let total = 0;
-    cartItems.forEach((item, index) => {
-      total += item.price;
-      const itemDiv = document.createElement("div");
-      itemDiv.innerHTML = `
-        <p style="margin-bottom: 8px;"><strong>${item.name}</strong> – ${item.price} zł
-          <button onclick="removeFromCart(${index})" style="margin-left: 10px; color: #fff; background-color: #a00; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">Usuń</button>
-        </p>
-      `;
-      cartContents.appendChild(itemDiv);
+    header, footer {
+      background-color: #0f0f0f;
+      color: #e5e5e5;
+      padding: 10px;
+      text-align: center;
+      border-bottom: 2px solid #444;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #0f0f0f;
+      gap: 12px;
+      padding: 12px;
+    }
+
+    nav button {
+      background-color: #d4af37;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav button:hover {
+      background-color: #ffd700;
+      transform: scale(1.05);
+    }
+
+    nav button.active {
+      background-color: #caa84f;
+    }
+
+    nav a {
+      color: #e5e5e5;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 8px 14px;
+      border-radius: 5px;
+      transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+      background-color: #2a2a2a;
+      transform: scale(1.1);
+    }
+
+    section {
+      display: none;
+      max-width: 900px;
+      margin: 20px auto;
+      background: #fffaf0;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .produkt {
+      border: 1px solid #d4af37;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      background-color: #fffaf0;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.1);
+      text-align: center;
+    }
+
+    .produkt button {
+      background-color: #d4af37;
+      color: white;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .produkt button:hover {
+      background-color: #ffd700;
+    }
+
+    footer {
+      font-size: 14px;
+      color: #aaa;
+      border-top: 1px solid #333;
+    }
+
+    .cart-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    #cart-popup {
+      display: none;
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      background-color: #fffaf0;
+      color: #4a3f2a;
+      border: 2px solid #d4af37;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      z-index: 1001;
+    }
+  </style>
+</head>
+<body>
+  <div class="cart-button">
+    <button onclick="toggleCart()">
+      🛒 Koszyk (<span id="cart-count">0</span>)
+    </button>
+  </div>
+
+  <div id="cart-popup">
+    <h3 style="text-align: center; color: #d4af37;">Twój Koszyk</h3>
+    <div id="cart-contents">
+      <p>Twój koszyk jest pusty.</p>
+    </div>
+  </div>
+
+  <header>
+    <h1>AdelbertusShop</h1>
+  </header>
+
+  <nav>
+    <button class="active" data-section="sklep">Sklep</button>
+    <button data-section="projektuj">Projektuj</button>
+    <button data-section="marketplace">Marketplace</button>
+    <button data-section="reklama">Reklama</button>
+    <button data-section="opinie">Opinie</button>
+    <button data-section="blog">Blog</button>
+    <button data-section="zamowienia">Zamówienia</button>
+    <button data-section="artysta">Artysta</button>
+    <button data-section="kontakt">Kontakt</button>
+    <button data-section="regulamin">Regulamin</button>
+  </nav>
+
+  <section id="sklep" class="active">
+    <h2>Sklep</h2>
+    <div class="produkt">
+      <img src="https://i.ibb.co/LZ0dVkM/tshirt-mockup.jpg" alt="Koszulka" style="width:100%; max-width:250px;">
+      <h3>Koszulka</h3>
+      <p>99 zł</p>
+      <button onclick="addToCart('Koszulka', 99)">🛒 Dodaj do koszyka</button>
+    </div>
+  </section>
+
+  <section id="projektuj"><h2>Zaprojektuj</h2><p>Twoja osobista Świątynia stylu.</p></section>
+  <section id="marketplace"><h2>Marketplace</h2><p>Dzieła innych twórców.</p></section>
+  <section id="reklama"><h2>Reklama</h2><p>Współpraca reklamowa możliwa.</p></section>
+  <section id="opinie"><h2>Opinie</h2><p>Opinie klientów.</p></section>
+  <section id="blog"><h2>Blog</h2><p>Refleksje i inspiracje.</p></section>
+  <section id="zamowienia"><h2>Zamówienia</h2><p>Złóż indywidualne zamówienie.</p></section>
+  <section id="artysta"><h2>Artysta</h2><p>Wojciech – Wojownik. Twórca, artysta, pasjonat.</p></section>
+  <section id="kontakt"><h2>Kontakt</h2><p>✉️ meilniczukgrzegosz74@gmail.com<br>📞 WhatsApp: <a href="https://wa.me/48604296650">+48 604 296 650</a></p></section>
+  <section id="regulamin"><h2>Regulamin</h2><p>Sklep prowadzony przez Wojciecha. Płatności: PayPal i BLIK <strong>573-939-925</strong>.</p></section>
+
+  <footer>
+    &copy; 2025 AdelbertusShop. Właściciel: Wojciech "Wojownik"
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('nav button');
+    const sections = document.querySelectorAll('section');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const target = button.getAttribute('data-section');
+        sections.forEach(section => {
+          section.classList.remove('active');
+          if (section.id === target) section.classList.add('active');
+        });
+        window.scrollTo(0, 0);
+      });
     });
 
-    const totalDiv = document.createElement("div");
-    totalDiv.innerHTML = `<hr><p><strong>Łącznie: ${total} zł</strong></p>`;
-    cartContents.appendChild(totalDiv);
-  }
+    const cartItems = [];
+    const cartCount = document.getElementById("cart-count");
+    const cartContents = document.getElementById("cart-contents");
 
-  function toggleCart() {
-    const popup = document.getElementById("cart-popup");
-    popup.classList.toggle("show");
-  }
-</script>
+    function addToCart(name, price) {
+      cartItems.push({ name, price });
+      updateCartDisplay();
+    }
 
+    function updateCartDisplay() {
+      cartCount.textContent = cartItems.length;
+      cartContents.innerHTML = "";
+      if (cartItems.length === 0) {
+        cartContents.innerHTML = "<p>Twój koszyk jest pusty.</p>";
+        return;
+      }
+      let total = 0;
+      cartItems.forEach((item, index) => {
+        total += item.price;
+        const itemDiv = document.createElement("div");
+        itemDiv.innerHTML = `<p><strong>${item.name}</strong> – ${item.price} zł <button onclick="removeFromCart(${index})">Usuń</button></p>`;
+        cartContents.appendChild(itemDiv);
+      });
+      const totalDiv = document.createElement("div");
+      totalDiv.innerHTML = `<hr><p><strong>Łącznie: ${total} zł</strong></p>`;
+      cartContents.appendChild(totalDiv);
+    }
+
+    function removeFromCart(index) {
+      cartItems.splice(index, 1);
+      updateCartDisplay();
+    }
+
+    function toggleCart() {
+      const popup = document.getElementById("cart-popup");
+      popup.style.display = popup.style.display === "none" ? "block" : "none";
+    }
+  </script>
 </body>
 </html>
+
+
