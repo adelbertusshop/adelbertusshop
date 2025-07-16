@@ -149,10 +149,19 @@ a:hover {
   <button data-section="kontakt">Kontakt</button>
   <button data-section="regulamin">Regulamin</button>
 </nav> 
+<section id="sklep" class="active">
   <h2>Sklep</h2>
-  <p>Tu będą wyświetlane Twoje produkty.</p>
-</section>
 
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 20px;">
+    <!-- Przykładowy produkt -->
+    <div style="background-color: #fffaf0; border: 2px solid #d4af37; border-radius: 10px; padding: 20px; width: 220px; text-align: center; box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);">
+      <img src="https://i.ibb.co/6cYf52vs/Resizer-175015896433527.jpg" alt="Koszulka Wojownika" style="width: 100%; border-radius: 8px;">
+      <h3 style="color: #4a3f2a;">Koszulka Wojownika</h3>
+      <p style="color: #4a3f2a;">Cena: 99 zł</p>
+      <button onclick="addToCart('Koszulka Wojownika', 99)" style="background-color: #d4af37; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Dodaj do koszyka</button>
+    </div>
+  </div>
+</section>
 <section id="projektuj">
   <h2>Zaprojektuj</h2>
   <p>Twoja osobista Świątynia stylu.</p>
