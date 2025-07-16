@@ -163,7 +163,35 @@ a:hover {
 </nav> 
 <section id="sklep" class="active">
   <h2>Sklep</h2>
+  
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+    
+    <!-- Koszulka -->
+    <div style="border: 1px solid #ccc; border-radius: 12px; padding: 15px; background-color: #fff; width: 260px; text-align: center;">
+      <img src="https://i.ibb.co/LZ0dVkM/tshirt-mockup.jpg" alt="Koszulka" style="width: 100%; border-radius: 8px;">
+      <h3>Koszulka</h3>
+      <p>99 zł</p>
+      <button onclick="addToCart('Koszulka', 99)" style="background-color: #d4af37; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer;">🛒 Dodaj do koszyka</button>
+    </div>
 
+    <!-- Bluza -->
+    <div style="border: 1px solid #ccc; border-radius: 12px; padding: 15px; background-color: #fff; width: 260px; text-align: center;">
+      <img src="https://i.ibb.co/dMhfXnP/bluza-mockup.jpg" alt="Bluza" style="width: 100%; border-radius: 8px;">
+      <h3>Bluza</h3>
+      <p>150 zł</p>
+      <button onclick="addToCart('Bluza', 150)" style="background-color: #d4af37; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer;">🛒 Dodaj do koszyka</button>
+    </div>
+
+    <!-- Bluza z kapturem -->
+    <div style="border: 1px solid #ccc; border-radius: 12px; padding: 15px; background-color: #fff; width: 260px; text-align: center;">
+      <img src="https://i.ibb.co/TqyzV2M/bluza-kaptur-mockup.jpg" alt="Bluza z kapturem" style="width: 100%; border-radius: 8px;">
+      <h3>Bluza z kapturem</h3>
+      <p>150 zł</p>
+      <button onclick="addToCart('Bluza z kapturem', 150)" style="background-color: #d4af37; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer;">🛒 Dodaj do koszyka</button>
+    </div>
+
+  </div>
+</section>
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 20px;">
     <!-- Przykładowy produkt -->
     <div style="background-color: #fffaf0; border: 2px solid #d4af37; border-radius: 10px; padding: 20px; width: 220px; text-align: center; box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);">
