@@ -4,346 +4,85 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdelbertusShop</title>
-  <link rel="icon" href="logo.png" type="image/png" />
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff8e7;
-      color: #4a3f2a;
-      line-height: 1.6;
-    }
-
-    header, footer {
       background-color: #0f0f0f;
       color: #e5e5e5;
-      padding: 10px;
-      text-align: center;
-      border-bottom: 2px solid #444;
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
     }
-
+    header {
+      background-color: #1a1a1a;
+      padding: 1em;
+      text-align: center;
+    }
+    header img {
+      height: 80px;
+    }
     nav {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      background-color: #0f0f0f;
-      gap: 12px;
-      padding: 12px;
+      background-color: #222;
     }
-
     nav button {
-      background-color: #d4af37;
-      color: #fff;
+      background: none;
       border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    nav button:hover {
-      background-color: #ffd700;
-      transform: scale(1.05);
-    }
-
-    nav button.active {
-      background-color: #caa84f;
-    }
-
-    nav a {
       color: #e5e5e5;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-      padding: 8px 14px;
-      border-radius: 5px;
-      transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #d4af37;
-      background-color: #2a2a2a;
-      transform: scale(1.1);
-    }
-
-    section {
-      display: none;
-      max-width: 900px;
-      margin: 20px auto;
-      background: #fffaf0;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-    }
-
-    section.active {
-      display: block;
-    }
-
-    .produkt {
-      border: 1px solid #d4af37;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      background-color: #fffaf0;
-      box-shadow: 0 0 8px rgba(212, 175, 55, 0.1);
-      text-align: center;
-    }
-
-    .produkt button {
-      background-color: #d4af37;
-      color: white;
-      padding: 10px 14px;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
+      font-size: 1em;
+      padding: 1em;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
-
-    .produkt button:hover {
-      background-color: #ffd700;
+    nav button:hover {
+      background-color: #444;
     }
-
-    footer {
-      font-size: 14px;
-      color: #aaa;
-      border-top: 1px solid #333;
-    }
-
-    .cart-button {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-
-    #cart-popup {
+    .sekcja {
       display: none;
-      position: fixed;
-      top: 70px;
-      right: 20px;
-      width: 300px;
-      max-height: 400px;
-      overflow-y: auto;
-      background-color: #fffaf0;
-      color: #4a3f2a;
-      border: 2px solid #d4af37;
-      border-radius: 8px;
-      padding: 15px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
-      z-index: 1001;
+      padding: 2em;
     }
   </style>
 </head>
 <body>
-  <div class="cart-button">
-    <button onclick="toggleCart()">
-      🛒 Koszyk (<span id="cart-count">0</span>)
-    </button>
-  </div>
-
-  <div id="cart-popup">
-    <h3 style="text-align: center; color: #d4af37;">Twój Koszyk</h3>
-    <div id="cart-contents">
-      <p>Twój koszyk jest pusty.</p>
-    </div>
-  </div>
-
   <header>
-    <h1>AdelbertusShop</h1>
+    <img src="logo.png" alt="AdelbertusShop Logo" />
   </header>
 
   <nav>
-    <button class="active" data-section="sklep">Sklep</button>
-    <button data-section="projektuj">Projektuj</button>
-    <button data-section="marketplace">Marketplace</button>
-    <button data-section="reklama">Reklama</button>
-    <button data-section="opinie">Opinie</button>
-    <button data-section="blog">Blog</button>
-    <button data-section="zamowienia">Zamówienia</button>
-    <button data-section="artysta">Artysta</button>
-    <button data-section="kontakt">Kontakt</button>
-    <button data-section="regulamin">Regulamin</button>
+    <button onclick="pokazSekcje('sklep')">Sklep</button>
+    <button onclick="pokazSekcje('projektuj')">Projektuj</button>
+    <button onclick="pokazSekcje('marketplace')">Marketplace</button>
+    <button onclick="pokazSekcje('reklama')">Reklama</button>
+    <button onclick="pokazSekcje('zbiorka')">Zbiórka</button>
+    <button onclick="pokazSekcje('opinie')">Opinie</button>
+    <button onclick="pokazSekcje('blog')">Blog</button>
+    <button onclick="pokazSekcje('zamowienia')">Zamówienia</button>
+    <button onclick="pokazSekcje('artysta')">Artysta</button>
+    <button onclick="pokazSekcje('kontakt')">Kontakt</button>
+    <button onclick="pokazSekcje('regulamin')">Regulamin</button>
   </nav>
-<section id="sklep" class="active">
-  <h2>Sklep</h2> 
-  </section>  
-  
-  <section id="projektuj"><h2>Zaprojektuj</h2><p>Twoja osobista Świątynia stylu.</p></section>
-  <section id="marketplace"><h2>Marketplace</h2><p>Dzieła innych twórców.</p></section>
-    <section id="zbiorka">
-  <h2 style="text-align: center; color: #d4af37;">Zbiórka</h2>
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
-    Wspieraj dom dziecka – każda złotówka ma znaczenie. Możesz pomóc, wysyłając BLIK na numer:
-  </p>
-  <p style="text-align: center; font-size: 22px; font-weight: bold; color: #a52a2a;">
-    573-939-925
-  </p>
-  <p style="text-align: center; color: #4a3f2a;">
-    W tytule przelewu wpisz: <em>pomoc</em>. Dziękujemy za serce i wsparcie.
-  </p>
-</section> 
- </section> <!-- koniec sekcji Projektuj -->
 
-<section id="reklama" class="sekcja">
-  <h2>🔥 Reklama tygodnia</h2>
-  <div class="reklamy-lista">
-    <div class="reklama" data-start="2025-07-17" data-czas="7">
-      <img src="reklama1.jpg" alt="Reklama 1">
-      <p>Specjalna oferta – tylko przez 7 dni!</p>
-    </div>
-    <div class="reklama" data-start="2025-07-15" data-czas="3">
-      <img src="reklama2.jpg" alt="Reklama 2">
-      <p>Limitowana edycja – promocja kończy się wkrótce!</p>
-    </div>
-  </div>
-</section>
-
-
-    <section id="artysta">
-  <h2 style="text-align: center; color: #d4af37;">Artysta: Wojciech "Wojownik"</h2>
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
-    Nazywam się Wojciech – „Wojownik”. Od zawsze jestem związany ze sztuką, która nie jest tylko moją pasją, ale sensem życia. Rysuję, maluję, tworzę grafikę i tatuaże. Urodziłem się, by tworzyć. Jestem samoukiem, byłym wychowankiem domu dziecka, który dziś spełnia swoje marzenie – buduje miejsce, gdzie sztuka spotyka człowieczeństwo.
-  </p>
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
-    AdelbertusShop to moja Świątynia twórczości – przestrzeń, w której dzielę się z Wami swoimi pracami. Pragnę uszczęśliwiać ludzi, sprawiać, by się uśmiechali. Dla mnie uśmiech to dar – rzadki, piękny, bezcenny. Dlatego tworzę. Dla tych chwil, kiedy czyjeś serce drgnie.
-  </p>
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px;">
-    Jeśli odwiedzasz mój sklep – dziękuję. Jeśli wesprzesz dom dziecka – tym bardziej. Każdy, nawet najmniejszy gest dobroci ma znaczenie. Wiem, bo byłem tam, gdzie dzieci nie mają nic – oprócz marzeń.
-  </p>
-  <p style="text-align: center; color: #4a3f2a; font-size: 18px; font-weight: bold;">
-    Zapraszam Cię serdecznie w imieniu własnym i całego zespołu AdelbertusShop. Dziękuję, że jesteś.
-  </p>
-  </section>
-  <section id="kontakt">
-  <h2 style="text-align: center; color: #d4af37;">Kontakt</h2>
-  <p style="text-align: center; font-size: 18px; color: #4a3f2a;">
-    Masz pytania, chcesz złożyć zamówienie indywidualne, zapytać o grafikę lub po prostu pogadać o sztuce?
-  </p>
-
-  <div style="text-align: center; font-size: 18px; color: #4a3f2a;">
-    ✉️ E-mail: <a href="mailto:meilniczukgrzegosz74@gmail.com">meilniczukgrzegosz74@gmail.com</a><br><br>
-    📞 WhatsApp: <a href="https://wa.me/48604296650">+48 604 296 650</a><br><br>
-    🖋 Instagram: <a href="https://instagram.com/twoj_nick" target="_blank">@twoj_nick</a><br><br>
-    🛒 Facebook: <a href="https://facebook.com/twoj_nick" target="_blank">AdelbertusShop</a>
-  </div>
-
-  <p style="text-align: center; font-size: 18px; font-weight: bold; color: #a52a2a; margin-top: 20px;">
-    Odpowiadam na wiadomości najszybciej, jak to możliwe – zazwyczaj w ciągu 24h. Dziękuję za kontakt!
-  </p>
-</section>  <section id="regulamin">
-  <h2 style="text-align: center; color: #d4af37;">Regulamin AdelbertusShop</h2>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    1. Sklep internetowy <strong>AdelbertusShop</strong> prowadzony jest przez osobę fizyczną – <strong>Wojciecha</strong>, w ramach działalności nierejestrowanej zgodnie z art. 5 ust. 1 ustawy Prawo przedsiębiorców.
-  </p>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    2. Działalność nierejestrowana oznacza, że miesięczny przychód nie przekracza 75% minimalnego wynagrodzenia. W ramach tej formy nie jestem zobowiązany do rejestracji firmy, ale zobowiązuję się do przestrzegania praw konsumentów oraz realizacji zamówień z najwyższą starannością.
-  </p>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    3. Produkty oferowane w sklepie są wykonywane ręcznie lub z wykorzystaniem autorskich grafik. Każdy zakup to wsparcie twórczości i działalności społecznej – w tym pomocy dla dzieci z domów dziecka.
-  </p>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    4. Płatności są realizowane za pomocą systemu PayPal oraz przelewu BLIK na numer <strong>573-939-925</strong>. Kupujący otrzymuje potwierdzenie zakupu mailowo.
-  </p>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    5. Czas realizacji zamówienia wynosi od 3 do 14 dni roboczych. Produkty tworzone są na zamówienie – z pasją i w duchu rzemiosła artystycznego.
-  </p>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    6. Zgodnie z ustawą o prawach konsumenta, klient ma prawo do odstąpienia od umowy i zwrotu towaru w ciągu 14 dni od daty otrzymania przesyłki – o ile produkt nie nosi śladów użytkowania i nie został wykonany według indywidualnego projektu.
-  </p>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    7. Dane osobowe przekazywane w trakcie składania zamówienia są przetwarzane wyłącznie w celu realizacji zamówienia i nie są przekazywane osobom trzecim.
-  </p>
-
-  <p style="text-align: justify; color: #4a3f2a; font-size: 17px;">
-    8. Regulamin może ulec zmianie. Każda zmiana będzie opublikowana na stronie głównej sklepu.
-  </p>
-
-  <p style="text-align: center; font-weight: bold; font-size: 18px; color: #d4af37;">
-    Dziękuję za zaufanie i wsparcie. Każdy zakup to cegiełka w budowie mojej artystycznej świątyni.
-  </p>
-  </section>
-  <footer>
-    &copy; 2025 AdelbertusShop. Właściciel: Wojciech "Wojownik"
-  </footer>
+  <section id="sklep" class="sekcja">Sekcja Sklep</section>
+  <section id="projektuj" class="sekcja">Sekcja Projektuj</section>
+  <section id="marketplace" class="sekcja">Sekcja Marketplace</section>
+  <section id="reklama" class="sekcja">Sekcja Reklama</section>
+  <section id="zbiorka" class="sekcja">Sekcja Zbiórka</section>
+  <section id="opinie" class="sekcja">Sekcja Opinie</section>
+  <section id="blog" class="sekcja">Sekcja Blog</section>
+  <section id="zamowienia" class="sekcja">Sekcja Zamówienia</section>
+  <section id="artysta" class="sekcja">Sekcja Artysta</section>
+  <section id="kontakt" class="sekcja">Sekcja Kontakt</section>
+  <section id="regulamin" class="sekcja">Sekcja Regulamin</section>
 
   <script>
-    const buttons = document.querySelectorAll('nav button');
-    const sections = document.querySelectorAll('section');
-
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        buttons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        const target = button.getAttribute('data-section');
-        sections.forEach(section => {
-          section.classList.remove('active');
-          if (section.id === target) section.classList.add('active');
-        });
-        window.scrollTo(0, 0);
-      });
+    function pokazSekcje(id) {
+      const sekcje = document.querySelectorAll('.sekcja');
+      sekcje.forEach(sekcja => sekcja.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      pokazSekcje('sklep');
     });
-
-    const cartItems = [];
-    const cartCount = document.getElementById("cart-count");
-    const cartContents = document.getElementById("cart-contents");
-
-    function addToCart(name, price) {
-      cartItems.push({ name, price });
-      updateCartDisplay();
-    }
-
-    function updateCartDisplay() {
-      cartCount.textContent = cartItems.length;
-      cartContents.innerHTML = "";
-      if (cartItems.length === 0) {
-        cartContents.innerHTML = "<p>Twój koszyk jest pusty.</p>";
-        return;
-      }
-      let total = 0;
-      cartItems.forEach((item, index) => {
-        total += item.price;
-        const itemDiv = document.createElement("div");
-        itemDiv.innerHTML = `<p><strong>${item.name}</strong> – ${item.price} zł <button onclick="removeFromCart(${index})">Usuń</button></p>`;
-        cartContents.appendChild(itemDiv);
-      });
-      const totalDiv = document.createElement("div");
-      totalDiv.innerHTML = `<hr><p><strong>Łącznie: ${total} zł</strong></p>`;
-      cartContents.appendChild(totalDiv);
-    }
-
-    function removeFromCart(index) {
-      cartItems.splice(index, 1);
-      updateCartDisplay();
-    }
-
-    function toggleCart() {
-      const popup = document.getElementById("cart-popup");
-      popup.style.display = popup.style.display === "none" ? "block" : "none";
-    }
-  
-    </script>
-  <script>
-  function pokazSekcje(id) {
-    const sekcje = document.querySelectorAll('.sekcja');
-    sekcje.forEach(sekcja => sekcja.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-  }
-
-  // Domyślnie pokaż pierwszą sekcję po załadowaniu
-  document.addEventListener('DOMContentLoaded', () => {
-    pokazSekcje('sklep'); // albo inna, jak chcesz
-  });
-</script></body>
+  </script>
+</body>
 </html>
-
 
