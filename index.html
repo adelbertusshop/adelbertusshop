@@ -1,54 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AdelbertusShop</title>
   <style>
     body {
       background-color: #0f0f0f;
       color: #e5e5e5;
-      font-family: 'Helvetica Neue', sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
     }
 
     header {
       background-color: #1a1a1a;
-      padding: 10px;
+      padding: 1em;
       text-align: center;
     }
 
     header img {
-      max-height: 60px;
+      max-height: 80px;
     }
 
     nav {
-      background-color: #1c1c1c;
-      padding: 10px;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      background-color: #1f1f1f;
+      padding: 1em;
+      flex-wrap: wrap;
     }
 
     nav button {
       background-color: #333;
-      color: white;
+      color: #fff;
       border: none;
-      padding: 10px 15px;
-      margin: 5px;
+      padding: 0.5em 1em;
       cursor: pointer;
-      border-radius: 5px;
+      font-weight: bold;
     }
 
     nav button:hover {
       background-color: #555;
     }
 
-    section {
+    .sekcja {
       display: none;
-      padding: 20px;
+      padding: 2em;
     }
 
-    section.active {
+    .widoczna {
       display: block;
     }
   </style>
@@ -59,81 +62,90 @@
   </header>
 
   <nav>
-    <button onclick="showSection('sklep')">Sklep</button>
-    <button onclick="showSection('projektuj')">Projektuj</button>
-    <button onclick="showSection('marketplace')">Marketplace</button>
-    <button onclick="showSection('reklama')">Reklama</button>
-    <button onclick="showSection('zbiorka')">Zbiórka</button>
-    <button onclick="showSection('opinie')">Opinie</button>
-    <button onclick="showSection('blog')">Blog</button>
-    <button onclick="showSection('zamowienia')">Zamówienia</button>
-    <button onclick="showSection('regulamin')">Regulamin</button>
-    <button onclick="showSection('kontakt')">Kontakt</button>
-    <button onclick="showSection('artysta')">Artysta</button>
+    <button onclick="pokazSekcje('sklep')">Sklep</button>
+    <button onclick="pokazSekcje('projektuj')">Projektuj</button>
+    <button onclick="pokazSekcje('marketplace')">Marketplace</button>
+    <button onclick="pokazSekcje('reklama')">Reklama</button>
+    <button onclick="pokazSekcje('zbiorka')">Zbiórka</button>
+    <button onclick="pokazSekcje('opinie')">Opinie</button>
+    <button onclick="pokazSekcje('blog')">Blog</button>
+    <button onclick="pokazSekcje('zamowienie')">Zamówienie</button>
+    <button onclick="pokazSekcje('artysta')">Artysta</button>
+    <button onclick="pokazSekcje('kontakt')">Kontakt</button>
+    <button onclick="pokazSekcje('regulamin')">Regulamin</button>
   </nav>
 
-  <section id="sklep" class="active">
-    <h2>Sklep</h2>
-    <p>Tu będzie Twój sklep.</p>
-  </section>
+  <main>
+    <section id="sklep" class="sekcja widoczna">
+      <h1>Sklep</h1>
+      <p>Tu znajdziesz wszystkie produkty z grafikami Adelbertus.</p>
+    </section>
 
-  <section id="projektuj">
-    <h2>Projektuj</h2>
-    <p>Tu będzie kreator projektów.</p>
-  </section>
+    <section id="projektuj" class="sekcja">
+      <h1>Projektuj</h1>
+      <p>Zaprojektuj własny produkt z grafiką Adelbertus.</p>
+    </section>
 
-  <section id="marketplace">
-    <h2>Marketplace</h2>
-    <p>Tu będzie marketplace.</p>
-  </section>
+    <section id="marketplace" class="sekcja">
+      <h1>Marketplace</h1>
+      <p>Przeglądaj unikalne projekty innych twórców.</p>
+    </section>
 
-  <section id="reklama">
-    <h2>Reklama</h2>
-    <p>Tu będzie sekcja reklamy.</p>
-  </section>
+    <section id="reklama" class="sekcja">
+      <h1>Reklama</h1>
+      <p>Zamów kampanię reklamową na swoje produkty.</p>
+    </section>
 
-  <section id="zbiorka">
-    <h2>Zbiórka</h2>
-    <p>Tu będzie zbiórka.</p>
-  </section>
+    <section id="zbiorka" class="sekcja">
+      <h1>Zbiórka</h1>
+      <p>Wspieraj rozwój projektu AdelbertusShop.</p>
+    </section>
 
-  <section id="opinie">
-    <h2>Opinie</h2>
-    <p>Tu będą opinie klientów.</p>
-  </section>
+    <section id="opinie" class="sekcja">
+      <h1>Opinie</h1>
+      <p>Co mówią klienci o naszych produktach?</p>
+    </section>
 
-  <section id="blog">
-    <h2>Blog</h2>
-    <p>Tu będzie blog.</p>
-  </section>
+    <section id="blog" class="sekcja">
+      <h1>Blog</h1>
+      <p>Wpisy i aktualności ze świata Adelbertus.</p>
+    </section>
 
-  <section id="zamowienia">
-    <h2>Zamówienia</h2>
-    <p>Tu będzie formularz zamówień.</p>
-  </section>
+    <section id="zamowienie" class="sekcja">
+      <h1>Zamówienie</h1>
+      <p>Formularz składania zamówień indywidualnych.</p>
+    </section>
 
-  <section id="regulamin">
-    <h2>Regulamin</h2>
-    <p>Tu będzie regulamin sklepu.</p>
-  </section>
+    <section id="artysta" class="sekcja">
+      <h1>Artysta</h1>
+      <p>Poznaj historię twórcy grafik – Wojciecha.</p>
+    </section>
 
-  <section id="kontakt">
-    <h2>Kontakt</h2>
-    <p>Tu będą dane kontaktowe.</p>
-  </section>
+    <section id="kontakt" class="sekcja">
+      <h1>Kontakt</h1>
+      <p>Masz pytanie? Skontaktuj się z nami.</p>
+    </section>
 
-  <section id="artysta">
-    <h2>Artysta</h2>
-    <p>Tu będzie informacja o Tobie.</p>
-  </section>
+    <section id="regulamin" class="sekcja">
+      <h1>Regulamin</h1>
+      <p>Przeczytaj zasady korzystania z AdelbertusShop.</p>
+    </section>
+  </main>
 
   <script>
-    function showSection(id) {
-      document.querySelectorAll('section').forEach(section => {
-        section.classList.remove('active');
-      });
-      document.getElementById(id).classList.add('active');
+    function pokazSekcje(id) {
+      const sekcje = document.querySelectorAll('.sekcja');
+      sekcje.forEach(sekcja => sekcja.classList.remove('widoczna'));
+      const aktywna = document.getElementById(id);
+      if (aktywna) {
+        aktywna.classList.add('widoczna');
+        window.scrollTo(0, 0);
+      }
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      pokazSekcje('sklep');
+    });
   </script>
 </body>
 </html>
