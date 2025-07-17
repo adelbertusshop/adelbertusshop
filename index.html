@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdelbertusShop | Świątynia Artystycznej Ekspresji</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --dark-gold: #B8860B;
+      --parchment: #F5F5DC;
+      --dark-brown: #3E2723;
+      --light-brown: #5D4037;
+      --shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: var(--parchment);
+      color: var(--dark-brown);
+      line-height: 1.7;
+      background-image: url('https://www.transparenttextures.com/patterns/rice-paper.png');
+    }
+    
+    header {
+      background: linear-gradient(to right, var(--dark-brown), #000);
+      color: white;
+      padding: 1rem 0;
+      position: relative;
+      box-shadow: var(--shadow);
+      border-bottom: 3px solid var(--gold);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .logo img {
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      transition: transform 0.3s ease;
+    }
+    
+    .logo img:hover {
+      transform: rotate(10deg);
+    }
+    
+    .shop-title {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+    }
+    
+    .shop-title h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(to right, var(--gold), #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .shop-title p {
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+    
+    nav {
+      background-color: var(--dark-brown);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .nav-btn {
+      background: transparent;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+    
+    .nav-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+      transition: 0.5s;
+    }
+    
+    .nav-btn:hover::before {
+      left: 100%;
+    }
+    
+    .nav-btn:hover {
+      color: var(--gold);
+      transform: translateY(-3px);
+    }
+    
+    .nav-btn.active {
+      background-color: var(--gold);
+      color: var(--dark-brown);
+      font-weight: bold;
+    }
+    
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    
+    section {
+      display: none;
+      animation: fadeIn 0.8s ease;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      border-top: 4px solid var(--gold);
+    }
+    
+    section.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-brown);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 2.2rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(to right, var(--gold), var(--dark-gold));
+    }
+    
+    /* Styl dla sekcji sklepu */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .product-image {
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .product-card:hover .product-image img {
+      transform: scale(1.1);
+    }
+    
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: var(--gold);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    
+    .product-info {
+      padding: 1.5rem;
+    }
+    
+    .product-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark-brown);
+    }
+    
+    .product-description {
+      color: var(--light-brown);
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .product-price {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .add-to-cart {
+      background-color: var(--dark-brown);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      width: 100%;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .add-to-cart:hover {
+      background-color: var(--gold);
+      color: var(--dark-brown);
+    }
+    
+    /* Sekcja artysty */
+    .artist-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .artist-portrait {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--gold);
+      box-shadow: var(--shadow);
+    }
+    
+    .artist-bio {
+      text-align: center;
+      max-width: 800px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    
+    .artist-bio p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .signature {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--gold);
+      margin-top: 1rem;
+    }
+    
+    /* Sekcja zbiórki */
+    .fundraiser {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(62, 39, 35, 0.1));
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+    
+    .fundraiser h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-brown);
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+    
+    .donation-methods {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .donation-method {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      width: 250px;
+      transition: transform 0.3s ease;
+    }
+    
+    .donation-method:hover {
+      transform: translateY(-5px);
+    }
+    
+    .donation-method i {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .donation-method h4 {
+      color: var(--dark-brown);
+      margin-bottom: 0.5rem;
+    }
+    
+    .donation-method p {
+      color: var(--light-brown);
+      font-size: 0.9rem;
+    }
+    
+    /* Koszyk */
+    .cart-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background-color: var(--gold);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      color: var(--dark-brown);
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .cart-btn:hover {
+      background-color: var(--dark-gold);
+      transform: scale(1.05);
+    }
+    
+    .cart-popup {
+      display: none;
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      width: 350px;
+      max-height: 500px;
+      overflow-y: auto;
+      background-color: white;
+      color: var(--dark-brown);
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      z-index: 1001;
+    }
+    
+    .cart-popup.active {
+      display: block;
+    }
+    
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .cart-items {
+      margin-bottom: 1.5rem;
+    }
+    
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .cart-item-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .cart-item-image {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    
+    .cart-item-name {
+      font-weight: bold;
+    }
+    
+    .cart-item-price {
+      color: var(--gold);
+    }
+    
+    .remove-item {
+      background: none;
+      border: none;
+      color: #ff4444;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    
+    .cart-total {
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-align: right;
+      margin-top: 1rem;
+    }
+    
+    .checkout-btn {
+      background-color: var(--gold);
+      color: var(--dark-brown);
+      border: none;
+      padding: 0.8rem;
+      width: 100%;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    
+    .checkout-btn:hover {
+      background-color: var(--dark-gold);
+    }
+    
+    /* Sekcja kontaktowa */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    .contact-info {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(62, 39, 35, 0.1));
+      padding: 2rem;
+      border-radius: 8px;
+    }
+    
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-brown);
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background-color: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .contact-details h4 {
+      color: var(--dark-brown);
+      margin-bottom: 0.3rem;
+    }
+    
+    .contact-details p, .contact-details a {
+      color: var(--light-brown);
+      text-decoration: none;
+    }
+    
+    .contact-details a:hover {
+      color: var(--gold);
+    }
+    
+    .contact-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--dark-brown);
+      font-weight: bold;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: 'Raleway', sans-serif;
+    }
+    
+    .form-group textarea {
+      height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background-color: var(--dark-brown);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    
+    .submit-btn:hover {
+      background-color: var(--gold);
+      color: var(--dark-brown);
+    }
+    
+    /* Stopka */
+    footer {
+      background: linear-gradient(to right, var(--dark-brown), #000);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      border-top: 3px solid var(--gold);
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+    
+    .footer-column h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-column a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-column a:hover {
+      color: var(--gold);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background-color: var(--gold);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* Responsywność */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .nav-btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .social-links {
+        justify-content: center;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- Przycisk koszyka -->
+  <button class="cart-btn" onclick="toggleCart()">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cart-count">0</span>
+  </button>
+  
+  <!-- Popup koszyka -->
+  <div class="cart-popup" id="cart-popup">
+    <div class="cart-header">
+      <h3>Twój Koszyk</h3>
+      <button onclick="toggleCart()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer;">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-contents">
+      <p>Twój koszyk jest pusty.</p>
+    </div>
+    <div class="cart-total" id="cart-total">
+      Razem: 0 zł
+    </div>
+    <button class="checkout-btn" onclick="checkout()">Złóż zamówienie</button>
+  </div>
+
+  <!-- Nagłówek -->
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <img src="logo.png" alt="Logo AdelbertusShop">
+      </div>
+      <div class="shop-title">
+        <h1>AdelbertusShop</h1>
+        <p>Świątynia Artystycznej Ekspresji</p>
+      </div>
+      <div class="logo">
+        <img src="logo.png" alt="Logo AdelbertusShop">
+      </div>
+    </div>
+  </header>
+
+  <!-- Nawigacja -->
+  <nav>
+    <div class="nav-container">
+      <button class="nav-btn active" data-section="sklep">Sklep</button>
+      <button class="nav-btn" data-section="zamowienia">Zamówienia</button>
+      <button class="nav-btn" data-section="projektuj">Projektuj</button>
+      <button class="nav-btn" data-section="marketplace">Marketplace</button>
+      <button class="nav-btn" data-section="zbiorka">Zbiórka</button>
+      <button class="nav-btn" data-section="artysta">Artysta</button>
+      <button class="nav-btn" data-section="opinie">Opinie</button>
+      <button class="nav-btn" data-section="blog">Blog</button>
+      <button class="nav-btn" data-section="kontakt">Kontakt</button>
+      <button class="nav-btn" data-section="regulamin">Regulamin</button>
+    </div>
+  </nav>
+
+  <!-- Główna zawartość -->
+  <main>
+    <!-- Sekcja Sklep -->
+    <section id="sklep" class="active">
+      <h2>Nasze Artystyczne Produkty</h2>
+      <p style="text-align: center; margin-bottom: 2rem;">Każdy przedmiot to unikalne dzieło sztuki, stworzone z pasją i dbałością o detal.</p>
+      
+      <div class="products-grid">
+        <!-- Produkt 1 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="koszulka-artystyczna.jpg" alt="Koszulka Artystyczna">
+            <span class="product-badge">Bestseller</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Koszulka "Wojownik"</h3>
+            <p class="product-description">Limitowana edycja koszulki z autorskim projektem artysty</p>
+            <span class="product-price">99 zł</span>
+            <button class="add-to-cart" onclick="addToCart('Koszulka Wojownik', 99, 'koszulka-artystyczna.jpg')">Dodaj do koszyka</button>
+          </div>
+        </div>
+        
+        <!-- Produkt 2 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="bluza-artystyczna.jpg" alt="Bluza Artystyczna">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Bluza "Adelbertus"</h3>
+            <p class="product-description">Premium jakość, ręcznie malowany wzór</p>
+            <span class="product-price">150 zł</span>
+            <button class="add-to-cart" onclick="addToCart('Bluza Adelbertus', 150, 'bluza-artystyczna.jpg')">Dodaj do koszyka</button>
+          </div>
+        </div>
+        
+        <!-- Produkt 3 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="torba-artystyczna.jpg" alt="Torba Artystyczna">
+            <span class="product-badge">Nowość</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Torba "Świątynia"</h3>
+            <p class="product-description">Bawełniana torba z unikalnym nadrukiem</p>
+            <span class="product-price">80 zł</span>
+            <button class="add-to-cart" onclick="addToCart('Torba Świątynia', 80, 'torba-artystyczna.jpg')">Dodaj do koszyka</button>
+          </div>
+        </div>
+        
+        <!-- Produkt 4 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="kubek-artystyczny.jpg" alt="Kubek Artystyczny">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Kubek "Inspiracja"</h3>
+            <p class="product-description">Ceramiczny kubek z motywem artystycznym</p>
+            <span class="product-price">60 zł</span>
+            <button class="add-to-cart" onclick="addToCart('Kubek Inspiracja', 60, 'kubek-artystyczny.jpg')">Dodaj do koszyka</button>
+          </div>
+        </div>
+        
+        <!-- Produkt 5 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="plakat-artystyczny.jpg" alt="Plakat Artystyczny">
+            <span class="product-badge">Ostatnie sztuki</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Plakat "Wędrówka"</h3>
+            <p class="product-description">Plakat w limitowanej edycji, numerowany</p>
+            <span class="product-price">120 zł</span>
+            <button class="add-to-cart" onclick="addToCart('Plakat Wędrówka', 120, 'plakat-artystyczny.jpg')">Dodaj do koszyka</button>
+          </div>
+        </div>
+        
+        <!-- Produkt 6 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="naszyjnik-artystyczny.jpg" alt="Naszyjnik Artystyczny">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Naszyjnik "Dusza"</h3>
+            <p class="product-description">Ręcznie wykonana biżuteria artystyczna</p>
+            <span class="product-price">180 zł</span>
+            <button class="add-to-cart" onclick="addToCart('Naszyjnik Dusza', 180, 'naszyjnik-artystyczny.jpg')">Dodaj do koszyka</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sekcja Zamówienia -->
+    <section id="zamowienia">
+      <h2>Indywidualne Zamówienia</h2>
+      <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <p style="margin-bottom: 2rem;">Chcesz zamówić produkt w specjalnej wersji lub z własnym projektem? Skorzystaj z naszych usług indywidualnych.</p>
+        
+        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(62, 39, 35, 0.1)); padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+          <h3 style="font-family: 'Playfair Display', serif; color: var(--dark-brown); margin-bottom: 1rem;">Proces zamówienia</h3>
+          <ol style="text-align: left; padding-left: 1.5rem; margin-bottom: 1.5rem;">
+            <li style="margin-bottom: 0.8rem;">Wybierz rodzaj produktu (koszulka, bluza, torba itp.)</li>
+            <li style="margin-bottom: 0.8rem;">Opisz swój pomysł lub prześlij szkic</li>
+            <li style="margin-bottom: 0.8rem;">Otrzymaj wstępną wycenę i projekt</li>
+            <li style="margin-bottom: 0.8rem;">Zatwierdź projekt i dokonaj płatności</li>
+            <li>Odbierz swoje unikalne dzieło!</li>
+          </ol>
+          <button style="background-color: var(--gold); color: var(--dark-brown); border: none; padding: 1rem 2rem; border-radius: 4px; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease;">Złóż zamówienie</button>
+        </div>
+        
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; margin-top: 3rem;">
+          <div style="flex: 1; min-width: 250px; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: var(--shadow);">
+            <i class="fas fa-t-shirt" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; display: block;"></i>
+            <h3 style="font-family: 'Playfair Display', serif; color: var(--dark-brown); margin-bottom: 1rem;">Odzież</h3>
+            <p style="color: var(--light-brown);">Personalizowane koszulki, bluzy, czapki i inne elementy garderoby</p>
+          </div>
+          
+          <div style="flex: 1; min-width: 250px; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: var(--shadow);">
+            <i class="fas fa-home" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; display: block;"></i>
+            <h3 style="font-family: 'Playfair Display', serif; color: var(--dark-brown); margin-bottom: 1rem;">Dekoracje</h3>
+            <p style="color: var(--light-brown);">Oryginalne plakaty, obrazy, poduszki i elementy dekoracyjne</p>
+          </div>
+          
+          <div style="flex: 1; min-width: 250px; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: var(--shadow);">
+            <i class="fas fa-gift" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; display: block;"></i>
+            <h3 style="font-family: 'Playfair Display', serif; color: var(--dark-brown); margin-bottom: 1rem;">Prezenty</h3>
+            <p style="color: var(--light-brown);">Niepowtarzalne prezenty na każdą okazję</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sekcja Projektuj -->
+    <section id="projektuj">
+      <h2>Projektuj Swoje Marzenia</h2>
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+        <p>Wykorzystaj nasze narzędzie do projektowania i stwórz swój własny, unikalny produkt!</p>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: var(--shadow);">
+          <h3 style="font-family: 'Playfair Display', serif; color: var(--dark-brown); margin-bottom: 1.5rem; text-align: center;">Konfigurator produktu</h3>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Wybierz produkt:</label>
+            <select style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+              <option>Koszulka</option>
+              <option>Bluza</option>
+              <option>Torba</option>
+              <option>Kubek</option>
+              <option>Plakat</option>
+            </select>
+          </div>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Wybierz kolor:</label>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <div style="width: 30px; height: 30px; border-radius: 50%; background: #000; cursor: pointer; border: 2px solid white; box-shadow: 0 0 0 2px var(--gold);"></div>
+              <div style="width: 30px; height: 30px; border-radius: 50%; background: #fff; cursor: pointer; border: 1px solid #ddd;"></div>
+              <div style="width: 30px; height: 30px; border-radius: 50%; background: #D4AF37; cursor: pointer;"></div>
+              <div style="width: 30px; height: 30px; border-radius: 50%; background: #3E2723; cursor: pointer;"></div>
+              <div style="width: 30px; height: 30px; border-radius: 50%; background: #5D4037; cursor: pointer;"></div>
+              <div style="width: 30px; height: 30px; border-radius: 50%; background: #B71C1C; cursor: pointer;"></div>
+              <div style="width: 30px; height: 30px; border-radius: 50%; background: #0D47A1; cursor: pointer;"></div>
+              <div style="width: 30px; height: 30px; border-radius: 50%; background: #1B5E20; cursor: pointer;"></div>
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Dodaj tekst:</label>
+            <input type="text" placeholder="Wpisz swój tekst..." style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+          </div>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Wybierz czcionkę:</label>
+            <select style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+              <option>Playfair Display</option>
+              <option>Raleway</option>
+              <option>Times New Roman</option>
+              <option>Arial</option>
+              <option>Courier New</option>
+            </select>
+          </div>
+          
+          <div
