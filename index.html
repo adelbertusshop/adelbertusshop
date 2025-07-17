@@ -1,2 +1,137 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AdelbertusShop</title>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #e5e5e5;
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #1c1c1c;
+      padding: 20px;
+      text-align: center;
+    }
+    header img {
+      max-width: 200px;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: #2a2a2a;
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: #fff;
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    nav button:hover {
+      background-color: #444;
+    }
+    .sekcja {
+      display: none;
+      padding: 40px 20px;
+    }
+    .sekcja h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
 
+  <header>
+    <img src="logo.png" alt="AdelbertusShop Logo">
+  </header>
 
+  <nav>
+    <button onclick="pokazSekcje('sklep')">Sklep</button>
+    <button onclick="pokazSekcje('projektuj')">Projektuj</button>
+    <button onclick="pokazSekcje('marketplace')">Marketplace</button>
+    <button onclick="pokazSekcje('reklama')">Reklama</button>
+    <button onclick="pokazSekcje('zbiorka')">Zbiórka</button>
+    <button onclick="pokazSekcje('opinie')">Opinie</button>
+    <button onclick="pokazSekcje('blog')">Blog</button>
+    <button onclick="pokazSekcje('zamowienia')">Zamówienia</button>
+    <button onclick="pokazSekcje('artysta')">Artysta</button>
+    <button onclick="pokazSekcje('kontakt')">Kontakt</button>
+    <button onclick="pokazSekcje('regulamin')">Regulamin</button>
+  </nav>
+
+  <section id="sklep" class="sekcja">
+    <h2>Sklep</h2>
+    <p>Tu znajdziesz wszystkie produkty AdelbertusShop.</p>
+  </section>
+
+  <section id="projektuj" class="sekcja">
+    <h2>Projektuj</h2>
+    <p>Zaprojektuj własny produkt z grafiką: koszulkę, bluzę lub czapkę.</p>
+  </section>
+
+  <section id="marketplace" class="sekcja">
+    <h2>Marketplace</h2>
+    <p>Wystawiaj swoje projekty i produkty. Promuj własną markę lub firmę!</p>
+  </section>
+
+  <section id="reklama" class="sekcja">
+    <h2>Reklama</h2>
+    <p>Reklamuj się w naszym sklepie! Twoja firma, twój produkt, twój sukces.</p>
+  </section>
+
+  <section id="zbiorka" class="sekcja">
+    <h2>Zbiórka</h2>
+    <p>Wesprzyj dom dziecka! Przelej dowolną kwotę BLIK na numer <strong>573 939 925</strong> z dopiskiem <strong>"Pomoc"</strong>.</p>
+  </section>
+
+  <section id="opinie" class="sekcja">
+    <h2>Opinie</h2>
+    <p>Sprawdź recenzje, zostaw swoją opinię i pomóż innym w wyborze.</p>
+  </section>
+
+  <section id="blog" class="sekcja">
+    <h2>Blog</h2>
+    <p>Wpisy, porady, inspiracje – śledź nasz blog!</p>
+  </section>
+
+  <section id="zamowienia" class="sekcja">
+    <h2>Zamówienia</h2>
+    <p>Zamów swój produkt z indywidualną grafiką lub projektem.</p>
+  </section>
+
+  <section id="artysta" class="sekcja">
+    <h2>Artysta</h2>
+    <p>Poznaj autora grafik i historię AdelbertusShop.</p>
+  </section>
+
+  <section id="kontakt" class="sekcja">
+    <h2>Kontakt</h2>
+    <p>Masz pytania? Napisz do nas!</p>
+  </section>
+
+  <section id="regulamin" class="sekcja">
+    <h2>Regulamin</h2>
+    <p>Zapoznaj się z zasadami korzystania z naszego sklepu.</p>
+  </section>
+
+  <script>
+    function pokazSekcje(id) {
+      const sekcje = document.querySelectorAll('.sekcja');
+      sekcje.forEach(sekcja => sekcja.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      pokazSekcje('sklep'); // domyślna sekcja
+    });
+  </script>
+
+</body>
+</html>
