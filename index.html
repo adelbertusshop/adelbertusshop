@@ -1,45 +1,64 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AdelbertusShop</title>
   <style>
     body {
       margin: 0;
-      background-color: #000;
-      color: #f5f5dc;
       font-family: 'Montserrat', sans-serif;
+      background-color: #000;
+      color: #fff;
     }
+
     header {
       background-color: #111;
-      padding: 1rem;
+      padding: 20px;
       text-align: center;
-      color: gold;
+      border-bottom: 1px solid gold;
     }
+
+    header h1 {
+      font-size: 2em;
+      color: gold;
+      margin: 0;
+    }
+
     nav {
+      background-color: #111;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      background-color: #222;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px 0;
     }
+
     nav button {
-      background: none;
+      background-color: gold;
+      color: black;
       border: none;
-      color: gold;
-      padding: 1rem;
+      padding: 10px 20px;
       cursor: pointer;
-      font-size: 1rem;
+      border-radius: 8px;
+      font-weight: bold;
     }
-    nav button:hover {
-      background-color: #333;
-    }
-    .sekcja {
+
+    section {
       display: none;
-      padding: 2rem;
+      padding: 20px;
     }
-    .sekcja.active {
+
+    section.active {
       display: block;
+    }
+
+    footer {
+      background-color: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 10px;
+      border-top: 1px solid gold;
     }
   </style>
 </head>
@@ -50,6 +69,7 @@
   </header>
 
   <nav>
+    <button data-target="sklep">Sklep</button>
     <button data-target="projektuj">Projektuj</button>
     <button data-target="marketplace">Marketplace</button>
     <button data-target="reklama">Reklama</button>
@@ -61,30 +81,74 @@
     <button data-target="zbiorka">Zbiórka</button>
   </nav>
 
-  <section id="projektuj" class="sekcja active"></section>
-  <section id="marketplace" class="sekcja"></section>
-  <section id="reklama" class="sekcja"></section>
-  <section id="zamowienia" class="sekcja"></section>
-  <section id="opinie" class="sekcja"></section>
-  <section id="blog" class="sekcja"></section>
-  <section id="kontakt" class="sekcja"></section>
-  <section id="regulamin" class="sekcja"></section>
-  <section id="zbiorka" class="sekcja"></section>
+  <section id="sklep" class="sekcja active">
+    <h2>Sklep</h2>
+    <p>Witamy w sklepie AdelbertusShop. Przeglądaj unikalne produkty już wkrótce!</p>
+  </section>
+
+  <section id="projektuj" class="sekcja">
+    <h2>Projektuj</h2>
+    <!-- tu wkleimy później -->
+  </section>
+
+  <section id="marketplace" class="sekcja">
+    <h2>Marketplace</h2>
+    <!-- tu wkleimy później -->
+  </section>
+
+  <section id="reklama" class="sekcja">
+    <h2>Reklama</h2>
+    <!-- tu wkleimy później -->
+  </section>
+
+  <section id="zamowienia" class="sekcja">
+    <h2>Zamówienia</h2>
+    <!-- tu wkleimy później -->
+  </section>
+
+  <section id="opinie" class="sekcja">
+    <h2>Opinie</h2>
+    <!-- tu wkleimy później -->
+  </section>
+
+  <section id="blog" class="sekcja">
+    <h2>Blog</h2>
+    <!-- tu wkleimy później -->
+  </section>
+
+  <section id="kontakt" class="sekcja">
+    <h2>Kontakt</h2>
+    <!-- tu wkleimy później -->
+  </section>
+
+  <section id="regulamin" class="sekcja">
+    <h2>Regulamin</h2>
+    <!-- tu wkleimy później -->
+  </section>
+
+  <section id="zbiorka" class="sekcja">
+    <h2>Zbiórka</h2>
+    <!-- tu wkleimy później -->
+  </section>
+
+  <footer>
+    &copy; 2025 AdelbertusShop. Wszystkie prawa zastrzeżone.
+  </footer>
 
   <script>
-    document.querySelectorAll('nav button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.getAttribute('data-target');
-        document.querySelectorAll('.sekcja').forEach(sec => {
-          sec.classList.remove('active');
+    // Obsługa przycisków nawigacji
+    document.querySelectorAll("nav button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-target");
+        document.querySelectorAll(".sekcja").forEach((sec) => {
+          sec.classList.remove("active");
         });
         const pokaz = document.getElementById(target);
         if (pokaz) {
-          pokaz.classList.add('active');
+          pokaz.classList.add("active");
         }
       });
     });
   </script>
 </body>
 </html>
-
