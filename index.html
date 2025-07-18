@@ -229,8 +229,30 @@
       </button>
     </form>
   </div>
-</section>  <section id="opinie" class="sekcja"><h2>Opinie</h2></section>
-  <section id="blog" class="sekcja"><h2>Blog</h2></section>
+</section> 
+ <section id="opinie" class="sekcja hidden">
+  <h2>Opinie naszych klientów</h2>
+  <div class="opinia">
+    <p>„Koszulka na zamówienie przerosła moje oczekiwania! Jakość premium i błyskawiczna realizacja.”</p>
+    <strong>— Anna W.</strong>
+  </div>
+  <div class="opinia">
+    <p>„AdelbertusShop to magia w ubraniu. Polecam każdemu, kto chce się wyróżnić.”</p>
+    <strong>— Michał Z.</strong>
+  </div>
+  <div class="opinia">
+    <p>„Indywidualne podejście, świetna jakość, szybka dostawa. Jestem pod wrażeniem.”</p>
+    <strong>— Katarzyna L.</strong>
+  </div>
+  <form id="formularz-opinia">
+    <h3>Dodaj swoją opinię</h3>
+    <label for="opinia-text">Twoja opinia:</label><br>
+    <textarea id="opinia-text" name="opinia" required></textarea><br>
+    <label for="opinia-author">Twoje imię:</label><br>
+    <input type="text" id="opinia-author" name="author" required><br><br>
+    <button type="submit">Dodaj opinię</button>
+  </form>
+</section>  <section id="blog" class="sekcja"><h2>Blog</h2></section>
   <section id="kontakt" class="sekcja"><h2>Kontakt</h2></section>
   <section id="regulamin" class="sekcja"><h2>Regulamin</h2></section>
   <section id="zbiorka" class="sekcja"><h2>Zbiórka</h2></section>
@@ -262,6 +284,19 @@
     e.preventDefault();
     alert("Dziękujemy za zamówienie! Skontaktujemy się w celu potwierdzenia.");
     this.reset();
+  });
+    
+</script>
+  <script>
+  // Obsługa formularza opinii
+  document.getElementById("formularz-opinia").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const opinia = document.getElementById("opinia-text").value.trim();
+    const autor = document.getElementById("opinia-author").value.trim();
+    if (opinia && autor) {
+      alert("Dziękujemy za Twoją opinię! Po zatwierdzeniu zostanie opublikowana.");
+      this.reset();
+    }
   });
 </script></body>
 </html>
