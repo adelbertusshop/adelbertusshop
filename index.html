@@ -132,72 +132,157 @@
     <p>Tu znajdziesz wszystkie produkty AdelbertusShop.</p>
   </section>
 
- <section id="projektuj" class="sekcja">
-  <h2>Zaprojektuj Swój Mistyczny Artefakt</h2>
-  <form id="design-form" action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
-    <label for="design-name">Imię i nazwisko:</label>
-    <input type="text" id="design-name" name="Imię i nazwisko" required placeholder="Wpisz swoje imię i nazwisko" />
-    
-    <label for="design-email">E-mail:</label>
-    <input type="email" id="design-email" name="Email" required placeholder="Wpisz swój e-mail" />
-    
-    <label for="product-type">Wybierz produkt:</label>
-    <select id="product-type" name="Produkt" required>
-      <option value="koszulka">Koszulka</option>
-      <option value="bluza">Bluza</option>
-    </select>
-    
-    <label for="design-text">Tekst do projektu:</label>
-    <input type="text" id="design-text" name="Tekst projektu" placeholder="Wpisz tekst, który chcesz na produkcie" />
-    
-    <label for="design-file">Dodaj własny projekt (opcjonalnie):</label>
-    <input type="file" id="design-file" name="Plik projektu" accept="image/*" />
-    
-    <button type="submit">Wyślij projekt</button>
-  </form>
-  
-  <div id="preview-container" style="margin-top: 30px; text-align: center;">
-    <h3>Podgląd projektu:</h3>
-    <div id="product-preview" style="position: relative; display: inline-block; width: 300px; height: 400px; background-color: #222; border-radius: 15px; box-shadow: 0 0 20px #c9a947;">
-      <img id="product-image" src="https://i.imgur.com/WxNkKff.png" alt="Koszulka" style="width: 100%; height: auto; border-radius: 15px;">
-      <div id="preview-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-          color: #d4af37; font-weight: bold; font-size: 20px; font-family: 'Playfair Display', serif; text-align: center; white-space: pre-wrap; padding: 0 10px;">
+<section id="projektuj" class="sekcja">
+  <h2>Projektuj własny produkt</h2>
+  <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
+
+  <div style="max-width: 800px; margin: auto; display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;">
+    <!-- Panel projektowania -->
+    <div style="flex: 1 1 300px; min-width: 280px;">
+      <form id="formularzProjektu" style="text-align: left;">
+        <label for="nazwa">Twoje imię lub pseudonim:</label><br>
+        <input type="text" id="nazwa" name="nazwa" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
+
+        <label for="typProduktu">Wybierz produkt:</label><br>
+        <select id="typProduktu" name="typProduktu" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+          <option value="koszulka">Koszulka</option>
+          <option value="bluza">Bluza</option>
+        </select><br>
+
+        <label for="tekst">Twój napis (np. hasło, cytat):</label><br>
+        <input type="text" id="tekst" name="tekst" placeholder="Wpisz tekst" style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
+
+        <label for="fontSelect">Wybierz czcionkę:</label><br>
+        <select id="fontSelect" style="width: 100%; padding: 10px; margin-bottom: 15px;">
+          <option value="'Playfair Display', serif">Playfair Display</option>
+          <option value="'Montserrat', sans-serif">Montserrat</option>
+          <option value="'Roboto Slab', serif">Roboto Slab</option>
+        </select><br>
+
+        <label for="tekstColor">Kolor tekstu:</label><br>
+        <input type="color" id="tekstColor" value="#c9a947" style="width: 100%; padding: 5px 10px 5px 10px; margin-bottom: 15px;"><br>
+
+        <label for="plik">Dodaj swoją grafikę (PNG/JPG):</label><br>
+        <input type="file" id="plik" name="plik" accept="image/png, image/jpeg" style="margin-bottom: 15px;"><br>
+
+        <button type="submit" style="padding: 12px 24px; background-color: #c9a947; border: none; color: black; font-weight: bold; border-radius: 25px; cursor: pointer;">Wyślij projekt</button>
+      </form>
+
+      <p style="margin-top: 20px; font-size: 1rem; color: #ccc;">
+        Zatwierdzenie projektu przyjdzie na e-mail: <strong>mielniczukgrzegosz74@gmail.com</strong><br>
+        lub SMS na numer <strong>604 296 650</strong> z dopiskiem <em>„projekt własny”</em>.
+      </p>
+    </div>
+
+    <!-- Podgląd produktu -->
+    <div style="flex: 1 1 350px; min-width: 280px; position: relative; text-align: center;">
+      <div id="produktContainer" style="position: relative; width: 300px; height: 400px; margin: auto; border-radius: 20px; overflow: hidden; box-shadow: 0 0 20px #c9a947;">
+        <img id="produktImg" src="https://i.imgur.com/UqyN94O.png" alt="Koszulka" style="width: 100%; height: 100%; object-fit: contain;">
+        <div id="tekstPodglad" style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); 
+             font-family: 'Playfair Display', serif; font-size: 24px; font-weight: bold; color: #c9a947; text-shadow: 0 0 8px rgba(0,0,0,0.7); pointer-events: none; white-space: pre-wrap; max-width: 80%;"></div>
+        <img id="grafikaPodglad" src="" alt="" style="position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); max-width: 50%; max-height: 30%; display: none; pointer-events: none;">
       </div>
     </div>
   </div>
-</section>
 
-<script>
-  const productType = document.getElementById('product-type');
-  const designText = document.getElementById('design-text');
-  const productImage = document.getElementById('product-image');
-  const previewText = document.getElementById('preview-text');
+  <style>
+    /* Wczytane fonty Google */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display&family=Roboto+Slab&display=swap');
+  </style>
 
-  // Obrazy przykładowe dla koszulki i bluzy:
-  const images = {
-    koszulka: 'https://i.imgur.com/WxNkKff.png', // przykład koszulki
-    bluza: 'https://i.imgur.com/VK3Wx7G.png'     // przykład bluzy
-  };
+  <script>
+    const produktImg = document.getElementById('produktImg');
+    const tekstInput = document.getElementById('tekst');
+    const tekstPodglad = document.getElementById('tekstPodglad');
+    const fontSelect = document.getElementById('fontSelect');
+    const tekstColor = document.getElementById('tekstColor');
+    const typProduktu = document.getElementById('typProduktu');
+    const plikInput = document.getElementById('plik');
+    const grafikaPodglad = document.getElementById('grafikaPodglad');
+    const formularzProjektu = document.getElementById('formularzProjektu');
 
-  // Aktualizacja obrazu produktu po zmianie wyboru
-  productType.addEventListener('change', () => {
-    productImage.src = images[productType.value];
-    updatePreviewText();
-  });
+    // Aktualizacja podglądu tekstu i czcionki
+    function aktualizujTekst() {
+      tekstPodglad.textContent = tekstInput.value;
+      tekstPodglad.style.fontFamily = fontSelect.value;
+      tekstPodglad.style.color = tekstColor.value;
+    }
 
-  // Aktualizacja tekstu podglądu na bieżąco
-  designText.addEventListener('input', updatePreviewText);
+    // Zmiana produktu i obrazka podglądu
+    typProduktu.addEventListener('change', () => {
+      if (typProduktu.value === 'koszulka') {
+        produktImg.src = 'https://i.imgur.com/UqyN94O.png'; // koszulka
+      } else {
+        produktImg.src = 'https://i.imgur.com/5GnD3nM.png'; // bluza
+      }
+      // reset podglądu grafiki
+      grafikaPodglad.style.display = 'none';
+      grafikaPodglad.src = '';
+      aktualizujTekst();
+    });
 
-  function updatePreviewText() {
-    previewText.textContent = designText.value || 'Twój tekst tutaj';
-  }
+    // Aktualizacja tekstu na żywo
+    tekstInput.addEventListener('input', aktualizujTekst);
+    fontSelect.addEventListener('change', aktualizujTekst);
+    tekstColor.addEventListener('input', aktualizujTekst);
 
-  // Inicjalizacja podglądu przy ładowaniu strony
-  window.addEventListener('DOMContentLoaded', () => {
-    productImage.src = images[productType.value];
-    updatePreviewText();
-  });
-</script>  <section id="marketplace" class="sekcja">
+    // Obsługa wczytywania grafiki i podglądu
+    plikInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          grafikaPodglad.src = evt.target.result;
+          grafikaPodglad.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        grafikaPodglad.style.display = 'none';
+        grafikaPodglad.src = '';
+      }
+    });
+
+    // Obsługa wysyłania formularza
+    formularzProjektu.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nazwa = document.getElementById('nazwa').value.trim();
+      const produkt = typProduktu.value;
+      const tekst = tekstInput.value.trim();
+      const font = fontSelect.value;
+      const kolor = tekstColor.value;
+
+      // Grafikę wyślemy jako link w mailu (z uwagi na ograniczenia mailto nie możemy dołączyć pliku)
+      let grafikaInfo = grafikaPodglad.src ? "Dołączona grafika (podgląd)" : "Brak grafiki";
+
+      // Budujemy treść maila (zakładamy mailto z parametrami)
+      const temat = encodeURIComponent("Projekt własny AdelbertusShop");
+      const body = encodeURIComponent(
+        `Imię/pseudonim: ${nazwa}\n` +
+        `Produkt: ${produkt}\n` +
+        `Tekst: ${tekst}\n` +
+        `Czcionka: ${font}\n` +
+        `Kolor tekstu: ${kolor}\n` +
+        `${grafikaInfo}\n\n` +
+        "Projekt został przesłany przez stronę AdelbertusShop."
+      );
+
+      const mailto = `mailto:mielniczukgrzegosz74@gmail.com?subject=${temat}&body=${body}`;
+
+      window.location.href = mailto;
+
+      alert('Projekt został wysłany. Sprawdź e-mail i SMS z potwierdzeniem.');
+      formularzProjektu.reset();
+      tekstPodglad.textContent = '';
+      grafikaPodglad.style.display = 'none';
+      grafikaPodglad.src = '';
+      produktImg.src = (produkt === 'koszulka') ? 'https://i.imgur.com/UqyN94O.png' : 'https://i.imgur.com/5GnD3nM.png';
+    });
+
+    // Start ustawienie
+    aktualizujTekst();
+  </script>
+</section></script>  <section id="marketplace" class="sekcja">
     <h2>Marketplace</h2>
     <p>Wystawiaj swoje projekty i produkty. Promuj własną markę lub firmę!</p>
   </section>
