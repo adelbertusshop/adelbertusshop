@@ -143,8 +143,66 @@
     alert("Dziękujemy za zgłoszenie! Skontaktujemy się po weryfikacji.");
     this.reset();
   });
-</script>  <section id="reklama" class="sekcja"><h2>Reklama</h2></section>
-  <section id="zamowienia" class="sekcja"><h2>Zamówienia</h2></section>
+</script> 
+ <section id="reklama" class="sekcja">
+  <h2>Reklama w AdelbertusShop</h2>
+  <p style="text-align: center; font-size: 1.1rem;">
+    Wykup miejsce reklamowe i pokaż się w Zakazanej Świątyni. Możesz zamieścić baner lub logo — decydujesz na jak długo!
+  </p>
+
+  <div style="max-width: 700px; margin: 30px auto; background-color: #2a262a; padding: 30px; border-radius: 10px;">
+    <h3 style="color: #c9a947;">Warianty reklamy</h3>
+    <ul style="color: #ddd; line-height: 1.7;">
+      <li><strong>1 dzień:</strong> 15 zł</li>
+      <li><strong>1 tydzień:</strong> 70 zł</li>
+      <li><strong>1 miesiąc:</strong> 199 zł</li>
+    </ul>
+    <p style="color: #ccc; margin-top: 10px;">Po upływie opłaconego czasu użytkownik otrzyma e-mail z przypomnieniem o przedłużeniu. Brak reakcji – reklama zostaje automatycznie usunięta.</p>
+
+    <form id="formularz-reklama" style="margin-top: 20px;">
+      <label for="nazwaReklamodawcy">Nazwa firmy / osoby:</label><br>
+      <input type="text" id="nazwaReklamodawcy" name="nazwaReklamodawcy" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
+
+      <label for="emailReklama">E-mail kontaktowy:</label><br>
+      <input type="email" id="emailReklama" name="emailReklama" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
+
+      <label for="okres">Wybierz okres reklamy:</label><br>
+      <select id="okres" name="okres" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+        <option value="1dzien">1 dzień – 15 zł</option>
+        <option value="1tydzien">1 tydzień – 70 zł</option>
+        <option value="1miesiac">1 miesiąc – 199 zł</option>
+      </select><br>
+
+      <label for="baner">Dodaj baner/logo (JPG/PNG):</label><br>
+      <input type="file" id="baner" name="baner" accept="image/*" style="margin-bottom: 20px;"><br>
+
+      <button type="submit" style="padding: 12px 24px; background-color: #c9a947; border: none; color: black; font-weight: bold; border-radius: 25px; cursor: pointer;">
+        Wyślij zgłoszenie
+      </button>
+    </form>
+  </div>
+
+  <div style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+    <div class="reklama-slot" style="width: 150px; height: 150px; background-color: #111; border: 2px solid #c9a947; display: flex; align-items: center; justify-content: center;">
+      <span style="color: #777;">Reklama A</span>
+    </div>
+    <div class="reklama-slot" style="width: 150px; height: 150px; background-color: #111; border: 2px solid #c9a947; display: flex; align-items: center; justify-content: center;">
+      <span style="color: #777;">Reklama B</span>
+    </div>
+    <div class="reklama-slot" style="width: 150px; height: 150px; background-color: #111; border: 2px solid #c9a947; display: flex; align-items: center; justify-content: center;">
+      <span style="color: #777;">Reklama C</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Obsługa formularza reklamy
+  document.getElementById("formularz-reklama").addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Dziękujemy za zgłoszenie reklamy! Skontaktujemy się z Tobą wkrótce.");
+    this.reset();
+  });
+</script>  <section id="zamowienia" class="sekcja"><h2>Zamówienia</h2></section>
   <section id="opinie" class="sekcja"><h2>Opinie</h2></section>
   <section id="blog" class="sekcja"><h2>Blog</h2></section>
   <section id="kontakt" class="sekcja"><h2>Kontakt</h2></section>
