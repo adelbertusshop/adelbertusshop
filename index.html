@@ -202,8 +202,34 @@
     alert("Dziękujemy za zgłoszenie reklamy! Skontaktujemy się z Tobą wkrótce.");
     this.reset();
   });
-</script>  <section id="zamowienia" class="sekcja"><h2>Zamówienia</h2></section>
-  <section id="opinie" class="sekcja"><h2>Opinie</h2></section>
+</script> 
+  <section id="zamowienia" class="sekcja">
+  <h2>Złóż zamówienie</h2>
+  <p style="text-align: center;">Wypełnij formularz, aby zamówić wybrany produkt z projektu lub marketplace.</p>
+
+  <div style="max-width: 700px; margin: 0 auto; background-color: #2a262a; padding: 30px; border-radius: 10px;">
+    <form id="formularz-zamowienia">
+      <label for="imieZamowienie">Imię i nazwisko:</label><br>
+      <input type="text" id="imieZamowienie" name="imieZamowienie" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
+
+      <label for="emailZamowienie">Adres e-mail:</label><br>
+      <input type="email" id="emailZamowienie" name="emailZamowienie" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
+
+      <label for="adresZamowienie">Adres dostawy:</label><br>
+      <textarea id="adresZamowienie" name="adresZamowienie" required style="width: 100%; padding: 10px; margin-bottom: 15px;"></textarea><br>
+
+      <label for="produktZamowienie">Nazwa produktu:</label><br>
+      <input type="text" id="produktZamowienie" name="produktZamowienie" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
+
+      <label for="iloscZamowienie">Ilość:</label><br>
+      <input type="number" id="iloscZamowienie" name="iloscZamowienie" min="1" value="1" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
+
+      <button type="submit" style="padding: 12px 24px; background-color: #c9a947; border: none; color: black; font-weight: bold; border-radius: 25px; cursor: pointer;">
+        Wyślij zamówienie
+      </button>
+    </form>
+  </div>
+</section>  <section id="opinie" class="sekcja"><h2>Opinie</h2></section>
   <section id="blog" class="sekcja"><h2>Blog</h2></section>
   <section id="kontakt" class="sekcja"><h2>Kontakt</h2></section>
   <section id="regulamin" class="sekcja"><h2>Regulamin</h2></section>
@@ -226,6 +252,15 @@
   document.getElementById("projekt-form").addEventListener("submit", function(e) {
     e.preventDefault();
     alert("Dziękujemy za przesłanie projektu! Skontaktujemy się z Tobą wkrótce.");
+    this.reset();
+  });
+  
+</script>
+  <script>
+  // Obsługa formularza zamówienia
+  document.getElementById("formularz-zamowienia").addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Dziękujemy za zamówienie! Skontaktujemy się w celu potwierdzenia.");
     this.reset();
   });
 </script></body>
