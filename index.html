@@ -542,11 +542,100 @@
       this.reset();
     });
   </script>
-</section>  <section id="opinie" class="sekcja">
-    <h2>Opinie</h2>
-    <p>Zobacz, co mówią inni o naszych produktach i usługach.</p>
-  </section>
+<section id="opinie" class="sekcja">
+  <h2>Opinie</h2>
+  <p style="text-align: center; font-size: 1.1rem; margin-bottom: 25px;">
+    Sprawdź recenzje naszych klientów i dodaj swoją pozytywną opinię!
+  </p>
 
+  <div id="listaOpinii" style="max-width: 700px; margin: auto 0 40px; color: #f5f0e8;">
+    <!-- Przykładowe opinie -->
+    <div class="opinia" style="background: #2a262a; padding: 20px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 0 10px #c9a947;">
+      <strong>Anna K.</strong> <span style="color: #c9a947;">★★★★★</span>
+      <p>Świetna jakość produktów i ekspresowa obsługa. Polecam z całego serca!</p>
+    </div>
+    <div class="opinia" style="background: #2a262a; padding: 20px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 0 10px #c9a947;">
+      <strong>Marcin W.</strong> <span style="color: #c9a947;">★★★★★</span>
+      <p>Profesjonalne podejście i unikalne wzory. Moja ulubiona marka!</p>
+    </div>
+    <div class="opinia" style="background: #2a262a; padding: 20px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 0 10px #c9a947;">
+      <strong>Katarzyna P.</strong> <span style="color: #c9a947;">★★★★☆</span>
+      <p>Piękne produkty, szybka wysyłka. Z chęcią zamówię ponownie.</p>
+    </div>
+  </div>
+
+  <div style="max-width: 700px; margin: auto; background-color: #1e1b1e; padding: 25px; border-radius: 15px; box-shadow: 0 0 20px #c9a947;">
+    <h3 style="color: #c9a947; margin-bottom: 15px; text-align: center;">Dodaj swoją opinię</h3>
+
+    <form id="formularzOpinie" style="color: #f5f0e8;">
+      <label for="autorOpinii">Twoje imię lub pseudonim:</label><br>
+      <input type="text" id="autorOpinii" name="autorOpinii" required
+             style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: none;"><br>
+
+      <label for="ocenaOpinii">Ocena (4 lub 5 gwiazdek):</label><br>
+      <select id="ocenaOpinii" name="ocenaOpinii" required
+              style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: none;">
+        <option value="" disabled selected>-- wybierz ocenę --</option>
+        <option value="5">★★★★★</option>
+        <option value="4">★★★★☆</option>
+      </select><br>
+
+      <label for="tekstOpinii">Treść opinii:</label><br>
+      <textarea id="tekstOpinii" name="tekstOpinii" rows="4" required
+                placeholder="Napisz, co Ci się podobało..." style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: none;"></textarea><br>
+
+      <button type="submit"
+              style="background: linear-gradient(to right, #c9a947, #a37e2c); border: none; color: black; font-weight: bold; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-size: 1rem; box-shadow: 0 0 15px #c9a947;">
+        Dodaj opinię
+      </button>
+    </form>
+
+    <p id="infoOpinia" style="color: #c9a947; margin-top: 15px; text-align: center; display: none;"></p>
+  </div>
+
+  <script>
+    const formularzOpinie = document.getElementById('formularzOpinie');
+    const listaOpinii = document.getElementById('listaOpinii');
+    const infoOpinia = document.getElementById('infoOpinia');
+
+    formularzOpinie.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const autor = document.getElementById('autorOpinii').value.trim();
+      const ocena = document.getElementById('ocenaOpinii').value;
+      const tekst = document.getElementById('tekstOpinii').value.trim();
+
+      // Walidacja oceny (tylko 4 lub 5)
+      if (ocena !== "4" && ocena !== "5") {
+        alert("Możesz dodać tylko pozytywne opinie (4 lub 5 gwiazdek).");
+        return;
+      }
+
+      // Dodanie opinii do listy (frontend only)
+      const nowaOpinia = document.createElement('div');
+      nowaOpinia.classList.add('opinia');
+      nowaOpinia.style.background = '#2a262a';
+      nowaOpinia.style.padding = '20px';
+      nowaOpinia.style.borderRadius = '12px';
+      nowaOpinia.style.marginBottom = '15px';
+      nowaOpinia.style.boxShadow = '0 0 10px #c9a947';
+
+      const gwiazdki = ocena === "5" ? "★★★★★" : "★★★★☆";
+
+      nowaOpinia.innerHTML = `<strong>${autor}</strong> <span style="color: #c9a947;">${gwiazdki}</span>
+                              <p>${tekst}</p>`;
+
+      listaOpinii.prepend(nowaOpinia);
+
+      // Informacja dla użytkownika
+      infoOpinia.textContent = "Dziękujemy za Twoją pozytywną opinię!";
+      infoOpinia.style.display = "block";
+
+      // Reset formularza
+      formularzOpinie.reset();
+    });
+  </script>
+</section>
   <section id="blog" class="sekcja">
     <h2>Blog</h2>
     <p>Nowinki, inspiracje i opowieści zza kulis AdelbertusShop.</p>
