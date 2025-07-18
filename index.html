@@ -636,11 +636,106 @@
     });
   </script>
 </section>
-  <section id="blog" class="sekcja">
-    <h2>Blog</h2>
-    <p>Nowinki, inspiracje i opowieści zza kulis AdelbertusShop.</p>
-  </section>
+ <section id="blog" class="sekcja">
+  <h2>Blog</h2>
+  <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px; color: #f5f0e8;">
+    Śledź nasze inspiracje i dodaj własny wpis na blogu AdelbertusShop!
+  </p>
 
+  <div id="listaWpisow" style="max-width: 800px; margin: auto 0 40px; color: #f5f0e8;">
+    <!-- Przykładowe wpisy -->
+    <article style="background: #2a262a; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 0 15px #c9a947;">
+      <h3 style="color: #c9a947; margin-bottom: 8px;">Magia w projektowaniu ubrań</h3>
+      <p style="font-style: italic; margin-bottom: 12px;">Autor: Grzegorz M.</p>
+      <p>W AdelbertusShop wierzymy, że każdy produkt to małe dzieło sztuki, które niesie ze sobą wyjątkową energię i historię.</p>
+    </article>
+
+    <article style="background: #2a262a; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 0 15px #c9a947;">
+      <h3 style="color: #c9a947; margin-bottom: 8px;">Jak wybrać idealny projekt na koszulkę?</h3>
+      <p style="font-style: italic; margin-bottom: 12px;">Autor: Anna K.</p>
+      <p>Dobry projekt powinien odzwierciedlać Twoją osobowość i pasje. Pamiętaj o czytelności i oryginalności.</p>
+    </article>
+  </div>
+
+  <div style="max-width: 800px; margin: auto; background-color: #1e1b1e; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px #c9a947;">
+    <h3 style="color: #c9a947; margin-bottom: 20px; text-align: center;">Dodaj wpis na bloga</h3>
+
+    <form id="formularzBlog" style="color: #f5f0e8;">
+      <label for="tytulWpisu">Tytuł wpisu:</label><br>
+      <input type="text" id="tytulWpisu" name="tytulWpisu" required
+             style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: none;"><br>
+
+      <label for="autorWpisu">Autor:</label><br>
+      <input type="text" id="autorWpisu" name="autorWpisu" required
+             style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: none;"><br>
+
+      <label for="trescWpisu">Treść wpisu:</label><br>
+      <textarea id="trescWpisu" name="trescWpisu" rows="6" required
+                placeholder="Napisz coś inspirującego..." style="width: 100%; padding: 12px; margin-bottom: 25px; border-radius: 8px; border: none;"></textarea><br>
+
+      <button type="submit"
+              style="background: linear-gradient(to right, #c9a947, #a37e2c); border: none; color: black; font-weight: bold; padding: 14px 30px; border-radius: 30px; cursor: pointer; font-size: 1.1rem; box-shadow: 0 0 20px #c9a947;">
+        Dodaj wpis
+      </button>
+    </form>
+
+    <p id="infoBlog" style="color: #c9a947; margin-top: 20px; text-align: center; display: none;"></p>
+  </div>
+
+  <script>
+    const formularzBlog = document.getElementById('formularzBlog');
+    const listaWpisow = document.getElementById('listaWpisow');
+    const infoBlog = document.getElementById('infoBlog');
+
+    formularzBlog.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const tytul = document.getElementById('tytulWpisu').value.trim();
+      const autor = document.getElementById('autorWpisu').value.trim();
+      const tresc = document.getElementById('trescWpisu').value.trim();
+
+      if (!tytul || !autor || !tresc) {
+        alert("Wszystkie pola są wymagane.");
+        return;
+      }
+
+      // Tworzenie nowego wpisu
+      const nowyWpis = document.createElement('article');
+      nowyWpis.style.background = '#2a262a';
+      nowyWpis.style.padding = '20px';
+      nowyWpis.style.borderRadius = '15px';
+      nowyWpis.style.marginBottom = '20px';
+      nowyWpis.style.boxShadow = '0 0 15px #c9a947';
+
+      nowyWpis.innerHTML = `
+        <h3 style="color: #c9a947; margin-bottom: 8px;">${escapeHtml(tytul)}</h3>
+        <p style="font-style: italic; margin-bottom: 12px;">Autor: ${escapeHtml(autor)}</p>
+        <p>${escapeHtml(tresc).replace(/\n/g, '<br>')}</p>
+      `;
+
+      // Dodaj wpis na górę listy
+      listaWpisow.prepend(nowyWpis);
+
+      // Pokaz info i reset formy
+      infoBlog.textContent = "Twój wpis został dodany na blogu!";
+      infoBlog.style.display = 'block';
+
+      formularzBlog.reset();
+    });
+
+    // Prosta funkcja do bezpiecznego wstawiania tekstu (unikanie XSS)
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+  </script>
+</section>
   <section id="kontakt" class="sekcja">
     <h2>Kontakt</h2>
     <p>Masz pytania? Skontaktuj się z nami przez e-mail lub formularz.</p>
