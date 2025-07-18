@@ -99,333 +99,77 @@
     to { opacity: 1; transform: translateY(0); }
   }
 </style></head>
+
 <body>
+  <header>
+    <img src="logo.png" alt="AdelbertusShop Logo">
+  </header>
 
-  <!-- LOGO NA CAŁĄ SZEROKOŚĆ -->
+  <div style="background-color: #0f0f0f; text-align: center; padding: 40px 20px;">
+    <h1 style="color: #ffd700; font-size: 2.8rem;">Adelbertusshop – legalnie zakazany</h1>
+    <p style="color: #ccc; font-size: 1.4rem;">Witamy w iluzji wyboru. Wybierz nas.</p>
+  </div>
 
-</header>
-<!-- BLOK REKLAMOWY --><div style="background-color: #0f0f0f; text-align: center; padding: 40px 20px;">
-  <h1 style="color: #ffd700; font-size: 2.8rem; margin: 0 0 10px; font-family: 'Playfair Display', serif;">
-    Adelbertusshop – legalnie zakazany
-  </h1>
-  <p style="color: #ccc; font-size: 1.4rem; font-style: italic; margin: 0;">
-    Witamy w iluzji wyboru. Wybierz nas.
-  </p>
-</div>
-<!-- KONIEC BLOKU REKLAMOWEGO -->
   <nav>
     <button onclick="pokazSekcje('sklep')">Sklep</button>
+    <button onclick="pokazSekcje('zamowienia')">Zamówienia</button>
     <button onclick="pokazSekcje('projektuj')">Projektuj</button>
-    <button onclick="pokazSekcje('marketplace')">Marketplace</button>
-    <button onclick="pokazSekcje('reklama')">Reklama</button>
     <button onclick="pokazSekcje('zbiorka')">Zbiórka</button>
+    <button onclick="pokazSekcje('reklama')">Reklama</button>
     <button onclick="pokazSekcje('opinie')">Opinie</button>
     <button onclick="pokazSekcje('blog')">Blog</button>
-    <button onclick="pokazSekcje('zamowienia')">Zamówienia</button>
-    <button onclick="pokazSekcje('artysta')">Artysta</button>
-    <button onclick="pokazSekcje('kontakt')">Kontakt</button>
     <button onclick="pokazSekcje('regulamin')">Regulamin</button>
   </nav>
 
-  <section id="sklep" class="sekcja">
+  <!-- SEKCJE -->
+  <section id="sklep" class="sekcja active">
     <h2>Sklep</h2>
-    <p>Tu znajdziesz wszystkie produkty AdelbertusShop.</p>
-  </section>
-
-<section id="projektuj" class="sekcja">
-  <h2>Projektuj własny produkt</h2>
-  <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
-
-  <div style="max-width: 800px; margin: auto; display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;">
-    <!-- Panel projektowania -->
-    <div style="flex: 1 1 300px; min-width: 280px;">
-      <form id="formularzProjektu" style="text-align: left;">
-        <label for="nazwa">Twoje imię lub pseudonim:</label><br>
-        <input type="text" id="nazwa" name="nazwa" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
-
-        <label for="typProduktu">Wybierz produkt:</label><br>
-        <select id="typProduktu" name="typProduktu" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
-          <option value="koszulka">Koszulka</option>
-          <option value="bluza">Bluza</option>
-        </select><br>
-
-        <label for="tekst">Twój napis (np. hasło, cytat):</label><br>
-        <input type="text" id="tekst" name="tekst" placeholder="Wpisz tekst" style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
-
-        <label for="fontSelect">Wybierz czcionkę:</label><br>
-        <select id="fontSelect" style="width: 100%; padding: 10px; margin-bottom: 15px;">
-          <option value="'Playfair Display', serif">Playfair Display</option>
-          <option value="'Montserrat', sans-serif">Montserrat</option>
-          <option value="'Roboto Slab', serif">Roboto Slab</option>
-        </select><br>
-
-        <label for="tekstColor">Kolor tekstu:</label><br>
-        <input type="color" id="tekstColor" value="#c9a947" style="width: 100%; padding: 5px 10px 5px 10px; margin-bottom: 15px;"><br>
-
-        <label for="plik">Dodaj swoją grafikę (PNG/JPG):</label><br>
-        <input type="file" id="plik" name="plik" accept="image/png, image/jpeg" style="margin-bottom: 15px;"><br>
-
-        <button type="submit" style="padding: 12px 24px; background-color: #c9a947; border: none; color: black; font-weight: bold; border-radius: 25px; cursor: pointer;">Wyślij projekt</button>
-      </form>
-
-      <p style="margin-top: 20px; font-size: 1rem; color: #ccc;">
-        Zatwierdzenie projektu przyjdzie na e-mail: <strong>mielniczukgrzegosz74@gmail.com</strong><br>
-        lub SMS na numer <strong>604 296 650</strong> z dopiskiem <em>„projekt własny”</em>.
-      </p>
-    </div>
-
-    <!-- Podgląd produktu -->
-    <div style="flex: 1 1 350px; min-width: 280px; position: relative; text-align: center;">
-      <div id="produktContainer" style="position: relative; width: 300px; height: 400px; margin: auto; border-radius: 20px; overflow: hidden; box-shadow: 0 0 20px #c9a947;">
-        <img id="produktImg" src="https://i.imgur.com/UqyN94O.png" alt="Koszulka" style="width: 100%; height: 100%; object-fit: contain;">
-        <div id="tekstPodglad" style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); 
-             font-family: 'Playfair Display', serif; font-size: 24px; font-weight: bold; color: #c9a947; text-shadow: 0 0 8px rgba(0,0,0,0.7); pointer-events: none; white-space: pre-wrap; max-width: 80%;"></div>
-        <img id="grafikaPodglad" src="" alt="" style="position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); max-width: 50%; max-height: 30%; display: none; pointer-events: none;">
-      </div>
-    </div>
-  </div>
-
-  <style>
-    /* Wczytane fonty Google */
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display&family=Roboto+Slab&display=swap');
-  </style>
-
-  <script>
-    const produktImg = document.getElementById('produktImg');
-    const tekstInput = document.getElementById('tekst');
-    const tekstPodglad = document.getElementById('tekstPodglad');
-    const fontSelect = document.getElementById('fontSelect');
-    const tekstColor = document.getElementById('tekstColor');
-    const typProduktu = document.getElementById('typProduktu');
-    const plikInput = document.getElementById('plik');
-    const grafikaPodglad = document.getElementById('grafikaPodglad');
-    const formularzProjektu = document.getElementById('formularzProjektu');
-
-    // Aktualizacja podglądu tekstu i czcionki
-    function aktualizujTekst() {
-      tekstPodglad.textContent = tekstInput.value;
-      tekstPodglad.style.fontFamily = fontSelect.value;
-      tekstPodglad.style.color = tekstColor.value;
-    }
-
-    // Zmiana produktu i obrazka podglądu
-    typProduktu.addEventListener('change', () => {
-      if (typProduktu.value === 'koszulka') {
-        produktImg.src = 'https://i.imgur.com/UqyN94O.png'; // koszulka
-      } else {
-        produktImg.src = 'https://i.imgur.com/5GnD3nM.png'; // bluza
-      }
-      // reset podglądu grafiki
-      grafikaPodglad.style.display = 'none';
-      grafikaPodglad.src = '';
-      aktualizujTekst();
-    });
-
-    // Aktualizacja tekstu na żywo
-    tekstInput.addEventListener('input', aktualizujTekst);
-    fontSelect.addEventListener('change', aktualizujTekst);
-    tekstColor.addEventListener('input', aktualizujTekst);
-
-    // Obsługa wczytywania grafiki i podglądu
-    plikInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          grafikaPodglad.src = evt.target.result;
-          grafikaPodglad.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-      } else {
-        grafikaPodglad.style.display = 'none';
-        grafikaPodglad.src = '';
-      }
-    });
-
-    // Obsługa wysyłania formularza
-    formularzProjektu.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const nazwa = document.getElementById('nazwa').value.trim();
-      const produkt = typProduktu.value;
-      const tekst = tekstInput.value.trim();
-      const font = fontSelect.value;
-      const kolor = tekstColor.value;
-
-      // Grafikę wyślemy jako link w mailu (z uwagi na ograniczenia mailto nie możemy dołączyć pliku)
-      let grafikaInfo = grafikaPodglad.src ? "Dołączona grafika (podgląd)" : "Brak grafiki";
-
-      // Budujemy treść maila (zakładamy mailto z parametrami)
-      const temat = encodeURIComponent("Projekt własny AdelbertusShop");
-      const body = encodeURIComponent(
-        `Imię/pseudonim: ${nazwa}\n` +
-        `Produkt: ${produkt}\n` +
-        `Tekst: ${tekst}\n` +
-        `Czcionka: ${font}\n` +
-        `Kolor tekstu: ${kolor}\n` +
-        `${grafikaInfo}\n\n` +
-        "Projekt został przesłany przez stronę AdelbertusShop."
-      );
-
-      const mailto = `mailto:mielniczukgrzegosz74@gmail.com?subject=${temat}&body=${body}`;
-
-      window.location.href = mailto;
-
-      alert('Projekt został wysłany. Sprawdź e-mail i SMS z potwierdzeniem.');
-      formularzProjektu.reset();
-      tekstPodglad.textContent = '';
-      grafikaPodglad.style.display = 'none';
-      grafikaPodglad.src = '';
-      produktImg.src = (produkt === 'koszulka') ? 'https://i.imgur.com/UqyN94O.png' : 'https://i.imgur.com/5GnD3nM.png';
-    });
-
-    // Start ustawienie
-    aktualizujTekst();
- <section id="marketplace" class="sekcja">
-  <h2>Marketplace</h2>
-  <p style="text-align: center; font-size: 1.2rem;">Dołącz do naszej magicznej platformy sprzedażowej jako Kupiec i zarabiaj na swoich projektach!</p>
-
-  <div style="max-width: 700px; margin: 30px auto; background-color: #2a262a; padding: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(201, 169, 71, 0.1);">
-    <h3 style="color: #c9a947; text-align: center;">Zostań sprzedawcą</h3>
-    <p style="text-align: center;">Wypełnij formularz i dokonaj opłaty weryfikacyjnej BLIK na numer <strong>573 939 925</strong>.</p>
-    
-    <form id="formularzMarketplace" style="margin-top: 20px;">
-      <label for="nazwaMarki">Nazwa marki / firmy:</label><br>
-      <input type="text" id="nazwaMarki" name="nazwaMarki" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
-
-      <label for="email">E-mail do kontaktu:</label><br>
-      <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
-
-      <label for="opis">Opisz, co chcesz sprzedawać:</label><br>
-      <textarea id="opis" name="opis" rows="5" style="width: 100%; padding: 10px; margin-bottom: 15px;"></textarea><br>
-
-      <p style="font-size: 0.95rem; color: #ccc;">
-        Po przesłaniu formularza, dokonaj opłaty BLIK (49 zł) na numer <strong>573 939 925</strong> z dopiskiem: <em>„Marketplace – zgłoszenie”</em>.<br>
-        Twoje zgłoszenie zostanie rozpatrzone, a decyzja przesłana na adres: <strong>mielniczukgrzegosz74@gmail.com</strong>.
-      </p>
-
-      <button type="submit" style="padding: 12px 24px; background-color: #c9a947; border: none; color: black; font-weight: bold; border-radius: 25px; cursor: pointer;">Wyślij zgłoszenie</button>
-    </form>
-  </div>
-
-  <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #aaa;">
-    Tylko zatwierdzeni przez Administratora sprzedawcy mogą wystawiać swoje produkty. Hasło administratora (tylko dla wewnętrznego użytku): <code>Wojownik.03</code>
-  </p>
-<section id="reklama" class="sekcja">
-  <h2>Reklama w AdelbertusShop</h2>
-  <p style="text-align: center; font-size: 1.1rem;">
-    Wykup miejsce reklamowe i pokaż się w Zakazanej Świątyni. Możesz zamieścić baner lub logo — decydujesz na jak długo!
-  </p>
-
-  <div style="max-width: 700px; margin: 30px auto; background-color: #2a262a; padding: 30px; border-radius: 10px;">
-    <h3 style="color: #c9a947;">Warianty reklamy</h3>
-    <ul style="color: #ddd; line-height: 1.7;">
-      <li><strong>1 dzień:</strong> 15 zł</li>
-      <li><strong>1 tydzień:</strong> 70 zł</li>
-      <li><strong>1 miesiąc:</strong> 199 zł</li>
-    </ul>
-    <p style="color: #ccc; margin-top: 10px;">Po upływie opłaconego czasu użytkownik otrzyma e-mail z przypomnieniem o przedłużeniu. Brak reakcji – reklama zostaje automatycznie usunięta.</p>
-
-    <form id="formularzReklama" style="margin-top: 20px;">
-      <label for="nazwaReklamodawcy">Nazwa firmy / osoby:</label><br>
-      <input type="text" id="nazwaReklamodawcy" name="nazwaReklamodawcy" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
-
-      <label for="emailReklama">E-mail kontaktowy:</label><br>
-      <input type="email" id="emailReklama" name="emailReklama" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
-
-      <label for="okres">Wybierz okres reklamy:</label><br>
-      <select id="okres" name="okres" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
-        <option value="1dzien">1 dzień – 15 zł</option>
-        <option value="1tydzien">1 tydzień – 70 zł</option>
-        <option value="1miesiac">1 miesiąc – 199 zł</option>
-      </select><br>
-
-      <label for="baner">Dodaj baner/logo (JPG/PNG):</label><br>
-      <input type="file" id="baner" name="baner" accept="image/*" style="margin-bottom: 20px;"><br>
-
-      <p style="font-size: 0.95rem; color: #ccc;">
-        Po przesłaniu formularza, dokonaj opłaty BLIK na numer <strong>573 939 925</strong> z dopiskiem: <em>„Reklama – wybrany okres”</em>.<br>
-        Zgłoszenie zostanie przesłane na e-mail: <strong>mielniczukgrzegosz74@gmail.com</strong> – zatwierdzenie nastąpi ręcznie.
-      </p>
-
-      <button type="submit" style="padding: 12px 24px; background-color: #c9a947; border: none; color: black; font-weight: bold; border-radius: 25px; cursor: pointer;">Wyślij zgłoszenie</button>
-    </form>
-  </div>
-
-  <div style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-    <!-- Przykładowe miejsce na reklamy -->
-    <div class="reklama-slot" style="width: 150px; height: 150px; background-color: #111; border: 2px solid #c9a947; display: flex; align-items: center; justify-content: center;">
-      <span style="color: #777;">Reklama A</span>
-    </div>
-    <div class="reklama-slot" style="width: 150px; height: 150px; background-color: #111; border: 2px solid #c9a947; display: flex; align-items: center; justify-content: center;">
-      <span style="color: #777;">Reklama B</span>
-    </div>
-    <div class="reklama-slot" style="width: 150px; height: 150px; background-color: #111; border: 2px solid #c9a947; display: flex; align-items: center; justify-content: center;">
-      <span style="color: #777;">Reklama C</span>
-    </div>
-  </div>
-
-  <p style="text-align: center; margin-top: 30px; font-size: 0.9rem; color: #aaa;">
-    Zarządzanie reklamami możliwe tylko przez administratora. Hasło wewnętrzne: <code>Wojownik.03</code>
-  </p>
-</section>
-  <section id="zbiorka" class="sekcja">
-    <h2>Zbiórka</h2>
-    <p>Wesprzyj dom dziecka! Przelej dowolną kwotę BLIK na numer <strong>573 939 925</strong> z dopiskiem <strong>"Pomoc"</strong>.</p>
-  </section>
-
-  <section id="opinie" class="sekcja">
-    <h2>Opinie</h2>
-    <p>Sprawdź recenzje, zostaw swoją opinię i pomóż innym w wyborze.</p>
-  </section>
-
-  <section id="blog" class="sekcja">
-    <h2>Blog</h2>
-    <p>Wpisy, porady, inspiracje – śledź nasz blog!</p>
+    <p>Tu znajdziesz nasze wyjątkowe produkty.</p>
   </section>
 
   <section id="zamowienia" class="sekcja">
     <h2>Zamówienia</h2>
-    <p>Zamów swój produkt z indywidualną grafiką lub projektem.</p>
+    <p>Sprawdź status zamówienia lub złóż nowe.</p>
   </section>
 
-  <section id="artysta" class="sekcja">
-    <h2>Artysta</h2>
-    <p>Poznaj autora grafik i historię AdelbertusShop.</p>
+  <section id="projektuj" class="sekcja">
+    <h2>Projektuj własny produkt</h2>
+    <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i wybierz produkt!</p>
+    <!-- Tu będzie formularz projektowania -->
   </section>
 
-  <section id="kontakt" class="sekcja">
-    <h2>Kontakt</h2>
-    <p>Masz pytania? Napisz do nas!</p>
+  <section id="zbiorka" class="sekcja">
+    <h2>Zbiórka</h2>
+    <p>Wspieraj inicjatywy, które tworzymy wspólnie.</p>
+  </section>
+
+  <section id="reklama" class="sekcja">
+    <h2>Reklama</h2>
+    <p>Zareklamuj się w naszym sklepie – cennik, warunki i formularz.</p>
+  </section>
+
+  <section id="opinie" class="sekcja">
+    <h2>Opinie</h2>
+    <p>Co mówią nasi klienci?</p>
+  </section>
+
+  <section id="blog" class="sekcja">
+    <h2>Blog</h2>
+    <p>Magia, inspiracje, tajemnice – czytaj więcej.</p>
   </section>
 
   <section id="regulamin" class="sekcja">
     <h2>Regulamin</h2>
-    <p>Zapoznaj się z zasadami korzystania z naszego sklepu.</p>
+    <p>Zapoznaj się z zasadami sklepu AdelbertusShop.</p>
   </section>
 
+  <!-- SKRYPT NAWIGACJI -->
   <script>
-    function pokazSekcje(id) {
+    function pokazSekcje(nazwa) {
       const sekcje = document.querySelectorAll('.sekcja');
-      sekcje.forEach(sekcja => sekcja.style.display = 'none');
-      document.getElementById(id).style.display = 'block';
+      sekcje.forEach(s => s.classList.remove('active'));
+      const aktywna = document.getElementById(nazwa);
+      if (aktywna) aktywna.classList.add('active');
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      pokazSekcje('sklep'); // domyślna sekcja
-    });
   </script>
-<script>
-  document.getElementById("formularzProjektu").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const imie = document.getElementById("nazwa").value;
-    const produkt = document.getElementById("typProduktu").value;
-    const tekst = document.getElementById("tekst").value;
-
-    alert("Dziękujemy za przesłanie projektu!\n\nWybrany produkt: " + produkt + "\nTwoje imię: " + imie + "\nTekst: " + tekst + "\n\nZatwierdzenie przyjdzie na podany kontakt.");
-
-    // Tu można dodać wysyłkę przez backend (np. do PHP / Firebase / Email API itd.)
-  });
-</script></body>
-</html>
+</body>
