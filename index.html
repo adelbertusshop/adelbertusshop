@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdelbertusShop</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: #f5f5dc;
+    }
+    header {
+      background-color: #111;
+      color: gold;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #222;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: #f5f5dc;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    nav button:hover {
+      background-color: gold;
+      color: black;
+    }
+    .sekcja {
+      display: none;
+      padding: 20px;
+    }
+    .active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
 
+  <header>
+    <h1>AdelbertusShop</h1>
+    <p>– legalnie zakazany –</p>
+  </header>
+
+  <nav>
+    <button data-target="sklep">Sklep</button>
+    <button data-target="projektuj">Projektuj</button>
+    <button data-target="marketplace">Marketplace</button>
+    <button data-target="reklama">Reklama</button>
+    <button data-target="zamowienia">Zamówienia</button>
+    <button data-target="opinie">Opinie</button>
+    <button data-target="blog">Blog</button>
+    <button data-target="kontakt">Kontakt</button>
+    <button data-target="regulamin">Regulamin</button>
+    <button data-target="zbiorka">Zbiórka</button>
+  </nav>
+
+  <section id="sklep" class="sekcja active">
+    <h2>Sklep</h2>
+    <p>(Ta sekcja będzie domyślnie widoczna. Wkleisz tu produkty.)</p>
+  </section>
+
+  <section id="projektuj" class="sekcja"><h2>Projektuj</h2></section>
+  <section id="marketplace" class="sekcja"><h2>Marketplace</h2></section>
+  <section id="reklama" class="sekcja"><h2>Reklama</h2></section>
+  <section id="zamowienia" class="sekcja"><h2>Zamówienia</h2></section>
+  <section id="opinie" class="sekcja"><h2>Opinie</h2></section>
+  <section id="blog" class="sekcja"><h2>Blog</h2></section>
+  <section id="kontakt" class="sekcja"><h2>Kontakt</h2></section>
+  <section id="regulamin" class="sekcja"><h2>Regulamin</h2></section>
+  <section id="zbiorka" class="sekcja"><h2>Zbiórka</h2></section>
+
+  <script>
+    // Obsługa menu – przełączanie sekcji
+    document.querySelectorAll('nav button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        document.querySelectorAll('.sekcja').forEach(sec => {
+          sec.classList.remove('active');
+        });
+        document.getElementById(target).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
