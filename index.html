@@ -427,12 +427,122 @@
     });
   </script>
 </section>
-  <section id="zamowienia" class="sekcja">
-    <h2>Zamówienia</h2>
-    <p>Sprawdź status swoich zamówień i historii zakupów.</p>
-  </section>
+<section id="zamowienia" class="sekcja">
+  <h2>Zamówienia</h2>
+  <p style="text-align: center; font-size: 1.1rem; margin-bottom: 30px;">
+    Zamów swój produkt z indywidualną grafiką lub projektem. Wypełnij formularz poniżej.
+  </p>
 
-  <section id="opinie" class="sekcja">
+  <div style="max-width: 700px; margin: auto; background-color: #1e1b1e; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px #c9a947;">
+    <form id="formularzZamowienia" enctype="multipart/form-data" style="color: #f5f0e8; font-size: 1rem;">
+      
+      <label for="imieNazwisko">Imię i nazwisko:</label><br>
+      <input type="text" id="imieNazwisko" name="imieNazwisko" required
+             style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: none;"><br>
+
+      <label for="emailZamowienia">E-mail kontaktowy:</label><br>
+      <input type="email" id="emailZamowienia" name="emailZamowienia" required
+             style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: none;"><br>
+
+      <label for="telefonZamowienia">Numer telefonu:</label><br>
+      <input type="tel" id="telefonZamowienia" name="telefonZamowienia" pattern="[0-9\s\-\+]{7,15}" required
+             placeholder="np. 604 296 650" style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: none;"><br>
+
+      <label for="produktZamowienia">Wybierz produkt:</label><br>
+      <select id="produktZamowienia" name="produktZamowienia" required
+              style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: none;">
+        <option value="" disabled selected>-- wybierz produkt --</option>
+        <option value="koszulka">Koszulka</option>
+        <option value="bluza">Bluza</option>
+        <option value="kubek">Kubek</option>
+      </select><br>
+
+      <label for="rozmiarZamowienia">Rozmiar (jeśli dotyczy):</label><br>
+      <select id="rozmiarZamowienia" name="rozmiarZamowienia"
+              style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: none;">
+        <option value="" selected>-- wybierz rozmiar --</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+        <option value="XXL">XXL</option>
+      </select><br>
+
+      <label for="iloscZamowienia">Ilość:</label><br>
+      <input type="number" id="iloscZamowienia" name="iloscZamowienia" min="1" max="100" value="1" required
+             style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: none;"><br>
+
+      <label for="tekstPersonalizacji">Tekst personalizacji (np. napis na produkcie):</label><br>
+      <textarea id="tekstPersonalizacji" name="tekstPersonalizacji" rows="3" placeholder="Wpisz swój tekst..."
+                style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: none;"></textarea><br>
+
+      <label for="plikZamowienia">Dodaj grafikę (PNG/JPG) do personalizacji (opcjonalnie):</label><br>
+      <input type="file" id="plikZamowienia" name="plikZamowienia" accept="image/png, image/jpeg"
+             style="margin-bottom: 20px;"><br>
+
+      <button type="submit"
+              style="background: linear-gradient(to right, #c9a947, #a37e2c); border: none; color: black; font-weight: bold; padding: 15px 30px; border-radius: 30px; cursor: pointer; font-size: 1.1rem; box-shadow: 0 0 15px #c9a947;">
+        Wyślij zamówienie
+      </button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('formularzZamowienia').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Pobierz dane z formularza
+      const imieNazwisko = document.getElementById('imieNazwisko').value.trim();
+      const email = document.getElementById('emailZamowienia').value.trim();
+      const telefon = document.getElementById('telefonZamowienia').value.trim();
+      const produkt = document.getElementById('produktZamowienia').value;
+      const rozmiar = document.getElementById('rozmiarZamowienia').value || 'brak';
+      const ilosc = document.getElementById('iloscZamowienia').value;
+      const tekst = document.getElementById('tekstPersonalizacji').value.trim();
+
+      // Grafika jako podgląd base64 (opcjonalnie)
+      const plikInput = document.getElementById('plikZamowienia');
+      let grafikaInfo = 'Brak grafiki';
+      if (plikInput.files.length > 0) {
+        grafikaInfo = 'Dołączono grafikę (podgląd w załączniku)';
+      }
+
+      // Budujemy treść maila - z uwagi na mailto brak załączników, tylko info o grafice
+      const temat = encodeURIComponent('Zamówienie AdelbertusShop');
+      const body = encodeURIComponent(
+        `Imię i nazwisko: ${imieNazwisko}\n` +
+        `E-mail: ${email}\n` +
+        `Telefon: ${telefon}\n` +
+        `Produkt: ${produkt}\n` +
+        `Rozmiar: ${rozmiar}\n` +
+        `Ilość: ${ilosc}\n` +
+        `Tekst personalizacji: ${tekst || '- brak'}\n` +
+        `${grafikaInfo}\n\n` +
+        'Zamówienie zostało przesłane przez stronę AdelbertusShop.'
+      );
+
+      // Wywołanie mailto:
+      const mailto = `mailto:mielniczukgrzegosz74@gmail.com?subject=${temat}&body=${body}`;
+
+      // Wyświetlamy podsumowanie w alercie
+      alert(
+        'Dziękujemy za złożenie zamówienia!\n\n' +
+        `Produkt: ${produkt}\n` +
+        `Rozmiar: ${rozmiar}\n` +
+        `Ilość: ${ilosc}\n` +
+        `Tekst personalizacji: ${tekst || '- brak'}\n` +
+        `Grafika: ${grafikaInfo === 'Brak grafiki' ? 'brak' : 'dołączona'}\n\n` +
+        'Sprawdź swój e-mail i postępuj zgodnie z instrukcjami.'
+      );
+
+      // Przekierowanie do mailto
+      window.location.href = mailto;
+
+      // Reset formularza
+      this.reset();
+    });
+  </script>
+</section>  <section id="opinie" class="sekcja">
     <h2>Opinie</h2>
     <p>Zobacz, co mówią inni o naszych produktach i usługach.</p>
   </section>
