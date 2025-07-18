@@ -2,174 +2,168 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop</title>
   <style>
-  body {
-    background-color: #0d0c0f;
-    color: #f5f0e8;
-    font-family: 'Playfair Display', serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-  }
+    body {
+      background-color: #0d0c0f;
+      color: #f5f0e8;
+      font-family: 'Playfair Display', serif;
+      margin: 0; padding: 0;
+      line-height: 1.6;
+    }
 
-  header {
-    background-color: #1a141f;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-  }
+    header {
+      background-color: #1a141f;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    }
 
-  header img {
-    max-width: 250px;
-    filter: drop-shadow(0 0 8px rgba(201, 169, 71, 0.4));
-  }
+    header img {
+      max-width: 250px;
+      filter: drop-shadow(0 0 8px rgba(201, 169, 71, 0.4));
+    }
 
-  nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    background-color: #161217;
-    padding: 10px 0;
-    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.05);
-  }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: #161217;
+      padding: 10px 0;
+      box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    }
 
-  nav button {
-    background: linear-gradient(to right, #c9a947, #a37e2c);
-    border: none;
-    color: #0d0c0f;
-    padding: 12px 24px;
-    margin: 6px;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(201, 169, 71, 0.3);
-    transition: background 0.3s ease, transform 0.2s ease;
-  }
+    nav button {
+      background: linear-gradient(to right, #c9a947, #a37e2c);
+      border: none;
+      color: #0d0c0f;
+      padding: 12px 24px;
+      margin: 6px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(201, 169, 71, 0.3);
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
 
-  nav button:hover {
-    background: #f6d376;
-    transform: scale(1.05);
-  }
+    nav button:hover {
+      background: #f6d376;
+      transform: scale(1.05);
+    }
 
-  .sekcja {
-    display: none;
-    padding: 50px 20px;
-    max-width: 1000px;
-    margin: auto;
-    background-color: #1e1b1e;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(201, 169, 71, 0.1);
-  }
+    .sekcja {
+      display: none;
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: 40px auto;
+      background-color: #1e1b1e;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(201, 169, 71, 0.1);
+      animation: fadeIn 0.6s ease;
+    }
 
-  .sekcja.active {
-    display: block;
-    animation: fadeIn 0.6s ease;
-  }
+    .sekcja.active {
+      display: block;
+    }
 
-  .sekcja h2 {
-    font-size: 2.4rem;
-    color: #c9a947;
-    text-align: center;
-    margin-bottom: 1rem;
-    position: relative;
-  }
+    .sekcja h2 {
+      font-size: 2.4rem;
+      color: #c9a947;
+      text-align: center;
+      margin-bottom: 1rem;
+      position: relative;
+    }
 
-  .sekcja h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 3px;
-    background: linear-gradient(to right, #c9a947, #a37e2c);
-  }
+    .sekcja h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(to right, #c9a947, #a37e2c);
+    }
 
-  .sekcja p {
-    font-size: 1.2rem;
-    color: #f5f0e8;
-    text-align: center;
-  }
+    .sekcja p {
+      font-size: 1.2rem;
+      color: #f5f0e8;
+      text-align: center;
+    }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style></head>
-
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
 <body>
-  <header>
-    <img src="logo.png" alt="AdelbertusShop Logo">
-  </header>
 
-  <div style="background-color: #0f0f0f; text-align: center; padding: 40px 20px;">
-    <h1 style="color: #ffd700; font-size: 2.8rem;">Adelbertusshop – legalnie zakazany</h1>
-    <p style="color: #ccc; font-size: 1.4rem;">Witamy w iluzji wyboru. Wybierz nas.</p>
-  </div>
+  <header>
+    <img src="https://i.imgur.com/UqyN94O.png" alt="AdelbertusShop Logo" />
+  </header>
 
   <nav>
     <button onclick="pokazSekcje('sklep')">Sklep</button>
-    <button onclick="pokazSekcje('zamowienia')">Zamówienia</button>
     <button onclick="pokazSekcje('projektuj')">Projektuj</button>
-    <button onclick="pokazSekcje('zbiorka')">Zbiórka</button>
+    <button onclick="pokazSekcje('marketplace')">Marketplace</button>
     <button onclick="pokazSekcje('reklama')">Reklama</button>
+    <button onclick="pokazSekcje('zbiorka')">Zbiórka</button>
     <button onclick="pokazSekcje('opinie')">Opinie</button>
     <button onclick="pokazSekcje('blog')">Blog</button>
+    <button onclick="pokazSekcje('zamowienia')">Zamówienia</button>
+    <button onclick="pokazSekcje('artysta')">Artysta</button>
+    <button onclick="pokazSekcje('kontakt')">Kontakt</button>
     <button onclick="pokazSekcje('regulamin')">Regulamin</button>
   </nav>
 
-  <!-- SEKCJE -->
+  <!-- Sekcje sklepu -->
   <section id="sklep" class="sekcja active">
     <h2>Sklep</h2>
-    <p>Tu znajdziesz nasze wyjątkowe produkty.</p>
-  </section>
-
-  <section id="zamowienia" class="sekcja">
-    <h2>Zamówienia</h2>
-    <p>Sprawdź status zamówienia lub złóż nowe.</p>
+    <p>Tu znajdziesz wszystkie produkty AdelbertusShop.</p>
   </section>
 
   <section id="projektuj" class="sekcja">
     <h2>Projektuj własny produkt</h2>
-    <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i wybierz produkt!</p>
-    <!-- Tu będzie formularz projektowania -->
+    <p>Stwórz unikalny projekt na koszulkę lub bluzę.</p>
+  </section>
+
+  <section id="marketplace" class="sekcja">
+    <h2>Marketplace</h2>
+    <p>Zarabiaj na swoich projektach jako Kupiec.</p>
+  </section>
+
+  <section id="reklama" class="sekcja">
+    <h2>Reklama w AdelbertusShop</h2>
+    <p>Wykup miejsce reklamowe i pokaż się.</p>
   </section>
 
   <section id="zbiorka" class="sekcja">
     <h2>Zbiórka</h2>
-    <p>Wspieraj inicjatywy, które tworzymy wspólnie.</p>
-  </section>
-
-  <section id="reklama" class="sekcja">
-    <h2>Reklama</h2>
-    <p>Zareklamuj się w naszym sklepie – cennik, warunki i formularz.</p>
+    <p>Wesprzyj dom dziecka! Przelej BLIK na numer <strong>573 939 925</strong> z dopiskiem <strong>"Pomoc"</strong>.</p>
   </section>
 
   <section id="opinie" class="sekcja">
     <h2>Opinie</h2>
-    <p>Co mówią nasi klienci?</p>
+    <p>Sprawdź recenzje, zostaw swoją opinię i pomóż innym.</p>
   </section>
 
   <section id="blog" class="sekcja">
     <h2>Blog</h2>
-    <p>Magia, inspiracje, tajemnice – czytaj więcej.</p>
+    <p>Porady, inspiracje i nowości.</p>
   </section>
 
-  <section id="regulamin" class="sekcja">
-    <h2>Regulamin</h2>
-    <p>Zapoznaj się z zasadami sklepu AdelbertusShop.</p>
+  <section id="zamowienia" class="sekcja">
+    <h2>Zamówienia</h2>
+    <p>Zamów swój produkt z indywidualnym projektem.</p>
   </section>
 
-  <!-- SKRYPT NAWIGACJI -->
-  <script>
-    function pokazSekcje(nazwa) {
-      const sekcje = document.querySelectorAll('.sekcja');
-      sekcje.forEach(s => s.classList.remove('active'));
-      const aktywna = document.getElementById(nazwa);
-      if (aktywna) aktywna.classList.add('active');
-    }
-  </script>
-</body>
+  <section id="artysta" class="sekcja">
+    <h2>Artysta</h2>
+    <p>Poznaj autora grafik i historię AdelbertusShop.</p>
+  </section>
+
+  <section id="kontakt" class="sekcja">
+    <h2>Kontakt
