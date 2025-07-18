@@ -132,11 +132,31 @@
     <p>Tu znajdziesz wszystkie produkty AdelbertusShop.</p>
   </section>
 
-  <section id="projektuj" class="sekcja">
-    <h2>Projektuj</h2>
-    <p>Zaprojektuj własny produkt z grafiką: koszulkę, bluzę lub czapkę.</p>
-  </section>
+ <section id="projektuj" class="sekcja">
+  <h2>Projektuj własny produkt</h2>
+  <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i wybierz produkt!</p>
 
+  <form id="formularzProjektu" style="max-width: 600px; margin: auto; text-align: left;">
+    <label for="nazwa">Twoje imię lub pseudonim:</label><br>
+    <input type="text" id="nazwa" name="nazwa" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
+
+    <label for="typProduktu">Wybierz produkt:</label><br>
+    <select id="typProduktu" name="typProduktu" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+      <option value="koszulka">Koszulka</option>
+      <option value="bluza">Bluza</option>
+    </select><br>
+
+    <label for="tekst">Twój napis (np. hasło, cytat):</label><br>
+    <input type="text" id="tekst" name="tekst" placeholder="Wpisz tekst" style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
+
+    <label for="plik">Dodaj swoją grafikę (PNG/JPG):</label><br>
+    <input type="file" id="plik" name="plik" accept="image/*" style="margin-bottom: 20px;"><br>
+
+    <button type="submit" style="padding: 12px 24px; background-color: #c9a947; border: none; color: black; font-weight: bold; border-radius: 25px; cursor: pointer;">Wyślij projekt</button>
+  </form>
+
+  <p style="margin-top: 20px; font-size: 1rem; color: #ccc;">Zatwierdzenie projektu przyjdzie na e-mail: <strong>mielniczukgrzegosz74@gmail.com</strong> lub SMS na numer <strong>604 296 650</strong> z dopiskiem <em>„projekt własny”</em>.</p>
+</section>
   <section id="marketplace" class="sekcja">
     <h2>Marketplace</h2>
     <p>Wystawiaj swoje projekty i produkty. Promuj własną markę lub firmę!</p>
@@ -193,6 +213,17 @@
       pokazSekcje('sklep'); // domyślna sekcja
     });
   </script>
+<script>
+  document.getElementById("formularzProjektu").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-</body>
+    const imie = document.getElementById("nazwa").value;
+    const produkt = document.getElementById("typProduktu").value;
+    const tekst = document.getElementById("tekst").value;
+
+    alert("Dziękujemy za przesłanie projektu!\n\nWybrany produkt: " + produkt + "\nTwoje imię: " + imie + "\nTekst: " + tekst + "\n\nZatwierdzenie przyjdzie na podany kontakt.");
+
+    // Tu można dodać wysyłkę przez backend (np. do PHP / Firebase / Email API itd.)
+  });
+</script></body>
 </html>
