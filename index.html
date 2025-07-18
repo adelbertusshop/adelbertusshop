@@ -133,10 +133,36 @@
     Zatwierdzenie projektu przyjdzie na e-mail: <strong>mielniczukgrzegosz74@gmail.com</strong><br>
     lub SMS na numer <strong>604 296 650</strong> z dopiskiem <em>„projekt własny”</em>.
   </p>
-</section>  <section id="marketplace" class="sekcja">
-    <h2>Marketplace</h2>
-  </section>
-  <section id="reklama" class="sekcja">
+</section> 
+  <section id="marketplace" class="sekcja">
+  <h2>Marketplace</h2>
+  <p>Zarabiaj razem z AdelbertusShop! Stwórz własny sklep i sprzedawaj swoje projekty – TYLKO zaakceptowani twórcy mogą wystawiać produkty.</p>
+
+  <h3>Jak zostać sprzedawcą?</h3>
+  <ol>
+    <li>Wypełnij ankietę zgłoszeniową (poniżej).</li>
+    <li>Uiszcz jednorazową opłatę BLIK na numer: <strong>573 939 925</strong></li>
+    <li>Oczekuj potwierdzenia – skontaktujemy się przez e-mail: <strong>mielniczukgrzegosz74@gmail.com</strong></li>
+  </ol>
+
+  <form id="formularz-marketplace">
+    <label>Imię i nazwisko lub pseudonim:<br>
+      <input type="text" name="imie" required>
+    </label><br><br>
+
+    <label>Adres e-mail:<br>
+      <input type="email" name="email" required>
+    </label><br><br>
+
+    <label>Opis swojej twórczości lub produktów, które chcesz sprzedawać:<br>
+      <textarea name="opis" rows="4" required></textarea>
+    </label><br><br>
+
+    <button type="submit">Wyślij zgłoszenie</button>
+  </form>
+
+  <p style="margin-top:20px;">Tylko wybrane zgłoszenia zostaną zaakceptowane – powodzenia!</p>
+</section>  <section id="reklama" class="sekcja">
     <h2>Reklama</h2>
   </section>
   <section id="zamowienia" class="sekcja">
@@ -203,6 +229,16 @@
       };
       reader.readAsDataURL(plik);
     }
+  });
+    
+</script>
+<script>
+  const formMarketplace = document.getElementById("formularz-marketplace");
+
+  formMarketplace.addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Dziękujemy za zgłoszenie! Skontaktujemy się po weryfikacji.");
+    formMarketplace.reset();
   });
 </script></body>
 </html>
