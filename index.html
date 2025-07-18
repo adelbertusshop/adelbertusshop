@@ -84,9 +84,56 @@
     <p>Witaj w naszym luksusowym sklepie – magia zaczyna się tutaj.</p>
   </section>
   <section id="projektuj" class="sekcja">
-    <h2>Projektuj</h2>
-  </section>
-  <section id="marketplace" class="sekcja">
+  <h2>Projektuj własny produkt</h2>
+  <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
+
+  <form id="projekt-form">
+    <label>Twoje imię lub pseudonim:<br>
+      <input type="text" name="imie" required>
+    </label><br><br>
+
+    <label>Wybierz produkt:<br>
+      <select id="typ-produktu">
+        <option value="koszulka">Koszulka</option>
+        <option value="bluza">Bluza</option>
+      </select>
+    </label><br><br>
+
+    <label>Twój napis (np. hasło, cytat):<br>
+      <input type="text" id="tekst-nadruku" maxlength="50">
+    </label><br><br>
+
+    <label>Wybierz czcionkę:<br>
+      <select id="czcionka">
+        <option value="Playfair Display">Playfair Display</option>
+        <option value="Montserrat">Montserrat</option>
+        <option value="Roboto Slab">Roboto Slab</option>
+      </select>
+    </label><br><br>
+
+    <label>Kolor tekstu:<br>
+      <input type="color" id="kolor-tekstu" value="#ffffff">
+    </label><br><br>
+
+    <label>Dodaj swoją grafikę (PNG/JPG):<br>
+      <input type="file" id="obrazek" accept="image/png, image/jpeg">
+    </label><br><br>
+
+    <button type="submit">Wyślij projekt</button>
+  </form>
+
+  <h3>Podgląd:</h3>
+  <div id="podglad-produktu" style="position:relative; display:inline-block; margin-top:15px;">
+    <img id="obraz-produktu" src="koszulka.png" alt="Podgląd produktu" style="width:300px;">
+    <span id="tekst-na-produkcie" style="position:absolute; top:50px; left:50%; transform:translateX(-50%); font-size:20px; color:white; font-family:'Playfair Display'; white-space:nowrap;"></span>
+    <img id="obrazek-nadruk" src="" style="position:absolute; top:120px; left:50%; transform:translateX(-50%); max-width:150px; display:none;">
+  </div>
+
+  <p style="margin-top:20px;">
+    Zatwierdzenie projektu przyjdzie na e-mail: <strong>mielniczukgrzegosz74@gmail.com</strong><br>
+    lub SMS na numer <strong>604 296 650</strong> z dopiskiem <em>„projekt własny”</em>.
+  </p>
+</section>  <section id="marketplace" class="sekcja">
     <h2>Marketplace</h2>
   </section>
   <section id="reklama" class="sekcja">
@@ -120,6 +167,43 @@
       });
     });
   </script>
-</body>
+  <script>
+  const typProduktu = document.getElementById("typ-produktu");
+  const obrazProduktu = document.getElementById("obraz-produktu");
+  const tekstInput = document.getElementById("tekst-nadruku");
+  const tekstNaProdukcie = document.getElementById("tekst-na-produkcie");
+  const czcionkaInput = document.getElementById("czcionka");
+  const kolorTekstu = document.getElementById("kolor-tekstu");
+  const obrazekInput = document.getElementById("obrazek");
+  const nadrukImg = document.getElementById("obrazek-nadruk");
+
+  typProduktu.addEventListener("change", () => {
+    obrazProduktu.src = typProduktu.value === "koszulka" ? "koszulka.png" : "bluza.png";
+  });
+
+  tekstInput.addEventListener("input", () => {
+    tekstNaProdukcie.textContent = tekstInput.value;
+  });
+
+  czcionkaInput.addEventListener("change", () => {
+    tekstNaProdukcie.style.fontFamily = czcionkaInput.value;
+  });
+
+  kolorTekstu.addEventListener("change", () => {
+    tekstNaProdukcie.style.color = kolorTekstu.value;
+  });
+
+  obrazekInput.addEventListener("change", (e) => {
+    const plik = e.target.files[0];
+    if (plik) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        nadrukImg.src = reader.result;
+        nadrukImg.style.display = "block";
+      };
+      reader.readAsDataURL(plik);
+    }
+  });
+</script></body>
 </html>
 
