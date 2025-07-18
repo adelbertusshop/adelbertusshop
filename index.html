@@ -1,73 +1,55 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AdelbertusShop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Playfair Display', serif;
-      background-color: #0d0c0f;
-      color: #f5f0e8;
+      background-color: #000;
+      color: #f5f5dc;
+      font-family: 'Montserrat', sans-serif;
     }
     header {
-      background-color: #1e1b1e;
+      background-color: #111;
       padding: 1rem;
       text-align: center;
-      border-bottom: 2px solid #c9a947;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      color: #c9a947;
-    }
-    header p {
-      margin: 0.2rem 0 0;
-      color: #a37e2c;
-      font-size: 1rem;
+      color: gold;
     }
     nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      background-color: #1e1b1e;
-      padding: 0.5rem 0;
+      background-color: #222;
     }
     nav button {
       background: none;
       border: none;
-      color: #f5f0e8;
-      font-size: 1rem;
-      margin: 0.3rem 1rem;
+      color: gold;
+      padding: 1rem;
       cursor: pointer;
+      font-size: 1rem;
     }
     nav button:hover {
-      color: #c9a947;
+      background-color: #333;
     }
     .sekcja {
       display: none;
       padding: 2rem;
-      background-color: #1e1b1e;
     }
-    .active {
+    .sekcja.active {
       display: block;
-    }
-    h2 {
-      color: #c9a947;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>AdelbertusShop Logo</h1>
-    <p># AdelbertusShop – legalnie zakazany</p>
+    <h1>AdelbertusShop – legalnie zakazany</h1>
     <p>Witamy w iluzji wyboru. Wybierz nas.</p>
   </header>
 
   <nav>
-    <button data-target="sklep">Sklep</button>
     <button data-target="projektuj">Projektuj</button>
     <button data-target="marketplace">Marketplace</button>
     <button data-target="reklama">Reklama</button>
@@ -79,166 +61,30 @@
     <button data-target="zbiorka">Zbiórka</button>
   </nav>
 
-  <section id="sklep" class="sekcja active">
-    <h2>Sklep</h2>
-    <p>Witaj w naszym luksusowym sklepie – magia zaczyna się tutaj.</p>
-  </section>
- <section id="projektuj" class="sekcja">
-  <h2>Projektuj własny produkt</h2>
-  <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
-
-  <form id="projekt-form">
-    <label>Twoje imię lub pseudonim:<br>
-      <input type="text" name="imie" required>
-    </label><br><br>
-
-    <label>Wybierz produkt:<br>
-      <select id="typ-produktu">
-        <option value="koszulka">Koszulka</option>
-        <option value="bluza">Bluza</option>
-      </select>
-    </label><br><br>
-
-    <label>Twój napis (np. hasło, cytat):<br>
-      <input type="text" id="tekst-nadruku" maxlength="50">
-    </label><br><br>
-
-    <label>Wybierz czcionkę:<br>
-      <select id="czcionka">
-        <option value="Playfair Display">Playfair Display</option>
-        <option value="Montserrat">Montserrat</option>
-        <option value="Roboto Slab">Roboto Slab</option>
-      </select>
-    </label><br><br>
-
-    <label>Kolor tekstu:<br>
-      <input type="color" id="kolor-tekstu" value="#ffffff">
-    </label><br><br>
-
-    <label>Dodaj swoją grafikę (PNG/JPG):<br>
-      <input type="file" id="obrazek" accept="image/png, image/jpeg">
-    </label><br><br>
-
-    <button type="submit">Wyślij projekt</button>
-  </form>
-
-  <h3>Podgląd:</h3>
-  <div id="podglad-produktu" style="position:relative; display:inline-block; margin-top:15px;">
-    <img id="obraz-produktu" src="koszulka.png" alt="Podgląd produktu" style="width:300px;">
-    <span id="tekst-na-produkcie" style="position:absolute; top:50px; left:50%; transform:translateX(-50%); font-size:20px; color:white; font-family:'Playfair Display'; white-space:nowrap;"></span>
-    <img id="obrazek-nadruk" src="" style="position:absolute; top:120px; left:50%; transform:translateX(-50%); max-width:150px; display:none;">
-  </div>
-
-  <p style="margin-top:20px;">
-    Zatwierdzenie projektu przyjdzie na e-mail: <strong>mielniczukgrzegosz74@gmail.com</strong><br>
-    lub SMS na numer <strong>604 296 650</strong> z dopiskiem <em>„projekt własny”</em>.
-  </p>
-</section> 
-  <section id="marketplace" class="sekcja">
-  <h2>Marketplace</h2>
-  <p>Zarabiaj razem z AdelbertusShop! Stwórz własny sklep i sprzedawaj swoje projekty – TYLKO zaakceptowani twórcy mogą wystawiać produkty.</p>
-
-  <h3>Jak zostać sprzedawcą?</h3>
-  <ol>
-    <li>Wypełnij ankietę zgłoszeniową (poniżej).</li>
-    <li>Uiszcz jednorazową opłatę BLIK na numer: <strong>573 939 925</strong></li>
-    <li>Oczekuj potwierdzenia – skontaktujemy się przez e-mail: <strong>mielniczukgrzegosz74@gmail.com</strong></li>
-  </ol>
-
-  <form id="formularz-marketplace">
-    <label>Imię i nazwisko lub pseudonim:<br>
-      <input type="text" name="imie" required>
-    </label><br><br>
-
-    <label>Adres e-mail:<br>
-      <input type="email" name="email" required>
-    </label><br><br>
-
-    <label>Opis swojej twórczości lub produktów, które chcesz sprzedawać:<br>
-      <textarea name="opis" rows="4" required></textarea>
-    </label><br><br>
-
-    <button type="submit">Wyślij zgłoszenie</button>
-  </form>
-
-  <p style="margin-top:20px;">Tylko wybrane zgłoszenia zostaną zaakceptowane – powodzenia!</p>
-</section>  <section id="reklama" class="sekcja">
-    <h2>Reklama</h2>
-  </section>
-  <section id="zamowienia" class="sekcja">
-    <h2>Zamówienia</h2>
-  </section>
-  <section id="opinie" class="sekcja">
-    <h2>Opinie</h2>
-  </section>
-  <section id="blog" class="sekcja">
-    <h2>Blog</h2>
-  </section>
-  <section id="kontakt" class="sekcja">
-    <h2>Kontakt</h2>
-  </section>
-  <section id="regulamin" class="sekcja">
-    <h2>Regulamin</h2>
-  </section>
-  <section id="zbiorka" class="sekcja">
-    <h2>Zbiórka</h2>
-  </section>
+  <section id="projektuj" class="sekcja active"></section>
+  <section id="marketplace" class="sekcja"></section>
+  <section id="reklama" class="sekcja"></section>
+  <section id="zamowienia" class="sekcja"></section>
+  <section id="opinie" class="sekcja"></section>
+  <section id="blog" class="sekcja"></section>
+  <section id="kontakt" class="sekcja"></section>
+  <section id="regulamin" class="sekcja"></section>
+  <section id="zbiorka" class="sekcja"></section>
 
   <script>
     document.querySelectorAll('nav button').forEach(btn => {
       btn.addEventListener('click', () => {
         const target = btn.getAttribute('data-target');
-        document.querySelectorAll('.sekcja').forEach(sec => sec.classList.remove('active'));
-        document.getElementById(target).classList.add('active');
+        document.querySelectorAll('.sekcja').forEach(sec => {
+          sec.classList.remove('active');
+        });
+        const pokaz = document.getElementById(target);
+        if (pokaz) {
+          pokaz.classList.add('active');
+        }
       });
     });
   </script>
-  <script>
-  const typProduktu = document.getElementById("typ-produktu");
-  const obrazProduktu = document.getElementById("obraz-produktu");
-  const tekstInput = document.getElementById("tekst-nadruku");
-  const tekstNaProdukcie = document.getElementById("tekst-na-produkcie");
-  const czcionkaInput = document.getElementById("czcionka");
-  const kolorTekstu = document.getElementById("kolor-tekstu");
-  const obrazekInput = document.getElementById("obrazek");
-  const nadrukImg = document.getElementById("obrazek-nadruk");
-
-  typProduktu.addEventListener("change", () => {
-    obrazProduktu.src = typProduktu.value === "koszulka" ? "koszulka.png" : "bluza.png";
-  });
-
-  tekstInput.addEventListener("input", () => {
-    tekstNaProdukcie.textContent = tekstInput.value;
-  });
-
-  czcionkaInput.addEventListener("change", () => {
-    tekstNaProdukcie.style.fontFamily = czcionkaInput.value;
-  });
-
-  kolorTekstu.addEventListener("change", () => {
-    tekstNaProdukcie.style.color = kolorTekstu.value;
-  });
-
-  obrazekInput.addEventListener("change", (e) => {
-    const plik = e.target.files[0];
-    if (plik) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        nadrukImg.src = reader.result;
-        nadrukImg.style.display = "block";
-      };
-      reader.readAsDataURL(plik);
-    }
-  });
-    
-</script>
-<script>
-  const formMarketplace = document.getElementById("formularz-marketplace");
-
-  formMarketplace.addEventListener("submit", function(e) {
-    e.preventDefault();
-    alert("Dziękujemy za zgłoszenie! Skontaktujemy się po weryfikacji.");
-    formMarketplace.reset();
-  });
-</script></body>
+</body>
 </html>
+
