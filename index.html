@@ -133,31 +133,71 @@
   </section>
 
  <section id="projektuj" class="sekcja">
-  <h2>Projektuj własny produkt</h2>
-  <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i wybierz produkt!</p>
-
-  <form id="formularzProjektu" style="max-width: 600px; margin: auto; text-align: left;">
-    <label for="nazwa">Twoje imię lub pseudonim:</label><br>
-    <input type="text" id="nazwa" name="nazwa" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
-
-    <label for="typProduktu">Wybierz produkt:</label><br>
-    <select id="typProduktu" name="typProduktu" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+  <h2>Zaprojektuj Swój Mistyczny Artefakt</h2>
+  <form id="design-form" action="mailto:mielniczukgrzegosz74@gmail.com" method="post" enctype="text/plain">
+    <label for="design-name">Imię i nazwisko:</label>
+    <input type="text" id="design-name" name="Imię i nazwisko" required placeholder="Wpisz swoje imię i nazwisko" />
+    
+    <label for="design-email">E-mail:</label>
+    <input type="email" id="design-email" name="Email" required placeholder="Wpisz swój e-mail" />
+    
+    <label for="product-type">Wybierz produkt:</label>
+    <select id="product-type" name="Produkt" required>
       <option value="koszulka">Koszulka</option>
       <option value="bluza">Bluza</option>
-    </select><br>
-
-    <label for="tekst">Twój napis (np. hasło, cytat):</label><br>
-    <input type="text" id="tekst" name="tekst" placeholder="Wpisz tekst" style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
-
-    <label for="plik">Dodaj swoją grafikę (PNG/JPG):</label><br>
-    <input type="file" id="plik" name="plik" accept="image/*" style="margin-bottom: 20px;"><br>
-
-    <button type="submit" style="padding: 12px 24px; background-color: #c9a947; border: none; color: black; font-weight: bold; border-radius: 25px; cursor: pointer;">Wyślij projekt</button>
+    </select>
+    
+    <label for="design-text">Tekst do projektu:</label>
+    <input type="text" id="design-text" name="Tekst projektu" placeholder="Wpisz tekst, który chcesz na produkcie" />
+    
+    <label for="design-file">Dodaj własny projekt (opcjonalnie):</label>
+    <input type="file" id="design-file" name="Plik projektu" accept="image/*" />
+    
+    <button type="submit">Wyślij projekt</button>
   </form>
-
-  <p style="margin-top: 20px; font-size: 1rem; color: #ccc;">Zatwierdzenie projektu przyjdzie na e-mail: <strong>mielniczukgrzegosz74@gmail.com</strong> lub SMS na numer <strong>604 296 650</strong> z dopiskiem <em>„projekt własny”</em>.</p>
+  
+  <div id="preview-container" style="margin-top: 30px; text-align: center;">
+    <h3>Podgląd projektu:</h3>
+    <div id="product-preview" style="position: relative; display: inline-block; width: 300px; height: 400px; background-color: #222; border-radius: 15px; box-shadow: 0 0 20px #c9a947;">
+      <img id="product-image" src="https://i.imgur.com/WxNkKff.png" alt="Koszulka" style="width: 100%; height: auto; border-radius: 15px;">
+      <div id="preview-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+          color: #d4af37; font-weight: bold; font-size: 20px; font-family: 'Playfair Display', serif; text-align: center; white-space: pre-wrap; padding: 0 10px;">
+      </div>
+    </div>
+  </div>
 </section>
-  <section id="marketplace" class="sekcja">
+
+<script>
+  const productType = document.getElementById('product-type');
+  const designText = document.getElementById('design-text');
+  const productImage = document.getElementById('product-image');
+  const previewText = document.getElementById('preview-text');
+
+  // Obrazy przykładowe dla koszulki i bluzy:
+  const images = {
+    koszulka: 'https://i.imgur.com/WxNkKff.png', // przykład koszulki
+    bluza: 'https://i.imgur.com/VK3Wx7G.png'     // przykład bluzy
+  };
+
+  // Aktualizacja obrazu produktu po zmianie wyboru
+  productType.addEventListener('change', () => {
+    productImage.src = images[productType.value];
+    updatePreviewText();
+  });
+
+  // Aktualizacja tekstu podglądu na bieżąco
+  designText.addEventListener('input', updatePreviewText);
+
+  function updatePreviewText() {
+    previewText.textContent = designText.value || 'Twój tekst tutaj';
+  }
+
+  // Inicjalizacja podglądu przy ładowaniu strony
+  window.addEventListener('DOMContentLoaded', () => {
+    productImage.src = images[productType.value];
+    updatePreviewText();
+  });
+</script>  <section id="marketplace" class="sekcja">
     <h2>Marketplace</h2>
     <p>Wystawiaj swoje projekty i produkty. Promuj własną markę lub firmę!</p>
   </section>
