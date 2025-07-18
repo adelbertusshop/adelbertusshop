@@ -252,8 +252,33 @@
     <input type="text" id="opinia-author" name="author" required><br><br>
     <button type="submit">Dodaj opinię</button>
   </form>
-</section>  <section id="blog" class="sekcja"><h2>Blog</h2></section>
-  <section id="kontakt" class="sekcja"><h2>Kontakt</h2></section>
+</section> 
+ <section id="blog" class="sekcja hidden">
+  <h2>Blog AdelbertusShop</h2>
+
+  <article class="wpis">
+    <h3>Magia w projektowaniu ubrań</h3>
+    <p><strong>Autor:</strong> Grzegorz M.</p>
+    <p>W AdelbertusShop wierzymy, że każdy produkt to małe dzieło sztuki, które niesie ze sobą wyjątkową energię i historię.</p>
+  </article>
+
+  <article class="wpis">
+    <h3>Jak wybrać idealny projekt na koszulkę?</h3>
+    <p><strong>Autor:</strong> Anna K.</p>
+    <p>Dobry projekt powinien odzwierciedlać Twoją osobowość i pasje. Pamiętaj o czytelności i oryginalności.</p>
+  </article>
+
+  <form id="formularz-blog">
+    <h3>Dodaj wpis na bloga</h3>
+    <label for="blog-title">Tytuł wpisu:</label><br>
+    <input type="text" id="blog-title" required><br>
+    <label for="blog-author">Autor:</label><br>
+    <input type="text" id="blog-author" required><br>
+    <label for="blog-content">Treść:</label><br>
+    <textarea id="blog-content" required></textarea><br><br>
+    <button type="submit">Dodaj wpis</button>
+  </form>
+</section>  <section id="kontakt" class="sekcja"><h2>Kontakt</h2></section>
   <section id="regulamin" class="sekcja"><h2>Regulamin</h2></section>
   <section id="zbiorka" class="sekcja"><h2>Zbiórka</h2></section>
 
@@ -297,6 +322,15 @@
       alert("Dziękujemy za Twoją opinię! Po zatwierdzeniu zostanie opublikowana.");
       this.reset();
     }
+  });
+    
+</script>
+  <script>
+  // Obsługa formularza bloga
+  document.getElementById("formularz-blog").addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Dziękujemy za Twój wpis! Po zatwierdzeniu zostanie opublikowany.");
+    this.reset();
   });
 </script></body>
 </html>
