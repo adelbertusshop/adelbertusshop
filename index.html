@@ -84,44 +84,7 @@
     <p>– legalnie zakazany –</p>
   </header>
 
-  <section id="sklep" class="sekcja active">
-    <h2>Sklep</h2>
-    <div id="produkt" style="border: 2px solid gold; padding: 20px; margin: 20px 0;">
-      <h3>Bluza Złoty Wilk</h3>
-      <p>Cena: 150 zł</p>
-      <button onclick="dodajDoKoszyka('Bluza Złoty Wilk', 150)">Dodaj do koszyka</button>
-    </div>
-  </section>
-
-  <section id="koszyk" class="sekcja active">
-    <h2>Twój koszyk</h2>
-    <ul id="koszyk-lista" style="list-style: none; padding-left: 0;"></ul>
-    <p id="koszyk-suma">Razem: 0 zł</p>
-  </section>
-
-  <script>
-    const koszyk = [];
-
-    function dodajDoKoszyka(nazwa, cena) {
-      koszyk.push({ nazwa, cena });
-      aktualizujKoszyk();
-    }
-
-    function aktualizujKoszyk() {
-      const lista = document.getElementById("koszyk-lista");
-      const suma = document.getElementById("koszyk-suma");
-      lista.innerHTML = "";
-      let lacznaCena = 0;
-
-      koszyk.forEach(produkt => {
-        const li = document.createElement("li");
-        li.textContent = `${produkt.nazwa} - ${produkt.cena} zł`;
-        lista.appendChild(li);
-        lacznaCena += produkt.cena;
-      });
-
-      suma.textContent = `Razem: ${lacznaCena} zł`;
-    }
+ 
   </script>
 </body>
 </html> 
