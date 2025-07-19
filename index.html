@@ -74,82 +74,121 @@
   <button data-target="kontakt">Kontakt</button>
   <button data-target="regulamin">Regulamin</button>
 </nav>
-<div id="sklep" class="sekcja">
-  <h2>Sklep Adelbertus – Ekskluzywna Kolekcja</h2>
+<section id="sklep" class="sekcja">
+  <h2>Sklep</h2>
 
-  <!-- Filtrowanie -->
-  <div style="text-align: center; margin-bottom: 20px;">
-    <button onclick="filtrujProdukty('wszystko')">Wszystko</button>
-    <button onclick="filtrujProdukty('mezczyzni')">Mężczyźni</button>
-    <button onclick="filtrujProdukty('kobiety')">Kobiety</button>
-    <button onclick="filtrujProdukty('mlodziez')">Młodzież</button>
+  <div id="kategorie">
+    <button class="kategoria-btn active" data-kategoria="mezczyzni">Mężczyźni</button>
+    <button class="kategoria-btn" data-kategoria="kobiety">Kobiety</button>
+    <button class="kategoria-btn" data-kategoria="mlodziez">Młodzież</button>
+    <button class="kategoria-btn" data-kategoria="nowosci">Nowości</button>
   </div>
 
-  <div id="produkty" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-    
-    <!-- Przykładowe produkty -->
-    <div class="produkt mezczyzni" style="background-color: #111; border: 1px solid gold; padding: 20px; width: 250px; text-align: center; border-radius: 15px;">
-      <h3>Bluza</h3>
-      <p>Cena: <strong>150 zł</strong></p>
-      <button onclick="window.location='#projektuj'">Zaprojektuj</button>
-    </div>
-
-    <div class="produkt mezczyzni" style="background-color: #111; border: 1px solid gold; padding: 20px; width: 250px; text-align: center; border-radius: 15px;">
-      <h3>Koszulka</h3>
-      <p>Cena: <strong>99 zł</strong></p>
-      <button onclick="window.location='#projektuj'">Zaprojektuj</button>
-    </div>
-
-    <div class="produkt kobiety" style="background-color: #111; border: 1px solid gold; padding: 20px; width: 250px; text-align: center; border-radius: 15px;">
-      <h3>Bluza z kapturem</h3>
-      <p>Cena: <strong>150 zł</strong></p>
-      <button onclick="window.location='#projektuj'">Zaprojektuj</button>
-    </div>
-
-    <div class="produkt kobiety" style="background-color: #111; border: 1px solid gold; padding: 20px; width: 250px; text-align: center; border-radius: 15px;">
-      <h3>Czapka</h3>
-      <p>Cena: <strong>79 zł</strong></p>
-      <button onclick="window.location='#projektuj'">Zaprojektuj</button>
-    </div>
-
-    <div class="produkt mlodziez" style="background-color: #111; border: 1px solid gold; padding: 20px; width: 250px; text-align: center; border-radius: 15px;">
-      <h3>Akcesoria</h3>
-      <p>Cena: <strong>Ustalana indywidualnie</strong></p>
-      <button onclick="window.location='#projektuj'">Zaprojektuj</button>
-    </div>
+  <div id="produkty-lista">
+    <!-- Produkty pojawią się tutaj dynamicznie -->
   </div>
-
-  <hr style="margin: 30px 0; border-color: gold;">
-
-  <h3>Kategorie</h3>
-  <ul style="list-style: none; padding: 0; text-align: center;">
-    <li>Mężczyźni</li>
-    <li>Kobiety</li>
-    <li>Młodzież</li>
-    <li><em>Nowości – już wkrótce</em></li>
-  </ul>
-
-  <hr style="margin: 30px 0; border-color: gold;">
-
-  <h3>Płatność BLIK</h3>
-  <p>Aby złożyć zamówienie, prześlij płatność BLIK na numer: <strong style="color: gold;">573 939 925</strong></p>
-  <p>W tytule przelewu wpisz: <strong>"Zamówienie AdelbertusShop + nazwa produktu"</strong></p>
-  <p>Potwierdzenie i projekt wyślij na: <strong style="color: gold;">mielniczukgrzegosz74@gmail.com</strong></p>
-</div>
+</section>
 
 <script>
-  function filtrujProdukty(kategoria) {
-    const produkty = document.querySelectorAll('.produkt');
-    produkty.forEach(p => {
-      if (kategoria === 'wszystko') {
-        p.style.display = 'block';
-      } else {
-        p.style.display = p.classList.contains(kategoria) ? 'block' : 'none';
-      }
+  // Dane produktów - te same dla każdej kategorii (poza Nowości, która jest pusta)
+  const produkty = [
+    { id: 'bluza', nazwa: 'Bluza', cena: 150 },
+    { id: 'bluza-kaptur', nazwa: 'Bluza z kapturem', cena: 150 },
+    { id: 'koszulka', nazwa: 'Koszulka', cena: 99 },
+    { id: 'czapka', nazwa: 'Czapka', cena: 79 },
+    { id: 'akcesoria', nazwa: 'Akcesoria', cena: 'max cena ustalana' }
+  ];
+
+  const produktyListaEl = document.getElementById('produkty-lista');
+  const kategoriaBtn = document.querySelectorAll('.kategoria-btn');
+
+  // Funkcja wyświetlania produktów dla danej kategorii
+  function pokazProdukty(kategoria) {
+    produktyListaEl.innerHTML = '';
+
+    // Nowości - pusta sekcja
+    if (kategoria === 'nowosci') {
+      produktyListaEl.innerHTML = '<p>Nowości pojawią się wkrótce!</p>';
+      return;
+    }
+
+    produkty.forEach(prod => {
+      const prodEl = document.createElement('div');
+      prodEl.classList.add('produkt');
+      prodEl.style.border = '1px solid gold';
+      prodEl.style.padding = '10px';
+      prodEl.style.margin = '10px 0';
+      prodEl.style.backgroundColor = '#111';
+
+      prodEl.innerHTML = `
+        <h3>${prod.nazwa}</h3>
+        <p>Cena: <strong>${prod.cena} zł</strong></p>
+        <button class="zaprojektuj-btn" data-produkt="${prod.nazwa}">Zaprojektuj</button>
+      `;
+
+      produktyListaEl.appendChild(prodEl);
+    });
+
+    // Dodaj eventy do przycisków "Zaprojektuj"
+    document.querySelectorAll('.zaprojektuj-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Przełącz na sekcję Projektuj (zakładam, że jest w Twoim kodzie)
+        document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
+        const projektujSekcja = document.getElementById('projektuj');
+        if(projektujSekcja) {
+          projektujSekcja.classList.add('active');
+          // Możesz tu jeszcze ustawić wybrane info o produkcie w sekcji Projektuj, jeśli masz taką funkcję
+        }
+        // Przewiń do góry
+        window.scrollTo(0, 0);
+      });
     });
   }
+
+  // Inicjalizacja - kliknięcie w kategorię
+  kategoriaBtn.forEach(btn => {
+    btn.addEventListener('click', () => {
+      kategoriaBtn.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      pokazProdukty(btn.getAttribute('data-kategoria'));
+    });
+  });
+
+  // Pokaz domyślnie produkty dla "Mężczyźni"
+  pokazProdukty('mezczyzni');
 </script>
- <section id="projektuj" class="sekcja">
+
+<style>
+  #kategorie {
+    margin-bottom: 15px;
+  }
+  #kategorie button {
+    background: none;
+    border: 1px solid gold;
+    color: gold;
+    padding: 8px 15px;
+    margin-right: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  #kategorie button.active, #kategorie button:hover {
+    background-color: gold;
+    color: black;
+  }
+  .produkt button.zaprojektuj-btn {
+    background-color: gold;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+    margin-top: 8px;
+  }
+  .produkt button.zaprojektuj-btn:hover {
+    background-color: #d4af37cc;
+  }
+</style> <section id="projektuj" class="sekcja">
   <h2>Projektuj własny produkt</h2>
   <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
 
