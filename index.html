@@ -76,8 +76,48 @@ nav button:hover {
 </head>
 <body>
   <body>
+<!-- KOSZYK I PRODUKT TESTOWY -->
+<section id="sklep" class="sekcja">
+  <h2>Produkt testowy</h2>
+  <div style="margin-bottom: 20px;">
+    <p><strong>Koszulka „Adelbertus”</strong></p>
+    <p>Cena: 99 zł</p>
+    <button onclick="dodajDoKoszyka('Koszulka Adelbertus', 99)">Dodaj do koszyka</button>
+  </div>
+</section>
 
-  <div style="position: relative; width: 100%; height: auto;">
+<section id="koszyk" class="sekcja" style="background-color: #111; padding: 20px; border-radius: 10px; color: white;">
+  <h2>Koszyk</h2>
+  <ul id="lista-koszyka"></ul>
+  <p><strong>Suma:</strong> <span id="suma">0</span> zł</p>
+  <button id="btn-zamow" style="
+    background-color: gold;
+    color: black;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 15px 0;
+    border-radius: 5px;
+    font-weight: bold;
+  ">Złóż zamówienie</button>
+  <p><strong>Płatność:</strong> BLIK na numer <strong>573 939 925</strong></p>
+  <p>Po płatności dostaniesz potwierdzenie na e-mail lub SMS.</p>
+</section>
+
+<script>
+  const listaKoszyka = document.getElementById("lista-koszyka");
+  const sumaElement = document.getElementById("suma");
+  let suma = 0;
+
+  function dodajDoKoszyka(nazwa, cena) {
+    const el = document.createElement("li");
+    el.textContent = `${nazwa} - ${cena} zł`;
+    listaKoszyka.appendChild(el);
+    suma += cena;
+    sumaElement.textContent = suma;
+  }
+</script></script>  <div style="position: relative; width: 100%; height: auto;">
     <!-- Lewe logo -->
     <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo lewe" style="position: absolute; top: 10px; left: 10px; height: 80px; z-index: 2;">
 
