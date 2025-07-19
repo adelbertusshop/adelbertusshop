@@ -74,8 +74,81 @@
   <button data-target="kontakt">Kontakt</button>
   <button data-target="regulamin">Regulamin</button>
 </nav>
+<div id="sklep" class="sekcja">
+  <h2>Sklep Adelbertus – Ekskluzywna Kolekcja</h2>
 
+  <!-- Filtrowanie -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <button onclick="filtrujProdukty('wszystko')">Wszystko</button>
+    <button onclick="filtrujProdukty('mezczyzni')">Mężczyźni</button>
+    <button onclick="filtrujProdukty('kobiety')">Kobiety</button>
+    <button onclick="filtrujProdukty('mlodziez')">Młodzież</button>
+  </div>
 
+  <div id="produkty" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+    
+    <!-- Przykładowe produkty -->
+    <div class="produkt mezczyzni" style="background-color: #111; border: 1px solid gold; padding: 20px; width: 250px; text-align: center; border-radius: 15px;">
+      <h3>Bluza</h3>
+      <p>Cena: <strong>150 zł</strong></p>
+      <button onclick="window.location='#projektuj'">Zaprojektuj</button>
+    </div>
+
+    <div class="produkt mezczyzni" style="background-color: #111; border: 1px solid gold; padding: 20px; width: 250px; text-align: center; border-radius: 15px;">
+      <h3>Koszulka</h3>
+      <p>Cena: <strong>99 zł</strong></p>
+      <button onclick="window.location='#projektuj'">Zaprojektuj</button>
+    </div>
+
+    <div class="produkt kobiety" style="background-color: #111; border: 1px solid gold; padding: 20px; width: 250px; text-align: center; border-radius: 15px;">
+      <h3>Bluza z kapturem</h3>
+      <p>Cena: <strong>150 zł</strong></p>
+      <button onclick="window.location='#projektuj'">Zaprojektuj</button>
+    </div>
+
+    <div class="produkt kobiety" style="background-color: #111; border: 1px solid gold; padding: 20px; width: 250px; text-align: center; border-radius: 15px;">
+      <h3>Czapka</h3>
+      <p>Cena: <strong>79 zł</strong></p>
+      <button onclick="window.location='#projektuj'">Zaprojektuj</button>
+    </div>
+
+    <div class="produkt mlodziez" style="background-color: #111; border: 1px solid gold; padding: 20px; width: 250px; text-align: center; border-radius: 15px;">
+      <h3>Akcesoria</h3>
+      <p>Cena: <strong>Ustalana indywidualnie</strong></p>
+      <button onclick="window.location='#projektuj'">Zaprojektuj</button>
+    </div>
+  </div>
+
+  <hr style="margin: 30px 0; border-color: gold;">
+
+  <h3>Kategorie</h3>
+  <ul style="list-style: none; padding: 0; text-align: center;">
+    <li>Mężczyźni</li>
+    <li>Kobiety</li>
+    <li>Młodzież</li>
+    <li><em>Nowości – już wkrótce</em></li>
+  </ul>
+
+  <hr style="margin: 30px 0; border-color: gold;">
+
+  <h3>Płatność BLIK</h3>
+  <p>Aby złożyć zamówienie, prześlij płatność BLIK na numer: <strong style="color: gold;">573 939 925</strong></p>
+  <p>W tytule przelewu wpisz: <strong>"Zamówienie AdelbertusShop + nazwa produktu"</strong></p>
+  <p>Potwierdzenie i projekt wyślij na: <strong style="color: gold;">mielniczukgrzegosz74@gmail.com</strong></p>
+</div>
+
+<script>
+  function filtrujProdukty(kategoria) {
+    const produkty = document.querySelectorAll('.produkt');
+    produkty.forEach(p => {
+      if (kategoria === 'wszystko') {
+        p.style.display = 'block';
+      } else {
+        p.style.display = p.classList.contains(kategoria) ? 'block' : 'none';
+      }
+    });
+  }
+</script>
  <section id="projektuj" class="sekcja">
   <h2>Projektuj własny produkt</h2>
   <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
