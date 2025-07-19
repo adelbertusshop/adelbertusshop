@@ -101,7 +101,174 @@
   <button data-target="kontakt">Kontakt</button>
   <button data-target="regulamin">Regulamin</button>
 </nav>
+<section id="sklep" class="sekcja">
+  <h2>Sklep</h2>
 
+  <div id="kategorie">
+    <button class="kategoria-btn active" data-kategoria="mezczyzni">Mężczyźni</button>
+    <button class="kategoria-btn" data-kategoria="kobiety">Kobiety</button>
+    <button class="kategoria-btn" data-kategoria="mlodziez">Młodzież</button>
+    <button class="kategoria-btn" data-kategoria="nowosci">Nowości</button>
+  </div>
+
+  <div id="koszyk-podsumowanie" style="margin-bottom: 15px; color: gold; font-weight: bold;">
+    Koszyk: 0 produktów | 0 zł
+  </div>
+
+  <div id="produkty-lista"></div>
+  <div id="koszyk-lista" style="margin-top: 20px;"></div>
+  <button id="zloz-zamowienie-btn" style="margin-top: 10px; padding: 10px 20px; font-weight: bold; cursor: pointer; background: gold; color: black; border: none; border-radius: 5px;">Złóż zamówienie</button>
+</section>
+
+<script>
+  const produkty = [
+    { id: 'bluza', nazwa: 'Bluza', cena: 150, kategoria: 'mezczyzni' },
+    { id: 'bluza-kaptur', nazwa: 'Bluza z kapturem', cena: 150, kategoria: 'kobiety' },
+    { id: 'koszulka', nazwa: 'Koszulka', cena: 99, kategoria: 'mlodziez' },
+    { id: 'czapka', nazwa: 'Czapka', cena: 79, kategoria: 'mezczyzni' },
+    { id: 'akcesoria', nazwa: 'Akcesoria', cena: 0, kategoria: 'kobiety' }
+  ];
+
+  const koszyk = [];
+  const produktyListaEl = document.getElementById('produkty-lista');
+  const koszykPodsumowanieEl = document.getElementById('koszyk-podsumowanie');
+  const koszykListaEl = document.getElementById('koszyk-lista');
+  const zlozZamowienieBtn = document.getElementById('zloz-zamowienie-btn');
+  const kategoriaBtn = document.querySelectorAll('.kategoria-btn');
+
+  function aktualizujKoszykWidok() {
+    const suma = koszyk.reduce((acc, prod) => acc + (parseFloat(prod.cena) || 0), 0);
+    koszykPodsumowanieEl.textContent = `Koszyk: ${koszyk.length} produktów | ${suma} zł`;
+
+    koszykListaEl.innerHTML = '<h3>Twój koszyk:</h3>' +
+      koszyk.map(p => `<div style='margin-bottom: 5px;'>• ${p.nazwa} – ${p.cena == 0 ? 'cena ustalana' : p.cena + ' zł'}</div>`).join('');
+  }
+
+  function pokazProdukty(kategoria) {
+    produktyListaEl.innerHTML = '';
+
+    if (kategoria === 'nowosci') {
+      produktyListaEl.innerHTML = '<p>Nowości pojawią się wkrótce!</p>';
+      return;
+    }
+
+    const filtrowane = produkty.filter(p => p.kategoria === kategoria);
+
+    filtrowane.forEach(prod => {
+      const el = document.createElement('div');
+      el.classList.add('produkt');
+      el.style.border = '1px solid gold';
+      el.style.padding = '10px';
+      el.style.margin = '10px 0';
+      el.style.backgroundColor = '#111';
+
+      const cenaText = prod.cena === 0 ? 'max cena ustalana' : `${prod.cena} zł`;
+
+      el.innerHTML = `
+        <h3>${prod.nazwa}</h3>
+        <p>Cena: <strong>${cenaText}</strong></p>
+        <button class="zaprojektuj-btn" data-produkt="${prod.nazwa}">Zaprojektuj</button>
+        <button class="koszyk-btn" data-id="${prod.id}" data-nazwa="${prod.nazwa}" data-cena="${prod.cena}">Dodaj do koszyka</button>
+      `;
+
+      produktyListaEl.appendChild(el);
+    });
+
+    document.querySelectorAll('.zaprojektuj-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
+        const projektujSekcja = document.getElementById('projektuj');
+        if (projektujSekcja) projektujSekcja.classList.add('active');
+        window.scrollTo(0, 0);
+      });
+    });
+  }
+
+  kategoriaBtn.forEach(btn => {
+    btn.addEventListener('click', () => {
+      kategoriaBtn.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      pokazProdukty(btn.getAttribute('data-kategoria'));
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (e.target.classList.contains('koszyk-btn')) {
+      const id = e.target.getAttribute('data-id');
+      const nazwa = e.target.getAttribute('data-nazwa');
+      const cena = e.target.getAttribute('data-cena');
+
+      koszyk.push({ id, nazwa, cena });
+      alert(`Dodano do koszyka: ${nazwa} – ${cena == 0 ? 'cena ustalana' : cena + ' zł'}`);
+      aktualizujKoszykWidok();
+    }
+  });
+
+  zlozZamowienieBtn.addEventListener('click', () => {
+    if (koszyk.length === 0) {
+      alert('Koszyk jest pusty.');
+      return;
+    }
+
+    const wiadomosc = koszyk.map(p => `${p.nazwa} – ${p.cena == 0 ? 'cena ustalana' : p.cena + ' zł'}`).join('\n');
+    const suma = koszyk.reduce((acc, p) => acc + (parseFloat(p.cena) || 0), 0);
+
+    const finalMsg = `Zamówienie:\n${wiadomosc}\nSuma: ${suma} zł`;
+    alert(finalMsg);
+  });
+
+  pokazProdukty('mezczyzni');
+</script>
+
+<style>
+  #kategorie {
+    margin-bottom: 15px;
+  }
+  #kategorie button {
+    background: none;
+    border: 1px solid gold;
+    color: gold;
+    padding: 8px 15px;
+    margin-right: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  #kategorie button.active,
+  #kategorie button:hover {
+    background-color: gold;
+    color: black;
+  }
+
+  .produkt button.zaprojektuj-btn {
+    background-color: gold;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+    margin-top: 8px;
+    margin-right: 10px;
+  }
+  .produkt button.zaprojektuj-btn:hover {
+    background-color: #d4af37cc;
+  }
+
+  .produkt button.koszyk-btn {
+    background-color: transparent;
+    border: 1px solid gold;
+    color: gold;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 8px;
+    border-radius: 5px;
+  }
+  .produkt button.koszyk-btn:hover {
+    background-color: gold;
+    color: black;
+  }
+</style>
 <section id="projektuj" class="sekcja">
   <h2>Projektuj własny produkt</h2>
   <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
