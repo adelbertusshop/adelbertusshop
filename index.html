@@ -111,7 +111,7 @@
 </nav>
 
 <section id="sklep" class="sekcja active">
-  <div id="kategorie">
+  <div id="kategorie" style="margin-bottom:20px;">
     <button class="kategoria-btn active" data-kategoria="mezczyzni">Mężczyźni</button>
     <button class="kategoria-btn" data-kategoria="kobiety">Kobiety</button>
     <button class="kategoria-btn" data-kategoria="mlodziez">Młodzież</button>
@@ -122,15 +122,13 @@
   <div id="produkty-lista"></div>
 </section>
 
-<!-- PROJEKTUJ -->
-<section id="projektuj" class="sekcja">
+<section id="projektuj" class="sekcja" style="display:none;">
   <h2>Zaprojektuj swój produkt</h2>
   <p>Tu będzie edytor do projektowania produktu (dodaj obrazy, tekst itp.)</p>
   <button onclick="przelaczSekcje('sklep')">Wróć do sklepu</button>
 </section>
 
-<!-- ZAMÓWIENIA -->
-<section id="zamowienia" class="sekcja">
+<section id="zamowienia" class="sekcja" style="display:none;">
   <h2>Twoje zamówienia</h2>
   <div id="zamowienia-lista">
     <p>Brak produktów w zamówieniach.</p>
@@ -141,24 +139,57 @@
 
 <script>
   const produkty = [
+    // Mężczyźni
     { id: 1, nazwa: "Bluza", kategoria: "mezczyzni", cena: 150 },
-    { id: 2, nazwa: "Bluza z kapturem", kategoria: "kobiety", cena: 150 },
-    { id: 3, nazwa: "Koszulka", kategoria: "mlodziez", cena: 99 },
-    { id: 4, nazwa: "Czapka", kategoria: "mlodziez", cena: 79 },
-    { id: 5, nazwa: "Akcesoria", kategoria: "akcesoria", cena: 0 }
+    { id: 2, nazwa: "Bluza z kapturem", kategoria: "mezczyzni", cena: 150 },
+    { id: 3, nazwa: "Koszulka", kategoria: "mezczyzni", cena: 99 },
+    { id: 4, nazwa: "Czapka", kategoria: "mezczyzni", cena: 79 },
+    { id: 5, nazwa: "Akcesoria", kategoria: "mezczyzni", cena: 50 },
+
+    // Kobiety
+    { id: 6, nazwa: "Bluza", kategoria: "kobiety", cena: 150 },
+    { id: 7, nazwa: "Bluza z kapturem", kategoria: "kobiety", cena: 150 },
+    { id: 8, nazwa: "Koszulka", kategoria: "kobiety", cena: 99 },
+    { id: 9, nazwa: "Czapka", kategoria: "kobiety", cena: 79 },
+    { id: 10, nazwa: "Akcesoria", kategoria: "kobiety", cena: 50 },
+
+    // Młodzież
+    { id: 11, nazwa: "Bluza", kategoria: "mlodziez", cena: 150 },
+    { id: 12, nazwa: "Bluza z kapturem", kategoria: "mlodziez", cena: 150 },
+    { id: 13, nazwa: "Koszulka", kategoria: "mlodziez", cena: 99 },
+    { id: 14, nazwa: "Czapka", kategoria: "mlodziez", cena: 79 },
+    { id: 15, nazwa: "Akcesoria", kategoria: "mlodziez", cena: 50 },
+
+    // Akcesoria
+    { id: 16, nazwa: "Bluza", kategoria: "akcesoria", cena: 150 },
+    { id: 17, nazwa: "Bluza z kapturem", kategoria: "akcesoria", cena: 150 },
+    { id: 18, nazwa: "Koszulka", kategoria: "akcesoria", cena: 99 },
+    { id: 19, nazwa: "Czapka", kategoria: "akcesoria", cena: 79 },
+    { id: 20, nazwa: "Akcesoria", kategoria: "akcesoria", cena: 50 },
+
+    // Nowości - pusta na razie
   ];
 
   let aktualnaKategoria = "mezczyzni";
   const zamowienia = [];
 
   function przelaczSekcje(idSekcji) {
-    document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
-    document.getElementById(idSekcji).classList.add('active');
-    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-    const aktywny = document.getElementById('nav-' + idSekcji);
-    if (aktywny) aktywny.classList.add('active');
+    // Sekcje
+    document.querySelectorAll('.sekcja').forEach(s => {
+      s.style.display = (s.id === idSekcji) ? 'block' : 'none';
+    });
 
-    if (idSekcji === 'zamowienia') pokazZamowienia();
+    // Przyciski kategorii
+    document.querySelectorAll('#kategorie button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.kategoria === aktualnaKategoria);
+    });
+
+    if (idSekcji === 'sklep') {
+      pokazProdukty();
+    }
+    if (idSekcji === 'zamowienia') {
+      pokazZamowienia();
+    }
   }
 
   function pokazProdukty() {
@@ -166,16 +197,22 @@
     lista.innerHTML = '';
 
     if (aktualnaKategoria === 'nowosci') {
-      lista.innerHTML = "<p style='text-align: center; color: gold;'>Nowości pojawią się wkrótce!</p>";
+      lista.innerHTML = "<p style='text-align:center; font-style:italic; color:gold;'>Nowości pojawią się wkrótce!</p>";
       return;
     }
 
     const filtrowane = produkty.filter(p => p.kategoria === aktualnaKategoria);
 
+    if (filtrowane.length === 0) {
+      lista.innerHTML = "<p style='text-align:center;'>Brak produktów w tej kategorii.</p>";
+      return;
+    }
+
     filtrowane.forEach(prod => {
-      const cenaText = prod.cena === 0 ? "cena ustalana" : prod.cena + " zł";
+      const cenaText = prod.cena ? prod.cena + " zł" : "Cena do ustalenia";
       const div = document.createElement('div');
       div.className = 'produkt';
+      div.style = "border:1px solid #ccc; padding:15px; margin-bottom:10px; border-radius:6px; max-width:350px;";
       div.innerHTML = `
         <h3>${prod.nazwa}</h3>
         <p>Cena: <strong>${cenaText}</strong></p>
@@ -186,18 +223,18 @@
     });
   }
 
-  document.querySelectorAll('.kategoria-btn').forEach(btn => {
+  document.querySelectorAll('#kategorie button').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.kategoria-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
       aktualnaKategoria = btn.dataset.kategoria;
+      document.querySelectorAll('#kategorie button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
       pokazProdukty();
     });
   });
 
   function dodajDoZamowien(nazwa, cena) {
     zamowienia.push({ nazwa, cena });
-    alert(`Dodano do zamówienia: ${nazwa} – ${cena === 0 ? 'cena ustalana' : cena + ' zł'}`);
+    alert(`Dodano do zamówienia: ${nazwa} – ${cena} zł`);
   }
 
   function przejdzDoProjektuj(produkt) {
@@ -216,8 +253,7 @@
     let suma = 0;
     zamowienia.forEach((p, i) => {
       suma += p.cena;
-      const cenaText = p.cena === 0 ? 'cena ustalana' : p.cena + ' zł';
-      lista.innerHTML += `<p>${i + 1}. ${p.nazwa} – ${cenaText}</p>`;
+      lista.innerHTML += `<p>${i + 1}. ${p.nazwa} – ${p.cena} zł</p>`;
     });
     lista.innerHTML += `<p><strong>Łącznie: ${suma} zł</strong></p>`;
   }
@@ -229,15 +265,48 @@
     }
     let tekst = "Zamówienie:\n";
     zamowienia.forEach((p, i) => {
-      tekst += `${i + 1}. ${p.nazwa} – ${p.cena === 0 ? 'cena ustalana' : p.cena + ' zł'}\n`;
+      tekst += `${i + 1}. ${p.nazwa} – ${p.cena} zł\n`;
     });
     tekst += "\nWyślij tę listę na email: mielniczukgrzegosz74@gmail.com";
     alert(tekst);
   }
 
-  window.onload = pokazProdukty;
+  window.onload = function() {
+    pokazProdukty();
+  };
 </script>
-<section id="projektuj" class="sekcja">
+
+<style>
+  #kategorie button {
+    padding: 8px 16px;
+    margin-right: 8px;
+    border: 2px solid #c9a947;
+    background: none;
+    color: black;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  #kategorie button.active,
+  #kategorie button:hover {
+    background-color: #c9a947;
+    color: black;
+  }
+  .produkt button {
+    margin-right: 10px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: none;
+    background-color: #c9a947;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .produkt button:hover {
+    background-color: #a3852e;
+  }
+</style><section id="projektuj" class="sekcja">
   <h2>Projektuj własny produkt</h2>
   <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
 
