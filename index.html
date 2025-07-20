@@ -584,7 +584,8 @@
     alert("Dziękujemy za zamówienie! Skontaktujemy się w celu potwierdzenia.");
     this.reset();
   });
-</script>  <script>
+</script> 
+<script>
   // Obsługa formularza opinii
   document.getElementById("formularz-opinia").addEventListener("submit", function(e) {
     e.preventDefault();
@@ -595,18 +596,18 @@
       this.reset();
     }
   });
-    
 </script>
-  <script>
+
+<script>
   // Obsługa formularza bloga
   document.getElementById("formularz-blog").addEventListener("submit", function(e) {
     e.preventDefault();
     alert("Dziękujemy za Twój wpis! Po zatwierdzeniu zostanie opublikowany.");
     this.reset();
   });
-    
 </script>
-  <section id="zbiorka-dzieci" class="sekcja">
+
+<section id="zbiorka-dzieci" class="sekcja">
   <h2>Zbiórka dla Domu Dziecka</h2>
   <p>
     Każde dziecko zasługuje na ciepło, miłość i bezpieczeństwo. Niestety, wiele z nich codziennie zmaga się z samotnością i brakiem podstawowych rzeczy. 
@@ -633,6 +634,7 @@
     Twoja pomoc naprawdę zmienia życie. Dla Ciebie to chwila – dla nich cały świat.
   </p>
 </section>
+
 <script>
   function przelaczSekcje(id) {
     // Ukryj wszystkie sekcje
@@ -647,5 +649,4 @@
     document.getElementById(id).classList.add('active');
     document.getElementById('nav-' + id).classList.add('active');
   }
-</script></body>
-</html>
+</script>
