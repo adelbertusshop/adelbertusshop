@@ -106,8 +106,8 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AdelbertusShop – Koszykowy Sklep</title>
   <style>
     body {
@@ -146,7 +146,7 @@
       display: none;
       padding: 20px;
     }
-    .active {
+    .sekcja.active {
       display: block;
     }
     .produkt {
@@ -185,13 +185,13 @@
     <button onclick="pokazSekcje('koszyk')">Koszyk</button>
   </nav>
 
-  <div id="mezczyzna" class="sekcja active"></div>
+  <div id="mezczyzna" class="sekcja"></div>
   <div id="kobieta" class="sekcja"></div>
   <div id="mlodziez" class="sekcja"></div>
 
   <div id="koszyk" class="sekcja">
     <h2>Twój koszyk</h2>
-    <div id="koszykZawartosc" class="koszyk"></div>
+    <div id="koszykZawartosc"></div>
     <p><strong>Suma:</strong> <span id="sumaKoszyka">0</span> zł</p>
     <button onclick="zlozZamowienie()">Złóż zamówienie</button>
   </div>
@@ -209,8 +209,11 @@
 
     function pokazSekcje(id) {
       document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      if (id === 'koszyk') wyswietlKoszyk();
+      const wybrana = document.getElementById(id);
+      if (wybrana) {
+        wybrana.classList.add('active');
+        if (id === 'koszyk') wyswietlKoszyk();
+      }
     }
 
     function dodajProdukt(nazwa, cena) {
@@ -238,6 +241,7 @@
 
     function generujProduktyDoSekcji(idSekcji) {
       const sekcja = document.getElementById(idSekcji);
+      sekcja.innerHTML = ''; // Czyścimy przed dodaniem
       produkty.forEach(p => {
         const div = document.createElement('div');
         div.className = 'produkt';
@@ -248,10 +252,12 @@
 
     // Generowanie produktów do wszystkich sekcji
     ['mezczyzna', 'kobieta', 'mlodziez'].forEach(generujProduktyDoSekcji);
+
+    // Domyślnie pokaż Mężczyzna
+    pokazSekcje('mezczyzna');
   </script>
 </body>
-</html>
-<section id="projektuj" class="sekcja">
+</html><section id="projektuj" class="sekcja">
   <h2>Projektuj własny produkt</h2>
   <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
 
