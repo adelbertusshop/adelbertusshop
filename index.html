@@ -93,18 +93,19 @@
   </nav>
 
 </body>
-</html><nav>
-<button onclick="pokazSekcje('sklep')">Sklep</button> 
-  <button data-target="projektuj">Projektuj</button>
-  <button data-target="marketplace">Marketplace</button>
-  <button data-target="reklama">Reklama</button>
-  <button data-target="zbiorka">Zbiórka</button>
-  <button data-target="opinie">Opinie</button>
-  <button data-target="blog">Blog</button>
-  <button data-target="zamowienia">Zamówienia</button>
-  <button data-target="artysta">Artysta</button>
-  <button data-target="kontakt">Kontakt</button>
-  <button data-target="regulamin">Regulamin</button>
+</html>
+<nav>
+  <button id="nav-sklep" onclick="przelaczSekcje('sklep')">Sklep</button>
+  <button id="nav-projektuj" onclick="przelaczSekcje('projektuj')">Projektuj</button>
+  <button id="nav-marketplace" onclick="przelaczSekcje('marketplace')">Marketplace</button>
+  <button id="nav-reklama" onclick="przelaczSekcje('reklama')">Reklama</button>
+  <button id="nav-zbiorka" onclick="przelaczSekcje('zbiorka')">Zbiórka</button>
+  <button id="nav-opinie" onclick="przelaczSekcje('opinie')">Opinie</button>
+  <button id="nav-blog" onclick="przelaczSekcje('blog')">Blog</button>
+  <button id="nav-zamowienia" onclick="przelaczSekcje('zamowienia')">Zamówienia</button>
+  <button id="nav-artysta" onclick="przelaczSekcje('artysta')">Artysta</button>
+  <button id="nav-kontakt" onclick="przelaczSekcje('kontakt')">Kontakt</button>
+  <button id="nav-regulamin" onclick="przelaczSekcje('regulamin')">Regulamin</button>
 </nav>
 <section id="sklep" class="sekcja active">
 
@@ -1013,5 +1014,20 @@
   <p style="color: #ffdd57; font-weight: bold;">
     Twoja pomoc naprawdę zmienia życie. Dla Ciebie to chwila – dla nich cały świat.
   </p>
-</section></body>
+</section>
+<script>
+  function przelaczSekcje(id) {
+    // Ukryj wszystkie sekcje
+    const sekcje = document.querySelectorAll('.sekcja');
+    sekcje.forEach(sekcja => sekcja.classList.remove('active'));
+
+    // Odznacz wszystkie przyciski nawigacyjne
+    const przyciski = document.querySelectorAll('nav button');
+    przyciski.forEach(przycisk => przycisk.classList.remove('active'));
+
+    // Pokaż wybraną sekcję i zaznacz przycisk
+    document.getElementById(id).classList.add('active');
+    document.getElementById('nav-' + id).classList.add('active');
+  }
+</script></body>
 </html>
