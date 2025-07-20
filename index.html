@@ -401,7 +401,115 @@
   }
 })();
 </script>
-<section id="zamowienia" class="sekcja">
+<section id="reklama" class="sekcja hidden">
+  <h2>Reklama w AdelbertusShop</h2>
+
+  <form id="formularz-reklama">
+    <label>Imię i nazwisko / firma:<br />
+      <input type="text" name="nazwa" required />
+    </label><br /><br />
+
+    <label>Email kontaktowy:<br />
+      <input type="email" name="email" required />
+    </label><br /><br />
+
+    <label>Treść reklamy:<br />
+      <textarea name="tresc" rows="4" required></textarea>
+    </label><br /><br />
+
+    <label>Potwierdzenie wpłaty BLIK:<br />
+      <input type="text" name="potwierdzenie" placeholder="Numer transakcji lub potwierdzenie" required />
+    </label><br /><br />
+
+    <button type="submit">Wyślij zgłoszenie</button>
+  </form>
+
+  <hr style="margin: 20px 0; border-color: gold;">
+
+  <div id="admin-login">
+    <h3>Panel administratora (wpisz hasło)</h3>
+    <input type="password" id="admin-password" placeholder="Hasło administratora" />
+    <button id="admin-login-btn">Zaloguj</button>
+    <div id="login-msg"></div>
+  </div>
+
+  <div id="admin-panel" style="display:none; margin-top:20px;">
+    <h3>Zgłoszenia do zatwierdzenia</h3>
+    <ul id="lista-zgloszen" style="list-style:none; padding:0;"></ul>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const formularz = document.getElementById('formularz-reklama');
+    const adminLoginDiv = document.getElementById('admin-login');
+    const adminPanel = document.getElementById('admin-panel');
+    const adminPasswordInput = document.getElementById('admin-password');
+    const adminLoginBtn = document.getElementById('admin-login-btn');
+    const loginMsg = document.getElementById('login-msg');
+    const listaZgloszen = document.getElementById('lista-zgloszen');
+
+    const zgloszenia = [];
+
+    formularz.addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(formularz);
+      const zgloszenie = {
+        nazwa: formData.get('nazwa'),
+        email: formData.get('email'),
+        tresc: formData.get('tresc'),
+        potwierdzenie: formData.get('potwierdzenie'),
+        data: new Date().toLocaleString()
+      };
+      zgloszenia.push(zgloszenie);
+      alert('Dziękujemy za zgłoszenie! Skontaktujemy się po weryfikacji.');
+      formularz.reset();
+      if (adminPanel.style.display === 'block') {
+        dodajDoListy(zgloszenie);
+      }
+    });
+
+    adminLoginBtn.addEventListener('click', () => {
+      const haslo = adminPasswordInput.value.trim();
+      if (haslo === 'Wojownik.03') {
+        loginMsg.textContent = 'Zalogowano pomyślnie';
+        loginMsg.style.color = 'lightgreen';
+        adminLoginDiv.style.display = 'none';
+        adminPanel.style.display = 'block';
+        adminPasswordInput.value = '';
+        listaZgloszen.innerHTML = '';
+        zgloszenia.forEach(z => dodajDoListy(z));
+      } else {
+        loginMsg.textContent = 'Niepoprawne hasło';
+        loginMsg.style.color = 'red';
+      }
+    });
+
+    function dodajDoListy(zgloszenie) {
+      const li = document.createElement('li');
+      li.style.border = '1px solid gold';
+      li.style.margin = '10px 0';
+      li.style.padding = '10px';
+      li.style.backgroundColor = '#111';
+
+      li.innerHTML = `
+        <strong>${zgloszenie.nazwa}</strong> (${zgloszenie.email})<br />
+        <em>${zgloszenie.data}</em><br />
+        <p>${zgloszenie.tresc}</p>
+        <p>Potwierdzenie wpłaty: <strong>${zgloszenie.potwierdzenie}</strong></p>
+        <button class="zatwierdz-btn">Zatwierdź</button>
+      `;
+
+      const btn = li.querySelector('.zatwierdz-btn');
+      btn.addEventListener('click', () => {
+        alert(`Zgłoszenie od ${zgloszenie.nazwa} zostało zatwierdzone.`);
+        li.remove();
+      });
+
+      listaZgloszen.appendChild(li);
+    }
+  })();
+</script><section id="zamowienia" class="sekcja">
   <h2>Złóż zamówienie</h2>
   <p style="text-align: center;">Wypełnij formularz, aby zamówić wybrany produkt z projektu lub marketplace.</p>
 
