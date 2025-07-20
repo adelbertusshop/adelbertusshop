@@ -95,7 +95,8 @@
   </nav>
 
 </body>
-</html><nav>
+</html>
+<nav>
   <button id="nav-sklep" onclick="przelaczSekcje('sklep')">Sklep</button>
   <button id="nav-projektuj" onclick="przelaczSekcje('projektuj')">Projektuj</button>
   <button id="nav-marketplace" onclick="przelaczSekcje('marketplace')">Marketplace</button>
@@ -108,8 +109,8 @@
   <button id="nav-kontakt" onclick="przelaczSekcje('kontakt')">Kontakt</button>
   <button id="nav-regulamin" onclick="przelaczSekcje('regulamin')">Regulamin</button>
 </nav>
-<section id="sklep" class="sekcja active">
 
+<section id="sklep" class="sekcja active">
   <div id="kategorie">
     <button class="kategoria-btn active" data-kategoria="mezczyzni">Mężczyźni</button>
     <button class="kategoria-btn" data-kategoria="kobiety">Kobiety</button>
@@ -118,74 +119,17 @@
     <button class="kategoria-btn" data-kategoria="nowosci">Nowości</button>
   </div>
 
-  <div id="produkty-lista">
-    <!-- Produkty pojawią się tutaj -->
-  </div>
-
+  <div id="produkty-lista"></div>
 </section>
 
-<script>
-  const produkty = [
-    { id: 1, nazwa: "Bluza", cena: 150, kategorie: ["mezczyzni", "kobiety", "mlodziez"] },
-    { id: 2, nazwa: "Bluza z kapturem", cena: 150, kategorie: ["mezczyzni", "kobiety", "mlodziez"] },
-    { id: 3, nazwa: "Koszulka", cena: 99, kategorie: ["mezczyzni", "kobiety", "mlodziez"] },
-    { id: 4, nazwa: "Czapka", cena: 79, kategorie: ["mezczyzni", "kobiety", "mlodziez"] },
-    { id: 5, nazwa: "Akcesoria", cena: "max cena ustalana", kategorie: ["akcesoria"] },
-  ];
-
-  const produktyListaEl = document.getElementById('produkty-lista');
-  const kategoriaBtn = document.querySelectorAll('.kategoria-btn');
-
-  function pokazProdukty(kategoria) {
-    produktyListaEl.innerHTML = '';
-
-    if (kategoria === 'nowosci') {
-      produktyListaEl.innerHTML = '<p class="nowości-info" style="color: gold; font-weight: 700; text-align: center; font-size: 1.2rem; margin-top: 20px;">Nowości pojawią się wkrótce!</p>';
-      return;
-    }
-
-    const filtrowaneProdukty = produkty.filter(p => p.kategorie.includes(kategoria));
-
-    filtrowaneProdukty.forEach(prod => {
-      const cenaTekst = prod.cena === "max cena ustalana" ? prod.cena : `${prod.cena} zł`;
-      const prodEl = document.createElement('div');
-      prodEl.classList.add('produkt');
-      prodEl.style.border = "2px solid gold";
-      prodEl.style.backgroundColor = "#111";
-      prodEl.style.borderRadius = "15px";
-      prodEl.style.padding = "20px";
-      prodEl.style.marginBottom = "20px";
-      prodEl.style.boxShadow = "0 0 10px #d4af37aa";
-
-      prodEl.innerHTML = `
-        <h3 style="margin-bottom: 10px;">${prod.nazwa}</h3>
-        <p style="font-weight: 700; margin-bottom: 15px;">Cena: ${cenaTekst}</p>
-        <button style="background-color: gold; color: black; border: none; padding: 10px 16px; font-weight: 700; border-radius: 8px; cursor: pointer;">Dodaj do koszyka</button>
-      `;
-
-      produktyListaEl.appendChild(prodEl);
-    });
-  }
-
-  kategoriaBtn.forEach(btn => {
-    btn.addEventListener('click', () => {
-      kategoriaBtn.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      pokazProdukty(btn.getAttribute('data-kategoria'));
-    });
-  });
-
-  // Start - pokaż produkty kategorii "mezczyzni"
-  pokazProdukty('mezczyzni');
-</script>
-<!-- SEKCJA PROJEKTUJ -->
+<!-- PROJEKTUJ -->
 <section id="projektuj" class="sekcja">
   <h2>Zaprojektuj swój produkt</h2>
   <p>Tu będzie edytor do projektowania produktu (dodaj obrazy, tekst itp.)</p>
   <button onclick="przelaczSekcje('sklep')">Wróć do sklepu</button>
 </section>
 
-<!-- SEKCJA ZAMÓWIENIA -->
+<!-- ZAMÓWIENIA -->
 <section id="zamowienia" class="sekcja">
   <h2>Twoje zamówienia</h2>
   <div id="zamowienia-lista">
@@ -196,27 +140,12 @@
 </section>
 
 <script>
-  // Produkty z przypisanymi kategoriami i cenami
   const produkty = [
     { id: 1, nazwa: "Bluza", kategoria: "mezczyzni", cena: 150 },
-    { id: 2, nazwa: "Bluza z kapturem", kategoria: "mezczyzni", cena: 150 },
-    { id: 3, nazwa: "Koszulka", kategoria: "mezczyzni", cena: 99 },
-    { id: 4, nazwa: "Czapka", kategoria: "mezczyzni", cena: 79 },
-    { id: 5, nazwa: "Akcesoria", kategoria: "akcesoria", cena: 0 },
-
-    { id: 6, nazwa: "Bluza", kategoria: "kobiety", cena: 150 },
-    { id: 7, nazwa: "Bluza z kapturem", kategoria: "kobiety", cena: 150 },
-    { id: 8, nazwa: "Koszulka", kategoria: "kobiety", cena: 99 },
-    { id: 9, nazwa: "Czapka", kategoria: "kobiety", cena: 79 },
-    { id: 10, nazwa: "Akcesoria", kategoria: "akcesoria", cena: 0 },
-
-    { id: 11, nazwa: "Bluza", kategoria: "mlodziez", cena: 150 },
-    { id: 12, nazwa: "Bluza z kapturem", kategoria: "mlodziez", cena: 150 },
-    { id: 13, nazwa: "Koszulka", kategoria: "mlodziez", cena: 99 },
-    { id: 14, nazwa: "Czapka", kategoria: "mlodziez", cena: 79 },
-    { id: 15, nazwa: "Akcesoria", kategoria: "akcesoria", cena: 0 },
-
-    // Nowości - pusta na razie
+    { id: 2, nazwa: "Bluza z kapturem", kategoria: "kobiety", cena: 150 },
+    { id: 3, nazwa: "Koszulka", kategoria: "mlodziez", cena: 99 },
+    { id: 4, nazwa: "Czapka", kategoria: "mlodziez", cena: 79 },
+    { id: 5, nazwa: "Akcesoria", kategoria: "akcesoria", cena: 0 }
   ];
 
   let aktualnaKategoria = "mezczyzni";
@@ -225,28 +154,23 @@
   function przelaczSekcje(idSekcji) {
     document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
     document.getElementById(idSekcji).classList.add('active');
-    // Aktywuj odpowiedni przycisk w nawigacji
     document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-    if (idSekcji === 'sklep') document.getElementById('nav-sklep').classList.add('active');
-    else if (idSekcji === 'projektuj') document.getElementById('nav-projektuj').classList.add('active');
-    else if (idSekcji === 'zamowienia') document.getElementById('nav-zamowienia').classList.add('active');
+    const aktywny = document.getElementById('nav-' + idSekcji);
+    if (aktywny) aktywny.classList.add('active');
+
+    if (idSekcji === 'zamowienia') pokazZamowienia();
   }
 
-  // Wyświetl produkty dla aktualnej kategorii
   function pokazProdukty() {
     const lista = document.getElementById('produkty-lista');
     lista.innerHTML = '';
 
-    let filtrowane = produkty.filter(p => {
-      if (aktualnaKategoria === 'nowosci') return false; // pusta na razie
-      if (aktualnaKategoria === 'akcesoria') return p.kategoria === 'akcesoria';
-      return p.kategoria === aktualnaKategoria;
-    });
-
     if (aktualnaKategoria === 'nowosci') {
-      lista.innerHTML = "<p>Nowości pojawią się wkrótce!</p>";
+      lista.innerHTML = "<p style='text-align: center; color: gold;'>Nowości pojawią się wkrótce!</p>";
       return;
     }
+
+    const filtrowane = produkty.filter(p => p.kategoria === aktualnaKategoria);
 
     filtrowane.forEach(prod => {
       const cenaText = prod.cena === 0 ? "cena ustalana" : prod.cena + " zł";
@@ -262,29 +186,25 @@
     });
   }
 
-  // Obsługa wyboru kategorii
-  document.querySelectorAll('#kategorie .kategoria-btn').forEach(btn => {
+  document.querySelectorAll('.kategoria-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('#kategorie .kategoria-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.kategoria-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      aktualnaKategoria = btn.getAttribute('data-kategoria');
+      aktualnaKategoria = btn.dataset.kategoria;
       pokazProdukty();
     });
   });
 
-  // Dodaj produkt do zamówień
   function dodajDoZamowien(nazwa, cena) {
     zamowienia.push({ nazwa, cena });
     alert(`Dodano do zamówienia: ${nazwa} – ${cena === 0 ? 'cena ustalana' : cena + ' zł'}`);
   }
 
-  // Przejdź do sekcji projektowania z wybranym produktem (można rozbudować)
   function przejdzDoProjektuj(produkt) {
-    alert(`Przechodzisz do projektowania produktu: ${produkt}`);
+    alert(`Projektujesz: ${produkt}`);
     przelaczSekcje('projektuj');
   }
 
-  // Wyświetl listę zamówień
   function pokazZamowienia() {
     const lista = document.getElementById('zamowienia-lista');
     lista.innerHTML = '';
@@ -292,6 +212,7 @@
       lista.innerHTML = '<p>Brak produktów w zamówieniach.</p>';
       return;
     }
+
     let suma = 0;
     zamowienia.forEach((p, i) => {
       suma += p.cena;
@@ -301,7 +222,6 @@
     lista.innerHTML += `<p><strong>Łącznie: ${suma} zł</strong></p>`;
   }
 
-  // Finalizacja zamówienia (alert z podsumowaniem i info do dalszej obsługi)
   function zlozZamowienie() {
     if (zamowienia.length === 0) {
       alert("Twoja lista zamówień jest pusta.");
@@ -315,201 +235,8 @@
     alert(tekst);
   }
 
-  // Inicjalizacja strony - pokazujemy produkty i ustawiamy kategorię domyślną
-  window.onload = () => {
-    pokazProdukty();
-  };
-
-  // Przy przełączeniu na zamówienia pokaz listę
-  document.getElementById('nav-zamowienia').addEventListener('click', () => {
-    pokazZamowienia();
-  });
-
-</script>
-
-</body>
-</html>
-<!-- SEKCJA ZAPROJEKTUJ -->
-<section id="projektuj" class="sekcja">
-  <h2>Projektuj swój produkt</h2>
-  <p><strong>Produkt do zaprojektowania:</strong> <span id="produkt-nazwa"></span></p>
-  
-  <label for="custom-text">Dodaj własny tekst do projektu:</label>
-  <input type="text" id="custom-text" placeholder="Np. Twój napis" />
-  
-  <button class="submit-btn" onclick="przejdzDoZamowienia()">Dalej do Zamówienia</button>
-</section>
-
-<!-- SEKCJA ZAMÓWIENIA -->
-<section id="zamowienia" class="sekcja">
-  <h2>Twoje zamówienie</h2>
-  <div id="podsumowanie-zamowienia"></div>
-
-  <label for="user-name">Imię i nazwisko:</label>
-  <input type="text" id="user-name" placeholder="Wpisz swoje imię i nazwisko" />
-
-  <label for="user-email">E-mail:</label>
-  <input type="text" id="user-email" placeholder="Wpisz swój e-mail" />
-
-  <label for="user-phone">Telefon:</label>
-  <input type="text" id="user-phone" placeholder="Wpisz numer telefonu" />
-
-  <button class="submit-btn" onclick="zlozZamowienie()">Złóż zamówienie</button>
-</section>
-
-<script>
-  // Dane produktów z kategoriami i cenami
-  const produkty = [
-    { id: 'bluza', nazwa: 'Bluza', cena: 150, kategoria: 'mezczyzni' },
-    { id: 'bluza-kaptur', nazwa: 'Bluza z kapturem', cena: 150, kategoria: 'mezczyzni' },
-    { id: 'koszulka', nazwa: 'Koszulka', cena: 99, kategoria: 'mezczyzni' },
-
-    { id: 'bluza-kaptur-k', nazwa: 'Bluza z kapturem', cena: 150, kategoria: 'kobiety' },
-    { id: 'koszulka-k', nazwa: 'Koszulka', cena: 99, kategoria: 'kobiety' },
-    { id: 'czapka-k', nazwa: 'Czapka', cena: 79, kategoria: 'kobiety' },
-    { id: 'akcesoria-k', nazwa: 'Akcesoria', cena: 0, kategoria: 'kobiety' },
-
-    { id: 'bluza-m', nazwa: 'Bluza', cena: 150, kategoria: 'mlodziez' },
-    { id: 'koszulka-m', nazwa: 'Koszulka', cena: 99, kategoria: 'mlodziez' },
-    { id: 'czapka-m', nazwa: 'Czapka', cena: 79, kategoria: 'mlodziez' },
-
-    { id: 'akcesoria-a', nazwa: 'Akcesoria', cena: 0, kategoria: 'akcesoria' }
-  ];
-
-  // Pusta kategoria nowosci na razie
-  const nowosci = [];
-
-  // Aktualna kategoria do pokazywania w sklepie
-  let aktualnaKategoria = 'mezczyzni';
-
-  // Produkt wybrany do projektowania
-  let produktProjektowany = null;
-
-  // Wartość tekstu dodanego do projektu
-  let tekstProjektu = '';
-
-  // Funkcja przełączania sekcji
-  function przelaczSekcje(idSekcji) {
-    document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
-    document.getElementById(idSekcji).classList.add('active');
-
-    // Zaznacz aktywny przycisk nawigacji
-    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-    if(idSekcji === 'sklep') document.getElementById('nav-sklep').classList.add('active');
-    else if(idSekcji === 'projektuj') document.getElementById('nav-projektuj').classList.add('active');
-    else if(idSekcji === 'zamowienia') document.getElementById('nav-zamowienia').classList.add('active');
-  }
-
-  // Pokaz produkty wg kategorii
-  function pokazProdukty(kategoria) {
-    aktualnaKategoria = kategoria;
-
-    const listaEl = document.getElementById('produkty-lista');
-    listaEl.innerHTML = '';
-
-    if(kategoria === 'nowosci') {
-      listaEl.innerHTML = '<p>Nowości pojawią się wkrótce!</p>';
-      return;
-    }
-
-    const listaProduktow = produkty.filter(p => p.kategoria === kategoria);
-
-    listaProduktow.forEach(p => {
-      const div = document.createElement('div');
-      div.className = 'produkt';
-      const cenaTekst = p.cena === 0 ? 'max cena ustalana' : p.cena + ' zł';
-
-      div.innerHTML = `
-        <h3>${p.nazwa}</h3>
-        <p>Cena: <strong>${cenaTekst}</strong></p>
-        <button onclick="wybierzDoProjektowania('${p.id}')">Zaprojektuj</button>
-      `;
-
-      listaEl.appendChild(div);
-    });
-  }
-
-  // Obsługa wyboru produktu do projektowania
-  function wybierzDoProjektowania(idProduktu) {
-    produktProjektowany = produkty.find(p => p.id === idProduktu);
-    if(!produktProjektowany) return alert("Produkt nieznaleziony!");
-
-    document.getElementById('produkt-nazwa').textContent = produktProjektowany.nazwa;
-    document.getElementById('custom-text').value = '';
-    tekstProjektu = '';
-
-    przelaczSekcje('projektuj');
-  }
-
-  // Obsługa tekstu projektu
-  document.getElementById('custom-text').addEventListener('input', e => {
-    tekstProjektu = e.target.value;
-  });
-
-  // Przejście do zamówienia z projektem
-  function przejdzDoZamowienia() {
-    if(!produktProjektowany) return alert("Nie wybrano produktu do projektowania!");
-
-    let podsumowanie = `<h3>${produktProjektowany.nazwa}</h3>`;
-    podsumowanie += `<p>Cena: ${produktProjektowany.cena === 0 ? 'max cena ustalana' : produktProjektowany.cena + ' zł'}</p>`;
-    podsumowanie += `<p>Twój tekst: <strong>${tekstProjektu || '(brak)'}</strong></p>`;
-
-    document.getElementById('podsumowanie-zamowienia').innerHTML = podsumowanie;
-
-    przelaczSekcje('zamowienia');
-  }
-
-  // Złożenie zamówienia (na razie alert)
-  function zlozZamowienie() {
-    const imie = document.getElementById('user-name').value.trim();
-    const email = document.getElementById('user-email').value.trim();
-    const telefon = document.getElementById('user-phone').value.trim();
-
-    if(!imie || !email || !telefon) {
-      alert("Proszę wypełnić wszystkie dane kontaktowe.");
-      return;
-    }
-
-    let wiadomosc = `Zamówienie z AdelbertusShop:\n\n`;
-    wiadomosc += `Produkt: ${produktProjektowany.nazwa}\n`;
-    wiadomosc += `Cena: ${produktProjektowany.cena === 0 ? 'max cena ustalana' : produktProjektowany.cena + ' zł'}\n`;
-    wiadomosc += `Tekst projektu: ${tekstProjektu || '(brak)'}\n\n`;
-    wiadomosc += `Dane klienta:\nImię i nazwisko: ${imie}\nEmail: ${email}\nTelefon: ${telefon}`;
-
-    alert("Dziękujemy za zamówienie! Skopiuj poniższą treść i wyślij na maila:\n\n" + wiadomosc);
-
-    // Tutaj można dodać wysyłkę maila lub inną obsługę
-
-    // Reset formularza i powrót do sklepu
-    produktProjektowany = null;
-    tekstProjektu = '';
-    document.getElementById('custom-text').value = '';
-    document.getElementById('user-name').value = '';
-    document.getElementById('user-email').value = '';
-    document.getElementById('user-phone').value = '';
-    document.getElementById('podsumowanie-zamowienia').innerHTML = '';
-
-    przelaczSekcje('sklep');
-    pokazProdukty(aktualnaKategoria);
-  }
-
-  // Inicjalizacja - pokaz produkty dla domyślnej kategorii
-  document.addEventListener('DOMContentLoaded', () => {
-    pokazProdukty(aktualnaKategoria);
-
-    // Obsługa przycisków kategorii
-    document.querySelectorAll('#kategorie button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#kategorie button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        pokazProdukty(btn.getAttribute('data-kategoria'));
-      });
-    });
-  });
-</script>
-
-</body>
-</html><section id="projektuj" class="sekcja">
+  window.onload = pokazProdukty;
+</script><section id="projektuj" class="sekcja">
   <h2>Projektuj własny produkt</h2>
   <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
 
