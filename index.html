@@ -1,28 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop</title>
   <style>
-    .sekcja {
-      display: none;
-      padding: 25px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .sekcja.active { display: block; }
-
-    .kategoria-btn.active { background-color: gold; color: black; }
-    .produkt button:hover { background-color: #d4af37cc; }
-
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #000;
       color: #f5f5dc;
-      line-height: 1.6;
-      font-size: 16px;
     }
 
     header {
@@ -65,6 +53,38 @@
       color: black;
     }
 
+    .sekcja {
+      display: none;
+      padding: 25px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sekcja.active {
+      display: block;
+    }
+
+    .produkt {
+      border: 1px solid gold;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px 0;
+      background-color: #111;
+    }
+
+    .produkt button {
+      background-color: gold;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .produkt button:hover {
+      background-color: #d4af37cc;
+    }
+
     @media (max-width: 768px) {
       nav {
         flex-direction: column;
@@ -78,447 +98,69 @@
   </style>
 </head>
 <body>
-
+  <!-- Logo + baner -->
   <div style="position: relative; width: 100%; height: auto;">
     <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo lewe" style="position: absolute; top: 10px; left: 10px; height: 80px; z-index: 2;">
     <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo prawe" style="position: absolute; top: 10px; right: 10px; height: 80px; z-index: 2;">
     <img src="https://i.ibb.co/cc2ssnSk/Messenger-creation-6365-D019-B450-442-F-B278-4-AF2-AB768752.jpg" alt="Banner" style="width: 100%; display: block;">
   </div>
 
+  <!-- Nagłówek -->
   <header>
     <h1>AdelbertusShop</h1>
     <p>– legalnie zakazany –</p>
   </header>
 
+  <!-- Nawigacja -->
   <nav>
-    <!-- Przyciski do nawigacji dodajemy w kolejnych etapach -->
+    <button onclick="przelaczSekcje('sklep')">Sklep</button>
+    <button onclick="przelaczSekcje('projektuj')">Projektuj</button>
+    <button onclick="przelaczSekcje('zamowienia')">Zamówienia</button>
   </nav>
 
+  <!-- Sekcje -->
+  <div id="sklep" class="sekcja active">
+    <h2>Sklep</h2>
+    <div class="produkt">
+      <h3>Bluza Adelbertus</h3>
+      <p>Cena: 150 zł</p>
+      <button onclick="zamowProdukt('Bluza Adelbertus')">Zamów teraz</button>
+    </div>
+    <div class="produkt">
+      <h3>Koszulka Magiczna</h3>
+      <p>Cena: 99 zł</p>
+      <button onclick="zamowProdukt('Koszulka Magiczna')">Zamów teraz</button>
+    </div>
+  </div>
+
+  <div id="projektuj" class="sekcja">
+    <h2>Projektuj własny produkt</h2>
+    <p>Dodaj swój projekt, a my go wykonamy specjalnie dla Ciebie.</p>
+  </div>
+
+  <div id="zamowienia" class="sekcja">
+    <h2>Formularz zamówienia</h2>
+    <p>Produkt: <span id="wybrany-produkt">Brak</span></p>
+    <!-- Formularz kontaktowy można tu później rozwinąć -->
+  </div>
+
+  <!-- Skrypt JS -->
+  <script>
+    function przelaczSekcje(id) {
+      const sekcje = document.querySelectorAll('.sekcja');
+      sekcje.forEach(s => s.classList.remove('active'));
+
+      const przyciski = document.querySelectorAll('nav button');
+      przyciski.forEach(b => b.classList.remove('active'));
+
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function zamowProdukt(nazwa) {
+      przelaczSekcje('zamowienia');
+      document.getElementById('wybrany-produkt').innerText = nazwa;
+    }
+  </script>
 </body>
 </html>
-<nav>
-  <button id="nav-sklep" onclick="przelaczSekcje('sklep')">Sklep</button>
-  <button id="nav-zamowienia" onclick="przelaczSekcje('zamowienia')">Zamówienia</button>
-</nav>
-
-<section id="sklep" class="sekcja" style="display:block;">
-  <div id="kategorie" style="margin-bottom:20px;">
-    <button class="kategoria-btn active" data-kategoria="mezczyzni">Mężczyźni</button>
-    <button class="kategoria-btn" data-kategoria="kobiety">Kobiety</button>
-    <button class="kategoria-btn" data-kategoria="mlodziez">Młodzież</button>
-  </div>
-  <div id="produkty-lista"></div>
-</section>
-
-<section id="zamowienia" class="sekcja" style="display:none;">
-  <h2>Twoje zamówienia</h2>
-  <div id="zamowienia-lista"><p>Brak produktów w zamówieniach.</p></div>
-  <button onclick="zlozZamowienie()">Złóż zamówienie</button>
-  <button onclick="przelaczSekcje('sklep')">Wróć do sklepu</button>
-</section>
-
-<script>
-  const produkty = [
-    { id: 1, nazwa: "Bluza", kategoria: "mezczyzni", cena: 150 },
-    { id: 2, nazwa: "Koszulka", kategoria: "mezczyzni", cena: 99 },
-    { id: 3, nazwa: "Bluza", kategoria: "kobiety", cena: 150 },
-    { id: 4, nazwa: "Koszulka", kategoria: "kobiety", cena: 99 },
-    { id: 5, nazwa: "Bluza", kategoria: "mlodziez", cena: 150 },
-    { id: 6, nazwa: "Koszulka", kategoria: "mlodziez", cena: 99 }
-  ];
-
-  let aktualnaKategoria = "mezczyzni";
-  const zamowienia = [];
-
-  function przelaczSekcje(idSekcji) {
-    document.querySelectorAll('.sekcja').forEach(s => {
-      s.style.display = (s.id === idSekcji) ? 'block' : 'none';
-    });
-
-    if (idSekcji === 'sklep') pokazProdukty();
-    if (idSekcji === 'zamowienia') pokazZamowienia();
-  }
-
-  function pokazProdukty() {
-    const lista = document.getElementById('produkty-lista');
-    lista.innerHTML = '';
-    const filtrowane = produkty.filter(p => p.kategoria === aktualnaKategoria);
-
-    if (filtrowane.length === 0) {
-      lista.innerHTML = "<p>Brak produktów w tej kategorii.</p>";
-      return;
-    }
-
-    filtrowane.forEach(prod => {
-      const div = document.createElement('div');
-      div.className = 'produkt';
-      div.style = "border:1px solid #ccc; padding:15px; margin-bottom:10px; border-radius:6px;";
-      div.innerHTML = `
-        <h3>${prod.nazwa}</h3>
-        <p>Cena: <strong>${prod.cena} zł</strong></p>
-        <button onclick="dodajDoZamowien('${prod.nazwa}', ${prod.cena})">Dodaj do zamówienia</button>
-      `;
-      lista.appendChild(div);
-    });
-  }
-
-  function dodajDoZamowien(nazwa, cena) {
-    zamowienia.push({ nazwa, cena });
-    alert(`Dodano do zamówienia: ${nazwa} – ${cena} zł`);
-  }
-
-  function pokazZamowienia() {
-    const lista = document.getElementById('zamowienia-lista');
-    lista.innerHTML = '';
-    if (zamowienia.length === 0) {
-      lista.innerHTML = '<p>Brak produktów w zamówieniach.</p>';
-      return;
-    }
-
-    let suma = 0;
-    zamowienia.forEach((p, i) => {
-      suma += p.cena;
-      lista.innerHTML += `<p>${i + 1}. ${p.nazwa} – ${p.cena} zł</p>`;
-    });
-    lista.innerHTML += `<p><strong>Łącznie: ${suma} zł</strong></p>`;
-  }
-
-  // Ustawienie eventów kategorii po załadowaniu DOM
-  window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('#kategorie button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        aktualnaKategoria = btn.dataset.kategoria;
-        document.querySelectorAll('#kategorie button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        pokazProdukty();
-      });
-    });
-    pokazProdukty();
-  });
-</script>
-
-<style>
-  #kategorie button {
-    padding: 8px 16px;
-    margin-right: 8px;
-    border: 2px solid #c9a947;
-    background: none;
-    color: black;
-    font-weight: 600;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  #kategorie button.active,
-  #kategorie button:hover {
-    background-color: #c9a947;
-    color: black;
-  }
-  .produkt button {
-    margin-top: 10px;
-    padding: 6px 12px;
-    border-radius: 20px;
-    border: none;
-    background-color: #c9a947;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  .produkt button:hover {
-    background-color: #a3852e;
-  }
-</style><section id="projektuj" class="sekcja">
-  <h2>Zaprojektuj swój produkt</h2>
-  <div id="projektuj-kreator" style="max-width: 700px; margin: auto; background: #2a262a; padding: 20px; border-radius: 10px; color: white;">
-    
-    <label for="produkt-wybierz">Wybierz produkt:</label><br>
-    <select id="produkt-wybierz" style="width: 100%; padding: 8px; margin-bottom: 15px;">
-      <option value="Bluza">Bluza</option>
-      <option value="Bluza z kapturem">Bluza z kapturem</option>
-      <option value="Koszulka">Koszulka</option>
-      <option value="Czapka">Czapka</option>
-      <option value="Akcesoria">Akcesoria</option>
-    </select>
-
-    <label for="kolor-wybierz">Wybierz kolor:</label><br>
-    <select id="kolor-wybierz" style="width: 100%; padding: 8px; margin-bottom: 15px;">
-      <option value="#000000">Czarny</option>
-      <option value="#ffffff">Biały</option>
-      <option value="#c9a947">Złoty</option>
-      <option value="#e74c3c">Czerwony</option>
-      <option value="#3498db">Niebieski</option>
-      <option value="#2ecc71">Zielony</option>
-    </select>
-
-    <label for="rozmiar-wybierz">Wybierz rozmiar:</label><br>
-    <select id="rozmiar-wybierz" style="width: 100%; padding: 8px; margin-bottom: 15px;">
-      <option value="S">S</option>
-      <option value="M" selected>M</option>
-      <option value="L">L</option>
-      <option value="XL">XL</option>
-      <option value="XXL">XXL</option>
-    </select>
-
-    <label for="tekst-projektu">Dodaj tekst:</label><br>
-    <input type="text" id="tekst-projektu" placeholder="Twój tekst na produkcie" style="width: 100%; padding: 8px; margin-bottom: 15px; color: black;"><br>
-
-    <label for="grafika-upload">Dodaj grafikę (png/jpg):</label><br>
-    <input type="file" id="grafika-upload" accept="image/png, image/jpeg" style="margin-bottom: 15px;"><br>
-
-    <div id="podglad-projektu" style="border: 2px solid #c9a947; padding: 20px; border-radius: 10px; text-align: center; color: black; background: white; position: relative;">
-      <h3>Podgląd</h3>
-      <div id="produkt-obrazek" style="width: 250px; height: 250px; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; background-color: #000;"></div>
-      <div id="tekst-na-produkcie" style="position: absolute; top: 140px; left: 50%; transform: translateX(-50%); color: #c9a947; font-weight: bold; font-size: 18px; pointer-events: none;"></div>
-      <img id="grafika-podglad" src="" alt="" style="max-width: 100px; position: absolute; bottom: 10px; right: 10px; display: none;">
-    </div>
-
-    <button id="dodaj-do-zamowienia" style="margin-top: 20px; padding: 12px 25px; background-color: #c9a947; border: none; font-weight: bold; border-radius: 25px; cursor: pointer;">Dodaj do zamówienia</button>
-    <button onclick="przelaczSekcje('sklep')" style="margin-left: 10px; padding: 12px 25px; border-radius: 25px; cursor: pointer;">Wróć do sklepu</button>
-  </div>
-</section>
-
-<script>
-  const produktObrazek = document.getElementById('produkt-obrazek');
-  const tekstNaProdukcie = document.getElementById('tekst-na-produkcie');
-  const grafikaPodglad = document.getElementById('grafika-podglad');
-
-  const produktWybierz = document.getElementById('produkt-wybierz');
-  const kolorWybierz = document.getElementById('kolor-wybierz');
-  const tekstProjektu = document.getElementById('tekst-projektu');
-  const grafikaUpload = document.getElementById('grafika-upload');
-  const rozmiarWybierz = document.getElementById('rozmiar-wybierz');
-  const dodajDoZamowieniaBtn = document.getElementById('dodaj-do-zamowienia');
-
-  function updatePodglad() {
-    // Zmienia tło podglądu na kolor wybrany
-    produktObrazek.style.backgroundColor = kolorWybierz.value;
-
-    // Ustaw tekst na produkcie
-    tekstNaProdukcie.textContent = tekstProjektu.value;
-
-    // Ukryj lub pokaż grafikę
-    if (grafikaPodglad.src && grafikaPodglad.src !== window.location.href) {
-      grafikaPodglad.style.display = 'block';
-    } else {
-      grafikaPodglad.style.display = 'none';
-    }
-  }
-
-  kolorWybierz.addEventListener('change', updatePodglad);
-  tekstProjektu.addEventListener('input', updatePodglad);
-  produktWybierz.addEventListener('change', updatePodglad);
-
-  grafikaUpload.addEventListener('change', function() {
-    const file = this.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      grafikaPodglad.src = e.target.result;
-      updatePodglad();
-    }
-    reader.readAsDataURL(file);
-  });
-
-  dodajDoZamowieniaBtn.addEventListener('click', () => {
-    const produkt = produktWybierz.value;
-    const kolor = kolorWybierz.options[kolorWybierz.selectedIndex].text;
-    const rozmiar = rozmiarWybierz.value;
-    const tekst = tekstProjektu.value.trim() || "brak tekstu";
-    const cenaMap = {
-      "Bluza": 150,
-      "Bluza z kapturem": 150,
-      "Koszulka": 99,
-      "Czapka": 79,
-      "Akcesoria": 50
-    };
-    const cena = cenaMap[produkt] || 100;
-
-    const zamowienieOpis = `Produkt: ${produkt}\nKolor: ${kolor}\nRozmiar: ${rozmiar}\nTekst: ${tekst}\nCena: ${cena} zł`;
-
-    alert("Dodano do zamówienia:\n" + zamowienieOpis);
-    
-    // Tu możesz rozbudować logikę dodawania do zamówień w Twoim systemie
-  });
-
-  window.onload = updatePodglad;
-<section id="marketplace" class="sekcja">
-  <h2>Marketplace AdelbertusShop</h2>
-
-  <form id="formularz-marketplace">
-    <label>Imię i nazwisko / firma:<br />
-      <input type="text" name="nazwa" required />
-    </label><br /><br />
-
-    <label>Email kontaktowy:<br />
-      <input type="email" name="email" required />
-    </label><br /><br />
-
-    <label>Produkt do sprzedaży:<br />
-      <select name="produkt" required>
-        <option value="" disabled selected>Wybierz produkt</option>
-        <option value="Bluza - max 150 zł">Bluza - max 150 zł</option>
-        <option value="Bluza z kapturem - max 150 zł">Bluza z kapturem - max 150 zł</option>
-        <option value="Koszulka - max 99 zł">Koszulka - max 99 zł</option>
-        <option value="Czapka - max 79 zł">Czapka - max 79 zł</option>
-        <option value="Inne akcesoria - max 120 zł">Inne akcesoria - max 120 zł</option>
-      </select>
-    </label><br /><br />
-
-    <label>Opis produktu:<br />
-      <textarea name="opis" rows="4" required></textarea>
-    </label><br /><br />
-
-    <label>Potwierdzenie wpłaty BLIK:<br />
-      <input type="text" name="potwierdzenie" placeholder="Numer transakcji lub potwierdzenie" required />
-    </label><br /><br />
-
-    <button type="submit">Wyślij zgłoszenie</button>
-  </form>
-
-  <hr style="margin: 20px 0; border-color: gold;">
-
-  <div id="marketplace-admin-login">
-    <h3>Panel administratora (wpisz hasło)</h3>
-    <input type="password" id="marketplace-admin-password" placeholder="Hasło administratora" />
-    <button id="marketplace-admin-login-btn">Zaloguj</button>
-    <div id="marketplace-login-msg"></div>
-  </div>
-
-  <div id="marketplace-admin-panel" style="display:none; margin-top:20px;">
-    <h3>Zgłoszenia do zatwierdzenia</h3>
-    <ul id="marketplace-lista-zgloszen" style="list-style:none; padding:0;"></ul>
-  </div>
-</section>
-
-<script>
-(() => {
-  const formularzMarketplace = document.getElementById('formularz-marketplace');
-  const adminLoginDivMarketplace = document.getElementById('marketplace-admin-login');
-  const adminPanelMarketplace = document.getElementById('marketplace-admin-panel');
-  const adminPasswordInputMarketplace = document.getElementById('marketplace-admin-password');
-  const adminLoginBtnMarketplace = document.getElementById('marketplace-admin-login-btn');
-  const loginMsgMarketplace = document.getElementById('marketplace-login-msg');
-  const listaZgloszenMarketplace = document.getElementById('marketplace-lista-zgloszen');
-
-  const zgloszeniaMarketplace = [];
-
-  formularzMarketplace.addEventListener('submit', e => {
-    e.preventDefault();
-    const formData = new FormData(formularzMarketplace);
-    const zgloszenie = {
-      nazwa: formData.get('nazwa'),
-      email: formData.get('email'),
-      produkt: formData.get('produkt'),
-      opis: formData.get('opis'),
-      potwierdzenie: formData.get('potwierdzenie'),
-      data: new Date().toLocaleString()
-    };
-    zgloszeniaMarketplace.push(zgloszenie);
-    alert('Dziękujemy za zgłoszenie! Skontaktujemy się po weryfikacji.');
-    formularzMarketplace.reset();
-    if (adminPanelMarketplace.style.display === 'block') {
-      dodajDoListyMarketplace(zgloszenie);
-    }
-  });
-
-  adminLoginBtnMarketplace.addEventListener('click', () => {
-    const haslo = adminPasswordInputMarketplace.value.trim();
-    if (haslo === 'Wojownik.03') {
-      loginMsgMarketplace.textContent = 'Zalogowano pomyślnie';
-      loginMsgMarketplace.style.color = 'lightgreen';
-      adminLoginDivMarketplace.style.display = 'none';
-      adminPanelMarketplace.style.display = 'block';
-      adminPasswordInputMarketplace.value = '';
-      listaZgloszenMarketplace.innerHTML = '';
-      zgloszeniaMarketplace.forEach(z => dodajDoListyMarketplace(z));
-    } else {
-      loginMsgMarketplace.textContent = 'Niepoprawne hasło';
-      loginMsgMarketplace.style.color = 'red';
-    }
-  });
-
-  function dodajDoListyMarketplace(zgloszenie) {
-    const li = document.createElement('li');
-    li.style.border = '1px solid gold';
-    li.style.margin = '10px 0';
-    li.style.padding = '10px';
-    li.style.backgroundColor = '#111';
-
-    li.innerHTML = `
-      <strong>${zgloszenie.nazwa}</strong> (${zgloszenie.email})<br />
-      <em>${zgloszenie.data}</em><br />
-      <p><strong>Produkt:</strong> ${zgloszenie.produkt}</p>
-      <p>${zgloszenie.opis}</p>
-      <p>Potwierdzenie wpłaty: <strong>${zgloszenie.potwierdzenie}</strong></p>
-      <button class="zatwierdz-btn">Zatwierdź</button>
-    `;
-
-    li.querySelector('.zatwierdz-btn').addEventListener('click', () => {
-      alert(`Zgłoszenie od ${zgloszenie.nazwa} zostało zatwierdzone.`);
-      li.remove();
-    });
-
-    listaZgloszenMarketplace.appendChild(li);
-  }
-})();
-</script>
-<section id="zamowienia" class="sekcja">
-  <h2>Twoje zamówienia</h2>
-  <div id="zamowienia-lista">
-    <p>Brak produktów w zamówieniach.</p>
-  </div>
-
-  <h3>Płatność BLIK</h3>
-  <p><strong>Numer BLIK:</strong> <span style="font-weight:bold;">573 939 925</span></p>
-  <p><em>W tytule przelewu wpisz: <strong>„projekt”</strong></em></p>
-
-  <h3>Potwierdzenie zamówienia</h3>
-  <p>Po dokonaniu płatności prosimy o wysłanie potwierdzenia na adres: <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a></p>
-
-  <button class="submit-btn" onclick="zlozZamowienie()">Złóż zamówienie</button>
-  <button onclick="przelaczSekcje('sklep')">Wróć do sklepu</button>
-</section>
-
-<script>
-  // Tu dodaj swoje produkty do zamowienia - na start pusty albo z przykładowym produktem
-  let zamowienia = [
-    // { nazwa: 'Koszulka Adelbertus', cena: 59 },
-    // { nazwa: 'Bluza z kapturem', cena: 120 },
-  ];
-
-  function pokazZamowienia() {
-    const lista = document.getElementById('zamowienia-lista');
-    lista.innerHTML = '';
-    if (zamowienia.length === 0) {
-      lista.innerHTML = '<p>Brak produktów w zamówieniach.</p>';
-      return;
-    }
-
-    let suma = 0;
-    zamowienia.forEach((p, i) => {
-      suma += p.cena;
-      const cenaText = p.cena === 0 ? 'cena ustalana' : p.cena + ' zł';
-      lista.innerHTML += `<p>${i + 1}. ${p.nazwa} – ${cenaText}</p>`;
-    });
-    lista.innerHTML += `<p><strong>Łącznie: ${suma} zł</strong></p>`;
-  }
-
-  function zlozZamowienie() {
-    if (zamowienia.length === 0) {
-      alert("Twoja lista zamówień jest pusta.");
-      return;
-    }
-    let tekst = "Zamówienie:\n";
-    zamowienia.forEach((p, i) => {
-      tekst += `${i + 1}. ${p.nazwa} – ${p.cena === 0 ? 'cena ustalana' : p.cena + ' zł'}\n`;
-    });
-    tekst += `\nDokonaj płatności BLIK na numer: 573 939 925 z dopiskiem „projekt”.`;
-    tekst += `\nPo płatności wyślij potwierdzenie na e-mail: mielniczukgrzegosz74@gmail.com`;
-    alert(tekst);
-  }
-
-  // Wywołaj pokazZamowienia zaraz po załadowaniu strony
-  document.addEventListener('DOMContentLoaded', () => {
-    pokazZamowienia();
-  });
-</script>
