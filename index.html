@@ -650,34 +650,56 @@
       listaZgloszen.appendChild(li);
     }
   })();
-</script><section id="zamowienia" class="sekcja">
-  <h2>Złóż zamówienie</h2>
-  <p style="text-align: center;">Wypełnij formularz, aby zamówić wybrany produkt z projektu lub marketplace.</p>
-
-  <div style="max-width: 700px; margin: 0 auto; background-color: #2a262a; padding: 30px; border-radius: 10px;">
-    <form id="formularz-zamowienia">
-      <label for="imieZamowienie">Imię i nazwisko:</label><br>
-      <input type="text" id="imieZamowienie" name="imieZamowienie" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
-
-      <label for="emailZamowienie">Adres e-mail:</label><br>
-      <input type="email" id="emailZamowienie" name="emailZamowienie" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
-
-      <label for="adresZamowienie">Adres dostawy:</label><br>
-      <textarea id="adresZamowienie" name="adresZamowienie" required style="width: 100%; padding: 10px; margin-bottom: 15px;"></textarea><br>
-
-      <label for="produktZamowienie">Nazwa produktu:</label><br>
-      <input type="text" id="produktZamowienie" name="produktZamowienie" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
-
-      <label for="iloscZamowienie">Ilość:</label><br>
-      <input type="number" id="iloscZamowienie" name="iloscZamowienie" min="1" value="1" required style="width: 100%; padding: 10px; margin-bottom: 15px;"><br>
-
-      <button type="submit" style="padding: 12px 24px; background-color: #c9a947; border: none; color: black; font-weight: bold; border-radius: 25px; cursor: pointer;">
-        Wyślij zamówienie
-      </button>
-    </form>
+</script>
+<section id="zamowienia" class="sekcja">
+  <h2>Twoje zamówienia</h2>
+  <div id="zamowienia-lista">
+    <p>Brak produktów w zamówieniach.</p>
   </div>
-</section> 
 
+  <h3>Płatność BLIK</h3>
+  <p><strong>Numer BLIK:</strong> <span style="font-weight:bold;">573 939 925</span></p>
+  <p><em>W tytule przelewu wpisz: <strong>„projekt”</strong></em></p>
+
+  <h3>Potwierdzenie zamówienia</h3>
+  <p>Po dokonaniu płatności prosimy o wysłanie potwierdzenia na adres: <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a></p>
+
+  <button class="submit-btn" onclick="zlozZamowienie()">Złóż zamówienie</button>
+  <button onclick="przelaczSekcje('sklep')">Wróć do sklepu</button>
+</section>
+
+<script>
+  function pokazZamowienia() {
+    const lista = document.getElementById('zamowienia-lista');
+    lista.innerHTML = '';
+    if (zamowienia.length === 0) {
+      lista.innerHTML = '<p>Brak produktów w zamówieniach.</p>';
+      return;
+    }
+
+    let suma = 0;
+    zamowienia.forEach((p, i) => {
+      suma += p.cena;
+      const cenaText = p.cena === 0 ? 'cena ustalana' : p.cena + ' zł';
+      lista.innerHTML += `<p>${i + 1}. ${p.nazwa} – ${cenaText}</p>`;
+    });
+    lista.innerHTML += `<p><strong>Łącznie: ${suma} zł</strong></p>`;
+  }
+
+  function zlozZamowienie() {
+    if (zamowienia.length === 0) {
+      alert("Twoja lista zamówień jest pusta.");
+      return;
+    }
+    let tekst = "Zamówienie:\n";
+    zamowienia.forEach((p, i) => {
+      tekst += `${i + 1}. ${p.nazwa} – ${p.cena === 0 ? 'cena ustalana' : p.cena + ' zł'}\n`;
+    });
+    tekst += `\nDokonaj płatności BLIK na numer: 573 939 925 z dopiskiem „projekt”.`;
+    tekst += `\nPo płatności wyślij potwierdzenie na e-mail: mielniczukgrzegosz74@gmail.com`;
+    alert(tekst);
+  }
+</script>
 <section id="opinie" class="sekcja hidden">
   <h2>Opinie naszych klientów</h2>
   <div class="opinia">
