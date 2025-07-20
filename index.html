@@ -185,13 +185,13 @@
     <button onclick="pokazSekcje('koszyk')">Koszyk</button>
   </nav>
 
-  <div id="mezczyzna" class="sekcja"></div>
+  <div id="mezczyzna" class="sekcja active"></div>
   <div id="kobieta" class="sekcja"></div>
   <div id="mlodziez" class="sekcja"></div>
 
   <div id="koszyk" class="sekcja">
     <h2>Twój koszyk</h2>
-    <div id="koszykZawartosc"></div>
+    <div id="koszykZawartosc" class="koszyk"></div>
     <p><strong>Suma:</strong> <span id="sumaKoszyka">0</span> zł</p>
     <button onclick="zlozZamowienie()">Złóż zamówienie</button>
   </div>
@@ -241,7 +241,7 @@
       produkty.forEach(p => {
         const div = document.createElement('div');
         div.className = 'produkt';
-        div.innerHTML = `<h3>${p.nazwa}</h3><p>${p.cena} zł</p><button onclick=\"dodajProdukt('${p.nazwa}', ${p.cena})\">Dodaj do koszyka</button>`;
+        div.innerHTML = `<h3>${p.nazwa}</h3><p>${p.cena} zł</p><button onclick="dodajProdukt('${p.nazwa}', ${p.cena})">Dodaj do koszyka</button>`;
         sekcja.appendChild(div);
       });
     }
@@ -251,7 +251,6 @@
   </script>
 </body>
 </html>
-
 <section id="projektuj" class="sekcja">
   <h2>Projektuj własny produkt</h2>
   <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
