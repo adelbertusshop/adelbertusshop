@@ -499,7 +499,8 @@
     listaZgloszenMarketplace.appendChild(li);
   }
 })();
-</script><section id="zamowienia" class="sekcja">
+</script>
+<section id="zamowienia" class="sekcja">
   <h2>Twoje zamówienia</h2>
   <div id="zamowienia-lista">
     <p>Brak produktów w zamówieniach.</p>
@@ -517,6 +518,12 @@
 </section>
 
 <script>
+  // Tu dodaj swoje produkty do zamowienia - na start pusty albo z przykładowym produktem
+  let zamowienia = [
+    // { nazwa: 'Koszulka Adelbertus', cena: 59 },
+    // { nazwa: 'Bluza z kapturem', cena: 120 },
+  ];
+
   function pokazZamowienia() {
     const lista = document.getElementById('zamowienia-lista');
     lista.innerHTML = '';
@@ -547,225 +554,9 @@
     tekst += `\nPo płatności wyślij potwierdzenie na e-mail: mielniczukgrzegosz74@gmail.com`;
     alert(tekst);
   }
-</script>
-<section id="opinie" class="sekcja hidden">
-  <h2>Opinie naszych klientów</h2>
-  <div class="opinia">
-    <p>„Koszulka na zamówienie przerosła moje oczekiwania! Jakość premium i błyskawiczna realizacja.”</p>
-    <strong>— Anna W.</strong>
-  </div>
-  <div class="opinia">
-    <p>„AdelbertusShop to magia w ubraniu. Polecam każdemu, kto chce się wyróżnić.”</p>
-    <strong>— Michał Z.</strong>
-  </div>
-  <div class="opinia">
-    <p>„Indywidualne podejście, świetna jakość, szybka dostawa. Jestem pod wrażeniem.”</p>
-    <strong>— Katarzyna L.</strong>
-  </div>
-  <form id="formularz-opinia">
-    <h3>Dodaj swoją opinię</h3>
-    <label for="opinia-text">Twoja opinia:</label><br>
-    <textarea id="opinia-text" name="opinia" required></textarea><br>
-    <label for="opinia-author">Twoje imię:</label><br>
-    <input type="text" id="opinia-author" name="author" required><br><br>
-    <button type="submit">Dodaj opinię</button>
-  </form>
-</section> 
 
-<section id="blog" class="sekcja hidden">
-  <h2>Blog AdelbertusShop</h2>
-
-  <article class="wpis">
-    <h3>Magia w projektowaniu ubrań</h3>
-    <p><strong>Autor:</strong> Grzegorz M.</p>
-    <p>W AdelbertusShop wierzymy, że każdy produkt to małe dzieło sztuki, które niesie ze sobą wyjątkową energię i historię.</p>
-  </article>
-
-  <article class="wpis">
-    <h3>Jak wybrać idealny projekt na koszulkę?</h3>
-    <p><strong>Autor:</strong> Anna K.</p>
-    <p>Dobry projekt powinien odzwierciedlać Twoją osobowość i pasje. Pamiętaj o czytelności i oryginalności.</p>
-  </article>
-
-  <form id="formularz-blog">
-    <h3>Dodaj wpis na bloga</h3>
-    <label for="blog-title">Tytuł wpisu:</label><br>
-    <input type="text" id="blog-title" required><br>
-    <label for="blog-author">Autor:</label><br>
-    <input type="text" id="blog-author" required><br>
-    <label for="blog-content">Treść:</label><br>
-    <textarea id="blog-content" required></textarea><br><br>
-    <button type="submit">Dodaj wpis</button>
-  </form>
-</section> 
-
-<section id="kontakt" class="sekcja hidden">
-  <h2>Kontakt z AdelbertusShop</h2>
-  <p>Skontaktuj się z nami, jeśli masz pytania, pomysły lub chcesz dołączyć do magii AdelbertusShop.</p>
-
-  <p><strong>Email:</strong> mielniczukgrzegosz74@gmail.com</p>
-  <p><strong>Telefon:</strong> 604 296 650</p>
-
-  <h3>Znajdź nas w mediach społecznościowych:</h3>
-  <ul>
-    <li>📸 <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" target="_blank">Instagram</a></li>
-    <li>📘 <a href="https://www.facebook.com/share/p/1JifQTY4jd/" target="_blank">Facebook</a></li>
-    <li>🎵 <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8y8ONNcy1e2&_r=1" target="_blank">TikTok</a></li>
-  </ul>
-</section> 
-
-<section id="regulamin" class="sekcja hidden">
-  <h2>Regulamin sklepu AdelbertusShop</h2>
-
-  <h3>1. Informacje ogólne</h3>
-  <p>Sklep AdelbertusShop prowadzony jest w ramach działalności nierejestrowanej, zgodnie z art. 5 ust. 1 ustawy z dnia 6 marca 2018 r. – Prawo przedsiębiorców (Dz.U. 2018 poz. 646 z późn. zm.).</p>
-  <p>Działalność ta nie wymaga rejestracji w CEIDG, ponieważ miesięczne przychody nie przekraczają 75% minimalnego wynagrodzenia brutto.</p>
-
-  <h3>2. Sprzedaż produktów</h3>
-  <p>Wszystkie produkty w sklepie są tworzone na zamówienie. Projekty użytkowników są indywidualnie zatwierdzane. Czas realizacji zamówienia wynosi od 3 do 14 dni roboczych.</p>
-
-  <h3>3. Płatności</h3>
-  <p>Płatności przyjmowane są z góry – możliwe metody to przelew, BLIK lub inne wskazane przy składaniu zamówienia. Brak płatności skutkuje anulowaniem zamówienia.</p>
-
-  <h3>4. Reklamacje i zwroty</h3>
-  <p>Z uwagi na charakter produktów personalizowanych, zwroty nie są możliwe, chyba że produkt dotarł uszkodzony lub niezgodny z zamówieniem. Reklamacje należy zgłaszać mailowo: mielniczukgrzegosz74@gmail.com.</p>
-
-  <h3>5. Dane kontaktowe</h3>
-  <p>Właściciel sklepu: osoba fizyczna prowadząca działalność nierejestrowaną<br>
-     Email: mielniczukgrzegosz74@gmail.com<br>
-     Tel: 604 296 650</p>
-
-  <h3>6. Ochrona danych osobowych</h3>
-  <p>Dane klientów są wykorzystywane wyłącznie do celów realizacji zamówień i nie są udostępniane osobom trzecim.</p>
-
-  <p>Sklep działa zgodnie z obowiązującymi przepisami dla działalności nierejestrowanej w Polsce.</p>
-</section> 
-
-<!-- ✅ Sekcja ZBIÓRKA: rozwój sklepu + pomoc dla domu dziecka -->
-<section id="zbiorka" class="sekcja hidden">
-  <h2>Zbiórka na rozwój AdelbertusShop i pomoc dla dzieci</h2>
-
-  <p>
-    Wierzymy, że magia sztuki i pomoc drugiemu człowiekowi mogą iść w parze. 
-    Dlatego łączymy siły — wspierając rozwój <strong>AdelbertusShop</strong> i pomagając dzieciom z domów dziecka. 
-    Twoje wsparcie naprawdę ma znaczenie.
-  </p>
-
-  <h3>Jak możesz pomóc?</h3>
-  <ul>
-    <li><strong>Wpłać dowolną kwotę na BLIK:</strong> <span style="font-weight:bold;">573 939 925</span></li>
-    <li><strong>Tytuł przelewu:</strong> 
-      <em>„Zbiórka AdelbertusShop”</em> – jeśli chcesz wesprzeć sklep <br>
-      <em>„Pomoc”</em> – jeśli chcesz pomóc dzieciom
-    </li>
-    <li><strong>Przekaż paczkę lub dary:</strong> Zadzwoń: <a href="tel:604295650">604 295 650</a> – przekażemy adres placówki</li>
-    <li><strong>Kontakt e-mail:</strong> <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a></li>
-  </ul>
-
-  <h3>Co jest potrzebne dla dzieci?</h3>
-  <p>
-    Artykuły szkolne, odzież dziecięca, zabawki edukacyjne, środki higieny, książki, jedzenie z długim terminem przydatności.
-  </p>
-
-  <blockquote style="font-style: italic; color: #fff9c4; margin: 20px 0; border-left: 4px solid gold; padding-left: 16px;">
-    „Nie każdy może zostać rodzicem, ale każdy może dać dziecku nadzieję.”
-  </blockquote>
-
-  <p style="color: #ffdd57; font-weight: bold;">
-    Twoja pomoc — nawet najmniejsza — naprawdę coś zmienia. <br>
-    Dla Ciebie to gest. Dla nich — świat.
-  </p>
-</section>   
-
-<script>
-  // Obsługa menu – przełączanie sekcji
-  document.querySelectorAll('nav button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.getAttribute('data-target');
-      if (!target) return;
-      document.querySelectorAll('.sekcja').forEach(sec => {
-        sec.classList.remove('active');
-      });
-      document.getElementById(target).classList.add('active');
-    });
+  // Wywołaj pokazZamowienia zaraz po załadowaniu strony
+  document.addEventListener('DOMContentLoaded', () => {
+    pokazZamowienia();
   });
-
-  // Obsługa formularza projektowania
-  document.getElementById("projekt-form")?.addEventListener("submit", function(e) {
-    e.preventDefault();
-    alert("Dziękujemy za przesłanie projektu! Skontaktujemy się z Tobą wkrótce.");
-    this.reset();
-  });
-  
-  // Obsługa formularza zamówienia
-  document.getElementById("formularz-zamowienia")?.addEventListener("submit", function(e) {
-    e.preventDefault();
-    alert("Dziękujemy za zamówienie! Skontaktujemy się w celu potwierdzenia.");
-    this.reset();
-  });
-</script> 
-<script>
-  // Obsługa formularza opinii
-  document.getElementById("formularz-opinia").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const opinia = document.getElementById("opinia-text").value.trim();
-    const autor = document.getElementById("opinia-author").value.trim();
-    if (opinia && autor) {
-      alert("Dziękujemy za Twoją opinię! Po zatwierdzeniu zostanie opublikowana.");
-      this.reset();
-    }
-  });
-</script>
-
-<script>
-  // Obsługa formularza bloga
-  document.getElementById("formularz-blog").addEventListener("submit", function(e) {
-    e.preventDefault();
-    alert("Dziękujemy za Twój wpis! Po zatwierdzeniu zostanie opublikowany.");
-    this.reset();
-  });
-</script>
-
-<section id="zbiorka-dzieci" class="sekcja">
-  <h2>Zbiórka dla Domu Dziecka</h2>
-  <p>
-    Każde dziecko zasługuje na ciepło, miłość i bezpieczeństwo. Niestety, wiele z nich codziennie zmaga się z samotnością i brakiem podstawowych rzeczy. 
-    Ty możesz to zmienić.
-  </p>
-
-  <h3>Jak możesz pomóc?</h3>
-  <ul>
-    <li><strong>Wpłać dowolną kwotę:</strong> BLIK: <span style="font-weight: bold;">573 939 925</span> (tytuł przelewu: <em>„Pomoc”</em>)</li>
-    <li><strong>Przekaż paczkę lub dary:</strong> Zadzwoń pod <a href="tel:604295650">604 295 650</a> – przekażemy Ci dokładny adres domu dziecka, który wspieramy.</li>
-    <li><strong>Skontaktuj się przez e-mail:</strong> <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a></li>
-  </ul>
-
-  <h3>Co jest potrzebne?</h3>
-  <p>
-    Artykuły szkolne, odzież dziecięca, zabawki edukacyjne, środki higieniczne, książki, żywność z długim terminem przydatności.
-  </p>
-
-  <blockquote style="font-style: italic; color: #fff9c4; margin: 20px 0; border-left: 4px solid gold; padding-left: 16px;">
-    „Nie każdy może zostać rodzicem, ale każdy może dać dziecku nadzieję.”
-  </blockquote>
-
-  <p style="color: #ffdd57; font-weight: bold;">
-    Twoja pomoc naprawdę zmienia życie. Dla Ciebie to chwila – dla nich cały świat.
-  </p>
-</section>
-
-<script>
-  function przelaczSekcje(id) {
-    // Ukryj wszystkie sekcje
-    const sekcje = document.querySelectorAll('.sekcja');
-    sekcje.forEach(sekcja => sekcja.classList.remove('active'));
-
-    // Odznacz wszystkie przyciski nawigacyjne
-    const przyciski = document.querySelectorAll('nav button');
-    przyciski.forEach(przycisk => przycisk.classList.remove('active'));
-
-    // Pokaż wybraną sekcję i zaznacz przycisk
-    document.getElementById(id).classList.add('active');
-    document.getElementById('nav-' + id).classList.add('active');
-  }
 </script>
