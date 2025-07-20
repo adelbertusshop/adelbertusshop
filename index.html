@@ -306,50 +306,122 @@
   .produkt button:hover {
     background-color: #a3852e;
   }
-</style><section id="projektuj" class="sekcja">
-  <h2>Projektuj własny produkt</h2>
-  <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
+</style>
+<section id="projektuj" class="sekcja">
+  <h2>Zaprojektuj swój produkt</h2>
+  <div id="projektuj-kreator" style="max-width: 700px; margin: auto; background: #2a262a; padding: 20px; border-radius: 10px; color: white;">
+    
+    <label for="produkt-wybierz">Wybierz produkt:</label><br>
+    <select id="produkt-wybierz" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+      <option value="Bluza">Bluza</option>
+      <option value="Bluza z kapturem">Bluza z kapturem</option>
+      <option value="Koszulka">Koszulka</option>
+      <option value="Czapka">Czapka</option>
+      <option value="Akcesoria">Akcesoria</option>
+    </select>
 
-  <form id="projekt-form">
-    <label>Twoje imię lub pseudonim:<br>
-      <input type="text" required>
-    </label><br><br>
+    <label for="kolor-wybierz">Wybierz kolor:</label><br>
+    <select id="kolor-wybierz" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+      <option value="#000000">Czarny</option>
+      <option value="#ffffff">Biały</option>
+      <option value="#c9a947">Złoty</option>
+      <option value="#e74c3c">Czerwony</option>
+      <option value="#3498db">Niebieski</option>
+      <option value="#2ecc71">Zielony</option>
+    </select>
 
-    <label>Wybierz produkt:<br>
-      <select required>
-        <option value="koszulka">Koszulka</option>
-        <option value="bluza">Bluza</option>
-      </select>
-    </label><br><br>
+    <label for="rozmiar-wybierz">Wybierz rozmiar:</label><br>
+    <select id="rozmiar-wybierz" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+      <option value="S">S</option>
+      <option value="M" selected>M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+    </select>
 
-    <label>Twój napis (np. hasło, cytat):<br>
-      <input type="text" required>
-    </label><br><br>
+    <label for="tekst-projektu">Dodaj tekst:</label><br>
+    <input type="text" id="tekst-projektu" placeholder="Twój tekst na produkcie" style="width: 100%; padding: 8px; margin-bottom: 15px; color: black;"><br>
 
-    <label>Wybierz czcionkę:<br>
-      <select>
-        <option>Playfair Display</option>
-        <option>Montserrat</option>
-        <option>Roboto Slab</option>
-      </select>
-    </label><br><br>
+    <label for="grafika-upload">Dodaj grafikę (png/jpg):</label><br>
+    <input type="file" id="grafika-upload" accept="image/png, image/jpeg" style="margin-bottom: 15px;"><br>
 
-    <label>Kolor tekstu:<br>
-      <input type="color" value="#ffffff">
-    </label><br><br>
+    <div id="podglad-projektu" style="border: 2px solid #c9a947; padding: 20px; border-radius: 10px; text-align: center; color: black; background: white; position: relative;">
+      <h3>Podgląd</h3>
+      <div id="produkt-obrazek" style="width: 250px; height: 250px; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; background-color: #000;"></div>
+      <div id="tekst-na-produkcie" style="position: absolute; top: 140px; left: 50%; transform: translateX(-50%); color: #c9a947; font-weight: bold; font-size: 18px; pointer-events: none;"></div>
+      <img id="grafika-podglad" src="" alt="" style="max-width: 100px; position: absolute; bottom: 10px; right: 10px; display: none;">
+    </div>
 
-    <label>Dodaj swoją grafikę (PNG/JPG):<br>
-      <input type="file" accept="image/png, image/jpeg">
-    </label><br><br>
+    <button id="dodaj-do-zamowienia" style="margin-top: 20px; padding: 12px 25px; background-color: #c9a947; border: none; font-weight: bold; border-radius: 25px; cursor: pointer;">Dodaj do zamówienia</button>
+    <button onclick="przelaczSekcje('sklep')" style="margin-left: 10px; padding: 12px 25px; border-radius: 25px; cursor: pointer;">Wróć do sklepu</button>
+  </div>
+</section>
 
-    <button type="submit">Wyślij projekt</button>
-  </form>
+<script>
+  const produktObrazek = document.getElementById('produkt-obrazek');
+  const tekstNaProdukcie = document.getElementById('tekst-na-produkcie');
+  const grafikaPodglad = document.getElementById('grafika-podglad');
 
-  <p>Zatwierdzenie projektu przyjdzie na e-mail: <strong>mielniczukgrzegosz74@gmail.com</strong><br>
-  lub SMS na numer <strong>604 296 650</strong> z dopiskiem <em>„projekt własny”</em>.</p>
-</section> 
+  const produktWybierz = document.getElementById('produkt-wybierz');
+  const kolorWybierz = document.getElementById('kolor-wybierz');
+  const tekstProjektu = document.getElementById('tekst-projektu');
+  const grafikaUpload = document.getElementById('grafika-upload');
+  const rozmiarWybierz = document.getElementById('rozmiar-wybierz');
+  const dodajDoZamowieniaBtn = document.getElementById('dodaj-do-zamowienia');
 
-<section id="marketplace" class="sekcja">
+  function updatePodglad() {
+    // Zmienia tło podglądu na kolor wybrany
+    produktObrazek.style.backgroundColor = kolorWybierz.value;
+
+    // Ustaw tekst na produkcie
+    tekstNaProdukcie.textContent = tekstProjektu.value;
+
+    // Ukryj lub pokaż grafikę
+    if (grafikaPodglad.src && grafikaPodglad.src !== window.location.href) {
+      grafikaPodglad.style.display = 'block';
+    } else {
+      grafikaPodglad.style.display = 'none';
+    }
+  }
+
+  kolorWybierz.addEventListener('change', updatePodglad);
+  tekstProjektu.addEventListener('input', updatePodglad);
+  produktWybierz.addEventListener('change', updatePodglad);
+
+  grafikaUpload.addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      grafikaPodglad.src = e.target.result;
+      updatePodglad();
+    }
+    reader.readAsDataURL(file);
+  });
+
+  dodajDoZamowieniaBtn.addEventListener('click', () => {
+    const produkt = produktWybierz.value;
+    const kolor = kolorWybierz.options[kolorWybierz.selectedIndex].text;
+    const rozmiar = rozmiarWybierz.value;
+    const tekst = tekstProjektu.value.trim() || "brak tekstu";
+    const cenaMap = {
+      "Bluza": 150,
+      "Bluza z kapturem": 150,
+      "Koszulka": 99,
+      "Czapka": 79,
+      "Akcesoria": 50
+    };
+    const cena = cenaMap[produkt] || 100;
+
+    const zamowienieOpis = `Produkt: ${produkt}\nKolor: ${kolor}\nRozmiar: ${rozmiar}\nTekst: ${tekst}\nCena: ${cena} zł`;
+
+    alert("Dodano do zamówienia:\n" + zamowienieOpis);
+    
+    // Tu możesz rozbudować logikę dodawania do zamówień w Twoim systemie
+  });
+
+  window.onload = updatePodglad;
+</script><section id="marketplace" class="sekcja">
   <h2>Marketplace AdelbertusShop</h2>
 
   <form id="formularz-marketplace">
