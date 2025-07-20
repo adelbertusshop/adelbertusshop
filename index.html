@@ -103,172 +103,110 @@
   <button data-target="kontakt">Kontakt</button>
   <button data-target="regulamin">Regulamin</button>
 </nav>
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdelbertusShop – Koszykowy Sklep</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #000;
-      color: #f5f5dc;
-    }
-    header {
-      background-color: #111;
-      color: gold;
-      padding: 20px;
-      text-align: center;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #222;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 10px;
-    }
-    nav button {
-      background: none;
-      border: 2px solid gold;
-      color: #f5f5dc;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    nav button:hover {
-      background-color: gold;
-      color: black;
-    }
-    .sekcja {
-      display: none;
-      padding: 20px;
-    }
-    .active {
-      display: block;
-    }
-    .produkt {
-      background-color: #111;
-      border: 1px solid gold;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 10px;
-    }
-    .koszyk {
-      background-color: #222;
-      border: 2px solid gold;
-      padding: 15px;
-      margin: 20px auto;
-      max-width: 600px;
-    }
-    .koszyk button {
-      background-color: gold;
-      border: none;
-      color: black;
-      padding: 10px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>AdelbertusShop – Sklep</h1>
-  </header>
-
-  <nav>
-    <button onclick="pokazSekcje('mezczyzna')">Mężczyzna</button>
-    <button onclick="pokazSekcje('kobieta')">Kobieta</button>
-    <button onclick="pokazSekcje('mlodziez')">Młodzież</button>
-    <button onclick="pokazSekcje('koszyk')">Koszyk</button>
+<section id="sklep">
+  <h2 class="tytul">Sklep AdelbertusShop</h2>
+  <nav class="sklep-kategorie">
+    <button onclick="pokazKategorie('mezczyzna')">Mężczyzna</button>
+    <button onclick="pokazKategorie('kobieta')">Kobieta</button>
+    <button onclick="pokazKategorie('mlodziez')">Młodzież</button>
+    <button onclick="pokazKategorie('akcesoria')">Akcesoria</button>
+    <button onclick="pokazKategorie('nowosci')">Nowości</button>
   </nav>
 
-  <div id="mezczyzna" class="sekcja"></div>
-  <div id="kobieta" class="sekcja"></div>
-  <div id="mlodziez" class="sekcja"></div>
-
-  <div id="koszyk" class="sekcja">
-    <h2>Twój koszyk</h2>
-    <div id="koszykZawartosc"></div>
-    <p><strong>Suma:</strong> <span id="sumaKoszyka">0</span> zł</p>
-    <button onclick="zlozZamowienie()">Złóż zamówienie</button>
+  <div id="mezczyzna" class="kategoria">
+    <h3>Mężczyzna</h3>
+    <div class="produkt">Bluza – 150 zł</div>
+    <div class="produkt">Bluza z kapturem – 150 zł</div>
+    <div class="produkt">Koszulka – 99 zł</div>
+    <div class="produkt">Czapka – 79 zł</div>
+    <div class="produkt">Akcesoria – do 59 zł</div>
   </div>
 
-  <script>
-    const produkty = [
-      {nazwa: "Bluza", cena: 150},
-      {nazwa: "Bluza z kapturem", cena: 150},
-      {nazwa: "Koszulka", cena: 99},
-      {nazwa: "Czapka", cena: 79},
-      {nazwa: "Akcesoria", cena: 59}
-    ];
+  <div id="kobieta" class="kategoria" style="display:none">
+    <h3>Kobieta</h3>
+    <div class="produkt">Bluza – 150 zł</div>
+    <div class="produkt">Bluza z kapturem – 150 zł</div>
+    <div class="produkt">Koszulka – 99 zł</div>
+    <div class="produkt">Czapka – 79 zł</div>
+    <div class="produkt">Akcesoria – do 59 zł</div>
+  </div>
 
-    const koszyk = [];
+  <div id="mlodziez" class="kategoria" style="display:none">
+    <h3>Młodzież</h3>
+    <div class="produkt">Bluza – 150 zł</div>
+    <div class="produkt">Bluza z kapturem – 150 zł</div>
+    <div class="produkt">Koszulka – 99 zł</div>
+    <div class="produkt">Czapka – 79 zł</div>
+    <div class="produkt">Akcesoria – do 59 zł</div>
+  </div>
 
-    function pokazSekcje(id) {
-      document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
-      const sekcja = document.getElementById(id);
-      if (sekcja) {
-        sekcja.classList.add('active');
-        if (id === 'koszyk') wyswietlKoszyk();
-      }
-    }
+  <div id="akcesoria" class="kategoria" style="display:none">
+    <h3>Akcesoria</h3>
+    <div class="produkt">Akcesoria 1 – 59 zł</div>
+    <div class="produkt">Akcesoria 2 – 49 zł</div>
+    <div class="produkt">Akcesoria 3 – 39 zł</div>
+  </div>
 
-    function dodajProdukt(nazwa, cena) {
-      koszyk.push({nazwa, cena});
-      alert(`${nazwa} dodano do koszyka!`);
-    }
+  <div id="nowosci" class="kategoria" style="display:none">
+    <h3>Nowości</h3>
+    <p>Brak produktów w tej kategorii.</p>
+  </div>
+</section>
 
-    function wyswietlKoszyk() {
-      const zawartosc = document.getElementById('koszykZawartosc');
-      zawartosc.innerHTML = '';
-      let suma = 0;
-      koszyk.forEach((p, i) => {
-        suma += p.cena;
-        zawartosc.innerHTML += `<p>${i + 1}. ${p.nazwa} – ${p.cena} zł</p>`;
-      });
-      document.getElementById('sumaKoszyka').innerText = suma;
-    }
+<script>
+  function pokazKategorie(nazwa) {
+    const kategorie = document.querySelectorAll('.kategoria');
+    kategorie.forEach(k => k.style.display = 'none');
+    document.getElementById(nazwa).style.display = 'block';
+  }
+</script>
 
-    function zlozZamowienie() {
-      if (koszyk.length === 0) return alert("Koszyk jest pusty!");
-      const daneZamowienia = koszyk.map(p => `• ${p.nazwa} – ${p.cena} zł`).join('\n');
-      const wiadomosc = `Zamówienie:\n${daneZamowienia}\n\nSuma: ${document.getElementById('sumaKoszyka').innerText} zł`;
-      alert("Zamówienie złożone! Skopiuj treść i wyślij na email: mielniczukgrzegosz74@gmail.com\n\n" + wiadomosc);
-    }
+<style>
+  #sklep {
+    padding: 40px;
+    background-color: #000;
+    color: #f5f5dc;
+  }
 
-    function generujProduktyDoSekcji(idSekcji) {
-      const sekcja = document.getElementById(idSekcji);
-      sekcja.innerHTML = ''; // wyczyść przed dodaniem
-      produkty.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'produkt';
+  .tytul {
+    color: gold;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
 
-        const h3 = document.createElement('h3');
-        h3.textContent = p.nazwa;
+  .sklep-kategorie {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
 
-        const cena = document.createElement('p');
-        cena.textContent = `${p.cena} zł`;
+  .sklep-kategorie button {
+    background: none;
+    border: 2px solid gold;
+    color: #f5f5dc;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+  }
 
-        const btn = document.createElement('button');
-        btn.textContent = "Dodaj do koszyka";
-        btn.addEventListener('click', () => dodajProdukt(p.nazwa, p.cena));
+  .sklep-kategorie button:hover {
+    background-color: gold;
+    color: black;
+  }
 
-        div.appendChild(h3);
-        div.appendChild(cena);
-        div.appendChild(btn);
-
-        sekcja.appendChild(div);
-      });
-    }
-
-    ['mezczyzna', 'kobieta', 'mlodziez'].forEach(generujProduktyDoSekcji);
-  </script>
-</body>
-</html>
-<section id="projektuj" class="sekcja">
+  .produkt {
+    border: 1px solid gold;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #111;
+    border-radius: 12px;
+    box-shadow: 0 0 10px gold;
+  }
+</style><section id="projektuj" class="sekcja">
   <h2>Projektuj własny produkt</h2>
   <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
 
