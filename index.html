@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdelbertusShop</title>
   <style>
-    body {
+    .sekcja { display: none; }
+.sekcja.active { display: block; }
+.kategoria-btn.active { background-color: gold; color: black; }
+.produkt button:hover { background-color: #d4af37cc; }    body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #000;
@@ -103,105 +106,6 @@
   <button data-target="kontakt">Kontakt</button>
   <button data-target="regulamin">Regulamin</button>
 </nav>
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AdelbertusShop - Sklep z Projektowaniem i Zamówieniami</title>
-<style>
-  body {
-    margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #000; color: #f5f5dc;
-  }
-  header {
-    background-color: #111; color: gold; padding: 20px; text-align: center;
-    font-weight: 700; letter-spacing: 1.5px;
-  }
-  nav {
-    background-color: #222; display: flex; justify-content: center;
-    gap: 10px; flex-wrap: wrap; padding: 10px 0;
-  }
-  nav button {
-    background: none; border: 2px solid gold; color: gold;
-    padding: 10px 20px; cursor: pointer; font-weight: 700;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  nav button:hover, nav button.active {
-    background-color: gold; color: black;
-  }
-  .sekcja {
-    display: none; max-width: 1100px; margin: 20px auto;
-    padding: 20px; background-color: #111; border-radius: 10px;
-  }
-  .active {
-    display: block;
-  }
-  #kategorie {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  #kategorie button {
-    background: none; border: 1px solid gold; color: gold;
-    padding: 8px 16px; margin: 0 5px 10px 5px; cursor: pointer;
-    font-weight: 600; font-size: 16px; border-radius: 5px;
-  }
-  #kategorie button.active, #kategorie button:hover {
-    background-color: gold; color: black;
-  }
-  .produkt {
-    border: 1px solid gold; padding: 15px; margin-bottom: 15px;
-    background-color: #222; border-radius: 8px;
-  }
-  .produkt h3 {
-    margin: 0 0 8px 0;
-  }
-  .produkt p {
-    margin: 0 0 10px 0;
-  }
-  .produkt button {
-    background-color: gold; border: none; color: black;
-    padding: 8px 14px; cursor: pointer; font-weight: 700;
-    border-radius: 5px; margin-right: 8px;
-  }
-  .produkt button:hover {
-    background-color: #d4af37cc;
-  }
-  label {
-    display: block; margin-bottom: 8px; font-weight: 600;
-  }
-  input[type="text"], textarea {
-    width: 100%; padding: 8px; margin-bottom: 15px;
-    border-radius: 5px; border: 1px solid #ccc;
-    font-size: 16px;
-  }
-  button.submit-btn {
-    background-color: gold; color: black; border: none;
-    padding: 10px 20px; font-weight: 700; cursor: pointer;
-    border-radius: 5px;
-  }
-  button.submit-btn:hover {
-    background-color: #d4af37cc;
-  }
-  #zamowienia-lista p {
-    margin: 6px 0;
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <h1>AdelbertusShop</h1>
-  <p>Ekskluzywny sklep z możliwością projektowania i zamówień</p>
-</header>
-
-<nav>
-  <button id="nav-sklep" class="active" onclick="przelaczSekcje('sklep')">Sklep</button>
-  <button id="nav-projektuj" onclick="przelaczSekcje('projektuj')">Zaprojektuj</button>
-  <button id="nav-zamowienia" onclick="przelaczSekcje('zamowienia')">Zamówienia</button>
-</nav>
-
-<!-- SEKCJA SKLEP -->
 <section id="sklep" class="sekcja active">
 
   <div id="kategorie">
@@ -213,10 +117,65 @@
   </div>
 
   <div id="produkty-lista">
-    <!-- Produkty pokażą się tutaj -->
+    <!-- Produkty pojawią się tutaj -->
   </div>
+
 </section>
 
+<script>
+  const produkty = [
+    { id: 1, nazwa: "Bluza", cena: 150, kategorie: ["mezczyzni", "kobiety", "mlodziez"] },
+    { id: 2, nazwa: "Bluza z kapturem", cena: 150, kategorie: ["mezczyzni", "kobiety", "mlodziez"] },
+    { id: 3, nazwa: "Koszulka", cena: 99, kategorie: ["mezczyzni", "kobiety", "mlodziez"] },
+    { id: 4, nazwa: "Czapka", cena: 79, kategorie: ["mezczyzni", "kobiety", "mlodziez"] },
+    { id: 5, nazwa: "Akcesoria", cena: "max cena ustalana", kategorie: ["akcesoria"] },
+  ];
+
+  const produktyListaEl = document.getElementById('produkty-lista');
+  const kategoriaBtn = document.querySelectorAll('.kategoria-btn');
+
+  function pokazProdukty(kategoria) {
+    produktyListaEl.innerHTML = '';
+
+    if (kategoria === 'nowosci') {
+      produktyListaEl.innerHTML = '<p class="nowości-info" style="color: gold; font-weight: 700; text-align: center; font-size: 1.2rem; margin-top: 20px;">Nowości pojawią się wkrótce!</p>';
+      return;
+    }
+
+    const filtrowaneProdukty = produkty.filter(p => p.kategorie.includes(kategoria));
+
+    filtrowaneProdukty.forEach(prod => {
+      const cenaTekst = prod.cena === "max cena ustalana" ? prod.cena : `${prod.cena} zł`;
+      const prodEl = document.createElement('div');
+      prodEl.classList.add('produkt');
+      prodEl.style.border = "2px solid gold";
+      prodEl.style.backgroundColor = "#111";
+      prodEl.style.borderRadius = "15px";
+      prodEl.style.padding = "20px";
+      prodEl.style.marginBottom = "20px";
+      prodEl.style.boxShadow = "0 0 10px #d4af37aa";
+
+      prodEl.innerHTML = `
+        <h3 style="margin-bottom: 10px;">${prod.nazwa}</h3>
+        <p style="font-weight: 700; margin-bottom: 15px;">Cena: ${cenaTekst}</p>
+        <button style="background-color: gold; color: black; border: none; padding: 10px 16px; font-weight: 700; border-radius: 8px; cursor: pointer;">Dodaj do koszyka</button>
+      `;
+
+      produktyListaEl.appendChild(prodEl);
+    });
+  }
+
+  kategoriaBtn.forEach(btn => {
+    btn.addEventListener('click', () => {
+      kategoriaBtn.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      pokazProdukty(btn.getAttribute('data-kategoria'));
+    });
+  });
+
+  // Start - pokaż produkty kategorii "mezczyzni"
+  pokazProdukty('mezczyzni');
+</script>
 <!-- SEKCJA PROJEKTUJ -->
 <section id="projektuj" class="sekcja">
   <h2>Zaprojektuj swój produkt</h2>
