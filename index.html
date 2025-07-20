@@ -103,110 +103,297 @@
   <button data-target="kontakt">Kontakt</button>
   <button data-target="regulamin">Regulamin</button>
 </nav>
-<section id="sklep">
-  <h2 class="tytul">Sklep AdelbertusShop</h2>
-  <nav class="sklep-kategorie">
-    <button onclick="pokazKategorie('mezczyzna')">Mężczyzna</button>
-    <button onclick="pokazKategorie('kobieta')">Kobieta</button>
-    <button onclick="pokazKategorie('mlodziez')">Młodzież</button>
-    <button onclick="pokazKategorie('akcesoria')">Akcesoria</button>
-    <button onclick="pokazKategorie('nowosci')">Nowości</button>
-  </nav>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AdelbertusShop - Sklep z Projektowaniem i Zamówieniami</title>
+<style>
+  body {
+    margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000; color: #f5f5dc;
+  }
+  header {
+    background-color: #111; color: gold; padding: 20px; text-align: center;
+    font-weight: 700; letter-spacing: 1.5px;
+  }
+  nav {
+    background-color: #222; display: flex; justify-content: center;
+    gap: 10px; flex-wrap: wrap; padding: 10px 0;
+  }
+  nav button {
+    background: none; border: 2px solid gold; color: gold;
+    padding: 10px 20px; cursor: pointer; font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  nav button:hover, nav button.active {
+    background-color: gold; color: black;
+  }
+  .sekcja {
+    display: none; max-width: 1100px; margin: 20px auto;
+    padding: 20px; background-color: #111; border-radius: 10px;
+  }
+  .active {
+    display: block;
+  }
+  #kategorie {
+    margin-bottom: 20px;
+  }
+  #kategorie button {
+    background: none; border: 1px solid gold; color: gold;
+    padding: 8px 16px; margin-right: 10px; cursor: pointer;
+    font-weight: 600; font-size: 16px; border-radius: 5px;
+  }
+  #kategorie button.active, #kategorie button:hover {
+    background-color: gold; color: black;
+  }
+  .produkt {
+    border: 1px solid gold; padding: 15px; margin-bottom: 15px;
+    background-color: #222; border-radius: 8px;
+  }
+  .produkt h3 {
+    margin: 0 0 8px 0;
+  }
+  .produkt p {
+    margin: 0 0 10px 0;
+  }
+  .produkt button {
+    background-color: gold; border: none; color: black;
+    padding: 8px 14px; cursor: pointer; font-weight: 700;
+    border-radius: 5px;
+  }
+  .produkt button:hover {
+    background-color: #d4af37cc;
+  }
+  label {
+    display: block; margin-bottom: 8px; font-weight: 600;
+  }
+  input[type="text"], textarea {
+    width: 100%; padding: 8px; margin-bottom: 15px;
+    border-radius: 5px; border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  button.submit-btn {
+    background-color: gold; color: black; border: none;
+    padding: 10px 20px; font-weight: 700; cursor: pointer;
+    border-radius: 5px;
+  }
+  button.submit-btn:hover {
+    background-color: #d4af37cc;
+  }
+</style>
+</head>
+<body>
 
-  <div id="mezczyzna" class="kategoria">
-    <h3>Mężczyzna</h3>
-    <div class="produkt">Bluza – 150 zł</div>
-    <div class="produkt">Bluza z kapturem – 150 zł</div>
-    <div class="produkt">Koszulka – 99 zł</div>
-    <div class="produkt">Czapka – 79 zł</div>
-    <div class="produkt">Akcesoria – do 59 zł</div>
+<header>
+  <h1>AdelbertusShop</h1>
+  <p>Ekskluzywny sklep z możliwością projektowania i zamówień</p>
+</header>
+
+<nav>
+  <button id="nav-sklep" class="active" onclick="przelaczSekcje('sklep')">Sklep</button>
+  <button id="nav-projektuj" onclick="przelaczSekcje('projektuj')">Zaprojektuj</button>
+  <button id="nav-zamowienia" onclick="przelaczSekcje('zamowienia')">Zamówienia</button>
+</nav>
+
+<!-- SEKCJA SKLEP -->
+<section id="sklep" class="sekcja active">
+
+  <div id="kategorie">
+    <button class="kategoria-btn active" data-kategoria="mezczyzni">Mężczyźni</button>
+    <button class="kategoria-btn" data-kategoria="kobiety">Kobiety</button>
+    <button class="kategoria-btn" data-kategoria="mlodziez">Młodzież</button>
+    <button class="kategoria-btn" data-kategoria="akcesoria">Akcesoria</button>
+    <button class="kategoria-btn" data-kategoria="nowosci">Nowości</button>
   </div>
 
-  <div id="kobieta" class="kategoria" style="display:none">
-    <h3>Kobieta</h3>
-    <div class="produkt">Bluza – 150 zł</div>
-    <div class="produkt">Bluza z kapturem – 150 zł</div>
-    <div class="produkt">Koszulka – 99 zł</div>
-    <div class="produkt">Czapka – 79 zł</div>
-    <div class="produkt">Akcesoria – do 59 zł</div>
-  </div>
-
-  <div id="mlodziez" class="kategoria" style="display:none">
-    <h3>Młodzież</h3>
-    <div class="produkt">Bluza – 150 zł</div>
-    <div class="produkt">Bluza z kapturem – 150 zł</div>
-    <div class="produkt">Koszulka – 99 zł</div>
-    <div class="produkt">Czapka – 79 zł</div>
-    <div class="produkt">Akcesoria – do 59 zł</div>
-  </div>
-
-  <div id="akcesoria" class="kategoria" style="display:none">
-    <h3>Akcesoria</h3>
-    <div class="produkt">Akcesoria 1 – 59 zł</div>
-    <div class="produkt">Akcesoria 2 – 49 zł</div>
-    <div class="produkt">Akcesoria 3 – 39 zł</div>
-  </div>
-
-  <div id="nowosci" class="kategoria" style="display:none">
-    <h3>Nowości</h3>
-    <p>Brak produktów w tej kategorii.</p>
+  <div id="produkty-lista">
+    <!-- Produkty pokażą się tutaj -->
   </div>
 </section>
 
+<!-- SEKCJA ZAPROJEKTUJ -->
+<section id="projektuj" class="sekcja">
+  <h2>Projektuj swój produkt</h2>
+  <p><strong>Produkt do zaprojektowania:</strong> <span id="produkt-nazwa"></span></p>
+  
+  <label for="custom-text">Dodaj własny tekst do projektu:</label>
+  <input type="text" id="custom-text" placeholder="Np. Twój napis" />
+  
+  <button class="submit-btn" onclick="przejdzDoZamowienia()">Dalej do Zamówienia</button>
+</section>
+
+<!-- SEKCJA ZAMÓWIENIA -->
+<section id="zamowienia" class="sekcja">
+  <h2>Twoje zamówienie</h2>
+  <div id="podsumowanie-zamowienia"></div>
+
+  <label for="user-name">Imię i nazwisko:</label>
+  <input type="text" id="user-name" placeholder="Wpisz swoje imię i nazwisko" />
+
+  <label for="user-email">E-mail:</label>
+  <input type="text" id="user-email" placeholder="Wpisz swój e-mail" />
+
+  <label for="user-phone">Telefon:</label>
+  <input type="text" id="user-phone" placeholder="Wpisz numer telefonu" />
+
+  <button class="submit-btn" onclick="zlozZamowienie()">Złóż zamówienie</button>
+</section>
+
 <script>
-  function pokazKategorie(nazwa) {
-    const kategorie = document.querySelectorAll('.kategoria');
-    kategorie.forEach(k => k.style.display = 'none');
-    document.getElementById(nazwa).style.display = 'block';
+  // Dane produktów z kategoriami i cenami
+  const produkty = [
+    { id: 'bluza', nazwa: 'Bluza', cena: 150, kategoria: 'mezczyzni' },
+    { id: 'bluza-kaptur', nazwa: 'Bluza z kapturem', cena: 150, kategoria: 'mezczyzni' },
+    { id: 'koszulka', nazwa: 'Koszulka', cena: 99, kategoria: 'mezczyzni' },
+
+    { id: 'bluza-kaptur-k', nazwa: 'Bluza z kapturem', cena: 150, kategoria: 'kobiety' },
+    { id: 'koszulka-k', nazwa: 'Koszulka', cena: 99, kategoria: 'kobiety' },
+    { id: 'czapka-k', nazwa: 'Czapka', cena: 79, kategoria: 'kobiety' },
+    { id: 'akcesoria-k', nazwa: 'Akcesoria', cena: 0, kategoria: 'kobiety' },
+
+    { id: 'bluza-m', nazwa: 'Bluza', cena: 150, kategoria: 'mlodziez' },
+    { id: 'koszulka-m', nazwa: 'Koszulka', cena: 99, kategoria: 'mlodziez' },
+    { id: 'czapka-m', nazwa: 'Czapka', cena: 79, kategoria: 'mlodziez' },
+
+    { id: 'akcesoria-a', nazwa: 'Akcesoria', cena: 0, kategoria: 'akcesoria' }
+  ];
+
+  // Pusta kategoria nowosci na razie
+  const nowosci = [];
+
+  // Aktualna kategoria do pokazywania w sklepie
+  let aktualnaKategoria = 'mezczyzni';
+
+  // Produkt wybrany do projektowania
+  let produktProjektowany = null;
+
+  // Wartość tekstu dodanego do projektu
+  let tekstProjektu = '';
+
+  // Funkcja przełączania sekcji
+  function przelaczSekcje(idSekcji) {
+    document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
+    document.getElementById(idSekcji).classList.add('active');
+
+    // Zaznacz aktywny przycisk nawigacji
+    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+    if(idSekcji === 'sklep') document.getElementById('nav-sklep').classList.add('active');
+    else if(idSekcji === 'projektuj') document.getElementById('nav-projektuj').classList.add('active');
+    else if(idSekcji === 'zamowienia') document.getElementById('nav-zamowienia').classList.add('active');
   }
+
+  // Pokaz produkty wg kategorii
+  function pokazProdukty(kategoria) {
+    aktualnaKategoria = kategoria;
+
+    const listaEl = document.getElementById('produkty-lista');
+    listaEl.innerHTML = '';
+
+    if(kategoria === 'nowosci') {
+      listaEl.innerHTML = '<p>Nowości pojawią się wkrótce!</p>';
+      return;
+    }
+
+    const listaProduktow = produkty.filter(p => p.kategoria === kategoria);
+
+    listaProduktow.forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'produkt';
+      const cenaTekst = p.cena === 0 ? 'max cena ustalana' : p.cena + ' zł';
+
+      div.innerHTML = `
+        <h3>${p.nazwa}</h3>
+        <p>Cena: <strong>${cenaTekst}</strong></p>
+        <button onclick="wybierzDoProjektowania('${p.id}')">Zaprojektuj</button>
+      `;
+
+      listaEl.appendChild(div);
+    });
+  }
+
+  // Obsługa wyboru produktu do projektowania
+  function wybierzDoProjektowania(idProduktu) {
+    produktProjektowany = produkty.find(p => p.id === idProduktu);
+    if(!produktProjektowany) return alert("Produkt nieznaleziony!");
+
+    document.getElementById('produkt-nazwa').textContent = produktProjektowany.nazwa;
+    document.getElementById('custom-text').value = '';
+    tekstProjektu = '';
+
+    przelaczSekcje('projektuj');
+  }
+
+  // Obsługa tekstu projektu
+  document.getElementById('custom-text').addEventListener('input', e => {
+    tekstProjektu = e.target.value;
+  });
+
+  // Przejście do zamówienia z projektem
+  function przejdzDoZamowienia() {
+    if(!produktProjektowany) return alert("Nie wybrano produktu do projektowania!");
+
+    let podsumowanie = `<h3>${produktProjektowany.nazwa}</h3>`;
+    podsumowanie += `<p>Cena: ${produktProjektowany.cena === 0 ? 'max cena ustalana' : produktProjektowany.cena + ' zł'}</p>`;
+    podsumowanie += `<p>Twój tekst: <strong>${tekstProjektu || '(brak)'}</strong></p>`;
+
+    document.getElementById('podsumowanie-zamowienia').innerHTML = podsumowanie;
+
+    przelaczSekcje('zamowienia');
+  }
+
+  // Złożenie zamówienia (na razie alert)
+  function zlozZamowienie() {
+    const imie = document.getElementById('user-name').value.trim();
+    const email = document.getElementById('user-email').value.trim();
+    const telefon = document.getElementById('user-phone').value.trim();
+
+    if(!imie || !email || !telefon) {
+      alert("Proszę wypełnić wszystkie dane kontaktowe.");
+      return;
+    }
+
+    let wiadomosc = `Zamówienie z AdelbertusShop:\n\n`;
+    wiadomosc += `Produkt: ${produktProjektowany.nazwa}\n`;
+    wiadomosc += `Cena: ${produktProjektowany.cena === 0 ? 'max cena ustalana' : produktProjektowany.cena + ' zł'}\n`;
+    wiadomosc += `Tekst projektu: ${tekstProjektu || '(brak)'}\n\n`;
+    wiadomosc += `Dane klienta:\nImię i nazwisko: ${imie}\nEmail: ${email}\nTelefon: ${telefon}`;
+
+    alert("Dziękujemy za zamówienie! Skopiuj poniższą treść i wyślij na maila:\n\n" + wiadomosc);
+
+    // Tutaj można dodać wysyłkę maila lub inną obsługę
+
+    // Reset formularza i powrót do sklepu
+    produktProjektowany = null;
+    tekstProjektu = '';
+    document.getElementById('custom-text').value = '';
+    document.getElementById('user-name').value = '';
+    document.getElementById('user-email').value = '';
+    document.getElementById('user-phone').value = '';
+    document.getElementById('podsumowanie-zamowienia').innerHTML = '';
+
+    przelaczSekcje('sklep');
+    pokazProdukty(aktualnaKategoria);
+  }
+
+  // Inicjalizacja - pokaz produkty dla domyślnej kategorii
+  document.addEventListener('DOMContentLoaded', () => {
+    pokazProdukty(aktualnaKategoria);
+
+    // Obsługa przycisków kategorii
+    document.querySelectorAll('#kategorie button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#kategorie button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        pokazProdukty(btn.getAttribute('data-kategoria'));
+      });
+    });
+  });
 </script>
 
-<style>
-  #sklep {
-    padding: 40px;
-    background-color: #000;
-    color: #f5f5dc;
-  }
-
-  .tytul {
-    color: gold;
-    font-size: 32px;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .sklep-kategorie {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 30px;
-  }
-
-  .sklep-kategorie button {
-    background: none;
-    border: 2px solid gold;
-    color: #f5f5dc;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  .sklep-kategorie button:hover {
-    background-color: gold;
-    color: black;
-  }
-
-  .produkt {
-    border: 1px solid gold;
-    padding: 15px;
-    margin: 10px 0;
-    background-color: #111;
-    border-radius: 12px;
-    box-shadow: 0 0 10px gold;
-  }
-</style><section id="projektuj" class="sekcja">
+</body>
+</html><section id="projektuj" class="sekcja">
   <h2>Projektuj własny produkt</h2>
   <p>Stwórz unikalny projekt na koszulkę lub bluzę. Wpisz tekst, dodaj grafikę i zobacz podgląd w czasie rzeczywistym!</p>
 
