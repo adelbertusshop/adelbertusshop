@@ -97,22 +97,58 @@
     }
   </style>
 </head>
-<body>
-  <!-- Logo + baner -->
+ <body>
+
   <div style="position: relative; width: 100%; height: auto;">
     <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo lewe" style="position: absolute; top: 10px; left: 10px; height: 80px; z-index: 2;">
     <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo prawe" style="position: absolute; top: 10px; right: 10px; height: 80px; z-index: 2;">
     <img src="https://i.ibb.co/cc2ssnSk/Messenger-creation-6365-D019-B450-442-F-B278-4-AF2-AB768752.jpg" alt="Banner" style="width: 100%; display: block;">
   </div>
 
-  <!-- Nagłówek -->
   <header>
     <h1>AdelbertusShop</h1>
     <p>– legalnie zakazany –</p>
   </header>
 
-  <!-- Nawigacja -->
   <nav>
+    <button onclick="przelaczSekcje('sklep')">Sklep</button>
+    <button onclick="przelaczSekcje('projektuj')">Projektuj</button>
+    <button onclick="przelaczSekcje('marketplace')">Marketplace</button>
+    <button onclick="przelaczSekcje('reklama')">Reklama</button>
+    <button onclick="przelaczSekcje('zbiorka')">Zbiórka</button>
+    <button onclick="przelaczSekcje('opinie')">Opinie</button>
+    <button onclick="przelaczSekcje('blog')">Blog</button>
+    <button onclick="przelaczSekcje('zamowienia')">Zamówienia</button>
+    <button onclick="przelaczSekcje('artysta')">Artysta</button>
+    <button onclick="przelaczSekcje('kontakt')">Kontakt</button>
+    <button onclick="przelaczSekcje('regulamin')">Regulamin</button>
+  </nav>
+
+  <!-- SEKCE -->
+
+  <section id="sklep" class="sekcja active"><h2>Sklep</h2></section>
+  <section id="projektuj" class="sekcja"><h2>Projektuj</h2></section>
+  <section id="marketplace" class="sekcja"><h2>Marketplace</h2></section>
+  <section id="reklama" class="sekcja"><h2>Reklama</h2></section>
+  <section id="zbiorka" class="sekcja"><h2>Zbiórka</h2></section>
+  <section id="opinie" class="sekcja"><h2>Opinie</h2></section>
+  <section id="blog" class="sekcja"><h2>Blog</h2></section>
+  <section id="zamowienia" class="sekcja"><h2>Zamówienia</h2></section>
+  <section id="artysta" class="sekcja"><h2>Artysta</h2></section>
+  <section id="kontakt" class="sekcja"><h2>Kontakt</h2></section>
+  <section id="regulamin" class="sekcja"><h2>Regulamin</h2></section>
+
+  <!-- SKRYPT -->
+  <script>
+    function przelaczSekcje(id) {
+      const sekcje = document.querySelectorAll('.sekcja');
+      sekcje.forEach(s => s.classList.remove('active'));
+      const aktywna = document.getElementById(id);
+      if (aktywna) aktywna.classList.add('active');
+    }
+  </script>
+
+</body>  <nav>
     <button onclick="przelaczSekcje('sklep')">Sklep</button>
     <button onclick="przelaczSekcje('projektuj')">Projektuj</button>
     <button onclick="przelaczSekcje('zamowienia')">Zamówienia</button>
