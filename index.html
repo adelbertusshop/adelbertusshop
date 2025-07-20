@@ -5,10 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdelbertusShop</title>
   <style>
-    .sekcja { display: none; }
-.sekcja.active { display: block; }
-.kategoria-btn.active { background-color: gold; color: black; }
-.produkt button:hover { background-color: #d4af37cc; }    body {
+    .sekcja {
+      display: none;
+      padding: 25px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .sekcja.active { display: block; }
+
+    .kategoria-btn.active { background-color: gold; color: black; }
+    .produkt button:hover { background-color: #d4af37cc; }
+
+    body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #000;
@@ -52,15 +60,9 @@
       color: black;
     }
 
-    .sekcja {
-      display: none;
-      padding: 25px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .active {
-      display: block;
+    nav button.active {
+      background-color: gold;
+      color: black;
     }
 
     @media (max-width: 768px) {
@@ -89,7 +91,7 @@
   </header>
 
   <nav>
-    <!-- Tu dodamy przyciski nawigacji np. Sklep, Projektuj, Zamówienia itd. -->
+    <!-- Przyciski dodamy w kolejnym etapie -->
   </nav>
 
 </body>
