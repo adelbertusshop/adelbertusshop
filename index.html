@@ -401,7 +401,7 @@
   }
 })();
 </script>
- <section id="zamowienia" class="sekcja">
+<section id="zamowienia" class="sekcja">
   <h2>Złóż zamówienie</h2>
   <p style="text-align: center;">Wypełnij formularz, aby zamówić wybrany produkt z projektu lub marketplace.</p>
 
@@ -428,7 +428,8 @@
     </form>
   </div>
 </section> 
- <section id="opinie" class="sekcja hidden">
+
+<section id="opinie" class="sekcja hidden">
   <h2>Opinie naszych klientów</h2>
   <div class="opinia">
     <p>„Koszulka na zamówienie przerosła moje oczekiwania! Jakość premium i błyskawiczna realizacja.”</p>
@@ -451,7 +452,8 @@
     <button type="submit">Dodaj opinię</button>
   </form>
 </section> 
- <section id="blog" class="sekcja hidden">
+
+<section id="blog" class="sekcja hidden">
   <h2>Blog AdelbertusShop</h2>
 
   <article class="wpis">
@@ -477,7 +479,8 @@
     <button type="submit">Dodaj wpis</button>
   </form>
 </section> 
- <section id="kontakt" class="sekcja hidden">
+
+<section id="kontakt" class="sekcja hidden">
   <h2>Kontakt z AdelbertusShop</h2>
   <p>Skontaktuj się z nami, jeśli masz pytania, pomysły lub chcesz dołączyć do magii AdelbertusShop.</p>
 
@@ -491,7 +494,8 @@
     <li>🎵 <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8y8ONNcy1e2&_r=1" target="_blank">TikTok</a></li>
   </ul>
 </section> 
-  <section id="regulamin" class="sekcja hidden">
+
+<section id="regulamin" class="sekcja hidden">
   <h2>Regulamin sklepu AdelbertusShop</h2>
 
   <h3>1. Informacje ogólne</h3>
@@ -517,7 +521,8 @@
 
   <p>Sklep działa zgodnie z obowiązującymi przepisami dla działalności nierejestrowanej w Polsce.</p>
 </section> 
-  <!-- ✅ Sekcja ZBIÓRKA: rozwój sklepu + pomoc dla domu dziecka -->
+
+<!-- ✅ Sekcja ZBIÓRKA: rozwój sklepu + pomoc dla domu dziecka -->
 <section id="zbiorka" class="sekcja hidden">
   <h2>Zbiórka na rozwój AdelbertusShop i pomoc dla dzieci</h2>
 
@@ -551,37 +556,35 @@
     Twoja pomoc — nawet najmniejsza — naprawdę coś zmienia. <br>
     Dla Ciebie to gest. Dla nich — świat.
   </p>
-</section>   <script>
-    // Obsługa menu – przełączanie sekcji
-    document.querySelectorAll('nav button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.getAttribute('data-target');
-        document.querySelectorAll('.sekcja').forEach(sec => {
-          sec.classList.remove('active');
-        });
-        document.getElementById(target).classList.add('active');
-      });
-    });
-  </script>
+</section>   
+
 <script>
+  // Obsługa menu – przełączanie sekcji
+  document.querySelectorAll('nav button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-target');
+      if (!target) return;
+      document.querySelectorAll('.sekcja').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      document.getElementById(target).classList.add('active');
+    });
+  });
+
   // Obsługa formularza projektowania
-  document.getElementById("projekt-form").addEventListener("submit", function(e) {
+  document.getElementById("projekt-form")?.addEventListener("submit", function(e) {
     e.preventDefault();
     alert("Dziękujemy za przesłanie projektu! Skontaktujemy się z Tobą wkrótce.");
     this.reset();
   });
   
-</script>
-  <script>
   // Obsługa formularza zamówienia
-  document.getElementById("formularz-zamowienia").addEventListener("submit", function(e) {
+  document.getElementById("formularz-zamowienia")?.addEventListener("submit", function(e) {
     e.preventDefault();
     alert("Dziękujemy za zamówienie! Skontaktujemy się w celu potwierdzenia.");
     this.reset();
   });
-    
-</script>
-  <script>
+</script>  <script>
   // Obsługa formularza opinii
   document.getElementById("formularz-opinia").addEventListener("submit", function(e) {
     e.preventDefault();
