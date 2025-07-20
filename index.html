@@ -95,41 +95,25 @@
   </nav>
 
 </body>
-</html><nav>
+</html>
+<nav>
   <button id="nav-sklep" onclick="przelaczSekcje('sklep')">Sklep</button>
-  <button id="nav-projektuj" onclick="przelaczSekcje('projektuj')">Projektuj</button>
-  <button id="nav-marketplace" onclick="przelaczSekcje('marketplace')">Marketplace</button>
-  <button id="nav-reklama" onclick="przelaczSekcje('reklama')">Reklama</button>
-  <button id="nav-zbiorka" onclick="przelaczSekcje('zbiorka')">Zbiórka</button>
-  <button id="nav-opinie" onclick="przelaczSekcje('opinie')">Opinie</button>
-  <button id="nav-blog" onclick="przelaczSekcje('blog')">Blog</button>
   <button id="nav-zamowienia" onclick="przelaczSekcje('zamowienia')">Zamówienia</button>
-  <button id="nav-artysta" onclick="przelaczSekcje('artysta')">Artysta</button>
-  <button id="nav-kontakt" onclick="przelaczSekcje('kontakt')">Kontakt</button>
-  <button id="nav-regulamin" onclick="przelaczSekcje('regulamin')">Regulamin</button>
 </nav>
 
-<section id="sklep" class="sekcja active">
+<section id="sklep" class="sekcja" style="display:block;">
   <div id="kategorie" style="margin-bottom:20px;">
     <button class="kategoria-btn active" data-kategoria="mezczyzni">Mężczyźni</button>
     <button class="kategoria-btn" data-kategoria="kobiety">Kobiety</button>
     <button class="kategoria-btn" data-kategoria="mlodziez">Młodzież</button>
-    <button class="kategoria-btn" data-kategoria="akcesoria">Akcesoria</button>
-    <button class="kategoria-btn" data-kategoria="nowosci">Nowości</button>
   </div>
   <div id="produkty-lista"></div>
 </section>
 
-<section id="projektuj" class="sekcja">
-  <h2>Zaprojektuj swój produkt</h2>
-  <p>Tu będzie edytor do projektowania produktu (dodaj obrazy, tekst itp.)</p>
-  <button onclick="przelaczSekcje('sklep')">Wróć do sklepu</button>
-</section>
-
-<section id="zamowienia" class="sekcja">
+<section id="zamowienia" class="sekcja" style="display:none;">
   <h2>Twoje zamówienia</h2>
   <div id="zamowienia-lista"><p>Brak produktów w zamówieniach.</p></div>
-  <button class="submit-btn" onclick="zlozZamowienie()">Złóż zamówienie</button>
+  <button onclick="zlozZamowienie()">Złóż zamówienie</button>
   <button onclick="przelaczSekcje('sklep')">Wróć do sklepu</button>
 </section>
 
@@ -140,9 +124,7 @@
     { id: 3, nazwa: "Bluza", kategoria: "kobiety", cena: 150 },
     { id: 4, nazwa: "Koszulka", kategoria: "kobiety", cena: 99 },
     { id: 5, nazwa: "Bluza", kategoria: "mlodziez", cena: 150 },
-    { id: 6, nazwa: "Koszulka", kategoria: "mlodziez", cena: 99 },
-    { id: 7, nazwa: "Bluza", kategoria: "akcesoria", cena: 150 },
-    { id: 8, nazwa: "Koszulka", kategoria: "akcesoria", cena: 99 }
+    { id: 6, nazwa: "Koszulka", kategoria: "mlodziez", cena: 99 }
   ];
 
   let aktualnaKategoria = "mezczyzni";
@@ -174,7 +156,6 @@
       div.innerHTML = `
         <h3>${prod.nazwa}</h3>
         <p>Cena: <strong>${prod.cena} zł</strong></p>
-        <button onclick="przejdzDoProjektuj('${prod.nazwa}')">Zaprojektuj</button>
         <button onclick="dodajDoZamowien('${prod.nazwa}', ${prod.cena})">Dodaj do zamówienia</button>
       `;
       lista.appendChild(div);
@@ -184,11 +165,6 @@
   function dodajDoZamowien(nazwa, cena) {
     zamowienia.push({ nazwa, cena });
     alert(`Dodano do zamówienia: ${nazwa} – ${cena} zł`);
-  }
-
-  function przejdzDoProjektuj(produkt) {
-    alert(`Projektujesz: ${produkt}`);
-    przelaczSekcje('projektuj');
   }
 
   function pokazZamowienia() {
@@ -207,31 +183,18 @@
     lista.innerHTML += `<p><strong>Łącznie: ${suma} zł</strong></p>`;
   }
 
-  function zlozZamowienie() {
-    if (zamowienia.length === 0) {
-      alert("Twoja lista zamówień jest pusta.");
-      return;
-    }
-    let tekst = "Zamówienie:\n";
-    zamowienia.forEach((p, i) => {
-      tekst += `${i + 1}. ${p.nazwa} – ${p.cena} zł\n`;
+  // Ustawienie eventów kategorii po załadowaniu DOM
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#kategorie button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        aktualnaKategoria = btn.dataset.kategoria;
+        document.querySelectorAll('#kategorie button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        pokazProdukty();
+      });
     });
-    tekst += "\nPrzelej BLIK na numer: 573 939 925 z dopiskiem projekt\nPotwierdzenie wyślij na: mielniczukgrzegosz74@gmail.com";
-    alert(tekst);
-  }
-
-  document.querySelectorAll('#kategorie button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      aktualnaKategoria = btn.dataset.kategoria;
-      document.querySelectorAll('#kategorie button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      pokazProdukty();
-    });
-  });
-
-  window.onload = function() {
     pokazProdukty();
-  };
+  });
 </script>
 
 <style>
@@ -252,7 +215,7 @@
     color: black;
   }
   .produkt button {
-    margin-right: 10px;
+    margin-top: 10px;
     padding: 6px 12px;
     border-radius: 20px;
     border: none;
