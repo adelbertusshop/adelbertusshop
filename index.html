@@ -14,28 +14,39 @@
     }
 
     header {
-      background-color: #111;
-      text-align: center;
-      padding: 40px 20px;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
     }
 
     header img {
-      max-width: 100%;
-      height: auto;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.5);
     }
 
-    .slogan {
-      font-size: 28px;
+    .baner-texty {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #f5f5f5;
+    }
+
+    .baner-texty h1 {
+      font-size: 48px;
       color: #d4af37;
-      margin-top: 20px;
-      font-weight: bold;
+      margin-bottom: 20px;
     }
 
-    .sub-slogan {
-      font-size: 18px;
-      color: #fff;
-      margin-top: 10px;
-      opacity: 0.8;
+    .baner-texty p {
+      font-size: 20px;
+      color: #ffffff;
+      opacity: 0.9;
     }
 
     nav {
@@ -74,11 +85,22 @@
     .sekcja h2 {
       color: #d4af37;
     }
-
   </style>
 </head>
 <body>
 
+  <header>
+    <img src="https://i.ibb.co/TyHZVSK/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="AdelbertusShop Baner">
+    <div class="baner-texty">
+      <h1>AdelbertusShop – legalnie zakazany</h1>
+      <p>Witamy w iluzji wyboru. Wybierz nas.</p>
+    </div>
+  </header>
+
+  <!-- Tutaj możesz dodać sekcje sklepu, np. nav, sekcja sklep, projektuj itd. -->
+  
+</body>
+</html>
   <header>
     <img src="https://i.ibb.co/YZK6q2T/logo.png" alt="AdelbertusShop Logo">
     <div class="slogan">AdelbertusShop – Legalnie zakazany</div>
