@@ -177,21 +177,35 @@
 </section>
 
 <script>
-  const produkty = [
-    { id: 1, nazwa: "Bluza", kategoria: "mezczyzni", cena: 150, obraz: "img/produkty/bluza_mezczyzna.jpg" },
-    { id: 2, nazwa: "Bluza z kapturem", kategoria: "mezczyzni", cena: 150, obraz: "img/produkty/bluza_kaptur_mezczyzna.jpg" },
-    { id: 3, nazwa: "Koszulka", kategoria: "mezczyzni", cena: 99, obraz: "img/produkty/koszulka_mezczyzna.jpg" },
-    { id: 4, nazwa: "Bluza", kategoria: "kobiety", cena: 150, obraz: "img/produkty/bluza_kobieta.jpg" },
-    { id: 5, nazwa: "Bluza z kapturem", kategoria: "kobiety", cena: 150, obraz: "img/produkty/bluza_kaptur_kobieta.jpg" },
-    { id: 6, nazwa: "Koszulka", kategoria: "kobiety", cena: 99, obraz: "img/produkty/koszulka_kobieta.jpg" },
-    { id: 7, nazwa: "Bluza", kategoria: "chlopcy", cena: 150, obraz: "img/produkty/bluza_chlopiec.jpg" },
-    { id: 8, nazwa: "Koszulka", kategoria: "chlopcy", cena: 99, obraz: "img/produkty/koszulka_chlopiec.jpg" },
-    { id: 9, nazwa: "Bluza", kategoria: "dziewczynki", cena: 150, obraz: "img/produkty/bluza_dziewczynka.jpg" },
-    { id: 10, nazwa: "Koszulka", kategoria: "dziewczynki", cena: 99, obraz: "img/produkty/koszulka_dziewczynka.jpg" },
-    { id: 11, nazwa: "Czapka", kategoria: "akcesoria", cena: 79, obraz: "img/produkty/czapka.jpg" },
-    { id: 12, nazwa: "Torba", kategoria: "akcesoria", cena: 120, obraz: "img/produkty/torba.jpg" },
-  ];
+const produkty = [
+    // Mężczyźni
+    { id: 1, nazwa: "Bluza", kategoria: "mezczyzni", cena: 150 },
+    { id: 2, nazwa: "Bluza z kapturem", kategoria: "mezczyzni", cena: 150 },
+    { id: 3, nazwa: "Koszulka", kategoria: "mezczyzni", cena: 99 },
+    { id: 4, nazwa: "Czapka", kategoria: "mezczyzni", cena: 79 },
 
+    // Kobiety
+    { id: 5, nazwa: "Bluza", kategoria: "kobiety", cena: 150 },
+    { id: 6, nazwa: "Bluza z kapturem", kategoria: "kobiety", cena: 150 },
+    { id: 7, nazwa: "Koszulka", kategoria: "kobiety", cena: 99 },
+    { id: 8, nazwa: "Czapka", kategoria: "kobiety", cena: 79 },
+
+    // Chłopcy
+    { id: 9, nazwa: "Bluza", kategoria: "chlopcy", cena: 150 },
+    { id: 10, nazwa: "Bluza z kapturem", kategoria: "chlopcy", cena: 150 },
+    { id: 11, nazwa: "Koszulka", kategoria: "chlopcy", cena: 99 },
+    { id: 12, nazwa: "Czapka", kategoria: "chlopcy", cena: 69 },
+
+    // Dziewczynki
+    { id: 13, nazwa: "Bluza", kategoria: "dziewczynki", cena: 150 },
+    { id: 14, nazwa: "Bluza z kapturem", kategoria: "dziewczynki", cena: 150 },
+    { id: 15, nazwa: "Koszulka", kategoria: "dziewczynki", cena: 99 },
+    { id: 16, nazwa: "Czapka", kategoria: "dziewczynki", cena: 69 },
+
+    // Akcesoria
+    { id: 17, nazwa: "Czapka", kategoria: "akcesoria", cena: 79 },
+    { id: 18, nazwa: "Torba", kategoria: "akcesoria", cena: 120 },
+  ];
   let aktualnaKategoria = "mezczyzni";
 
   function pokazProdukty() {
