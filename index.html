@@ -1,82 +1,88 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AdelbertusShop</title>
   <style>
-    .sekcja {
-      display: none;
-      padding: 25px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .sekcja.active { display: block; }
-
-    .kategoria-btn.active { background-color: gold; color: black; }
-    .produkt button:hover { background-color: #d4af37cc; }
-
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #000;
-      color: #f5f5dc;
-      line-height: 1.6;
-      font-size: 16px;
+      padding: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #0a0a0a;
+      color: #f5f5f5;
     }
 
     header {
-      background-color: #111;
-      color: gold;
-      padding: 25px 20px;
+      position: relative;
+      background-color: #000;
       text-align: center;
+      padding: 20px 0;
       font-weight: 700;
       letter-spacing: 1.5px;
     }
 
+    header img.baner {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .logo-corner {
+      position: absolute;
+      bottom: 10px;
+      width: 80px;
+      height: auto;
+    }
+
+    .logo-left {
+      left: 10px;
+    }
+
+    .logo-right {
+      right: 10px;
+    }
+
     nav {
-      background-color: #222;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      background-color: #1a1a1a;
+      padding: 12px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
       gap: 10px;
-      padding: 10px 0;
     }
 
     nav button {
-      background: none;
-      border: 2px solid gold;
-      border-radius: 5px;
-      color: #f5f5dc;
-      padding: 12px 18px;
-      cursor: pointer;
+      background-color: transparent;
+      border: 1px solid #d4af37;
+      color: #d4af37;
       font-size: 16px;
+      padding: 10px 18px;
+      margin: 6px;
+      cursor: pointer;
+      border-radius: 25px;
+      transition: all 0.3s ease;
       font-weight: 600;
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    nav button:hover {
-      background-color: gold;
-      color: black;
+    nav button:hover, nav button.active {
+      background-color: #d4af37;
+      color: #0a0a0a;
     }
 
-    nav button.active {
-      background-color: gold;
-      color: black;
+    .sekcja {
+      display: none;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-      }
-      nav button {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-      }
+    .sekcja.active {
+      display: block;
     }
 
-    /* 🔥 Koszyk CSS */
+    /* Koszyk style */
     .koszyk-toggle {
       position: fixed;
       top: 20px;
@@ -152,22 +158,84 @@
 </head>
 <body>
 
-  <div style="position: relative; width: 100%; height: auto;">
-    <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo lewe" style="position: absolute; top: 10px; left: 10px; height: 80px; z-index: 2;">
-    <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo prawe" style="position: absolute; top: 10px; right: 10px; height: 80px; z-index: 2;">
-    <img src="https://i.ibb.co/cc2ssnSk/Messenger-creation-6365-D019-B450-442-F-B278-4-AF2-AB768752.jpg" alt="Banner" style="width: 100%; display: block;">
-  </div>
-
   <header>
-    <h1>AdelbertusShop</h1>
-    <p>– legalnie zakazany –</p>
+    <img class="baner" src="https://i.ibb.co/TyHZVSK/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Baner AdelbertusShop">
+    <img class="logo-corner logo-left" src="https://i.ibb.co/PpsZxny/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Logo Lewy Róg">
+    <img class="logo-corner logo-right" src="https://i.ibb.co/PpsZxny/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Logo Prawy Róg">
   </header>
 
   <nav>
-    <!-- Przyciski do nawigacji dodajemy w kolejnych etapach -->
+    <button onclick="pokazSekcje('sklep')" class="active">Sklep</button>
+    <button onclick="pokazSekcje('projektuj')">Projektuj</button>
+    <button onclick="pokazSekcje('marketplace')">Marketplace</button>
+    <button onclick="pokazSekcje('reklama')">Reklama</button>
+    <button onclick="pokazSekcje('zbiorka')">Zbiórka</button>
+    <button onclick="pokazSekcje('opinie')">Opinie</button>
+    <button onclick="pokazSekcje('blog')">Blog</button>
+    <button onclick="pokazSekcje('zamowienia')">Zamówienia</button>
+    <button onclick="pokazSekcje('artysta')">Artysta</button>
+    <button onclick="pokazSekcje('kontakt')">Kontakt</button>
+    <button onclick="pokazSekcje('regulamin')">Regulamin</button>
   </nav>
 
-  <!-- 🔽 Koszyk (panel) -->
+  <!-- Sekcje -->
+  <section id="sklep" class="sekcja active">
+    <h2>Sklep</h2>
+    <p>Tu znajdziesz nasze wyjątkowe produkty.</p>
+    <!-- Tutaj możesz dodać produkty -->
+  </section>
+
+  <section id="projektuj" class="sekcja">
+    <h2>Projektuj</h2>
+    <p>Stwórz swój własny projekt koszulki, bluzy, czapki i więcej!</p>
+  </section>
+
+  <section id="marketplace" class="sekcja">
+    <h2>Marketplace</h2>
+    <p>Zarabiaj razem z nami — tylko zaakceptowani artyści mogą sprzedawać tutaj.</p>
+  </section>
+
+  <section id="reklama" class="sekcja">
+    <h2>Reklama</h2>
+    <p>Dołącz do kampanii reklamowej naszego sklepu.</p>
+  </section>
+
+  <section id="zbiorka" class="sekcja">
+    <h2>Zbiórka</h2>
+    <p>Wesprzyj rozwój sklepu i pomoc dla domu dziecka.</p>
+  </section>
+
+  <section id="opinie" class="sekcja">
+    <h2>Opinie</h2>
+    <p>Opinie klientów i twórców.</p>
+  </section>
+
+  <section id="blog" class="sekcja">
+    <h2>Blog</h2>
+    <p>Nowości, artykuły i informacje ze świata AdelbertusShop.</p>
+  </section>
+
+  <section id="zamowienia" class="sekcja">
+    <h2>Zamówienia</h2>
+    <p>Złóż zamówienie na wybrane produkty lub projekt własny.</p>
+  </section>
+
+  <section id="artysta" class="sekcja">
+    <h2>Artysta</h2>
+    <p>Poznaj twórców stojących za projektami sklepu.</p>
+  </section>
+
+  <section id="kontakt" class="sekcja">
+    <h2>Kontakt</h2>
+    <p>Skontaktuj się z nami: mielniczukgrzegosz74@gmail.com</p>
+  </section>
+
+  <section id="regulamin" class="sekcja">
+    <h2>Regulamin</h2>
+    <p>Zapoznaj się z zasadami korzystania z AdelbertusShop.</p>
+  </section>
+
+  <!-- Koszyk -->
   <div id="koszykPanel" style="display:none;" class="koszyk-panel">
     <h2>Twój koszyk</h2>
     <div id="koszykLista"></div>
@@ -177,10 +245,23 @@
     </div>
   </div>
 
-  <!-- 🔘 Przycisk koszyka -->
   <button class="koszyk-toggle" onclick="toggleKoszyk()">🛒 Koszyk</button>
 
   <script>
+    // Przełączanie sekcji
+    function pokazSekcje(id) {
+      const sekcje = document.querySelectorAll('.sekcja');
+      sekcje.forEach(s => s.classList.remove('active'));
+      const wybrana = document.getElementById(id);
+      if (wybrana) wybrana.classList.add('active');
+
+      const przyciski = document.querySelectorAll('nav button');
+      przyciski.forEach(btn => btn.classList.remove('active'));
+      const aktywnyBtn = Array.from(przyciski).find(btn => btn.textContent.toLowerCase() === id);
+      if (aktywnyBtn) aktywnyBtn.classList.add('active');
+    }
+
+    // Koszyk
     let koszyk = [];
 
     function toggleKoszyk() {
@@ -243,6 +324,12 @@
       aktualizujKoszyk();
       toggleKoszyk();
     }
+
+    // Start na stronie
+    window.onload = () => {
+      pokazSekcje('sklep');
+    };
   </script>
+
 </body>
 </html>
