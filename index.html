@@ -179,12 +179,22 @@
 <script>
   const produkty = [
     // Mężczyźni
-    { id: 1, nazwa: "Bluza", kategoria: "mezczyzni", cena: 150, obraz: "https://via.placeholder.com/250x250?text=Bluza" },
-    { id: 2, nazwa: "Bluza z kapturem", kategoria: "mezczyzni", cena: 150, obraz: "https://via.placeholder.com/250x250?text=Bluza+z+kapturem" },
-    { id: 3, nazwa: "Koszulka", kategoria: "mezczyzni", cena: 99, obraz: "https://via.placeholder.com/250x250?text=Koszulka" },
+    { id: 1, nazwa: "Bluza", kategoria: "mezczyzni", cena: 150, obraz: "https://i.ibb.co/BVB99zCg/Messenger-creation-F93-B9-D88-23-E0-4267-9-C9-B-6-D7554933-F08.jpg" },
+    { id: 2, nazwa: "Bluza z kapturem", kategoria: "mezczyzni", cena: 150, obraz: "https://i.ibb.co/C52D4GgS/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg" },
+    { id: 3, nazwa: "Koszulka", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/WvwsyQDK/Screenshot-20250522-190817-Chat-GPT.jpg" },
     { id: 21, nazwa: "Koszulka Adelbertusshop", kategoria: "mezczyzni", cena: 160, obraz: "https://i.ibb.co/HTZ3xG4c/Screenshot-20250525-154540-Chat-GPT.jpg" },
     { id: 23, nazwa: "Koszulka Pi", kategoria: "mezczyzni", cena: 105, obraz: "https://i.ibb.co/SX61BFdr/Screenshot-20250608-161603-Chat-GPT.jpg" },
-    { id: 4, nazwa: "Czapka", kategoria: "mezczyzni", cena: 79, obraz: "https://via.placeholder.com/250x250?text=Czapka" },
+    { id: 25, nazwa: "Koszulka Symbol Pi", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/prjkpXXK/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" },
+    { id: 26, nazwa: "Koszulka Symbol PI (inna)", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/Y7qH4vMz/file-000000004b086246b2f6ebdeefb1586f.png" },
+    { id: 27, nazwa: "Koszulka Adelbertus (inna)", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/jZLfVyfP/file-00000000aca062439c3a670e83612634-3.png" },
+    { id: 28, nazwa: "Koszulka Adelbertus (inna 2)", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/BpDKy5X/file-0000000060286246be561a660f50e99e-2.png" },
+    { id: 29, nazwa: "Koszulka Disco", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/v6NvpVQq/file-00000000c71c6246b9d78afc2a6c0a39.png" },
+    { id: 30, nazwa: "Koszulka Disco Kolor", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/v6NvpVQq/file-00000000c71c6246b9d78afc2a6c0a39.png" },
+    { id: 31, nazwa: "Koszulka Nie pasujesz do...", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/jk7Cr5h8/110028656-ads-media-3e59d99f-4f42-44a4-9050-7b219cae1e06.png" },
+    { id: 32, nazwa: "Koszulka Zobacz to", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/mCqj0YcX/Messenger-creation-001497-A6-3-DA5-4-F5-F-8-C74-76562661-C85-B.jpg" },
+    { id: 33, nazwa: "Koszulka Uliczny styl", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/s9zFwddF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" },
+    { id: 34, nazwa: "Koszulka Puzel", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/sdkfdyfg/file-00000000985c6243ba1d82431c2ead9f-2.png" },
+    { id: 4, nazwa: "Czapka Adelbertus", kategoria: "mezczyzni", cena: 79, obraz: "https://i.ibb.co/qM0YQBSt/file-000000004d38620a9f9d0d8d43926ba0.png" },
 
     // Kobiety
     { id: 5, nazwa: "Bluza", kategoria: "kobiety", cena: 150, obraz: "https://via.placeholder.com/250x250?text=Bluza" },
@@ -192,6 +202,16 @@
     { id: 7, nazwa: "Koszulka", kategoria: "kobiety", cena: 99, obraz: "https://via.placeholder.com/250x250?text=Koszulka" },
     { id: 22, nazwa: "Koszulka Adelbertusshop", kategoria: "kobiety", cena: 160, obraz: "https://i.ibb.co/HTZ3xG4c/Screenshot-20250525-154540-Chat-GPT.jpg" },
     { id: 24, nazwa: "Koszulka Pi", kategoria: "kobiety", cena: 105, obraz: "https://i.ibb.co/SX61BFdr/Screenshot-20250608-161603-Chat-GPT.jpg" },
+    { id: 35, nazwa: "Koszulka Symbol Pi", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/prjkpXXK/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" },
+    { id: 36, nazwa: "Koszulka Symbol PI (inna)", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/Y7qH4vMz/file-000000004b086246b2f6ebdeefb1586f.png" },
+    { id: 37, nazwa: "Koszulka Adelbertus (inna)", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/jZLfVyfP/file-00000000aca062439c3a670e83612634-3.png" },
+    { id: 38, nazwa: "Koszulka Adelbertus (inna 2)", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/BpDKy5X/file-0000000060286246be561a660f50e99e-2.png" },
+    { id: 39, nazwa: "Koszulka Disco", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/v6NvpVQq/file-00000000c71c6246b9d78afc2a6c0a39.png" },
+    { id: 40, nazwa: "Koszulka Disco Kolor", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/v6NvpVQq/file-00000000c71c6246b9d78afc2a6c0a39.png" },
+    { id: 41, nazwa: "Koszulka Nie pasujesz do...", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/jk7Cr5h8/110028656-ads-media-3e59d99f-4f42-44a4-9050-7b219cae1e06.png" },
+    { id: 42, nazwa: "Koszulka Zobacz to", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/mCqj0YcX/Messenger-creation-001497-A6-3-DA5-4-F5-F-8-C74-76562661-C85-B.jpg" },
+    { id: 43, nazwa: "Koszulka Uliczny styl", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/s9zFwddF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" },
+    { id: 44, nazwa: "Koszulka Puzel", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/sdkfdyfg/file-00000000985c6243ba1d82431c2ead9f-2.png" },
     { id: 8, nazwa: "Czapka", kategoria: "kobiety", cena: 79, obraz: "https://via.placeholder.com/250x250?text=Czapka" },
 
     // Chłopcy
@@ -309,8 +329,7 @@
   .produkt button:hover {
     background-color: #a3852e;
   }
-</style>
-<section id="projektuj" class="sekcja">
+</style><section id="projektuj" class="sekcja">
     <h2>Projektuj</h2>
     <p>Stwórz swój własny projekt koszulki, bluzy, czapki i więcej!</p>
   </section>
