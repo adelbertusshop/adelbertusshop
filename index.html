@@ -1,196 +1,166 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AdelbertusShop</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #000;
-      color: #f5f5dc;
+      padding: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #0a0a0a;
+      color: #f5f5f5;
     }
 
     header {
       background-color: #111;
-      color: gold;
-      padding: 25px 20px;
       text-align: center;
-      font-weight: 700;
-      letter-spacing: 1.5px;
+      padding: 40px 20px;
+    }
+
+    header img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .slogan {
+      font-size: 28px;
+      color: #d4af37;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .sub-slogan {
+      font-size: 18px;
+      color: #fff;
+      margin-top: 10px;
+      opacity: 0.8;
     }
 
     nav {
-      background-color: #222;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
+      background-color: #1e1e1e;
       padding: 10px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
     nav button {
-      background: none;
-      border: 2px solid gold;
-      border-radius: 5px;
-      color: #f5f5dc;
-      padding: 12px 18px;
-      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      color: #fff;
       font-size: 16px;
-      font-weight: 600;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      padding: 12px 20px;
+      margin: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 30px;
     }
 
     nav button:hover {
-      background-color: gold;
-      color: black;
-    }
-
-    nav button.active {
-      background-color: gold;
-      color: black;
+      background-color: #d4af37;
+      color: #0a0a0a;
     }
 
     .sekcja {
       display: none;
-      padding: 25px 20px;
-      max-width: 1200px;
+      padding: 40px 20px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
-    .sekcja.active {
-      display: block;
+    .sekcja h2 {
+      color: #d4af37;
     }
 
-    .produkt {
-      border: 1px solid gold;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 10px 0;
-      background-color: #111;
-    }
-
-    .produkt button {
-      background-color: gold;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .produkt button:hover {
-      background-color: #d4af37cc;
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-      }
-      nav button {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-      }
-    }
   </style>
 </head>
- <body>
-
-  <div style="position: relative; width: 100%; height: auto;">
-    <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo lewe" style="position: absolute; top: 10px; left: 10px; height: 80px; z-index: 2;">
-    <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo prawe" style="position: absolute; top: 10px; right: 10px; height: 80px; z-index: 2;">
-    <img src="https://i.ibb.co/cc2ssnSk/Messenger-creation-6365-D019-B450-442-F-B278-4-AF2-AB768752.jpg" alt="Banner" style="width: 100%; display: block;">
-  </div>
+<body>
 
   <header>
-    <h1>AdelbertusShop</h1>
-    <p>– legalnie zakazany –</p>
+    <img src="https://i.ibb.co/YZK6q2T/logo.png" alt="AdelbertusShop Logo">
+    <div class="slogan">AdelbertusShop – Legalnie zakazany</div>
+    <div class="sub-slogan">Witamy w iluzji wyboru. Wybierz nas.</div>
   </header>
 
   <nav>
-    <button onclick="przelaczSekcje('sklep')">Sklep</button>
-    <button onclick="przelaczSekcje('projektuj')">Projektuj</button>
-    <button onclick="przelaczSekcje('marketplace')">Marketplace</button>
-    <button onclick="przelaczSekcje('reklama')">Reklama</button>
-    <button onclick="przelaczSekcje('zbiorka')">Zbiórka</button>
-    <button onclick="przelaczSekcje('opinie')">Opinie</button>
-    <button onclick="przelaczSekcje('blog')">Blog</button>
-    <button onclick="przelaczSekcje('zamowienia')">Zamówienia</button>
-    <button onclick="przelaczSekcje('artysta')">Artysta</button>
-    <button onclick="przelaczSekcje('kontakt')">Kontakt</button>
-    <button onclick="przelaczSekcje('regulamin')">Regulamin</button>
+    <button onclick="pokazSekcje('sklep')">Sklep</button>
+    <button onclick="pokazSekcje('projektuj')">Projektuj</button>
+    <button onclick="pokazSekcje('marketplace')">Marketplace</button>
+    <button onclick="pokazSekcje('reklama')">Reklama</button>
+    <button onclick="pokazSekcje('zbiorka')">Zbiórka</button>
+    <button onclick="pokazSekcje('opinie')">Opinie</button>
+    <button onclick="pokazSekcje('blog')">Blog</button>
+    <button onclick="pokazSekcje('zamowienia')">Zamówienia</button>
+    <button onclick="pokazSekcje('artysta')">Artysta</button>
+    <button onclick="pokazSekcje('kontakt')">Kontakt</button>
+    <button onclick="pokazSekcje('regulamin')">Regulamin</button>
   </nav>
-
-  <!-- SEKCE -->
-
-  <section id="sklep" class="sekcja active"><h2>Sklep</h2></section>
-  <section id="projektuj" class="sekcja"><h2>Projektuj</h2></section>
-  <section id="marketplace" class="sekcja"><h2>Marketplace</h2></section>
-  <section id="reklama" class="sekcja"><h2>Reklama</h2></section>
-  <section id="zbiorka" class="sekcja"><h2>Zbiórka</h2></section>
-  <section id="opinie" class="sekcja"><h2>Opinie</h2></section>
-  <section id="blog" class="sekcja"><h2>Blog</h2></section>
-  <section id="zamowienia" class="sekcja"><h2>Zamówienia</h2></section>
-  <section id="artysta" class="sekcja"><h2>Artysta</h2></section>
-  <section id="kontakt" class="sekcja"><h2>Kontakt</h2></section>
-  <section id="regulamin" class="sekcja"><h2>Regulamin</h2></section>
-
-  <!-- SKRYPT -->
-  <script>
-    function przelaczSekcje(id) {
-      const sekcje = document.querySelectorAll('.sekcja');
-      sekcje.forEach(s => s.classList.remove('active'));
-      const aktywna = document.getElementById(id);
-      if (aktywna) aktywna.classList.add('active');
-    }
-  </script>
-
-  <!-- Sekcje -->
-  <div id="sklep" class="sekcja active">
+  <section id="sklep" class="sekcja" style="display: block;">
     <h2>Sklep</h2>
-    <div class="produkt">
-      <h3>Bluza Adelbertus</h3>
-      <p>Cena: 150 zł</p>
-      <button onclick="zamowProdukt('Bluza Adelbertus')">Zamów teraz</button>
-    </div>
-    <div class="produkt">
-      <h3>Koszulka Magiczna</h3>
-      <p>Cena: 99 zł</p>
-      <button onclick="zamowProdukt('Koszulka Magiczna')">Zamów teraz</button>
-    </div>
-  </div>
+    <p>Tu pojawią się nasze ekskluzywne produkty.</p>
+  </section>
 
-  <div id="projektuj" class="sekcja">
-    <h2>Projektuj własny produkt</h2>
-    <p>Dodaj swój projekt, a my go wykonamy specjalnie dla Ciebie.</p>
-  </div>
+  <section id="projektuj" class="sekcja">
+    <h2>Projektuj</h2>
+    <p>Stwórz swój własny projekt koszulki, bluzy, czapki i więcej!</p>
+  </section>
 
-  <div id="zamowienia" class="sekcja">
-    <h2>Formularz zamówienia</h2>
-    <p>Produkt: <span id="wybrany-produkt">Brak</span></p>
-    <!-- Formularz kontaktowy można tu później rozwinąć -->
-  </div>
+  <section id="marketplace" class="sekcja">
+    <h2>Marketplace</h2>
+    <p>Zarabiaj razem z nami — tylko zaakceptowani artyści mogą sprzedawać tutaj.</p>
+  </section>
 
-  <!-- Skrypt JS -->
+  <section id="reklama" class="sekcja">
+    <h2>Reklama</h2>
+    <p>Dołącz do kampanii reklamowej naszego sklepu.</p>
+  </section>
+
+  <section id="zbiorka" class="sekcja">
+    <h2>Zbiórka</h2>
+    <p>Wesprzyj rozwój sklepu i pomoc dla domu dziecka.</p>
+  </section>
+
+  <section id="opinie" class="sekcja">
+    <h2>Opinie</h2>
+    <p>Opinie klientów i twórców.</p>
+  </section>
+
+  <section id="blog" class="sekcja">
+    <h2>Blog</h2>
+    <p>Nowości, artykuły i informacje ze świata AdelbertusShop.</p>
+  </section>
+
+  <section id="zamowienia" class="sekcja">
+    <h2>Zamówienia</h2>
+    <p>Złóż zamówienie na wybrane produkty lub projekt własny.</p>
+  </section>
+
+  <section id="artysta" class="sekcja">
+    <h2>Artysta</h2>
+    <p>Poznaj twórców stojących za projektami sklepu.</p>
+  </section>
+
+  <section id="kontakt" class="sekcja">
+    <h2>Kontakt</h2>
+    <p>Skontaktuj się z nami: mielniczukgrzegosz74@gmail.com</p>
+  </section>
+
+  <section id="regulamin" class="sekcja">
+    <h2>Regulamin</h2>
+    <p>Zapoznaj się z zasadami korzystania z AdelbertusShop.</p>
+  </section>
+
   <script>
-    function przelaczSekcje(id) {
+    function pokazSekcje(nazwa) {
       const sekcje = document.querySelectorAll('.sekcja');
-      sekcje.forEach(s => s.classList.remove('active'));
-
-      const przyciski = document.querySelectorAll('nav button');
-      przyciski.forEach(b => b.classList.remove('active'));
-
-      document.getElementById(id).classList.add('active');
-      event.target.classList.add('active');
-    }
-
-    function zamowProdukt(nazwa) {
-      przelaczSekcje('zamowienia');
-      document.getElementById('wybrany-produkt').innerText = nazwa;
+      sekcje.forEach(sekcja => sekcja.style.display = 'none');
+      document.getElementById(nazwa).style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
+
 </body>
 </html>
