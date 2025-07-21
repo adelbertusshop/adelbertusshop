@@ -86,7 +86,6 @@
     <img class="logo-corner logo-right" src="https://i.ibb.co/PpsZxny/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Logo Prawy Róg">
   </header>
 
-  <!-- ⬇️ Nawigacja ⬇️ -->
   <nav>
     <button onclick="pokazSekcje('sklep')">Sklep</button>
     <button onclick="pokazSekcje('projektuj')">Projektuj</button>
@@ -100,26 +99,12 @@
     <button onclick="pokazSekcje('kontakt')">Kontakt</button>
     <button onclick="pokazSekcje('regulamin')">Regulamin</button>
   </nav>
-  <!-- ⬆️ Koniec nawigacji ⬆️ -->
 
-  <!-- ⬇️ Sekcje sklepu będą dodawane tu dalej ⬇️ -->
   <div id="sklep" class="sekcja">
     <h2>Sklep</h2>
     <p>Tu znajdziesz nasze wyjątkowe produkty.</p>
   </div>
 
-  <!-- Tutaj możesz dodawać kolejne sekcje -->
-
-  <script>
-    function pokazSekcje(id) {
-      const sekcje = document.querySelectorAll('.sekcja');
-      sekcje.forEach(sekcja => sekcja.style.display = 'none');
-      document.getElementById(id).style.display = 'block';
-    }
-  </script>
-
-</body>
-</html>
   <section id="projektuj" class="sekcja">
     <h2>Projektuj</h2>
     <p>Stwórz swój własny projekt koszulki, bluzy, czapki i więcej!</p>
@@ -181,3 +166,4 @@
 
 </body>
 </html>
+
