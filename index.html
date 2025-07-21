@@ -1,169 +1,248 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdelbertusShop</title>
   <style>
+    .sekcja {
+      display: none;
+      padding: 25px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .sekcja.active { display: block; }
+
+    .kategoria-btn.active { background-color: gold; color: black; }
+    .produkt button:hover { background-color: #d4af37cc; }
+
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Helvetica Neue', sans-serif;
-      background-color: #0a0a0a;
-      color: #f5f5f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+      color: #f5f5dc;
+      line-height: 1.6;
+      font-size: 16px;
     }
 
     header {
-      position: relative;
-      background-color: #000;
+      background-color: #111;
+      color: gold;
+      padding: 25px 20px;
       text-align: center;
-    }
-
-    header img.baner {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .logo-corner {
-      position: absolute;
-      bottom: 10px;
-      width: 80px;
-      height: auto;
-    }
-
-    .logo-left {
-      left: 10px;
-    }
-
-    .logo-right {
-      right: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
     }
 
     nav {
+      background-color: #222;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      background-color: #1a1a1a;
-      padding: 12px 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      gap: 10px;
+      padding: 10px 0;
     }
 
     nav button {
-      background-color: transparent;
-      border: 1px solid #d4af37;
-      color: #d4af37;
-      font-size: 16px;
-      padding: 10px 18px;
-      margin: 6px;
+      background: none;
+      border: 2px solid gold;
+      border-radius: 5px;
+      color: #f5f5dc;
+      padding: 12px 18px;
       cursor: pointer;
-      border-radius: 25px;
-      transition: all 0.3s ease;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     nav button:hover {
+      background-color: gold;
+      color: black;
+    }
+
+    nav button.active {
+      background-color: gold;
+      color: black;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+      }
+      nav button {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+    }
+
+    /* 🔥 Koszyk CSS */
+    .koszyk-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
       background-color: #d4af37;
-      color: #0a0a0a;
+      color: #000;
+      border: none;
+      padding: 12px 16px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
 
-    .sekcja {
-      display: none;
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: 0 auto;
+    .koszyk-panel {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      width: 320px;
+      background-color: #1a1a1a;
+      color: #f5f5dc;
+      border: 2px solid #d4af37;
+      border-radius: 10px;
+      padding: 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
-    .sekcja h2 {
+    .koszyk-panel h2 {
+      margin-top: 0;
       color: #d4af37;
+      font-size: 20px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 10px;
+    }
+
+    .koszyk-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      border-bottom: 1px solid #333;
+      padding-bottom: 8px;
+    }
+
+    .koszyk-item button {
+      background: transparent;
+      color: #d4af37;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .koszyk-podsumowanie {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .koszyk-podsumowanie button {
+      background-color: #d4af37;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
+  <div style="position: relative; width: 100%; height: auto;">
+    <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo lewe" style="position: absolute; top: 10px; left: 10px; height: 80px; z-index: 2;">
+    <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo prawe" style="position: absolute; top: 10px; right: 10px; height: 80px; z-index: 2;">
+    <img src="https://i.ibb.co/cc2ssnSk/Messenger-creation-6365-D019-B450-442-F-B278-4-AF2-AB768752.jpg" alt="Banner" style="width: 100%; display: block;">
+  </div>
+
   <header>
-    <img class="baner" src="https://i.ibb.co/TyHZVSK/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Baner AdelbertusShop">
-    <img class="logo-corner logo-left" src="https://i.ibb.co/PpsZxny/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Logo Lewy Róg">
-    <img class="logo-corner logo-right" src="https://i.ibb.co/PpsZxny/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Logo Prawy Róg">
+    <h1>AdelbertusShop</h1>
+    <p>– legalnie zakazany –</p>
   </header>
 
   <nav>
-    <button onclick="pokazSekcje('sklep')">Sklep</button>
-    <button onclick="pokazSekcje('projektuj')">Projektuj</button>
-    <button onclick="pokazSekcje('marketplace')">Marketplace</button>
-    <button onclick="pokazSekcje('reklama')">Reklama</button>
-    <button onclick="pokazSekcje('zbiorka')">Zbiórka</button>
-    <button onclick="pokazSekcje('opinie')">Opinie</button>
-    <button onclick="pokazSekcje('blog')">Blog</button>
-    <button onclick="pokazSekcje('zamowienia')">Zamówienia</button>
-    <button onclick="pokazSekcje('artysta')">Artysta</button>
-    <button onclick="pokazSekcje('kontakt')">Kontakt</button>
-    <button onclick="pokazSekcje('regulamin')">Regulamin</button>
+    <!-- Przyciski do nawigacji dodajemy w kolejnych etapach -->
   </nav>
 
-  <div id="sklep" class="sekcja">
-    <h2>Sklep</h2>
-    <p>Tu znajdziesz nasze wyjątkowe produkty.</p>
+  <!-- 🔽 Koszyk (panel) -->
+  <div id="koszykPanel" style="display:none;" class="koszyk-panel">
+    <h2>Twój koszyk</h2>
+    <div id="koszykLista"></div>
+    <div class="koszyk-podsumowanie">
+      <p>Razem: <span id="koszykTotal">0 zł</span></p>
+      <button onclick="zlozZamowienie()">Przejdź do zamówienia</button>
+    </div>
   </div>
 
-  <section id="projektuj" class="sekcja">
-    <h2>Projektuj</h2>
-    <p>Stwórz swój własny projekt koszulki, bluzy, czapki i więcej!</p>
-  </section>
-
-  <section id="marketplace" class="sekcja">
-    <h2>Marketplace</h2>
-    <p>Zarabiaj razem z nami — tylko zaakceptowani artyści mogą sprzedawać tutaj.</p>
-  </section>
-
-  <section id="reklama" class="sekcja">
-    <h2>Reklama</h2>
-    <p>Dołącz do kampanii reklamowej naszego sklepu.</p>
-  </section>
-
-  <section id="zbiorka" class="sekcja">
-    <h2>Zbiórka</h2>
-    <p>Wesprzyj rozwój sklepu i pomoc dla domu dziecka.</p>
-  </section>
-
-  <section id="opinie" class="sekcja">
-    <h2>Opinie</h2>
-    <p>Opinie klientów i twórców.</p>
-  </section>
-
-  <section id="blog" class="sekcja">
-    <h2>Blog</h2>
-    <p>Nowości, artykuły i informacje ze świata AdelbertusShop.</p>
-  </section>
-
-  <section id="zamowienia" class="sekcja">
-    <h2>Zamówienia</h2>
-    <p>Złóż zamówienie na wybrane produkty lub projekt własny.</p>
-  </section>
-
-  <section id="artysta" class="sekcja">
-    <h2>Artysta</h2>
-    <p>Poznaj twórców stojących za projektami sklepu.</p>
-  </section>
-
-  <section id="kontakt" class="sekcja">
-    <h2>Kontakt</h2>
-    <p>Skontaktuj się z nami: mielniczukgrzegosz74@gmail.com</p>
-  </section>
-
-  <section id="regulamin" class="sekcja">
-    <h2>Regulamin</h2>
-    <p>Zapoznaj się z zasadami korzystania z AdelbertusShop.</p>
-  </section>
+  <!-- 🔘 Przycisk koszyka -->
+  <button class="koszyk-toggle" onclick="toggleKoszyk()">🛒 Koszyk</button>
 
   <script>
-    function pokazSekcje(nazwa) {
-      const sekcje = document.querySelectorAll('.sekcja');
-      sekcje.forEach(sekcja => sekcja.style.display = 'none');
-      document.getElementById(nazwa).style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    let koszyk = [];
+
+    function toggleKoszyk() {
+      const panel = document.getElementById("koszykPanel");
+      panel.style.display = panel.style.display === "none" ? "block" : "none";
+    }
+
+    function dodajDoKoszyka(nazwa, cena) {
+      const istnieje = koszyk.find(p => p.nazwa === nazwa);
+      if (istnieje) {
+        istnieje.ilosc++;
+      } else {
+        koszyk.push({ nazwa, cena, ilosc: 1 });
+      }
+      aktualizujKoszyk();
+    }
+
+    function usunZKoszyka(nazwa) {
+      koszyk = koszyk.filter(p => p.nazwa !== nazwa);
+      aktualizujKoszyk();
+    }
+
+    function zmienIlosc(nazwa, zmiana) {
+      const produkt = koszyk.find(p => p.nazwa === nazwa);
+      if (produkt) {
+        produkt.ilosc += zmiana;
+        if (produkt.ilosc <= 0) usunZKoszyka(nazwa);
+      }
+      aktualizujKoszyk();
+    }
+
+    function aktualizujKoszyk() {
+      const lista = document.getElementById("koszykLista");
+      lista.innerHTML = "";
+      let total = 0;
+
+      koszyk.forEach(p => {
+        total += p.cena * p.ilosc;
+        lista.innerHTML += `
+          <div class="koszyk-item">
+            <div>
+              <strong>${p.nazwa}</strong><br/>
+              ${p.ilosc} × ${p.cena.toFixed(2)} zł
+            </div>
+            <div>
+              <button onclick="zmienIlosc('${p.nazwa}', 1)">➕</button>
+              <button onclick="zmienIlosc('${p.nazwa}', -1)">➖</button>
+              <button onclick="usunZKoszyka('${p.nazwa}')">🗑️</button>
+            </div>
+          </div>
+        `;
+      });
+
+      document.getElementById("koszykTotal").textContent = total.toFixed(2) + " zł";
+    }
+
+    function zlozZamowienie() {
+      alert("Dziękujemy za zamówienie! (tu będzie podpięcie do backendu)");
+      koszyk = [];
+      aktualizujKoszyk();
+      toggleKoszyk();
     }
   </script>
-
 </body>
 </html>
-
