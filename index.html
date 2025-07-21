@@ -163,7 +163,7 @@
     <button onclick="pokazSekcje('kontakt')" id="btn-kontakt">Kontakt</button>
     <button onclick="pokazSekcje('regulamin')" id="btn-regulamin">Regulamin</button>
   </nav>
-<section id="sklep" class="sekcja active">
+  <section id="sklep" class="sekcja active">
   <h2>Sklep</h2>
   <div id="kategorie" style="margin-bottom:20px;">
     <button class="kategoria-btn active" data-kategoria="mezczyzni">Mężczyźni</button>
@@ -178,75 +178,50 @@
 
 <script>
 const produkty = [
-    // Mężczyźni
-    { id: 1, nazwa: "Bluza", kategoria: "mezczyzni", cena: 150 },
-    { id: 2, nazwa: "Bluza z kapturem", kategoria: "mezczyzni", cena: 150 },
-    { id: 3, nazwa: "Koszulka", kategoria: "mezczyzni", cena: 99 },
-    { id: 4, nazwa: "Czapka", kategoria: "mezczyzni", cena: 79 },
+  // … (tak jak powyżej)
+];
 
-    // Kobiety
-    { id: 5, nazwa: "Bluza", kategoria: "kobiety", cena: 150 },
-    { id: 6, nazwa: "Bluza z kapturem", kategoria: "kobiety", cena: 150 },
-    { id: 7, nazwa: "Koszulka", kategoria: "kobiety", cena: 99 },
-    { id: 8, nazwa: "Czapka", kategoria: "kobiety", cena: 79 },
+let aktualnaKategoria = "mezczyzni";
 
-    // Chłopcy
-    { id: 9, nazwa: "Bluza", kategoria: "chlopcy", cena: 150 },
-    { id: 10, nazwa: "Bluza z kapturem", kategoria: "chlopcy", cena: 150 },
-    { id: 11, nazwa: "Koszulka", kategoria: "chlopcy", cena: 99 },
-    { id: 12, nazwa: "Czapka", kategoria: "chlopcy", cena: 69 },
+function pokazProdukty() {
+  const lista = document.getElementById('produkty-lista');
+  lista.innerHTML = '';
+  const filtrowane = produkty.filter(p => p.kategoria === aktualnaKategoria);
 
-    // Dziewczynki
-    { id: 13, nazwa: "Bluza", kategoria: "dziewczynki", cena: 150 },
-    { id: 14, nazwa: "Bluza z kapturem", kategoria: "dziewczynki", cena: 150 },
-    { id: 15, nazwa: "Koszulka", kategoria: "dziewczynki", cena: 99 },
-    { id: 16, nazwa: "Czapka", kategoria: "dziewczynki", cena: 69 },
-
-    // Akcesoria
-    { id: 17, nazwa: "Czapka", kategoria: "akcesoria", cena: 79 },
-    { id: 18, nazwa: "Torba", kategoria: "akcesoria", cena: 120 },
-  ];
-  let aktualnaKategoria = "mezczyzni";
-
-  function pokazProdukty() {
-    const lista = document.getElementById('produkty-lista');
-    lista.innerHTML = '';
-    const filtrowane = produkty.filter(p => p.kategoria === aktualnaKategoria);
-
-    if (filtrowane.length === 0) {
-      lista.innerHTML = "<p>Brak produktów w tej kategorii.</p>";
-      return;
-    }
-
-    filtrowane.forEach(prod => {
-      const div = document.createElement('div');
-      div.className = 'produkt';
-      div.innerHTML = `
-        <img src="${prod.obraz}" alt="${prod.nazwa}" class="produkt-obraz">
-        <h3>${prod.nazwa}</h3>
-        <p>Cena: <strong>${prod.cena} zł</strong></p>
-        <button onclick="dodajDoKoszyka('${prod.nazwa}', ${prod.cena})">Dodaj do koszyka</button>
-      `;
-      lista.appendChild(div);
-    });
+  if (filtrowane.length === 0) {
+    lista.innerHTML = "<p>Brak produktów w tej kategorii.</p>";
+    return;
   }
 
-  document.querySelectorAll('#kategorie button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      aktualnaKategoria = btn.dataset.kategoria;
-      document.querySelectorAll('#kategorie button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      pokazProdukty();
-    });
+  filtrowane.forEach(prod => {
+    const div = document.createElement('div');
+    div.className = 'produkt';
+    div.innerHTML = `
+      <img src="${prod.obraz}" alt="${prod.nazwa}" class="produkt-obraz">
+      <h3>${prod.nazwa}</h3>
+      <p>Cena: <strong>${prod.cena} zł</strong></p>
+      <button onclick="dodajDoKoszyka('${prod.nazwa}', ${prod.cena})">Dodaj do koszyka</button>
+    `;
+    lista.appendChild(div);
   });
+}
 
-  window.onload = function() {
+document.querySelectorAll('#kategorie button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    aktualnaKategoria = btn.dataset.kategoria;
+    document.querySelectorAll('#kategorie button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
     pokazProdukty();
-  };
+  });
+});
 
-  function dodajDoKoszyka(nazwa, cena) {
-    alert(`Dodano "${nazwa}" do koszyka za ${cena} zł.`);
-  }
+window.onload = function() {
+  pokazProdukty();
+};
+
+function dodajDoKoszyka(nazwa, cena) {
+  alert(`Dodano "${nazwa}" do koszyka za ${cena} zł.`);
+}
 </script>
 
 <style>
@@ -303,7 +278,7 @@ const produkty = [
   .produkt button:hover {
     background-color: #a3852e;
   }
-</style>  <section id="projektuj" class="sekcja">
+</style> <section id="projektuj" class="sekcja">
     <h2>Projektuj</h2>
     <p>Stwórz swój własny projekt koszulki, bluzy, czapki i więcej!</p>
   </section>
