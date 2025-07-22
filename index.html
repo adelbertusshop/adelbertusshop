@@ -560,8 +560,57 @@
         alert('Twój koszyk jest pusty.');
         return;
       }
+function zlozZamowienie() {
+  if (koszyk.length === 0) {
+    alert('Twój koszyk jest pusty.');
+    return;
+  }
 
-      let tekst = "Zamówienie:\n";
+  let tekst = "Zamówienie:\n";
+  koszyk.forEach((p, i) => {
+    tekst += `${i + 1}. ${p.nazwa} – ${p.cena.toFixed(2)} zł × ${p.ilosc}\n`;
+  });
+  tekst += "\nPrzelej BLIK na numer: 573 939 925 z dopiskiem projekt\nPotwierdzenie wyślij na: mielniczukgrzegosz74@gmail.com";
+
+  alert(tekst);
+
+  // Czyścimy koszyk po złożeniu zamówienia
+  koszyk = [];
+  aktualizujKoszyk();
+  toggleKoszyk();
+}
+
+// <<< TU Wklej tę funkcję
+function wyslijZamowienie(e) {
+  e.preventDefault();
+
+  const imie = document.getElementById('zamImie').value;
+  const email = document.getElementById('zamEmail').value;
+  const telefon = document.getElementById('zamTelefon').value;
+  const uwagi = document.getElementById('zamUwagi').value;
+  const plik = document.getElementById('zamPlik').files[0];
+
+  let trescZamowienia = `Zamówienie od: ${imie}\nEmail: ${email}\nTelefon: ${telefon}\nUwagi: ${uwagi}\n\nProdukty:\n`;
+
+  let suma = 0;
+
+  koszyk.forEach((p, i) => {
+    const koszt = p.cena * p.ilosc;
+    suma += koszt;
+    trescZamowienia += `${i + 1}. ${p.nazwa} – ${p.ilosc} × ${p.cena.toFixed(2)} zł = ${koszt.toFixed(2)} zł\n`;
+  });
+
+  trescZamowienia += `\nSuma: ${suma.toFixed(2)} zł`;
+
+  // Zgłoszenie (na razie tylko alert — tu będzie e-mail lub wysyłka)
+  alert("Zamówienie zostało złożone:\n\n" + trescZamowienia);
+
+  // Wyczyść dane
+  document.getElementById('formularzZamowienia').reset();
+  document.getElementById('formularzZamowienia').style.display = 'none';
+  koszyk = [];
+  aktualizujKoszyk();
+}      let tekst = "Zamówienie:\n";
       koszyk.forEach((p, i) => {
         tekst += `${i + 1}. ${p.nazwa} – ${p.cena.toFixed(2)} zł × ${p.ilosc}\n`;
       });
