@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop</title>
   <style>
+    /* Twój styl + niezbędne dodatki */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -54,6 +55,55 @@
     .sekcja.active {
       display: block;
     }
+    #kategorie button {
+      padding: 8px 16px;
+      margin-right: 8px;
+      border: 2px solid #d4af37;
+      background: none;
+      color: #d4af37;
+      font-weight: 600;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #kategorie button.active,
+    #kategorie button:hover {
+      background-color: #d4af37;
+      color: black;
+    }
+    .produkty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .produkt {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 10px;
+      background: #222;
+      color: #eee;
+      text-align: center;
+    }
+    .produkt-obraz {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .produkt button {
+      margin-top: 8px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: none;
+      background-color: #d4af37;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .produkt button:hover {
+      background-color: #a3852e;
+    }
+
     /* Koszyk style */
     .koszyk-toggle {
       position: fixed;
@@ -147,6 +197,8 @@
     <button onclick="pokazSekcje('kontakt')" id="btn-kontakt">Kontakt</button>
     <button onclick="pokazSekcje('regulamin')" id="btn-regulamin">Regulamin</button>
   </nav>
+
+  <!-- SEKCJE -->
   <section id="sklep" class="sekcja active">
     <h2>Sklep</h2>
     <div id="kategorie" style="margin-bottom:20px;">
@@ -160,255 +212,135 @@
     <div id="produkty-lista" class="produkty-grid"></div>
   </section>
 
-  <script>
-    const produkty = [
-      // Mężczyźni
-      { id: 1, nazwa: "Bluza", kategoria: "mezczyzni", cena: 150, obraz: "https://i.ibb.co/BVB99zCg/Messenger-creation-F93-B9-D88-23-E0-4267-9-C9-B-6-D7554933-F08.jpg" },
-      { id: 2, nazwa: "Bluza z kapturem", kategoria: "mezczyzni", cena: 150, obraz: "https://i.ibb.co/C52D4GgS/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg" },
-      { id: 3, nazwa: "Koszulka", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/WvwsyQDK/Screenshot-20250522-190817-Chat-GPT.jpg" },
-      { id: 21, nazwa: "Koszulka Adelbertusshop", kategoria: "mezczyzni", cena: 160, obraz: "https://i.ibb.co/HTZ3xG4c/Screenshot-20250525-154540-Chat-GPT.jpg" },
-      { id: 23, nazwa: "Koszulka Pi", kategoria: "mezczyzni", cena: 105, obraz: "https://i.ibb.co/SX61BFdr/Screenshot-20250608-161603-Chat-GPT.jpg" },
-      { id: 25, nazwa: "Koszulka Symbol Pi", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/prjkpXXK/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" },
-      { id: 26, nazwa: "Koszulka Symbol PI (inna)", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/Y7qH4vMz/file-000000004b086246b2f6ebdeefb1586f.png" },
-      { id: 27, nazwa: "Koszulka Adelbertus (inna)", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/jZLfVyfP/file-00000000aca062439c3a670e83612634-3.png" },
-      { id: 28, nazwa: "Koszulka Adelbertus (inna 2)", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/BpDKy5X/file-0000000060286246be561a660f50e99e-2.png" },
-      { id: 29, nazwa: "Koszulka Disco", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/v6NvpVQq/file-00000000c71c6246b9d78afc2a6c0a39.png" },
-      { id: 30, nazwa: "Koszulka Disco Kolor", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/v6NvpVQq/file-00000000c71c6246b9d78afc2a6c0a39.png" },
-      { id: 31, nazwa: "Koszulka Nie pasujesz do...", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/jk7Cr5h8/110028656-ads-media-3e59d99f-4f42-44a4-9050-7b219cae1e06.png" },
-      { id: 32, nazwa: "Koszulka Zobacz to", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/mCqj0YcX/Messenger-creation-001497-A6-3-DA5-4-F5-F-8-C74-76562661-C85-B.jpg" },
-      { id: 33, nazwa: "Koszulka Uliczny styl", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/s9zFwddF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" },
-      { id: 34, nazwa: "Koszulka Puzel", kategoria: "mezczyzni", cena: 99, obraz: "https://i.ibb.co/sdkfdyfg/file-00000000985c6243ba1d82431c2ead9f-2.png" },
-      { id: 4, nazwa: "Czapka Adelbertus", kategoria: "mezczyzni", cena: 79, obraz: "https://i.ibb.co/qM0YQBSt/file-000000004d38620a9f9d0d8d43926ba0.png" },
+  <section id="projektuj" class="sekcja">
+    <h2>Projektuj</h2>
+    <p>Funkcja kreatora koszulek - do zaimplementowania.</p>
+  </section>
 
-      // Kobiety
-      { id: 5, nazwa: "Bluza", kategoria: "kobiety", cena: 150, obraz: "https://via.placeholder.com/250x250?text=Bluza" },
-      { id: 46, nazwa: "Koszulka", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/JgL1XGS/file-00000000fd5861f78cb774cd7808e871.png" },
-      { id: 45, nazwa: "Bluza Adelbertys", kategoria: "kobiety", cena: 150, obraz: "https://i.ibb.co/DHzVrmPk/Screenshot-20250714-002247-Files-by-Google-2.jpg" },
-      { id: 100, nazwa: "Koszulka", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/1wJ2KmW/Screenshot-20250714-002343-Files-by-Google-2.jpg" },
-      { id: 45, nazwa: "Bluza bunt", kategoria: "kobiety", cena: 150, obraz: "https://i.ibb.co/whKqNNG9/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg" },
-      { id: 6, nazwa: "Bluza z kapturem", kategoria: "kobiety", cena: 150, obraz: "https://via.placeholder.com/250x250?text=Bluza+z+kapturem" },
-      { id: 7, nazwa: "Koszulka", kategoria: "kobiety", cena: 99, obraz: "https://via.placeholder.com/250x250?text=Koszulka" },
-      { id: 22, nazwa: "Koszulka Adelbertusshop", kategoria: "kobiety", cena: 160, obraz: "https://i.ibb.co/HTZ3xG4c/Screenshot-20250525-154540-Chat-GPT.jpg" },
-      { id: 24, nazwa: "Koszulka Pi", kategoria: "kobiety", cena: 105, obraz: "https://i.ibb.co/SX61BFdr/Screenshot-20250608-161603-Chat-GPT.jpg" },
-      { id: 35, nazwa: "Koszulka Symbol Pi", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/prjkpXXK/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" },
-      { id: 36, nazwa: "Koszulka Symbol PI (inna)", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/Y7qH4vMz/file-000000004b086246b2f6ebdeefb1586f.png" },
-      { id: 37, nazwa: "Koszulka Adelbertus (inna)", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/jZLfVyfP/file-00000000aca062439c3a670e83612634-3.png" },
-      { id: 38, nazwa: "Koszulka Adelbertus (inna 2)", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/BpDKy5X/file-0000000060286246be561a660f50e99e-2.png" },
-      { id: 39, nazwa: "Koszulka Disco", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/v6NvpVQq/file-00000000c71c6246b9d78afc2a6c0a39.png" },
-      { id: 40, nazwa: "Koszulka Disco Kolor", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/v6NvpVQq/file-00000000c71c6246b9d78afc2a6c0a39.png" },
-      { id: 41, nazwa: "Koszulka Nie pasujesz do...", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/jk7Cr5h8/110028656-ads-media-3e59d99f-4f42-44a4-9050-7b219cae1e06.png" },
-      { id: 42, nazwa: "Koszulka Zobacz to", kategoria: "kobiety", cena: 99, obraz: "https://i.ibb.co/mCqj0YcX/Messenger-creation-001497-A6-3-DA5-4-F5-F-8-C74-76562661-C85-B.jpg" },
-      { id: 43, nazwa: "Koszulka Uliczny styl", kategoria: "kobiety",
-       <!DOCTYPE html>
-<section id="projektuj" class="sekcja">
-  <h2>Projektuj</h2>
-  <p>Stwórz swój własny projekt koszulki, bluzy, czapki i więcej!</p>
-  <!-- Tu można później dodać kreator projektów -->
-</section>
+  <section id="marketplace" class="sekcja">
+    <h2>Marketplace</h2>
+    <p>Marketplace - sekcja do rozbudowy.</p>
+  </section>
 
-<section id="marketplace" class="sekcja">
-  <h2>Marketplace</h2>
-  <p>Zarabiaj razem z nami — tylko zaakceptowani artyści mogą sprzedawać tutaj.</p>
-</section>
+  <section id="reklama" class="sekcja">
+    <h2>Reklama</h2>
+    <p>Informacje reklamowe.</p>
+  </section>
 
-<section id="reklama" class="sekcja">
-  <h2>Reklama</h2>
-  <p>Dołącz do kampanii reklamowej naszego sklepu.</p>
-</section>
+  <section id="zbiorka" class="sekcja">
+    <h2>Zbiórka</h2>
+    <p>Wesprzyj rozwój sklepu i pomoc dla domu dziecka.</p>
+  </section>
 
-<section id="zbiorka" class="sekcja">
-  <h2>Zbiórka</h2>
-  <p>Wesprzyj rozwój sklepu i pomoc dla domu dziecka.</p>
-</section>
+  <section id="opinie" class="sekcja">
+    <h2>Opinie</h2>
+    <p>Opinie klientów - do uzupełnienia.</p>
+  </section>
 
-<section id="opinie" class="sekcja">
-  <h2>Opinie</h2>
-  <p>Opinie klientów i twórców.</p>
-</section>
+  <section id="blog" class="sekcja">
+    <h2>Blog</h2>
+    <div id="blog-posty">
+      <article class="post" data-id="1">
+        <h3>Witaj w AdelbertusBlog!</h3>
+        <p>Tu dzielimy się nowościami, przemyśleniami i sztuką. Napisz, co myślisz!</p>
+        <div class="komentarze"></div>
+        <form class="komentarz-form" onsubmit="dodajKomentarz(event, 1)">
+          <input type="text" placeholder="Twoje imię" required name="autor" />
+          <textarea placeholder="Twój komentarz" required name="tekst"></textarea>
+          <button type="submit">Dodaj komentarz</button>
+        </form>
+      </article>
+    </div>
+  </section>
 
-<section id="blog" class="sekcja">
-  <h2>Blog</h2>
-  <p>Nowości, artykuły i informacje ze świata AdelbertusShop.</p>
-</section>
+  <section id="zamowienia" class="sekcja">
+    <h2>Zamówienia</h2>
+    <p>Tu możesz zobaczyć swoje zamówienia lub złożyć nowe.</p>
+    <!-- Tu będzie formularz zamówienia i podsumowanie -->
+  </section>
 
-<section id="zamowienia" class="sekcja">
-  <h2>Zamówienia</h2>
-  <p>Złóż zamówienie na wybrane produkty lub projekt własny.</p>
-  <form id="formularzZamowienia" onsubmit="handleZamowienie(event)" style="margin-top: 20px;">
-    <label for="imie">Imię i nazwisko:</label><br/>
-    <input type="text" id="imie" name="imie" required style="width: 100%; padding: 8px; margin-bottom: 10px;"/>
+  <section id="artysta" class="sekcja">
+    <h2>Artysta</h2>
+    <div class="max-w-2xl mx-auto text-left leading-relaxed">
+      <p>Mam na imię Wojciech. Moją pasją jest sztuka — rysowanie, malowanie, tatuaże, realistyczne portrety i detale, które w nich zawieram.</p>
+      <p class="mt-4">Kocham sztukę, bo nie zna granic. Jest wolnością. Jest wyrażeniem siebie — prawdziwym, bez masek, bez udawania.</p>
+      <p class="mt-4">Uwielbiam dawać ludziom uśmiech. A moment, gdy mogę komuś podarować swoją sztukę i zobaczyć radość na jego twarzy — to najpiękniejszy dar, jaki można otrzymać.</p>
+      <p class="mt-4">Jestem samoukiem. Wychowałem się w domu dziecka. Dziś spełniam marzenia, które nosiłem w sercu od dziecka.</p>
+      <p class="mt-4">Życzę każdemu, by spełnił swoje marzenia — niezależnie jakie one są. Warto chociaż spróbować się do nich zbliżyć. Każdy krok przybliża nas do ich realizacji.</p>
+      <p class="mt-4">Dziękuję, że odwiedziłeś mój sklep. Dziękuję, że wybrałeś coś dla siebie.</p>
+      <p class="mt-4 font-semibold">Pozdrawiam Cię serdecznie w imieniu całej ekipy <span class="text-primary">AdelbertusShop</span>.</p>
+    </div>
+  </section>
 
-    <label for="email">Email kontaktowy:</label><br/>
-    <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-bottom: 10px;"/>
+  <section id="kontakt" class="sekcja">
+    <h2>Kontakt</h2>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a></li>
+      <li><strong>Telefon:</strong> <a href="tel:+48604296360">604 296 360</a></li>
+      <li><strong>Instagram:</strong> <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" target="_blank">@mielniczukgrzegosz74</a></li>
+      <li><strong>Facebook:</strong> <a href="https://www.facebook.com/share/16YLPcGbx7/" target="_blank">Facebook – profil</a></li>
+      <li><strong>TikTok:</strong> <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8yEsLW0sV8Q&_r=1" target="_blank">@ja.jestem3</a></li>
+    </ul>
+  </section>
 
-    <label for="notatki">Notatki do zamówienia:</label><br/>
-    <textarea id="notatki" name="notatki" rows="4" style="width: 100%; padding: 8px; margin-bottom: 10px;" placeholder="Np. specyfikacje projektu, dodatkowe informacje..."></textarea>
+  <section id="regulamin" class="sekcja">
+    <h2>Regulamin sklepu AdelbertusShop</h2>
+    <p>§1. Informacje ogólne</p>
+    <p>1. Sklep internetowy AdelbertusShop prowadzony jest przez Wojciecha Mielniczuka, działającego jako działalność nierejestrowana.</p>
+    <p>2. Kontakt ze sklepem możliwy jest pod adresem e-mail: mielniczukgrzegosz74@gmail.com.</p>
 
-    <label for="plik">Dołącz plik graficzny (opcjonalnie):</label><br/>
-    <input type="file" id="plik" name="plik" accept="image/*" style="margin-bottom: 15px;"/>
+    <p>§2. Oferta i ceny</p>
+    <p>1. Wszystkie produkty dostępne w sklepie są fabrycznie nowe i wolne od wad prawnych.</p>
+    <p>2. Ceny podane są w złotych polskich i zawierają podatek VAT.</p>
+    <p>3. Sklep zastrzega sobie prawo do zmiany cen oraz dostępności produktów.</p>
 
-    <button type="submit" style="background-color:#d4af37; color:#000; padding: 10px 20px; border:none; border-radius: 5px; cursor:pointer; font-weight: 600;">
-      Wyślij zamówienie
-    </button>
-  </form>
-</section>
+    <p>§3. Zamówienia</p>
+    <p>1. Zamówienia można składać poprzez dodanie produktów do koszyka i potwierdzenie zakupu.</p>
+    <p>2. Po złożeniu zamówienia klient otrzyma potwierdzenie e-mail z informacją o płatności.</p>
 
-<section id="artysta" class="sekcja">
-  <h2>Artysta</h2>
-  <p>Poznaj twórców stojących za projektami sklepu.</p>
-</section>
+    <p>§4. Płatności</p>
+    <p>1. Płatności realizowane są poprzez przelew BLIK na numer 573 939 925 z dopiskiem „projekt”.</p>
+    <p>2. Potwierdzenie płatności należy przesłać na adres e-mail sklepu.</p>
 
-<section id="kontakt" class="sekcja">
-  <h2>Kontakt</h2>
-  <p>Skontaktuj się z nami: <a href="mailto:mielniczukgrzegosz74@gmail.com" style="color:#d4af37;">mielniczukgrzegosz74@gmail.com</a></p>
-</section>
+    <p>§5. Dostawa</p>
+    <p>1. Wysyłka produktów następuje po otrzymaniu potwierdzenia płatności.</p>
+    <p>2. Koszty i czas dostawy ustalane są indywidualnie.</p>
 
-<section id="regulamin" class="sekcja">
-  <h2>Regulamin</h2>
-  <p>Zapoznaj się z zasadami korzystania z AdelbertusShop.</p>
-</section>
+    <p>§6. Reklamacje i zwroty</p>
+    <p>1. Klient ma prawo do zwrotu produktu w ciągu 14 dni od daty otrzymania.</p>
+    <p>2. Reklamacje można zgłaszać pod adresem e-mail sklepu.</p>
 
-<!-- Koszyk panel -->
-<div id="koszykPanel" class="koszyk-panel">
-  <h2>Twój koszyk</h2>
-  <div id="koszykLista"></div>
-  <div class="koszyk-podsumowanie">
-    <p>Razem: <span id="koszykTotal">0.00 zł</span></p>
-    <button onclick="zlozZamowienie()">Przejdź do zamówienia</button>
+    <p>§7. Ochrona danych osobowych</p>
+    <p>1. Dane klientów przetwarzane są zgodnie z obowiązującymi przepisami RODO.</p>
+    <p>2. Sklep nie udostępnia danych osobom trzecim poza koniecznością realizacji zamówienia.</p>
+
+    <p>§8. Postanowienia końcowe</p>
+    <p>1. W sprawach nieuregulowanych regulaminem mają zastosowanie przepisy Kodeksu cywilnego.</p>
+    <p>2. Regulamin wchodzi w życie z dniem publikacji na stronie sklepu.</p>
+  </section>
+
+  <!-- Koszyk panel -->
+  <div id="koszykPanel" class="koszyk-panel">
+    <h2>Twój koszyk</h2>
+    <div id="koszykLista"></div>
+    <div class="koszyk-podsumowanie">
+      <p>Razem: <span id="koszykTotal">0.00 zł</span></p>
+      <button onclick="zlozZamowienie()">Przejdź do zamówienia</button>
+    </div>
   </div>
-</div>
 
-<!-- Przycisk koszyka -->
-<button class="koszyk-toggle" onclick="toggleKoszyk()">🛒 Koszyk</button>
+  <!-- Przycisk koszyka -->
+  <button class="koszyk-toggle" onclick="
+    <!-- Przycisk koszyka -->
+  <button class="koszyk-toggle" onclick="toggleKoszyk()">🛒 Koszyk</button>
 
-<script>
-  // Nawigacja sekcji
-  function pokazSekcje(idSekcji) {
-    document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
-    document.getElementById(idSekcji).classList.add('active');
-
-    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-    document.getElementById('btn-' + idSekcji).classList.add('active');
-
-    const koszykPanel = document.getElementById('koszykPanel');
-    if (koszykPanel.style.display === 'block') {
-      koszykPanel.style.display = 'none';
+  <script>
+    // Tutaj Twoje skrypty JS: pokazSekcje, koszyk, zamówienia itd.
+    // Przykład funkcji, jeśli nie masz jeszcze:
+    function toggleKoszyk() {
+      const panel = document.getElementById('koszykPanel');
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
     }
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // Koszyk
-  let koszyk = [];
-
-  function toggleKoszyk() {
-    const panel = document.getElementById('koszykPanel');
-    panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
-  }
-
-  function dodajDoKoszyka(nazwa, cena) {
-    const produkt = koszyk.find(p => p.nazwa === nazwa);
-    if (produkt) {
-      produkt.ilosc++;
-    } else {
-      koszyk.push({ nazwa, cena, ilosc: 1 });
-    }
-    aktualizujKoszyk();
-  }
-
-  function usunZKoszyka(nazwa) {
-    koszyk = koszyk.filter(p => p.nazwa !== nazwa);
-    aktualizujKoszyk();
-  }
-
-  function zmienIlosc(nazwa, zmiana) {
-    const produkt = koszyk.find(p => p.nazwa === nazwa);
-    if (!produkt) return;
-    produkt.ilosc += zmiana;
-    if (produkt.ilosc <= 0) usunZKoszyka(nazwa);
-    else aktualizujKoszyk();
-  }
-
-  function aktualizujKoszyk() {
-    const lista = document.getElementById('koszykLista');
-    lista.innerHTML = '';
-    let suma = 0;
-
-    koszyk.forEach(p => {
-      suma += p.cena * p.ilosc;
-      lista.innerHTML += `
-        <div class="koszyk-item">
-          <div>
-            <strong>${p.nazwa}</strong><br/>
-            ${p.ilosc} × ${p.cena.toFixed(2)} zł
-          </div>
-          <div>
-            <button onclick="zmienIlosc('${p.nazwa}', 1)">➕</button>
-            <button onclick="zmienIlosc('${p.nazwa}', -1)">➖</button>
-            <button onclick="usunZKoszyka('${p.nazwa}')">🗑️</button>
-          </div>
-        </div>
-      `;
-    });
-
-    document.getElementById('koszykTotal').textContent = suma.toFixed(2) + ' zł';
-  }
-
-  function zlozZamowienie() {
-    if (koszyk.length === 0) {
-      alert('Twój koszyk jest pusty.');
-      return;
-    }
-
-    let tekst = "Zamówienie:\n";
-    koszyk.forEach((p, i) => {
-      tekst += `${i + 1}. ${p.nazwa} – ${p.cena.toFixed(2)} zł × ${p.ilosc}\n`;
-    });
-    tekst += "\nPrzelej BLIK na numer: 573 939 925 z dopiskiem projekt\nPotwierdzenie wyślij na: mielniczukgrzegosz74@gmail.com";
-
-    alert(tekst);
-
-    koszyk = [];
-    aktualizujKoszyk();
-    toggleKoszyk();
-  }
-
-  // Obsługa formularza zamówienia
-  function handleZamowienie(event) {
-    event.preventDefault();
-
-    if (koszyk.length === 0) {
-      alert('Twój koszyk jest pusty. Dodaj produkty przed złożeniem zamówienia.');
-      return;
-    }
-
-    const imie = document.getElementById('imie').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const notatki = document.getElementById('notatki').value.trim();
-    const plik = document.getElementById('plik').files[0];
-
-    let zamowienieTekst = `Zamówienie od: ${imie}\nEmail: ${email}\n\nProdukty:\n`;
-    koszyk.forEach((p, i) => {
-      zamowienieTekst += `${i + 1}. ${p.nazwa} – ${p.cena.toFixed(2)} zł × ${p.ilosc}\n`;
-    });
-
-    zamowienieTekst += `\nNotatki:\n${notatki || 'Brak'}\n`;
-    zamowienieTekst += `\nPrzelej BLIK na numer: 573 939 925 z dopiskiem projekt.\n`;
-    zamowienieTekst += `Potwierdzenie wyślij na: mielniczukgrzegosz74@gmail.com`;
-
-    alert(zamowienieTekst);
-
-    // Tu można dodać wysyłkę formularza na serwer / mail
-
-    // Czyścimy formularz i koszyk
-    document.getElementById('formularzZamowienia').reset();
-    koszyk = [];
-    aktualizujKoszyk();
-    toggleKoszyk();
-
-    pokazSekcje('sklep');
-  }
-</script>
-
+  </script>
 </body>
 </html>
