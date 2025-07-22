@@ -391,121 +391,44 @@
     return false;
   }
 </script> 
-<section id="reklama" class="sekcja">
-  <h2>Twoja reklama u nas</h2>
-  <p>Zarabiamy na rozwój, Ty zyskujesz widoczność. Zareklamuj się u nas już dziś! Zgłoszenia: <strong>mielniczukgrzegosz74@gmail.com</strong>, wpłaty BLIK: <strong>573-939-925</strong> z dopiskiem "Reklama".</p>
+<!-- Reklama -->
+<section id="reklama" class="sekcja py-10 px-6 bg-white rounded shadow max-w-4xl mx-auto mb-12">
+  <h2 class="text-3xl font-bold mb-4 text-center">Twoja reklama u nas</h2>
+  <p class="mb-6 text-center">
+    Zarabiamy na rozwój, Ty zyskujesz widoczność. Zareklamuj się u nas już dziś!<br>
+    Zgłoszenia: <strong>mielniczukgrzegosz74@gmail.com</strong>, wpłaty BLIK: <strong>573-939-925</strong> z dopiskiem <em>"Reklama"</em>.
+  </p>
 
-  <div id="reklamyContainer" class="reklamy-container"></div>
+  <div id="reklamyContainer" class="reklamy-container mb-6 p-4 border rounded min-h-[100px] text-center"></div>
 
-  <form id="formularzReklamy" class="reklama-formularz">
-    <h3>Formularz zgłoszeniowy</h3>
-    <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy" required>
-    <input type="url" id="linkReklamy" placeholder="Link do Twojej strony" required>
-    <input type="date" id="dataZakonczenia" placeholder="Data zakończenia reklamy" required>
-    <textarea id="opisReklamy" placeholder="Opis reklamy (widoczny pod ikoną)" required></textarea>
-    <button type="submit">Zgłoś reklamę</button>
+  <form id="formularzReklamy" class="reklama-formularz max-w-md mx-auto bg-gray-100 p-6 rounded shadow mb-6">
+    <h3 class="text-xl font-semibold mb-4">Formularz zgłoszeniowy</h3>
+    <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy" required class="w-full p-2 mb-3 border rounded">
+    <input type="url" id="linkReklamy" placeholder="Link do Twojej strony" required class="w-full p-2 mb-3 border rounded">
+    <input type="date" id="dataZakonczenia" placeholder="Data zakończenia reklamy" required class="w-full p-2 mb-3 border rounded">
+    <textarea id="opisReklamy" placeholder="Opis reklamy (widoczny pod ikoną)" required class="w-full p-2 mb-4 border rounded"></textarea>
+    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Zgłoś reklamę</button>
   </form>
 
-  <p><strong>Cennik:</strong><br>
+  <p class="text-center mb-8 font-semibold">
+    <strong>Cennik:</strong><br>
     Dzień: 10 zł | Tydzień: 50 zł | Miesiąc: 150 zł
   </p>
 
-  <div class="admin-panel" style="display:none" id="adminPanel">
-    <h3>Panel Administratora</h3>
-    <p>Zalogowano jako <strong>Administrator</strong></p>
-    <ul id="listaReklam"></ul>
+  <div class="admin-panel max-w-md mx-auto p-4 border-dashed border-2 border-gray-400 rounded" style="display:none" id="adminPanel">
+    <h3 class="text-lg font-bold mb-3">Panel Administratora</h3>
+    <p class="mb-3">Zalogowano jako <strong>Administrator</strong></p>
+    <ul id="listaReklam" class="list-disc pl-5 space-y-2"></ul>
   </div>
 
-  <div class="admin-login">
-    <input type="password" id="hasloAdmina" placeholder="Hasło administratora">
-    <button onclick="zalogujAdmina()">Zaloguj</button>
+  <div class="admin-login max-w-md mx-auto flex gap-3 mt-4">
+    <input type="password" id="hasloAdmina" placeholder="Hasło administratora" class="flex-grow p-2 border rounded">
+    <button onclick="zalogujAdmina()" class="bg-green-600 text-white px-4 rounded hover:bg-green-700 transition">Zaloguj</button>
   </div>
 </section>
 
-<script>
-  const reklamy = [];
-  let aktualnaReklama = 0;
-  const kontener = document.getElementById("reklamyContainer");
-
-  function wyswietlReklamy() {
-    if (reklamy.length === 0) return;
-    kontener.innerHTML = "";
-    const teraz = new Date();
-    const aktywneReklamy = reklamy.filter(r => new Date(r.koniec) >= teraz);
-
-    if (aktywneReklamy.length > 0) {
-      const r = aktywneReklamy[aktualnaReklama % aktywneReklamy.length];
-      kontener.innerHTML = `<a href="${r.link}" target="_blank"><div class="reklama-box">${r.nazwa}<br><small>${r.opis}</small></div></a>`;
-      aktualnaReklama++;
-    }
-  }
-
-  setInterval(wyswietlReklamy, 30000); // zmiana co 30 sekund
-
-  document.getElementById("formularzReklamy").addEventListener("submit", e => {
-    e.preventDefault();
-    const nowa = {
-      nazwa: document.getElementById("nazwaFirmy").value,
-      link: document.getElementById("linkReklamy").value,
-      koniec: document.getElementById("dataZakonczenia").value,
-      opis: document.getElementById("opisReklamy").value
-    };
-    alert("Zgłoszenie wysłane. Po dokonaniu wpłaty otrzymasz potwierdzenie.");
-    window.location.href = "mailto:mielniczukgrzegosz74@gmail.com?subject=Zgłoszenie reklamy&body=" + JSON.stringify(nowa);
-  });
-
-  function zalogujAdmina() {
-    const haslo = document.getElementById("hasloAdmina").value;
-    if (haslo === "Wojownik.03") {
-      document.getElementById("adminPanel").style.display = "block";
-      wyswietlListeReklam();
-    } else {
-      alert("Błędne hasło");
-    }
-  }
-
-  function wyswietlListeReklam() {
-    const lista = document.getElementById("listaReklam");
-    lista.innerHTML = reklamy.map((r, i) => `<li>${r.nazwa} - do: ${r.koniec} <button onclick="usunReklame(${i})">Usuń</button></li>`).join("");
-  }
-
-  function usunReklame(i) {
-    reklamy.splice(i, 1);
-    wyswietlListeReklam();
-    wyswietlReklamy();
-  }
-</script>
-
-<style>
-  .reklamy-container {
-    padding: 10px;
-    border: 1px solid #ccc;
-    min-height: 100px;
-  }
-  .reklama-box {
-    background: #f2f2f2;
-    padding: 15px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  .reklama-formularz input,
-  .reklama-formularz textarea {
-    display: block;
-    margin: 10px 0;
-    width: 100%;
-    padding: 8px;
-  }
-  .admin-panel {
-    background: #fffbe6;
-    padding: 10px;
-    margin-top: 20px;
-    border: 1px dashed #999;
-  }
-</style>
-
-  <!-- Zbiórka -->
- <section id="zbiorka" class="sekcja bg-yellow-50 py-12 px-6 rounded-xl shadow-md">
+<!-- Zbiórka -->
+<section id="zbiorka" class="sekcja bg-yellow-50 py-12 px-6 rounded-xl shadow-md max-w-4xl mx-auto mb-12">
   <h2 class="text-3xl font-bold text-center text-yellow-900 mb-6">Zbiórka – Pomóż dzieciom z domu dziecka</h2>
   <p class="text-lg text-center text-yellow-800 mb-4 max-w-3xl mx-auto">
     Wspieramy dzieci, które nie miały łatwego startu. Ty możesz zmienić ich świat.
@@ -517,8 +440,8 @@
   </div>
 
   <p class="text-center text-yellow-800 max-w-2xl mx-auto mb-4">
-    Możesz również przekazać paczki, ubrania, zabawki, przybory szkolne — przekażemy Ci adres domu dziecka, do którego można wysłać potrzebne rzeczy. 
-    <br><br>📩 Napisz do nas: <a href="mailto:mielniczukgrzegosz74@gmail.com" class="underline text-yellow-700">mielniczukgrzegosz74@gmail.com</a>
+    Możesz również przekazać paczki, ubrania, zabawki, przybory szkolne — przekażemy Ci adres domu dziecka, do którego można wysłać potrzebne rzeczy.<br><br>
+    📩 Napisz do nas: <a href="mailto:mielniczukgrzegosz74@gmail.com" class="underline text-yellow-700">mielniczukgrzegosz74@gmail.com</a>
   </p>
 
   <div class="bg-yellow-100 p-4 rounded-lg border border-yellow-300 max-w-3xl mx-auto mt-6">
@@ -534,22 +457,110 @@
 
   <div class="text-center mt-8">
     <span class="inline-block animate-pulse text-4xl text-red-500">❤️</span>
-    <p class="text-yellow-700 italic mt-4">
+    <p class="text-yellow-700 italic mt-4 max-w-xl mx-auto">
       Każdy gest ma znaczenie. Te dzieci nie proszą o wiele — wystarczy, że pokażesz, że nie są same.
     </p>
   </div>
 
-  <div class="text-center mt-10">
+  <div class="text-center mt-10 max-w-md mx-auto">
     <h3 class="text-xl font-bold text-yellow-900 mb-4">Zostaw wiadomość wsparcia</h3>
-    <form class="max-w-md mx-auto bg-yellow-100 p-4 rounded-xl shadow">
+    <form class="bg-yellow-100 p-4 rounded-xl shadow">
       <textarea class="w-full h-24 p-2 rounded border border-yellow-300" placeholder="Twoja wiadomość..."></textarea>
-      <button type="submit" class="mt-3 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">Wyślij słowa otuchy</button>
+      <button type="submit" class="mt-3 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition">Wyślij słowa otuchy</button>
     </form>
   </div>
 </section>
 
 <script>
-  // Prosty licznik darczyńców (przykładowy, statyczny)
+  // Reklama
+  const reklamy = [];
+  let aktualnaReklama = 0;
+  const kontener = document.getElementById("reklamyContainer");
+
+  function wyswietlReklamy() {
+    if (reklamy.length === 0) {
+      kontener.innerHTML = "<p>Brak aktywnych reklam.</p>";
+      return;
+    }
+    kontener.innerHTML = "";
+    const teraz = new Date();
+    const aktywneReklamy = reklamy.filter(r => new Date(r.koniec) >= teraz);
+
+    if (aktywneReklamy.length > 0) {
+      const r = aktywneReklamy[aktualnaReklama % aktywneReklamy.length];
+      kontener.innerHTML = `<a href="${r.link}" target="_blank" rel="noopener noreferrer">
+        <div class="reklama-box p-4 rounded bg-gray-100 shadow cursor-pointer hover:bg-gray-200 transition">
+          <strong>${r.nazwa}</strong><br>
+          <small>${r.opis}</small>
+        </div>
+      </a>`;
+      aktualnaReklama++;
+    } else {
+      kontener.innerHTML = "<p>Brak aktywnych reklam.</p>";
+    }
+  }
+
+  setInterval(wyswietlReklamy, 30000); // zmiana co 30 sekund
+
+  document.getElementById("formularzReklamy").addEventListener("submit", e => {
+    e.preventDefault();
+    const nowa = {
+      nazwa: document.getElementById("nazwaFirmy").value.trim(),
+      link: document.getElementById("linkReklamy").value.trim(),
+      koniec: document.getElementById("dataZakonczenia").value,
+      opis: document.getElementById("opisReklamy").value.trim()
+    };
+
+    if (!nowa.nazwa || !nowa.link || !nowa.koniec || !nowa.opis) {
+      alert("Wypełnij wszystkie pola poprawnie.");
+      return;
+    }
+
+    reklamy.push(nowa);
+    alert("Zgłoszenie wysłane. Po dokonaniu wpłaty otrzymasz potwierdzenie.");
+    // Mailto z JSON-em zgłoszenia - otwiera klienta pocztowego:
+    window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Zgłoszenie reklamy&body=${encodeURIComponent(JSON.stringify(nowa, null, 2))}`;
+
+    // Czyszczenie formularza
+    e.target.reset();
+    wyswietlReklamy();
+  });
+
+  function zalogujAdmina() {
+    const haslo = document.getElementById("hasloAdmina").value;
+    if (haslo === "Wojownik.03") {
+      document.getElementById("adminPanel").style.display = "block";
+      document.querySelector(".admin-login").style.display = "none";
+      wyswietlListeReklam();
+    } else {
+      alert("Błędne hasło");
+    }
+  }
+
+  function wyswietlListeReklam() {
+    const lista = document.getElementById("listaReklam");
+    if (reklamy.length === 0) {
+      lista.innerHTML = "<li>Brak zgłoszonych reklam.</li>";
+      return;
+    }
+    lista.innerHTML = reklamy.map((r, i) =>
+      `<li>
+        <strong>${r.nazwa}</strong> - do: ${r.koniec}
+        <button onclick="usunReklame(${i})" class="ml-4 px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition">Usuń</button>
+      </li>`
+    ).join("");
+  }
+
+  function usunReklame(i) {
+    reklamy.splice(i, 1);
+    wyswietlListeReklam();
+    wyswietlReklamy();
+  }
+
+  // Inicjalne wyświetlenie reklam
+  wyswietlReklamy();
+
+  // Zbiórka - licznik darczyńców (statyczny)
   document.addEventListener('DOMContentLoaded', () => {
     const pomocnicy = document.querySelectorAll('#zbiorka ul li').length;
     const licznik = document.createElement('p');
@@ -559,8 +570,30 @@
   });
 </script>
 
-  <!-- Opinie --> <!-- Blog -->
-  <!-- Opinie klientów -->
+<style>
+  .reklamy-container {
+    min-height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .reklama-box {
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  .reklama-formularz input,
+  .reklama-formularz textarea {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  .admin-panel ul li button {
+    margin-left: 10px;
+  }
+</style>  <!-- Opinie klientów -->
 <section id="opinie" class="sekcja bg-gray-100 py-10 px-4">
   <h2 class="text-3xl font-bold mb-6 text-center">Opinie naszych klientów</h2>
 
