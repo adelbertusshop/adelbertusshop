@@ -260,10 +260,59 @@
   </section>
 
   <!-- Zbiórka -->
-  <section id="zbiorka" class="sekcja">
-    <h2>Zbiórka</h2>
-    <p>Tu wspieraj naszą działalność.</p>
-  </section>
+ <section id="zbiorka" class="sekcja bg-yellow-50 py-12 px-6 rounded-xl shadow-md">
+  <h2 class="text-3xl font-bold text-center text-yellow-900 mb-6">Zbiórka – Pomóż dzieciom z domu dziecka</h2>
+  <p class="text-lg text-center text-yellow-800 mb-4 max-w-3xl mx-auto">
+    Wspieramy dzieci, które nie miały łatwego startu. Ty możesz zmienić ich świat.
+  </p>
+
+  <div class="text-center text-yellow-900 text-lg font-semibold mb-6">
+    📲 Wpłać przez BLIK: <span class="font-bold text-yellow-700 text-xl">673-939-925</span><br>
+    ✍️ Z dopiskiem: <em>"Pomoc"</em>
+  </div>
+
+  <p class="text-center text-yellow-800 max-w-2xl mx-auto mb-4">
+    Możesz również przekazać paczki, ubrania, zabawki, przybory szkolne — przekażemy Ci adres domu dziecka, do którego można wysłać potrzebne rzeczy. 
+    <br><br>📩 Napisz do nas: <a href="mailto:mielniczukgrzegosz74@gmail.com" class="underline text-yellow-700">mielniczukgrzegosz74@gmail.com</a>
+  </p>
+
+  <div class="bg-yellow-100 p-4 rounded-lg border border-yellow-300 max-w-3xl mx-auto mt-6">
+    <h3 class="text-xl font-bold text-yellow-900 mb-2 text-center">Oni już pomagają:</h3>
+    <ul class="list-disc list-inside text-yellow-800 space-y-1">
+      <li>Anna z Wrocławia – przekazała paczkę z książkami i ubraniami</li>
+      <li>Krzysztof z Gdyni – wpłata 50 zł przez BLIK</li>
+      <li>Karolina i Michał z Krakowa – ufundowali wyprawki szkolne</li>
+      <li>„Firma Słoneczny Sad” – przekazała skrzynki owoców dla dzieci</li>
+      <li>Marcin z Poznania – zadeklarował comiesięczną pomoc finansową</li>
+    </ul>
+  </div>
+
+  <div class="text-center mt-8">
+    <span class="inline-block animate-pulse text-4xl text-red-500">❤️</span>
+    <p class="text-yellow-700 italic mt-4">
+      Każdy gest ma znaczenie. Te dzieci nie proszą o wiele — wystarczy, że pokażesz, że nie są same.
+    </p>
+  </div>
+
+  <div class="text-center mt-10">
+    <h3 class="text-xl font-bold text-yellow-900 mb-4">Zostaw wiadomość wsparcia</h3>
+    <form class="max-w-md mx-auto bg-yellow-100 p-4 rounded-xl shadow">
+      <textarea class="w-full h-24 p-2 rounded border border-yellow-300" placeholder="Twoja wiadomość..."></textarea>
+      <button type="submit" class="mt-3 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">Wyślij słowa otuchy</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  // Prosty licznik darczyńców (przykładowy, statyczny)
+  document.addEventListener('DOMContentLoaded', () => {
+    const pomocnicy = document.querySelectorAll('#zbiorka ul li').length;
+    const licznik = document.createElement('p');
+    licznik.className = 'text-center text-yellow-900 font-semibold mt-6';
+    licznik.innerHTML = `👥 Liczba darczyńców: <strong>${pomocnicy}</strong>`;
+    document.querySelector('#zbiorka').appendChild(licznik);
+  });
+</script>
 
   <!-- Opinie --> <!-- Blog -->
   <!-- Opinie klientów -->
