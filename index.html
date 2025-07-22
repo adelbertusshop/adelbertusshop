@@ -598,7 +598,7 @@
   <h2 class="text-3xl font-bold mb-6 text-center">Opinie naszych klientów</h2>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-    <!-- ... [TUTAJ WKLEJ WCZEŚNIEJSZE OPINIE – tak jak w poprzednim bloku] ... -->
+    <!-- Tutaj możesz wkleić statyczne opinie jeśli masz, albo zostawić puste -->
   </div>
 
   <!-- Formularz dodawania opinii -->
@@ -623,7 +623,7 @@
           <option value="1">⭐ – Tragedia</option>
         </select>
       </div>
-      <button type="submit" class="bg-black text-white px-6 py-2 rounded-xl hover:bg-gray-800">
+      <button type="submit" class="bg-black text-white px-6 py-2 rounded-xl hover:bg-gray-800 transition">
         Wyślij opinię
       </button>
     </form>
@@ -631,12 +631,15 @@
   </div>
 </section>
 
-<!-- Skrypt do obsługi formularza -->
 <script>
   function dodajOpinie() {
-    const imie = document.getElementById('imie').value;
-    const tresc = document.getElementById('tresc').value;
+    const imie = document.getElementById('imie').value.trim();
+    const tresc = document.getElementById('tresc').value.trim();
     const ocena = document.getElementById('ocena').value;
+    if (!imie || !tresc) {
+      alert('Wypełnij wszystkie pola.');
+      return;
+    }
     const gwiazdki = '⭐'.repeat(parseInt(ocena));
 
     const nowaOpinia = document.createElement('div');
@@ -650,72 +653,116 @@
     sekcja.appendChild(nowaOpinia);
 
     document.getElementById('formularzOpinie').reset();
-    document.getElementById('potwierdzenie').classList.remove('hidden');
+    const potwierdzenie = document.getElementById('potwierdzenie');
+    potwierdzenie.classList.remove('hidden');
+    setTimeout(() => potwierdzenie.classList.add('hidden'), 3000);
   }
-</script>  <section id="blog" class="sekcja">
-    <h2>Blog</h2>
-    <div id="blog-posty">
-      <article class="post" data-id="1">
-        <h3>Witaj w AdelbertusBlog!</h3>
-        <p>Tu dzielimy się nowościami, przemyśleniami i sztuką. Napisz, co myślisz!</p>
-        <div class="komentarze"></div>
-        <form class="komentarz-form" onsubmit="dodajKomentarz(event, 1)">
-          <input type="text" placeholder="Twoje imię" required name="autor" />
-          <textarea placeholder="Twój komentarz" required name="tekst"></textarea>
-          <button type="submit">Dodaj komentarz</button>
-        </form>
-      </article>
-    </div>
-  </section>
+</script>
 
-  <!-- Zamówienia -->
-  <section id="zamowienia" class="sekcja">
-    <h2>Zamówienia</h2>
-    <div id="formularzZamowienia" style="padding: 2rem; background: #f9f9f9; border-top: 2px solid #ccc;">
-      <h3>Zamówienie</h3>
-      <p>Uzupełnij dane, aby zrealizować zamówienie:</p>
-      <form onsubmit="wyslijZamowienie(event)">
-        <label>Imię i nazwisko:<br/>
-          <input type="text" id="zamImie" required />
-        </label>
-        <label>Email:<br/>
-          <input type="email" id="zamEmail" required />
-        </label>
-        <label>Numer telefonu:<br/>
-          <input type="tel" id="zamTelefon" />
-        </label>
-        <label>Dodatkowe informacje / Uwagi:<br/>
-          <textarea id="zamUwagi" rows="4"></textarea>
-        </label>
-        <label>Dodaj grafikę (opcjonalnie):<br/>
-          <input type="file" id="zamPlik" accept="image/*" />
-        </label>
-
-        <h3>Podsumowanie koszyka:</h3>
-        <ul id="podsumowanieKoszyka"></ul>
-        <p><strong>Razem: <span id="sumaZamowienia">0.00 zł</span></strong></p>
-
-        <button type="submit">Zamawiam wszystko</button>
-        <button type="button" onclick="anulujZamowienie()">Anuluj</button>
+<section id="blog" class="sekcja py-10 px-4 max-w-4xl mx-auto">
+  <h2 class="text-3xl font-bold mb-6 text-center">Blog</h2>
+  <div id="blog-posty" class="space-y-8">
+    <article class="post bg-white p-6 rounded shadow" data-id="1">
+      <h3 class="text-2xl font-semibold mb-2">Witaj w AdelbertusBlog!</h3>
+      <p>Tu dzielimy się nowościami, przemyśleniami i sztuką. Napisz, co myślisz!</p>
+      <div class="komentarze mt-4"></div>
+      <form class="komentarz-form mt-4" onsubmit="dodajKomentarz(event, 1)">
+        <input type="text" placeholder="Twoje imię" required name="autor" class="w-full border rounded p-2 mb-2" />
+        <textarea placeholder="Twój komentarz" required name="tekst" class="w-full border rounded p-2 mb-2"></textarea>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Dodaj komentarz</button>
       </form>
-    </div>
-  </section>
+    </article>
+  </div>
+</section>
 
-  <!-- Artysta -->
-  <section id="artysta" class="sekcja">
-    <h2>Artysta</h2>
-    <div class="max-w-2xl mx-auto text-left leading-relaxed">
-      <p>Mam na imię Wojciech. Moją pasją jest sztuka — rysowanie, malowanie, tatuaże, realistyczne portrety i detale, które w nich zawieram.</p>
-      <p class="mt-4">Kocham sztukę, bo nie zna granic. Jest wolnością. Jest wyrażeniem siebie — prawdziwym, bez masek, bez udawania.</p>
-      <p class="mt-4">Uwielbiam dawać ludziom uśmiech. A moment, gdy mogę komuś podarować swoją sztukę i zobaczyć radość na jego twarzy — to najpiękniejszy dar, jaki można otrzymać.</p>
-      <p class="mt-4">Jestem samoukiem. Wychowałem się w domu dziecka. Dziś spełniam marzenia, które nosiłem w sercu od dziecka.</p>
-      <p class="mt-4">Życzę każdemu, by spełnił swoje marzenia — niezależnie jakie one są. Warto chociaż spróbować się do nich zbliżyć. Każdy krok przybliża nas do ich realizacji.</p>
-      <p class="mt-4">Dziękuję, że odwiedziłeś mój sklep. Dziękuję, że wybrałeś coś dla siebie.</p>
-      <p class="mt-4 font-semibold">Pozdrawiam Cię serdecznie w imieniu całej ekipy <span class="text-primary">AdelbertusShop</span>.</p>
-    </div>
-  </section>
+<script>
+  function dodajKomentarz(event, postId) {
+    event.preventDefault();
+    const form = event.target;
+    const autor = form.autor.value.trim();
+    const tekst = form.tekst.value.trim();
+    if (!autor || !tekst) {
+      alert('Wypełnij wszystkie pola.');
+      return;
+    }
+    const komentarzDiv = form.previousElementSibling;
+    const nowyKomentarz = document.createElement('p');
+    nowyKomentarz.className = 'bg-gray-100 p-3 rounded mb-2';
+    nowyKomentarz.textContent = `${autor}: ${tekst}`;
+    komentarzDiv.appendChild(nowyKomentarz);
+    form.reset();
+  }
+</script>
 
-  <!-- Kontakt -->
+<section id="zamowienia" class="sekcja py-10 px-4 max-w-4xl mx-auto bg-white rounded shadow">
+  <h2 class="text-3xl font-bold mb-6 text-center">Zamówienia</h2>
+  <div id="formularzZamowienia" style="padding: 2rem; background: #f9f9f9; border-top: 2px solid #ccc;">
+    <h3 class="mb-4 font-semibold">Uzupełnij dane, aby zrealizować zamówienie:</h3>
+    <form onsubmit="wyslijZamowienie(event)" class="space-y-4">
+      <label class="block">
+        Imię i nazwisko:<br />
+        <input type="text" id="zamImie" required class="w-full border rounded p-2" />
+      </label>
+      <label class="block">
+        Email:<br />
+        <input type="email" id="zamEmail" required class="w-full border rounded p-2" />
+      </label>
+      <label class="block">
+        Numer telefonu:<br />
+        <input type="tel" id="zamTelefon" class="w-full border rounded p-2" />
+      </label>
+      <label class="block">
+        Dodatkowe informacje / Uwagi:<br />
+        <textarea id="zamUwagi" rows="4" class="w-full border rounded p-2"></textarea>
+      </label>
+      <label class="block">
+        Dodaj grafikę (opcjonalnie):<br />
+        <input type="file" id="zamPlik" accept="image/*" />
+      </label>
+
+      <h3 class="mt-6 mb-2 font-semibold">Podsumowanie koszyka:</h3>
+      <ul id="podsumowanieKoszyka" class="mb-4 list-disc list-inside"></ul>
+      <p><strong>Razem: <span id="sumaZamowienia">0.00 zł</span></strong></p>
+
+      <div class="flex gap-4 mt-6">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">Zamawiam wszystko</button>
+        <button type="button" onclick="anulujZamowienie()" class="bg-gray-400 text-black px-6 py-2 rounded hover:bg-gray-500 transition">Anuluj</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  function wyslijZamowienie(event) {
+    event.preventDefault();
+    // Tu możesz dodać walidację, wysyłanie formularza na backend lub maila itd.
+    alert('Dziękujemy za złożenie zamówienia! Skontaktujemy się wkrótce.');
+    event.target.reset();
+    // Możesz też wyczyścić podsumowanie koszyka
+    document.getElementById('podsumowanieKoszyka').innerHTML = '';
+    document.getElementById('sumaZamowienia').textContent = '0.00 zł';
+  }
+
+  function anulujZamowienie() {
+    const form = document.querySelector('#formularzZamowienia form');
+    form.reset();
+    document.getElementById('podsumowanieKoszyka').innerHTML = '';
+    document.getElementById('sumaZamowienia').textContent = '0.00 zł';
+  }
+</script>
+
+<section id="artysta" class="sekcja py-10 px-4 max-w-3xl mx-auto">
+  <h2 class="text-3xl font-bold mb-6 text-center">Artysta</h2>
+  <div class="text-left leading-relaxed space-y-4">
+    <p>Mam na imię Wojciech. Moją pasją jest sztuka — rysowanie, malowanie, tatuaże, realistyczne portrety i detale, które w nich zawieram.</p>
+    <p>Kocham sztukę, bo nie zna granic. Jest wolnością. Jest wyrażeniem siebie — prawdziwym, bez masek, bez udawania.</p>
+    <p>Uwielbiam dawać ludziom uśmiech. A moment, gdy mogę komuś podarować swoją sztukę i zobaczyć radość na jego twarzy — to najpiękniejszy dar, jaki można otrzymać.</p>
+    <p>Jestem samoukiem. Wychowałem się w domu dziecka. Dziś spełniam marzenia, które nosiłem w sercu od dziecka.</p>
+    <p>Życzę każdemu, by spełnił swoje marzenia — niezależnie jakie one są. Warto chociaż spróbować się do nich zbliżyć. Każdy krok przybliża nas do ich realizacji.</p>
+    <p>Dziękuję, że odwiedziłeś mój sklep. Dziękuję, że wybrałeś coś dla siebie.</p>
+    <p class="font-semibold">Pozdrawiam Cię serdecznie w imieniu całej ekipy <span class="text-primary">AdelbertusShop</span>.</p>
+  </div>
+</section>  <!-- Kontakt -->
   <section id="kontakt" class="sekcja">
     <h2>Kontakt</h2>
     <p>Skontaktuj się z nami w sprawie zamówień, współpracy lub pytań.</p>
