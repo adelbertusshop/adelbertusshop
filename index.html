@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop</title>
   <style>
-    /* Twój styl + niezbędne dodatki */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -55,6 +54,7 @@
     .sekcja.active {
       display: block;
     }
+    /* Kategorie przyciski */
     #kategorie button {
       padding: 8px 16px;
       margin-right: 8px;
@@ -71,6 +71,7 @@
       background-color: #d4af37;
       color: black;
     }
+    /* Produkty grid */
     .produkty-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -103,7 +104,6 @@
     .produkt button:hover {
       background-color: #a3852e;
     }
-
     /* Koszyk style */
     .koszyk-toggle {
       position: fixed;
@@ -172,18 +172,45 @@
       cursor: pointer;
       margin-top: 10px;
     }
+    /* Sekcje dodatkowe */
+    form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="tel"],
+    form textarea,
+    form input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    form button {
+      cursor: pointer;
+    }
+    ul {
+      padding-left: 20px;
+    }
   </style>
 </head>
 <body>
+
   <div style="position: relative; width: 100%; height: auto;">
     <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo lewe" style="position: absolute; top: 10px; left: 10px; height: 80px; z-index: 2;">
     <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo prawe" style="position: absolute; top: 10px; right: 10px; height: 80px; z-index: 2;">
     <img src="https://i.ibb.co/cc2ssnSk/Messenger-creation-6365-D019-B450-442-F-B278-4-AF2-AB768752.jpg" alt="Banner" style="width: 100%; display: block;">
   </div>
+
   <header>
     <h1>AdelbertusShop</h1>
     <p>– legalnie zakazany –</p>
   </header>
+
   <nav>
     <button onclick="pokazSekcje('sklep')" id="btn-sklep" class="active">Sklep</button>
     <button onclick="pokazSekcje('projektuj')" id="btn-projektuj">Projektuj</button>
@@ -198,7 +225,9 @@
     <button onclick="pokazSekcje('regulamin')" id="btn-regulamin">Regulamin</button>
   </nav>
 
-  <!-- SEKCJE -->
+  <!-- Sekcje strony -->
+
+  <!-- Sklep -->
   <section id="sklep" class="sekcja active">
     <h2>Sklep</h2>
     <div id="kategorie" style="margin-bottom:20px;">
@@ -212,31 +241,37 @@
     <div id="produkty-lista" class="produkty-grid"></div>
   </section>
 
+  <!-- Projektuj -->
   <section id="projektuj" class="sekcja">
     <h2>Projektuj</h2>
-    <p>Funkcja kreatora koszulek - do zaimplementowania.</p>
+    <p>Tu będzie kreator koszulek i bluz, działający w przyszłości.</p>
   </section>
 
+  <!-- Marketplace -->
   <section id="marketplace" class="sekcja">
     <h2>Marketplace</h2>
-    <p>Marketplace - sekcja do rozbudowy.</p>
+    <p>Tu będą oferty i aukcje.</p>
   </section>
 
+  <!-- Reklama -->
   <section id="reklama" class="sekcja">
     <h2>Reklama</h2>
-    <p>Informacje reklamowe.</p>
+    <p>Informacje reklamowe i sponsorzy.</p>
   </section>
 
+  <!-- Zbiórka -->
   <section id="zbiorka" class="sekcja">
     <h2>Zbiórka</h2>
-    <p>Wesprzyj rozwój sklepu i pomoc dla domu dziecka.</p>
+    <p>Tu wspieraj naszą działalność.</p>
   </section>
 
+  <!-- Opinie -->
   <section id="opinie" class="sekcja">
     <h2>Opinie</h2>
-    <p>Opinie klientów - do uzupełnienia.</p>
+    <p>Twoje opinie są dla nas ważne!</p>
   </section>
 
+  <!-- Blog -->
   <section id="blog" class="sekcja">
     <h2>Blog</h2>
     <div id="blog-posty">
@@ -253,12 +288,40 @@
     </div>
   </section>
 
+  <!-- Zamówienia -->
   <section id="zamowienia" class="sekcja">
     <h2>Zamówienia</h2>
-    <p>Tu możesz zobaczyć swoje zamówienia lub złożyć nowe.</p>
-    <!-- Tu będzie formularz zamówienia i podsumowanie -->
+    <div id="formularzZamowienia" style="padding: 2rem; background: #f9f9f9; border-top: 2px solid #ccc;">
+      <h3>Zamówienie</h3>
+      <p>Uzupełnij dane, aby zrealizować zamówienie:</p>
+      <form onsubmit="wyslijZamowienie(event)">
+        <label>Imię i nazwisko:<br/>
+          <input type="text" id="zamImie" required />
+        </label>
+        <label>Email:<br/>
+          <input type="email" id="zamEmail" required />
+        </label>
+        <label>Numer telefonu:<br/>
+          <input type="tel" id="zamTelefon" />
+        </label>
+        <label>Dodatkowe informacje / Uwagi:<br/>
+          <textarea id="zamUwagi" rows="4"></textarea>
+        </label>
+        <label>Dodaj grafikę (opcjonalnie):<br/>
+          <input type="file" id="zamPlik" accept="image/*" />
+        </label>
+
+        <h3>Podsumowanie koszyka:</h3>
+        <ul id="podsumowanieKoszyka"></ul>
+        <p><strong>Razem: <span id="sumaZamowienia">0.00 zł</span></strong></p>
+
+        <button type="submit">Zamawiam wszystko</button>
+        <button type="button" onclick="anulujZamowienie()">Anuluj</button>
+      </form>
+    </div>
   </section>
 
+  <!-- Artysta -->
   <section id="artysta" class="sekcja">
     <h2>Artysta</h2>
     <div class="max-w-2xl mx-auto text-left leading-relaxed">
@@ -272,8 +335,10 @@
     </div>
   </section>
 
+  <!-- Kontakt -->
   <section id="kontakt" class="sekcja">
     <h2>Kontakt</h2>
+    <p>Skontaktuj się z nami w sprawie zamówień, współpracy lub pytań.</p>
     <ul>
       <li><strong>Email:</strong> <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a></li>
       <li><strong>Telefon:</strong> <a href="tel:+48604296360">604 296 360</a></li>
@@ -283,6 +348,7 @@
     </ul>
   </section>
 
+  <!-- Regulamin -->
   <section id="regulamin" class="sekcja">
     <h2>Regulamin sklepu AdelbertusShop</h2>
     <p>§1. Informacje ogólne</p>
@@ -295,31 +361,28 @@
     <p>3. Sklep zastrzega sobie prawo do zmiany cen oraz dostępności produktów.</p>
 
     <p>§3. Zamówienia</p>
-    <p>1. Zamówienia można składać poprzez dodanie produktów do koszyka i potwierdzenie zakupu.</p>
-    <p>2. Po złożeniu zamówienia klient otrzyma potwierdzenie e-mail z informacją o płatności.</p>
+    <p>1. Zamówienia można składać poprzez dodanie produktów do koszyka i potwierdzenie zak
+<p>1. Zamówienia można składać poprzez dodanie produktów do koszyka i potwierdzenie zakupu.</p>
+    <p>2. Po złożeniu zamówienia klient otrzyma potwierdzenie na podany adres e-mail.</p>
 
-    <p>§4. Płatności</p>
-    <p>1. Płatności realizowane są poprzez przelew BLIK na numer 573 939 925 z dopiskiem „projekt”.</p>
-    <p>2. Potwierdzenie płatności należy przesłać na adres e-mail sklepu.</p>
+    <p>§4. Realizacja zamówień</p>
+    <p>1. Czas realizacji zamówienia wynosi do 7 dni roboczych.</p>
+    <p>2. Koszty wysyłki są podawane podczas finalizacji zamówienia.</p>
 
-    <p>§5. Dostawa</p>
-    <p>1. Wysyłka produktów następuje po otrzymaniu potwierdzenia płatności.</p>
-    <p>2. Koszty i czas dostawy ustalane są indywidualnie.</p>
+    <p>§5. Reklamacje i zwroty</p>
+    <p>1. Klient ma prawo do zwrotu towaru w ciągu 14 dni od otrzymania.</p>
+    <p>2. Reklamacje należy zgłaszać na adres e-mail sklepu.</p>
 
-    <p>§6. Reklamacje i zwroty</p>
-    <p>1. Klient ma prawo do zwrotu produktu w ciągu 14 dni od daty otrzymania.</p>
-    <p>2. Reklamacje można zgłaszać pod adresem e-mail sklepu.</p>
+    <p>§6. Dane osobowe</p>
+    <p>1. Dane klientów są przetwarzane zgodnie z obowiązującymi przepisami RODO.</p>
 
-    <p>§7. Ochrona danych osobowych</p>
-    <p>1. Dane klientów przetwarzane są zgodnie z obowiązującymi przepisami RODO.</p>
-    <p>2. Sklep nie udostępnia danych osobom trzecim poza koniecznością realizacji zamówienia.</p>
+    <p>§7. Postanowienia końcowe</p>
+    <p>1. Sklep zastrzega sobie prawo do zmiany regulaminu.</p>
+    <p>2. W sprawach nieuregulowanych obowiązują przepisy Kodeksu cywilnego.</p>
 
-    <p>§8. Postanowienia końcowe</p>
-    <p>1. W sprawach nieuregulowanych regulaminem mają zastosowanie przepisy Kodeksu cywilnego.</p>
-    <p>2. Regulamin wchodzi w życie z dniem publikacji na stronie sklepu.</p>
   </section>
 
-  <!-- Koszyk panel -->
+  <!-- Koszyk -->
   <div id="koszykPanel" class="koszyk-panel">
     <h2>Twój koszyk</h2>
     <div id="koszykLista"></div>
@@ -330,17 +393,168 @@
   </div>
 
   <!-- Przycisk koszyka -->
-  <button class="koszyk-toggle" onclick="
-    <!-- Przycisk koszyka -->
-  <button class="koszyk-toggle" onclick="toggleKoszyk()">🛒 Koszyk</button>
+  <button class="koszyk-toggle" onclick="toggleKoszyk()">Koszyk 🛒</button>
 
   <script>
-    // Tutaj Twoje skrypty JS: pokazSekcje, koszyk, zamówienia itd.
-    // Przykład funkcji, jeśli nie masz jeszcze:
+    // Prosty system przełączania sekcji
+    function pokazSekcje(id) {
+      document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      document.getElementById('btn-' + id).classList.add('active');
+    }
+
+    // Przełączanie widoczności koszyka
     function toggleKoszyk() {
       const panel = document.getElementById('koszykPanel');
-      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      if (panel.style.display === 'block') panel.style.display = 'none';
+      else panel.style.display = 'block';
+    }
+
+    // Placeholder: funkcja składania zamówienia
+    function zlozZamowienie() {
+      pokazSekcje('zamowienia');
+      toggleKoszyk();
+      aktualizujPodsumowanie();
+    }
+
+    // Dane przykładowych produktów (możesz rozbudować)
+    const produkty = {
+      mezczyzni: [
+        {id: 1, nazwa: "Koszulka Męska", cena: 49.99, obraz: "https://i.ibb.co/example1.jpg"},
+        {id: 2, nazwa: "Bluza Męska", cena: 99.99, obraz: "https://i.ibb.co/example2.jpg"},
+      ],
+      kobiety: [
+        {id: 3, nazwa: "Koszulka Damska", cena: 45.99, obraz: "https://i.ibb.co/example3.jpg"},
+        {id: 4, nazwa: "Bluza Damska", cena: 89.99, obraz: "https://i.ibb.co/example4.jpg"},
+      ]
+      // Dodaj inne kategorie...
+    };
+
+    let koszyk = [];
+
+    // Pokaz produkty dla wybranej kategorii
+    function pokazProdukty(kategoria) {
+      const lista = document.getElementById('produkty-lista');
+      lista.innerHTML = '';
+      (produkty[kategoria] || []).forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'produkt';
+        div.innerHTML = `
+          <img src="${p.obraz}" alt="${p.nazwa}" class="produkt-obraz" />
+          <h3>${p.nazwa}</h3>
+          <p>Cena: ${p.cena.toFixed(2)} zł</p>
+          <button onclick="dodajDoKoszyka(${p.id}, '${kategoria}')">Dodaj do koszyka</button>
+        `;
+        lista.appendChild(div);
+      });
+    }
+
+    // Dodaj produkt do koszyka
+    function dodajDoKoszyka(id, kategoria) {
+      const produkt = produkty[kategoria].find(p => p.id === id);
+      if (!produkt) return;
+      const wKoszyku = koszyk.find(item => item.id === id);
+      if (wKoszyku) {
+        wKoszyku.ilosc++;
+      } else {
+        koszyk.push({...produkt, ilosc: 1});
+      }
+      aktualizujKoszyk();
+    }
+
+    // Aktualizacja widoku koszyka
+    function aktualizujKoszyk() {
+      const lista = document.getElementById('koszykLista');
+      lista.innerHTML = '';
+      if (koszyk.length === 0) {
+        lista.innerHTML = '<p>Twój koszyk jest pusty.</p>';
+      } else {
+        koszyk.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'koszyk-item';
+          div.innerHTML = `
+            <span>${item.nazwa} x${item.ilosc}</span>
+            <span>${(item.cena * item.ilosc).toFixed(2)} zł
+              <button onclick="usunZKoszyka(${item.id})">✖</button>
+            </span>
+          `;
+          lista.appendChild(div);
+        });
+      }
+      const total = koszyk.reduce((sum, item) => sum + item.cena * item.ilosc, 0);
+      document.getElementById('koszykTotal').textContent = total.toFixed(2) + ' zł';
+    }
+
+    // Usuń produkt z koszyka
+    function usunZKoszyka(id) {
+      koszyk = koszyk.filter(item => item.id !== id);
+      aktualizujKoszyk();
+    }
+
+    // Aktualizuj podsumowanie w zamówieniach
+    function aktualizujPodsumowanie() {
+      const ul = document.getElementById('podsumowanieKoszyka');
+      ul.innerHTML = '';
+      koszyk.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.nazwa} x${item.ilosc} - ${(item.cena * item.ilosc).toFixed(2)} zł`;
+        ul.appendChild(li);
+      });
+      const suma = koszyk.reduce((sum, item) => sum + item.cena * item.ilosc, 0);
+      document.getElementById('sumaZamowienia').textContent = suma.toFixed(2) + ' zł';
+    }
+
+    // Obsługa formularza zamówienia
+    function wyslijZamowienie(e) {
+      e.preventDefault();
+      if (koszyk.length === 0) {
+        alert('Koszyk jest pusty!');
+        return;
+      }
+      // Tu możesz dodać AJAX lub inny sposób wysyłki zamówienia
+      alert('Zamówienie zostało przyjęte. Dziękujemy!');
+      koszyk = [];
+      aktualizujKoszyk();
+      pokazSekcje('sklep');
+    }
+
+    // Anuluj zamówienie - powrót do sklepu
+    function anulujZamowienie() {
+      pokazSekcje('sklep');
+    }
+
+    // Obsługa przycisków kategorii w sklepie
+    document.querySelectorAll('#kategorie button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#kategorie button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        pokazProdukty(btn.getAttribute('data-kategoria'));
+      });
+    });
+
+    // Start - pokaz produkty z pierwszej kategorii
+    pokazProdukty('mezczyzni');
+
+    // Komentarze na blogu (lokalne, tylko na czas sesji)
+    function dodajKomentarz(event, postId) {
+      event.preventDefault();
+      const form = event.target;
+      const autor = form.autor.value.trim();
+      const tekst = form.tekst.value.trim();
+      if (!autor || !tekst) return;
+
+      const post = document.querySelector(`article.post[data-id="${postId}"]`);
+      const komentarzeDiv = post.querySelector('.komentarze');
+
+      const komentarzEl = document.createElement('p');
+      komentarzEl.textContent = autor + ': ' + tekst;
+      komentarzeDiv.appendChild(komentarzEl);
+
+      form.reset();
     }
   </script>
+
 </body>
-</html>
+</html>      
