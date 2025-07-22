@@ -248,12 +248,65 @@
   </section>
 
   <!-- Marketplace -->
-  <section id="marketplace" class="sekcja">
-    <h2>Marketplace</h2>
-    <p>Tu będą oferty i aukcje.</p>
-  </section>
+ <section id="marketplace" class="bg-white py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-8">Marketplace</h2>
 
-  <!-- Reklama -->
+    <!-- Panel logowania administratora -->
+    <div class="max-w-md mx-auto mb-8 p-4 border rounded shadow">
+      <h3 class="text-xl font-semibold mb-4">Logowanie administratora</h3>
+      <form onsubmit="return logowanieAdmina(event)">
+        <input type="password" id="adminHaslo" placeholder="Hasło" class="w-full p-2 mb-4 border rounded">
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Zaloguj</button>
+      </form>
+    </div>
+
+    <!-- Formularz dla sprzedawców -->
+    <div class="bg-gray-100 p-6 rounded shadow mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Zostań sprzedawcą</h3>
+      <p class="mb-4">Wypełnij formularz, dokonaj wpłaty na BLIK 573-939-925 z dopiskiem "Marketplace", a po zatwierdzeniu przez administratora Twój towar pojawi się na stronie.</p>
+      <form>
+        <input type="text" placeholder="Nazwa firmy / osoby" class="w-full p-2 mb-4 border rounded">
+        <input type="email" placeholder="Email" class="w-full p-2 mb-4 border rounded">
+        <textarea placeholder="Opis produktu / usługi" class="w-full p-2 mb-4 border rounded"></textarea>
+        <button type="submit" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Wyślij zgłoszenie</button>
+      </form>
+    </div>
+
+    <!-- Lista sprzedawców -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="listaSprzedawcow">
+      <div class="bg-white border rounded p-4 shadow relative">
+        <h4 class="text-xl font-semibold mb-2">Przykład sklepu 1</h4>
+        <p class="mb-2">Opis przykładowej oferty.</p>
+        <div class="text-sm text-gray-600">Wyświetlenia: <span class="wyswietlenia">0</span></div>
+        <div class="mt-2">
+          <span class="text-sm">Ocena:</span>
+          <div class="gwiazdki flex gap-1">
+            <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+          </div>
+        </div>
+      </div>
+      <!-- Kolejne sklepy dodawane dynamicznie -->
+    </div>
+  </div>
+</section>
+
+<script>
+function logowanieAdmina(event) {
+  event.preventDefault();
+  const haslo = document.getElementById('adminHaslo').value;
+  if (haslo === 'Wojownik.03') {
+    alert('Zalogowano pomyślnie jako administrator.');
+  } else {
+    alert('Niepoprawne hasło.');
+  }
+}
+
+// Licznik wyświetleń (symulacja)
+document.querySelectorAll('.wyswietlenia').forEach(span => {
+  span.textContent = Math.floor(Math.random() * 1000);
+});
+</script>  <!-- Reklama -->
  
 <section id="reklama" class="sekcja">
   <h2>Twoja reklama u nas</h2>
