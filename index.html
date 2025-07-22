@@ -361,12 +361,40 @@
     <p>Nowości, artykuły i informacje ze świata AdelbertusShop.</p>
   </section>
 
-  <section id="zamowienia" class="sekcja">
-    <h2>Zamówienia</h2>
-    <p>Złóż zamówienie na wybrane produkty lub projekt własny.</p>
-  </section>
+<!-- Formularz zamówienia -->
+<div id="formularzZamowienia" style="display: none; padding: 2rem; background: #f9f9f9; border-top: 2px solid #ccc;">
+  <h2>Zamówienie</h2>
+  <p>Uzupełnij dane, aby zrealizować zamówienie:</p>
+  
+  <form onsubmit="wyslijZamowienie(event)">
+    <label>Imię i nazwisko:<br/>
+      <input type="text" id="zamImie" required>
+    </label><br/><br/>
+    
+    <label>Email:<br/>
+      <input type="email" id="zamEmail" required>
+    </label><br/><br/>
+    
+    <label>Numer telefonu:<br/>
+      <input type="tel" id="zamTelefon">
+    </label><br/><br/>
+    
+    <label>Dodatkowe informacje / Uwagi:<br/>
+      <textarea id="zamUwagi" rows="4"></textarea>
+    </label><br/><br/>
+    
+    <label>Dodaj grafikę (opcjonalnie):<br/>
+      <input type="file" id="zamPlik" accept="image/*">
+    </label><br/><br/>
 
- <section id="artysta" class="sekcja">
+    <h3>Podsumowanie koszyka:</h3>
+    <ul id="podsumowanieKoszyka"></ul>
+    <p><strong>Razem: <span id="sumaZamowienia">0.00 zł</span></strong></p>
+
+    <button type="submit">Zamawiam wszystko</button>
+    <button type="button" onclick="anulujZamowienie()">Anuluj</button>
+  </form>
+</div> <section id="artysta" class="sekcja">
   <h2>Artysta</h2>
   <div class="max-w-2xl mx-auto text-left leading-relaxed">
     <p>
