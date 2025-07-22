@@ -420,7 +420,7 @@
     <p>Wesprzyj rozwój sklepu i pomoc dla domu dziecka.</p>
   </section>
 
-  <section id="blog" class="sekcja">
+ <section id="blog" class="sekcja">
   <h2>Blog</h2>
   <div id="blog-posty">
     <article class="post" data-id="1">
@@ -435,10 +435,6 @@
     </article>
   </div>
 </section>
-  <section id="blog" class="sekcja">
-    <h2>Blog</h2>
-    <p>Nowości, artykuły i informacje ze świata AdelbertusShop.</p>
-  </section>
 
 <!-- Formularz zamówienia -->
 <div id="formularzZamowienia" style="display: none; padding: 2rem; background: #f9f9f9; border-top: 2px solid #ccc;">
@@ -473,7 +469,9 @@
     <button type="submit">Zamawiam wszystko</button>
     <button type="button" onclick="anulujZamowienie()">Anuluj</button>
   </form>
-</div> <section id="artysta" class="sekcja">
+</div>
+
+<section id="artysta" class="sekcja">
   <h2>Artysta</h2>
   <div class="max-w-2xl mx-auto text-left leading-relaxed">
     <p>
@@ -498,7 +496,9 @@
       Pozdrawiam Cię serdecznie w imieniu całej ekipy <span class="text-primary">AdelbertusShop</span>.
     </p>
   </div>
-</section>  <section id="kontakt" class="sekcja">
+</section>
+
+<section id="kontakt" class="sekcja">
   <h2>Kontakt</h2>
   <p>Skontaktuj się z nami w sprawie zamówień, współpracy lub pytań.</p>
   <ul>
@@ -508,7 +508,9 @@
     <li><strong>Facebook:</strong> <a href="https://www.facebook.com/share/16YLPcGbx7/" target="_blank">Facebook – profil</a></li>
     <li><strong>TikTok:</strong> <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8yEsLW0sV8Q&_r=1" target="_blank">@ja.jestem3</a></li>
   </ul>
-</section><section id="regulamin" class="sekcja">
+</section>
+
+<section id="regulamin" class="sekcja">
   <h2>Regulamin sklepu AdelbertusShop</h2>
   <p>§1. Informacje ogólne</p>
   <p>1. Sklep internetowy AdelbertusShop prowadzony jest przez Wojciecha Mielniczuka, działającego jako działalność nierejestrowana.</p>
@@ -543,166 +545,155 @@
   <p>1. W sprawach nieuregulowanych regulaminem mają zastosowanie przepisy Kodeksu cywilnego.</p>
   <p>2. Regulamin wchodzi w życie z dniem publikacji na stronie sklepu.</p>
 </section>
-  <!-- Koszyk panel -->
-  <div id="koszykPanel" class="koszyk-panel">
-    <h2>Twój koszyk</h2>
-    <div id="koszykLista"></div>
-    <div class="koszyk-podsumowanie">
-      <p>Razem: <span id="koszykTotal">0.00 zł</span></p>
-      <button onclick="zlozZamowienie()">Przejdź do zamówienia</button>
-    </div>
+
+<!-- Koszyk panel -->
+<div id="koszykPanel" class="koszyk-panel">
+  <h2>Twój koszyk</h2>
+  <div id="koszykLista"></div>
+  <div class="koszyk-podsumowanie">
+    <p>Razem: <span id="koszykTotal">0.00 zł</span></p>
+    <button onclick="zlozZamowienie()">Przejdź do zamówienia</button>
   </div>
+</div>
 
-  <!-- Przycisk koszyka -->
-  <button class="koszyk-toggle" onclick="toggleKoszyk()">🛒 Koszyk</button>
+<!-- Przycisk koszyka -->
+<button class="koszyk-toggle" onclick="toggleKoszyk()">🛒 Koszyk</button>
 
-  <script>
-    // Nawigacja sekcji
-    function pokazSekcje(idSekcji) {
-      // Ukryj wszystkie sekcje
-      document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
-      // Pokaż wybraną
-      document.getElementById(idSekcji).classList.add('active');
+<script>
+  // Nawigacja sekcji
+  function pokazSekcje(idSekcji) {
+    document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
+    document.getElementById(idSekcji).classList.add('active');
 
-      // Ustaw aktywny button
-      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-      document.getElementById('btn-' + idSekcji).classList.add('active');
+    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('btn-' + idSekcji).classList.add('active');
 
-      // Zamknij koszyk, jeśli jest otwarty
-      const koszykPanel = document.getElementById('koszykPanel');
-      if (koszykPanel.style.display === 'block') {
-        koszykPanel.style.display = 'none';
-      }
-
-      // Scroll do góry
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Zamknij koszyk, jeśli otwarty
+    const koszykPanel = document.getElementById('koszykPanel');
+    if (koszykPanel.style.display === 'block') {
+      koszykPanel.style.display = 'none';
     }
 
-    // Koszyk
-    let koszyk = [];
-
-    function toggleKoszyk() {
-      const panel = document.getElementById('koszykPanel');
-      panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
-    }
-
-    function dodajDoKoszyka(nazwa, cena) {
-      const produkt = koszyk.find(p => p.nazwa === nazwa);
-      if (produkt) {
-        produkt.ilosc++;
-      } else {
-        koszyk.push({ nazwa, cena, ilosc: 1 });
-      }
-      aktualizujKoszyk();
-    }
-
-    function usunZKoszyka(nazwa) {
-      koszyk = koszyk.filter(p => p.nazwa !== nazwa);
-      aktualizujKoszyk();
-    }
-
-    function zmienIlosc(nazwa, zmiana) {
-      const produkt = koszyk.find(p => p.nazwa === nazwa);
-      if (!produkt) return;
-      produkt.ilosc += zmiana;
-      if (produkt.ilosc <= 0) usunZKoszyka(nazwa);
-      else aktualizujKoszyk();
-    }
-
-    function aktualizujKoszyk() {
-      const lista = document.getElementById('koszykLista');
-      lista.innerHTML = '';
-      let suma = 0;
-
-      koszyk.forEach(p => {
-        suma += p.cena * p.ilosc;
-        lista.innerHTML += `
-          <div class="koszyk-item">
-            <div>
-              <strong>${p.nazwa}</strong><br/>
-              ${p.ilosc} × ${p.cena.toFixed(2)} zł
-            </div>
-            <div>
-              <button onclick="zmienIlosc('${p.nazwa}', 1)">➕</button>
-              <button onclick="zmienIlosc('${p.nazwa}', -1)">➖</button>
-              <button onclick="usunZKoszyka('${p.nazwa}')">🗑️</button>
-            </div>
-          </div>
-        `;
-      });
-
-      document.getElementById('koszykTotal').textContent = suma.toFixed(2) + ' zł';
-    }
-
-    function zlozZamowienie() {
-      if (koszyk.length === 0) {
-        alert('Twój koszyk jest pusty.');
-        return;
-      }
-function zlozZamowienie() {
-  if (koszyk.length === 0) {
-    alert('Twój koszyk jest pusty.');
-    return;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  let tekst = "Zamówienie:\n";
-  koszyk.forEach((p, i) => {
-    tekst += `${i + 1}. ${p.nazwa} – ${p.cena.toFixed(2)} zł × ${p.ilosc}\n`;
-  });
-  tekst += "\nPrzelej BLIK na numer: 573 939 925 z dopiskiem projekt\nPotwierdzenie wyślij na: mielniczukgrzegosz74@gmail.com";
+  // Koszyk
+  let koszyk = [];
 
-  alert(tekst);
+  function toggleKoszyk() {
+    const panel = document.getElementById('koszykPanel');
+    panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
+  }
 
-  // Czyścimy koszyk po złożeniu zamówienia
-  koszyk = [];
-  aktualizujKoszyk();
-  toggleKoszyk();
-}
-
-// <<< TU Wklej tę funkcję
-function wyslijZamowienie(e) {
-  e.preventDefault();
-
-  const imie = document.getElementById('zamImie').value;
-  const email = document.getElementById('zamEmail').value;
-  const telefon = document.getElementById('zamTelefon').value;
-  const uwagi = document.getElementById('zamUwagi').value;
-  const plik = document.getElementById('zamPlik').files[0];
-
-  let trescZamowienia = `Zamówienie od: ${imie}\nEmail: ${email}\nTelefon: ${telefon}\nUwagi: ${uwagi}\n\nProdukty:\n`;
-
-  let suma = 0;
-
-  koszyk.forEach((p, i) => {
-    const koszt = p.cena * p.ilosc;
-    suma += koszt;
-    trescZamowienia += `${i + 1}. ${p.nazwa} – ${p.ilosc} × ${p.cena.toFixed(2)} zł = ${koszt.toFixed(2)} zł\n`;
-  });
-
-  trescZamowienia += `\nSuma: ${suma.toFixed(2)} zł`;
-
-  // Zgłoszenie (na razie tylko alert — tu będzie e-mail lub wysyłka)
-  alert("Zamówienie zostało złożone:\n\n" + trescZamowienia);
-
-  // Wyczyść dane
-  document.getElementById('formularzZamowienia').reset();
-  document.getElementById('formularzZamowienia').style.display = 'none';
-  koszyk = [];
-  aktualizujKoszyk();
-}      let tekst = "Zamówienie:\n";
-      koszyk.forEach((p, i) => {
-        tekst += `${i + 1}. ${p.nazwa} – ${p.cena.toFixed(2)} zł × ${p.ilosc}\n`;
-      });
-      tekst += "\nPrzelej BLIK na numer: 573 939 925 z dopiskiem projekt\nPotwierdzenie wyślij na: mielniczukgrzegosz74@gmail.com";
-
-      alert(tekst);
-
-      // Czyścimy koszyk po złożeniu zamówienia
-      koszyk = [];
-      aktualizujKoszyk();
-      toggleKoszyk();
+  function dodajDoKoszyka(nazwa, cena) {
+    const produkt = koszyk.find(p => p.nazwa === nazwa);
+    if (produkt) {
+      produkt.ilosc++;
+    } else {
+      koszyk.push({ nazwa, cena, ilosc: 1 });
     }
-  </script>
+    aktualizujKoszyk();
+  }
 
-</body>
-</html>
+  function usunZKoszyka(nazwa) {
+    koszyk = koszyk.filter(p => p.nazwa !== nazwa);
+    aktualizujKoszyk();
+  }
+
+  function zmienIlosc(nazwa, zmiana) {
+    const produkt = koszyk.find(p => p.nazwa === nazwa);
+    if (!produkt) return;
+    produkt.ilosc += zmiana;
+    if (produkt.ilosc <= 0) usunZKoszyka(nazwa);
+    else aktualizujKoszyk();
+  }
+
+  function aktualizujKoszyk() {
+    const lista = document.getElementById('koszykLista');
+    lista.innerHTML = '';
+    let suma = 0;
+
+    koszyk.forEach(p => {
+      suma += p.cena * p.ilosc;
+      lista.innerHTML += `
+        <div class="koszyk-item">
+          <div>
+            <strong>${p.nazwa}</strong><br/>
+            ${p.ilosc} × ${p.cena.toFixed(2)} zł
+          </div>
+          <div>
+            <button onclick="zmienIlosc('${p.nazwa}', 1)">➕</button>
+            <button onclick="zmienIlosc('${p.nazwa}', -1)">➖</button>
+            <button onclick="usunZKoszyka('${p.nazwa}')">🗑️</button>
+          </div>
+        </div>
+      `;
+    });
+
+    document.getElementById('koszykTotal').textContent = suma.toFixed(2) + ' zł';
+  }
+
+  // Po kliknięciu "Przejdź do zamówienia" pokazujemy formularz i uzupełniamy podsumowanie
+  function zlozZamowienie() {
+    if (koszyk.length === 0) {
+      alert('Twój koszyk jest pusty.');
+      return;
+    }
+
+    // Ukryj panel koszyka
+    document.getElementById('koszykPanel').style.display = 'none';
+
+    // Pokaż formularz zamówienia
+    document.getElementById('formularzZamowienia').style.display = 'block';
+
+    // Uzupełnij podsumowanie koszyka w formularzu
+    const podsumowanie = document.getElementById('podsumowanieKoszyka');
+    podsumowanie.innerHTML = '';
+
+    let suma = 0;
+    koszyk.forEach((p, i) => {
+      const koszt = p.cena * p.ilosc;
+      suma += koszt;
+      const li = document.createElement('li');
+      li.textContent = `${i + 1}. ${p.nazwa} – ${p.ilosc} × ${p.cena.toFixed(2)} zł = ${koszt.toFixed(2)} zł`;
+      podsumowanie.appendChild(li);
+    });
+
+    document.getElementById('sumaZamowienia').textContent = suma.toFixed(2) + ' zł';
+  }
+
+  function anulujZamowienie() {
+    document.getElementById('formularzZamowienia').style.display = 'none';
+  }
+
+  // Wysyłanie zamówienia z formularza
+  function wyslijZamowienie(e) {
+    e.preventDefault();
+
+    const imie = document.getElementById('zamImie').value;
+    const email = document.getElementById('zamEmail').value;
+    const telefon = document.getElementById('zamTelefon').value;
+    const uwagi = document.getElementById('zamUwagi').value;
+    const plik = document.getElementById('zamPlik').files[0];
+
+    let trescZamowienia = `Zamówienie od: ${imie}\nEmail: ${email}\nTelefon: ${telefon}\nUwagi: ${uwagi}\n\nProdukty:\n`;
+
+    let suma = 0;
+
+    koszyk.forEach((p, i) => {
+      const koszt = p.cena * p.ilosc;
+      suma += koszt;
+      trescZamowienia += `${i + 1}. ${p.nazwa} – ${p.ilosc} × ${p.cena.toFixed(2)} zł = ${koszt.toFixed(2)} zł\n`;
+    });
+
+    trescZamowienia += `\nSuma: ${suma.toFixed(2)} zł`;
+
+    alert("Zamówienie zostało złożone:\n\n" + trescZamowienia);
+
+    // Reset formularza, ukryj go, wyczyść koszyk i podsumowanie
+    document.getElementById('formularzZamowienia').reset();
+    document.getElementById('formularzZamowienia').style.display = 'none';
+    koszyk = [];
+    aktualizujKoszyk();
+  }
+</script>
