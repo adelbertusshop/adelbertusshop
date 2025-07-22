@@ -419,8 +419,49 @@
     <h2>Zbiórka</h2>
     <p>Wesprzyj rozwój sklepu i pomoc dla domu dziecka.</p>
   </section>
+<section id="opinie" class="sekcja">
+  <h2 style="color: gold;">Opinie klientów</h2>
+  <div id="opinia">
+    <blockquote id="trescOpinii" style="font-style: italic; margin: 20px 0;"></blockquote>
+    <p id="autorOpinii" style="text-align: right; font-weight: bold;"></p>
+  </div>
+</section>
 
- <section id="blog" class="sekcja">
+<script>
+  const opinie = [
+    {
+      tresc: "Najlepszy sklep z ciuchami w sieci. Szybka wysyłka, super jakość!",
+      autor: "Agnieszka, Kraków"
+    },
+    {
+      tresc: "Design i stylówa jak z Nowego Jorku – polecam każdemu!",
+      autor: "Bartek, Warszawa"
+    },
+    {
+      tresc: "Zamówiłam hoodie z własnym nadrukiem – wygląda zajebiście!",
+      autor: "Monika, Gdańsk"
+    },
+    {
+      tresc: "Kontakt błyskawiczny, obsługa klienta 10/10, wrócę tu na pewno.",
+      autor: "Tomek, Wrocław"
+    },
+    {
+      tresc: "AdelbertusShop to mój ulubiony sklep – styl, jakość i dusza.",
+      autor: "Kacper, Poznań"
+    }
+  ];
+
+  function pokazOpiniaNaDzien() {
+    const dzien = Math.floor(new Date().getTime() / (1000 * 60 * 60 * 24));
+    const index = Math.floor(dzien / 2) % opinie.length;
+    const opinia = opinie[index];
+
+    document.getElementById("trescOpinii").textContent = `"${opinia.tresc}"`;
+    document.getElementById("autorOpinii").textContent = `– ${opinia.autor}`;
+  }
+
+  pokazOpiniaNaDzien();
+</script> <section id="blog" class="sekcja">
   <h2>Blog</h2>
   <div id="blog-posty">
     <article class="post" data-id="1">
