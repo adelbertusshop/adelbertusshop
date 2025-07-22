@@ -242,12 +242,84 @@
   </section>
 
   <!-- Projektuj -->
-  <section id="projektuj" class="sekcja">
-    <h2>Projektuj</h2>
-    <p>Tu będzie kreator koszulek i bluz, działający w przyszłości.</p>
-  </section>
+ <section id="projektuj" class="py-10 px-4 bg-gradient-to-br from-gray-100 to-white text-center">
+  <h2 class="text-3xl font-bold mb-6 text-gray-800">Zaprojektuj swój własny produkt</h2>
 
-  <!-- Marketplace -->
+  <div class="grid md:grid-cols-2 gap-6 items-start">
+    <div class="space-y-4">
+      <label class="block text-left">
+        <span class="text-gray-700">Wybierz produkt:</span>
+        <select id="produkt" class="mt-1 block w-full border rounded p-2">
+          <option value="tshirt">Koszulka</option>
+          <option value="bluza">Bluza</option>
+          <option value="czapka">Czapka z daszkiem</option>
+        </select>
+      </label>
+
+      <label class="block text-left">
+        <span class="text-gray-700">Dodaj tekst:</span>
+        <input id="tekst" type="text" placeholder="Twój napis" class="mt-1 block w-full border rounded p-2" />
+      </label>
+
+      <label class="block text-left">
+        <span class="text-gray-700">Dodaj grafikę (URL):</span>
+        <input id="grafika" type="text" placeholder="https://..." class="mt-1 block w-full border rounded p-2" />
+      </label>
+
+      <label class="block text-left">
+        <span class="text-gray-700">Kolor produktu:</span>
+        <input id="kolor" type="color" class="mt-1 block w-full h-10 border rounded" />
+      </label>
+
+      <label class="block text-left">
+        <span class="text-gray-700">Rozmiar:</span>
+        <select id="rozmiar" class="mt-1 block w-full border rounded p-2">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="bg-white p-4 border rounded shadow">
+      <h3 class="text-xl font-semibold mb-2">Podgląd projektu</h3>
+      <div id="podglad" class="relative h-64 border bg-gray-50 flex items-center justify-center overflow-hidden">
+        <span id="podgladTekst" class="absolute text-xl font-bold text-black"></span>
+        <img id="podgladGrafika" class="absolute max-h-40 max-w-full" />
+        <div id="produktShape" class="absolute inset-0 rounded" style="background-color: #f3f4f6;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 text-left text-sm text-gray-600">
+    <p>Gotowy projekt prześlij na: <strong>mielniczukgrzegosz74@gmail.com</strong> lub SMS na <strong>604 296 360</strong>.</p>
+    <p>Opłać projekt BLIKIEM na numer <strong>573-939-925</strong> z dopiskiem <strong>"projekt własny"</strong>.</p>
+  </div>
+</section>
+
+<script>
+  const produkt = document.getElementById("produkt");
+  const tekst = document.getElementById("tekst");
+  const grafika = document.getElementById("grafika");
+  const kolor = document.getElementById("kolor");
+  const rozmiar = document.getElementById("rozmiar");
+  const podgladTekst = document.getElementById("podgladTekst");
+  const podgladGrafika = document.getElementById("podgladGrafika");
+  const produktShape = document.getElementById("produktShape");
+
+  function updatePreview() {
+    podgladTekst.textContent = tekst.value;
+    podgladGrafika.src = grafika.value || "";
+    produktShape.style.backgroundColor = kolor.value;
+  }
+
+  [produkt, tekst, grafika, kolor, rozmiar].forEach(el => {
+    el.addEventListener("input", updatePreview);
+  });
+
+  updatePreview();
+</script>  <!-- Marketplace -->
  <section id="marketplace" class="bg-white py-16">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-bold text-center mb-8">Marketplace</h2>
