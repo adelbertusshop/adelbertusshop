@@ -254,10 +254,119 @@
   </section>
 
   <!-- Reklama -->
-  <section id="reklama" class="sekcja">
-    <h2>Reklama</h2>
-    <p>Informacje reklamowe i sponsorzy.</p>
-  </section>
+ 
+<section id="reklama" class="sekcja">
+  <h2>Twoja reklama u nas</h2>
+  <p>Zarabiamy na rozwój, Ty zyskujesz widoczność. Zareklamuj się u nas już dziś! Zgłoszenia: <strong>mielniczukgrzegosz74@gmail.com</strong>, wpłaty BLIK: <strong>573-939-925</strong> z dopiskiem "Reklama".</p>
+
+  <div id="reklamyContainer" class="reklamy-container"></div>
+
+  <form id="formularzReklamy" class="reklama-formularz">
+    <h3>Formularz zgłoszeniowy</h3>
+    <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy" required>
+    <input type="url" id="linkReklamy" placeholder="Link do Twojej strony" required>
+    <input type="date" id="dataZakonczenia" placeholder="Data zakończenia reklamy" required>
+    <textarea id="opisReklamy" placeholder="Opis reklamy (widoczny pod ikoną)" required></textarea>
+    <button type="submit">Zgłoś reklamę</button>
+  </form>
+
+  <p><strong>Cennik:</strong><br>
+    Dzień: 10 zł | Tydzień: 50 zł | Miesiąc: 150 zł
+  </p>
+
+  <div class="admin-panel" style="display:none" id="adminPanel">
+    <h3>Panel Administratora</h3>
+    <p>Zalogowano jako <strong>Administrator</strong></p>
+    <ul id="listaReklam"></ul>
+  </div>
+
+  <div class="admin-login">
+    <input type="password" id="hasloAdmina" placeholder="Hasło administratora">
+    <button onclick="zalogujAdmina()">Zaloguj</button>
+  </div>
+</section>
+
+<script>
+  const reklamy = [];
+  let aktualnaReklama = 0;
+  const kontener = document.getElementById("reklamyContainer");
+
+  function wyswietlReklamy() {
+    if (reklamy.length === 0) return;
+    kontener.innerHTML = "";
+    const teraz = new Date();
+    const aktywneReklamy = reklamy.filter(r => new Date(r.koniec) >= teraz);
+
+    if (aktywneReklamy.length > 0) {
+      const r = aktywneReklamy[aktualnaReklama % aktywneReklamy.length];
+      kontener.innerHTML = `<a href="${r.link}" target="_blank"><div class="reklama-box">${r.nazwa}<br><small>${r.opis}</small></div></a>`;
+      aktualnaReklama++;
+    }
+  }
+
+  setInterval(wyswietlReklamy, 30000); // zmiana co 30 sekund
+
+  document.getElementById("formularzReklamy").addEventListener("submit", e => {
+    e.preventDefault();
+    const nowa = {
+      nazwa: document.getElementById("nazwaFirmy").value,
+      link: document.getElementById("linkReklamy").value,
+      koniec: document.getElementById("dataZakonczenia").value,
+      opis: document.getElementById("opisReklamy").value
+    };
+    alert("Zgłoszenie wysłane. Po dokonaniu wpłaty otrzymasz potwierdzenie.");
+    window.location.href = "mailto:mielniczukgrzegosz74@gmail.com?subject=Zgłoszenie reklamy&body=" + JSON.stringify(nowa);
+  });
+
+  function zalogujAdmina() {
+    const haslo = document.getElementById("hasloAdmina").value;
+    if (haslo === "Wojownik.03") {
+      document.getElementById("adminPanel").style.display = "block";
+      wyswietlListeReklam();
+    } else {
+      alert("Błędne hasło");
+    }
+  }
+
+  function wyswietlListeReklam() {
+    const lista = document.getElementById("listaReklam");
+    lista.innerHTML = reklamy.map((r, i) => `<li>${r.nazwa} - do: ${r.koniec} <button onclick="usunReklame(${i})">Usuń</button></li>`).join("");
+  }
+
+  function usunReklame(i) {
+    reklamy.splice(i, 1);
+    wyswietlListeReklam();
+    wyswietlReklamy();
+  }
+</script>
+
+<style>
+  .reklamy-container {
+    padding: 10px;
+    border: 1px solid #ccc;
+    min-height: 100px;
+  }
+  .reklama-box {
+    background: #f2f2f2;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .reklama-formularz input,
+  .reklama-formularz textarea {
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+    padding: 8px;
+  }
+  .admin-panel {
+    background: #fffbe6;
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px dashed #999;
+  }
+</style>
 
   <!-- Zbiórka -->
  <section id="zbiorka" class="sekcja bg-yellow-50 py-12 px-6 rounded-xl shadow-md">
