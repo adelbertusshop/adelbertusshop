@@ -419,191 +419,150 @@
     <h2>Zbiórka</h2>
     <p>Wesprzyj rozwój sklepu i pomoc dla domu dziecka.</p>
   </section>
-<section id="opinie" class="sekcja">
-  <h2 style="color: gold;">Opinie klientów</h2>
-  <div id="opinia">
-    <blockquote id="trescOpinii" style="font-style: italic; margin: 20px 0;"></blockquote>
-    <p id="autorOpinii" style="text-align: right; font-weight: bold;"></p>
-  </div>
 </section>
 
-<script>
-  const opinie = [
-    {
-      tresc: "Najlepszy sklep z ciuchami w sieci. Szybka wysyłka, super jakość!",
-      autor: "Agnieszka, Kraków"
-    },
-    {
-      tresc: "Design i stylówa jak z Nowego Jorku – polecam każdemu!",
-      autor: "Bartek, Warszawa"
-    },
-    {
-      tresc: "Zamówiłam hoodie z własnym nadrukiem – wygląda zajebiście!",
-      autor: "Monika, Gdańsk"
-    },
-    {
-      tresc: "Kontakt błyskawiczny, obsługa klienta 10/10, wrócę tu na pewno.",
-      autor: "Tomek, Wrocław"
-    },
-    {
-      tresc: "AdelbertusShop to mój ulubiony sklep – styl, jakość i dusza.",
-      autor: "Kacper, Poznań"
-    }
-  ];
+  <section id="blog" class="sekcja">
+    <h2>Blog</h2>
+    <div id="blog-posty">
+      <article class="post" data-id="1">
+        <h3>Witaj w AdelbertusBlog!</h3>
+        <p>Tu dzielimy się nowościami, przemyśleniami i sztuką. Napisz, co myślisz!</p>
+        <div class="komentarze"></div>
+        <form class="komentarz-form" onsubmit="dodajKomentarz(event, 1)">
+          <input type="text" placeholder="Twoje imię" required name="autor" />
+          <textarea placeholder="Twój komentarz" required name="tekst"></textarea>
+          <button type="submit">Dodaj komentarz</button>
+        </form>
+      </article>
+    </div>
+  </section>
 
-  function pokazOpiniaNaDzien() {
-    const dzien = Math.floor(Date.now() / (1000 * 60 * 60 * 24));
-    // Co 2 dni zmienia indeks
-    const index = Math.floor(dzien / 2) % opinie.length;
-    const opinia = opinie[index];
+  <!-- Formularz zamówienia -->
+  <div id="formularzZamowienia" style="display: none; padding: 2rem; background: #f9f9f9; border-top: 2px solid #ccc;">
+    <h2>Zamówienie</h2>
+    <p>Uzupełnij dane, aby zrealizować zamówienie:</p>
+    
+    <form onsubmit="wyslijZamowienie(event)">
+      <label>Imię i nazwisko:<br/>
+        <input type="text" id="zamImie" required>
+      </label><br/><br/>
+      
+      <label>Email:<br/>
+        <input type="email" id="zamEmail" required>
+      </label><br/><br/>
+      
+      <label>Numer telefonu:<br/>
+        <input type="tel" id="zamTelefon">
+      </label><br/><br/>
+      
+      <label>Dodatkowe informacje / Uwagi:<br/>
+        <textarea id="zamUwagi" rows="4"></textarea>
+      </label><br/><br/>
+      
+      <label>Dodaj grafikę (opcjonalnie):<br/>
+        <input type="file" id="zamPlik" accept="image/*">
+      </label><br/><br/>
 
-    document.getElementById("trescOpinii").textContent = `"${opinia.tresc}"`;
-    document.getElementById("autorOpinii").textContent = `– ${opinia.autor}`;
-  }
+      <h3>Podsumowanie koszyka:</h3>
+      <ul id="podsumowanieKoszyka"></ul>
+      <p><strong>Razem: <span id="sumaZamowienia">0.00 zł</span></strong></p>
 
-  pokazOpiniaNaDzien();
-</script>
-
-<!-- Reszta twojego kodu -->
-
-<section id="blog" class="sekcja">
-  <h2>Blog</h2>
-  <div id="blog-posty">
-    <article class="post" data-id="1">
-      <h3>Witaj w AdelbertusBlog!</h3>
-      <p>Tu dzielimy się nowościami, przemyśleniami i sztuką. Napisz, co myślisz!</p>
-      <div class="komentarze"></div>
-      <form class="komentarz-form" onsubmit="dodajKomentarz(event, 1)">
-        <input type="text" placeholder="Twoje imię" required name="autor" />
-        <textarea placeholder="Twój komentarz" required name="tekst"></textarea>
-        <button type="submit">Dodaj komentarz</button>
-      </form>
-    </article>
+      <button type="submit">Zamawiam wszystko</button>
+      <button type="button" onclick="anulujZamowienie()">Anuluj</button>
+    </form>
   </div>
-</section>
 
-<!-- Formularz zamówienia -->
-<div id="formularzZamowienia" style="display: none; padding: 2rem; background: #f9f9f9; border-top: 2px solid #ccc;">
-  <h2>Zamówienie</h2>
-  <p>Uzupełnij dane, aby zrealizować zamówienie:</p>
-  
-  <form onsubmit="wyslijZamowienie(event)" id="formZamowienie">
-    <label>Imię i nazwisko:<br/>
-      <input type="text" id="zamImie" required>
-    </label><br/><br/>
-    
-    <label>Email:<br/>
-      <input type="email" id="zamEmail" required>
-    </label><br/><br/>
-    
-    <label>Numer telefonu:<br/>
-      <input type="tel" id="zamTelefon">
-    </label><br/><br/>
-    
-    <label>Dodatkowe informacje / Uwagi:<br/>
-      <textarea id="zamUwagi" rows="4"></textarea>
-    </label><br/><br/>
-    
-    <label>Dodaj grafikę (opcjonalnie):<br/>
-      <input type="file" id="zamPlik" accept="image/*">
-    </label><br/><br/>
+  <section id="artysta" class="sekcja">
+    <h2>Artysta</h2>
+    <div class="max-w-2xl mx-auto text-left leading-relaxed">
+      <p>
+        Mam na imię Wojciech. Moją pasją jest sztuka — rysowanie, malowanie, tatuaże, realistyczne portrety i detale, które w nich zawieram.
+      </p>
+      <p class="mt-4">
+        Kocham sztukę, bo nie zna granic. Jest wolnością. Jest wyrażeniem siebie — prawdziwym, bez masek, bez udawania.
+      </p>
+      <p class="mt-4">
+        Uwielbiam dawać ludziom uśmiech. A moment, gdy mogę komuś podarować swoją sztukę i zobaczyć radość na jego twarzy — to najpiękniejszy dar, jaki można otrzymać.
+      </p>
+      <p class="mt-4">
+        Jestem samoukiem. Wychowałem się w domu dziecka. Dziś spełniam marzenia, które nosiłem w sercu od dziecka.
+      </p>
+      <p class="mt-4">
+        Życzę każdemu, by spełnił swoje marzenia — niezależnie jakie one są. Warto chociaż spróbować się do nich zbliżyć. Każdy krok przybliża nas do ich realizacji.
+      </p>
+      <p class="mt-4">
+        Dziękuję, że odwiedziłeś mój sklep. Dziękuję, że wybrałeś coś dla siebie.
+      </p>
+      <p class="mt-4 font-semibold">
+        Pozdrawiam Cię serdecznie w imieniu całej ekipy <span class="text-primary">AdelbertusShop</span>.
+      </p>
+    </div>
+  </section>
 
-    <h3>Podsumowanie koszyka:</h3>
-    <ul id="podsumowanieKoszyka"></ul>
-    <p><strong>Razem: <span id="sumaZamowienia">0.00 zł</span></strong></p>
+  <section id="kontakt" class="sekcja">
+    <h2>Kontakt</h2>
+    <p>Skontaktuj się z nami w sprawie zamówień, współpracy lub pytań.</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:mielniczukgrzegosz74@gmail.com">mielniczukgrzegosz74@gmail.com</a></li>
+      <li><strong>Telefon:</strong> <a href="tel:+48604296360">604 296 360</a></li>
+      <li><strong>Instagram:</strong> <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" target="_blank">@mielniczukgrzegosz74</a></li>
+      <li><strong>Facebook:</strong> <a href="https://www.facebook.com/share/16YLPcGbx7/" target="_blank">Facebook – profil</a></li>
+      <li><strong>TikTok:</strong> <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8yEsLW0sV8Q&_r=1" target="_blank">@ja.jestem3</a></li>
+    </ul>
+  </section>
 
-    <button type="submit">Zamawiam wszystko</button>
-    <button type="button" onclick="anulujZamowienie()">Anuluj</button>
-  </form>
-</div>
+  <section id="regulamin" class="sekcja">
+    <h2>Regulamin sklepu AdelbertusShop</h2>
+    <p>§1. Informacje ogólne</p>
+    <p>1. Sklep internetowy AdelbertusShop prowadzony jest przez Wojciecha Mielniczuka, działającego jako działalność nierejestrowana.</p>
+    <p>2. Kontakt ze sklepem możliwy jest pod adresem e-mail: mielniczukgrzegosz74@gmail.com.</p>
 
-<!-- ... reszta sekcji jak w oryginale ... -->
+    <p>§2. Oferta i ceny</p>
+    <p>1. Wszystkie produkty dostępne w sklepie są fabrycznie nowe i wolne od wad prawnych.</p>
+    <p>2. Ceny podane są w złotych polskich i zawierają podatek VAT.</p>
+    <p>3. Sklep zastrzega sobie prawo do zmiany cen oraz dostępności produktów.</p>
 
-<script>
-  // Funkcje od koszyka i zamówienia (niezmienione)
+    <p>§3. Zamówienia</p>
+    <p>1. Zamówienia można składać poprzez dodanie produktów do koszyka i potwierdzenie zakupu.</p>
+    <p>2. Po złożeniu zamówienia klient otrzyma potwierdzenie e-mail z informacją o płatności.</p>
 
-  let koszyk = [];
+    <p>§4. Płatności</p>
+    <p>1. Płatności realizowane są poprzez przelew BLIK na numer 573 939 925 z dopiskiem „projekt”.</p>
+    <p>2. Potwierdzenie płatności należy przesłać na adres e-mail sklepu.</p>
 
-  function aktualizujKoszyk() {
-    const lista = document.getElementById('koszykLista');
-    lista.innerHTML = '';
-    let suma = 0;
+    <p>§5. Dostawa</p>
+    <p>1. Wysyłka produktów następuje po otrzymaniu potwierdzenia płatności.</p>
+    <p>2. Koszty i czas dostawy ustalane są indywidualnie.</p>
 
-    koszyk.forEach(p => {
-      suma += p.cena * p.ilosc;
-      lista.innerHTML += `
-        <div class="koszyk-item">
-          <div>
-            <strong>${p.nazwa}</strong><br/>
-            ${p.ilosc} × ${p.cena.toFixed(2)} zł
-          </div>
-          <div>
-            <button onclick="zmienIlosc('${p.nazwa}', 1)">➕</button>
-            <button onclick="zmienIlosc('${p.nazwa}', -1)">➖</button>
-            <button onclick="usunZKoszyka('${p.nazwa}')">🗑️</button>
-          </div>
-        </div>
-      `;
-    });
+    <p>§6. Reklamacje i zwroty</p>
+    <p>1. Klient ma prawo do zwrotu produktu w ciągu 14 dni od daty otrzymania.</p>
+    <p>2. Reklamacje można zgłaszać pod adresem e-mail sklepu.</p>
 
-    document.getElementById('koszykTotal').textContent = suma.toFixed(2) + ' zł';
-  }
+    <p>§7. Ochrona danych osobowych</p>
+    <p>1. Dane klientów przetwarzane są zgodnie z obowiązującymi przepisami RODO.</p>
+    <p>2. Sklep nie udostępnia danych osobom trzecim poza koniecznością realizacji zamówienia.</p>
 
-  function zlozZamowienie() {
-    if (koszyk.length === 0) {
-      alert('Twój koszyk jest pusty.');
-      return;
-    }
-    document.getElementById('koszykPanel').style.display = 'none';
-    document.getElementById('formularzZamowienia').style.display = 'block';
+    <p>§8. Postanowienia końcowe</p>
+    <p>1. W sprawach nieuregulowanych regulaminem mają zastosowanie przepisy Kodeksu cywilnego.</p>
+    <p>2. Regulamin wchodzi w życie z dniem publikacji na stronie sklepu.</p>
+  </section>
 
-    const podsumowanie = document.getElementById('podsumowanieKoszyka');
-    podsumowanie.innerHTML = '';
+  <!-- Koszyk panel -->
+  <div id="koszykPanel" class="koszyk-panel">
+    <h2>Twój koszyk</h2>
+    <div id="koszykLista"></div>
+    <div class="koszyk-podsumowanie">
+      <p>Razem: <span id="koszykTotal">0.00 zł</span></p>
+      <button onclick="zlozZamowienie()">Przejdź do zamówienia</button>
+    </div>
+  </div>
 
-    let suma = 0;
-    koszyk.forEach((p, i) => {
-      const koszt = p.cena * p.ilosc;
-      suma += koszt;
-      const li = document.createElement('li');
-      li.textContent = `${i + 1}. ${p.nazwa} – ${p.ilosc} × ${p.cena.toFixed(2)} zł = ${koszt.toFixed(2)} zł`;
-      podsumowanie.appendChild(li);
-    });
+  <!-- Przycisk koszyka -->
+  <button class="koszyk-toggle" onclick="toggleKoszyk()">🛒 Koszyk</button>
 
-    document.getElementById('sumaZamowienia').textContent = suma.toFixed(2) + ' zł';
-  }
+  <script>
+    // Tutaj Twoje skrypty JS: pokazSekcje, koszyk, zamówienia itd.
+  </script>
 
-  function anulujZamowienie() {
-    document.getElementById('formularzZamowienia').style.display = 'none';
-  }
-
-  function wyslijZamowienie(e) {
-    e.preventDefault();
-
-    const imie = document.getElementById('zamImie').value;
-    const email = document.getElementById('zamEmail').value;
-    const telefon = document.getElementById('zamTelefon').value;
-    const uwagi = document.getElementById('zamUwagi').value;
-    // Plik akurat tu nie obsługiwany, ale możesz rozbudować
-    // const plik = document.getElementById('zamPlik').files[0];
-
-    let trescZamowienia = `Zamówienie od: ${imie}\nEmail: ${email}\nTelefon: ${telefon}\nUwagi: ${uwagi}\n\nProdukty:\n`;
-
-    let suma = 0;
-
-    koszyk.forEach((p, i) => {
-      const koszt = p.cena * p.ilosc;
-      suma += koszt;
-      trescZamowienia += `${i + 1}. ${p.nazwa} – ${p.ilosc} × ${p.cena.toFixed(2)} zł = ${koszt.toFixed(2)} zł\n`;
-    });
-
-    trescZamowienia += `\nSuma: ${suma.toFixed(2)} zł`;
-
-    alert("Zamówienie zostało złożone:\n\n" + trescZamowienia);
-
-    // Reset formularza i koszyka
-    document.getElementById('formZamowienie').reset();
-    document.getElementById('formularzZamowienia').style.display = 'none';
-    koszyk = [];
-    aktualizujKoszyk();
-  }
-</script>
+</body>
+</html>
