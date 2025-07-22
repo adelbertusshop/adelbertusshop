@@ -135,10 +135,79 @@
       cursor: pointer;
       margin-top: 10px;
     }
+
+    /* === BLOG + KOMENTARZE === */
+    #blog-posty {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .post {
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      color: #f5f5dc;
+    }
+
+    .post h3 {
+      margin-top: 0;
+      color: gold;
+    }
+
+    .komentarze {
+      margin-top: 20px;
+      border-top: 1px solid #444;
+      padding-top: 15px;
+    }
+
+    .komentarz {
+      background: #333;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .komentarz strong {
+      color: #d4af37;
+    }
+
+    .komentarz-form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .komentarz-form input,
+    .komentarz-form textarea {
+      background: #111;
+      border: 1px solid #d4af37;
+      border-radius: 6px;
+      color: #f5f5dc;
+      padding: 8px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      resize: vertical;
+    }
+
+    .komentarz-form button {
+      background: #d4af37;
+      border: none;
+      padding: 10px;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      color: black;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .komentarz-form button:hover {
+      background: #a3852e;
+    }
   </style>
 </head>
 <body>
-
   <div style="position: relative; width: 100%; height: auto;">
     <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo lewe" style="position: absolute; top: 10px; left: 10px; height: 80px; z-index: 2;">
     <img src="https://i.ibb.co/4HWG5zr/Messenger-creation-FD0395-A1-A5-D3-4063-A025-C2-FF75-C5-C75-F.jpg" alt="Logo prawe" style="position: absolute; top: 10px; right: 10px; height: 80px; z-index: 2;">
@@ -351,11 +420,21 @@
     <p>Wesprzyj rozwój sklepu i pomoc dla domu dziecka.</p>
   </section>
 
-  <section id="opinie" class="sekcja">
-    <h2>Opinie</h2>
-    <p>Opinie klientów i twórców.</p>
-  </section>
-
+  <section id="blog" class="sekcja">
+  <h2>Blog</h2>
+  <div id="blog-posty">
+    <article class="post" data-id="1">
+      <h3>Witaj w AdelbertusBlog!</h3>
+      <p>Tu dzielimy się nowościami, przemyśleniami i sztuką. Napisz, co myślisz!</p>
+      <div class="komentarze"></div>
+      <form class="komentarz-form" onsubmit="dodajKomentarz(event, 1)">
+        <input type="text" placeholder="Twoje imię" required name="autor" />
+        <textarea placeholder="Twój komentarz" required name="tekst"></textarea>
+        <button type="submit">Dodaj komentarz</button>
+      </form>
+    </article>
+  </div>
+</section>
   <section id="blog" class="sekcja">
     <h2>Blog</h2>
     <p>Nowości, artykuły i informacje ze świata AdelbertusShop.</p>
