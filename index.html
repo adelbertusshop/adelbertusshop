@@ -241,13 +241,13 @@
     <div id="produkty-lista" class="produkty-grid"></div>
   </section>
 
-  <!-- Projektuj -->
- <section id="projektuj" class="py-10 px-4 bg-gradient-to-br from-gray-100 to-white text-center">
+<!-- Projektuj -->
+<section id="projektuj" class="py-10 px-4 bg-gradient-to-br from-gray-100 to-white text-center">
   <h2 class="text-3xl font-bold mb-6 text-gray-800">Zaprojektuj swój własny produkt</h2>
 
   <div class="grid md:grid-cols-2 gap-6 items-start">
-    <div class="space-y-4">
-      <label class="block text-left">
+    <div class="space-y-4 text-left">
+      <label>
         <span class="text-gray-700">Wybierz produkt:</span>
         <select id="produkt" class="mt-1 block w-full border rounded p-2">
           <option value="tshirt">Koszulka</option>
@@ -256,22 +256,22 @@
         </select>
       </label>
 
-      <label class="block text-left">
+      <label>
         <span class="text-gray-700">Dodaj tekst:</span>
         <input id="tekst" type="text" placeholder="Twój napis" class="mt-1 block w-full border rounded p-2" />
       </label>
 
-      <label class="block text-left">
+      <label>
         <span class="text-gray-700">Dodaj grafikę (URL):</span>
         <input id="grafika" type="text" placeholder="https://..." class="mt-1 block w-full border rounded p-2" />
       </label>
 
-      <label class="block text-left">
+      <label>
         <span class="text-gray-700">Kolor produktu:</span>
         <input id="kolor" type="color" class="mt-1 block w-full h-10 border rounded" />
       </label>
 
-      <label class="block text-left">
+      <label>
         <span class="text-gray-700">Rozmiar:</span>
         <select id="rozmiar" class="mt-1 block w-full border rounded p-2">
           <option value="S">S</option>
@@ -285,9 +285,9 @@
     <div class="bg-white p-4 border rounded shadow">
       <h3 class="text-xl font-semibold mb-2">Podgląd projektu</h3>
       <div id="podglad" class="relative h-64 border bg-gray-50 flex items-center justify-center overflow-hidden">
-        <span id="podgladTekst" class="absolute text-xl font-bold text-black"></span>
-        <img id="podgladGrafika" class="absolute max-h-40 max-w-full" />
-        <div id="produktShape" class="absolute inset-0 rounded" style="background-color: #f3f4f6;"></div>
+        <div id="produktShape" class="absolute inset-0 rounded transition-colors duration-300" style="background-color: #f3f4f6;"></div>
+        <img id="podgladGrafika" class="absolute max-h-40 max-w-full" alt="Podgląd grafiki" />
+        <span id="podgladTekst" class="absolute text-xl font-bold text-black px-2"></span>
       </div>
     </div>
   </div>
@@ -309,9 +309,10 @@
   const produktShape = document.getElementById("produktShape");
 
   function updatePreview() {
-    podgladTekst.textContent = tekst.value;
-    podgladGrafika.src = grafika.value || "";
-    produktShape.style.backgroundColor = kolor.value;
+    podgladTekst.textContent = tekst.value || '';
+    podgladGrafika.src = grafika.value || '';
+    podgladGrafika.style.display = grafika.value ? 'block' : 'none';
+    produktShape.style.backgroundColor = kolor.value || '#f3f4f6';
   }
 
   [produkt, tekst, grafika, kolor, rozmiar].forEach(el => {
@@ -319,8 +320,10 @@
   });
 
   updatePreview();
-</script>  <!-- Marketplace -->
- <section id="marketplace" class="bg-white py-16">
+</script>
+
+<!-- Marketplace -->
+<section id="marketplace" class="bg-white py-16">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-bold text-center mb-8">Marketplace</h2>
 
@@ -328,7 +331,7 @@
     <div class="max-w-md mx-auto mb-8 p-4 border rounded shadow">
       <h3 class="text-xl font-semibold mb-4">Logowanie administratora</h3>
       <form onsubmit="return logowanieAdmina(event)">
-        <input type="password" id="adminHaslo" placeholder="Hasło" class="w-full p-2 mb-4 border rounded">
+        <input type="password" id="adminHaslo" placeholder="Hasło" class="w-full p-2 mb-4 border rounded" autocomplete="off" />
         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Zaloguj</button>
       </form>
     </div>
@@ -337,10 +340,10 @@
     <div class="bg-gray-100 p-6 rounded shadow mb-12">
       <h3 class="text-2xl font-semibold mb-4">Zostań sprzedawcą</h3>
       <p class="mb-4">Wypełnij formularz, dokonaj wpłaty na BLIK 573-939-925 z dopiskiem "Marketplace", a po zatwierdzeniu przez administratora Twój towar pojawi się na stronie.</p>
-      <form>
-        <input type="text" placeholder="Nazwa firmy / osoby" class="w-full p-2 mb-4 border rounded">
-        <input type="email" placeholder="Email" class="w-full p-2 mb-4 border rounded">
-        <textarea placeholder="Opis produktu / usługi" class="w-full p-2 mb-4 border rounded"></textarea>
+      <form id="sprzedawcaForm" onsubmit="return wyslijZgloszenie(event)">
+        <input type="text" name="nazwa" placeholder="Nazwa firmy / osoby" class="w-full p-2 mb-4 border rounded" required />
+        <input type="email" name="email" placeholder="Email" class="w-full p-2 mb-4 border rounded" required />
+        <textarea name="opis" placeholder="Opis produktu / usługi" class="w-full p-2 mb-4 border rounded" required></textarea>
         <button type="submit" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Wyślij zgłoszenie</button>
       </form>
     </div>
@@ -353,33 +356,41 @@
         <div class="text-sm text-gray-600">Wyświetlenia: <span class="wyswietlenia">0</span></div>
         <div class="mt-2">
           <span class="text-sm">Ocena:</span>
-          <div class="gwiazdki flex gap-1">
+          <div class="gwiazdki flex gap-1 text-yellow-400">
             <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
           </div>
         </div>
       </div>
-      <!-- Kolejne sklepy dodawane dynamicznie -->
+      <!-- Tu będą dynamicznie dodawani sprzedawcy -->
     </div>
   </div>
 </section>
 
 <script>
-function logowanieAdmina(event) {
-  event.preventDefault();
-  const haslo = document.getElementById('adminHaslo').value;
-  if (haslo === 'Wojownik.03') {
-    alert('Zalogowano pomyślnie jako administrator.');
-  } else {
-    alert('Niepoprawne hasło.');
+  function logowanieAdmina(event) {
+    event.preventDefault();
+    const haslo = document.getElementById('adminHaslo').value;
+    if (haslo === 'Wojownik.03') {
+      alert('Zalogowano pomyślnie jako administrator.');
+      // Tu możesz rozwinąć panel admina albo ustawić stan zalogowania
+    } else {
+      alert('Niepoprawne hasło.');
+    }
   }
-}
 
-// Licznik wyświetleń (symulacja)
-document.querySelectorAll('.wyswietlenia').forEach(span => {
-  span.textContent = Math.floor(Math.random() * 1000);
-});
-</script>  <!-- Reklama -->
- 
+  // Symulowany licznik wyświetleń
+  document.querySelectorAll('.wyswietlenia').forEach(span => {
+    span.textContent = Math.floor(Math.random() * 1000);
+  });
+
+  // Formularz zgłoszenia sprzedawcy (symulacja wysyłki)
+  function wyslijZgloszenie(event) {
+    event.preventDefault();
+    alert('Twoje zgłoszenie zostało wysłane. Po zatwierdzeniu przez administratora pojawi się na stronie.');
+    event.target.reset();
+    return false;
+  }
+</script> 
 <section id="reklama" class="sekcja">
   <h2>Twoja reklama u nas</h2>
   <p>Zarabiamy na rozwój, Ty zyskujesz widoczność. Zareklamuj się u nas już dziś! Zgłoszenia: <strong>mielniczukgrzegosz74@gmail.com</strong>, wpłaty BLIK: <strong>573-939-925</strong> z dopiskiem "Reklama".</p>
