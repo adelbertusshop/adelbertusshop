@@ -242,7 +242,8 @@
   </section>
 
 <!-- Projektuj -->
-<section id="projektuj" class="py-10 px-4 bg-gradient-to-br from-gray-100 to-white text-center">
+<!-- SEKCAJA PROJEKTUJ (Ukryta domyślnie) -->
+<section id="projektuj" class="hidden py-10 px-4 bg-gradient-to-br from-gray-100 to-white text-center">
   <h2 class="text-3xl font-bold mb-6 text-gray-800">Zaprojektuj swój własny produkt</h2>
 
   <div class="grid md:grid-cols-2 gap-6 items-start">
@@ -322,12 +323,11 @@
   updatePreview();
 </script>
 
-<!-- Marketplace -->
-<section id="marketplace" class="bg-white py-16">
+<!-- SEKCAJA MARKETPLACE (Ukryta domyślnie) -->
+<section id="marketplace" class="hidden bg-white py-16">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-bold text-center mb-8">Marketplace</h2>
 
-    <!-- Panel logowania administratora -->
     <div class="max-w-md mx-auto mb-8 p-4 border rounded shadow">
       <h3 class="text-xl font-semibold mb-4">Logowanie administratora</h3>
       <form onsubmit="return logowanieAdmina(event)">
@@ -336,7 +336,6 @@
       </form>
     </div>
 
-    <!-- Formularz dla sprzedawców -->
     <div class="bg-gray-100 p-6 rounded shadow mb-12">
       <h3 class="text-2xl font-semibold mb-4">Zostań sprzedawcą</h3>
       <p class="mb-4">Wypełnij formularz, dokonaj wpłaty na BLIK 573-939-925 z dopiskiem "Marketplace", a po zatwierdzeniu przez administratora Twój towar pojawi się na stronie.</p>
@@ -348,7 +347,6 @@
       </form>
     </div>
 
-    <!-- Lista sprzedawców -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="listaSprzedawcow">
       <div class="bg-white border rounded p-4 shadow relative">
         <h4 class="text-xl font-semibold mb-2">Przykład sklepu 1</h4>
@@ -361,7 +359,6 @@
           </div>
         </div>
       </div>
-      <!-- Tu będą dynamicznie dodawani sprzedawcy -->
     </div>
   </div>
 </section>
@@ -372,26 +369,22 @@
     const haslo = document.getElementById('adminHaslo').value;
     if (haslo === 'Wojownik.03') {
       alert('Zalogowano pomyślnie jako administrator.');
-      // Tu możesz rozwinąć panel admina albo ustawić stan zalogowania
     } else {
       alert('Niepoprawne hasło.');
     }
   }
 
-  // Symulowany licznik wyświetleń
   document.querySelectorAll('.wyswietlenia').forEach(span => {
     span.textContent = Math.floor(Math.random() * 1000);
   });
 
-  // Formularz zgłoszenia sprzedawcy (symulacja wysyłki)
   function wyslijZgloszenie(event) {
     event.preventDefault();
     alert('Twoje zgłoszenie zostało wysłane. Po zatwierdzeniu przez administratora pojawi się na stronie.');
     event.target.reset();
     return false;
   }
-</script> 
-<!-- Reklama -->
+</script><!-- Reklama -->
 <section id="reklama" class="sekcja py-10 px-6 bg-white rounded shadow max-w-4xl mx-auto mb-12">
   <h2 class="text-3xl font-bold mb-4 text-center">Twoja reklama u nas</h2>
   <p class="mb-6 text-center">
