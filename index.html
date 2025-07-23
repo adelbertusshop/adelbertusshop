@@ -355,7 +355,63 @@
           <span class="flex-1 text-lg font-medium">Bluza – 150 zł</span>
           <button class="ml-auto px-4 py-2 bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400 text-white rounded transition">Dodaj do koszyka</button>
         </li>
-        <li class="flex items-center gap-4">
+        {selectedCategory === "kobiety" && selectedType === "bluza" && (
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {[
+      {
+        name: "Bluza Adelbertus",
+        image: "https://i.ibb.co/MX0fsh9/Screenshot-20250714-002247-Files-by-Google-2.jpg",
+      },
+      {
+        name: "Bluza Sun młynarza",
+        image: "https://i.ibb.co/wrPNSRL1/file-00000000f8a86246ac7ca2f0cc1f55c3.png",
+      },
+      {
+        name: "Bluza QR",
+        image: "https://i.ibb.co/5hYDCbN6/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg",
+      },
+      {
+        name: "Bluza Bunt",
+        image: "https://i.ibb.co/1f60TS6p/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg",
+      },
+      {
+        name: "Bluza QR Złoto",
+        image: "https://i.ibb.co/XxZgQHTC/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg",
+      },
+      {
+        name: "Bluza Symbol Pi",
+        image: "https://i.ibb.co/vC1WCqXs/Messenger-creation-D3-E63-CFC-1-E20-41-D9-8264-653-BF9318-DC6.jpg",
+      },
+      {
+        name: "Bluza",
+        image: "https://i.ibb.co/1f5rZ23d/Messenger-creation-1-A0-C075-A-C230-4-EF6-9802-69-D60-A798954.jpg",
+      },
+      {
+        name: "Bluza You Were",
+        image: "https://i.ibb.co/PZ8zYJdm/1462669754-ads-media-59323ae9-0ff3-46e8-8825-e399f1b2746a.jpg",
+      },
+    ].map((product, index) => (
+      <div
+        key={index}
+        className="bg-white rounded-2xl shadow-md overflow-hidden p-4 flex flex-col items-center"
+      >
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-64 object-cover rounded-xl"
+        />
+        <h3 className="text-xl font-semibold mt-4 text-center">{product.name}</h3>
+        <p className="text-gray-600 mb-2">Cena: 150 zł</p>
+        <button
+          onClick={() => addToCart(product)}
+          className="bg-black text-white px-4 py-2 rounded-xl hover:bg-gray-800 transition mt-2"
+        >
+          Dodaj do koszyka
+        </button>
+      </div>
+    ))}
+  </div>
+)}        <li class="flex items-center gap-4">
           <img src="TU_WKLEJ_LINK_DO_OBRAZKA_BLUZY_Z_KAPTUREM_KOBIETY" alt="Bluza z kapturem Kobiety" class="w-20 max-w-full h-auto rounded" />
           <span class="flex-1 text-lg font-medium">Bluza z kapturem – 150 zł</span>
           <button class="ml-auto px-4 py-2 bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400 text-white rounded transition">Dodaj do koszyka</button>
