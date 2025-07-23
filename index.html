@@ -210,42 +210,28 @@
     <h1>AdelbertusShop</h1>
     <p>– legalnie zakazany –</p>
   </header>
+<nav>
+  <button onclick="pokazSekcje('sklep')" id="btn-sklep" class="active">Sklep</button>
+  <button onclick="pokazSekcje('projektuj')" id="btn-projektuj">Projektuj</button>
+  <button onclick="pokazSekcje('marketplace')" id="btn-marketplace">Marketplace</button>
+  <button onclick="pokazSekcje('reklama')" id="btn-reklama">Reklama</button>
+  <button onclick="pokazSekcje('zbiorka')" id="btn-zbiorka">Zbiórka</button>
+  <button onclick="pokazSekcje('opinie')" id="btn-opinie">Opinie</button>
+  <button onclick="pokazSekcje('blog')" id="btn-blog">Blog</button>
+  <button onclick="pokazSekcje('zamowienia')" id="btn-zamowienia">Zamówienia</button>
+  <button onclick="pokazSekcje('artysta')" id="btn-artysta">Artysta</button>
+  <button onclick="pokazSekcje('kontakt')" id="btn-kontakt">Kontakt</button>
+  <button onclick="pokazSekcje('regulamin')" id="btn-regulamin">Regulamin</button>
+</nav>
 
-  <nav>
-    <button onclick="pokazSekcje('sklep')" id="btn-sklep" class="active">Sklep</button>
-    <button onclick="pokazSekcje('projektuj')" id="btn-projektuj">Projektuj</button>
-    <button onclick="pokazSekcje('marketplace')" id="btn-marketplace">Marketplace</button>
-    <button onclick="pokazSekcje('reklama')" id="btn-reklama">Reklama</button>
-    <button onclick="pokazSekcje('zbiorka')" id="btn-zbiorka">Zbiórka</button>
-    <button onclick="pokazSekcje('opinie')" id="btn-opinie">Opinie</button>
-    <button onclick="pokazSekcje('blog')" id="btn-blog">Blog</button>
-    <button onclick="pokazSekcje('zamowienia')" id="btn-zamowienia">Zamówienia</button>
-    <button onclick="pokazSekcje('artysta')" id="btn-artysta">Artysta</button>
-    <button onclick="pokazSekcje('kontakt')" id="btn-kontakt">Kontakt</button>
-    <button onclick="pokazSekcje('regulamin')" id="btn-regulamin">Regulamin</button>
-  </nav>
+<!-- Sekcje strony -->
 
-  <!-- Sekcje strony -->
+<section id="sklep" class="sekcja active">
+  <!-- ... Twój kod sklepu ... -->
+</section>
 
-  <!-- Sklep -->
-  <section id="sklep" class="sekcja active">
-    <h2>Sklep</h2>
-    <div id="kategorie" style="margin-bottom:20px;">
-      <button class="kategoria-btn active" data-kategoria="mezczyzni">Mężczyźni</button>
-      <button class="kategoria-btn" data-kategoria="kobiety">Kobiety</button>
-      <button class="kategoria-btn" data-kategoria="chlopcy">Chłopcy</button>
-      <button class="kategoria-btn" data-kategoria="dziewczynki">Dziewczynki</button>
-      <button class="kategoria-btn" data-kategoria="nowosci">Nowości</button>
-      <button class="kategoria-btn" data-kategoria="akcesoria">Akcesoria</button>
-    </div>
-    <div id="produkty-lista" class="produkty-grid"></div>
-  </section>
-
-<!-- Projektuj -->
-<!-- SEKCAJA PROJEKTUJ (Ukryta domyślnie) -->
-<section id="projektuj" class="hidden py-10 px-4 bg-gradient-to-br from-gray-100 to-white text-center">
+<section id="projektuj" class="sekcja hidden py-10 px-4 bg-gradient-to-br from-gray-100 to-white text-center">
   <h2 class="text-3xl font-bold mb-6 text-gray-800">Zaprojektuj swój własny produkt</h2>
-
   <div class="grid md:grid-cols-2 gap-6 items-start">
     <div class="space-y-4 text-left">
       <label>
@@ -256,22 +242,18 @@
           <option value="czapka">Czapka z daszkiem</option>
         </select>
       </label>
-
       <label>
         <span class="text-gray-700">Dodaj tekst:</span>
         <input id="tekst" type="text" placeholder="Twój napis" class="mt-1 block w-full border rounded p-2" />
       </label>
-
       <label>
         <span class="text-gray-700">Dodaj grafikę (URL):</span>
         <input id="grafika" type="text" placeholder="https://..." class="mt-1 block w-full border rounded p-2" />
       </label>
-
       <label>
         <span class="text-gray-700">Kolor produktu:</span>
         <input id="kolor" type="color" class="mt-1 block w-full h-10 border rounded" />
       </label>
-
       <label>
         <span class="text-gray-700">Rozmiar:</span>
         <select id="rozmiar" class="mt-1 block w-full border rounded p-2">
@@ -282,7 +264,6 @@
         </select>
       </label>
     </div>
-
     <div class="bg-white p-4 border rounded shadow">
       <h3 class="text-xl font-semibold mb-2">Podgląd projektu</h3>
       <div id="podglad" class="relative h-64 border bg-gray-50 flex items-center justify-center overflow-hidden">
@@ -292,39 +273,13 @@
       </div>
     </div>
   </div>
-
   <div class="mt-6 text-left text-sm text-gray-600">
     <p>Gotowy projekt prześlij na: <strong>mielniczukgrzegosz74@gmail.com</strong> lub SMS na <strong>604 296 360</strong>.</p>
     <p>Opłać projekt BLIKIEM na numer <strong>573-939-925</strong> z dopiskiem <strong>"projekt własny"</strong>.</p>
   </div>
 </section>
 
-<script>
-  const produkt = document.getElementById("produkt");
-  const tekst = document.getElementById("tekst");
-  const grafika = document.getElementById("grafika");
-  const kolor = document.getElementById("kolor");
-  const rozmiar = document.getElementById("rozmiar");
-  const podgladTekst = document.getElementById("podgladTekst");
-  const podgladGrafika = document.getElementById("podgladGrafika");
-  const produktShape = document.getElementById("produktShape");
-
-  function updatePreview() {
-    podgladTekst.textContent = tekst.value || '';
-    podgladGrafika.src = grafika.value || '';
-    podgladGrafika.style.display = grafika.value ? 'block' : 'none';
-    produktShape.style.backgroundColor = kolor.value || '#f3f4f6';
-  }
-
-  [produkt, tekst, grafika, kolor, rozmiar].forEach(el => {
-    el.addEventListener("input", updatePreview);
-  });
-
-  updatePreview();
-</script>
-
-<!-- SEKCAJA MARKETPLACE (Ukryta domyślnie) -->
-<section id="marketplace" class="hidden bg-white py-16">
+<section id="marketplace" class="sekcja hidden bg-white py-16">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-bold text-center mb-8">Marketplace</h2>
 
@@ -364,27 +319,26 @@
 </section>
 
 <script>
-  function logowanieAdmina(event) {
-    event.preventDefault();
-    const haslo = document.getElementById('adminHaslo').value;
-    if (haslo === 'Wojownik.03') {
-      alert('Zalogowano pomyślnie jako administrator.');
-    } else {
-      alert('Niepoprawne hasło.');
+  // To już masz gdzieś u siebie, upewnij się że działa:
+  function pokazSekcje(id) {
+    document.querySelectorAll('.sekcja').forEach(s => {
+      s.classList.add('hidden');
+      s.classList.remove('active');
+    });
+    const sekcja = document.getElementById(id);
+    if (sekcja) {
+      sekcja.classList.remove('hidden');
+      sekcja.classList.add('active');
     }
+
+    // Aktualizacja przycisków menu:
+    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+    const aktywnyBtn = document.getElementById('btn-' + id);
+    if (aktywnyBtn) aktywnyBtn.classList.add('active');
   }
 
-  document.querySelectorAll('.wyswietlenia').forEach(span => {
-    span.textContent = Math.floor(Math.random() * 1000);
-  });
-
-  function wyslijZgloszenie(event) {
-    event.preventDefault();
-    alert('Twoje zgłoszenie zostało wysłane. Po zatwierdzeniu przez administratora pojawi się na stronie.');
-    event.target.reset();
-    return false;
-  }
-</script><!-- Reklama -->
+  // Pozostały Twój skrypt do podglądu projektu, logowania admina i wysyłania zgłoszenia
+</script>  <!-- Reklama -->
 <section id="reklama" class="sekcja py-10 px-6 bg-white rounded shadow max-w-4xl mx-auto mb-12">
   <h2 class="text-3xl font-bold mb-4 text-center">Twoja reklama u nas</h2>
   <p class="mb-6 text-center">
