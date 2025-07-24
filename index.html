@@ -623,10 +623,19 @@
 
       <button type="submit" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800">Wyślij zgłoszenie</button>
     </form>
+
+    <!-- Sekcja logowania administratora -->
+    <div class="mt-12 max-w-md mx-auto bg-white p-6 rounded-lg shadow-md text-left border">
+      <h3 class="text-xl font-semibold mb-4 text-center">Logowanie Administratora</h3>
+      <label for="adminPassword" class="block font-semibold mb-1">Hasło:</label>
+      <input type="password" id="adminPassword" class="w-full border p-2 rounded mb-4" placeholder="Wpisz hasło administratora">
+      <button id="adminLoginBtn" class="w-full bg-gray-800 text-white py-2 rounded hover:bg-gray-700">Zaloguj</button>
+      <p id="adminError" class="text-red-600 mt-2 hidden text-center">Niepoprawne hasło!</p>
+    </div>
   </div>
 </section>
 
-<!-- Sekcja administratora (widoczna tylko po zalogowaniu jako admin) -->
+<!-- Sekcja administratora (ukryta domyślnie) -->
 <section id="adminPanel" class="hidden py-16 px-4 bg-white">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-2xl font-bold mb-4">Panel Administratora – Zgłoszenia Marketplace</h2>
@@ -638,13 +647,28 @@
 </section>
 
 <script>
-  // Prosty login admina (hasło: Wojownik.03)
-  const password = prompt("Wprowadź hasło administratora:");
-  if (password === "Wojownik.03") {
-    document.getElementById("adminPanel").classList.remove("hidden");
-  }
+  const adminPassword = "Wojownik.03";
+  const adminLoginBtn = document.getElementById("adminLoginBtn");
+  const adminPasswordInput = document.getElementById("adminPassword");
+  const adminPanel = document.getElementById("adminPanel");
+  const adminError = document.getElementById("adminError");
 
-  // Wysłanie formularza marketplace (zapis do localStorage + wysyłka na e-mail – uproszczona)
+  adminLoginBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const enteredPassword = adminPasswordInput.value;
+
+    if (enteredPassword === adminPassword) {
+      adminPanel.classList.remove("hidden");
+      adminError.classList.add("hidden");
+      adminPasswordInput.value = "";
+      adminPasswordInput.disabled = true;
+      adminLoginBtn.disabled = true;
+    } else {
+      adminError.classList.remove("hidden");
+    }
+  });
+
+  // Wysłanie formularza marketplace (zapis do localStorage + uproszczona obsługa)
   document.getElementById("marketplaceForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -664,11 +688,13 @@
     this.reset();
   });
 
-  // Wyświetlenie zgłoszeń w panelu administratora
+  // Wyświetlanie zgłoszeń w panelu administratora
   function renderAdminSubmissions() {
     const container = document.getElementById("marketplaceSubmissions");
     const submissions = JSON.parse(localStorage.getItem("marketplaceSubmissions") || "[]");
     if (!container || submissions.length === 0) return;
+
+    container.innerHTML = ""; // Czyścimy przed dodaniem
 
     submissions.forEach((entry) => {
       const div = document.createElement("div");
