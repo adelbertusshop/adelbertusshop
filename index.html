@@ -473,7 +473,110 @@
 
   // Inicjalizacja UI przy ładowaniu strony
   updateCartUI();
-</script> <!-- Reklama -->
+</script>
+  <section id="projektuj" class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-6 text-center">Zaprojektuj swój produkt</h2>
+
+    <form id="formProjektuj" class="space-y-6" enctype="multipart/form-data" method="POST" action="wyslij_projekt.php">
+      <!-- E-mail klienta -->
+      <div>
+        <label class="block font-semibold mb-1">Twój e-mail:</label>
+        <input type="email" name="emailKlienta" required class="w-full border rounded p-2" placeholder="np. jan@wp.pl">
+      </div>
+
+      <!-- Typ produktu -->
+      <div>
+        <label class="block font-semibold mb-1">Wybierz produkt:</label>
+        <select id="typProduktu" class="w-full border rounded p-2" required>
+          <option value="">-- wybierz --</option>
+          <option value="Koszulka">Koszulka</option>
+          <option value="Bluza">Bluza</option>
+          <option value="Czapeczka">Czapeczka</option>
+        </select>
+      </div>
+
+      <!-- Kolor -->
+      <div>
+        <label class="block font-semibold mb-1">Kolor:</label>
+        <input type="color" id="kolorProduktu" class="w-16 h-10 border rounded">
+      </div>
+
+      <!-- Rozmiar -->
+      <div>
+        <label class="block font-semibold mb-1">Rozmiar:</label>
+        <select id="rozmiarProduktu" class="w-full border rounded p-2" required>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+        </select>
+      </div>
+
+      <!-- Napis -->
+      <div>
+        <label class="block font-semibold mb-1">Wpisz napis na produkcie:</label>
+        <input type="text" id="napisProduktu" class="w-full border rounded p-2" maxlength="40" placeholder="Twoje hasło, slogan...">
+      </div>
+
+      <!-- Upload grafiki -->
+      <div>
+        <label class="block font-semibold mb-1">Dodaj grafikę:</label>
+        <input type="file" name="grafikaProduktu" id="grafikaProduktu" accept="image/*" required class="w-full border p-2">
+      </div>
+
+      <!-- Podgląd projektu -->
+      <div class="border rounded p-4 bg-gray-50 text-center">
+        <p class="font-semibold mb-2">Podgląd projektu:</p>
+        <div id="podgladProjektu" class="w-full h-64 border border-dashed rounded bg-white flex items-center justify-center text-gray-500">
+          Tu pojawi się Twój projekt
+        </div>
+      </div>
+
+      <!-- Pola ukryte do przesłania -->
+      <input type="hidden" name="typProduktu" id="hiddenTypProduktu">
+      <input type="hidden" name="kolorProduktu" id="hiddenKolorProduktu">
+      <input type="hidden" name="rozmiarProduktu" id="hiddenRozmiarProduktu">
+      <input type="hidden" name="napisProduktu" id="hiddenNapisProduktu">
+
+      <!-- Przycisk -->
+      <button type="submit" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 w-full">Wyślij projekt</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("formProjektuj");
+    const podglad = document.getElementById("podgladProjektu");
+
+    // Aktualizuj podgląd
+    function aktualizujPodglad() {
+      const kolor = document.getElementById("kolorProduktu").value;
+      const napis = document.getElementById("napisProduktu").value;
+
+      podglad.innerHTML = `
+        <div style="width:100%; height:100%; background:${kolor}; display:flex; align-items:center; justify-content:center; flex-direction:column; color:#000; font-weight:bold; font-size:20px;">
+          <span>${document.getElementById("typProduktu").value || "Produkt"}</span>
+          <span>${napis || "Twój napis"}</span>
+        </div>
+      `;
+    }
+
+    document.getElementById("kolorProduktu").addEventListener("input", aktualizujPodglad);
+    document.getElementById("napisProduktu").addEventListener("input", aktualizujPodglad);
+    document.getElementById("typProduktu").addEventListener("change", aktualizujPodglad);
+
+    // Przed wysłaniem
+    form.addEventListener("submit", () => {
+      document.getElementById("hiddenTypProduktu").value = document.getElementById("typProduktu").value;
+      document.getElementById("hiddenKolorProduktu").value = document.getElementById("kolorProduktu").value;
+      document.getElementById("hiddenRozmiarProduktu").value = document.getElementById("rozmiarProduktu").value;
+      document.getElementById("hiddenNapisProduktu").value = document.getElementById("napisProduktu").value;
+    });
+
+    aktualizujPodglad(); // domyślny wygląd
+  </script>
+</section>  <!-- Reklama -->
 <section id="reklama" class="sekcja py-10 px-6 bg-white rounded shadow max-w-4xl mx-auto mb-12">
   <h2 class="text-3xl font-bold mb-4 text-center">Twoja reklama u nas</h2>
   <p class="mb-6 text-center">
