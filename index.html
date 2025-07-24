@@ -576,7 +576,110 @@
 
     aktualizujPodglad(); // domyślny wygląd
   </script>
-</section>  <!-- Reklama -->
+</section> 
+  <section id="marketplace" class="py-16 px-4 bg-gray-100">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-6">Marketplace – Targowisko dla Twórców</h2>
+    <p class="mb-8 text-gray-600">Zgłoś swój produkt do naszego marketplace. Miejsce dla indywidualnych twórców i małych biznesów. Płatności przez BLIK: <strong>573-939-925</strong>, z dopiskiem <strong>„marketplace”</strong>.</p>
+
+    <form id="marketplaceForm" class="bg-white p-6 rounded-lg shadow-md text-left">
+      <div class="mb-4">
+        <label for="name" class="block font-semibold mb-1">Imię i nazwisko / Nazwa twórcy</label>
+        <input type="text" id="name" name="name" required class="w-full border p-2 rounded">
+      </div>
+
+      <div class="mb-4">
+        <label for="email" class="block font-semibold mb-1">Email kontaktowy</label>
+        <input type="email" id="email" name="email" required class="w-full border p-2 rounded">
+      </div>
+
+      <div class="mb-4">
+        <label for="productName" class="block font-semibold mb-1">Nazwa produktu</label>
+        <input type="text" id="productName" name="productName" required class="w-full border p-2 rounded">
+      </div>
+
+      <div class="mb-4">
+        <label for="description" class="block font-semibold mb-1">Opis produktu</label>
+        <textarea id="description" name="description" rows="4" required class="w-full border p-2 rounded"></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="image" class="block font-semibold mb-1">Dodaj zdjęcie produktu</label>
+        <input type="file" id="image" name="image" accept="image/*" required class="w-full">
+      </div>
+
+      <div class="mb-4">
+        <label class="block font-semibold mb-1">Wybierz opcję czasową:</label>
+        <select id="duration" name="duration" class="w-full border p-2 rounded" required>
+          <option value="1">1 dzień – 10 zł</option>
+          <option value="7">1 tydzień – 50 zł</option>
+          <option value="30">1 miesiąc – 100 zł</option>
+        </select>
+      </div>
+
+      <div class="mb-6">
+        <p class="text-sm text-gray-600">Płatność BLIK: <strong>573-939-925</strong> z dopiskiem „marketplace”. Po zaksięgowaniu przelewu – zgłoszenie trafia do administratora.</p>
+      </div>
+
+      <button type="submit" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800">Wyślij zgłoszenie</button>
+    </form>
+  </div>
+</section>
+
+<!-- Sekcja administratora (widoczna tylko po zalogowaniu jako admin) -->
+<section id="adminPanel" class="hidden py-16 px-4 bg-white">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-2xl font-bold mb-4">Panel Administratora – Zgłoszenia Marketplace</h2>
+    <p class="text-gray-600 mb-6">Zalogowano jako: <strong>Administrator</strong></p>
+    <div id="marketplaceSubmissions" class="space-y-4">
+      <!-- Tutaj będą się pojawiać zgłoszenia -->
+    </div>
+  </div>
+</section>
+
+<script>
+  // Prosty login admina (hasło: Wojownik.03)
+  const password = prompt("Wprowadź hasło administratora:");
+  if (password === "Wojownik.03") {
+    document.getElementById("adminPanel").classList.remove("hidden");
+  }
+
+  // Wysłanie formularza marketplace (zapis do localStorage + wysyłka na e-mail – uproszczona)
+  document.getElementById("marketplaceForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const productName = document.getElementById("productName").value;
+    const description = document.getElementById("description").value;
+    const duration = document.getElementById("duration").value;
+
+    const submission = { name, email, productName, description, duration, time: new Date().toISOString() };
+
+    const submissions = JSON.parse(localStorage.getItem("marketplaceSubmissions") || "[]");
+    submissions.push(submission);
+    localStorage.setItem("marketplaceSubmissions", JSON.stringify(submissions));
+
+    alert("Zgłoszenie wysłane! Po zaksięgowaniu płatności administrator zatwierdzi publikację.");
+    this.reset();
+  });
+
+  // Wyświetlenie zgłoszeń w panelu administratora
+  function renderAdminSubmissions() {
+    const container = document.getElementById("marketplaceSubmissions");
+    const submissions = JSON.parse(localStorage.getItem("marketplaceSubmissions") || "[]");
+    if (!container || submissions.length === 0) return;
+
+    submissions.forEach((entry, index) => {
+      const div = document.createElement("div");
+      div.className = "p-4 border rounded bg-gray-50";
+      div.innerHTML = `<strong>${entry.name}</strong> – ${entry.productName}<br><em>${entry.email}</em><br>${entry.description}<br><span class='text-xs text-gray-500'>${entry.time}</span>`;
+      container.appendChild(div);
+    });
+  }
+
+  renderAdminSubmissions();
+</script>  <!-- Reklama -->
 <section id="reklama" class="sekcja py-10 px-6 bg-white rounded shadow max-w-4xl mx-auto mb-12">
   <h2 class="text-3xl font-bold mb-4 text-center">Twoja reklama u nas</h2>
   <p class="mb-6 text-center">
