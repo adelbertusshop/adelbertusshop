@@ -223,104 +223,257 @@
   <button onclick="pokazSekcje('kontakt')" id="btn-kontakt">Kontakt</button>
   <button onclick="pokazSekcje('regulamin')" id="btn-regulamin">Regulamin</button>
 </nav>
-  <!-- Sekcja sklepu -->
-<section id="sklep" class="py-8 px-4 max-w-7xl mx-auto">
-  <h2 class="text-3xl font-bold mb-8 text-center">Sklep</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    
+  <section id="sklep" class="py-8">
+  <h2 class="text-3xl font-bold mb-6 text-center">Sklep</h2>
+
+  <!-- Licznik koszyka -->
+  <div class="max-w-7xl mx-auto mb-4 text-right pr-4">
+    <button id="btn-open-cart" class="bg-green-600 text-white px-4 py-2 rounded">
+      Koszyk (<span id="cart-count">0</span>)
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
     <!-- Mężczyźni -->
-    <div class="border p-6 rounded-lg shadow">
-      <h3 class="text-xl font-semibold mb-4">Mężczyźni</h3>
-      <ul class="space-y-6">
-        <li class="flex items-center gap-4">
-          <img src="https://i.ibb.co/ycW7sF9t/Resizer-17510539315581.jpg" alt="Koszulka Symbol PI" class="w-20 max-w-full h-auto rounded" />
-          <span class="flex-1 text-lg font-medium">Koszulka – 99 zł</span>
-          <button class="ml-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 text-white rounded transition add-to-cart" data-name="Koszulka Symbol PI" data-price="99">Dodaj do koszyka</button>
+    <div class="border p-4 rounded-lg shadow">
+      <h3 class="text-xl font-semibold mb-2">Mężczyźni</h3>
+      <ul class="space-y-2">
+        <li>
+          Koszulka – 99 zł
+          <button class="ml-2 px-2 py-1 bg-blue-500 text-white rounded add-to-cart-btn" 
+                  data-name="Koszulka Mężczyźni" data-price="99">
+            Dodaj do koszyka
+          </button>
         </li>
-        <li class="flex items-center gap-4">
-          <img src="https://i.ibb.co/tPYbZV93/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Ufaj zanim..." class="w-20 h-auto rounded" />
-          <span class="flex-1 text-lg font-medium">Koszulka Ufaj zanim... – 99 zł</span>
-          <button class="ml-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 text-white rounded transition add-to-cart" data-name="Koszulka Ufaj zanim..." data-price="99">Dodaj do koszyka</button>
+        <li>
+          Bluza – 150 zł
+          <button class="ml-2 px-2 py-1 bg-blue-500 text-white rounded add-to-cart-btn" 
+                  data-name="Bluza Mężczyźni" data-price="150">
+            Dodaj do koszyka
+          </button>
         </li>
-        <!-- Dodaj resztę produktów mężczyzn analogicznie -->
+        <li>
+          Bluza z kapturem – 150 zł
+          <button class="ml-2 px-2 py-1 bg-blue-500 text-white rounded add-to-cart-btn" 
+                  data-name="Bluza z kapturem Mężczyźni" data-price="150">
+            Dodaj do koszyka
+          </button>
+        </li>
+        <li>
+          Czapeczka – 79 zł
+          <button class="ml-2 px-2 py-1 bg-blue-500 text-white rounded add-to-cart-btn" 
+                  data-name="Czapeczka Mężczyźni" data-price="79">
+            Dodaj do koszyka
+          </button>
+        </li>
       </ul>
     </div>
 
     <!-- Kobiety -->
-    <div class="border p-6 rounded-lg shadow">
-      <h3 class="text-xl font-semibold mb-4">Kobiety</h3>
-      <ul class="space-y-6">
-        <li class="flex items-center gap-4">
-          <img src="https://i.ibb.co/pYY87tg/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Adelbertus" class="w-20 max-w-full h-auto rounded" />
-          <span class="flex-1 text-lg font-medium">Koszulka Adelbertus – 99 zł</span>
-          <button class="ml-auto px-4 py-2 bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400 text-white rounded transition add-to-cart" data-name="Koszulka Adelbertus" data-price="99">Dodaj do koszyka</button>
+    <div class="border p-4 rounded-lg shadow">
+      <h3 class="text-xl font-semibold mb-2">Kobiety</h3>
+      <ul class="space-y-2">
+        <li>
+          Koszulka – 99 zł
+          <button class="ml-2 px-2 py-1 bg-pink-500 text-white rounded add-to-cart-btn" 
+                  data-name="Koszulka Kobiety" data-price="99">
+            Dodaj do koszyka
+          </button>
         </li>
-        <!-- Dodaj resztę produktów kobiet analogicznie -->
+        <li>
+          Bluza – 150 zł
+          <button class="ml-2 px-2 py-1 bg-pink-500 text-white rounded add-to-cart-btn" 
+                  data-name="Bluza Kobiety" data-price="150">
+            Dodaj do koszyka
+          </button>
+        </li>
+        <li>
+          Bluza z kapturem – 150 zł
+          <button class="ml-2 px-2 py-1 bg-pink-500 text-white rounded add-to-cart-btn" 
+                  data-name="Bluza z kapturem Kobiety" data-price="150">
+            Dodaj do koszyka
+          </button>
+        </li>
+        <li>
+          Czapeczka – 79 zł
+          <button class="ml-2 px-2 py-1 bg-pink-500 text-white rounded add-to-cart-btn" 
+                  data-name="Czapeczka Kobiety" data-price="79">
+            Dodaj do koszyka
+          </button>
+        </li>
       </ul>
     </div>
 
     <!-- Chłopcy -->
-    <div class="border p-6 rounded-lg shadow">
-      <h3 class="text-xl font-semibold mb-4">Chłopcy</h3>
-      <ul class="space-y-6">
-        <li class="flex items-center gap-4">
-          <img src="TU_WKLEJ_LINK_DO_OBRAZKA_KOSZULKI_CHLOPCY" alt="Koszulka Chłopcy" class="w-20 max-w-full h-auto rounded" />
-          <span class="flex-1 text-lg font-medium">Koszulka – 99 zł</span>
-          <button class="ml-auto px-4 py-2 bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 text-white rounded transition add-to-cart" data-name="Koszulka Chłopcy" data-price="99">Dodaj do koszyka</button>
+    <div class="border p-4 rounded-lg shadow">
+      <h3 class="text-xl font-semibold mb-2">Chłopcy</h3>
+      <ul class="space-y-2">
+        <li>
+          Koszulka – 99 zł
+          <button class="ml-2 px-2 py-1 bg-green-500 text-white rounded add-to-cart-btn" 
+                  data-name="Koszulka Chłopcy" data-price="99">
+            Dodaj do koszyka
+          </button>
         </li>
-        <!-- Reszta produktów chłopców -->
+        <li>
+          Bluza – 150 zł
+          <button class="ml-2 px-2 py-1 bg-green-500 text-white rounded add-to-cart-btn" 
+                  data-name="Bluza Chłopcy" data-price="150">
+            Dodaj do koszyka
+          </button>
+        </li>
+        <li>
+          Bluza z kapturem – 150 zł
+          <button class="ml-2 px-2 py-1 bg-green-500 text-white rounded add-to-cart-btn" 
+                  data-name="Bluza z kapturem Chłopcy" data-price="150">
+            Dodaj do koszyka
+          </button>
+        </li>
+        <li>
+          Czapeczka – 79 zł
+          <button class="ml-2 px-2 py-1 bg-green-500 text-white rounded add-to-cart-btn" 
+                  data-name="Czapeczka Chłopcy" data-price="79">
+            Dodaj do koszyka
+          </button>
+        </li>
       </ul>
     </div>
 
     <!-- Dziewczynki -->
-    <div class="border p-6 rounded-lg shadow">
-      <h3 class="text-xl font-semibold mb-4">Dziewczynki</h3>
-      <ul class="space-y-6">
-        <li class="flex items-center gap-4">
-          <img src="TU_WKLEJ_LINK_DO_OBRAZKA_KOSZULKI_DZIEWCZYNKI" alt="Koszulka Dziewczynki" class="w-20 max-w-full h-auto rounded" />
-          <span class="flex-1 text-lg font-medium">Koszulka – 99 zł</span>
-          <button class="ml-auto px-4 py-2 bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 text-white rounded transition add-to-cart" data-name="Koszulka Dziewczynki" data-price="99">Dodaj do koszyka</button>
+    <div class="border p-4 rounded-lg shadow">
+      <h3 class="text-xl font-semibold mb-2">Dziewczynki</h3>
+      <ul class="space-y-2">
+        <li>
+          Koszulka – 99 zł
+          <button class="ml-2 px-2 py-1 bg-purple-500 text-white rounded add-to-cart-btn" 
+                  data-name="Koszulka Dziewczynki" data-price="99">
+            Dodaj do koszyka
+          </button>
         </li>
-        <!-- Reszta produktów dziewczynek -->
+        <li>
+          Bluza – 150 zł
+          <button class="ml-2 px-2 py-1 bg-purple-500 text-white rounded add-to-cart-btn" 
+                  data-name="Bluza Dziewczynki" data-price="150">
+            Dodaj do koszyka
+          </button>
+        </li>
+        <li>
+          Bluza z kapturem – 150 zł
+          <button class="ml-2 px-2 py-1 bg-purple-500 text-white rounded add-to-cart-btn" 
+                  data-name="Bluza z kapturem Dziewczynki" data-price="150">
+            Dodaj do koszyka
+          </button>
+        </li>
+        <li>
+          Czapeczka – 79 zł
+          <button class="ml-2 px-2 py-1 bg-purple-500 text-white rounded add-to-cart-btn" 
+                  data-name="Czapeczka Dziewczynki" data-price="79">
+            Dodaj do koszyka
+          </button>
+        </li>
       </ul>
     </div>
 
+    <!-- Nowość (tajemniczy produkt) -->
+    <div class="border p-4 rounded-lg shadow bg-black text-white">
+      <h3 class="text-xl font-semibold mb-2">Nowość</h3>
+      <p class="italic mb-2">Tylko indywidualne zamówienie.</p>
+      <p class="mb-2">Limitowana koszulka, która zmienia się z Tobą.<br>Po kilku praniach odkrywa to, co ukryte.</p>
+      <p class="mb-2">Cena: 199 zł</p>
+      <p class="text-sm">Nadruki transformujące, druki specjalne (Reaktywne)</p>
+      <button class="mt-2 px-4 py-2 bg-red-600 text-white rounded add-to-cart-btn" 
+              data-name="Limitowana koszulka" data-price="199">
+        Dodaj do koszyka
+      </button>
+    </div>
+  </div>
+
+  <!-- Prosty panel koszyka -->
+  <div id="cart-panel" 
+       style="display:none; position:fixed; top:10%; right:10%; background:#fff; border:1px solid #ccc; padding:20px; width:300px; z-index:9999; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+    <h3>Twój koszyk</h3>
+    <ul id="cart-items" style="max-height:300px; overflow-y:auto; margin-bottom:10px;"></ul>
+    <p id="cart-total"></p>
+    <button id="close-cart" style="background:#444; color:#fff; padding:6px 10px; border:none; cursor:pointer;">Zamknij</button>
   </div>
 </section>
 
-<!-- Koszyk -->
-<section id="koszyk" class="max-w-7xl mx-auto mt-10 p-4 border rounded shadow">
-  <h3 class="text-2xl font-semibold mb-4">Twój koszyk</h3>
-  <ul id="koszyk-lista" class="space-y-2"></ul>
-  <p id="koszyk-suma" class="mt-4 font-bold">Suma: 0 zł</p>
-</section>
-
 <script>
-  const koszykLista = document.getElementById('koszyk-lista');
-  const koszykSuma = document.getElementById('koszyk-suma');
-  let koszyk = [];
+  // Pobierz elementy
+  const cartCountEl = document.getElementById('cart-count');
+  const cartItemsEl = document.getElementById('cart-items');
+  const cartTotalEl = document.getElementById('cart-total');
+  const cartPanel = document.getElementById('cart-panel');
+  const btnOpenCart = document.getElementById('btn-open-cart');
+  const btnCloseCart = document.getElementById('close-cart');
 
-  function aktualizujKoszyk() {
-    koszykLista.innerHTML = '';
-    let suma = 0;
-    koszyk.forEach((produkt, index) => {
-      suma += produkt.price;
+  // Inicjalizacja koszyka
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  // Funkcja aktualizacji licznika i panelu koszyka
+  function updateCartUI() {
+    cartCountEl.textContent = cart.length;
+
+    // Wyczyść listę
+    cartItemsEl.innerHTML = '';
+
+    // Dodaj produkty do listy
+    let total = 0;
+    cart.forEach((item, i) => {
+      total += Number(item.price);
       const li = document.createElement('li');
-      li.textContent = `${produkt.name} - ${produkt.price} zł`;
-      koszykLista.appendChild(li);
+      li.textContent = `${item.name} — ${item.price} zł`;
+      // Dodaj przycisk usuwania z koszyka
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = 'Usuń';
+      removeBtn.style.marginLeft = '10px';
+      removeBtn.style.background = '#e00';
+      removeBtn.style.color = '#fff';
+      removeBtn.style.border = 'none';
+      removeBtn.style.padding = '2px 6px';
+      removeBtn.style.cursor = 'pointer';
+      removeBtn.onclick = () => {
+        cart.splice(i, 1);
+        saveCart();
+        updateCartUI();
+      };
+      li.appendChild(removeBtn);
+      cartItemsEl.appendChild(li);
     });
-    koszykSuma.textContent = `Suma: ${suma} zł`;
+
+    cartTotalEl.textContent = `Suma: ${total} zł`;
   }
 
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', () => {
-      const name = button.getAttribute('data-name');
-      const price = parseInt(button.getAttribute('data-price'));
-      koszyk.push({name, price});
-      aktualizujKoszyk();
+  // Zapis koszyka w localStorage
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  // Obsługa kliknięcia "Dodaj do koszyka"
+  document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.getAttribute('data-name');
+      const price = btn.getAttribute('data-price');
+      cart.push({ name, price });
+      saveCart();
+      updateCartUI();
+      alert(`${name} dodano do koszyka!`);
     });
   });
-</script>  <!-- Reklama -->
+
+  // Otwarcie panelu koszyka
+  btnOpenCart.addEventListener('click', () => {
+    cartPanel.style.display = 'block';
+  });
+
+  // Zamknięcie panelu koszyka
+  btnCloseCart.addEventListener('click', () => {
+    cartPanel.style.display = 'none';
+  });
+
+  // Inicjalizacja UI przy ładowaniu strony
+  updateCartUI();
+</script> <!-- Reklama -->
 <section id="reklama" class="sekcja py-10 px-6 bg-white rounded shadow max-w-4xl mx-auto mb-12">
   <h2 class="text-3xl font-bold mb-4 text-center">Twoja reklama u nas</h2>
   <p class="mb-6 text-center">
