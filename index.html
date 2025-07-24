@@ -474,7 +474,7 @@
   // Inicjalizacja UI przy ładowaniu strony
   updateCartUI();
 </script>
-  <section id="projektuj" class="py-16 bg-white">
+ <section id="projektuj" class="py-16 bg-white">
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-6 text-center">Zaprojektuj swój produkt</h2>
 
@@ -576,7 +576,7 @@
 
     aktualizujPodglad(); // domyślny wygląd
   </script>
-</section> 
+</section>
   <section id="marketplace" class="py-16 px-4 bg-gray-100">
   <div class="max-w-4xl mx-auto text-center">
     <h2 class="text-3xl font-bold mb-6">Marketplace – Targowisko dla Twórców</h2>
@@ -670,7 +670,7 @@
     const submissions = JSON.parse(localStorage.getItem("marketplaceSubmissions") || "[]");
     if (!container || submissions.length === 0) return;
 
-    submissions.forEach((entry, index) => {
+    submissions.forEach((entry) => {
       const div = document.createElement("div");
       div.className = "p-4 border rounded bg-gray-50";
       div.innerHTML = `<strong>${entry.name}</strong> – ${entry.productName}<br><em>${entry.email}</em><br>${entry.description}<br><span class='text-xs text-gray-500'>${entry.time}</span>`;
