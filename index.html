@@ -577,171 +577,131 @@
     aktualizujPodglad(); // domyślny wygląd
   </script>
 </section>
-  <section id="marketplace" class="py-16 px-4 bg-gray-100">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-3xl font-bold mb-6">Marketplace – Targowisko dla Twórców</h2>
-    <p class="mb-8 text-gray-600">Zgłoś swój produkt do naszego marketplace. Miejsce dla indywidualnych twórców i małych biznesów. Płatności przez BLIK: <strong>573-939-925</strong>, z dopiskiem <strong>„marketplace”</strong>.</p>
+   <section id="marketplace" class="p-6">
+  <h2 class="text-2xl font-bold mb-4">Marketplace – Targowisko dla Twórców</h2>
+  <p class="mb-4">Zgłoś swój produkt do naszego marketplace. Miejsce dla indywidualnych twórców i małych biznesów. Płatności przez BLIK: <strong>573-939-925</strong>, z dopiskiem <strong>„marketplace”</strong>.</p>
 
-    <form id="marketplaceForm" class="bg-white p-6 rounded-lg shadow-md text-left">
-      <div class="mb-4">
-        <label for="name" class="block font-semibold mb-1">Imię i nazwisko / Nazwa twórcy</label>
-        <input type="text" id="name" name="name" required class="w-full border p-2 rounded">
-      </div>
-
-      <div class="mb-4">
-        <label for="email" class="block font-semibold mb-1">Email kontaktowy</label>
-        <input type="email" id="email" name="email" required class="w-full border p-2 rounded">
-      </div>
-
-      <div class="mb-4">
-        <label for="productName" class="block font-semibold mb-1">Nazwa produktu</label>
-        <input type="text" id="productName" name="productName" required class="w-full border p-2 rounded">
-      </div>
-
-      <div class="mb-4">
-        <label for="description" class="block font-semibold mb-1">Opis produktu</label>
-        <textarea id="description" name="description" rows="4" required class="w-full border p-2 rounded"></textarea>
-      </div>
-
-      <div class="mb-4">
-        <label for="image" class="block font-semibold mb-1">Dodaj zdjęcie produktu</label>
-        <input type="file" id="image" name="image" accept="image/*" required class="w-full">
-      </div>
-
-      <div class="mb-4">
-        <label class="block font-semibold mb-1">Wybierz opcję czasową:</label>
-        <select id="duration" name="duration" class="w-full border p-2 rounded" required>
-          <option value="1">1 dzień – 10 zł</option>
-          <option value="7">1 tydzień – 50 zł</option>
-          <option value="30">1 miesiąc – 100 zł</option>
-        </select>
-      </div>
-
-      <div class="mb-6">
-        <p class="text-sm text-gray-600">Płatność BLIK: <strong>573-939-925</strong> z dopiskiem „marketplace”. Po zaksięgowaniu przelewu – zgłoszenie trafia do administratora.</p>
-      </div>
-
-      <button type="submit" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800">Wyślij zgłoszenie</button>
-    </form>
-
-    <!-- Sekcja logowania administratora -->
-    <div class="mt-12 max-w-md mx-auto bg-white p-6 rounded-lg shadow-md text-left border">
-      <h3 class="text-xl font-semibold mb-4 text-center">Logowanie Administratora</h3>
-      <label for="adminPassword" class="block font-semibold mb-1">Hasło:</label>
-      <input type="password" id="adminPassword" class="w-full border p-2 rounded mb-4" placeholder="Wpisz hasło administratora">
-      <button id="adminLoginBtn" class="w-full bg-gray-800 text-white py-2 rounded hover:bg-gray-700">Zaloguj</button>
-      <p id="adminError" class="text-red-600 mt-2 hidden text-center">Niepoprawne hasło!</p>
-    </div>
-  </div>
-</section>
-
-<!-- Sekcja administratora (ukryta domyślnie) -->
-<section id="adminPanel" class="hidden py-16 px-4 bg-white">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-2xl font-bold mb-4">Panel Administratora – Zgłoszenia Marketplace</h2>
-    <p class="text-gray-600 mb-6">Zalogowano jako: <strong>Administrator</strong></p>
-    <div id="marketplaceSubmissions" class="space-y-4">
-      <!-- Tutaj będą się pojawiać zgłoszenia -->
-    </div>
-  </div>
-</section>
-
-<script>
-  const adminPassword = "Wojownik.03";
-  const adminLoginBtn = document.getElementById("adminLoginBtn");
-  const adminPasswordInput = document.getElementById("adminPassword");
-  const adminPanel = document.getElementById("adminPanel");
-  const adminError = document.getElementById("adminError");
-
-  adminLoginBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const enteredPassword = adminPasswordInput.value;
-
-    if (enteredPassword === adminPassword) {
-      adminPanel.classList.remove("hidden");
-      adminError.classList.add("hidden");
-      adminPasswordInput.value = "";
-      adminPasswordInput.disabled = true;
-      adminLoginBtn.disabled = true;
-    } else {
-      adminError.classList.remove("hidden");
-    }
-  });
-
-  // Wysłanie formularza marketplace (zapis do localStorage + uproszczona obsługa)
-  document.getElementById("marketplaceForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const productName = document.getElementById("productName").value;
-    const description = document.getElementById("description").value;
-    const duration = document.getElementById("duration").value;
-
-    const submission = { name, email, productName, description, duration, time: new Date().toISOString() };
-
-    const submissions = JSON.parse(localStorage.getItem("marketplaceSubmissions") || "[]");
-    submissions.push(submission);
-    localStorage.setItem("marketplaceSubmissions", JSON.stringify(submissions));
-
-    alert("Zgłoszenie wysłane! Po zaksięgowaniu płatności administrator zatwierdzi publikację.");
-    this.reset();
-  });
-
-  // Wyświetlanie zgłoszeń w panelu administratora
-  function renderAdminSubmissions() {
-    const container = document.getElementById("marketplaceSubmissions");
-    const submissions = JSON.parse(localStorage.getItem("marketplaceSubmissions") || "[]");
-    if (!container || submissions.length === 0) return;
-
-    container.innerHTML = ""; // Czyścimy przed dodaniem
-
-    submissions.forEach((entry) => {
-      const div = document.createElement("div");
-      div.className = "p-4 border rounded bg-gray-50";
-      div.innerHTML = `<strong>${entry.name}</strong> – ${entry.productName}<br><em>${entry.email}</em><br>${entry.description}<br><span class='text-xs text-gray-500'>${entry.time}</span>`;
-      container.appendChild(div);
-    });
-  }
-
-  renderAdminSubmissions();
-</script>  <!-- Reklama -->
-<section id="reklama" class="sekcja py-10 px-6 bg-white rounded shadow max-w-4xl mx-auto mb-12">
-  <h2 class="text-3xl font-bold mb-4 text-center">Twoja reklama u nas</h2>
-  <p class="mb-6 text-center">
-    Zarabiamy na rozwój, Ty zyskujesz widoczność. Zareklamuj się u nas już dziś!<br>
-    Zgłoszenia: <strong>mielniczukgrzegosz74@gmail.com</strong>, wpłaty BLIK: <strong>573-939-925</strong> z dopiskiem <em>"Reklama"</em>.
-  </p>
-
-  <div id="reklamyContainer" class="reklamy-container mb-6 p-4 border rounded min-h-[100px] text-center"></div>
-
-  <form id="formularzReklamy" class="reklama-formularz max-w-md mx-auto bg-gray-100 p-6 rounded shadow mb-6">
-    <h3 class="text-xl font-semibold mb-4">Formularz zgłoszeniowy</h3>
-    <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy" required class="w-full p-2 mb-3 border rounded">
-    <input type="url" id="linkReklamy" placeholder="Link do Twojej strony" required class="w-full p-2 mb-3 border rounded">
-    <input type="date" id="dataZakonczenia" placeholder="Data zakończenia reklamy" required class="w-full p-2 mb-3 border rounded">
-    <textarea id="opisReklamy" placeholder="Opis reklamy (widoczny pod ikoną)" required class="w-full p-2 mb-4 border rounded"></textarea>
-    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Zgłoś reklamę</button>
+  <form id="marketplaceForm" class="grid gap-4 mb-6">
+    <input type="text" placeholder="Imię i nazwisko / Nazwa twórcy" class="p-2 border rounded" required />
+    <input type="email" placeholder="Email kontaktowy" class="p-2 border rounded" required />
+    <input type="text" placeholder="Nazwa produktu" class="p-2 border rounded" required />
+    <textarea placeholder="Opis produktu" class="p-2 border rounded" required></textarea>
+    <input type="file" class="p-2 border rounded" />
+    <select class="p-2 border rounded" required>
+      <option value="">Wybierz opcję czasową</option>
+      <option>1 dzień – 10 zł</option>
+      <option>1 tydzień – 50 zł</option>
+      <option>1 miesiąc – 100 zł</option>
+    </select>
+    <p class="text-sm">Płatność BLIK: <strong>573-939-925</strong> z dopiskiem „marketplace”. Po zaksięgowaniu przelewu – zgłoszenie trafia do administratora.</p>
+    <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Wyślij zgłoszenie</button>
   </form>
 
-  <p class="text-center mb-8 font-semibold">
-    <strong>Cennik:</strong><br>
-    Dzień: 10 zł | Tydzień: 50 zł | Miesiąc: 150 zł
-  </p>
-
-  <div class="admin-panel max-w-md mx-auto p-4 border-dashed border-2 border-gray-400 rounded" style="display:none" id="adminPanel">
-    <h3 class="text-lg font-bold mb-3">Panel Administratora</h3>
-    <p class="mb-3">Zalogowano jako <strong>Administrator</strong></p>
-    <ul id="listaReklam" class="list-disc pl-5 space-y-2"></ul>
+  <!-- Logowanie administratora -->
+  <div id="adminLogin" class="mb-4">
+    <h3 class="text-xl font-bold mb-2">Logowanie Administratora</h3>
+    <input type="password" id="adminPassword" placeholder="Hasło" class="p-2 border rounded" />
+    <button onclick="loginAdmin()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ml-2">Zaloguj</button>
+    <p id="loginError" class="text-red-600 mt-2 hidden">Niepoprawne hasło!</p>
   </div>
 
-  <div class="admin-login max-w-md mx-auto flex gap-3 mt-4">
-    <input type="password" id="hasloAdmina" placeholder="Hasło administratora" class="flex-grow p-2 border rounded">
-    <button onclick="zalogujAdmina()" class="bg-green-600 text-white px-4 rounded hover:bg-green-700 transition">Zaloguj</button>
+  <!-- Panel administratora -->
+  <div id="adminPanel" class="hidden">
+    <div class="flex justify-between items-center mb-2">
+      <h3 class="text-xl font-bold">Panel Administratora – Zgłoszenia Marketplace</h3>
+      <button onclick="logoutAdmin()" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Wyloguj</button>
+    </div>
+    <p class="text-green-700 font-semibold mb-4">Zalogowano jako: <strong>Administrator</strong></p>
+    <p>Tu będzie miejsce na zarządzanie zgłoszeniami.</p>
   </div>
-</section>
 
-<!-- Zbiórka -->
+  <script>
+    function loginAdmin() {
+      const password = document.getElementById('adminPassword').value;
+      const error = document.getElementById('loginError');
+      const panel = document.getElementById('adminPanel');
+      const loginForm = document.getElementById('adminLogin');
+
+      if (password === 'Wojownil.03') {
+        error.classList.add('hidden');
+        panel.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+        document.getElementById('adminPassword').value = '';
+      } else {
+        error.classList.remove('hidden');
+      }
+    }
+
+    function logoutAdmin() {
+      const panel = document.getElementById('adminPanel');
+      const loginForm = document.getElementById('adminLogin');
+      const passwordInput = document.getElementById('adminPassword');
+
+      panel.classList.add('hidden');
+      loginForm.classList.remove('hidden');
+      passwordInput.value = '';
+    }
+  </script>
+</section>!-- Reklama -->
+<section id="reklama" class="p-6">
+  <h2 class="text-2xl font-bold mb-4">Reklama – Współpraca i Promocja</h2>
+  <p class="mb-4">Chcesz, aby Twoja marka pojawiła się na naszej stronie? Skontaktuj się z nami i opowiedz o swoim projekcie. Współpracujemy z twórcami, firmami i startupami.</p>
+
+  <form id="reklamaForm" class="grid gap-4 mb-6">
+    <input type="text" placeholder="Imię i nazwisko / Firma" class="p-2 border rounded" required />
+    <input type="email" placeholder="Email kontaktowy" class="p-2 border rounded" required />
+    <textarea placeholder="Opis projektu / Współpracy" class="p-2 border rounded" required></textarea>
+    <input type="file" class="p-2 border rounded" />
+    <p class="text-sm">Płatność BLIK: <strong>573-939-925</strong> z dopiskiem „reklama”. Po zaksięgowaniu przelewu – zgłoszenie trafia do administratora.</p>
+    <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Wyślij zgłoszenie</button>
+  </form>
+
+  <!-- Logowanie administratora -->
+  <div id="reklamaAdminLogin" class="mb-4">
+    <h3 class="text-xl font-bold mb-2">Logowanie Administratora</h3>
+    <input type="password" id="reklamaAdminPassword" placeholder="Hasło" class="p-2 border rounded" />
+    <button onclick="loginReklamaAdmin()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ml-2">Zaloguj</button>
+    <p id="reklamaLoginError" class="text-red-600 mt-2 hidden">Niepoprawne hasło!</p>
+  </div>
+
+  <!-- Panel administratora reklamy -->
+  <div id="reklamaAdminPanel" class="hidden">
+    <div class="flex justify-between items-center mb-2">
+      <h3 class="text-xl font-bold">Panel Administratora – Reklama</h3>
+      <button onclick="logoutReklamaAdmin()" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Wyloguj</button>
+    </div>
+    <p class="text-green-700 font-semibold mb-4">Zalogowano jako: <strong>Administrator</strong></p>
+    <p>Tu będzie miejsce na zarządzanie zgłoszeniami reklamowymi.</p>
+  </div>
+
+  <script>
+    function loginReklamaAdmin() {
+      const password = document.getElementById('reklamaAdminPassword').value;
+      const error = document.getElementById('reklamaLoginError');
+      const panel = document.getElementById('reklamaAdminPanel');
+      const loginForm = document.getElementById('reklamaAdminLogin');
+
+      if (password === 'Wojownil.03') {
+        error.classList.add('hidden');
+        panel.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+        document.getElementById('reklamaAdminPassword').value = '';
+      } else {
+        error.classList.remove('hidden');
+      }
+    }
+
+    function logoutReklamaAdmin() {
+      const panel = document.getElementById('reklamaAdminPanel');
+      const loginForm = document.getElementById('reklamaAdminLogin');
+      const passwordInput = document.getElementById('reklamaAdminPassword');
+
+      panel.classList.add('hidden');
+      loginForm.classList.remove('hidden');
+      passwordInput.value = '';
+    }
+  </script>
+</section><!-- Zbiórka -->
 <section id="zbiorka" class="sekcja bg-yellow-50 py-12 px-6 rounded-xl shadow-md max-w-4xl mx-auto mb-12">
   <h2 class="text-3xl font-bold text-center text-yellow-900 mb-6">Zbiórka – Pomóż dzieciom z domu dziecka</h2>
   <p class="text-lg text-center text-yellow-800 mb-4 max-w-3xl mx-auto">
