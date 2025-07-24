@@ -983,62 +983,91 @@
 </script>
 
 <section id="zamowienia" class="sekcja py-10 px-4 max-w-4xl mx-auto bg-white rounded shadow">
-  <h2 class="text-3xl font-bold mb-6 text-center">Zamówienia</h2>
-  <div id="formularzZamowienia" style="padding: 2rem; background: #f9f9f9; border-top: 2px solid #ccc;">
-    <h3 class="mb-4 font-semibold">Uzupełnij dane, aby zrealizować zamówienie:</h3>
-    <form onsubmit="wyslijZamowienie(event)" class="space-y-4">
+  <h2 class="text-3xl font-bold mb-6 text-center text-black">Zamówienia</h2>
+  <div id="formularzZamowienia" class="p-8 bg-gray-100 border-t-2 border-gray-300 rounded">
+    <h3 class="mb-4 font-semibold text-gray-800">Uzupełnij dane, aby zrealizować zamówienie:</h3>
+    <form id="formZamowienia" class="space-y-4 text-black">
       <label class="block">
-        Imię i nazwisko:<br />
-        <input type="text" id="zamImie" required class="w-full border rounded p-2" />
+        <span class="font-medium">Imię i nazwisko:</span><br />
+        <input type="text" name="Imie" required class="w-full border rounded p-2 text-black" />
       </label>
       <label class="block">
-        Email:<br />
-        <input type="email" id="zamEmail" required class="w-full border rounded p-2" />
+        <span class="font-medium">Email:</span><br />
+        <input type="email" name="Email" required class="w-full border rounded p-2 text-black" />
       </label>
       <label class="block">
-        Numer telefonu:<br />
-        <input type="tel" id="zamTelefon" class="w-full border rounded p-2" />
+        <span class="font-medium">Numer telefonu:</span><br />
+        <input type="tel" name="Telefon" class="w-full border rounded p-2 text-black" />
       </label>
       <label class="block">
-        Dodatkowe informacje / Uwagi:<br />
-        <textarea id="zamUwagi" rows="4" class="w-full border rounded p-2"></textarea>
+        <span class="font-medium">Dodatkowe informacje / Uwagi:</span><br />
+        <textarea name="Uwagi" rows="4" class="w-full border rounded p-2 text-black"></textarea>
       </label>
       <label class="block">
-        Dodaj grafikę (opcjonalnie):<br />
-        <input type="file" id="zamPlik" accept="image/*" />
+        <span class="font-medium">Dodaj grafikę (opcjonalnie):</span><br />
+        <input type="file" name="Plik" accept="image/*" class="text-black" />
       </label>
 
-      <h3 class="mt-6 mb-2 font-semibold">Podsumowanie koszyka:</h3>
-      <ul id="podsumowanieKoszyka" class="mb-4 list-disc list-inside"></ul>
-      <p><strong>Razem: <span id="sumaZamowienia">0.00 zł</span></strong></p>
+      <h3 class="mt-6 mb-2 font-semibold text-gray-800">Podsumowanie koszyka:</h3>
+      <ul id="podsumowanieKoszyka" class="mb-4 list-disc list-inside text-black"></ul>
+      <input type="hidden" name="Koszyk" id="ukrytyKoszyk" />
+      <p class="text-black"><strong>Razem: <span id="sumaZamowienia">0.00 zł</span></strong></p>
 
       <div class="flex gap-4 mt-6">
         <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">Zamawiam wszystko</button>
-        <button type="button" onclick="anulujZamowienie()" class="bg-gray-400 text-black px-6 py-2 rounded hover:bg-gray-500 transition">Anuluj</button>
+        <button type="button" onclick="anulujZamowienie()" class="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600 transition">Anuluj</button>
       </div>
     </form>
   </div>
 </section>
 
 <script>
-  function wyslijZamowienie(event) {
-    event.preventDefault();
-    // Tu możesz dodać walidację, wysyłanie formularza na backend lub maila itd.
-    alert('Dziękujemy za złożenie zamówienia! Skontaktujemy się wkrótce.');
-    event.target.reset();
-    // Możesz też wyczyścić podsumowanie koszyka
-    document.getElementById('podsumowanieKoszyka').innerHTML = '';
-    document.getElementById('sumaZamowienia').textContent = '0.00 zł';
-  }
+  const form = document.getElementById('formZamowienia');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Wygeneruj dane koszyka jako tekst
+    const koszyk = document.getElementById('podsumowanieKoszyka');
+    let koszykTekst = '';
+    koszyk.querySelectorAll('li').forEach(item => {
+      koszykTekst += '- ' + item.textContent + '\n';
+    });
+
+    // Ustaw wartość ukrytego inputa z koszykiem
+    document.getElementById('ukrytyKoszyk').value = koszykTekst;
+
+    const formData = new FormData(form);
+
+    fetch('https://formspree.io/f/yourformid', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('Dziękujemy za złożenie zamówienia! Sprawdź maila.');
+        form.reset();
+        document.getElementById('podsumowanieKoszyka').innerHTML = '';
+        document.getElementById('sumaZamowienia').textContent = '0.00 zł';
+      } else {
+        alert('Wystąpił błąd podczas wysyłania. Spróbuj ponownie.');
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      alert('Błąd połączenia z serwerem.');
+    });
+  });
 
   function anulujZamowienie() {
-    const form = document.querySelector('#formularzZamowienia form');
     form.reset();
     document.getElementById('podsumowanieKoszyka').innerHTML = '';
     document.getElementById('sumaZamowienia').textContent = '0.00 zł';
   }
 </script>
-
 <section id="artysta" class="sekcja py-10 px-4 max-w-3xl mx-auto">
   <h2 class="text-3xl font-bold mb-6 text-center">Artysta</h2>
   <div class="text-left leading-relaxed space-y-4">
