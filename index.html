@@ -474,18 +474,16 @@
   // Inicjalizacja UI przy ładowaniu strony
   updateCartUI();
 </script>
- <section id="projektuj" class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4">
+<section id="projektuj" class="py-16 bg-white">
+  <div class="container mx-auto max-w-6xl px-4">
     <h2 class="text-3xl font-bold mb-6 text-center">Zaprojektuj swój produkt</h2>
 
     <form id="formProjektuj" class="space-y-6" enctype="multipart/form-data" method="POST" action="wyslij_projekt.php">
-      <!-- E-mail klienta -->
       <div>
         <label class="block font-semibold mb-1">Twój e-mail:</label>
         <input type="email" name="emailKlienta" required class="w-full border rounded p-2" placeholder="np. jan@wp.pl">
       </div>
 
-      <!-- Typ produktu -->
       <div>
         <label class="block font-semibold mb-1">Wybierz produkt:</label>
         <select id="typProduktu" class="w-full border rounded p-2" required>
@@ -496,13 +494,11 @@
         </select>
       </div>
 
-      <!-- Kolor -->
       <div>
         <label class="block font-semibold mb-1">Kolor:</label>
         <input type="color" id="kolorProduktu" class="w-16 h-10 border rounded">
       </div>
 
-      <!-- Rozmiar -->
       <div>
         <label class="block font-semibold mb-1">Rozmiar:</label>
         <select id="rozmiarProduktu" class="w-full border rounded p-2" required>
@@ -514,19 +510,16 @@
         </select>
       </div>
 
-      <!-- Napis -->
       <div>
         <label class="block font-semibold mb-1">Wpisz napis na produkcie:</label>
         <input type="text" id="napisProduktu" class="w-full border rounded p-2" maxlength="40" placeholder="Twoje hasło, slogan...">
       </div>
 
-      <!-- Upload grafiki -->
       <div>
         <label class="block font-semibold mb-1">Dodaj grafikę:</label>
         <input type="file" name="grafikaProduktu" id="grafikaProduktu" accept="image/*" required class="w-full border p-2">
       </div>
 
-      <!-- Podgląd projektu -->
       <div class="border rounded p-4 bg-gray-50 text-center">
         <p class="font-semibold mb-2">Podgląd projektu:</p>
         <div id="podgladProjektu" class="w-full h-64 border border-dashed rounded bg-white flex items-center justify-center text-gray-500">
@@ -534,13 +527,11 @@
         </div>
       </div>
 
-      <!-- Pola ukryte do przesłania -->
       <input type="hidden" name="typProduktu" id="hiddenTypProduktu">
       <input type="hidden" name="kolorProduktu" id="hiddenKolorProduktu">
       <input type="hidden" name="rozmiarProduktu" id="hiddenRozmiarProduktu">
       <input type="hidden" name="napisProduktu" id="hiddenNapisProduktu">
 
-      <!-- Przycisk -->
       <button type="submit" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 w-full">Wyślij projekt</button>
     </form>
   </div>
@@ -549,24 +540,22 @@
     const form = document.getElementById("formProjektuj");
     const podglad = document.getElementById("podgladProjektu");
 
-    // Aktualizuj podgląd
     function aktualizujPodglad() {
       const kolor = document.getElementById("kolorProduktu").value;
       const napis = document.getElementById("napisProduktu").value;
 
-      podglad.innerHTML = `
-        <div style="width:100%; height:100%; background:${kolor}; display:flex; align-items:center; justify-content:center; flex-direction:column; color:#000; font-weight:bold; font-size:20px;">
-          <span>${document.getElementById("typProduktu").value || "Produkt"}</span>
-          <span>${napis || "Twój napis"}</span>
+      podglad.innerHTML = \`
+        <div style="width:100%; height:100%; background:\${kolor}; display:flex; align-items:center; justify-content:center; flex-direction:column; color:#000; font-weight:bold; font-size:20px;">
+          <span>\${document.getElementById("typProduktu").value || "Produkt"}</span>
+          <span>\${napis || "Twój napis"}</span>
         </div>
-      `;
+      \`;
     }
 
     document.getElementById("kolorProduktu").addEventListener("input", aktualizujPodglad);
     document.getElementById("napisProduktu").addEventListener("input", aktualizujPodglad);
     document.getElementById("typProduktu").addEventListener("change", aktualizujPodglad);
 
-    // Przed wysłaniem
     form.addEventListener("submit", () => {
       document.getElementById("hiddenTypProduktu").value = document.getElementById("typProduktu").value;
       document.getElementById("hiddenKolorProduktu").value = document.getElementById("kolorProduktu").value;
@@ -574,45 +563,52 @@
       document.getElementById("hiddenNapisProduktu").value = document.getElementById("napisProduktu").value;
     });
 
-    aktualizujPodglad(); // domyślny wygląd
+    aktualizujPodglad();
   </script>
-</section>
-   <section id="marketplace" class="p-6">
-  <h2 class="text-2xl font-bold mb-4">Marketplace – Targowisko dla Twórców</h2>
-  <p class="mb-4">Zgłoś swój produkt do naszego marketplace. Miejsce dla indywidualnych twórców i małych biznesów. Płatności przez BLIK: <strong>573-939-925</strong>, z dopiskiem <strong>„marketplace”</strong>.</p>
+</section> <section id="marketplace" class="py-16 bg-white border-t border-gray-200">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-2xl font-bold mb-4">Marketplace – Targowisko dla Twórców</h2>
+    <p class="mb-4">
+      Zgłoś swój produkt do naszego marketplace. Miejsce dla indywidualnych twórców i małych biznesów.
+      Płatności przez BLIK: <strong>573-939-925</strong>, z dopiskiem <strong>„marketplace”</strong>.
+    </p>
 
-  <form id="marketplaceForm" class="grid gap-4 mb-6">
-    <input type="text" placeholder="Imię i nazwisko / Nazwa twórcy" class="p-2 border rounded" required />
-    <input type="email" placeholder="Email kontaktowy" class="p-2 border rounded" required />
-    <input type="text" placeholder="Nazwa produktu" class="p-2 border rounded" required />
-    <textarea placeholder="Opis produktu" class="p-2 border rounded" required></textarea>
-    <input type="file" class="p-2 border rounded" />
-    <select class="p-2 border rounded" required>
-      <option value="">Wybierz opcję czasową</option>
-      <option>1 dzień – 10 zł</option>
-      <option>1 tydzień – 50 zł</option>
-      <option>1 miesiąc – 100 zł</option>
-    </select>
-    <p class="text-sm">Płatność BLIK: <strong>573-939-925</strong> z dopiskiem „marketplace”. Po zaksięgowaniu przelewu – zgłoszenie trafia do administratora.</p>
-    <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Wyślij zgłoszenie</button>
-  </form>
+    <form id="marketplaceForm" class="grid gap-4 mb-6">
+      <input type="text" placeholder="Imię i nazwisko / Nazwa twórcy" class="p-2 border rounded" required />
+      <input type="email" placeholder="Email kontaktowy" class="p-2 border rounded" required />
+      <input type="text" placeholder="Nazwa produktu" class="p-2 border rounded" required />
+      <textarea placeholder="Opis produktu" class="p-2 border rounded" required></textarea>
+      <input type="file" class="p-2 border rounded" />
+      <select class="p-2 border rounded" required>
+        <option value="">Wybierz opcję czasową</option>
+        <option>1 dzień – 10 zł</option>
+        <option>1 tydzień – 50 zł</option>
+        <option>1 miesiąc – 100 zł</option>
+      </select>
+      <p class="text-sm">
+        Płatność BLIK: <strong>573-939-925</strong> z dopiskiem „marketplace”.
+        Po zaksięgowaniu przelewu – zgłoszenie trafia do administratora.
+      </p>
+      <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Wyślij zgłoszenie</button>
+    </form>
 
-  <!-- Logowanie administratora -->
-  <div id="adminLogin" class="mb-4">
-    <h3 class="text-xl font-bold mb-2">Logowanie Administratora</h3>
-    <input type="password" id="adminPassword" placeholder="Hasło" class="p-2 border rounded" />
-    <button onclick="loginAdmin()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ml-2">Zaloguj</button>
-    <p id="loginError" class="text-red-600 mt-2 hidden">Niepoprawne hasło!</p>
-  </div>
-
-  <!-- Panel administratora -->
-  <div id="adminPanel" class="hidden">
-    <div class="flex justify-between items-center mb-2">
-      <h3 class="text-xl font-bold">Panel Administratora – Zgłoszenia Marketplace</h3>
-      <button onclick="logoutAdmin()" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Wyloguj</button>
+    <!-- Logowanie administratora -->
+    <div id="adminLogin" class="mb-4">
+      <h3 class="text-xl font-bold mb-2">Logowanie Administratora</h3>
+      <input type="password" id="adminPassword" placeholder="Hasło" class="p-2 border rounded" />
+      <button onclick="loginAdmin()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ml-2">Zaloguj</button>
+      <p id="loginError" class="text-red-600 mt-2 hidden">Niepoprawne hasło!</p>
     </div>
-    <p class="text-green-700 font-semibold mb-4">Zalogowano jako: <strong>Administrator</strong></p>
-    <p>Tu będzie miejsce na zarządzanie zgłoszeniami.</p>
+
+    <!-- Panel administratora -->
+    <div id="adminPanel" class="hidden">
+      <div class="flex justify-between items-center mb-2">
+        <h3 class="text-xl font-bold">Panel Administratora – Zgłoszenia Marketplace</h3>
+        <button onclick="logoutAdmin()" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Wyloguj</button>
+      </div>
+      <p class="text-green-700 font-semibold mb-4">Zalogowano jako: <strong>Administrator</strong></p>
+      <p>Tu będzie miejsce na zarządzanie zgłoszeniami.</p>
+    </div>
   </div>
 
   <script>
@@ -642,8 +638,7 @@
       passwordInput.value = '';
     }
   </script>
-</section>!-- Reklama -->
-<section id="reklama" class="p-6">
+</section><section id="reklama" class="sekcja p-6">
   <h2 class="text-2xl font-bold mb-4">Reklama – Współpraca i Promocja</h2>
   <p class="mb-4">Chcesz, aby Twoja marka pojawiła się na naszej stronie? Skontaktuj się z nami i opowiedz o swoim projekcie. Współpracujemy z twórcami, firmami i startupami.</p>
 
@@ -701,7 +696,7 @@
       passwordInput.value = '';
     }
   </script>
-</section><!-- Zbiórka -->
+</section>     <!-- Zbiórka -->
 <section id="zbiorka" class="sekcja bg-yellow-50 py-12 px-6 rounded-xl shadow-md max-w-4xl mx-auto mb-12">
   <h2 class="text-3xl font-bold text-center text-yellow-900 mb-6">Zbiórka – Pomóż dzieciom z domu dziecka</h2>
   <p class="text-lg text-center text-yellow-800 mb-4 max-w-3xl mx-auto">
