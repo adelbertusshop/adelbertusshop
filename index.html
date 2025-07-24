@@ -224,7 +224,7 @@
   <button onclick="pokazSekcje('regulamin')" id="btn-regulamin">Regulamin</button>
 </nav>
 <!-- Sekcje strony -->
-  <section id="sklep" class="py-8 px-4 max-w-7xl mx-auto">
+<section id="sklep" class="py-8 px-4 max-w-7xl mx-auto">
   <h2 class="text-3xl font-bold mb-8 text-center">Sklep</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     
@@ -238,48 +238,41 @@
           <button class="ml-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 text-white rounded transition">Dodaj do koszyka</button>
         </li>
         <li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/tPYbZV93/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Ufaj zanim..." class="w-16 h-auto rounded" />
-  <span>Koszulka Ufaj zanim... – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
-</li>  <li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/pvQ27Lb6/Resizer-17510539315581.jpg" alt="Koszulka Symbol PI" class="w-16 h-auto rounded" />
-  <span>Koszulka Symbol PI – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
-</li> <li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/trR4yLF/Messenger-creation-70-F10-D9-F-4277-40-C0-A888-01-E8535-FF028.jpg" alt="Koszulka Czy masz odwagę..." class="w-16 h-auto rounded" />
-  <span>Koszulka „Czy masz odwagę...” – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
-</li>     <li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/d4mZyv5y/file-0000000073806243ae614a3a84d5970b.png" alt="Koszulka DJ" class="w-16 h-auto rounded" />
-  <span>Koszulka „DJ” – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
-</li><li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/8nJ2VKvC/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Koszulka DJ czarno-biała" class="w-16 h-auto rounded" />
-  <span>Koszulka „DJ czarno-biała” – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
-</li>    <li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/LzGxjfWH/file-00000000985c6243ba1d82431c2ead9f-2.png" alt="Koszulka Puzel" class="w-16 h-auto rounded" />
-  <span>Koszulka „Puzel” – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
-</li>    <li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/BK4F4VZ3/Screenshot-20250525-154456-Chat-GPT-2.jpg" alt="Koszulka Pi Adelbertus" class="w-16 h-auto rounded" />
-  <span>Koszulka „Pi Adelbertus” – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
-</li>   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
- 
-  ].map((product, index) => (
-    <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden">
-      <img src={product.image} alt={product.name} className="w-full h-72 object-cover" />
-      <div className="p-4 flex flex-col justify-between h-40">
-        <h3 className="text-lg font-semibold">{product.name}</h3>
-        <p className="text-gray-700 mt-2">99 zł</p>
-        <button className="mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition duration-300">
-          Dodaj do koszyka
-        </button>
-      </div>
-    </div>
-  ))}
-</div>        <li class="flex items-center gap-4">
+          <img src="https://i.ibb.co/tPYbZV93/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Ufaj zanim..." class="w-16 h-auto rounded" />
+          <span>Koszulka Ufaj zanim... – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/pvQ27Lb6/Resizer-17510539315581.jpg" alt="Koszulka Symbol PI" class="w-16 h-auto rounded" />
+          <span>Koszulka Symbol PI – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/trR4yLF/Messenger-creation-70-F10-D9-F-4277-40-C0-A888-01-E8535-FF028.jpg" alt="Koszulka Czy masz odwagę..." class="w-16 h-auto rounded" />
+          <span>Koszulka „Czy masz odwagę...” – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/d4mZyv5y/file-0000000073806243ae614a3a84d5970b.png" alt="Koszulka DJ" class="w-16 h-auto rounded" />
+          <span>Koszulka „DJ” – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/8nJ2VKvC/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Koszulka DJ czarno-biała" class="w-16 h-auto rounded" />
+          <span>Koszulka „DJ czarno-biała” – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/LzGxjfWH/file-00000000985c6243ba1d82431c2ead9f-2.png" alt="Koszulka Puzel" class="w-16 h-auto rounded" />
+          <span>Koszulka „Puzel” – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/BK4F4VZ3/Screenshot-20250525-154456-Chat-GPT-2.jpg" alt="Koszulka Pi Adelbertus" class="w-16 h-auto rounded" />
+          <span>Koszulka „Pi Adelbertus” – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-blue-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-4">
           <img src="TU_WKLEJ_LINK_DO_OBRAZKA_BLUZY" alt="Bluza Mężczyźni" class="w-20 max-w-full h-auto rounded" />
           <span class="flex-1 text-lg font-medium">Bluza – 150 zł</span>
           <button class="ml-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 text-white rounded transition">Dodaj do koszyka</button>
@@ -307,78 +300,56 @@
           <button class="ml-auto px-4 py-2 bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400 text-white rounded transition">Dodaj do koszyka</button>
         </li>
         <li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/pYY87tg/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Adelbertus" class="w-16 h-auto rounded" />
-  <span>Koszulka Adelbertus – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
-</li>
-<li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/CK4Z5SY4/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Ja" class="w-16 h-auto rounded" />
-  <span>Koszulka Ja – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
-</li>
-<li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/kgRcnBvv/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Zakazana" class="w-16 h-auto rounded" />
-  <span>Koszulka Zakazana – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
-</li>
-<li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/PztTYqyQ/file-000000007e84620a86b41cfadc98dc4a.png" alt="Koszulka Wojownik" class="w-16 h-auto rounded" />
-  <span>Koszulka Wojownik – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
-</li>
-<li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/7NCdfrqb/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Wojownik 2" class="w-16 h-auto rounded" />
-  <span>Koszulka Wojownik {2} – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
-</li>
-<li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/mVLh9Qkp/file-0000000077a8624687fa35a1773c5ab3-2.png" alt="Koszulka Step" class="w-16 h-auto rounded" />
-  <span>Koszulka Step – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
-</li>
-<li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/Rk5ZT0XT/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg" alt="Koszulka Disco" class="w-16 h-auto rounded" />
-  <span>Koszulka Disco – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
-</li>
-<li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/Txv9QPtm/Messenger-creation-A36-A75-FF-312-F-4-D2-A-891-A-61-C74-F64-FDD7.jpg" alt="Koszulka On Ona" class="w-16 h-auto rounded" />
-  <span>Koszulka On & Ona – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
-</li>
-<li class="flex items-center gap-3">
-  <img src="https://i.ibb.co/FLw3N2xB/Messenger-creation-76-C2-FCF0-B34-A-4-B5-D-9161-5-F87-C438-C807.jpg" alt="Koszulka Królowa" class="w-16 h-auto rounded" />
-  <span>Koszulka Królowa – 99 zł</span>
-  <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
-</li>        <li class="flex items-center gap-4">
+          <img src="https://i.ibb.co/pYY87tg/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Adelbertus" class="w-16 h-auto rounded" />
+          <span>Koszulka Adelbertus – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/CK4Z5SY4/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Ja" class="w-16 h-auto rounded" />
+          <span>Koszulka Ja – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/kgRcnBvv/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Zakazana" class="w-16 h-auto rounded" />
+          <span>Koszulka Zakazana – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/PztTYqyQ/file-000000007e84620a86b41cfadc98dc4a.png" alt="Koszulka Wojownik" class="w-16 h-auto rounded" />
+          <span>Koszulka Wojownik – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/7NCdfrqb/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Wojownik 2" class="w-16 h-auto rounded" />
+          <span>Koszulka Wojownik {2} – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/mVLh9Qkp/file-0000000077a8624687fa35a1773c5ab3-2.png" alt="Koszulka Step" class="w-16 h-auto rounded" />
+          <span>Koszulka Step – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/Rk5ZT0XT/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg" alt="Koszulka Disco" class="w-16 h-auto rounded" />
+          <span>Koszulka Disco – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/Txv9QPtm/Messenger-creation-A36-A75-FF-312-F-4-D2-A-891-A-61-C74-F64-FDD7.jpg" alt="Koszulka On Ona" class="w-16 h-auto rounded" />
+          <span>Koszulka On & Ona – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-3">
+          <img src="https://i.ibb.co/FLw3N2xB/Messenger-creation-76-C2-FCF0-B34-A-4-B5-D-9161-5-F87-C438-C807.jpg" alt="Koszulka Królowa" class="w-16 h-auto rounded" />
+          <span>Koszulka Królowa – 99 zł</span>
+          <button class="ml-auto px-2 py-1 bg-pink-500 text-white rounded">Dodaj do koszyka</button>
+        </li>
+        <li class="flex items-center gap-4">
           <img src="TU_WKLEJ_LINK_DO_OBRAZKA_BLUZY_KOBIETY" alt="Bluza Kobiety" class="w-20 max-w-full h-auto rounded" />
           <span class="flex-1 text-lg font-medium">Bluza – 150 zł</span>
           <button class="ml-auto px-4 py-2 bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400 text-white rounded transition">Dodaj do koszyka</button>
         </li>
-        {selectedCategory === "kobiety" && selectedType === "bluza" && (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-   
-      <div
-        key={index}
-        className="bg-white rounded-2xl shadow-md overflow-hidden p-4 flex flex-col items-center"
-      >
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-64 object-cover rounded-xl"
-        />
-        <h3 className="text-xl font-semibold mt-4 text-center">{product.name}</h3>
-        <p className="text-gray-600 mb-2">Cena: 150 zł</p>
-        <button
-          onClick={() => addToCart(product)}
-          className="bg-black text-white px-4 py-2 rounded-xl hover:bg-gray-800 transition mt-2"
-        >
-          Dodaj do koszyka
-        </button>
-      </div>
-    ))}
-  </div>
-)}        <li class="flex items-center gap-4">
+        <li class="flex items-center gap-4">
           <img src="TU_WKLEJ_LINK_DO_OBRAZKA_BLUZY_Z_KAPTUREM_KOBIETY" alt="Bluza z kapturem Kobiety" class="w-20 max-w-full h-auto rounded" />
           <span class="flex-1 text-lg font-medium">Bluza z kapturem – 150 zł</span>
           <button class="ml-auto px-4 py-2 bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400 text-white rounded transition">Dodaj do koszyka</button>
@@ -425,95 +396,6 @@
         <li class="flex items-center gap-4">
           <img src="TU_WKLEJ_LINK_DO_OBRAZKA_KOSZULKI_DZIEWCZYNKI" alt="Koszulka Dziewczynki" class="w-20 max-w-full h-auto rounded" />
           <span class="flex-1 text-lg font-medium">Koszulka – 99 zł</span>
-          <button class="ml-auto px-4 py-2 bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 text-white rounded transition">Dodaj do koszyka</button>
-        </li>
-        <li class="flex items-center gap-4">
-          <img src="TU_WKLEJ_LINK_DO_OBRAZKA_BLUZY_DZIEWCZYNKI" alt="Bluza Dziewczynki" class="w-20 max-w-full h-auto rounded" />
-          <span class="flex-1 text-lg font-medium">Bluza – 150 zł</span>
-          <button class="ml-auto px-4 py-2 bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 text-white rounded transition">Dodaj do koszyka</button>
-        </li>
-        <li class="flex items-center gap-4">
-          <img src="TU_WKLEJ_LINK_DO_OBRAZKA_BLUZY_Z_KAPTUREM_DZIEWCZYNKI" alt="Bluza z kapturem Dziewczynki" class="w-20 max-w-full h-auto rounded" />
-          <span class="flex-1 text-lg font-medium">Bluza z kapturem – 150 zł</span>
-          <button class="ml-auto px-4 py-2 bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 text-white rounded transition">Dodaj do koszyka</button>
-        </li>
-        <li class="flex items-center gap-4">
-          <img src="TU_WKLEJ_LINK_DO_OBRAZKA_CZAPECZKI_DZIEWCZYNKI" alt="Czapeczka Dziewczynki" class="w-20 max-w-full h-auto rounded" />
-          <span class="flex-1 text-lg font-medium">Czapeczka – 79 zł</span>
-          <button class="ml-auto px-4 py-2 bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 text-white rounded transition">Dodaj do koszyka</button>
-        </li>
-      </ul>
-    </div>
-    
-    <!-- Nowość (tajemniczy produkt) -->
-    <div class="border p-6 rounded-lg shadow bg-black text-white">
-      <h3 class="text-xl font-semibold mb-4">Nowość</h3>
-      <p class="italic mb-3">Tylko indywidualne zamówienie.</p>
-      <p class="mb-3">Limitowana koszulka, która zmienia się z Tobą.<br>Po kilku praniach odkrywa to, co ukryte.</p>
-      <p class="mb-3 font-semibold">Cena: 199 zł</p>
-      <p class="text-sm">Nadruki transformujące, druki specjalne (Reaktywne)</p>
-      <button class="mt-4 px-6 py-2 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 text-white rounded transition">Dodaj do koszyka</button>
-    </div>
-    
-  </div>
-</section><section id="marketplace" class="sekcja hidden bg-white py-16">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-8">Marketplace</h2>
-
-    <div class="max-w-md mx-auto mb-8 p-4 border rounded shadow">
-      <h3 class="text-xl font-semibold mb-4">Logowanie administratora</h3>
-      <form onsubmit="return logowanieAdmina(event)">
-        <input type="password" id="adminHaslo" placeholder="Hasło" class="w-full p-2 mb-4 border rounded" autocomplete="off" />
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Zaloguj</button>
-      </form>
-    </div>
-
-    <div class="bg-gray-100 p-6 rounded shadow mb-12">
-      <h3 class="text-2xl font-semibold mb-4">Zostań sprzedawcą</h3>
-      <p class="mb-4">Wypełnij formularz, dokonaj wpłaty na BLIK 573-939-925 z dopiskiem "Marketplace", a po zatwierdzeniu przez administratora Twój towar pojawi się na stronie.</p>
-      <form id="sprzedawcaForm" onsubmit="return wyslijZgloszenie(event)">
-        <input type="text" name="nazwa" placeholder="Nazwa firmy / osoby" class="w-full p-2 mb-4 border rounded" required />
-        <input type="email" name="email" placeholder="Email" class="w-full p-2 mb-4 border rounded" required />
-        <textarea name="opis" placeholder="Opis produktu / usługi" class="w-full p-2 mb-4 border rounded" required></textarea>
-        <button type="submit" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Wyślij zgłoszenie</button>
-      </form>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="listaSprzedawcow">
-      <div class="bg-white border rounded p-4 shadow relative">
-        <h4 class="text-xl font-semibold mb-2">Przykład sklepu 1</h4>
-        <p class="mb-2">Opis przykładowej oferty.</p>
-        <div class="text-sm text-gray-600">Wyświetlenia: <span class="wyswietlenia">0</span></div>
-        <div class="mt-2">
-          <span class="text-sm">Ocena:</span>
-          <div class="gwiazdki flex gap-1 text-yellow-400">
-            <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-  // To już masz gdzieś u siebie, upewnij się że działa:
-  function pokazSekcje(id) {
-    document.querySelectorAll('.sekcja').forEach(s => {
-      s.classList.add('hidden');
-      s.classList.remove('active');
-    });
-    const sekcja = document.getElementById(id);
-    if (sekcja) {
-      sekcja.classList.remove('hidden');
-      sekcja.classList.add('active');
-    }
-
-    // Aktualizacja przycisków menu:
-    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-    const aktywnyBtn = document.getElementById('btn-' + id);
-    if (aktywnyBtn) aktywnyBtn.classList.add('active');
-  }
-
   // Pozostały Twój skrypt do podglądu projektu, logowania admina i wysyłania zgłoszenia
 </script>  <!-- Reklama -->
 <section id="reklama" class="sekcja py-10 px-6 bg-white rounded shadow max-w-4xl mx-auto mb-12">
