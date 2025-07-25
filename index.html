@@ -614,62 +614,66 @@
 
     aktualizujPodglad();
   </script>
-  <section id="marketplace" class="py-12 bg-white">
+ <section id="marketplace" class="py-12 bg-white">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-8">Marketplace – zgłoś swój produkt</h2>
-    
-    <form id="marketplace-form" action="https://formspree.io/f/TWOJ-KOD" method="POST" enctype="multipart/form-data" class="grid gap-4 mb-6">
+    <h2 class="text-3xl font-bold mb-8 text-center">Marketplace – zgłoś swój produkt</h2>
+
+    <form id="marketplace-form" action="https://formspree.io/f/TWOJ-KOD" method="POST" enctype="multipart/form-data" class="grid gap-4 mb-6 max-w-xl mx-auto">
       <input type="text" name="nazwa_twórcy" placeholder="Imię i nazwisko / Nazwa twórcy" class="p-2 border rounded" required />
       <input type="email" name="email" placeholder="Email kontaktowy" class="p-2 border rounded" required />
       <input type="text" name="nazwa_produktu" placeholder="Nazwa produktu" class="p-2 border rounded" required />
-      <textarea name="opis_produktu" placeholder="Opis produktu" class="p-2 border rounded" required></textarea>
+      <textarea name="opis_produktu" placeholder="Opis produktu" class="p-2 border rounded" rows="4" required></textarea>
       <input type="file" name="plik" class="p-2 border rounded" />
+      
       <select name="czas" class="p-2 border rounded" required>
         <option value="">Wybierz opcję czasową</option>
-        <option>1 dzień – 10 zł</option>
-        <option>1 tydzień – 50 zł</option>
-        <option>1 miesiąc – 100 zł</option>
+        <option value="1_dzien">1 dzień – 10 zł</option>
+        <option value="1_tydzien">1 tydzień – 50 zł</option>
+        <option value="1_miesiac">1 miesiąc – 100 zł</option>
       </select>
-      <p class="text-sm">
-        Płatność BLIK: <strong>573-939-925</strong> z dopiskiem „marketplace”.<br />
+
+      <p class="text-sm text-center">
+        💸 Płatność BLIK: <strong>573-939-925</strong> z dopiskiem „marketplace”.<br />
         Po zaksięgowaniu przelewu – zgłoszenie trafia do administratora.
       </p>
-      <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Wyślij zgłoszenie</button>
+
+      <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">Wyślij zgłoszenie</button>
     </form>
 
-    <div id="success-message" class="hidden text-green-600 font-semibold">✅ Dziękujemy za zgłoszenie!</div>
+    <div id="success-message" class="hidden text-green-600 font-semibold text-center mt-4">✅ Dziękujemy za zgłoszenie!</div>
   </div>
 </section>
 
 <script>
-  const form = document.getElementById('marketplace-form');
-  const successMessage = document.getElementById('success-message');
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById('marketplace-form');
+    const successMessage = document.getElementById('success-message');
 
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
 
-    const formData = new FormData(form);
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            Accept: 'application/json',
+          },
+        });
 
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          Accept: 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        form.reset();
-        successMessage.classList.remove('hidden');
-      } else {
-        alert('Wystąpił błąd. Spróbuj ponownie.');
+        if (response.ok) {
+          form.reset();
+          successMessage.classList.remove('hidden');
+        } else {
+          alert('❌ Wystąpił błąd. Spróbuj ponownie.');
+        }
+      } catch (error) {
+        alert('❌ Błąd połączenia. Spróbuj ponownie później.');
       }
-    } catch (error) {
-      alert('Błąd połączenia. Spróbuj ponownie później.');
-    }
+    });
   });
-</script></section><section id="reklama" class="sekcja p-6">
+</script></script></section><section id="reklama" class="sekcja p-6">
   <h2 class="text-2xl font-bold mb-4">Reklama – Współpraca i Promocja</h2>
   <p class="mb-4">Chcesz, aby Twoja marka pojawiła się na naszej stronie? Skontaktuj się z nami i opowiedz o swoim projekcie. Współpracujemy z twórcami, firmami i startupami.</p>
 
