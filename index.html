@@ -614,80 +614,62 @@
 
     aktualizujPodglad();
   </script>
-</section> <section id="marketplace" class="sekcja p-6">...</section>
-  <div class="max-w-4xl mx-auto px-4">
-    <h2 class="text-2xl font-bold mb-4">Marketplace – Targowisko dla Twórców</h2>
-    <p class="mb-4">
-      Zgłoś swój produkt do naszego marketplace. Miejsce dla indywidualnych twórców i małych biznesów.
-      Płatności przez BLIK: <strong>573-939-925</strong>, z dopiskiem <strong>„marketplace”</strong>.
-    </p>
-
-    <form id="marketplaceForm" class="grid gap-4 mb-6">
-      <input type="text" placeholder="Imię i nazwisko / Nazwa twórcy" class="p-2 border rounded" required />
-      <input type="email" placeholder="Email kontaktowy" class="p-2 border rounded" required />
-      <input type="text" placeholder="Nazwa produktu" class="p-2 border rounded" required />
-      <textarea placeholder="Opis produktu" class="p-2 border rounded" required></textarea>
-      <input type="file" class="p-2 border rounded" />
-      <select class="p-2 border rounded" required>
+<section id="marketplace" class="py-12 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-8">Marketplace – zgłoś swój produkt</h2>
+    
+    <form id="marketplace-form" action="https://formspree.io/f/TWOJ-KOD" method="POST" enctype="multipart/form-data" class="grid gap-4 mb-6">
+      <input type="text" name="nazwa_twórcy" placeholder="Imię i nazwisko / Nazwa twórcy" class="p-2 border rounded" required />
+      <input type="email" name="email" placeholder="Email kontaktowy" class="p-2 border rounded" required />
+      <input type="text" name="nazwa_produktu" placeholder="Nazwa produktu" class="p-2 border rounded" required />
+      <textarea name="opis_produktu" placeholder="Opis produktu" class="p-2 border rounded" required></textarea>
+      <input type="file" name="plik" class="p-2 border rounded" />
+      <select name="czas" class="p-2 border rounded" required>
         <option value="">Wybierz opcję czasową</option>
         <option>1 dzień – 10 zł</option>
         <option>1 tydzień – 50 zł</option>
         <option>1 miesiąc – 100 zł</option>
       </select>
       <p class="text-sm">
-        Płatność BLIK: <strong>573-939-925</strong> z dopiskiem „marketplace”.
+        Płatność BLIK: <strong>573-939-925</strong> z dopiskiem „marketplace”.<br />
         Po zaksięgowaniu przelewu – zgłoszenie trafia do administratora.
       </p>
       <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Wyślij zgłoszenie</button>
     </form>
 
-    <!-- Logowanie administratora -->
-    <div id="adminLogin" class="mb-4">
-      <h3 class="text-xl font-bold mb-2">Logowanie Administratora</h3>
-      <input type="password" id="adminPassword" placeholder="Hasło" class="p-2 border rounded" />
-      <button onclick="loginAdmin()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ml-2">Zaloguj</button>
-      <p id="loginError" class="text-red-600 mt-2 hidden">Niepoprawne hasło!</p>
-    </div>
-
-    <!-- Panel administratora -->
-    <div id="adminPanel" class="hidden">
-      <div class="flex justify-between items-center mb-2">
-        <h3 class="text-xl font-bold">Panel Administratora – Zgłoszenia Marketplace</h3>
-        <button onclick="logoutAdmin()" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Wyloguj</button>
-      </div>
-      <p class="text-green-700 font-semibold mb-4">Zalogowano jako: <strong>Administrator</strong></p>
-      <p>Tu będzie miejsce na zarządzanie zgłoszeniami.</p>
-    </div>
+    <div id="success-message" class="hidden text-green-600 font-semibold">✅ Dziękujemy za zgłoszenie!</div>
   </div>
+</section>
 
-  <script>
-    function loginAdmin() {
-      const password = document.getElementById('adminPassword').value;
-      const error = document.getElementById('loginError');
-      const panel = document.getElementById('adminPanel');
-      const loginForm = document.getElementById('adminLogin');
+<script>
+  const form = document.getElementById('marketplace-form');
+  const successMessage = document.getElementById('success-message');
 
-      if (password === 'Wojownil.03') {
-        error.classList.add('hidden');
-        panel.classList.remove('hidden');
-        loginForm.classList.add('hidden');
-        document.getElementById('adminPassword').value = '';
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        form.reset();
+        successMessage.classList.remove('hidden');
       } else {
-        error.classList.remove('hidden');
+        alert('Wystąpił błąd. Spróbuj ponownie.');
       }
+    } catch (error) {
+      alert('Błąd połączenia. Spróbuj ponownie później.');
     }
-
-    function logoutAdmin() {
-      const panel = document.getElementById('adminPanel');
-      const loginForm = document.getElementById('adminLogin');
-      const passwordInput = document.getElementById('adminPassword');
-
-      panel.classList.add('hidden');
-      loginForm.classList.remove('hidden');
-      passwordInput.value = '';
-    }
-  </script>
-</section><section id="reklama" class="sekcja p-6">
+  });
+</script></section><section id="reklama" class="sekcja p-6">
   <h2 class="text-2xl font-bold mb-4">Reklama – Współpraca i Promocja</h2>
   <p class="mb-4">Chcesz, aby Twoja marka pojawiła się na naszej stronie? Skontaktuj się z nami i opowiedz o swoim projekcie. Współpracujemy z twórcami, firmami i startupami.</p>
 
