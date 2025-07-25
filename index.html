@@ -473,7 +473,7 @@
   // Inicjalizacja UI przy ładowaniu strony
   updateCartUI();
 </script>
-<section id="projektuj" class="sekcja py-16 bg-white">...</section>
+<section id="projektuj" class="sekcja py-16 bg-white">
   <div class="container mx-auto max-w-6xl px-4">
     <h2 class="text-3xl font-bold mb-6 text-center">Zaprojektuj swój produkt</h2>
 
@@ -485,7 +485,7 @@
 
       <div>
         <label class="block font-semibold mb-1">Wybierz produkt:</label>
-        <select id="typProduktu" class="w-full border rounded p-2" required>
+        <select id="typProduktu" name="typProduktuWidoczny" class="w-full border rounded p-2" required>
           <option value="">-- wybierz --</option>
           <option value="Koszulka">Koszulka</option>
           <option value="Bluza">Bluza</option>
@@ -526,6 +526,7 @@
         </div>
       </div>
 
+      <!-- Ukryte pola do wysyłki -->
       <input type="hidden" name="typProduktu" id="hiddenTypProduktu">
       <input type="hidden" name="kolorProduktu" id="hiddenKolorProduktu">
       <input type="hidden" name="rozmiarProduktu" id="hiddenRozmiarProduktu">
@@ -564,8 +565,7 @@
 
     aktualizujPodglad();
   </script>
-</section>
- <section id="marketplace" class="sekcja p-6">...</section>
+</section> <section id="marketplace" class="sekcja p-6">...</section>
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-2xl font-bold mb-4">Marketplace – Targowisko dla Twórców</h2>
     <p class="mb-4">
