@@ -222,207 +222,167 @@
   <button onclick="pokazSekcje('kontakt')" id="btn-kontakt">Kontakt</button>
   <button onclick="pokazSekcje('regulamin')" id="btn-regulamin">Regulamin</button>
 </nav>
-  <section id="sklep" class="py-8">
+ <section id="sklep" class="py-8 max-w-7xl mx-auto">
   <h2 class="text-3xl font-bold mb-6 text-center">Sklep</h2>
 
   <!-- Licznik koszyka -->
-  <div class="max-w-7xl mx-auto mb-4 text-right pr-4">
+  <div class="mb-4 text-right pr-4">
     <button id="btn-open-cart" class="bg-green-600 text-white px-4 py-2 rounded">
       Koszyk (<span id="cart-count">0</span>)
     </button>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-    <!-- Mężczyźni -->
-    <div class="border p-4 rounded-lg shadow">
-      <h3 class="text-xl font-semibold mb-2">Mężczyźni</h3>
-      <ul class="space-y-2">
-        <li>
-          Koszulka – 99 zł
-          <button class="ml-2 px-2 py-1 bg-blue-500 text-white rounded add-to-cart-btn" 
-                  data-name="Koszulka Mężczyźni" data-price="99">
-            Dodaj do koszyka
-          </button>
-        </li>
-        <li>
-          Bluza – 150 zł
-          <button class="ml-2 px-2 py-1 bg-blue-500 text-white rounded add-to-cart-btn" 
-                  data-name="Bluza Mężczyźni" data-price="150">
-            Dodaj do koszyka
-          </button>
-        </li>
-        <li>
-          Bluza z kapturem – 150 zł
-          <button class="ml-2 px-2 py-1 bg-blue-500 text-white rounded add-to-cart-btn" 
-                  data-name="Bluza z kapturem Mężczyźni" data-price="150">
-            Dodaj do koszyka
-          </button>
-        </li>
-        <li>
-          Czapeczka – 79 zł
-          <button class="ml-2 px-2 py-1 bg-blue-500 text-white rounded add-to-cart-btn" 
-                  data-name="Czapeczka Mężczyźni" data-price="79">
-            Dodaj do koszyka
-          </button>
-        </li>
-      </ul>
-    </div>
+  <!-- Kategoria filtry -->
+  <div class="flex justify-center mb-6 space-x-4">
+    <button class="category-btn px-4 py-2 rounded bg-gray-300 hover:bg-gray-400" data-category="all">Wszystko</button>
+    <button class="category-btn px-4 py-2 rounded bg-blue-500 text-white" data-category="mezczyzni">Mężczyźni</button>
+    <button class="category-btn px-4 py-2 rounded bg-pink-500 text-white" data-category="kobiety">Kobiety</button>
+    <button class="category-btn px-4 py-2 rounded bg-green-500 text-white" data-category="chlopcy">Chłopcy</button>
+    <button class="category-btn px-4 py-2 rounded bg-purple-500 text-white" data-category="dziewczynki">Dziewczynki</button>
+    <button class="category-btn px-4 py-2 rounded bg-black text-white" data-category="nowosci">Nowość</button>
+  </div>
 
-    <!-- Kobiety -->
-    <div class="border p-4 rounded-lg shadow">
-      <h3 class="text-xl font-semibold mb-2">Kobiety</h3>
-      <ul class="space-y-2">
-        <li>
-          Koszulka – 99 zł
-          <button class="ml-2 px-2 py-1 bg-pink-500 text-white rounded add-to-cart-btn" 
-                  data-name="Koszulka Kobiety" data-price="99">
-            Dodaj do koszyka
-          </button>
-        </li>
-        <li>
-          Bluza – 150 zł
-          <button class="ml-2 px-2 py-1 bg-pink-500 text-white rounded add-to-cart-btn" 
-                  data-name="Bluza Kobiety" data-price="150">
-            Dodaj do koszyka
-          </button>
-        </li>
-        <li>
-          Bluza z kapturem – 150 zł
-          <button class="ml-2 px-2 py-1 bg-pink-500 text-white rounded add-to-cart-btn" 
-                  data-name="Bluza z kapturem Kobiety" data-price="150">
-            Dodaj do koszyka
-          </button>
-        </li>
-        <li>
-          Czapeczka – 79 zł
-          <button class="ml-2 px-2 py-1 bg-pink-500 text-white rounded add-to-cart-btn" 
-                  data-name="Czapeczka Kobiety" data-price="79">
-            Dodaj do koszyka
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Chłopcy -->
-    <div class="border p-4 rounded-lg shadow">
-      <h3 class="text-xl font-semibold mb-2">Chłopcy</h3>
-      <ul class="space-y-2">
-        <li>
-          Koszulka – 99 zł
-          <button class="ml-2 px-2 py-1 bg-green-500 text-white rounded add-to-cart-btn" 
-                  data-name="Koszulka Chłopcy" data-price="99">
-            Dodaj do koszyka
-          </button>
-        </li>
-        <li>
-          Bluza – 150 zł
-          <button class="ml-2 px-2 py-1 bg-green-500 text-white rounded add-to-cart-btn" 
-                  data-name="Bluza Chłopcy" data-price="150">
-            Dodaj do koszyka
-          </button>
-        </li>
-        <li>
-          Bluza z kapturem – 150 zł
-          <button class="ml-2 px-2 py-1 bg-green-500 text-white rounded add-to-cart-btn" 
-                  data-name="Bluza z kapturem Chłopcy" data-price="150">
-            Dodaj do koszyka
-          </button>
-        </li>
-        <li>
-          Czapeczka – 79 zł
-          <button class="ml-2 px-2 py-1 bg-green-500 text-white rounded add-to-cart-btn" 
-                  data-name="Czapeczka Chłopcy" data-price="79">
-            Dodaj do koszyka
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Dziewczynki -->
-    <div class="border p-4 rounded-lg shadow">
-      <h3 class="text-xl font-semibold mb-2">Dziewczynki</h3>
-      <ul class="space-y-2">
-        <li>
-          Koszulka – 99 zł
-          <button class="ml-2 px-2 py-1 bg-purple-500 text-white rounded add-to-cart-btn" 
-                  data-name="Koszulka Dziewczynki" data-price="99">
-            Dodaj do koszyka
-          </button>
-        </li>
-        <li>
-          Bluza – 150 zł
-          <button class="ml-2 px-2 py-1 bg-purple-500 text-white rounded add-to-cart-btn" 
-                  data-name="Bluza Dziewczynki" data-price="150">
-            Dodaj do koszyka
-          </button>
-        </li>
-        <li>
-          Bluza z kapturem – 150 zł
-          <button class="ml-2 px-2 py-1 bg-purple-500 text-white rounded add-to-cart-btn" 
-                  data-name="Bluza z kapturem Dziewczynki" data-price="150">
-            Dodaj do koszyka
-          </button>
-        </li>
-        <li>
-          Czapeczka – 79 zł
-          <button class="ml-2 px-2 py-1 bg-purple-500 text-white rounded add-to-cart-btn" 
-                  data-name="Czapeczka Dziewczynki" data-price="79">
-            Dodaj do koszyka
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Nowość (tajemniczy produkt) -->
-    <div class="border p-4 rounded-lg shadow bg-black text-white">
-      <h3 class="text-xl font-semibold mb-2">Nowość</h3>
-      <p class="italic mb-2">Tylko indywidualne zamówienie.</p>
-      <p class="mb-2">Limitowana koszulka, która zmienia się z Tobą.<br>Po kilku praniach odkrywa to, co ukryte.</p>
-      <p class="mb-2">Cena: 199 zł</p>
-      <p class="text-sm">Nadruki transformujące, druki specjalne (Reaktywne)</p>
-      <button class="mt-2 px-4 py-2 bg-red-600 text-white rounded add-to-cart-btn" 
-              data-name="Limitowana koszulka" data-price="199">
-        Dodaj do koszyka
-      </button>
-    </div>
+  <div id="product-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- produkty tu w JS -->
   </div>
 
   <!-- Prosty panel koszyka -->
   <div id="cart-panel" 
-       style="display:none; position:fixed; top:10%; right:10%; background:#fff; border:1px solid #ccc; padding:20px; width:300px; z-index:9999; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+       style="display:none; position:fixed; top:10%; right:10%; background:#fff; border:1px solid #ccc; padding:20px; width:320px; z-index:9999; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
     <h3>Twój koszyk</h3>
     <ul id="cart-items" style="max-height:300px; overflow-y:auto; margin-bottom:10px;"></ul>
     <p id="cart-total"></p>
+    <button id="btn-pay-blik" class="w-full mb-2 bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 rounded cursor-pointer">Zapłać BLIK</button>
     <button id="close-cart" style="background:#444; color:#fff; padding:6px 10px; border:none; cursor:pointer;">Zamknij</button>
   </div>
+
+  <!-- Sekcja Projektuj -->
+  <section id="projektuj" class="py-8 max-w-3xl mx-auto mt-16 border rounded-lg p-6 shadow-lg">
+    <h2 class="text-2xl font-bold mb-4 text-center">Zaprojektuj własny produkt</h2>
+    <form id="design-form" class="space-y-4">
+      <label class="block">
+        Wybierz typ produktu:
+        <select id="product-type" class="border rounded w-full p-2">
+          <option value="Koszulka">Koszulka</option>
+          <option value="Bluza">Bluza</option>
+          <option value="Czapeczka">Czapeczka</option>
+        </select>
+      </label>
+      <label class="block">
+        Kolor:
+        <input type="color" id="product-color" value="#000000" class="w-full h-10 p-0 border rounded" />
+      </label>
+      <label class="block">
+        Tekst do nadruku:
+        <input type="text" id="print-text" placeholder="Twój tekst" class="w-full border rounded p-2" />
+      </label>
+      <label class="block">
+        Wgraj grafikę (opcjonalnie):
+        <input type="file" id="upload-image" accept="image/*" />
+      </label>
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Dodaj do koszyka</button>
+    </form>
+
+    <div id="preview" class="mt-6 border p-4 rounded text-center" style="min-height:150px;">
+      <p>Podgląd projektu pojawi się tutaj.</p>
+    </div>
+  </section>
 </section>
 
 <script>
-  // Pobierz elementy
+  // --- Dane produktów ---
+  const products = [
+    // Mężczyźni
+    {category:'mezczyzni', name:'Koszulka Mężczyźni', price:99, color:'bg-blue-500'},
+    {category:'mezczyzni', name:'Bluza Mężczyźni', price:150, color:'bg-blue-500'},
+    {category:'mezczyzni', name:'Bluza z kapturem Mężczyźni', price:150, color:'bg-blue-500'},
+    {category:'mezczyzni', name:'Czapeczka Mężczyźni', price:79, color:'bg-blue-500'},
+    // Kobiety
+    {category:'kobiety', name:'Koszulka Kobiety', price:99, color:'bg-pink-500'},
+    {category:'kobiety', name:'Bluza Kobiety', price:150, color:'bg-pink-500'},
+    {category:'kobiety', name:'Bluza z kapturem Kobiety', price:150, color:'bg-pink-500'},
+    {category:'kobiety', name:'Czapeczka Kobiety', price:79, color:'bg-pink-500'},
+    // Chłopcy
+    {category:'chlopcy', name:'Koszulka Chłopcy', price:99, color:'bg-green-500'},
+    {category:'chlopcy', name:'Bluza Chłopcy', price:150, color:'bg-green-500'},
+    {category:'chlopcy', name:'Bluza z kapturem Chłopcy', price:150, color:'bg-green-500'},
+    {category:'chlopcy', name:'Czapeczka Chłopcy', price:79, color:'bg-green-500'},
+    // Dziewczynki
+    {category:'dziewczynki', name:'Koszulka Dziewczynki', price:99, color:'bg-purple-500'},
+    {category:'dziewczynki', name:'Bluza Dziewczynki', price:150, color:'bg-purple-500'},
+    {category:'dziewczynki', name:'Bluza z kapturem Dziewczynki', price:150, color:'bg-purple-500'},
+    {category:'dziewczynki', name:'Czapeczka Dziewczynki', price:79, color:'bg-purple-500'},
+    // Nowość
+    {category:'nowosci', name:'Limitowana koszulka', price:199, color:'bg-red-600', description: 'Limitowana koszulka, która zmienia się z Tobą. Po kilku praniach odkrywa to, co ukryte.'}
+  ];
+
+  // --- Elementy ---
+  const productContainer = document.getElementById('product-container');
   const cartCountEl = document.getElementById('cart-count');
   const cartItemsEl = document.getElementById('cart-items');
   const cartTotalEl = document.getElementById('cart-total');
   const cartPanel = document.getElementById('cart-panel');
   const btnOpenCart = document.getElementById('btn-open-cart');
   const btnCloseCart = document.getElementById('close-cart');
+  const btnPayBlik = document.getElementById('btn-pay-blik');
 
-  // Inicjalizacja koszyka
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  // Funkcja aktualizacji licznika i panelu koszyka
+  // --- Render produktów ---
+  function renderProducts(filter='all') {
+    productContainer.innerHTML = '';
+    const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+    filtered.forEach(prod => {
+      const div = document.createElement('div');
+      div.className = `border p-4 rounded-lg shadow relative fade-item`;
+      div.style.transition = 'opacity 0.4s ease';
+      div.style.opacity = 0;
+
+      let html = `<h3 class="text-xl font-semibold mb-2">${prod.category.charAt(0).toUpperCase() + prod.category.slice(1)}</h3>
+      <p class="mb-2">${prod.description || ''}</p>
+      <p class="font-bold mb-2">${prod.name} – ${prod.price} zł</p>
+      <button class="px-3 py-1 rounded text-white add-to-cart-btn ${prod.color}" data-name="${prod.name}" data-price="${prod.price}">
+        Dodaj do koszyka
+      </button>`;
+
+      div.innerHTML = html;
+      productContainer.appendChild(div);
+
+      // animacja fade-in
+      setTimeout(() => div.style.opacity = 1, 10);
+    });
+  }
+
+  // --- Filtry kategorii ---
+  document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // reset kolorów przycisków
+      document.querySelectorAll('.category-btn').forEach(b => {
+        b.classList.remove('bg-blue-500', 'bg-pink-500', 'bg-green-500', 'bg-purple-500', 'bg-black', 'text-white');
+        b.classList.add('bg-gray-300');
+      });
+      // wyróżnij aktywny wg kategorii (tylko prosty przykład)
+      const cat = btn.dataset.category;
+      btn.classList.remove('bg-gray-300');
+      if (cat === 'mezczyzni') btn.classList.add('bg-blue-500', 'text-white');
+      else if (cat === 'kobiety') btn.classList.add('bg-pink-500', 'text-white');
+      else if (cat === 'chlopcy') btn.classList.add('bg-green-500', 'text-white');
+      else if (cat === 'dziewczynki') btn.classList.add('bg-purple-500', 'text-white');
+      else if (cat === 'nowosci') btn.classList.add('bg-black', 'text-white');
+      else btn.classList.add('bg-blue-500', 'text-white');
+      renderProducts(cat);
+    });
+  });
+
+  // --- Koszyk ---
   function updateCartUI() {
     cartCountEl.textContent = cart.length;
-
-    // Wyczyść listę
     cartItemsEl.innerHTML = '';
-
-    // Dodaj produkty do listy
     let total = 0;
-    cart.forEach((item, i) => {
+    cart.forEach((item,i) => {
       total += Number(item.price);
       const li = document.createElement('li');
       li.textContent = `${item.name} — ${item.price} zł`;
-      // Dodaj przycisk usuwania z koszyka
       const removeBtn = document.createElement('button');
       removeBtn.textContent = 'Usuń';
       removeBtn.style.marginLeft = '10px';
@@ -432,48 +392,137 @@
       removeBtn.style.padding = '2px 6px';
       removeBtn.style.cursor = 'pointer';
       removeBtn.onclick = () => {
-        cart.splice(i, 1);
+        cart.splice(i,1);
         saveCart();
         updateCartUI();
       };
       li.appendChild(removeBtn);
       cartItemsEl.appendChild(li);
     });
-
     cartTotalEl.textContent = `Suma: ${total} zł`;
   }
-
-  // Zapis koszyka w localStorage
   function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
-  // Obsługa kliknięcia "Dodaj do koszyka"
-  document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const name = btn.getAttribute('data-name');
-      const price = btn.getAttribute('data-price');
-      cart.push({ name, price });
-      saveCart();
-      updateCartUI();
-      alert(`${name} dodano do koszyka!`);
+  // Obsługa "Dodaj do koszyka"
+  function addListenersToCartButtons() {
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.getAttribute('data-name');
+        const price = btn.getAttribute('data-price');
+        cart.push({name, price});
+        saveCart();
+        updateCartUI();
+        alert(`${name} dodano do koszyka!`);
+      });
     });
-  });
+  }
 
-  // Otwarcie panelu koszyka
+  // Początkowe renderowanie
+  renderProducts('mezczyzni');
+  addListenersToCartButtons();
+  updateCartUI();
+
+  // Otwarcie i zamknięcie koszyka
   btnOpenCart.addEventListener('click', () => {
     cartPanel.style.display = 'block';
   });
-
-  // Zamknięcie panelu koszyka
   btnCloseCart.addEventListener('click', () => {
     cartPanel.style.display = 'none';
   });
 
-  // Inicjalizacja UI przy ładowaniu strony
-  updateCartUI();
+  // Płatność BLIK - symulacja
+  btnPayBlik.addEventListener('click', () => {
+    if(cart.length === 0) {
+      alert('Koszyk jest pusty!');
+      return;
+    }
+    alert('Przekierowuję do płatności BLIK... (symulacja)');
+    // Tutaj normalnie byłoby przekierowanie do backendu/BRAMKI płatności
+    cart = [];
+    saveCart();
+    updateCartUI();
+    cartPanel.style.display = 'none';
+  });
+
+  // --- Sekcja Projektuj ---
+
+  const designForm = document.getElementById('design-form');
+  const preview = document.getElementById('preview');
+  let uploadedImageData = null;
+
+  // Podgląd projektu (tekst + kolor + opcjonalny obrazek)
+  function updatePreview() {
+    const productType = document.getElementById('product-type').value;
+    const color = document.getElementById('product-color').value;
+    const text = document.getElementById('print-text').value;
+
+    let imgHtml = uploadedImageData ? `<img src="${uploadedImageData}" alt="Projekt" style="max-width:100px; max-height:100px; display:block; margin:10px auto;">` : '';
+    preview.innerHTML = `
+      <div style="color:${color}; font-weight:bold; font-size:1.2rem;">
+        ${productType}<br>${text}
+      </div>
+      ${imgHtml}
+    `;
+  }
+
+  document.getElementById('product-type').addEventListener('change', updatePreview);
+  document.getElementById('product-color').addEventListener('input', updatePreview);
+  document.getElementById('print-text').addEventListener('input', updatePreview);
+  document.getElementById('upload-image').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if(!file) {
+      uploadedImageData = null;
+      updatePreview();
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = e => {
+      uploadedImageData = e.target.result;
+      updatePreview();
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // Dodanie projektu do koszyka
+  designForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const productType = document.getElementById('product-type').value;
+    const color = document.getElementById('product-color').value;
+    const text = document.getElementById('print-text').value;
+
+    if(!text && !uploadedImageData) {
+      alert('Musisz dodać tekst lub grafikę, żeby dodać projekt.');
+      return;
+    }
+
+    // Projekt jako JSON string w nazwie, uproszczenie
+    const projectDescription = `Projekt: ${productType}, kolor: ${color}, tekst: ${text}`;
+    cart.push({name: projectDescription, price: 0});
+    saveCart();
+    updateCartUI();
+    alert('Twój projekt został dodany do koszyka!');
+
+    // Reset formy i podglądu
+    designForm.reset();
+    uploadedImageData = null;
+    updatePreview();
+  });
+
+  updatePreview();
 </script>
-<section id="projektuj" class="sekcja py-16 bg-white">
+
+<style>
+  /* Prosty fade animation dla produktów */
+  .fade-item {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .fade-item.show {
+    opacity: 1;
+  }
+</style><section id="projektuj" class="sekcja py-16 bg-white">
   <div class="container mx-auto max-w-6xl px-4">
     <h2 class="text-3xl font-bold mb-6 text-center">Zaprojektuj swój produkt</h2>
 
