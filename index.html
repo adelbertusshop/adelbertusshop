@@ -1104,6 +1104,7 @@
   <p>2. W sprawach nieuregulowanych obowiązują przepisy Kodeksu cywilnego.</p>
 </section>
 
+<!-- PANEL KOSZYKA -->
 <div id="koszykPanel" class="koszyk-panel">
   <h2>Twój koszyk</h2>
   <div id="koszykLista"></div>
@@ -1113,31 +1114,45 @@
   </div>
 </div>
 
+<!-- PRZYCISK DO OTWARCIA KOSZYKA -->
 <button class="koszyk-toggle" onclick="toggleKoszyk()">Koszyk 🛒</button>
 
+<!-- SEKRETNA SEKCJA ZAMÓWIENIA (musi być obecna) -->
+<div id="zamowienia" class="sekcja">
+  <h2>Zamówienie</h2>
+  <ul id="podsumowanieKoszyka"></ul>
+  <p>Suma: <strong id="sumaZamowienia">0.00 zł</strong></p>
+  <form onsubmit="wyslijZamowienie(event)">
+    <label>Imię i nazwisko: <input type="text" required></label><br>
+    <label>Email: <input type="email" required></label><br>
+    <label>Telefon: <input type="tel" required></label><br>
+    <label>Notatka: <textarea></textarea></label><br>
+    <label>Dołącz grafikę (opcjonalnie): <input type="file"></label><br>
+    <button type="submit">Zamawiam wszystko</button>
+    <button type="button" onclick="anulujZamowienie()">Anuluj</button>
+  </form>
+</div>
+
 <script>
-  // Przełączanie widoczności sekcji
   function pokazSekcje(id) {
     document.querySelectorAll('.sekcja').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    document.getElementById('btn-' + id).classList.add('active');
+    const btn = document.getElementById('btn-' + id);
+    if (btn) btn.classList.add('active');
   }
 
-  // Toggle panelu koszyka
   function toggleKoszyk() {
     const panel = document.getElementById('koszykPanel');
     panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
   }
 
-  // Przejście do zamówienia
   function zlozZamowienie() {
     pokazSekcje('zamowienia');
     toggleKoszyk();
     aktualizujPodsumowanie();
   }
 
-  // Produkty
   const produkty = {
     mezczyzni: [
       {id: 1, nazwa: "Koszulka Męska", cena: 49.99, obraz: "https://i.ibb.co/example1.jpg"},
@@ -1151,7 +1166,6 @@
 
   let koszyk = [];
 
-  // Pokaż produkty dla kategorii
   function pokazProdukty(kategoria) {
     const lista = document.getElementById('produkty-lista');
     lista.innerHTML = '';
@@ -1168,7 +1182,6 @@
     });
   }
 
-  // Dodaj do koszyka
   function dodajDoKoszyka(id, kategoria) {
     const produkt = produkty[kategoria].find(p => p.id === id);
     if (!produkt) return;
@@ -1181,7 +1194,6 @@
     aktualizujKoszyk();
   }
 
-  // Aktualizuj koszyk w UI
   function aktualizujKoszyk() {
     const lista = document.getElementById('koszykLista');
     lista.innerHTML = '';
@@ -1204,13 +1216,11 @@
     document.getElementById('koszykTotal').textContent = total.toFixed(2) + ' zł';
   }
 
-  // Usuń z koszyka
   function usunZKoszyka(id) {
     koszyk = koszyk.filter(item => item.id !== id);
     aktualizujKoszyk();
   }
 
-  // Aktualizuj podsumowanie zamówienia
   function aktualizujPodsumowanie() {
     const ul = document.getElementById('podsumowanieKoszyka');
     ul.innerHTML = '';
@@ -1223,7 +1233,6 @@
     document.getElementById('sumaZamowienia').textContent = suma.toFixed(2) + ' zł';
   }
 
-  // Wysyłka zamówienia (placeholder)
   function wyslijZamowienie(e) {
     e.preventDefault();
     if (koszyk.length === 0) {
@@ -1236,12 +1245,10 @@
     pokazSekcje('sklep');
   }
 
-  // Anuluj zamówienie
   function anulujZamowienie() {
     pokazSekcje('sklep');
   }
 
-  // Obsługa przycisków kategorii w sklepie
   document.querySelectorAll('#kategorie button').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('#kategorie button').forEach(b => b.classList.remove('active'));
@@ -1250,24 +1257,5 @@
     });
   });
 
-  // Start – pokaż produkty z pierwszej kategorii
   pokazProdukty('mezczyzni');
-
-  // Komentarze na blogu
-  function dodajKomentarz(event, postId) {
-    event.preventDefault();
-    const form = event.target;
-    const autor = form.autor.value.trim();
-    const tekst = form.tekst.value.trim();
-    if (!autor || !tekst) return;
-
-    const post = document.querySelector(`article.post[data-id="${postId}"]`);
-    const komentarzeDiv = post.querySelector('.komentarze');
-
-    const komentarzEl = document.createElement('p');
-    komentarzEl.textContent = autor + ': ' + tekst;
-    komentarzeDiv.appendChild(komentarzEl);
-
-    form.reset();
-  }
 </script>
