@@ -9,34 +9,36 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Playfair Display', serif;
-      background-color: #0e0d0d;
-      color: #f5f0e6;
+    body { 
+      font-family: 'Playfair Display', serif; 
+      background-color: #0e0d0d; 
+      color: #f5f0e6; 
     }
-    .hidden { display: none; }
-    .gold-text { color: #d4af37; }
-    .banner img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
+    .hidden { display: none; } 
+    .gold-text { color: #d4af37; } 
+    .banner img { width: 100%; height: auto; object-fit: cover; }
+    .slider-container { 
+      width: 100%; 
+      overflow: hidden; 
+      position: relative; 
+      height: 360px; 
+      margin-top: 0.5rem; 
+    } 
+    .slider-track { 
+      display: flex; 
+      width: 400%; 
+      animation: slide 20s infinite linear; 
     }
-    .slider-container {
-      width: 100%;
-      overflow-x: auto;
-      position: relative;
-      height: 360px;
-      margin-top: 0.5rem;
-      display: flex;
-      gap: 0.5rem;
-    }
-    .slider-container img {
-      flex-shrink: 0;
-      width: 100%;
-      max-width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 0.5rem;
+    .slider-track img { 
+      width: 100%; 
+      object-fit: cover; 
+    } 
+    @keyframes slide { 
+      0% { transform: translateX(0); } 
+      25% { transform: translateX(-100%); } 
+      50% { transform: translateX(-200%); } 
+      75% { transform: translateX(-300%); } 
+      100% { transform: translateX(0); } 
     }
   </style>
 </head>
@@ -44,15 +46,26 @@
 
   <!-- 🔸 Główny baner -->
   <div class="banner">
-    <img src="https://i.ibb.co/F4vVdVXn/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Baner" />
+    <a href="https://ibb.co/s9SHXHCt">
+      <img src="https://i.ibb.co/F4vVdVXn/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Baner" />
+    </a>
   </div>
 
- 
+  <!-- 🔸 Animowany slider -->
+  <div class="slider-container">
+    <div class="slider-track">
+      <img src="https://i.ibb.co/F4WMP49y/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="slider1">
+      <img src="https://i.ibb.co/hFgb1F4P/file-00000000fd5861f78cb774cd7808e871.png" alt="slider2">
+      <img src="https://i.ibb.co/TDpV3HKD/Resizer-17510539315581.jpg" alt="slider3">
+      <img src="https://i.ibb.co/rRnCQMST/file-000000004d38620a9f9d0d8d43926ba0.png" alt="slider4">
+    </div>
+  </div>
+
   <!-- 🔹 Nagłówek -->
   <header class="bg-black shadow p-4 sticky top-0 z-50">
     <div class="flex justify-between items-center">
       <h1 class="text-2xl font-bold gold-text">AdelbertusShop</h1>
-      <button id="koszykButton" class="bg-yellow-400 text-black px-4 py-2 rounded font-semibold">Koszyk</button>
+      <button id="koszykButton" class="bg-gold-700 text-black px-4 py-2 rounded bg-yellow-400 font-semibold">Koszyk</button>
     </div>
   </header>
 
