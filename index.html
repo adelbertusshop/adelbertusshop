@@ -4,93 +4,154 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Raleway:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    header, section, footer { padding: 20px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-    .produkt { border: 1px solid #ddd; padding: 10px; border-radius: 8px; text-align: center; }
-    .produkt img { max-width: 100%; height: auto; }
-    .btn { background: black; color: white; padding: 10px; cursor: pointer; border: none; border-radius: 5px; }
-    
-    /* Koszyk - przycisk i panel */
-    #btn-koszyk {
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      background-color: #111;
+      color: #f3f3f3;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    }
+    .hero-banner {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .hero-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.75);
+    }
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ffd700;
+      font-size: 3rem;
+      text-align: center;
+      text-shadow:
+        0 0 10px #ffd700,
+        0 0 20px #ffd700,
+        0 0 30px #ffd700;
+      user-select: none;
+      pointer-events: none;
+    }
+    header, section, footer {
+      padding: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .produkt {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      background: #222;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+    }
+    .produkt img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .btn {
+      background: black;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      margin-top: 8px;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #ffd700;
+      color: #111;
+    }
+    #koszyk {
       position: fixed;
       top: 20px;
       right: 20px;
-      background: black;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 10000;
-      font-weight: bold;
-      box-shadow: 0 0 5px rgba(0,0,0,0.5);
-    }
-    #panel-koszyka {
-      position: fixed;
-      top: 60px;
-      right: 20px;
-      width: 320px;
-      max-height: 70vh;
-      background: #f0f0f0;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      background: #222;
       padding: 20px;
-      overflow-y: auto;
-      display: none;
+      border-radius: 10px;
+      width: 300px;
       z-index: 9999;
+      box-shadow: 0 0 15px #ffd700;
+      color: #ffd700;
+      font-weight: 700;
     }
-    #panel-koszyka h3 {
-      margin-top: 0;
+    #koszyk-lista {
+      list-style: none;
+      padding: 0;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 10px;
     }
     #koszyk-lista li {
-      margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-    #koszyk-lista button {
-      background: #e3342f;
-      border: none;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-    #zamowienie-notatka {
-      width: 100%;
-      height: 60px;
-      margin: 10px 0;
-      resize: vertical;
-      padding: 8px;
+      margin-bottom: 6px;
+      background: #333;
+      padding: 6px 10px;
       border-radius: 5px;
-      border: 1px solid #ccc;
-      font-family: Arial, sans-serif;
+      box-shadow: 0 0 5px #ffd700;
+    }
+    #koszyk-lista li button {
+      background: transparent;
+      border: none;
+      color: #ffd700;
+      font-weight: 700;
+      cursor: pointer;
       font-size: 1rem;
     }
-    #zamow-btn {
-      background: green;
-      color: white;
+    #zamowienia textarea,
+    #zamowienia input[type="file"] {
       width: 100%;
-      padding: 10px;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 5px;
       border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1.1rem;
+      font-family: 'Raleway', sans-serif;
+      font-size: 1rem;
     }
-    #blik-info {
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: #555;
-      text-align: center;
-      font-weight: 600;
+    #zamowienia button {
+      width: 100%;
+      background-color: #ffd700;
+      color: #111;
+      font-weight: 700;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #zamowienia button:hover {
+      background-color: #e6c200;
     }
   </style>
 </head>
 <body>
 
+  <!-- BANER PEŁNOEKRANOWY -->
+  <section class="hero-banner">
+    <img src="https://i.ibb.co/nMVxQvzp/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="AdelbertusShop Banner" />
+    <div class="hero-text">✦ Witamy w AdelbertusShop ✦<br/>Gdzie sztuka spotyka duszę</div>
+  </section>
+
+  <!-- RESZTA STRONY -->
   <header>
     <h1>AdelbertusShop – Gdzie Ulica Spotyka Sztukę</h1>
   </header>
@@ -180,24 +241,17 @@
     <p>Pełen regulamin zakupów i zwrotów znajdziesz tutaj.</p>
   </section>
 
-  <section id="zamowienia" style="margin-top: 40px;">
+  <section id="zamowienia">
     <h2>Zamówienie</h2>
     <textarea id="zamowienie-notatka" placeholder="Twoja notatka..."></textarea><br />
     <input type="file" id="zamowienie-plik" /><br />
     <button class="btn" onclick="zamow()">Zamawiam wszystko</button>
   </section>
 
-  <!-- Przycisk koszyka -->
-  <button id="btn-koszyk" onclick="toggleKoszyk()">🛒 Koszyk (<span id="ilosc-produktow">0</span>)</button>
-
-  <!-- Panel koszyka -->
-  <div id="panel-koszyka">
-    <h3>Twój koszyk</h3>
+  <div id="koszyk">
+    <h3>Koszyk</h3>
     <ul id="koszyk-lista"></ul>
     <p id="koszyk-suma">Suma: 0 zł</p>
-    <textarea id="zamowienie-notatka-panel" placeholder="Dodaj notatkę do zamówienia..." style="width: 100%; height: 60px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc; padding: 8px;"></textarea>
-    <button id="zamow-btn" onclick="zamow()">Zamawiam wszystko</button>
-    <p id="blik-info">Płatność BLIK na numer: <strong>573-939-925</strong></p>
   </div>
 
   <script>
@@ -206,50 +260,34 @@
     function dodajDoKoszyka(nazwa, cena) {
       koszyk.push({ nazwa, cena });
       aktualizujKoszyk();
-      if (!panelWidoczny) toggleKoszyk(); // automatycznie otwórz panel przy dodaniu
     }
 
     function aktualizujKoszyk() {
-      const lista = document.getElementById('koszyk-lista');
-      const ilosc = document.getElementById('ilosc-produktow');
-      lista.innerHTML = '';
+      const lista = document.getElementById("koszyk-lista");
+      lista.innerHTML = "";
       let suma = 0;
       koszyk.forEach((item, index) => {
         suma += item.cena;
-        const li = document.createElement('li');
-        li.textContent = `${item.nazwa} - ${item.cena} zł `;
-        const btnUsun = document.createElement('button');
-        btnUsun.textContent = 'Usuń';
-        btnUsun.onclick = () => {
+        const el = document.createElement("li");
+        el.textContent = `${item.nazwa} - ${item.cena} zł`;
+        const btn = document.createElement("button");
+        btn.textContent = "Usuń";
+        btn.onclick = () => {
           koszyk.splice(index, 1);
           aktualizujKoszyk();
         };
-        li.appendChild(btnUsun);
-        lista.appendChild(li);
+        el.appendChild(btn);
+        lista.appendChild(el);
       });
-      document.getElementById('koszyk-suma').textContent = `Suma: ${suma} zł`;
-      ilosc.textContent = koszyk.length;
-    }
-
-    let panelWidoczny = false;
-    function toggleKoszyk() {
-      const panel = document.getElementById('panel-koszyka');
-      panelWidoczny = !panelWidoczny;
-      panel.style.display = panelWidoczny ? 'block' : 'none';
+      document.getElementById("koszyk-suma").textContent = `Suma: ${suma} zł`;
     }
 
     function zamow() {
-      if (koszyk.length === 0) {
-        alert('Koszyk jest pusty! Dodaj produkty przed zamówieniem.');
-        return;
-      }
-      const notatka = document.getElementById('zamowienie-notatka-panel').value;
-      // Tu możesz dodać obsługę pliku, wysyłkę itp.
-      alert(`Zamówienie złożone! Dziękujemy!\nNotatka: ${notatka}`);
+      const notatka = document.getElementById("zamowienie-notatka").value;
+      const plik = document.getElementById("zamowienie-plik").files[0];
+      alert("Zamówienie złożone! Dziękujemy!");
       koszyk = [];
       aktualizujKoszyk();
-      toggleKoszyk();
-      document.getElementById('zamowienie-notatka-panel').value = '';
     }
   </script>
 </body>
