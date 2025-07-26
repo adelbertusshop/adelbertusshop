@@ -293,12 +293,186 @@
       <h2>Zaprojektuj</h2>
       <p>Stwórz własny projekt koszulki, bluzy lub czapki. Wybierz kolor, dodaj grafikę i tekst, a my to wykonamy!</p>
     </section>
+  <!-- Sekcja Marketplace -->
+<section id="marketplace" class="py-12 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-6">Marketplace – Hala Targowa</h2>
+    <p class="text-center text-lg mb-4">Wystaw swoje produkty! Wypełnij formularz, zapłać BLIK (573-939-925 z dopiskiem <strong>marketplace</strong>) i zyskaj swoją ikonę!</p>
 
-    <section id="marketplace">
-      <h2>Marketplace</h2>
-      <p>Przeglądaj unikalne projekty społeczności Adelbertus.</p>
-    </section>
-<!-- Sekcja Reklama -->
+    <!-- Formularz wystawienia -->
+    <form id="marketplaceForm" class="bg-white p-6 rounded shadow-md mb-8" onsubmit="return dodajProduktMarketplace(event)">
+      <label class="block mb-2 font-semibold">Nazwa produktu</label>
+      <input type="text" id="nazwaProduktu" placeholder="Wpisz nazwę" class="w-full p-2 border rounded mb-4" required />
+
+      <label class="block mb-2 font-semibold">Opis produktu</label>
+      <textarea id="opisProduktu" placeholder="Opisz swój produkt" class="w-full p-2 border rounded mb-4" required></textarea>
+
+      <label class="block mb-2 font-semibold">Cena</label>
+      <input type="number" id="cenaProduktu" placeholder="99" class="w-full p-2 border rounded mb-4" min="1" required />
+
+      <label class="block mb-2 font-semibold">Okres emisji</label>
+      <select id="okresEmisji" class="w-full p-2 border rounded mb-4" required>
+        <option value="86400">Dzień – 10 zł</option>
+        <option value="604800">Tydzień – 50 zł</option>
+        <option value="2592000">Miesiąc – 150 zł</option>
+      </select>
+
+      <p class="text-sm text-gray-600 mb-4">Pamiętaj o wpłacie na BLIK: <strong>573-939-925</strong> z dopiskiem <strong>marketplace</strong></p>
+      <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Wyślij zgłoszenie</button>
+    </form>
+
+    <!-- Ikony marketplace -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="ikonyMarketplace">
+      <!-- Tutaj będą dynamicznie dodawane produkty -->
+    </div>
+
+    <!-- Panel administratora -->
+    <div id="panelAdmina" class="mt-12">
+      <h3 class="text-xl font-bold mb-4">Panel Administratora</h3>
+      <input type="password" id="hasloAdmin" placeholder="Wpisz hasło" class="p-2 border rounded mb-4" />
+      <button onclick="zalogujAdmina()" class="bg-blue-600 text-white px-4 py-2 rounded">Zaloguj</button>
+
+      <div id="adminOpcje" class="hidden mt-6">
+        <p class="text-green-600">Zalogowano jako administrator.</p>
+        <button onclick="usunWybranyProdukt()" class="bg-red-600 text-white px-4 py-2 rounded mt-2">Usuń zaznaczony produkt</button>
+        <button onclick="ponaglijKlienta()" class="bg-indigo-500 text-white px-4 py-2 rounded mt-2">Ponaglij klienta</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  let produktyMarketplace = [];
+  let wybranyProduktIndex = null;
+  let zalogowanyAdmin = false;
+
+  function dodajProduktMarketplace(event) {
+    event.preventDefault();
+
+    const nazwa = document.getElementById('nazwaProduktu').value.trim();
+    const opis = document.getElementById('opisProduktu').value.trim();
+    const cena = Number(document.getElementById('cenaProduktu').value);
+    const okres = Number(document.getElementById('okresEmisji').value);
+
+    if (!nazwa || !opis || cena <= 0 || !okres) {
+      alert('Wypełnij poprawnie wszystkie pola!');
+      return false;
+    }
+
+    // Ustaw cenę max zgodnie z okresem emisji
+    let maxCena = 0;
+    switch (okres) {
+      case 86400: maxCena = 10; break;
+      case 604800: maxCena = 50; break;
+      case 2592000: maxCena = 150; break;
+    }
+    if (cena > maxCena) {
+      alert(`Maksymalna cena dla tego okresu to ${maxCena} zł.`);
+      return false;
+    }
+
+    const dataWygaśnięcia = Date.now() + okres * 1000;
+    produktyMarketplace.push({ nazwa, opis, cena, dataWygaśnięcia });
+    dodajProduktDoDOM(produktyMarketplace.length - 1);
+
+    // Reset form
+    document.getElementById('marketplaceForm').reset();
+    alert('Produkt został dodany! Po wpłacie BLIK czekaj na aktywację.');
+
+    return false;
+  }
+
+  function dodajProduktDoDOM(index) {
+    const container = document.getElementById('ikonyMarketplace');
+    const produkt = produktyMarketplace[index];
+
+    const produktEl = document.createElement('div');
+    produktEl.className = 'bg-white p-4 rounded shadow relative cursor-pointer';
+    produktEl.dataset.index = index;
+    produktEl.onclick = () => {
+      if (zalogowanyAdmin) {
+        wybranyProduktIndex = index;
+        zaznaczProdukt(produktEl);
+      }
+    };
+
+    produktEl.innerHTML = `
+      <h3 class="font-bold text-lg">${produkt.nazwa}</h3>
+      <p class="text-gray-700">${produkt.opis}</p>
+      <p class="text-sm text-gray-600 mt-2">Cena: ${produkt.cena} zł</p>
+      <p class="text-sm text-gray-600 mt-2">Pozostały czas: <span class="czasPozostaly">--:--:--</span></p>
+    `;
+
+    container.appendChild(produktEl);
+    aktualizujCzas(produktEl, produkt.dataWygaśnięcia);
+  }
+
+  function zaznaczProdukt(el) {
+    // Usuń zaznaczenia z innych
+    document.querySelectorAll('#ikonyMarketplace > div').forEach(div => {
+      div.style.border = 'none';
+    });
+    el.style.border = '3px solid #f59e0b'; // żółty border dla zaznaczenia
+  }
+
+  function usunWybranyProdukt() {
+    if (wybranyProduktIndex === null) {
+      alert('Wybierz produkt do usunięcia.');
+      return;
+    }
+    if (!confirm('Na pewno chcesz usunąć ten produkt?')) return;
+
+    produktyMarketplace.splice(wybranyProduktIndex, 1);
+    wybranyProduktIndex = null;
+    odswiezMarketplace();
+  }
+
+  function odswiezMarketplace() {
+    const container = document.getElementById('ikonyMarketplace');
+    container.innerHTML = '';
+    produktyMarketplace.forEach((_, i) => dodajProduktDoDOM(i));
+  }
+
+  function zalogujAdmina() {
+    const haslo = document.getElementById('hasloAdmin').value;
+    if (haslo === 'Wojownik.03') {
+      zalogowanyAdmin = true;
+      document.getElementById('adminOpcje').classList.remove('hidden');
+      alert('Zalogowano jako administrator.');
+    } else {
+      alert('Błędne hasło.');
+    }
+  }
+
+  function ponaglijKlienta() {
+    if (wybranyProduktIndex === null) {
+      alert('Wybierz produkt, który chcesz ponaglić.');
+      return;
+    }
+    const produkt = produktyMarketplace[wybranyProduktIndex];
+    alert(`Ponaglam klienta odpowiedzialnego za produkt "${produkt.nazwa}" do dokonania wpłaty BLIK.`);
+    // Możesz tu dodać integrację z e-mailem lub SMS, jeśli będzie taka możliwość
+  }
+
+  function aktualizujCzas(el, dataWygaśnięcia) {
+    function update() {
+      const teraz = Date.now();
+      let pozostalo = Math.floor((dataWygaśnięcia - teraz) / 1000);
+      if (pozostalo <= 0) {
+        el.style.display = 'none';
+        odswiezMarketplace();
+        return;
+      }
+      const h = String(Math.floor(pozostalo / 3600)).padStart(2, '0');
+      const m = String(Math.floor((pozostalo % 3600) / 60)).padStart(2, '0');
+      const s = String(pozostalo % 60).padStart(2, '0');
+      const czasSpan = el.querySelector('.czasPozostaly');
+      if (czasSpan) czasSpan.textContent = `${h}:${m}:${s}`;
+    }
+    update();
+    setInterval(update, 1000);
+  }
+</script><!-- Sekcja Reklama -->
 <section id="reklama" class="py-10 bg-yellow-100 text-center">
   <h2 class="text-3xl font-bold mb-4">Zareklamuj się na AdelbertusShop</h2>
   <p class="mb-2">Twoja reklama pojawi się na stronie głównej na 30 sekund.</p>
