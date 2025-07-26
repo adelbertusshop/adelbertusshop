@@ -17,35 +17,25 @@
     .gold-text { color: #d4af37; } 
     .banner img { width: 100%; height: auto; object-fit: cover; }
 
-    /* ---- SLIDER ---- */
+    /* Statyczny slider (galeria) */
     .slider-container { 
       width: 100%; 
       overflow: hidden; 
       position: relative; 
-      aspect-ratio: 16/9; /* stałe proporcje */
+      aspect-ratio: 16/9;
       margin-top: 0.5rem; 
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
     } 
-    .slider-track { 
-      display: flex; 
-      width: 400%; 
-      animation: slide 20s infinite linear;
+    .slider-container img { 
+      max-width: 24%; 
+      object-fit: cover; 
+      border-radius: 0.25rem;
+      transition: transform 0.3s ease;
     }
-    .slider-track img { 
-      width: 100%; 
-      height: 100%; 
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .slider-track img:hover {
+    .slider-container img:hover {
       transform: scale(1.05);
-    }
-
-    @keyframes slide { 
-      0% { transform: translateX(0); } 
-      25% { transform: translateX(-100%); } 
-      50% { transform: translateX(-200%); } 
-      75% { transform: translateX(-300%); } 
-      100% { transform: translateX(0); } 
     }
   </style>
 </head>
@@ -58,14 +48,12 @@
     </a>
   </div>
 
-  <!-- 🔸 Animowany slider -->
+  <!-- 🔸 Statyczny slider (galeria) -->
   <div class="slider-container">
-    <div class="slider-track">
-      <img src="https://i.ibb.co/F4WMP49y/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="slider1">
-      <img src="https://i.ibb.co/hFgb1F4P/file-00000000fd5861f78cb774cd7808e871.png" alt="slider2">
-      <img src="https://i.ibb.co/TDpV3HKD/Resizer-17510539315581.jpg" alt="slider3">
-      <img src="https://i.ibb.co/rRnCQMST/file-000000004d38620a9f9d0d8d43926ba0.png" alt="slider4">
-    </div>
+    <img src="https://i.ibb.co/F4WMP49y/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="slider1">
+    <img src="https://i.ibb.co/hFgb1F4P/file-00000000fd5861f78cb774cd7808e871.png" alt="slider2">
+    <img src="https://i.ibb.co/TDpV3HKD/Resizer-17510539315581.jpg" alt="slider3">
+    <img src="https://i.ibb.co/rRnCQMST/file-000000004d38620a9f9d0d8d43926ba0.png" alt="slider4">
   </div>
 
   <!-- 🔹 Nagłówek -->
