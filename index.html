@@ -17,7 +17,7 @@
     .gold-text { color: #d4af37; } 
     .banner img { width: 100%; height: auto; object-fit: cover; }
 
-    /* Statyczny slider (galeria) */
+    /* Statyczna galeria zamiast animacji */
     .slider-container { 
       width: 100%; 
       overflow: hidden; 
@@ -32,10 +32,6 @@
       max-width: 24%; 
       object-fit: cover; 
       border-radius: 0.25rem;
-      transition: transform 0.3s ease;
-    }
-    .slider-container img:hover {
-      transform: scale(1.05);
     }
   </style>
 </head>
@@ -48,7 +44,7 @@
     </a>
   </div>
 
-  <!-- 🔸 Statyczny slider (galeria) -->
+  <!-- 🔸 Statyczna galeria -->
   <div class="slider-container">
     <img src="https://i.ibb.co/F4WMP49y/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="slider1">
     <img src="https://i.ibb.co/hFgb1F4P/file-00000000fd5861f78cb774cd7808e871.png" alt="slider2">
