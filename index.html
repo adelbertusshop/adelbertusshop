@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
@@ -11,10 +11,86 @@
     .produkt { border: 1px solid #ddd; padding: 10px; border-radius: 8px; text-align: center; }
     .produkt img { max-width: 100%; height: auto; }
     .btn { background: black; color: white; padding: 10px; cursor: pointer; border: none; border-radius: 5px; }
-    #koszyk { position: fixed; top: 20px; right: 20px; background: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px; z-index: 9999; }
+    
+    /* Koszyk - przycisk i panel */
+    #btn-koszyk {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: black;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 10000;
+      font-weight: bold;
+      box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+    #panel-koszyka {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      width: 320px;
+      max-height: 70vh;
+      background: #f0f0f0;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      padding: 20px;
+      overflow-y: auto;
+      display: none;
+      z-index: 9999;
+    }
+    #panel-koszyka h3 {
+      margin-top: 0;
+    }
+    #koszyk-lista li {
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #koszyk-lista button {
+      background: #e3342f;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    #zamowienie-notatka {
+      width: 100%;
+      height: 60px;
+      margin: 10px 0;
+      resize: vertical;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-family: Arial, sans-serif;
+      font-size: 1rem;
+    }
+    #zamow-btn {
+      background: green;
+      color: white;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    #blik-info {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #555;
+      text-align: center;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
+
   <header>
     <h1>AdelbertusShop – Gdzie Ulica Spotyka Sztukę</h1>
   </header>
@@ -24,28 +100,53 @@
 
     <h3>Mężczyźni</h3>
     <div class="grid">
-      <div class="produkt"><img src="link1.jpg" alt="Nie pasujesz do..."/><p>Nie pasujesz do... – 99 zł</p><button class="btn" onclick="dodajDoKoszyka('Nie pasujesz do...', 99)">Dodaj do koszyka</button></div>
-      <div class="produkt"><img src="link2.jpg" alt="Buntownik z wyboru"/><p>Buntownik z wyboru – 99 zł</p><button class="btn" onclick="dodajDoKoszyka('Buntownik z wyboru', 99)">Dodaj</button></div>
+      <div class="produkt">
+        <img src="link1.jpg" alt="Nie pasujesz do..." />
+        <p>Nie pasujesz do... – 99 zł</p>
+        <button class="btn" onclick="dodajDoKoszyka('Nie pasujesz do...', 99)">Dodaj do koszyka</button>
+      </div>
+      <div class="produkt">
+        <img src="link2.jpg" alt="Buntownik z wyboru" />
+        <p>Buntownik z wyboru – 99 zł</p>
+        <button class="btn" onclick="dodajDoKoszyka('Buntownik z wyboru', 99)">Dodaj</button>
+      </div>
     </div>
 
     <h3>Kobiety</h3>
     <div class="grid">
-      <div class="produkt"><img src="link_k1.jpg" alt="Dzika dusza"/><p>Dzika dusza – 99 zł</p><button class="btn" onclick="dodajDoKoszyka('Dzika dusza', 99)">Dodaj</button></div>
+      <div class="produkt">
+        <img src="link_k1.jpg" alt="Dzika dusza" />
+        <p>Dzika dusza – 99 zł</p>
+        <button class="btn" onclick="dodajDoKoszyka('Dzika dusza', 99)">Dodaj</button>
+      </div>
     </div>
 
     <h3>Chłopcy</h3>
     <div class="grid">
-      <div class="produkt"><img src="chlopiec1.jpg" alt="Mały wojownik"/><p>Mały wojownik – 99 zł</p><button class="btn" onclick="dodajDoKoszyka('Mały wojownik', 99)">Dodaj</button></div>
+      <div class="produkt">
+        <img src="chlopiec1.jpg" alt="Mały wojownik" />
+        <p>Mały wojownik – 99 zł</p>
+        <button class="btn" onclick="dodajDoKoszyka('Mały wojownik', 99)">Dodaj</button>
+      </div>
     </div>
 
     <h3>Dziewczynki</h3>
     <div class="grid">
-      <div class="produkt"><img src="dziewczynka1.jpg" alt="Mała artystka"/><p>Mała artystka – 99 zł</p><button class="btn" onclick="dodajDoKoszyka('Mała artystka', 99)">Dodaj</button></div>
+      <div class="produkt">
+        <img src="dziewczynka1.jpg" alt="Mała artystka" />
+        <p>Mała artystka – 99 zł</p>
+        <button class="btn" onclick="dodajDoKoszyka('Mała artystka', 99)">Dodaj</button>
+      </div>
     </div>
 
     <h3>Nowości</h3>
     <div class="grid">
-      <div class="produkt"><img src="tajemnica.jpg" alt="Limitowana koszulka"/><p>Limitowana koszulka – 199 zł</p><p>Transformujący nadruk, widoczny dopiero po zakupie</p><button class="btn" onclick="dodajDoKoszyka('Limitowana koszulka', 199)">Dodaj</button></div>
+      <div class="produkt">
+        <img src="tajemnica.jpg" alt="Limitowana koszulka" />
+        <p>Limitowana koszulka – 199 zł</p>
+        <p>Transformujący nadruk, widoczny dopiero po zakupie</p>
+        <button class="btn" onclick="dodajDoKoszyka('Limitowana koszulka', 199)">Dodaj</button>
+      </div>
     </div>
   </section>
 
@@ -79,17 +180,24 @@
     <p>Pełen regulamin zakupów i zwrotów znajdziesz tutaj.</p>
   </section>
 
-  <section id="zamowienia">
+  <section id="zamowienia" style="margin-top: 40px;">
     <h2>Zamówienie</h2>
-    <textarea id="zamowienie-notatka" placeholder="Twoja notatka..."></textarea><br>
-    <input type="file" id="zamowienie-plik"><br>
+    <textarea id="zamowienie-notatka" placeholder="Twoja notatka..."></textarea><br />
+    <input type="file" id="zamowienie-plik" /><br />
     <button class="btn" onclick="zamow()">Zamawiam wszystko</button>
   </section>
 
-  <div id="koszyk">
-    <h3>Koszyk</h3>
+  <!-- Przycisk koszyka -->
+  <button id="btn-koszyk" onclick="toggleKoszyk()">🛒 Koszyk (<span id="ilosc-produktow">0</span>)</button>
+
+  <!-- Panel koszyka -->
+  <div id="panel-koszyka">
+    <h3>Twój koszyk</h3>
     <ul id="koszyk-lista"></ul>
     <p id="koszyk-suma">Suma: 0 zł</p>
+    <textarea id="zamowienie-notatka-panel" placeholder="Dodaj notatkę do zamówienia..." style="width: 100%; height: 60px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc; padding: 8px;"></textarea>
+    <button id="zamow-btn" onclick="zamow()">Zamawiam wszystko</button>
+    <p id="blik-info">Płatność BLIK na numer: <strong>573-939-925</strong></p>
   </div>
 
   <script>
@@ -98,36 +206,51 @@
     function dodajDoKoszyka(nazwa, cena) {
       koszyk.push({ nazwa, cena });
       aktualizujKoszyk();
+      if (!panelWidoczny) toggleKoszyk(); // automatycznie otwórz panel przy dodaniu
     }
 
     function aktualizujKoszyk() {
-      const lista = document.getElementById("koszyk-lista");
-      lista.innerHTML = "";
+      const lista = document.getElementById('koszyk-lista');
+      const ilosc = document.getElementById('ilosc-produktow');
+      lista.innerHTML = '';
       let suma = 0;
       koszyk.forEach((item, index) => {
         suma += item.cena;
-        const el = document.createElement("li");
-        el.textContent = `${item.nazwa} - ${item.cena} zł`;
-        const btn = document.createElement("button");
-        btn.textContent = "Usuń";
-        btn.onclick = () => {
+        const li = document.createElement('li');
+        li.textContent = `${item.nazwa} - ${item.cena} zł `;
+        const btnUsun = document.createElement('button');
+        btnUsun.textContent = 'Usuń';
+        btnUsun.onclick = () => {
           koszyk.splice(index, 1);
           aktualizujKoszyk();
         };
-        el.appendChild(btn);
-        lista.appendChild(el);
+        li.appendChild(btnUsun);
+        lista.appendChild(li);
       });
-      document.getElementById("koszyk-suma").textContent = `Suma: ${suma} zł`;
+      document.getElementById('koszyk-suma').textContent = `Suma: ${suma} zł`;
+      ilosc.textContent = koszyk.length;
+    }
+
+    let panelWidoczny = false;
+    function toggleKoszyk() {
+      const panel = document.getElementById('panel-koszyka');
+      panelWidoczny = !panelWidoczny;
+      panel.style.display = panelWidoczny ? 'block' : 'none';
     }
 
     function zamow() {
-      const notatka = document.getElementById("zamowienie-notatka").value;
-      const plik = document.getElementById("zamowienie-plik").files[0];
-      alert("Zamówienie złożone! Dziękujemy!");
+      if (koszyk.length === 0) {
+        alert('Koszyk jest pusty! Dodaj produkty przed zamówieniem.');
+        return;
+      }
+      const notatka = document.getElementById('zamowienie-notatka-panel').value;
+      // Tu możesz dodać obsługę pliku, wysyłkę itp.
+      alert(`Zamówienie złożone! Dziękujemy!\nNotatka: ${notatka}`);
       koszyk = [];
       aktualizujKoszyk();
+      toggleKoszyk();
+      document.getElementById('zamowienie-notatka-panel').value = '';
     }
   </script>
 </body>
 </html>
-
