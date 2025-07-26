@@ -29,8 +29,6 @@
       margin-top: 0.5rem;
       display: flex;
       gap: 0.5rem;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
     }
     .slider-container img {
       flex-shrink: 0;
@@ -38,7 +36,6 @@
       max-width: 100%;
       height: 100%;
       object-fit: cover;
-      scroll-snap-align: start;
       border-radius: 0.5rem;
     }
   </style>
@@ -50,7 +47,7 @@
     <img src="https://i.ibb.co/F4vVdVXn/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Baner" />
   </div>
 
-  <!-- 🔸 Statyczny slider -->
+  <!-- 🔸 Slider (bez animacji przewijania) -->
   <div class="slider-container">
     <img src="https://i.ibb.co/F4WMP49y/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="slider1">
     <img src="https://i.ibb.co/hFgb1F4P/file-00000000fd5861f78cb774cd7808e871.png" alt="slider2">
