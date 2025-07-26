@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -17,28 +16,44 @@
     .hidden { display: none; } 
     .gold-text { color: #d4af37; } 
     .banner img { width: 100%; height: auto; object-fit: cover; }
+
+    /* ---- SLIDER ---- */
     .slider-container { 
       width: 100%; 
       overflow: hidden; 
       position: relative; 
-      height: 360px; 
+      height: 360px; /* domyślna wysokość (telefon) */
       margin-top: 0.5rem; 
+      transition: height 0.5s ease;
     } 
     .slider-track { 
       display: flex; 
       width: 400%; 
-      animation: slide 20s infinite linear; 
+      animation: slide 20s infinite linear;
     }
     .slider-track img { 
       width: 100%; 
-      object-fit: cover; 
-    } 
+      height: 100%; 
+      object-fit: contain; /* TELEFON → całe zdjęcie */
+      background-color: #000;
+      transition: transform 0.5s ease, object-fit 0.5s ease;
+    }
+    .slider-track img:hover {
+      transform: scale(1.05); /* delikatne powiększenie przy najechaniu */
+    }
+
     @keyframes slide { 
       0% { transform: translateX(0); } 
       25% { transform: translateX(-100%); } 
       50% { transform: translateX(-200%); } 
       75% { transform: translateX(-300%); } 
       100% { transform: translateX(0); } 
+    }
+
+    /* LAPTOP → mniejsza wysokość i pełne wypełnienie */
+    @media (min-width: 1024px) {
+      .slider-container { height: 220px; }
+      .slider-track img { object-fit: cover; }
     }
   </style>
 </head>
@@ -65,7 +80,7 @@
   <header class="bg-black shadow p-4 sticky top-0 z-50">
     <div class="flex justify-between items-center">
       <h1 class="text-2xl font-bold gold-text">AdelbertusShop</h1>
-      <button id="koszykButton" class="bg-gold-700 text-black px-4 py-2 rounded bg-yellow-400 font-semibold">Koszyk</button>
+      <button id="koszykButton" class="bg-yellow-400 text-black px-4 py-2 rounded font-semibold">Koszyk</button>
     </div>
   </header>
 
@@ -131,7 +146,7 @@
 
     function dodajDoKoszyka(nazwa, cena) {
       koszyk.push({ nazwa, cena });
-      alert(`Dodano do koszyka: ${nazwa}`);
+      alert(\`Dodano do koszyka: \${nazwa}\`);
     }
 
     document.getElementById('koszykButton').addEventListener('click', () => {
@@ -139,7 +154,7 @@
       lista.innerHTML = '';
       koszyk.forEach(p => {
         const li = document.createElement('li');
-        li.textContent = `${p.nazwa} – ${p.cena} zł`;
+        li.textContent = \`\${p.nazwa} – \${p.cena} zł\`;
         lista.appendChild(li);
       });
       document.getElementById('koszyk').classList.remove('hidden');
