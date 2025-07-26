@@ -4,249 +4,326 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Raleway:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Raleway', sans-serif;
-      background-color: #111;
-      color: #f3f3f3;
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #2e1e0f, #4b3a1f);
+      color: #f5f0e6;
+      overflow-x: hidden;
     }
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-      text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
-    }
-    .hero-banner {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .hero-banner img {
+
+    /* Baner jako hero na górze, wysokość stała */
+    #baner {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: brightness(0.75);
-    }
-    .hero-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #ffd700;
-      font-size: 3rem;
+      height: 400px;
+      background: url('https://i.ibb.co/nMVxQvzp/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      box-shadow: inset 0 0 80px 30px rgba(0,0,0,0.5);
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    #baner h1 {
+      font-size: 3.5rem;
+      color: #ffdd99;
       text-shadow:
-        0 0 10px #ffd700,
-        0 0 20px #ffd700,
-        0 0 30px #ffd700;
-      user-select: none;
-      pointer-events: none;
+        0 0 10px #ffdd99,
+        0 0 20px #ccaa66,
+        0 0 30px #aa8844,
+        0 0 40px #886622;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      padding: 0 20px;
+      border: 3px solid #ffdd99;
+      border-radius: 20px;
+      background-color: rgba(0,0,0,0.4);
     }
-    header, section, footer {
-      padding: 20px;
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 50px 50px;
+      background: rgba(30, 20, 10, 0.85);
+      border-radius: 15px;
+      box-shadow: 0 0 40px rgba(255, 221, 153, 0.3);
+      color: #f5e6b8;
+      font-family: 'Palatino Linotype', serif;
     }
+
+    h2, h3 {
+      color: #ffd97d;
+      text-shadow: 1px 1px 2px #8a6e3a;
+      margin-bottom: 20px;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #e6d9b8;
+    }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 25px;
+      margin-bottom: 40px;
     }
+
     .produkt {
-      border: 1px solid #ddd;
-      padding: 10px;
-      border-radius: 8px;
+      background: #3c2e15;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #aa8844aa;
+      padding: 15px;
       text-align: center;
-      background: #222;
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    .produkt:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ffdd99cc;
     }
     .produkt img {
-      max-width: 100%;
+      width: 100%;
       height: auto;
-      border-radius: 5px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      box-shadow: 0 0 15px #aa884499;
+    }
+    .produkt p {
+      margin: 8px 0;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #ffdd99;
+      text-shadow: 1px 1px 3px #774f00;
     }
     .btn {
-      background: black;
-      color: white;
-      padding: 10px;
-      cursor: pointer;
+      background-color: #aa8844;
+      color: #fff8dc;
       border: none;
-      border-radius: 5px;
-      margin-top: 8px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 0 12px #aa8844cc;
       transition: background-color 0.3s ease;
     }
     .btn:hover {
-      background-color: #ffd700;
-      color: #111;
+      background-color: #ffdd99;
+      color: #553300;
+      box-shadow: 0 0 25px #ffdd99cc;
     }
+
     #koszyk {
       position: fixed;
       top: 20px;
       right: 20px;
-      background: #222;
+      background: rgba(50, 38, 14, 0.95);
       padding: 20px;
-      border-radius: 10px;
-      width: 300px;
-      z-index: 9999;
-      box-shadow: 0 0 15px #ffd700;
-      color: #ffd700;
-      font-weight: 700;
+      width: 320px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px #ffdd9988;
+      color: #f5e6b8;
+      z-index: 100;
+      max-height: 80vh;
+      overflow-y: auto;
+      font-family: 'Palatino Linotype', serif;
+    }
+    #koszyk h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+      color: #ffd97d;
+      text-shadow: 1px 1px 2px #8a6e3a;
     }
     #koszyk-lista {
       list-style: none;
       padding: 0;
-      max-height: 300px;
+      margin: 0 0 15px 0;
+      max-height: 50vh;
       overflow-y: auto;
-      margin-bottom: 10px;
     }
     #koszyk-lista li {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 6px;
-      background: #333;
-      padding: 6px 10px;
-      border-radius: 5px;
-      box-shadow: 0 0 5px #ffd700;
+      padding: 8px 5px;
+      border-bottom: 1px solid #aa884433;
+      font-size: 1rem;
+      color: #ffdd99;
+      text-shadow: 1px 1px 1px #552f00;
     }
     #koszyk-lista li button {
-      background: transparent;
+      background: #aa8844cc;
       border: none;
-      color: #ffd700;
+      color: #fff8dc;
+      border-radius: 8px;
+      padding: 4px 10px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+    #koszyk-lista li button:hover {
+      background-color: #ffdd99;
+      color: #553300;
+      box-shadow: 0 0 10px #ffdd99cc;
+    }
+    #koszyk-suma {
+      font-weight: 800;
+      font-size: 1.2rem;
+      text-align: right;
+      color: #ffd97d;
+      text-shadow: 1px 1px 2px #8a6e3a;
+    }
+
+    #zamowienia {
+      margin-top: 50px;
+      padding: 20px;
+      background: rgba(58, 42, 11, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 0 30px #ffdd9977;
+      color: #fff1c2;
+      font-family: 'Palatino Linotype', serif;
+    }
+    #zamowienia textarea {
+      width: 100%;
+      height: 80px;
+      border-radius: 12px;
+      border: none;
+      padding: 12px;
+      font-size: 1.1rem;
+      font-family: 'Georgia', serif;
+      resize: vertical;
+      margin-bottom: 15px;
+      box-shadow: 0 0 10px #aa8844cc inset;
+      background: #3b2e10;
+      color: #fff1c2;
+    }
+    #zamowienia input[type="file"] {
+      margin-bottom: 15px;
+      color: #ffdd99;
       font-weight: 700;
       cursor: pointer;
-      font-size: 1rem;
-    }
-    #zamowienia textarea,
-    #zamowienia input[type="file"] {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 8px;
-      border-radius: 5px;
-      border: none;
-      font-family: 'Raleway', sans-serif;
-      font-size: 1rem;
     }
     #zamowienia button {
-      width: 100%;
-      background-color: #ffd700;
-      color: #111;
-      font-weight: 700;
-      padding: 12px;
+      background-color: #aa8844;
+      color: #fff8dc;
       border: none;
-      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 1.2rem;
+      border-radius: 12px;
       cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 0 20px #aa8844cc;
       transition: background-color 0.3s ease;
     }
     #zamowienia button:hover {
-      background-color: #e6c200;
+      background-color: #ffdd99;
+      color: #553300;
+      box-shadow: 0 0 30px #ffdd99cc;
     }
   </style>
 </head>
 <body>
 
-  <!-- BANER PEŁNOEKRANOWY -->
-  <section class="hero-banner">
-    <img src="https://i.ibb.co/nMVxQvzp/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="AdelbertusShop Banner" />
-    <div class="hero-text">✦ Witamy w AdelbertusShop ✦<br/>Gdzie sztuka spotyka duszę</div>
-  </section>
-
-  <!-- RESZTA STRONY -->
-  <header>
+  <div id="baner">
     <h1>AdelbertusShop – Gdzie Ulica Spotyka Sztukę</h1>
-  </header>
+  </div>
 
-  <section id="sklep">
-    <h2>Sklep</h2>
+  <main>
+    <section id="sklep">
+      <h2>Sklep</h2>
 
-    <h3>Mężczyźni</h3>
-    <div class="grid">
-      <div class="produkt">
-        <img src="link1.jpg" alt="Nie pasujesz do..." />
-        <p>Nie pasujesz do... – 99 zł</p>
-        <button class="btn" onclick="dodajDoKoszyka('Nie pasujesz do...', 99)">Dodaj do koszyka</button>
+      <h3>Mężczyźni</h3>
+      <div class="grid">
+        <div class="produkt">
+          <img src="link1.jpg" alt="Nie pasujesz do..." />
+          <p>Nie pasujesz do... – 99 zł</p>
+          <button class="btn" onclick="dodajDoKoszyka('Nie pasujesz do...', 99)">Dodaj do koszyka</button>
+        </div>
+        <div class="produkt">
+          <img src="link2.jpg" alt="Buntownik z wyboru" />
+          <p>Buntownik z wyboru – 99 zł</p>
+          <button class="btn" onclick="dodajDoKoszyka('Buntownik z wyboru', 99)">Dodaj</button>
+        </div>
       </div>
-      <div class="produkt">
-        <img src="link2.jpg" alt="Buntownik z wyboru" />
-        <p>Buntownik z wyboru – 99 zł</p>
-        <button class="btn" onclick="dodajDoKoszyka('Buntownik z wyboru', 99)">Dodaj</button>
+
+      <h3>Kobiety</h3>
+      <div class="grid">
+        <div class="produkt">
+          <img src="link_k1.jpg" alt="Dzika dusza" />
+          <p>Dzika dusza – 99 zł</p>
+          <button class="btn" onclick="dodajDoKoszyka('Dzika dusza', 99)">Dodaj</button>
+        </div>
       </div>
-    </div>
 
-    <h3>Kobiety</h3>
-    <div class="grid">
-      <div class="produkt">
-        <img src="link_k1.jpg" alt="Dzika dusza" />
-        <p>Dzika dusza – 99 zł</p>
-        <button class="btn" onclick="dodajDoKoszyka('Dzika dusza', 99)">Dodaj</button>
+      <h3>Chłopcy</h3>
+      <div class="grid">
+        <div class="produkt">
+          <img src="chlopiec1.jpg" alt="Mały wojownik" />
+          <p>Mały wojownik – 99 zł</p>
+          <button class="btn" onclick="dodajDoKoszyka('Mały wojownik', 99)">Dodaj</button>
+        </div>
       </div>
-    </div>
 
-    <h3>Chłopcy</h3>
-    <div class="grid">
-      <div class="produkt">
-        <img src="chlopiec1.jpg" alt="Mały wojownik" />
-        <p>Mały wojownik – 99 zł</p>
-        <button class="btn" onclick="dodajDoKoszyka('Mały wojownik', 99)">Dodaj</button>
+      <h3>Dziewczynki</h3>
+      <div class="grid">
+        <div class="produkt">
+          <img src="dziewczynka1.jpg" alt="Mała artystka" />
+          <p>Mała artystka – 99 zł</p>
+          <button class="btn" onclick="dodajDoKoszyka('Mała artystka', 99)">Dodaj</button>
+        </div>
       </div>
-    </div>
 
-    <h3>Dziewczynki</h3>
-    <div class="grid">
-      <div class="produkt">
-        <img src="dziewczynka1.jpg" alt="Mała artystka" />
-        <p>Mała artystka – 99 zł</p>
-        <button class="btn" onclick="dodajDoKoszyka('Mała artystka', 99)">Dodaj</button>
+      <h3>Nowości</h3>
+      <div class="grid">
+        <div class="produkt">
+          <img src="tajemnica.jpg" alt="Limitowana koszulka" />
+          <p>Limitowana koszulka – 199 zł</p>
+          <p>Transformujący nadruk, widoczny dopiero po zakupie</p>
+          <button class="btn" onclick="dodajDoKoszyka('Limitowana koszulka', 199)">Dodaj</button>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <h3>Nowości</h3>
-    <div class="grid">
-      <div class="produkt">
-        <img src="tajemnica.jpg" alt="Limitowana koszulka" />
-        <p>Limitowana koszulka – 199 zł</p>
-        <p>Transformujący nadruk, widoczny dopiero po zakupie</p>
-        <button class="btn" onclick="dodajDoKoszyka('Limitowana koszulka', 199)">Dodaj</button>
-      </div>
-    </div>
-  </section>
+    <section id="projektuj">
+      <h2>Zaprojektuj</h2>
+      <p>Stwórz własny projekt koszulki, bluzy lub czapki. Wybierz kolor, dodaj grafikę i tekst, a my to wykonamy!</p>
+    </section>
 
-  <section id="projektuj">
-    <h2>Zaprojektuj</h2>
-    <p>Stwórz własny projekt koszulki, bluzy lub czapki. Wybierz kolor, dodaj grafikę i tekst, a my to wykonamy!</p>
-  </section>
+    <section id="marketplace">
+      <h2>Marketplace</h2>
+      <p>Przeglądaj unikalne projekty społeczności Adelbertus.</p>
+    </section>
 
-  <section id="marketplace">
-    <h2>Marketplace</h2>
-    <p>Przeglądaj unikalne projekty społeczności Adelbertus.</p>
-  </section>
+    <section id="blog">
+      <h2>Blog</h2>
+      <p>Historie zza kulis, inspiracje, styl życia ulicy.</p>
+    </section>
 
-  <section id="blog">
-    <h2>Blog</h2>
-    <p>Historie zza kulis, inspiracje, styl życia ulicy.</p>
-  </section>
+    <section id="artysta">
+      <h2>Artysta</h2>
+      <p>Adelbertus to nie marka. To manifest. Projektuję, bo muszę.</p>
+    </section>
 
-  <section id="artysta">
-    <h2>Artysta</h2>
-    <p>Adelbertus to nie marka. To manifest. Projektuję, bo muszę.</p>
-  </section>
+    <section id="kontakt">
+      <h2>Kontakt</h2>
+      <p>Masz pytanie? Napisz na <a href="mailto:kontakt@adelbertusshop.pl">kontakt@adelbertusshop.pl</a></p>
+    </section>
 
-  <section id="kontakt">
-    <h2>Kontakt</h2>
-    <p>Masz pytanie? Napisz na <a href="mailto:kontakt@adelbertusshop.pl">kontakt@adelbertusshop.pl</a></p>
-  </section>
+    <section id="regulamin">
+      <h2>Regulamin</h2>
+      <p>Pełen regulamin zakupów i zwrotów znajdziesz tutaj.</p>
+    </section>
 
-  <section id="regulamin">
-    <h2>Regulamin</h2>
-    <p>Pełen regulamin zakupów i zwrotów znajdziesz tutaj.</p>
-  </section>
-
-  <section id="zamowienia">
-    <h2>Zamówienie</h2>
-    <textarea id="zamowienie-notatka" placeholder="Twoja notatka..."></textarea><br />
-    <input type="file" id="zamowienie-plik" /><br />
-    <button class="btn" onclick="zamow()">Zamawiam wszystko</button>
-  </section>
+    <section id="zamowienia">
+      <h2>Zamówienie</h2>
+      <textarea id="zamowienie-notatka" placeholder="Twoja notatka..."></textarea><br />
+      <input type="file" id="zamowienie-plik" /><br />
+      <button class="btn" onclick="zamow()">Zamawiam wszystko</button>
+    </section>
+  </main>
 
   <div id="koszyk">
     <h3>Koszyk</h3>
@@ -270,12 +347,14 @@
         suma += item.cena;
         const el = document.createElement("li");
         el.textContent = `${item.nazwa} - ${item.cena} zł`;
+
         const btn = document.createElement("button");
         btn.textContent = "Usuń";
         btn.onclick = () => {
           koszyk.splice(index, 1);
           aktualizujKoszyk();
         };
+
         el.appendChild(btn);
         lista.appendChild(el);
       });
@@ -290,5 +369,6 @@
       aktualizujKoszyk();
     }
   </script>
+
 </body>
 </html>
