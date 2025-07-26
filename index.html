@@ -302,11 +302,52 @@
   <h2 style="font-size: 2.2rem; margin-bottom: 15px; text-shadow: 1px 1px 3px #553300;">Specjalna Oferta!</h2>
   <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; text-shadow: 1px 1px 2px #774f00;">Zamów teraz i odbierz wyjątkowy rabat na limitowaną kolekcję! Ulica, styl i tajemnica – wszystko w jednym.</p>
 </section>  
-    <section id="blog">
-      <h2>Blog</h2>
-      <p>Historie zza kulis, inspiracje, styl życia ulicy.</p>
-    </section>
+   <section id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
+  <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
 
+  <div id="opinie" style="margin:30px 0; min-height:150px; font-style:italic; font-size:1.1rem; text-align:center; line-height:1.5; color:#ffd97d; text-shadow: 1px 1px 3px #552f00;"></div>
+  
+  <form id="wiadomoscForm" style="display:flex; flex-direction: column; gap:15px; background:#3c2e15; padding:20px; border-radius:12px; box-shadow: 0 0 20px #aa8844cc;">
+    <h3 style="color:#ffdd99; margin:0;">Napisz do nas</h3>
+    <textarea id="wiadomosc" placeholder="Twoja wiadomość..." required style="resize:none; height:100px; padding:10px; border-radius:10px; border:none; font-size:1rem; font-family:'Georgia', serif;"></textarea>
+    <input type="text" id="autor" placeholder="Twoje imię" required style="padding:10px; border-radius:10px; border:none; font-size:1rem; font-family:'Georgia', serif;">
+    <button type="submit" style="background:#aa8844; color:#fff8dc; font-weight:700; border:none; padding:12px; border-radius:10px; cursor:pointer; box-shadow:0 0 15px #aa8844cc; transition: background-color 0.3s;">
+      Wyślij
+    </button>
+  </form>
+</section>
+
+<script>
+  const opinie = [
+    { tekst: "Absolutnie fenomenalne miejsce! Produkty najwyższej jakości. ⭐⭐⭐⭐⭐", autor: "Marta K." },
+    { tekst: "Uwielbiam AdelbertusShop! Szybka wysyłka i super kontakt. ⭐⭐⭐⭐", autor: "Paweł S." },
+    { tekst: "Nie spodziewałem się tak wyjątkowej obsługi. Polecam! ⭐⭐⭐⭐⭐", autor: "Kasia W." },
+    { tekst: "Świetna jakość koszulek, idealne na prezent. ⭐⭐⭐⭐", autor: "Tomek R." },
+    { tekst: "Atmosfera i produkty jak z innego świata. Must-have! ⭐⭐⭐⭐⭐", autor: "Ola M." }
+  ];
+
+  const opinieDiv = document.getElementById('opinie');
+
+  function pokazOpinie() {
+    const dzien = Math.floor(Date.now() / (1000*60*60*24));
+    const index = dzien % opinie.length;
+    const opinia = opinie[index];
+    opinieDiv.innerHTML = `<p>"${opinia.tekst}"</p><p style="font-weight:bold; margin-top:8px;">— ${opinia.autor}</p>`;
+  }
+  
+  pokazOpinie();
+  setInterval(pokazOpinie, 1000*60*60*24*2); // co 2 dni zmiana opinii
+
+  document.getElementById('wiadomoscForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const wiadomosc = document.getElementById('wiadomosc').value.trim();
+    const autor = document.getElementById('autor').value.trim();
+    if(!wiadomosc || !autor) return alert("Wypełnij wszystkie pola!");
+
+    alert(`Dziękujemy, ${autor}! Twoja wiadomość została wysłana.`);
+    this.reset();
+  });
+</script>
    <section id="artysta">
   <h2>Artysta</h2>
   <p>
