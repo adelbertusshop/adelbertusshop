@@ -11,13 +11,39 @@
   <style>
     body { font-family: 'Roboto', sans-serif; }
     .hidden { display: none; }
+    .fade {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      position: absolute;
+      inset: 0;
+    }
+    .fade.active {
+      opacity: 1;
+      position: relative;
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
-  <!-- 🔸 BANER NA CAŁĄ STRONĘ -->
-  <div class="w-full bg-yellow-400 text-black text-center py-4 text-xl font-bold shadow-md">
-    ✨ Witaj w AdelbertusShop – Ekskluzywna kolekcja już dostępna! ✨
+  <!-- 🔸 ANIMOWANY BANER NA CAŁĄ SZEROKOŚĆ -->
+  <div class="relative w-full overflow-hidden h-auto">
+    <div id="slider" class="relative w-full">
+      <a href="https://ibb.co/s9SHXHCt" target="_blank" class="fade active">
+        <img src="https://i.ibb.co/F4vVdVXn/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" class="w-full object-cover" alt="">
+      </a>
+      <a href="https://ibb.co/gZ7pnZGf" target="_blank" class="fade">
+        <img src="https://i.ibb.co/F4WMP49y/Screenshot-20250714-002247-Files-by-Google-2.jpg" class="w-full object-cover" alt="">
+      </a>
+      <a href="https://ibb.co/5h1mxhSN" target="_blank" class="fade">
+        <img src="https://i.ibb.co/hFgb1F4P/file-00000000fd5861f78cb774cd7808e871.png" class="w-full object-cover" alt="">
+      </a>
+      <a href="https://ibb.co/JW0fJzxW" target="_blank" class="fade">
+        <img src="https://i.ibb.co/TDpV3HKD/Resizer-17510539315581.jpg" class="w-full object-cover" alt="">
+      </a>
+      <a href="https://ibb.co/xtVp2G0P" target="_blank" class="fade">
+        <img src="https://i.ibb.co/rRnCQMST/file-000000004d38620a9f9d0d8d43926ba0.png" class="w-full object-cover" alt="">
+      </a>
+    </div>
   </div>
 
   <!-- 🔹 Nagłówek -->
@@ -32,7 +58,6 @@
   <section id="sklep" class="py-12 px-4">
     <h2 class="text-3xl font-bold text-center mb-6">Sklep</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Przykładowy produkt -->
       <div class="bg-white p-4 rounded shadow">
         <img src="https://via.placeholder.com/300x300" alt="Produkt" class="mb-4">
         <h3 class="text-xl font-semibold">Nie pasujesz do...</h3>
@@ -113,4 +138,15 @@
       koszyk.length = 0;
       zamknijKoszyk();
     }
-  
+
+    // 🔁 Slider – zmiana zdjęć co 5s
+    const slides = document.querySelectorAll('#slider .fade');
+    let index = 0;
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 5000);
+  </script>
+</body>
+</html>commit massage
