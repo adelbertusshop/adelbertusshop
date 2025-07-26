@@ -16,24 +16,31 @@
     }
     .hidden { display: none; }
     .gold-text { color: #d4af37; }
-    .banner img { width: 100%; height: auto; object-fit: cover; }
+    .banner img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
     .slider-container {
       width: 100%;
-      overflow: hidden;
+      overflow-x: auto;
       position: relative;
       height: 360px;
       margin-top: 0.5rem;
-    }
-    .slider-track {
       display: flex;
-      width: 400%;
-      /* animation removed */
+      gap: 0.5rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
-    .slider-track img {
+    .slider-container img {
+      flex-shrink: 0;
       width: 100%;
+      max-width: 100%;
+      height: 100%;
       object-fit: cover;
+      scroll-snap-align: start;
+      border-radius: 0.5rem;
     }
-    /* @keyframes slide removed */
   </style>
 </head>
 <body>
@@ -43,21 +50,19 @@
     <img src="https://i.ibb.co/F4vVdVXn/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Baner" />
   </div>
 
-  <!-- 🔸 Animowany slider (animacja usunięta) -->
+  <!-- 🔸 Statyczny slider -->
   <div class="slider-container">
-    <div class="slider-track">
-      <img src="https://i.ibb.co/F4WMP49y/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="slider1">
-      <img src="https://i.ibb.co/hFgb1F4P/file-00000000fd5861f78cb774cd7808e871.png" alt="slider2">
-      <img src="https://i.ibb.co/TDpV3HKD/Resizer-17510539315581.jpg" alt="slider3">
-      <img src="https://i.ibb.co/rRnCQMST/file-000000004d38620a9f9d0d8d43926ba0.png" alt="slider4">
-    </div>
+    <img src="https://i.ibb.co/F4WMP49y/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="slider1">
+    <img src="https://i.ibb.co/hFgb1F4P/file-00000000fd5861f78cb774cd7808e871.png" alt="slider2">
+    <img src="https://i.ibb.co/TDpV3HKD/Resizer-17510539315581.jpg" alt="slider3">
+    <img src="https://i.ibb.co/rRnCQMST/file-000000004d38620a9f9d0d8d43926ba0.png" alt="slider4">
   </div>
 
   <!-- 🔹 Nagłówek -->
   <header class="bg-black shadow p-4 sticky top-0 z-50">
     <div class="flex justify-between items-center">
       <h1 class="text-2xl font-bold gold-text">AdelbertusShop</h1>
-      <button id="koszykButton" class="bg-gold-700 text-black px-4 py-2 rounded bg-yellow-400 font-semibold">Koszyk</button>
+      <button id="koszykButton" class="bg-yellow-400 text-black px-4 py-2 rounded font-semibold">Koszyk</button>
     </div>
   </header>
 
