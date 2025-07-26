@@ -22,9 +22,8 @@
       width: 100%; 
       overflow: hidden; 
       position: relative; 
-      height: 360px; /* domyślna wysokość (telefon) */
+      aspect-ratio: 16/9; /* stałe proporcje */
       margin-top: 0.5rem; 
-      transition: height 0.5s ease;
     } 
     .slider-track { 
       display: flex; 
@@ -34,12 +33,11 @@
     .slider-track img { 
       width: 100%; 
       height: 100%; 
-      object-fit: contain; /* TELEFON → całe zdjęcie */
-      background-color: #000;
-      transition: transform 0.5s ease, object-fit 0.5s ease;
+      object-fit: cover;
+      transition: transform 0.5s ease;
     }
     .slider-track img:hover {
-      transform: scale(1.05); /* delikatne powiększenie przy najechaniu */
+      transform: scale(1.05);
     }
 
     @keyframes slide { 
@@ -48,12 +46,6 @@
       50% { transform: translateX(-200%); } 
       75% { transform: translateX(-300%); } 
       100% { transform: translateX(0); } 
-    }
-
-    /* LAPTOP → mniejsza wysokość i pełne wypełnienie */
-    @media (min-width: 1024px) {
-      .slider-container { height: 220px; }
-      .slider-track img { object-fit: cover; }
     }
   </style>
 </head>
@@ -146,7 +138,7 @@
 
     function dodajDoKoszyka(nazwa, cena) {
       koszyk.push({ nazwa, cena });
-      alert(\`Dodano do koszyka: \${nazwa}\`);
+      alert(`Dodano do koszyka: ${nazwa}`);
     }
 
     document.getElementById('koszykButton').addEventListener('click', () => {
@@ -154,7 +146,7 @@
       lista.innerHTML = '';
       koszyk.forEach(p => {
         const li = document.createElement('li');
-        li.textContent = \`\${p.nazwa} – \${p.cena} zł\`;
+        li.textContent = `${p.nazwa} – ${p.cena} zł`;
         lista.appendChild(li);
       });
       document.getElementById('koszyk').classList.remove('hidden');
