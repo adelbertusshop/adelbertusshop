@@ -288,12 +288,122 @@
         </div>
       </div>
     </section>
+    <section id="projektuj" class="py-12 bg-white text-black">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-8">Zaprojektuj swój produkt</h2>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Podgląd produktu -->
+      <div class="border rounded-xl p-6 bg-gray-100">
+        <label class="block mb-2 font-semibold">Wybierz produkt:</label>
+        <select id="produkt" class="w-full mb-4 p-2 border rounded">
+          <option value="tshirt">Koszulka</option>
+          <option value="hoodie">Bluza</option>
+          <option value="cap">Czapka</option>
+        </select>
 
-    <section id="projektuj">
-      <h2>Zaprojektuj</h2>
-      <p>Stwórz własny projekt koszulki, bluzy lub czapki. Wybierz kolor, dodaj grafikę i tekst, a my to wykonamy!</p>
-    </section>
-  <!-- Sekcja Marketplace -->
+        <div id="podglad" class="w-full h-64 flex items-center justify-center bg-white border rounded relative overflow-hidden">
+          <img id="produktImg" src="" alt="Produkt" class="absolute inset-0 w-full h-full object-contain opacity-30 pointer-events-none">
+          <img id="userImage" class="absolute w-24 h-24 object-contain" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+          <div id="userText" class="absolute font-bold text-xl" style="top: 70%; left: 50%; transform: translate(-50%, -50%);">Twój tekst</div>
+        </div>
+      </div>
+
+      <!-- Formularz -->
+      <div class="border rounded-xl p-6 bg-gray-50 space-y-4">
+        <div>
+          <label class="block font-semibold">Dodaj grafikę:</label>
+          <input type="file" id="grafika" class="w-full border p-2 rounded" accept="image/*">
+        </div>
+
+        <div>
+          <label class="block font-semibold">Dodaj tekst:</label>
+          <input type="text" id="tekst" placeholder="Wpisz swój tekst" class="w-full border p-2 rounded">
+        </div>
+
+        <div>
+          <label class="block font-semibold">Czcionka:</label>
+          <select id="czcionka" class="w-full border p-2 rounded">
+            <option value="Arial">Arial</option>
+            <option value="Courier New">Courier</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Monospace">Monospace</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-semibold">Kolor tekstu:</label>
+          <input type="color" id="kolorTekstu" class="w-full h-10 border p-1 rounded">
+        </div>
+
+        <div>
+          <label class="block font-semibold">Dane kontaktowe:</label>
+          <input type="text" placeholder="Imię i nazwisko" class="w-full border p-2 rounded mb-2">
+          <input type="email" placeholder="E-mail" class="w-full border p-2 rounded mb-2">
+          <input type="tel" placeholder="Telefon" class="w-full border p-2 rounded">
+        </div>
+
+        <div>
+          <label class="block font-semibold">Adres wysyłki:</label>
+          <textarea class="w-full border p-2 rounded" rows="3" placeholder="Ulica, miasto, kod pocztowy"></textarea>
+        </div>
+
+        <div class="bg-yellow-100 p-4 rounded text-sm text-gray-700">
+          <p>💳 Wyślij płatność BLIK: <strong>573-939-925</strong> z dopiskiem: <strong>„projekt własny”</strong></p>
+          <p>📤 Projekt zostanie wysłany na e-mail lub SMS: <strong>604-296-650</strong></p>
+        </div>
+
+        <button class="bg-black text-white py-2 px-6 rounded hover:bg-gray-800 w-full">Wyślij projekt</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const produktSelect = document.getElementById('produkt');
+    const produktImg = document.getElementById('produktImg');
+    const userText = document.getElementById('userText');
+    const tekstInput = document.getElementById('tekst');
+    const kolorInput = document.getElementById('kolorTekstu');
+    const czcionkaInput = document.getElementById('czcionka');
+    const grafikaInput = document.getElementById('grafika');
+    const userImage = document.getElementById('userImage');
+
+    const produkty = {
+      tshirt: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tshirt_white.svg/512px-Tshirt_white.svg.png',
+      hoodie: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Hoodie_Template.png/512px-Hoodie_Template.png',
+      cap: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Baseball_cap.svg/512px-Baseball_cap.svg.png'
+    };
+
+    produktSelect.addEventListener('change', () => {
+      produktImg.src = produkty[produktSelect.value];
+    });
+
+    tekstInput.addEventListener('input', () => {
+      userText.textContent = tekstInput.value;
+    });
+
+    kolorInput.addEventListener('input', () => {
+      userText.style.color = kolorInput.value;
+    });
+
+    czcionkaInput.addEventListener('change', () => {
+      userText.style.fontFamily = czcionkaInput.value;
+    });
+
+    grafikaInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        userImage.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Załaduj domyślny produkt
+    produktImg.src = produkty[produktSelect.value];
+  </script>
+</section>  <!-- Sekcja Marketplace -->
 <section id="marketplace" class="py-12 bg-gray-50">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-bold text-center mb-6">Marketplace – Hala Targowa</h2>
