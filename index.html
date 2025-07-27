@@ -87,9 +87,27 @@
     #cart-items li {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 8px;
       font-size: 0.95rem;
       text-shadow: 1px 1px 1px #552f00;
+    }
+    #cart-items li button.remove-btn {
+      background-color: #cc4444;
+      border: none;
+      color: #fff8dc;
+      padding: 2px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-left: 10px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 0 8px #cc4444cc;
+    }
+    #cart-items li button.remove-btn:hover {
+      background-color: #ff6666;
+      box-shadow: 0 0 12px #ff6666cc;
     }
     #cart-total {
       font-weight: 800;
@@ -99,7 +117,7 @@
       text-shadow: 1px 1px 2px #8a6e3a;
       margin-top: 10px;
     }
-    #cart-dropdown button {
+    #cart-dropdown button#checkout-btn {
       width: 100%;
       background-color: #aa8844;
       border: none;
@@ -112,7 +130,7 @@
       box-shadow: 0 0 20px #aa8844cc;
       transition: background-color 0.3s ease;
     }
-    #cart-dropdown button:hover {
+    #cart-dropdown button#checkout-btn:hover {
       background-color: #ffdd99;
       color: #553300;
       box-shadow: 0 0 30px #ffdd99cc;
@@ -121,6 +139,94 @@
 </head>
 <body>
 
+  <!-- Ikona koszyka -->
+  <div id="cart-icon" aria-label="Koszyk" tabindex="0">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.618-2l1.25-7h13.868l-1.4 7H4.382zm1.604-9l1-2h10v2H6.382z"/>
+    </svg>
+    <div id="cart-count">0</div>
+  </div>
+
+  <!-- Dropdown koszyka -->
+  <div id="cart-dropdown" role="region" aria-live="polite" aria-label="Zawartość koszyka">
+    <h3>Twój koszyk</h3>
+    <ul id="cart-items"></ul>
+    <div id="cart-total">Suma: 0 zł</div>
+    <button id="checkout-btn">Przejdź do kasy</button>
+  </div>
+
+  <script>
+    const cartIcon = document.getElementById('cart-icon');
+    const cartDropdown = document.getElementById('cart-dropdown');
+    const cartCount = document.getElementById('cart-count');
+    const cartItemsList = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+
+    // Przykładowe produkty w koszyku - w prawdziwym sklepie będzie dynamicznie
+    let cart = [
+      { id: 1, name: "Koszulka 'Buntownik'", price: 99, quantity: 1 },
+      { id: 2, name: "Bluza z kapturem", price: 150, quantity: 2 }
+    ];
+
+    // Funkcja do odświeżania widoku koszyka
+    function updateCartView() {
+      cartItemsList.innerHTML = '';
+      let total = 0;
+      let totalCount = 0;
+
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        totalCount += item.quantity;
+
+        const li = document.createElement('li');
+        li.textContent = `${item.name} x${item.quantity} - ${item.price * item.quantity} zł`;
+
+        // Przycisk usuń
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Usuń';
+        removeBtn.classList.add('remove-btn');
+        removeBtn.addEventListener('click', () => removeFromCart(item.id));
+
+        li.appendChild(removeBtn);
+        cartItemsList.appendChild(li);
+      });
+
+      cartCount.textContent = totalCount;
+      cartTotal.textContent = `Suma: ${total} zł`;
+    }
+
+    // Usuwanie produktu po id
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCartView();
+    }
+
+    // Początkowe odświeżenie
+    updateCartView();
+
+    // Przełącz dropdown na kliknięcie
+    cartIcon.addEventListener('click', () => {
+      if (cartDropdown.style.display === 'block') {
+        cartDropdown.style.display = 'none';
+      } else {
+        cartDropdown.style.display = 'block';
+      }
+    });
+
+    // Zamknięcie dropdowna po kliknięciu poza nim
+    document.addEventListener('click', (e) => {
+      if (!cartIcon.contains(e.target) && !cartDropdown.contains(e.target)) {
+        cartDropdown.style.display = 'none';
+      }
+    });
+
+    // Przycisk przejścia do kasy (na razie alert)
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+      alert('Przejdź do kasy — tu możesz dodać dalszą logikę.');
+    });
+  </script>
+</body>
+</html>
   <!-- Ikona koszyka -->
   <div id="cart-icon" aria-label="Koszyk" tabindex="0">
     <svg viewBox="0 0 24 24" aria-hidden="true">
