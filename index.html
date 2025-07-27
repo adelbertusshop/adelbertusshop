@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -5,9 +6,155 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop - Ikona Koszyka</title>
   <style>
-    body
-    
-    {<section id="baner" style="
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #2e1e0f, #4b3a1f);
+      color: #f5f0e6;
+      margin: 0; padding: 0;
+    }
+
+    /* Ikona koszyka */
+    #cart-icon {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #aa8844cc;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #aa884499;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: background-color 0.3s ease;
+    }
+
+    #cart-icon:hover {
+      background: #ffdd99cc;
+      box-shadow: 0 0 25px #ffdd99cc;
+    }
+
+    #cart-icon svg {
+      fill: #fff8dc;
+      width: 24px;
+      height: 24px;
+    }
+
+    #cart-count {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: #ff4444;
+      color: white;
+      font-weight: 700;
+      font-size: 0.75rem;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      box-shadow: 0 0 5px #aa4444;
+    }
+
+    /* Dropdown koszyka */
+    #cart-dropdown {
+      position: fixed;
+      top: 65px;
+      right: 15px;
+      width: 300px;
+      max-height: 400px;
+      background: rgba(50, 38, 14, 0.95);
+      color: #f5e6b8;
+      border-radius: 15px;
+      box-shadow: 0 0 30px #ffdd9988;
+      overflow-y: auto;
+      padding: 15px;
+      display: none;
+      font-family: 'Palatino Linotype', serif;
+      z-index: 999;
+    }
+
+    #cart-dropdown h3 {
+      margin: 0 0 10px 0;
+      color: #ffd97d;
+      text-shadow: 1px 1px 2px #8a6e3a;
+      font-size: 1.3rem;
+    }
+
+    #cart-items {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 10px 0;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    #cart-items li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      text-shadow: 1px 1px 1px #552f00;
+    }
+
+    #cart-items li button.remove-btn {
+      background-color: #cc4444;
+      border: none;
+      color: #fff8dc;
+      padding: 2px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-left: 10px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 0 8px #cc4444cc;
+    }
+
+    #cart-items li button.remove-btn:hover {
+      background-color: #ff6666;
+      box-shadow: 0 0 12px #ff6666cc;
+    }
+
+    #cart-total {
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-align: right;
+      color: #ffd97d;
+      text-shadow: 1px 1px 2px #8a6e3a;
+      margin-top: 10px;
+    }
+
+    #cart-dropdown button#checkout-btn {
+      width: 100%;
+      background-color: #aa8844;
+      border: none;
+      color: #fff8dc;
+      padding: 10px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 20px #aa8844cc;
+      transition: background-color 0.3s ease;
+    }
+
+    #cart-dropdown button#checkout-btn:hover {
+      background-color: #ffdd99;
+      color: #553300;
+      box-shadow: 0 0 30px #ffdd99cc;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🔥 BANER -->
+<section id="baner" style="
   width: 100vw;
   height: 100vh;
   background: url('https://i.ibb.co/cKVsZm8V/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg') no-repeat center center;
@@ -34,140 +181,7 @@
     text-align: center;
     max-width: 90%;
   ">AdelbertusShop</h1>
-</section>      font-family: 'Georgia', serif;
-      background: linear-gradient(135deg, #2e1e0f, #4b3a1f);
-      color: #f5f0e6;
-      margin: 0; padding: 0;
-    }
-    /* Ikona koszyka - mała, w prawym górnym rogu */
-    #cart-icon {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: #aa8844cc;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      cursor: pointer;
-      box-shadow: 0 0 15px #aa884499;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      transition: background-color 0.3s ease;
-    }
-    #cart-icon:hover {
-      background: #ffdd99cc;
-      box-shadow: 0 0 25px #ffdd99cc;
-    }
-    #cart-icon svg {
-      fill: #fff8dc;
-      width: 24px;
-      height: 24px;
-    }
-    #cart-count {
-      position: absolute;
-      top: 2px;
-      right: 2px;
-      background: #ff4444;
-      color: white;
-      font-weight: 700;
-      font-size: 0.75rem;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      box-shadow: 0 0 5px #aa4444;
-    }
-    /* Dropdown koszyka */
-    #cart-dropdown {
-      position: fixed;
-      top: 65px;
-      right: 15px;
-      width: 300px;
-      max-height: 400px;
-      background: rgba(50, 38, 14, 0.95);
-      color: #f5e6b8;
-      border-radius: 15px;
-      box-shadow: 0 0 30px #ffdd9988;
-      overflow-y: auto;
-      padding: 15px;
-      display: none;
-      font-family: 'Palatino Linotype', serif;
-      z-index: 999;
-    }
-    #cart-dropdown h3 {
-      margin: 0 0 10px 0;
-      color: #ffd97d;
-      text-shadow: 1px 1px 2px #8a6e3a;
-      font-size: 1.3rem;
-    }
-    #cart-items {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 10px 0;
-      max-height: 300px;
-      overflow-y: auto;
-    }
-    #cart-items li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      font-size: 0.95rem;
-      text-shadow: 1px 1px 1px #552f00;
-    }
-    #cart-items li button.remove-btn {
-      background-color: #cc4444;
-      border: none;
-      color: #fff8dc;
-      padding: 2px 8px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 0.8rem;
-      margin-left: 10px;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 0 8px #cc4444cc;
-    }
-    #cart-items li button.remove-btn:hover {
-      background-color: #ff6666;
-      box-shadow: 0 0 12px #ff6666cc;
-    }
-    #cart-total {
-      font-weight: 800;
-      font-size: 1.1rem;
-      text-align: right;
-      color: #ffd97d;
-      text-shadow: 1px 1px 2px #8a6e3a;
-      margin-top: 10px;
-    }
-    #cart-dropdown button#checkout-btn {
-      width: 100%;
-      background-color: #aa8844;
-      border: none;
-      color: #fff8dc;
-      padding: 10px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      box-shadow: 0 0 20px #aa8844cc;
-      transition: background-color 0.3s ease;
-    }
-    #cart-dropdown button#checkout-btn:hover {
-      background-color: #ffdd99;
-      color: #553300;
-      box-shadow: 0 0 30px #ffdd99cc;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Ikona koszyka -->
+</section>  <!-- Ikona koszyka -->
   <div id="cart-icon" aria-label="Koszyk" tabindex="0">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.618-2l1.25-7h13.868l-1.4 7H4.382zm1.604-9l1-2h10v2H6.382z"/>
