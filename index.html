@@ -3,248 +3,116 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AdelbertusShop</title>
+  <title>AdelbertusShop - Ikona Koszyka</title>
   <style>
-    html {
-      margin: 0; padding: 0;
+    body {
       font-family: 'Georgia', serif;
       background: linear-gradient(135deg, #2e1e0f, #4b3a1f);
       color: #f5f0e6;
-      overflow-x: hidden;
+      margin: 0; padding: 0;
     }
-
-    /* NAWIGACJA – PRZYCISKI GÓRNE */
-    nav.flex {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      background-color: black;
-      color: white;
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    }
-    nav.flex button {
-      background: none;
-      border: none;
-      color: inherit;
+    /* Ikona koszyka - mała, w prawym górnym rogu */
+    #cart-icon {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #aa8844cc;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
       cursor: pointer;
-      font-size: 1rem;
-      transition: text-decoration 0.3s;
-    }
-    nav.flex button:hover {
-      text-decoration: underline;
-    }
-
-    /* Baner jako hero na górze, wysokość stała */
-    #baner {
-      width: 100%;
-      height: 400px;
-      background: url('https://i.ibb.co/nMVxQvzp/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg') no-repeat center center/cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      box-shadow: inset 0 0 80px 30px rgba(0,0,0,0.5);
-      position: relative;
-      margin-bottom: 40px;
-    }
-    #baner h1 {
-      font-size: 3.5rem;
-      color: #ffdd99;
-      text-shadow:
-        0 0 10px #ffdd99,
-        0 0 20px #ccaa66,
-        0 0 30px #aa8844,
-        0 0 40px #886622;
-      letter-spacing: 0.2em;
-      font-weight: 700;
-      padding: 0 20px;
-      border: 3px solid #ffdd99;
-      border-radius: 20px;
-      background-color: rgba(0,0,0,0.4);
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 50px 50px;
-      background: rgba(30, 20, 10, 0.85);
-      border-radius: 15px;
-      box-shadow: 0 0 40px rgba(255, 221, 153, 0.3);
-      color: #f5e6b8;
-      font-family: 'Palatino Linotype', serif;
-    }
-
-    h2, h3 {
-      color: #ffd97d;
-      text-shadow: 1px 1px 2px #8a6e3a;
-      margin-bottom: 20px;
-    }
-
-    p {
-      line-height: 1.6;
-      color: #e6d9b8;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 25px;
-      margin-bottom: 40px;
-    }
-
-    .produkt {
-      background: #3c2e15;
-      border-radius: 12px;
-      box-shadow: 0 0 15px #aa8844aa;
-      padding: 15px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-    .produkt:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #ffdd99cc;
-    }
-    .produkt img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 12px;
       box-shadow: 0 0 15px #aa884499;
-    }
-    .produkt p {
-      margin: 8px 0;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #ffdd99;
-      text-shadow: 1px 1px 3px #774f00;
-    }
-    .btn {
-      background-color: #aa8844;
-      color: #fff8dc;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
-      box-shadow: 0 0 12px #aa8844cc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
       transition: background-color 0.3s ease;
     }
-    .btn:hover {
-      background-color: #ffdd99;
-      color: #553300;
+    #cart-icon:hover {
+      background: #ffdd99cc;
       box-shadow: 0 0 25px #ffdd99cc;
     }
-
-    #koszyk {
+    #cart-icon svg {
+      fill: #fff8dc;
+      width: 24px;
+      height: 24px;
+    }
+    #cart-count {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: #ff4444;
+      color: white;
+      font-weight: 700;
+      font-size: 0.75rem;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      box-shadow: 0 0 5px #aa4444;
+    }
+    /* Dropdown koszyka */
+    #cart-dropdown {
       position: fixed;
-      top: 20px;
-      right: 20px;
+      top: 65px;
+      right: 15px;
+      width: 300px;
+      max-height: 400px;
       background: rgba(50, 38, 14, 0.95);
-      padding: 20px;
-      width: 280px; /* zmniejszone z 320 */
+      color: #f5e6b8;
       border-radius: 15px;
       box-shadow: 0 0 30px #ffdd9988;
-      color: #f5e6b8;
-      z-index: 100;
-      max-height: 80vh;
       overflow-y: auto;
+      padding: 15px;
+      display: none;
       font-family: 'Palatino Linotype', serif;
-      font-size: 0.9rem; /* trochę mniejszy font */
+      z-index: 999;
     }
-    #koszyk h3 {
-      margin-top: 0;
-      margin-bottom: 15px;
-      font-size: 1.6rem; /* zmniejszony z 1.8rem */
+    #cart-dropdown h3 {
+      margin: 0 0 10px 0;
       color: #ffd97d;
       text-shadow: 1px 1px 2px #8a6e3a;
+      font-size: 1.3rem;
     }
-    #koszyk-lista {
+    #cart-items {
       list-style: none;
       padding: 0;
-      margin: 0 0 15px 0;
-      max-height: 50vh;
+      margin: 0 0 10px 0;
+      max-height: 300px;
       overflow-y: auto;
     }
-    #koszyk-lista li {
+    #cart-items li {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 8px 5px;
-      border-bottom: 1px solid #aa884433;
-      font-size: 0.9rem; /* mniejszy font */
-      color: #ffdd99;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
       text-shadow: 1px 1px 1px #552f00;
     }
-    #koszyk-lista li button {
-      background: #aa8844cc;
-      border: none;
-      color: #fff8dc;
-      border-radius: 8px;
-      padding: 3px 8px; /* mniejsze pady */
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 0.85rem; /* mniejszy font w przycisku */
-      transition: background-color 0.3s ease;
-    }
-    #koszyk-lista li button:hover {
-      background-color: #ffdd99;
-      color: #553300;
-      box-shadow: 0 0 10px #ffdd99cc;
-    }
-    #koszyk-suma {
+    #cart-total {
       font-weight: 800;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       text-align: right;
       color: #ffd97d;
       text-shadow: 1px 1px 2px #8a6e3a;
+      margin-top: 10px;
     }
-
-    #zamowienia {
-      margin-top: 50px;
-      padding: 20px;
-      background: rgba(58, 42, 11, 0.9);
-      border-radius: 15px;
-      box-shadow: 0 0 30px #ffdd9977;
-      color: #fff1c2;
-      font-family: 'Palatino Linotype', serif;
-    }
-    #zamowienia textarea {
+    #cart-dropdown button {
       width: 100%;
-      height: 80px;
-      border-radius: 12px;
-      border: none;
-      padding: 12px;
-      font-size: 1.1rem;
-      font-family: 'Georgia', serif;
-      resize: vertical;
-      margin-bottom: 15px;
-      box-shadow: 0 0 10px #aa8844cc inset;
-      background: #3b2e10;
-      color: #fff1c2;
-    }
-    #zamowienia input[type="file"] {
-      margin-bottom: 15px;
-      color: #ffdd99;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    #zamowienia button {
       background-color: #aa8844;
-      color: #fff8dc;
       border: none;
-      padding: 12px 20px;
-      font-size: 1.2rem;
+      color: #fff8dc;
+      padding: 10px;
       border-radius: 12px;
-      cursor: pointer;
       font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
       box-shadow: 0 0 20px #aa8844cc;
       transition: background-color 0.3s ease;
     }
-    #zamowienia button:hover {
+    #cart-dropdown button:hover {
       background-color: #ffdd99;
       color: #553300;
       box-shadow: 0 0 30px #ffdd99cc;
@@ -253,20 +121,82 @@
 </head>
 <body>
 
-  <!-- NAWIGACJA – PRZYCISKI GÓRNE -->
-  <nav class="flex justify-center gap-4 bg-black text-white py-4 sticky top-0 z-50 shadow-md">
-    <button onclick="scrollToSection('sklep')" class="hover:underline">Sklep</button>
-    <button onclick="scrollToSection('projektuj')" class="hover:underline">Projektuj</button>
-    <button onclick="scrollToSection('marketplace')" class="hover:underline">Marketplace</button>
-    <button onclick="scrollToSection('zamowienia')" class="hover:underline">Zamówienia</button>
-  </nav>
+  <!-- Ikona koszyka -->
+  <div id="cart-icon" aria-label="Koszyk" tabindex="0">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.618-2l1.25-7h13.868l-1.4 7H4.382zm1.604-9l1-2h10v2H6.382z"/>
+    </svg>
+    <div id="cart-count">0</div>
+  </div>
 
-  <!-- Reszta twojego kodu poniżej -->
-  <!-- Na przykład baner -->
-  <section id="baner">
-    <h1>AdelbertusShop</h1>
-  </section>
+  <!-- Dropdown koszyka -->
+  <div id="cart-dropdown" role="region" aria-live="polite" aria-label="Zawartość koszyka">
+    <h3>Twój koszyk</h3>
+    <ul id="cart-items"></ul>
+    <div id="cart-total">Suma: 0 zł</div>
+    <button id="checkout-btn">Przejdź do kasy</button>
+  </div>
 
+  <script>
+    const cartIcon = document.getElementById('cart-icon');
+    const cartDropdown = document.getElementById('cart-dropdown');
+    const cartCount = document.getElementById('cart-count');
+    const cartItemsList = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+
+    // Przykładowe produkty w koszyku - w prawdziwym sklepie będzie dynamicznie
+    let cart = [
+      { name: "Koszulka 'Buntownik'", price: 99, quantity: 1 },
+      { name: "Bluza z kapturem", price: 150, quantity: 2 }
+    ];
+
+    // Funkcja do odświeżania widoku koszyka
+    function updateCartView() {
+      cartItemsList.innerHTML = '';
+      let total = 0;
+      let totalCount = 0;
+
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        totalCount += item.quantity;
+
+        const li = document.createElement('li');
+        li.textContent = `${item.name} x${item.quantity} - ${item.price * item.quantity} zł`;
+
+        // Możesz dodać przyciski do usuwania, edycji itp. tutaj
+        cartItemsList.appendChild(li);
+      });
+
+      cartCount.textContent = totalCount;
+      cartTotal.textContent = `Suma: ${total} zł`;
+    }
+
+    // Początkowe odświeżenie
+    updateCartView();
+
+    // Przełącz dropdown na kliknięcie
+    cartIcon.addEventListener('click', () => {
+      if (cartDropdown.style.display === 'block') {
+        cartDropdown.style.display = 'none';
+      } else {
+        cartDropdown.style.display = 'block';
+      }
+    });
+
+    // Zamknięcie dropdowna po kliknięciu poza nim
+    document.addEventListener('click', (e) => {
+      if (!cartIcon.contains(e.target) && !cartDropdown.contains(e.target)) {
+        cartDropdown.style.display = 'none';
+      }
+    });
+
+    // Przycisk przejścia do kasy (na razie alert)
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+      alert('Przejdź do kasy — tu możesz dodać dalszą logikę.');
+    });
+  </script>
+</body>
+</html>
   <!-- Dodaj sekcje, które masz -->
   <section id="sklep">
     <!-- Twoja zawartość sklepu -->
