@@ -800,14 +800,100 @@
     </div>
   </div>
 </section>
-    <section id="zamowienia">
-      <h2>Zamówienie</h2>
-      <textarea id="zamowienie-notatka" placeholder="Twoja notatka..."></textarea><br />
-      <input type="file" id="zamowienie-plik" /><br />
-      <button class="btn" onclick="zamow()">Zamawiam wszystko</button>
-    </section>
-  </main>
+   </main>
+  <!-- Sekcja Zamówienia -->
+<section id="zamowienia" class="py-12 bg-gray-100">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-6 text-center">Zamówienia</h2>
+    
+    <form id="formularzZamowienia" class="space-y-4 bg-white p-6 rounded shadow">
+      <div>
+        <label class="block text-sm font-medium">Imię i nazwisko</label>
+        <input name="imie" type="text" required class="w-full mt-1 p-2 border rounded" placeholder="Jan Kowalski" />
+      </div>
 
+      <div>
+        <label class="block text-sm font-medium">Adres e-mail</label>
+        <input name="email" type="email" required class="w-full mt-1 p-2 border rounded" placeholder="jan@example.com" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Telefon</label>
+        <input name="telefon" type="tel" required class="w-full mt-1 p-2 border rounded" placeholder="604 296 650" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Adres dostawy</label>
+        <input name="adres" type="text" required class="w-full mt-1 p-2 border rounded" placeholder="ul. Przykładowa 1, 00-000 Miasto" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Uwagi do zamówienia</label>
+        <textarea name="uwagi" class="w-full mt-1 p-2 border rounded" rows="4" placeholder="Np. projekt własny: biały nadruk, L..."></textarea>
+      </div>
+
+      <div class="bg-gray-50 p-4 rounded shadow-inner">
+        <h3 class="font-semibold text-md mb-2">💳 Płatność BLIK</h3>
+        <p class="text-sm text-gray-700">
+          Wyślij płatność na numer: <strong class="text-lg text-green-600">573-939-925</strong><br/>
+          z dopiskiem: <em>"projekt własny", "koszyk", "marketplace"</em><br/>
+          Po opłaceniu wyślemy Ci potwierdzenie na e-mail lub SMS.
+        </p>
+      </div>
+
+      <div class="text-center pt-4">
+        <button type="submit" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
+          Zamawiam wszystko!
+        </button>
+      </div>
+    </form>
+
+    <p id="potwierdzenie" class="mt-6 text-center text-green-600 hidden">✅ Zamówienie wysłane! Sprawdź e-mail / SMS.</p>
+  </div>
+</section>
+
+<!-- PDF + Email JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+document.getElementById("formularzZamowienia").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const imie = this.imie.value;
+  const email = this.email.value;
+  const telefon = this.telefon.value;
+  const adres = this.adres.value;
+  const uwagi = this.uwagi.value;
+
+  const zamowienie = `
+    Imię i nazwisko: ${imie}
+    E-mail: ${email}
+    Telefon: ${telefon}
+    Adres: ${adres}
+    Uwagi: ${uwagi}
+    Płatność BLIK: 573-939-925 (projekt własny / koszyk / marketplace)
+  `;
+
+  // 1. Wyślij e-mail do Ciebie
+  Email.send({
+    SecureToken: "your-secure-token-here", // albo smtp host/login/pass
+    To: "twoj-email@adres.pl", // <-- wpisz swój
+    From: "formularz@adelbertusshop.pl",
+    Subject: "Nowe zamówienie ze sklepu",
+    Body: zamowienie
+  }).then(function () {
+    document.getElementById("potwierdzenie").classList.remove("hidden");
+  });
+
+  // 2. Opcjonalnie generuj PDF (do pobrania lub wysyłki)
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  doc.setFontSize(12);
+  doc.text("Podsumowanie zamówienia:", 10, 10);
+  doc.text(zamowienie, 10, 20);
+  doc.save("zamowienie.pdf");
+});
+</script>
   <div id="koszyk">
     <h3>Koszyk</h3>
     <ul id="koszyk-lista"></ul>
