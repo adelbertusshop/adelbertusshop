@@ -1,10 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop - Ikona Koszyka</title>
+
+  <!-- Wklejone skrypty -->
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
   <style>
     body {
       font-family: 'Georgia', serif;
@@ -968,59 +972,24 @@
 document.getElementById("formularzZamowienia").addEventListener("submit", function(e) {
   e.preventDefault();
 <script>
-  // Obsługa formularza zamówienia
-  document.getElementById("formularzZamowienia").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const imie = this.imie.value;
-    const email = this.email.value;
-    const telefon = this.telefon.value;
-    const adres = this.adres.value;
-    const uwagi = this.uwagi.value;
-
-    const zamowienie = `
-      Imię i nazwisko: ${imie}
-      E-mail: ${email}
-      Telefon: ${telefon}
-      Adres: ${adres}
-      Uwagi: ${uwagi}
-      Płatność BLIK: 573-939-925 (projekt własny / koszyk / marketplace)
-    `;
-
-    // 1. Wyślij e-mail do Ciebie
-    Email.send({
-      SecureToken: "your-secure-token-here", // <--- tu wpisz swój token
-      To: "twoj-email@adres.pl",               // <--- tu swój email
-      From: "formularz@adelbertusshop.pl",
-      Subject: "Nowe zamówienie ze sklepu",
-      Body: zamowienie
-    }).then(function () {
-      document.getElementById("potwierdzenie").classList.remove("hidden");
-    });
-
-    // 2. Opcjonalnie generuj PDF z zamówieniem
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    doc.setFontSize(12);
-    doc.text("Podsumowanie zamówienia:", 10, 10);
-    doc.text(zamowienie, 10, 20);
-    doc.save("zamowienie.pdf");
-
-    // Po wysłaniu zamówienia możesz też wyczyścić koszyk
-    koszyk = [];
-    aktualizujKoszyk();
-
-    // Możesz też wyczyścić formularz jeśli chcesz:
-    this.reset();
-  });
-</script>
-
 <!-- Sekcja Koszyk -->
 <div id="koszyk">
   <h3>Koszyk</h3>
   <ul id="koszyk-lista"></ul>
   <p id="koszyk-suma">Suma: 0 zł</p>
 </div>
+
+<!-- Formularz zamówienia -->
+<form id="formularzZamowienia" class="mt-4">
+  <input type="text" name="imie" placeholder="Imię i nazwisko" required>
+  <input type="email" name="email" placeholder="E-mail" required>
+  <input type="tel" name="telefon" placeholder="Telefon" required>
+  <input type="text" name="adres" placeholder="Adres" required>
+  <textarea name="uwagi" placeholder="Uwagi"></textarea>
+  <input type="submit" value="Zamawiam wszystko">
+</form>
+
+<p id="potwierdzenie" class="hidden text-green-600 mt-2">Zamówienie wysłane!</p>
 
 <script>
   let koszyk = [];
@@ -1052,17 +1021,50 @@ document.getElementById("formularzZamowienia").addEventListener("submit", functi
     document.getElementById("koszyk-suma").textContent = `Suma: ${suma} zł`;
   }
 
-  function zamow() {
-    const notatka = document.getElementById("zamowienie-notatka").value;
-    const plik = document.getElementById("zamowienie-plik").files[0];
-    alert("Zamówienie złożone! Dziękujemy!");
+  document.getElementById("formularzZamowienia").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const imie = this.imie.value;
+    const email = this.email.value;
+    const telefon = this.telefon.value;
+    const adres = this.adres.value;
+    const uwagi = this.uwagi.value;
+
+    const zamowienie = `
+      Imię i nazwisko: ${imie}
+      E-mail: ${email}
+      Telefon: ${telefon}
+      Adres: ${adres}
+      Uwagi: ${uwagi}
+      Płatność BLIK: 573-939-925 (projekt własny / koszyk / marketplace)
+    `;
+
+    // 1. Wyślij e-mail do Ciebie
+    Email.send({
+      SecureToken: "your-secure-token-here", // <--- tu wpisz swój token
+      To: "twoj-email@adres.pl",             // <--- tu swój email
+      From: "formularz@adelbertusshop.pl",
+      Subject: "Nowe zamówienie ze sklepu",
+      Body: zamowienie
+    }).then(function () {
+      document.getElementById("potwierdzenie").classList.remove("hidden");
+    });
+
+    // 2. Generuj PDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.setFontSize(12);
+    doc.text("Podsumowanie zamówienia:", 10, 10);
+    doc.text(zamowienie, 10, 20);
+    doc.save("zamowienie.pdf");
+
+    // 3. Czyść koszyk i formularz
     koszyk = [];
     aktualizujKoszyk();
-  }
-</script>
+    this.reset();
+  });
 
-<script>
-  // Funkcja płynnego scrolla do sekcji
+  // Funkcja scrollowania
   function scrollToSection(id) {
     const section = document.getElementById(id);
     if (section) {
@@ -1070,6 +1072,5 @@ document.getElementById("formularzZamowienia").addEventListener("submit", functi
     }
   }
 </script>
-
 </body>
-</html> 
+</html>
