@@ -370,110 +370,34 @@
   </div>
 
   <main>
-    <section id="sklep">
-      <h2>Sklep</h2>
-<div id="meszczyzni" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  <div class="bg-white rounded-lg shadow p-4">
-    <img src="https://i.ibb.co/N6x2M9HZ/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Ufaj zanim..." class="w-full h-auto rounded">
-    <h3 class="text-xl font-semibold mt-4">Koszulka „Ufaj zanim...”</h3>
-    <p class="text-gray-700">99 zł</p>
-    <button onclick="dodajDoKoszyka('Koszulka „Ufaj zanim...”', 99)" class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Dodaj do koszyka</button>
+   <section id="sklep" class="py-8">
+  <h2 class="text-3xl font-bold mb-6 text-center">Sklep</h2>
+
+  <div class="flex justify-center mb-4 gap-4">
+    <button onclick="pokazKategorie('mezczyzni')" class="px-4 py-2 bg-black text-white rounded">Mężczyźni</button>
+    <button onclick="pokazKategorie('kobiety')" class="px-4 py-2 bg-black text-white rounded">Kobiety</button>
   </div>
 
-  <div class="bg-white rounded-lg shadow p-4">
-    <img src="https://i.ibb.co/VWSjQDyT/file-000000005d2c620abbbd46a4320f6a59.png" alt="Jestem buntownikiem" class="w-full h-auto rounded">
-    <h3 class="text-xl font-semibold mt-4">Koszulka „Jestem buntownikiem”</h3>
-    <p class="text-gray-700">99 zł</p>
-    <button onclick="dodajDoKoszyka('Koszulka „Jestem buntownikiem”', 99)" class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Dodaj do koszyka</button>
+  <div id="mezczyzni" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <!-- Przykładowy produkt dla Mężczyzn -->
+    <div class="border rounded p-4 text-center">
+      <img src="https://i.ibb.co/2731mTFY/Resizer-17510539315581.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-2">
+      <h3 class="text-lg font-semibold">Koszulka „Nie pasujesz do...”</h3>
+      <p class="text-sm text-gray-600 mb-2">99 zł</p>
+      <button onclick="dodajDoKoszyka('Koszulka Nie pasujesz do...', 99)" class="bg-black text-white px-4 py-2 rounded">Dodaj do koszyka</button>
+    </div>
   </div>
 
-  <div class="bg-white rounded-lg shadow p-4">
-    <img src="https://i.ibb.co/GfJtRx2H/Messenger-creation-70-F10-D9-F-4277-40-C0-A888-01-E8535-FF028.jpg" alt="Czy jesteś gotowy" class="w-full h-auto rounded">
-    <h3 class="text-xl font-semibold mt-4">Koszulka „Czy jesteś gotowy?”</h3>
-    <p class="text-gray-700">99 zł</p>
-    <button onclick="dodajDoKoszyka('Koszulka „Czy jesteś gotowy?”', 99)" class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Dodaj do koszyka</button>
+  <div id="kobiety" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 hidden">
+    <!-- Przykładowy produkt dla Kobiet -->
+    <div class="border rounded p-4 text-center">
+      <img src="https://i.ibb.co/2731mTFY/Resizer-17510539315581.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-2">
+      <h3 class="text-lg font-semibold">Koszulka „Zmysłowa siła”</h3>
+      <p class="text-sm text-gray-600 mb-2">99 zł</p>
+      <button onclick="dodajDoKoszyka('Koszulka Zmysłowa siła', 99)" class="bg-black text-white px-4 py-2 rounded">Dodaj do koszyka</button>
+    </div>
   </div>
-
-  <div class="bg-white rounded-lg shadow p-4">
-    <img src="https://i.ibb.co/XrVt3HYR/file-000000002a24624390101218423dddeb.png" alt="Czy potrafisz?" class="w-full h-auto rounded">
-    <h3 class="text-xl font-semibold mt-4">Koszulka „Czy potrafisz?”</h3>
-    <p class="text-gray-700">99 zł</p>
-    <button onclick="dodajDoKoszyka('Koszulka „Czy potrafisz?”', 99)" class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Dodaj do koszyka</button>
-  </div>
-
-  <div class="bg-white rounded-lg shadow p-4">
-    <img src="https://i.ibb.co/23ZSFKvs/110028656-ads-media-3e59d99f-4f42-44a4-9050-7b219cae1e06.png" alt="Nie pasujesz do..." class="w-full h-auto rounded">
-    <h3 class="text-xl font-semibold mt-4">Koszulka „Nie pasujesz do...”</h3>
-    <p class="text-gray-700">99 zł</p>
-    <button onclick="dodajDoKoszyka('Koszulka „Nie pasujesz do...”', 99)" class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Dodaj do koszyka</button>
-  </div>
-
-  <div class="bg-white rounded-lg shadow p-4">
-    <img src="https://i.ibb.co/cc2K8b8T/file-000000004d38620a9f9d0d8d43926ba0.png" alt="DJ 1" class="w-full h-auto rounded">
-    <h3 class="text-xl font-semibold mt-4">Koszulka DJ #1</h3>
-    <p class="text-gray-700">99 zł</p>
-    <button onclick="dodajDoKoszyka('Koszulka DJ #1', 99)" class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Dodaj do koszyka</button>
-  </div>
-
-  <div class="bg-white rounded-lg shadow p-4">
-    <img src="https://i.ibb.co/B1c0Ws0/file-00000000f74c6246b28b53d21a15741a.png" alt="Obudź w sobie..." class="w-full h-auto rounded">
-    <h3 class="text-xl font-semibold mt-4">Koszulka „Obudź w sobie...”</h3>
-    <p class="text-gray-700">99 zł</p>
-    <button onclick="dodajDoKoszyka('Koszulka „Obudź w sobie...”', 99)" class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Dodaj do koszyka</button>
-  </div>
-
-  <div class="bg-white rounded-lg shadow p-4">
-    <img src="https://i.ibb.co/337kv9B/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="DJ 2" class="w-full h-auto rounded">
-    <h3 class="text-xl font-semibold mt-4">Koszulka DJ #2</h3>
-    <p class="text-gray-700">99 zł</p>
-    <button onclick="dodajDoKoszyka('Koszulka DJ #2', 99)" class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Dodaj do koszyka</button>
-  </div>
-</div>     
-        <div class="produkt">
-          <img src="link2.jpg" alt="Buntownik z wyboru" />
-          <p>Buntownik z wyboru – 99 zł</p>
-          <button class="btn" onclick="dodajDoKoszyka('Buntownik z wyboru', 99)">Dodaj</button>
-        </div>
-      </div>
-
-      <h3>Kobiety</h3>
-      <div class="grid">
-        <div class="produkt">
-          <img src="link_k1.jpg" alt="Dzika dusza" />
-          <p>Dzika dusza – 99 zł</p>
-          <button class="btn" onclick="dodajDoKoszyka('Dzika dusza', 99)">Dodaj</button>
-        </div>
-      </div>
-
-      <h3>Chłopcy</h3>
-      <div class="grid">
-        <div class="produkt">
-          <img src="chlopiec1.jpg" alt="Mały wojownik" />
-          <p>Mały wojownik – 99 zł</p>
-          <button class="btn" onclick="dodajDoKoszyka('Mały wojownik', 99)">Dodaj</button>
-        </div>
-      </div>
-
-      <h3>Dziewczynki</h3>
-      <div class="grid">
-        <div class="produkt">
-          <img src="dziewczynka1.jpg" alt="Mała artystka" />
-          <p>Mała artystka – 99 zł</p>
-          <button class="btn" onclick="dodajDoKoszyka('Mała artystka', 99)">Dodaj</button>
-        </div>
-      </div>
-
-      <h3>Nowości</h3>
-      <div class="grid">
-        <div class="produkt">
-          <img src="tajemnica.jpg" alt="Limitowana koszulka" />
-          <p>Limitowana koszulka – 199 zł</p>
-          <p>Transformujący nadruk, widoczny dopiero po zakupie</p>
-          <button class="btn" onclick="dodajDoKoszyka('Limitowana koszulka', 199)">Dodaj</button>
-        </div>
-      </div>
-    </section>
-    <section id="projektuj" class="py-12 bg-white text-black">
+</section>    <section id="projektuj" class="py-12 bg-white text-black">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold text-center mb-8">Zaprojektuj swój produkt</h2>
     
@@ -1043,92 +967,109 @@
 <script>
 document.getElementById("formularzZamowienia").addEventListener("submit", function(e) {
   e.preventDefault();
-
-  const imie = this.imie.value;
-  const email = this.email.value;
-  const telefon = this.telefon.value;
-  const adres = this.adres.value;
-  const uwagi = this.uwagi.value;
-
-  const zamowienie = `
-    Imię i nazwisko: ${imie}
-    E-mail: ${email}
-    Telefon: ${telefon}
-    Adres: ${adres}
-    Uwagi: ${uwagi}
-    Płatność BLIK: 573-939-925 (projekt własny / koszyk / marketplace)
-  `;
-
-  // 1. Wyślij e-mail do Ciebie
-  Email.send({
-    SecureToken: "your-secure-token-here", // albo smtp host/login/pass
-    To: "twoj-email@adres.pl", // <-- wpisz swój
-    From: "formularz@adelbertusshop.pl",
-    Subject: "Nowe zamówienie ze sklepu",
-    Body: zamowienie
-  }).then(function () {
-    document.getElementById("potwierdzenie").classList.remove("hidden");
-  });
-
-  // 2. Opcjonalnie generuj PDF (do pobrania lub wysyłki)
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  doc.setFontSize(12);
-  doc.text("Podsumowanie zamówienia:", 10, 10);
-  doc.text(zamowienie, 10, 20);
-  doc.save("zamowienie.pdf");
-});
-</script>
-  <div id="koszyk">
-    <h3>Koszyk</h3>
-    <ul id="koszyk-lista"></ul>
-    <p id="koszyk-suma">Suma: 0 zł</p>
-  </div>
-
-  <script>
-    let koszyk = [];
-
-    function dodajDoKoszyka(nazwa, cena) {
-      koszyk.push({ nazwa, cena });
-      aktualizujKoszyk();
-    }
-
-    function aktualizujKoszyk() {
-      const lista = document.getElementById("koszyk-lista");
-      lista.innerHTML = "";
-      let suma = 0;
-      koszyk.forEach((item, index) => {
-        suma += item.cena;
-        const el = document.createElement("li");
-        el.textContent = `${item.nazwa} - ${item.cena} zł`;
-
-        const btn = document.createElement("button");
-        btn.textContent = "Usuń";
-        btn.onclick = () => {
-          koszyk.splice(index, 1);
-          aktualizujKoszyk();
-        };
-
-        el.appendChild(btn);
-        lista.appendChild(el);
-      });
-      document.getElementById("koszyk-suma").textContent = `Suma: ${suma} zł`;
-    }
-
-    function zamow() {
-      const notatka = document.getElementById("zamowienie-notatka").value;
-      const plik = document.getElementById("zamowienie-plik").files[0];
-      alert("Zamówienie złożone! Dziękujemy!");
-      koszyk = [];
-      aktualizujKoszyk();
-    }
-  </script>
 <script>
+  // Obsługa formularza zamówienia
+  document.getElementById("formularzZamowienia").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const imie = this.imie.value;
+    const email = this.email.value;
+    const telefon = this.telefon.value;
+    const adres = this.adres.value;
+    const uwagi = this.uwagi.value;
+
+    const zamowienie = `
+      Imię i nazwisko: ${imie}
+      E-mail: ${email}
+      Telefon: ${telefon}
+      Adres: ${adres}
+      Uwagi: ${uwagi}
+      Płatność BLIK: 573-939-925 (projekt własny / koszyk / marketplace)
+    `;
+
+    // 1. Wyślij e-mail do Ciebie
+    Email.send({
+      SecureToken: "your-secure-token-here", // <--- tu wpisz swój token
+      To: "twoj-email@adres.pl",               // <--- tu swój email
+      From: "formularz@adelbertusshop.pl",
+      Subject: "Nowe zamówienie ze sklepu",
+      Body: zamowienie
+    }).then(function () {
+      document.getElementById("potwierdzenie").classList.remove("hidden");
+    });
+
+    // 2. Opcjonalnie generuj PDF z zamówieniem
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.setFontSize(12);
+    doc.text("Podsumowanie zamówienia:", 10, 10);
+    doc.text(zamowienie, 10, 20);
+    doc.save("zamowienie.pdf");
+
+    // Po wysłaniu zamówienia możesz też wyczyścić koszyk
+    koszyk = [];
+    aktualizujKoszyk();
+
+    // Możesz też wyczyścić formularz jeśli chcesz:
+    this.reset();
+  });
+</script>
+
+<!-- Sekcja Koszyk -->
+<div id="koszyk">
+  <h3>Koszyk</h3>
+  <ul id="koszyk-lista"></ul>
+  <p id="koszyk-suma">Suma: 0 zł</p>
+</div>
+
+<script>
+  let koszyk = [];
+
+  function dodajDoKoszyka(nazwa, cena) {
+    koszyk.push({ nazwa, cena });
+    aktualizujKoszyk();
+  }
+
+  function aktualizujKoszyk() {
+    const lista = document.getElementById("koszyk-lista");
+    lista.innerHTML = "";
+    let suma = 0;
+    koszyk.forEach((item, index) => {
+      suma += item.cena;
+      const el = document.createElement("li");
+      el.textContent = `${item.nazwa} - ${item.cena} zł`;
+
+      const btn = document.createElement("button");
+      btn.textContent = "Usuń";
+      btn.onclick = () => {
+        koszyk.splice(index, 1);
+        aktualizujKoszyk();
+      };
+
+      el.appendChild(btn);
+      lista.appendChild(el);
+    });
+    document.getElementById("koszyk-suma").textContent = `Suma: ${suma} zł`;
+  }
+
+  function zamow() {
+    const notatka = document.getElementById("zamowienie-notatka").value;
+    const plik = document.getElementById("zamowienie-plik").files[0];
+    alert("Zamówienie złożone! Dziękujemy!");
+    koszyk = [];
+    aktualizujKoszyk();
+  }
+</script>
+
+<script>
+  // Funkcja płynnego scrolla do sekcji
   function scrollToSection(id) {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   }
-</script></body>
-</html>
+</script>
+
+</body>
+</html> 
