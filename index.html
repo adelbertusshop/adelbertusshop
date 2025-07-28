@@ -6,15 +6,13 @@
   <title>AdelbertusShop - Ikona Koszyka</title>
 
   <style>
-    body
-    <body>
-  <div class="bg-black text-white py-4 px-6 text-center text-xl font-semibold tracking-wide">
-    AdelbertusShop – odzież, która nie prosi o uwagę. Ona ją przyciąga.
-  </div>    {
+    body {
+      position: relative;
+      margin: 0;
+      padding: 0;
       font-family: 'Georgia', serif;
       background: linear-gradient(135deg, #2e1e0f, #4b3a1f);
       color: #f5f0e6;
-      margin: 0; padding: 0;
     }
 
     /* Ikona koszyka */
@@ -34,15 +32,18 @@
       z-index: 1000;
       transition: background-color 0.3s ease;
     }
+
     #cart-icon:hover {
       background: #ffdd99cc;
       box-shadow: 0 0 25px #ffdd99cc;
     }
+
     #cart-icon svg {
       fill: #fff8dc;
       width: 24px;
       height: 24px;
     }
+
     #cart-count {
       position: absolute;
       top: 2px;
@@ -78,12 +79,14 @@
       font-family: 'Palatino Linotype', serif;
       z-index: 999;
     }
+
     #cart-dropdown h3 {
       margin: 0 0 10px 0;
       color: #ffd97d;
       text-shadow: 1px 1px 2px #8a6e3a;
       font-size: 1.3rem;
     }
+
     #cart-items {
       list-style: none;
       padding: 0;
@@ -91,6 +94,7 @@
       max-height: 300px;
       overflow-y: auto;
     }
+
     #cart-items li {
       display: flex;
       justify-content: space-between;
@@ -99,6 +103,7 @@
       font-size: 0.95rem;
       text-shadow: 1px 1px 1px #552f00;
     }
+
     #cart-items li button.remove-btn {
       background-color: #cc4444;
       border: none;
@@ -112,10 +117,12 @@
       transition: background-color 0.3s ease;
       box-shadow: 0 0 8px #cc4444cc;
     }
+
     #cart-items li button.remove-btn:hover {
       background-color: #ff6666;
       box-shadow: 0 0 12px #ff6666cc;
     }
+
     #cart-total {
       font-weight: 800;
       font-size: 1.1rem;
@@ -124,6 +131,7 @@
       text-shadow: 1px 1px 2px #8a6e3a;
       margin-top: 10px;
     }
+
     #cart-dropdown button#checkout-btn {
       width: 100%;
       background-color: #aa8844;
@@ -137,14 +145,49 @@
       box-shadow: 0 0 20px #aa8844cc;
       transition: background-color 0.3s ease;
     }
+
     #cart-dropdown button#checkout-btn:hover {
       background-color: #ffdd99;
       color: #553300;
       box-shadow: 0 0 30px #ffdd99cc;
     }
+
+    /* Baner napis na górze */
+    #banner-text {
+      position: absolute;
+      top: 30px;
+      width: 100%;
+      text-align: center;
+      color: #fff8dc;
+      font-family: 'Georgia', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+      user-select: none;
+      padding: 0 10px;
+      z-index: 10;
+    }
+
+    /* Baner obrazek */
+    #banner-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
   </style>
 </head>
 <body>
+
+  <!-- Baner - napis na górze -->
+  <div id="banner-text">
+    AdelbertusShop – odzież, która nie prosi o uwagę. Ona ją przyciąga.
+  </div>
+
+  <!-- Baner - obrazek -->
+  <a href="https://ibb.co/zT0zPHyQ">
+    <img id="banner-image" src="https://i.ibb.co/fzPsrGhq/Messenger-creation-9-B935-AD4-1-D3-B-4785-BBA4-6928-E5614-E31.jpg" alt="Baner AdelbertusShop" />
+  </a>
 
   <!-- Ikona koszyka -->
   <div id="cart-icon" aria-label="Koszyk" tabindex="0">
