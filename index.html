@@ -154,22 +154,32 @@
       box-shadow: 0 0 30px #ffdd99cc;
     }
   </style>
+
+  <script>
+    function pokazKategorie(kategoria) {
+      document.getElementById('mezczyzna').style.display = kategoria === 'mezczyzna' ? 'grid' : 'none';
+      document.getElementById('kobieta').style.display = kategoria === 'kobieta' ? 'grid' : 'none';
+    }
+  </script>
+
 </head>
 <body>
   <!-- Baner z tytułem -->
-<section id="baner" class="w-full text-center py-6 bg-white">
-  <h1 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 tracking-tight mb-4">
-    AdelbertusShop – <span class="italic">odzież, która nie prosi o uwagę. Ona ją przyciąga.</span>
-  </h1>
-  <a href="https://ibb.co/S4Jn2Z0K" target="_blank" rel="noopener noreferrer">
-    <img 
-      src="https://i.ibb.co/hJCWkTHK/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" 
-      alt="AdelbertusShop Baner" 
-      class="w-full h-auto object-cover shadow-xl rounded-md"
-      style="max-height: 700px;"
-    />
-  </a>
-</section>  <!-- Baner główny --><!-- Ikona koszyka -->  
+  <section id="baner" class="w-full text-center py-6 bg-white">
+    <h1 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 tracking-tight mb-4">
+      AdelbertusShop – <span class="italic">odzież, która nie prosi o uwagę. Ona ją przyciąga.</span>
+    </h1>
+    <a href="https://ibb.co/S4Jn2Z0K" target="_blank" rel="noopener noreferrer">
+      <img 
+        src="https://i.ibb.co/hJCWkTHK/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" 
+        alt="AdelbertusShop Baner" 
+        class="w-full h-auto object-cover shadow-xl rounded-md"
+        style="max-height: 700px;"
+      />
+    </a>
+  </section>  <!-- Baner główny -->
+
+  <!-- Ikona koszyka -->  
   <div id="cart-icon" aria-label="Koszyk" tabindex="0">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.618-2l1.25-7h13.868l-1.4 7H4.382zm1.604-9l1-2h10v2H6.382z"/>
@@ -257,81 +267,6 @@
   </script>
 </body>
 </html>
-  <!-- Ikona koszyka -->
-  <div id="cart-icon" aria-label="Koszyk" tabindex="0">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.618-2l1.25-7h13.868l-1.4 7H4.382zm1.604-9l1-2h10v2H6.382z"/>
-    </svg>
-    <div id="cart-count">0</div>
-  </div>
-
-  <!-- Dropdown koszyka -->
-  <div id="cart-dropdown" role="region" aria-live="polite" aria-label="Zawartość koszyka">
-    <h3>Twój koszyk</h3>
-    <ul id="cart-items"></ul>
-    <div id="cart-total">Suma: 0 zł</div>
-    <button id="checkout-btn">Przejdź do kasy</button>
-  </div>
-
-  <script>
-    const cartIcon = document.getElementById('cart-icon');
-    const cartDropdown = document.getElementById('cart-dropdown');
-    const cartCount = document.getElementById('cart-count');
-    const cartItemsList = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-
-    // Przykładowe produkty w koszyku - w prawdziwym sklepie będzie dynamicznie
-    let cart = [
-      { name: "Koszulka 'Buntownik'", price: 99, quantity: 1 },
-      { name: "Bluza z kapturem", price: 150, quantity: 2 }
-    ];
-
-    // Funkcja do odświeżania widoku koszyka
-    function updateCartView() {
-      cartItemsList.innerHTML = '';
-      let total = 0;
-      let totalCount = 0;
-
-      cart.forEach(item => {
-        total += item.price * item.quantity;
-        totalCount += item.quantity;
-
-        const li = document.createElement('li');
-        li.textContent = `${item.name} x${item.quantity} - ${item.price * item.quantity} zł`;
-
-        // Możesz dodać przyciski do usuwania, edycji itp. tutaj
-        cartItemsList.appendChild(li);
-      });
-
-      cartCount.textContent = totalCount;
-      cartTotal.textContent = `Suma: ${total} zł`;
-    }
-
-    // Początkowe odświeżenie
-    updateCartView();
-
-    // Przełącz dropdown na kliknięcie
-    cartIcon.addEventListener('click', () => {
-      if (cartDropdown.style.display === 'block') {
-        cartDropdown.style.display = 'none';
-      } else {
-        cartDropdown.style.display = 'block';
-      }
-    });
-
-    // Zamknięcie dropdowna po kliknięciu poza nim
-    document.addEventListener('click', (e) => {
-      if (!cartIcon.contains(e.target) && !cartDropdown.contains(e.target)) {
-        cartDropdown.style.display = 'none';
-      }
-    });
-
-    // Przycisk przejścia do kasy (na razie alert)
-    document.getElementById('checkout-btn').addEventListener('click', () => {
-      alert('Przejdź do kasy — tu możesz dodać dalszą logikę.');
-    });
-  </script>
-</body>
 </html>
   <!-- Dodaj sekcje, które masz -->
   <section id="sklep">
