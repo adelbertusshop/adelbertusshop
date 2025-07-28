@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop - Ikona Koszyka</title>
 
-  <!-- Wklejone skrypty -->
-  <script src="https://smtpjs.com/v3/smtp.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
   <style>
     body {
       font-family: 'Georgia', serif;
@@ -34,18 +30,15 @@
       z-index: 1000;
       transition: background-color 0.3s ease;
     }
-
     #cart-icon:hover {
       background: #ffdd99cc;
       box-shadow: 0 0 25px #ffdd99cc;
     }
-
     #cart-icon svg {
       fill: #fff8dc;
       width: 24px;
       height: 24px;
     }
-
     #cart-count {
       position: absolute;
       top: 2px;
@@ -81,14 +74,12 @@
       font-family: 'Palatino Linotype', serif;
       z-index: 999;
     }
-
     #cart-dropdown h3 {
       margin: 0 0 10px 0;
       color: #ffd97d;
       text-shadow: 1px 1px 2px #8a6e3a;
       font-size: 1.3rem;
     }
-
     #cart-items {
       list-style: none;
       padding: 0;
@@ -96,7 +87,6 @@
       max-height: 300px;
       overflow-y: auto;
     }
-
     #cart-items li {
       display: flex;
       justify-content: space-between;
@@ -105,7 +95,6 @@
       font-size: 0.95rem;
       text-shadow: 1px 1px 1px #552f00;
     }
-
     #cart-items li button.remove-btn {
       background-color: #cc4444;
       border: none;
@@ -119,12 +108,10 @@
       transition: background-color 0.3s ease;
       box-shadow: 0 0 8px #cc4444cc;
     }
-
     #cart-items li button.remove-btn:hover {
       background-color: #ff6666;
       box-shadow: 0 0 12px #ff6666cc;
     }
-
     #cart-total {
       font-weight: 800;
       font-size: 1.1rem;
@@ -133,7 +120,6 @@
       text-shadow: 1px 1px 2px #8a6e3a;
       margin-top: 10px;
     }
-
     #cart-dropdown button#checkout-btn {
       width: 100%;
       background-color: #aa8844;
@@ -147,25 +133,16 @@
       box-shadow: 0 0 20px #aa8844cc;
       transition: background-color 0.3s ease;
     }
-
     #cart-dropdown button#checkout-btn:hover {
       background-color: #ffdd99;
       color: #553300;
       box-shadow: 0 0 30px #ffdd99cc;
     }
   </style>
-
-  <script>
-    function pokazKategorie(kategoria) {
-      document.getElementById('mezczyzna').style.display = kategoria === 'mezczyzna' ? 'grid' : 'none';
-      document.getElementById('kobieta').style.display = kategoria === 'kobieta' ? 'grid' : 'none';
-    }
-  </script>
-
 </head>
 <body>
 
-  <!-- Ikona koszyka -->  
+  <!-- Ikona koszyka -->
   <div id="cart-icon" aria-label="Koszyk" tabindex="0">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.618-2l1.25-7h13.868l-1.4 7H4.382zm1.604-9l1-2h10v2H6.382z"/>
@@ -181,32 +158,6 @@
     <button id="checkout-btn">Przejdź do kasy</button>
   </div>
 
-  <!-- Sekcje sklepu - wstępna struktura -->
-  <section id="sklep">
-    <!-- Tutaj dodaj zawartość sklepu -->
-  </section>
-
-  <section id="projektuj" class="py-12 bg-white text-black">
-    <!-- Tutaj dodaj zawartość sekcji projektowania -->
-  </section>
-
-  <section id="marketplace" class="py-12 bg-gray-50">
-    <!-- Tutaj dodaj zawartość marketplace -->
-  </section>
-
-  <section id="zamowienia" class="py-12 bg-gray-100">
-    <!-- Tutaj dodaj zawartość zamówień -->
-  </section>
-
-  <!-- Koszyk -->
-  <div id="koszyk">
-    <h3>Koszyk</h3>
-    <ul id="koszyk-lista">
-      <!-- Produkty pojawią się tutaj -->
-    </ul>
-    <div id="koszyk-suma">Razem: 0 zł</div>
-  </div>
-
   <script>
     const cartIcon = document.getElementById('cart-icon');
     const cartDropdown = document.getElementById('cart-dropdown');
@@ -214,6 +165,7 @@
     const cartItemsList = document.getElementById('cart-items');
     const cartTotal = document.getElementById('cart-total');
 
+    // Stan koszyka (dynamicznie modyfikowany)
     let cart = [
       { id: 1, name: "Koszulka 'Buntownik'", price: 99, quantity: 1 },
       { id: 2, name: "Bluza z kapturem", price: 150, quantity: 2 }
@@ -264,16 +216,11 @@
     document.getElementById('checkout-btn').addEventListener('click', () => {
       alert('Przejdź do kasy — tu możesz dodać dalszą logikę.');
     });
-
-    function scrollToSection(id) {
-      const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
   </script>
+
 </body>
-</html>   <section id="sklep" class="py-8">
+</html>
+  <section id="sklep" class="py-8">
   <h2 class="text-3xl font-bold mb-6 text-center">Sklep</h2>
 
   <div class="flex justify-center mb-4 gap-4">
