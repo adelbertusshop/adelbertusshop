@@ -164,20 +164,6 @@
 
 </head>
 <body>
-  <!-- Baner z tytułem -->
-  <section id="baner" class="w-full text-center py-6 bg-white">
-    <h1 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800 tracking-tight mb-4">
-      AdelbertusShop – <span class="italic">odzież, która nie prosi o uwagę. Ona ją przyciąga.</span>
-    </h1>
-    <a href="https://ibb.co/S4Jn2Z0K" target="_blank" rel="noopener noreferrer">
-      <img 
-        src="https://i.ibb.co/hJCWkTHK/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" 
-        alt="AdelbertusShop Baner" 
-        class="w-full h-auto object-cover shadow-xl rounded-md"
-        style="max-height: 700px;"
-      />
-    </a>
-  </section>  <!-- Baner główny -->
 
   <!-- Ikona koszyka -->  
   <div id="cart-icon" aria-label="Koszyk" tabindex="0">
@@ -195,6 +181,32 @@
     <button id="checkout-btn">Przejdź do kasy</button>
   </div>
 
+  <!-- Sekcje sklepu - wstępna struktura -->
+  <section id="sklep">
+    <!-- Tutaj dodaj zawartość sklepu -->
+  </section>
+
+  <section id="projektuj" class="py-12 bg-white text-black">
+    <!-- Tutaj dodaj zawartość sekcji projektowania -->
+  </section>
+
+  <section id="marketplace" class="py-12 bg-gray-50">
+    <!-- Tutaj dodaj zawartość marketplace -->
+  </section>
+
+  <section id="zamowienia" class="py-12 bg-gray-100">
+    <!-- Tutaj dodaj zawartość zamówień -->
+  </section>
+
+  <!-- Koszyk -->
+  <div id="koszyk">
+    <h3>Koszyk</h3>
+    <ul id="koszyk-lista">
+      <!-- Produkty pojawią się tutaj -->
+    </ul>
+    <div id="koszyk-suma">Razem: 0 zł</div>
+  </div>
+
   <script>
     const cartIcon = document.getElementById('cart-icon');
     const cartDropdown = document.getElementById('cart-dropdown');
@@ -202,13 +214,11 @@
     const cartItemsList = document.getElementById('cart-items');
     const cartTotal = document.getElementById('cart-total');
 
-    // Przykładowe produkty w koszyku - w prawdziwym sklepie będzie dynamicznie
     let cart = [
       { id: 1, name: "Koszulka 'Buntownik'", price: 99, quantity: 1 },
       { id: 2, name: "Bluza z kapturem", price: 150, quantity: 2 }
     ];
 
-    // Funkcja do odświeżania widoku koszyka
     function updateCartView() {
       cartItemsList.innerHTML = '';
       let total = 0;
@@ -221,7 +231,6 @@
         const li = document.createElement('li');
         li.textContent = `${item.name} x${item.quantity} - ${item.price * item.quantity} zł`;
 
-        // Przycisk usuń
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Usuń';
         removeBtn.classList.add('remove-btn');
@@ -235,66 +244,27 @@
       cartTotal.textContent = `Suma: ${total} zł`;
     }
 
-    // Usuwanie produktu po id
     function removeFromCart(id) {
       cart = cart.filter(item => item.id !== id);
       updateCartView();
     }
 
-    // Początkowe odświeżenie
     updateCartView();
 
-    // Przełącz dropdown na kliknięcie
     cartIcon.addEventListener('click', () => {
-      if (cartDropdown.style.display === 'block') {
-        cartDropdown.style.display = 'none';
-      } else {
-        cartDropdown.style.display = 'block';
-      }
+      cartDropdown.style.display = (cartDropdown.style.display === 'block') ? 'none' : 'block';
     });
 
-    // Zamknięcie dropdowna po kliknięciu poza nim
     document.addEventListener('click', (e) => {
       if (!cartIcon.contains(e.target) && !cartDropdown.contains(e.target)) {
         cartDropdown.style.display = 'none';
       }
     });
 
-    // Przycisk przejścia do kasy (na razie alert)
     document.getElementById('checkout-btn').addEventListener('click', () => {
       alert('Przejdź do kasy — tu możesz dodać dalszą logikę.');
     });
-  </script>
-</body>
-</html>
-</html>
-  <!-- Dodaj sekcje, które masz -->
-  <section id="sklep">
-    <!-- Twoja zawartość sklepu -->
-  </section>
 
-  <section id="projektuj" class="py-12 bg-white text-black">
-    <!-- Twoja zawartość projektuj -->
-  </section>
-
-  <section id="marketplace" class="py-12 bg-gray-50">
-    <!-- Twoja zawartość marketplace -->
-  </section>
-
-  <section id="zamowienia" class="py-12 bg-gray-100">
-    <!-- Twoja zawartość zamówienia -->
-  </section>
-
-  <!-- Koszyk -->
-  <div id="koszyk">
-    <h3>Koszyk</h3>
-    <ul id="koszyk-lista">
-      <!-- Tu będą produkty -->
-    </ul>
-    <div id="koszyk-suma">Razem: 0 zł</div>
-  </div>
-
-  <script>
     function scrollToSection(id) {
       const section = document.getElementById(id);
       if (section) {
@@ -303,12 +273,7 @@
     }
   </script>
 </body>
-</html>  <div id="baner">
-    <h1>AdelbertusShop – Gdzie Ulica Spotyka Sztukę</h1>
-  </div>
-
-  <main>
-   <section id="sklep" class="py-8">
+</html>   <section id="sklep" class="py-8">
   <h2 class="text-3xl font-bold mb-6 text-center">Sklep</h2>
 
   <div class="flex justify-center mb-4 gap-4">
