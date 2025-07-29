@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
@@ -130,10 +131,17 @@
     #checkout-btn:hover {
       background: #f5d76e;
     }
+
+    /* 🟡 Dodane style złota */
+    .text-gold {
+      color: #d4af37;
+    }
+    .bg-gold {
+      background-color: #d4af37;
+    }
   </style>
 </head>
 <body>
-
   <!-- Baner z napisem -->
   <section id="banner">
     <div id="banner-text">
@@ -235,34 +243,70 @@
   </script>
 </body>
 </html>
-<section id="sklep" class="py-8">
-  <h2 class="text-3xl font-bold mb-6 text-center">Sklep</h2>
+<section id="sklep" class="py-8 px-4 text-center">
+  <h2 class="text-3xl font-bold mb-8 text-gold">Sklep Świątynia Stylu</h2>
 
-  <div class="flex justify-center mb-4 gap-4">
-    <button onclick="pokazKategorie('mezczyzni')" class="px-4 py-2 bg-black text-white rounded">Mężczyźni</button>
-    <button onclick="pokazKategorie('kobiety')" class="px-4 py-2 bg-black text-white rounded">Kobiety</button>
+  <div class="flex justify-center gap-6 mb-8">
+    <button onclick="pokazKategorie('mezczyzni')" class="bg-gold text-black px-6 py-2 rounded-full font-semibold shadow-lg">Mężczyźni</button>
+    <button onclick="pokazKategorie('kobiety')" class="bg-gold text-black px-6 py-2 rounded-full font-semibold shadow-lg">Kobiety</button>
   </div>
 
-  <div id="mezczyzni" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <!-- Przykładowy produkt dla Mężczyzn -->
-    <div class="border rounded p-4 text-center">
-      <img src="https://i.ibb.co/2731mTFY/Resizer-17510539315581.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-2">
-      <h3 class="text-lg font-semibold">Koszulka „Nie pasujesz do...”</h3>
-      <p class="text-sm text-gray-600 mb-2">99 zł</p>
-      <button onclick="dodajDoKoszyka('Koszulka Nie pasujesz do...', 99)" class="bg-black text-white px-4 py-2 rounded">Dodaj do koszyka</button>
+  <!-- Mężczyźni -->
+  <div id="mezczyzni" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    <div class="border border-gold p-4 rounded-xl shadow-lg bg-[#1a1410]">
+      <img src="https://i.ibb.co/2731mTFY/Resizer-17510539315581.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-4 rounded">
+      <h3 class="text-xl font-semibold text-gold mb-2">Koszulka „Wojownik Cienia”</h3>
+      <p class="text-lg mb-4">100 zł</p>
+      <button onclick="dodajDoKoszyka('Koszulka Wojownik Cienia', 100)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+    </div>
+
+    <div class="border border-gold p-4 rounded-xl shadow-lg bg-[#1a1410]">
+      <img src="https://i.ibb.co/gMTfDYt/hoodie.jpg" alt="Bluza" class="w-full h-64 object-cover mb-4 rounded">
+      <h3 class="text-xl font-semibold text-gold mb-2">Bluza „Złoty Krąg”</h3>
+      <p class="text-lg mb-4">199 zł</p>
+      <button onclick="dodajDoKoszyka('Bluza Złoty Krąg', 199)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+    </div>
+
+    <div class="border border-gold p-4 rounded-xl shadow-lg bg-[#1a1410]">
+      <img src="https://i.ibb.co/f1YhWkt/czapka.jpg" alt="Czapka" class="w-full h-64 object-cover mb-4 rounded">
+      <h3 class="text-xl font-semibold text-gold mb-2">Czapka „Mistyczna Pieczęć”</h3>
+      <p class="text-lg mb-4">97 zł</p>
+      <button onclick="dodajDoKoszyka('Czapka Mistyczna Pieczęć', 97)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
     </div>
   </div>
 
-  <div id="kobiety" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 hidden">
-    <!-- Przykładowy produkt dla Kobiet -->
-    <div class="border rounded p-4 text-center">
-      <img src="https://i.ibb.co/2731mTFY/Resizer-17510539315581.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-2">
-      <h3 class="text-lg font-semibold">Koszulka „Zmysłowa siła”</h3>
-      <p class="text-sm text-gray-600 mb-2">99 zł</p>
-      <button onclick="dodajDoKoszyka('Koszulka Zmysłowa siła', 99)" class="bg-black text-white px-4 py-2 rounded">Dodaj do koszyka</button>
+  <!-- Kobiety -->
+  <div id="kobiety" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 hidden">
+    <div class="border border-gold p-4 rounded-xl shadow-lg bg-[#1a1410]">
+      <img src="https://i.ibb.co/2731mTFY/Resizer-17510539315581.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-4 rounded">
+      <h3 class="text-xl font-semibold text-gold mb-2">Koszulka „Zmysłowa Aura”</h3>
+      <p class="text-lg mb-4">100 zł</p>
+      <button onclick="dodajDoKoszyka('Koszulka Zmysłowa Aura', 100)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+    </div>
+
+    <div class="border border-gold p-4 rounded-xl shadow-lg bg-[#1a1410]">
+      <img src="https://i.ibb.co/gMTfDYt/hoodie.jpg" alt="Bluza" class="w-full h-64 object-cover mb-4 rounded">
+      <h3 class="text-xl font-semibold text-gold mb-2">Bluza „Świetlista Tajemnica”</h3>
+      <p class="text-lg mb-4">199 zł</p>
+      <button onclick="dodajDoKoszyka('Bluza Świetlista Tajemnica', 199)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+    </div>
+
+    <div class="border border-gold p-4 rounded-xl shadow-lg bg-[#1a1410]">
+      <img src="https://i.ibb.co/f1YhWkt/czapka.jpg" alt="Czapka" class="w-full h-64 object-cover mb-4 rounded">
+      <h3 class="text-xl font-semibold text-gold mb-2">Czapka „Krąg Mocy”</h3>
+      <p class="text-lg mb-4">97 zł</p>
+      <button onclick="dodajDoKoszyka('Czapka Krąg Mocy', 97)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
     </div>
   </div>
-</section>    <section id="projektuj" class="py-12 bg-white text-black">
+</section>
+
+<script>
+  function pokazKategorie(nazwa) {
+    const kategorie = document.querySelectorAll('.kategoria');
+    kategorie.forEach(k => k.classList.add('hidden'));
+    document.getElementById(nazwa).classList.remove('hidden');
+  }
+</script>  <section id="projektuj" class="py-12 bg-white text-black">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold text-center mb-8">Zaprojektuj swój produkt</h2>
     
