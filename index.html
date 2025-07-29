@@ -71,13 +71,12 @@
     }
 
     #cart-dropdown h3 {
-      margin-top: 0;
+      margin: 0 0 1rem;
       font-size: 1.2rem;
       color: #f3d88e;
       text-align: center;
       border-bottom: 1px solid #d4af37;
       padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
     }
 
     #cart-items {
@@ -132,15 +131,16 @@
       background: #f5d76e;
     }
 
-    /* 🟡 Dodane style złota */
+    /* Styl złoty */
     .text-gold {
       color: #d4af37;
     }
+
     .bg-gold {
       background-color: #d4af37;
     }
 
-    /* 🔶 Styl dla produktów testowych */
+    /* Produkty */
     #products {
       padding: 2rem;
       display: flex;
@@ -179,21 +179,23 @@
   </style>
 </head>
 <body>
+
   <!-- Baner -->
   <section id="banner">
     <div id="banner-text">
       AdelbertusShop – odzież, która nie prosi o uwagę. <br>Ona ją przyciąga.
     </div>
     <div style="width: 100%; margin-top: 20px; text-align: center;">
-  <a href="https://ibb.co/Qjrqfdgp" target="_blank">
-    <img src="https://i.ibb.co/R4zM9yFY/Screenshot-20250525-154456-Chat-GPT-2.jpg" alt="AdelbertusShop Baner" style="width: 100%; max-width: 1200px; height: auto; box-shadow: 0 0 15px gold; border: 2px solid #d4af37; border-radius: 12px;">
-  </a>
-  <p style="font-size: 1.3rem; color: #d4af37; font-weight: bold; margin-top: 10px;">
-    Adelbertusshop – odzież, która nie prosi o uwagę. Ona ją przyciąga.
-  </p>
-</div>  </section>
-  
-<!-- Ikona koszyka -->
+      <a href="https://ibb.co/Qjrqfdgp" target="_blank">
+        <img src="https://i.ibb.co/R4zM9yFY/Screenshot-20250525-154456-Chat-GPT-2.jpg" alt="AdelbertusShop Baner" style="width: 100%; max-width: 1200px; height: auto; box-shadow: 0 0 15px gold; border: 2px solid #d4af37; border-radius: 12px;">
+      </a>
+      <p style="font-size: 1.3rem; color: #d4af37; font-weight: bold; margin-top: 10px;">
+        Adelbertusshop – odzież, która nie prosi o uwagę. Ona ją przyciąga.
+      </p>
+    </div>
+  </section>
+
+  <!-- Ikona koszyka -->
   <div id="cart-icon" aria-label="Koszyk" tabindex="0">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.618-2l1.25-7h13.868l-1.4 7H4.382zm1.604-9l1-2h10v2H6.382z"/>
@@ -280,7 +282,8 @@
     });
   </script>
 </body>
-</html><section id="sklep" class="py-8 px-4 text-center">
+</html>
+<section id="sklep" class="py-8 px-4 text-center">
   <h2 class="text-3xl font-bold mb-8 text-gold">Sklep Świątynia Stylu</h2>
 
   <div class="flex justify-center gap-6 mb-8">
@@ -343,72 +346,75 @@
     kategorie.forEach(k => k.classList.add('hidden'));
     document.getElementById(nazwa).classList.remove('hidden');
   }
-</script>  <section id="projektuj" class="py-12 bg-white text-black">
+</script> 
+  <section id="projektuj" class="py-12 bg-white text-black">
   <div class="container mx-auto px-4">
-    <h2 class="text-4xl font-bold text-center mb-8">Zaprojektuj swój produkt</h2>
-    
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- Podgląd produktu -->
-      <div class="border rounded-xl p-6 bg-gray-100">
-        <label class="block mb-2 font-semibold">Wybierz produkt:</label>
-        <select id="produkt" class="w-full mb-4 p-2 border rounded">
-          <option value="tshirt">Koszulka</option>
-          <option value="hoodie">Bluza</option>
-          <option value="cap">Czapka</option>
-        </select>
+    <div class="max-w-6xl mx-auto bg-white border border-gray-200 rounded-3xl shadow-xl ring-1 ring-gray-200 p-8">
+      <h2 class="text-4xl font-bold text-center mb-8">Zaprojektuj swój produkt</h2>
 
-        <div id="podglad" class="w-full h-64 flex items-center justify-center bg-white border rounded relative overflow-hidden">
-          <img id="produktImg" src="" alt="Produkt" class="absolute inset-0 w-full h-full object-contain opacity-30 pointer-events-none">
-          <img id="userImage" class="absolute w-24 h-24 object-contain" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
-          <div id="userText" class="absolute font-bold text-xl" style="top: 70%; left: 50%; transform: translate(-50%, -50%);">Twój tekst</div>
-        </div>
-      </div>
-
-      <!-- Formularz -->
-      <div class="border rounded-xl p-6 bg-gray-50 space-y-4">
-        <div>
-          <label class="block font-semibold">Dodaj grafikę:</label>
-          <input type="file" id="grafika" class="w-full border p-2 rounded" accept="image/*">
-        </div>
-
-        <div>
-          <label class="block font-semibold">Dodaj tekst:</label>
-          <input type="text" id="tekst" placeholder="Wpisz swój tekst" class="w-full border p-2 rounded">
-        </div>
-
-        <div>
-          <label class="block font-semibold">Czcionka:</label>
-          <select id="czcionka" class="w-full border p-2 rounded">
-            <option value="Arial">Arial</option>
-            <option value="Courier New">Courier</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Monospace">Monospace</option>
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Podgląd produktu -->
+        <div class="border rounded-2xl p-6 bg-gray-100 shadow-inner">
+          <label class="block mb-2 font-semibold">Wybierz produkt:</label>
+          <select id="produkt" class="w-full mb-4 p-2 border rounded">
+            <option value="tshirt">Koszulka</option>
+            <option value="hoodie">Bluza</option>
+            <option value="cap">Czapka</option>
           </select>
+
+          <div id="podglad" class="w-full h-64 flex items-center justify-center bg-white border rounded relative overflow-hidden">
+            <img id="produktImg" src="" alt="Produkt" class="absolute inset-0 w-full h-full object-contain opacity-30 pointer-events-none">
+            <img id="userImage" class="absolute w-24 h-24 object-contain" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <div id="userText" class="absolute font-bold text-xl" style="top: 70%; left: 50%; transform: translate(-50%, -50%);">Twój tekst</div>
+          </div>
         </div>
 
-        <div>
-          <label class="block font-semibold">Kolor tekstu:</label>
-          <input type="color" id="kolorTekstu" class="w-full h-10 border p-1 rounded">
-        </div>
+        <!-- Formularz -->
+        <div class="border rounded-2xl p-6 bg-gray-50 space-y-4 shadow-inner">
+          <div>
+            <label class="block font-semibold">Dodaj grafikę:</label>
+            <input type="file" id="grafika" class="w-full border p-2 rounded" accept="image/*">
+          </div>
 
-        <div>
-          <label class="block font-semibold">Dane kontaktowe:</label>
-          <input type="text" placeholder="Imię i nazwisko" class="w-full border p-2 rounded mb-2">
-          <input type="email" placeholder="E-mail" class="w-full border p-2 rounded mb-2">
-          <input type="tel" placeholder="Telefon" class="w-full border p-2 rounded">
-        </div>
+          <div>
+            <label class="block font-semibold">Dodaj tekst:</label>
+            <input type="text" id="tekst" placeholder="Wpisz swój tekst" class="w-full border p-2 rounded">
+          </div>
 
-        <div>
-          <label class="block font-semibold">Adres wysyłki:</label>
-          <textarea class="w-full border p-2 rounded" rows="3" placeholder="Ulica, miasto, kod pocztowy"></textarea>
-        </div>
+          <div>
+            <label class="block font-semibold">Czcionka:</label>
+            <select id="czcionka" class="w-full border p-2 rounded">
+              <option value="Arial">Arial</option>
+              <option value="Courier New">Courier</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Monospace">Monospace</option>
+            </select>
+          </div>
 
-        <div class="bg-yellow-100 p-4 rounded text-sm text-gray-700">
-          <p>💳 Wyślij płatność BLIK: <strong>573-939-925</strong> z dopiskiem: <strong>„projekt własny”</strong></p>
-          <p>📤 Projekt zostanie wysłany na e-mail lub SMS: <strong>604-296-650</strong></p>
-        </div>
+          <div>
+            <label class="block font-semibold">Kolor tekstu:</label>
+            <input type="color" id="kolorTekstu" class="w-full h-10 border p-1 rounded">
+          </div>
 
-        <button class="bg-black text-white py-2 px-6 rounded hover:bg-gray-800 w-full">Wyślij projekt</button>
+          <div>
+            <label class="block font-semibold">Dane kontaktowe:</label>
+            <input type="text" placeholder="Imię i nazwisko" class="w-full border p-2 rounded mb-2">
+            <input type="email" placeholder="E-mail" class="w-full border p-2 rounded mb-2">
+            <input type="tel" placeholder="Telefon" class="w-full border p-2 rounded">
+          </div>
+
+          <div>
+            <label class="block font-semibold">Adres wysyłki:</label>
+            <textarea class="w-full border p-2 rounded" rows="3" placeholder="Ulica, miasto, kod pocztowy"></textarea>
+          </div>
+
+          <div class="bg-yellow-100 p-4 rounded text-sm text-gray-700 border-l-4 border-yellow-500 shadow">
+            <p>💳 Wyślij płatność BLIK: <strong>573-939-925</strong> z dopiskiem: <strong>„projekt własny”</strong></p>
+            <p>📤 Projekt zostanie wysłany na e-mail lub SMS: <strong>604-296-650</strong></p>
+          </div>
+
+          <button class="bg-black text-white py-2 px-6 rounded hover:bg-gray-800 w-full">Wyślij projekt</button>
+        </div>
       </div>
     </div>
   </div>
@@ -459,221 +465,95 @@
     produktImg.src = produkty[produktSelect.value];
   </script>
 </section>  <!-- Sekcja Marketplace -->
-<section id="marketplace" class="py-12 bg-gray-50">
+  <section id="marketplace" class="py-12 bg-gray-50">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-6">Marketplace – Hala Targowa</h2>
-    <p class="text-center text-lg mb-4">Wystaw swoje produkty! Wypełnij formularz, zapłać BLIK (573-939-925 z dopiskiem <strong>marketplace</strong>) i zyskaj swoją ikonę!</p>
+    <div class="border-2 border-gray-200 rounded-xl shadow-xl p-8 bg-white">
+      <h2 class="text-3xl font-bold text-center mb-6">Marketplace – Hala Targowa</h2>
+      <p class="text-center text-lg mb-6">Wystaw swoje produkty! Wypełnij formularz, zapłać BLIK (573-939-925 z dopiskiem <strong>marketplace</strong>) i zyskaj swoją ikonę!</p>
 
-    <!-- Formularz wystawienia -->
-    <form id="marketplaceForm" class="bg-white p-6 rounded shadow-md mb-8" onsubmit="return dodajProduktMarketplace(event)">
-      <label class="block mb-2 font-semibold">Nazwa produktu</label>
-      <input type="text" id="nazwaProduktu" placeholder="Wpisz nazwę" class="w-full p-2 border rounded mb-4" required />
+      <!-- Formularz wystawienia -->
+      <form id="marketplaceForm" class="bg-gray-50 p-6 rounded-xl shadow-inner mb-8" onsubmit="return dodajProduktMarketplace(event)">
+        <label class="block mb-2 font-semibold">Nazwa produktu</label>
+        <input type="text" id="nazwaProduktu" placeholder="Wpisz nazwę" class="w-full p-2 border rounded mb-4" required />
 
-      <label class="block mb-2 font-semibold">Opis produktu</label>
-      <textarea id="opisProduktu" placeholder="Opisz swój produkt" class="w-full p-2 border rounded mb-4" required></textarea>
+        <label class="block mb-2 font-semibold">Opis produktu</label>
+        <textarea id="opisProduktu" placeholder="Opisz swój produkt" class="w-full p-2 border rounded mb-4" required></textarea>
 
-      <label class="block mb-2 font-semibold">Cena</label>
-      <input type="number" id="cenaProduktu" placeholder="99" class="w-full p-2 border rounded mb-4" min="1" required />
+        <label class="block mb-2 font-semibold">Cena</label>
+        <input type="number" id="cenaProduktu" placeholder="99" class="w-full p-2 border rounded mb-4" min="1" required />
 
-      <label class="block mb-2 font-semibold">Okres emisji</label>
-      <select id="okresEmisji" class="w-full p-2 border rounded mb-4" required>
-        <option value="86400">Dzień – 10 zł</option>
-        <option value="604800">Tydzień – 50 zł</option>
-        <option value="2592000">Miesiąc – 150 zł</option>
+        <label class="block mb-2 font-semibold">Okres emisji</label>
+        <select id="okresEmisji" class="w-full p-2 border rounded mb-4" required>
+          <option value="86400">Dzień – 10 zł</option>
+          <option value="604800">Tydzień – 50 zł</option>
+          <option value="2592000">Miesiąc – 150 zł</option>
+        </select>
+
+        <div class="bg-yellow-100 border border-yellow-300 p-4 rounded mb-6 text-sm text-gray-700">
+          💳 Wpłać na BLIK: <strong>573-939-925</strong> z dopiskiem <strong>marketplace</strong>
+        </div>
+
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 w-full">Wyślij zgłoszenie</button>
+      </form>
+
+      <!-- Ikony marketplace -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="ikonyMarketplace">
+        <!-- Tu będą dynamiczne produkty -->
+      </div>
+
+      <!-- Panel administratora -->
+      <div id="panelAdmina" class="mt-12">
+        <h3 class="text-xl font-bold mb-4">Panel Administratora</h3>
+        <input type="password" id="hasloAdmin" placeholder="Wpisz hasło" class="p-2 border rounded mb-4 w-full" />
+        <button onclick="zalogujAdmina()" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Zaloguj</button>
+
+        <div id="adminOpcje" class="hidden mt-6 space-y-2">
+          <p class="text-green-600">Zalogowano jako administrator.</p>
+          <button onclick="usunWybranyProdukt()" class="bg-red-600 text-white px-4 py-2 rounded w-full">Usuń zaznaczony produkt</button>
+          <button onclick="ponaglijKlienta()" class="bg-indigo-500 text-white px-4 py-2 rounded w-full">Ponaglij klienta</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <section id="reklama" class="py-10 bg-yellow-100 text-center">
+  <div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-2xl border border-yellow-300">
+    <h2 class="text-3xl font-bold mb-4">Zareklamuj się na <span class="text-yellow-600">AdelbertusShop</span></h2>
+    <p class="mb-2">Twoja reklama pojawi się na stronie głównej na 30 sekund.</p>
+    <p class="mb-6 text-sm">Po wpłacie na BLIK: <strong>573-939-925</strong> z dopiskiem <strong>reklama</strong></p>
+
+    <form id="formularzReklamy" class="max-w-xl mx-auto p-4 bg-yellow-50 rounded-xl shadow">
+      <input type="text" placeholder="Nazwa firmy lub produktu" required class="w-full p-2 mb-2 border rounded">
+      <textarea placeholder="Treść reklamy" required class="w-full p-2 mb-2 border rounded"></textarea>
+      <input type="email" placeholder="Twój email" required class="w-full p-2 mb-2 border rounded">
+
+      <select class="w-full p-2 mb-4 border rounded" required>
+        <option disabled selected>Wybierz okres reklamy</option>
+        <option>1 dzień – 10 zł</option>
+        <option>1 tydzień – 49 zł</option>
+        <option>1 miesiąc – 189 zł</option>
       </select>
 
-      <p class="text-sm text-gray-600 mb-4">Pamiętaj o wpłacie na BLIK: <strong>573-939-925</strong> z dopiskiem <strong>marketplace</strong></p>
-      <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Wyślij zgłoszenie</button>
+      <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded font-semibold transition">Wyślij zgłoszenie</button>
     </form>
 
-    <!-- Ikony marketplace -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="ikonyMarketplace">
-      <!-- Tutaj będą dynamicznie dodawane produkty -->
-    </div>
-
-    <!-- Panel administratora -->
-    <div id="panelAdmina" class="mt-12">
-      <h3 class="text-xl font-bold mb-4">Panel Administratora</h3>
-      <input type="password" id="hasloAdmin" placeholder="Wpisz hasło" class="p-2 border rounded mb-4" />
-      <button onclick="zalogujAdmina()" class="bg-blue-600 text-white px-4 py-2 rounded">Zaloguj</button>
-
-      <div id="adminOpcje" class="hidden mt-6">
-        <p class="text-green-600">Zalogowano jako administrator.</p>
-        <button onclick="usunWybranyProdukt()" class="bg-red-600 text-white px-4 py-2 rounded mt-2">Usuń zaznaczony produkt</button>
-        <button onclick="ponaglijKlienta()" class="bg-indigo-500 text-white px-4 py-2 rounded mt-2">Ponaglij klienta</button>
+    <!-- Strefa administratora -->
+    <div class="mt-6">
+      <button onclick="pokazPanelAdmina()" class="text-sm text-blue-700 underline">Panel administratora</button>
+      <div id="panelAdmina" class="hidden mt-4 bg-white border p-4 rounded-xl shadow-md max-w-lg mx-auto">
+        <input type="password" id="adminHaslo" placeholder="Podaj hasło" class="border p-2 mb-2 w-full rounded">
+        <button onclick="sprawdzHaslo()" class="bg-blue-500 text-white px-4 py-2 rounded font-semibold">Zaloguj</button>
+        <div id="adminKontrola" class="hidden mt-4">
+          <textarea id="reklamaAdmina" placeholder="Treść reklamy od administratora" class="w-full p-2 border rounded mb-2"></textarea>
+          <button onclick="wyswietlReklameAdmina()" class="bg-green-500 text-white px-4 py-2 rounded font-semibold">Wyświetl reklamę</button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<script>
-  let produktyMarketplace = [];
-  let wybranyProduktIndex = null;
-  let zalogowanyAdmin = false;
-
-  function dodajProduktMarketplace(event) {
-    event.preventDefault();
-
-    const nazwa = document.getElementById('nazwaProduktu').value.trim();
-    const opis = document.getElementById('opisProduktu').value.trim();
-    const cena = Number(document.getElementById('cenaProduktu').value);
-    const okres = Number(document.getElementById('okresEmisji').value);
-
-    if (!nazwa || !opis || cena <= 0 || !okres) {
-      alert('Wypełnij poprawnie wszystkie pola!');
-      return false;
-    }
-
-    // Ustaw cenę max zgodnie z okresem emisji
-    let maxCena = 0;
-    switch (okres) {
-      case 86400: maxCena = 10; break;
-      case 604800: maxCena = 50; break;
-      case 2592000: maxCena = 150; break;
-    }
-    if (cena > maxCena) {
-      alert(`Maksymalna cena dla tego okresu to ${maxCena} zł.`);
-      return false;
-    }
-
-    const dataWygaśnięcia = Date.now() + okres * 1000;
-    produktyMarketplace.push({ nazwa, opis, cena, dataWygaśnięcia });
-    dodajProduktDoDOM(produktyMarketplace.length - 1);
-
-    // Reset form
-    document.getElementById('marketplaceForm').reset();
-    alert('Produkt został dodany! Po wpłacie BLIK czekaj na aktywację.');
-
-    return false;
-  }
-
-  function dodajProduktDoDOM(index) {
-    const container = document.getElementById('ikonyMarketplace');
-    const produkt = produktyMarketplace[index];
-
-    const produktEl = document.createElement('div');
-    produktEl.className = 'bg-white p-4 rounded shadow relative cursor-pointer';
-    produktEl.dataset.index = index;
-    produktEl.onclick = () => {
-      if (zalogowanyAdmin) {
-        wybranyProduktIndex = index;
-        zaznaczProdukt(produktEl);
-      }
-    };
-
-    produktEl.innerHTML = `
-      <h3 class="font-bold text-lg">${produkt.nazwa}</h3>
-      <p class="text-gray-700">${produkt.opis}</p>
-      <p class="text-sm text-gray-600 mt-2">Cena: ${produkt.cena} zł</p>
-      <p class="text-sm text-gray-600 mt-2">Pozostały czas: <span class="czasPozostaly">--:--:--</span></p>
-    `;
-
-    container.appendChild(produktEl);
-    aktualizujCzas(produktEl, produkt.dataWygaśnięcia);
-  }
-
-  function zaznaczProdukt(el) {
-    // Usuń zaznaczenia z innych
-    document.querySelectorAll('#ikonyMarketplace > div').forEach(div => {
-      div.style.border = 'none';
-    });
-    el.style.border = '3px solid #f59e0b'; // żółty border dla zaznaczenia
-  }
-
-  function usunWybranyProdukt() {
-    if (wybranyProduktIndex === null) {
-      alert('Wybierz produkt do usunięcia.');
-      return;
-    }
-    if (!confirm('Na pewno chcesz usunąć ten produkt?')) return;
-
-    produktyMarketplace.splice(wybranyProduktIndex, 1);
-    wybranyProduktIndex = null;
-    odswiezMarketplace();
-  }
-
-  function odswiezMarketplace() {
-    const container = document.getElementById('ikonyMarketplace');
-    container.innerHTML = '';
-    produktyMarketplace.forEach((_, i) => dodajProduktDoDOM(i));
-  }
-
-  function zalogujAdmina() {
-    const haslo = document.getElementById('hasloAdmin').value;
-    if (haslo === 'Wojownik.03') {
-      zalogowanyAdmin = true;
-      document.getElementById('adminOpcje').classList.remove('hidden');
-      alert('Zalogowano jako administrator.');
-    } else {
-      alert('Błędne hasło.');
-    }
-  }
-
-  function ponaglijKlienta() {
-    if (wybranyProduktIndex === null) {
-      alert('Wybierz produkt, który chcesz ponaglić.');
-      return;
-    }
-    const produkt = produktyMarketplace[wybranyProduktIndex];
-    alert(`Ponaglam klienta odpowiedzialnego za produkt "${produkt.nazwa}" do dokonania wpłaty BLIK.`);
-    // Możesz tu dodać integrację z e-mailem lub SMS, jeśli będzie taka możliwość
-  }
-
-  function aktualizujCzas(el, dataWygaśnięcia) {
-    function update() {
-      const teraz = Date.now();
-      let pozostalo = Math.floor((dataWygaśnięcia - teraz) / 1000);
-      if (pozostalo <= 0) {
-        el.style.display = 'none';
-        odswiezMarketplace();
-        return;
-      }
-      const h = String(Math.floor(pozostalo / 3600)).padStart(2, '0');
-      const m = String(Math.floor((pozostalo % 3600) / 60)).padStart(2, '0');
-      const s = String(pozostalo % 60).padStart(2, '0');
-      const czasSpan = el.querySelector('.czasPozostaly');
-      if (czasSpan) czasSpan.textContent = `${h}:${m}:${s}`;
-    }
-    update();
-    setInterval(update, 1000);
-  }
-</script><!-- Sekcja Reklama -->
-<section id="reklama" class="py-10 bg-yellow-100 text-center">
-  <h2 class="text-3xl font-bold mb-4">Zareklamuj się na AdelbertusShop</h2>
-  <p class="mb-2">Twoja reklama pojawi się na stronie głównej na 30 sekund.</p>
-  <p class="mb-4 text-sm">Po wpłacie na BLIK: <strong>573-939-925</strong> z dopiskiem <strong>reklama</strong></p>
-
-  <form id="formularzReklamy" class="max-w-lg mx-auto p-4 bg-white rounded shadow">
-    <input type="text" placeholder="Nazwa firmy lub produktu" required class="w-full p-2 mb-2 border rounded">
-    <textarea placeholder="Treść reklamy" required class="w-full p-2 mb-2 border rounded"></textarea>
-    <input type="email" placeholder="Twój email" required class="w-full p-2 mb-2 border rounded">
-    
-    <select class="w-full p-2 mb-4 border rounded" required>
-      <option disabled selected>Wybierz okres reklamy</option>
-      <option>1 dzień – 10 zł</option>
-      <option>1 tydzień – 49 zł</option>
-      <option>1 miesiąc – 189 zł</option>
-    </select>
-
-    <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded">Wyślij zgłoszenie</button>
-  </form>
-
-  <!-- Strefa tylko dla administratora -->
-  <div class="mt-6">
-    <button onclick="pokazPanelAdmina()" class="text-sm text-blue-700 underline">Panel administratora</button>
-    <div id="panelAdmina" class="hidden mt-4 bg-white border p-4 rounded shadow">
-      <input type="password" id="adminHaslo" placeholder="Podaj hasło" class="border p-2 mb-2 w-full rounded">
-      <button onclick="sprawdzHaslo()" class="bg-blue-500 text-white px-4 py-2 rounded">Zaloguj</button>
-      <div id="adminKontrola" class="hidden mt-4">
-        <textarea id="reklamaAdmina" placeholder="Treść reklamy od administratora" class="w-full p-2 border rounded mb-2"></textarea>
-        <button onclick="wyswietlReklameAdmina()" class="bg-green-500 text-white px-4 py-2 rounded">Wyświetl reklamę</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Kontener Reklamy na stronie głównej -->
-<div id="reklamaGlowneOkno" class="hidden fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-yellow-300 text-black px-6 py-4 rounded shadow-xl max-w-md text-center">
+<!-- Reklama wyświetlana na stronie -->
+<div id="reklamaGlowneOkno" class="hidden fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-yellow-300 text-black px-6 py-4 rounded-xl shadow-2xl max-w-md text-center">
   <p id="trescReklamyGlowne" class="text-lg font-semibold"></p>
   <p class="text-xs mt-2" id="czasomierz"></p>
 </div>
@@ -716,7 +596,8 @@
       }
     }, 1000);
   };
-</script>   <section id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
+</script>  <!-- Sekcja Reklama -->
+  <section id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
   <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
 
   <div id="opinie" style="margin:30px 0; min-height:150px; font-style:italic; font-size:1.1rem; text-align:center; line-height:1.5; color:#ffd97d; text-shadow: 1px 1px 3px #552f00;"></div>
@@ -762,49 +643,68 @@
     this.reset();
   });
 </script>
-   <section id="artysta">
-  <h2>Artysta</h2>
-  <p>
-    Mam na imię Wojciech i całe życie jestem związany ze sztuką. Kocham ją od najmłodszych lat, choć jestem samoukiem. Tworzę portrety realistyczne, pełne detali, maluję obrazy, wykonuję tatuaże oraz zajmuję się grafiką.
-  </p>
-  <p>
-    Dzielę się sztuką z ludźmi, bo widzę, jak ich serca rozświetla moment, gdy otrzymują portret, koszulkę czy cokolwiek z obrazem. Wtedy na ich twarzach pojawia się uśmiech — a to właśnie sztuka daje radość.
-  </p>
-  <p>
-    Dla mnie najpiękniejszą częścią pracy artysty jest to, że mogę wywołać ten uśmiech na czyjejś twarzy.
-  </p>
-  <p>
-    Pozdrawiam serdecznie — w swoim imieniu oraz całego zespołu AdelbertusShop.
-  </p>
+ <section id="artysta" class="py-12 bg-gradient-to-br from-gray-50 to-gray-100">
+  <div class="max-w-3xl mx-auto bg-white shadow-xl rounded-2xl p-8 border-l-4 border-gray-800">
+    <h2 class="text-3xl font-extrabold text-gray-900 mb-4 text-center">Artysta</h2>
+    <p class="mb-4 text-gray-800 leading-relaxed">
+      Mam na imię <strong>Wojciech</strong> i całe życie jestem związany ze sztuką. Kocham ją od najmłodszych lat, choć jestem samoukiem. Tworzę portrety realistyczne, pełne detali, maluję obrazy, wykonuję tatuaże oraz zajmuję się grafiką.
+    </p>
+    <p class="mb-4 text-gray-800 leading-relaxed">
+      Dzielę się sztuką z ludźmi, bo widzę, jak ich serca rozświetla moment, gdy otrzymują portret, koszulkę czy cokolwiek z obrazem. Wtedy na ich twarzach pojawia się uśmiech — a to właśnie sztuka daje radość.
+    </p>
+    <p class="mb-4 text-gray-800 leading-relaxed">
+      Dla mnie najpiękniejszą częścią pracy artysty jest to, że mogę wywołać ten uśmiech na czyjejś twarzy.
+    </p>
+    <p class="text-gray-800 leading-relaxed italic text-center">
+      Pozdrawiam serdecznie — w swoim imieniu oraz całego zespołu <strong>AdelbertusShop</strong>.
+    </p>
+  </div>
+</section>    
+<section id="kontakt" class="py-12 bg-[#2e1e0f] text-[#ffdd99] font-serif">
+  <div class="max-w-2xl mx-auto bg-[#3b2a16] shadow-2xl rounded-2xl p-8 border-l-4 border-yellow-600">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center text-shadow-custom">Kontakt</h2>
+    <p class="text-lg text-center mb-4">
+      Masz pytanie, pomysł, zamówienie indywidualne? Śmiało, odezwij się!
+    </p>
+    <p class="text-center text-base mb-2">
+      <strong>Email:</strong>
+      <a href="mailto:mielniczukgrzegosz74@gmail.com" class="underline hover:text-yellow-400 transition">
+        mielniczukgrzegosz74@gmail.com
+      </a>
+    </p>
+    <p class="text-center text-base">
+      <strong>Telefon:</strong>
+      <a href="tel:+48604296360" class="underline hover:text-yellow-400 transition">
+        604-296-360
+      </a>
+    </p>
+  </div>
 </section>
-    
-<section id="kontakt" style="background:#2e1e0f; color:#ffdd99; padding:30px 20px; font-family: 'Georgia', serif;">
-  <h2 style="font-size:2.5rem; margin-bottom:15px; text-align:center; text-shadow: 0 0 8px #aa8844;">Kontakt</h2>
-  <p style="font-size:1.2rem; text-align:center; margin-bottom:10px;">
-    Masz pytanie, pomysł, zamówienie indywidualne? Śmiało, odezwij się!
-  </p>
-  <p style="text-align:center; font-size:1.1rem; margin:6px 0;">
-    <strong>Email:</strong> <a href="mailto:mielniczukgrzegosz74@gmail.com" style="color:#ffdd99; text-decoration:underline;">mielniczukgrzegosz74@gmail.com</a>
-  </p>
-  <p style="text-align:center; font-size:1.1rem; margin:6px 0;">
-    <strong>Telefon:</strong> <a href="tel:+48604296360" style="color:#ffdd99; text-decoration:underline;">604-296-360</a>
-  </p>
-</section>  
-    
-    <section id="regulamin" class="py-10 px-6 bg-white text-gray-800">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-6 text-center">Regulamin sklepu AdelbertusShop</h2>
-    
-    <div class="space-y-6 text-sm leading-relaxed">
+
+<!-- Dodaj do tailwind.config.js lub style, jeśli chcesz cień tekstu -->
+<style>
+  .text-shadow-custom {
+    text-shadow: 0 0 8px #aa8844;
+  }
+</style>    
+ <section id="regulamin" class="py-12 px-6 bg-[#fdf8f0] text-[#2e1e0f] font-serif">
+  <div class="max-w-5xl mx-auto border-4 border-[#aa8844] rounded-xl shadow-2xl p-8 bg-white relative">
+    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#fdf8f0] px-4 text-[#aa8844] font-bold text-lg tracking-wide shadow-sm rounded-md">
+      ✦ REGULAMIN ✦
+    </div>
+
+    <h2 class="text-3xl font-bold mb-10 text-center text-[#2e1e0f]">Regulamin sklepu AdelbertusShop</h2>
+
+    <div class="space-y-8 text-base leading-relaxed">
       <div>
-        <h3 class="font-semibold text-lg mb-2">§1 Postanowienia ogólne</h3>
+        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§1 Postanowienia ogólne</h3>
         <p>Sklep internetowy <strong>AdelbertusShop</strong> działa pod adresem [tu wstaw adres] i prowadzony jest przez osobę fizyczną wykonującą działalność nierejestrowaną na podstawie art. 5 ust. 1 ustawy Prawo przedsiębiorców.</p>
         <p>Kontakt: [adres e-mail], [numer telefonu – opcjonalnie]</p>
         <p>Podstawy prawne: Kodeks cywilny, Ustawa o prawach konsumenta, Prawo przedsiębiorców.</p>
       </div>
 
       <div>
-        <h3 class="font-semibold text-lg mb-2">§2 Definicje</h3>
+        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§2 Definicje</h3>
         <ul class="list-disc pl-6">
           <li><strong>Sprzedawca</strong> – osoba fizyczna prowadząca działalność nierejestrowaną.</li>
           <li><strong>Klient</strong> – osoba fizyczna dokonująca zakupu.</li>
@@ -815,12 +715,12 @@
       </div>
 
       <div>
-        <h3 class="font-semibold text-lg mb-2">§3 Warunki sprzedaży</h3>
+        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§3 Warunki sprzedaży</h3>
         <p>Ceny towarów podawane są w złotych polskich i są cenami brutto. Koszt dostawy jest wskazywany przy zamówieniu. Zamówienia są przyjmowane poprzez stronę sklepu. Umowa zostaje zawarta z chwilą kliknięcia „Zamawiam”.</p>
       </div>
 
       <div>
-        <h3 class="font-semibold text-lg mb-2">§4 Płatność i dostawa</h3>
+        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§4 Płatność i dostawa</h3>
         <ul class="list-disc pl-6">
           <li>Płatność: przelew, BLIK, inne – ustalane indywidualnie.</li>
           <li>Zamówienia realizowane są po zaksięgowaniu wpłaty.</li>
@@ -830,7 +730,7 @@
       </div>
 
       <div>
-        <h3 class="font-semibold text-lg mb-2">§5 Odstąpienie od umowy</h3>
+        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§5 Odstąpienie od umowy</h3>
         <ul class="list-disc pl-6">
           <li>Konsument ma prawo odstąpić od umowy w ciągu 14 dni.</li>
           <li>Zwrot kosztów następuje do 14 dni po zwrocie towaru.</li>
@@ -839,28 +739,34 @@
       </div>
 
       <div>
-        <h3 class="font-semibold text-lg mb-2">§6 Reklamacje</h3>
+        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§6 Reklamacje</h3>
         <p>Reklamacje przyjmowane są drogą mailową. Klient powinien dołączyć opis problemu i zdjęcie. Sprzedawca odpowiada w ciągu 14 dni. W przypadku uznania reklamacji – produkt jest wymieniany, naprawiany lub zwracane są pieniądze.</p>
       </div>
 
       <div>
-        <h3 class="font-semibold text-lg mb-2">§7 Dane osobowe</h3>
+        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§7 Dane osobowe</h3>
         <p>Dane osobowe przetwarzane są zgodnie z RODO wyłącznie w celu realizacji zamówienia. Klient ma prawo wglądu, poprawienia lub usunięcia swoich danych.</p>
       </div>
 
       <div>
-        <h3 class="font-semibold text-lg mb-2">§8 Postanowienia końcowe</h3>
+        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§8 Postanowienia końcowe</h3>
         <p>Regulamin obowiązuje od momentu opublikowania na stronie. Sprzedawca zastrzega sobie prawo do zmian. W sprawach nieuregulowanych zastosowanie mają przepisy prawa polskiego.</p>
       </div>
     </div>
   </div>
-</section>
-   </main>
-  <!-- Sekcja Zamówienia -->
+</section>  <!-- Sekcja Zamówienia -->
 <section id="zamowienia" class="py-12 bg-gray-100">
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-6 text-center">Zamówienia</h2>
-    
+
+    <!-- Koszyk -->
+    <div id="koszyk" class="bg-white p-4 mb-6 rounded shadow">
+      <h3 class="text-xl font-semibold mb-2">🛒 Twój koszyk</h3>
+      <ul id="koszyk-lista" class="list-disc pl-6 text-gray-700"></ul>
+      <p id="koszyk-suma" class="font-bold mt-2">Suma: 0 zł</p>
+    </div>
+
+    <!-- Formularz -->
     <form id="formularzZamowienia" class="space-y-4 bg-white p-6 rounded shadow">
       <div>
         <label class="block text-sm font-medium">Imię i nazwisko</label>
@@ -907,34 +813,41 @@
   </div>
 </section>
 
-<!-- PDF + Email JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://smtpjs.com/v3/smtp.js"></script>
+<!-- Koszyk + Obsługa formularza -->
 <script>
-document.getElementById("formularzZamowienia").addEventListener("submit", function(e) {
-  e.preventDefault();
-<script>
-<!-- Sekcja Koszyk -->
-<div id="koszyk">
-  <h3>Koszyk</h3>
-  <ul id="koszyk-lista"></ul>
-  <p id="koszyk-suma">Suma: 0 zł</p>
-</div>
+  const koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+  const lista = document.getElementById("koszyk-lista");
+  const suma = document.getElementById("koszyk-suma");
+  const formularz = document.getElementById("formularzZamowienia");
+  const potwierdzenie = document.getElementById("potwierdzenie");
 
-<!-- Formularz zamówienia -->
-<form id="formularzZamowienia" class="mt-4">
-  <input type="text" name="imie" placeholder="Imię i nazwisko" required>
-  <input type="email" name="email" placeholder="E-mail" required>
-  <input type="tel" name="telefon" placeholder="Telefon" required>
-  <input type="text" name="adres" placeholder="Adres" required>
-  <textarea name="uwagi" placeholder="Uwagi"></textarea>
-  <input type="submit" value="Zamawiam wszystko">
-</form>
+  function odswiezKoszyk() {
+    lista.innerHTML = "";
+    let total = 0;
+    koszyk.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item.nazwa} - ${item.cena} zł`;
+      lista.appendChild(li);
+      total += parseFloat(item.cena);
+    });
+    suma.textContent = `Suma: ${total} zł`;
+  }
 
-<p id="potwierdzenie" class="hidden text-green-600 mt-2">Zamówienie wysłane!</p>
+  formularz.addEventListener("submit", function(e) {
+    e.preventDefault();
 
-<script>
-  let koszyk = [];
+    // Wyczyść koszyk
+    localStorage.removeItem("koszyk");
+
+    // Reset formularza i pokaż potwierdzenie
+    formularz.reset();
+    potwierdzenie.classList.remove("hidden");
+    odswiezKoszyk();
+  });
+
+  // Inicjalizacja
+  odswiezKoszyk();
+</script>  let koszyk = [];
 
   function dodajDoKoszyka(nazwa, cena) {
     koszyk.push({ nazwa, cena });
