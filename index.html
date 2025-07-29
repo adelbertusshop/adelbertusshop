@@ -185,22 +185,8 @@
       AdelbertusShop – odzież, która nie prosi o uwagę. <br>Ona ją przyciąga.
     </div>
   </section>
-
-  <!-- 🔶 Produkty testowe -->
-  <section id="products">
-    <div class="product">
-      <h4>Koszulka</h4>
-      <p>99 zł</p>
-      <button onclick="addToCart({ id: 1, name: 'Koszulka', price: 99 })">Dodaj do koszyka</button>
-    </div>
-    <div class="product">
-      <h4>Bluza</h4>
-      <p>150 zł</p>
-      <button onclick="addToCart({ id: 2, name: 'Bluza', price: 150 })">Dodaj do koszyka</button>
-    </div>
-  </section>
-
-  <!-- Ikona koszyka -->
+  
+<!-- Ikona koszyka -->
   <div id="cart-icon" aria-label="Koszyk" tabindex="0">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.618-2l1.25-7h13.868l-1.4 7H4.382zm1.604-9l1-2h10v2H6.382z"/>
@@ -229,7 +215,7 @@
     function addToCart(product) {
       const existing = cart.find(item => item.id === product.id);
       if (existing) {
-        existing.quantity++;
+        existing.quantity += 1;
       } else {
         cart.push({ ...product, quantity: 1 });
       }
@@ -237,24 +223,22 @@
     }
 
     function removeFromCart(id) {
-      const index = cart.findIndex(item => item.id === id);
-      if (index !== -1) {
-        cart.splice(index, 1);
-        updateCartView();
-      }
+      cart = cart.filter(item => item.id !== id);
+      updateCartView();
     }
 
     function updateCartView() {
       cartItemsList.innerHTML = '';
       let total = 0;
-      let itemCount = 0;
+      let count = 0;
 
       cart.forEach(item => {
-        total += item.price * item.quantity;
-        itemCount += item.quantity;
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        count += item.quantity;
 
         const li = document.createElement('li');
-        li.innerHTML = `${item.name} x${item.quantity} - ${item.price * item.quantity} zł`;
+        li.innerHTML = `${item.name} x${item.quantity} - ${itemTotal} zł`;
 
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Usuń';
@@ -265,13 +249,13 @@
         cartItemsList.appendChild(li);
       });
 
-      cartCount.textContent = itemCount;
+      cartCount.textContent = count;
       cartTotal.textContent = `Suma: ${total} zł`;
     }
 
     cartIcon.addEventListener('click', (e) => {
       e.stopPropagation();
-      cartDropdown.style.display = (cartDropdown.style.display === 'block') ? 'none' : 'block';
+      cartDropdown.style.display = cartDropdown.style.display === 'block' ? 'none' : 'block';
     });
 
     document.addEventListener('click', (e) => {
