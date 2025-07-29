@@ -1,12 +1,135 @@
-<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop - Ikona Koszyka</title>
   <style>
-    /* (Twoje style — niezmienione) */
-    /* ... */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0909;
+      color: #f5eedd;
+    }
+
+    #banner {
+      background: linear-gradient(to right, #1a1410, #2b211b);
+      padding: 2.5rem;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #e5c98d;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px #bfa053;
+      border-bottom: 2px solid #d4af37;
+    }
+
+    #cart-icon {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #1b1613;
+      padding: 14px;
+      border-radius: 50%;
+      border: 2px solid #d4af37;
+      cursor: pointer;
+      box-shadow: 0 0 20px #d4af37aa;
+      z-index: 1000;
+    }
+
+    #cart-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: #f9e6bb;
+    }
+
+    #cart-count {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: #d4af37;
+      color: #0a0909;
+      font-size: 0.8rem;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 50%;
+    }
+
+    #cart-dropdown {
+      display: none;
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      width: 320px;
+      background-color: #1b1613;
+      color: #f5eedd;
+      border: 2px solid #d4af37;
+      padding: 1rem;
+      box-shadow: 0 0 20px #d4af37aa;
+      border-radius: 10px;
+      z-index: 999;
+    }
+
+    #cart-dropdown h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #f3d88e;
+      text-align: center;
+      border-bottom: 1px solid #d4af37;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #cart-items {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1rem 0;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    #cart-items li {
+      margin-bottom: 10px;
+      padding: 6px;
+      border-bottom: 1px solid #d4af37;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .remove-btn {
+      background: #d4af37;
+      color: #0a0909;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    #cart-total {
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    #checkout-btn {
+      display: block;
+      width: 100%;
+      background: #d4af37;
+      color: #0a0909;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 0 0 10px #d4af37aa;
+    }
+
+    #checkout-btn:hover {
+      background: #f5d76e;
+    }
   </style>
 </head>
 <body>
@@ -111,7 +234,8 @@
     // addToCart({ id: 2, name: "Bluza", price: 150 });
   </script>
 </body>
-</html>  <section id="sklep" class="py-8">
+</html>
+<section id="sklep" class="py-8">
   <h2 class="text-3xl font-bold mb-6 text-center">Sklep</h2>
 
   <div class="flex justify-center mb-4 gap-4">
