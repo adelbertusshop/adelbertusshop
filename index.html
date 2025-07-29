@@ -139,13 +139,64 @@
     .bg-gold {
       background-color: #d4af37;
     }
+
+    /* 🔶 Styl dla produktów testowych */
+    #products {
+      padding: 2rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .product {
+      border: 1px solid #d4af37;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #1b1613;
+      width: 220px;
+      box-shadow: 0 0 10px #d4af3755;
+      text-align: center;
+    }
+
+    .product h4 {
+      margin-bottom: 0.5rem;
+    }
+
+    .product button {
+      background: #d4af37;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #0a0909;
+      font-weight: bold;
+    }
+
+    .product button:hover {
+      background: #f5d76e;
+    }
   </style>
 </head>
 <body>
-  <!-- Baner z napisem -->
+  <!-- Baner -->
   <section id="banner">
     <div id="banner-text">
       AdelbertusShop – odzież, która nie prosi o uwagę. <br>Ona ją przyciąga.
+    </div>
+  </section>
+
+  <!-- 🔶 Produkty testowe -->
+  <section id="products">
+    <div class="product">
+      <h4>Koszulka</h4>
+      <p>99 zł</p>
+      <button onclick="addToCart({ id: 1, name: 'Koszulka', price: 99 })">Dodaj do koszyka</button>
+    </div>
+    <div class="product">
+      <h4>Bluza</h4>
+      <p>150 zł</p>
+      <button onclick="addToCart({ id: 2, name: 'Bluza', price: 150 })">Dodaj do koszyka</button>
     </div>
   </section>
 
@@ -236,14 +287,9 @@
         alert('Przejdź do płatności...');
       }
     });
-
-    // Testowe dodawanie produktów (można usunąć):
-    // addToCart({ id: 1, name: "Koszulka", price: 99 });
-    // addToCart({ id: 2, name: "Bluza", price: 150 });
   </script>
 </body>
-</html>
-<section id="sklep" class="py-8 px-4 text-center">
+</html><section id="sklep" class="py-8 px-4 text-center">
   <h2 class="text-3xl font-bold mb-8 text-gold">Sklep Świątynia Stylu</h2>
 
   <div class="flex justify-center gap-6 mb-8">
