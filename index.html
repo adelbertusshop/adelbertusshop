@@ -13,15 +13,41 @@
       margin: 0; padding: 0;
     }
 
-    /* Baner na całą szerokość z tłem i napisem */
-  <section id="banner" class="relative w-full h-screen bg-cover bg-center flex items-center justify-center px-4" style="background-image: url('https://i.ibb.co/fzPsrGhq/Messenger-creation-9-B935-AD4-1-D3-B-4785-BBA4-6928-E5614-E31.jpg');">
-  <div class="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
-  <div class="relative z-10 text-center text-white">
-    <h1 class="text-4xl md:text-5xl font-extrabold">AdelbertusShop – odzież, która nie prosi o uwagę.</h1>
-    <p class="mt-4 text-xl font-semibold">Ona ją przyciąga.</p>
-  </div>
-</section>
-    /* Ikona koszyka */
+    #banner {
+      background-image: url('https://i.ibb.co/fzPsrGhq/Messenger-creation-9-B935-AD4-1-D3-B-4785-BBA4-6928-E5614-E31.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    #banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    #banner-text {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+      font-size: 2rem;
+      line-height: 1.4;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px #000;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+    }
+
+    /* Koszyk i dropdown */
     #cart-icon {
       position: fixed;
       top: 15px;
@@ -68,7 +94,6 @@
       box-shadow: 0 0 5px #aa4444;
     }
 
-    /* Dropdown koszyka */
     #cart-dropdown {
       position: fixed;
       top: 65px;
@@ -138,7 +163,7 @@
       margin-top: 10px;
     }
 
-    #cart-dropdown button#checkout-btn {
+    #checkout-btn {
       width: 100%;
       background-color: #aa8844;
       border: none;
@@ -152,7 +177,7 @@
       transition: background-color 0.3s ease;
     }
 
-    #cart-dropdown button#checkout-btn:hover {
+    #checkout-btn:hover {
       background-color: #ffdd99;
       color: #553300;
       box-shadow: 0 0 30px #ffdd99cc;
@@ -162,13 +187,13 @@
 <body>
 
   <!-- Baner z napisem -->
-  <div id="banner">
+  <section id="banner">
     <div id="banner-text">
-      AdelbertusShop – odzież, która nie prosi o uwagę. Ona ją przyciąga.
+      AdelbertusShop – odzież, która nie prosi o uwagę. <br>Ona ją przyciąga.
     </div>
-  </div>
+  </section>
 
-  <!-- Ikona koszyka -->  
+  <!-- Ikona koszyka -->
   <div id="cart-icon" aria-label="Koszyk" tabindex="0">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.618-2l1.25-7h13.868l-1.4 7H4.382zm1.604-9l1-2h10v2H6.382z"/>
@@ -248,13 +273,12 @@
         alert('Twój koszyk jest pusty!');
       } else {
         alert('Przejdź do płatności...');
-        // Tutaj możesz podłączyć płatności i wysyłkę e-mail
       }
     });
 
-    // Przykładowe produkty - dodaj je w swoim sklepie wywołując addToCart({ id, name, price })
-    // addToCart({ id: 1, name: "Koszulka 'Buntownik'", price: 99 });
-    // addToCart({ id: 2, name: "Bluza z kapturem", price: 150 });
+    // Przykładowe testowe wywołania:
+    // addToCart({ id: 1, name: "Koszulka", price: 99 });
+    // addToCart({ id: 2, name: "Bluza", price: 150 });
   </script>
 
 </body>
