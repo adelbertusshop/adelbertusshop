@@ -286,68 +286,153 @@
 <section id="sklep" class="py-8 px-4 text-center">
   <h2 class="text-3xl font-bold mb-8 text-gold">Sklep Świątynia Stylu</h2>
 
+  <!-- Kategorie -->
   <div class="flex justify-center gap-6 mb-8">
     <button onclick="pokazKategorie('mezczyzni')" class="bg-gold text-black px-6 py-2 rounded-full font-semibold shadow-lg">Mężczyźni</button>
     <button onclick="pokazKategorie('kobiety')" class="bg-gold text-black px-6 py-2 rounded-full font-semibold shadow-lg">Kobiety</button>
+    <button onclick="pokazKategorie('projektuj')" class="bg-gold text-black px-6 py-2 rounded-full font-semibold shadow-lg">Projektuj</button>
+    <button onclick="pokazKategorie('historia')" class="bg-gold text-black px-6 py-2 rounded-full font-semibold shadow-lg">Historia</button>
   </div>
 
   <!-- Mężczyźni -->
   <div id="mezczyzni" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-    <div class="border border-gold p-4 rounded-xl shadow-lg bg-[#1a1410]">
+    <div class="border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
       <img src="https://i.ibb.co/2731mTFY/Resizer-17510539315581.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-4 rounded">
       <h3 class="text-xl font-semibold text-gold mb-2">Koszulka „Wojownik Cienia”</h3>
       <p class="text-lg mb-4">100 zł</p>
       <button onclick="dodajDoKoszyka('Koszulka Wojownik Cienia', 100)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
     </div>
-
-    <div class="border border-gold p-4 rounded-xl shadow-lg bg-[#1a1410]">
-      <img src="https://i.ibb.co/gMTfDYt/hoodie.jpg" alt="Bluza" class="w-full h-64 object-cover mb-4 rounded">
-      <h3 class="text-xl font-semibold text-gold mb-2">Bluza „Złoty Krąg”</h3>
-      <p class="text-lg mb-4">199 zł</p>
-      <button onclick="dodajDoKoszyka('Bluza Złoty Krąg', 199)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
-    </div>
-
-    <div class="border border-gold p-4 rounded-xl shadow-lg bg-[#1a1410]">
-      <img src="https://i.ibb.co/f1YhWkt/czapka.jpg" alt="Czapka" class="w-full h-64 object-cover mb-4 rounded">
-      <h3 class="text-xl font-semibold text-gold mb-2">Czapka „Mistyczna Pieczęć”</h3>
-      <p class="text-lg mb-4">97 zł</p>
-      <button onclick="dodajDoKoszyka('Czapka Mistyczna Pieczęć', 97)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
-    </div>
   </div>
 
   <!-- Kobiety -->
   <div id="kobiety" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 hidden">
-    <div class="border border-gold p-4 rounded-xl shadow-lg bg-[#1a1410]">
+    <div class="border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
       <img src="https://i.ibb.co/2731mTFY/Resizer-17510539315581.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-4 rounded">
       <h3 class="text-xl font-semibold text-gold mb-2">Koszulka „Zmysłowa Aura”</h3>
       <p class="text-lg mb-4">100 zł</p>
       <button onclick="dodajDoKoszyka('Koszulka Zmysłowa Aura', 100)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
     </div>
+  </div>
 
-    <div class="border border-gold p-4 rounded-xl shadow-lg bg-[#1a1410]">
-      <img src="https://i.ibb.co/gMTfDYt/hoodie.jpg" alt="Bluza" class="w-full h-64 object-cover mb-4 rounded">
-      <h3 class="text-xl font-semibold text-gold mb-2">Bluza „Świetlista Tajemnica”</h3>
-      <p class="text-lg mb-4">199 zł</p>
-      <button onclick="dodajDoKoszyka('Bluza Świetlista Tajemnica', 199)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+  <!-- Projektuj -->
+  <div id="projektuj" class="kategoria hidden">
+    <h3 class="text-2xl text-gold font-bold mb-4">Stwórz własny projekt</h3>
+    <div class="bg-[#1a1410] text-white p-6 rounded-xl max-w-2xl mx-auto border-4 border-gold">
+      <label class="block mb-2">Wybierz typ produktu:</label>
+      <select id="typProduktu" class="w-full p-2 rounded mb-4">
+        <option>Koszulka</option>
+        <option>Bluza</option>
+        <option>Czapeczka</option>
+      </select>
+
+      <label class="block mb-2">Dodaj swój tekst:</label>
+      <input type="text" id="tekstProjektu" class="w-full p-2 rounded mb-4">
+
+      <label class="block mb-2">Dodaj grafikę:</label>
+      <input type="file" class="mb-4">
+
+      <button onclick="dodajProjekt()" class="bg-gold text-black px-6 py-3 rounded-full font-semibold shadow-lg">Dodaj do koszyka</button>
     </div>
+  </div>
 
-    <div class="border border-gold p-4 rounded-xl shadow-lg bg-[#1a1410]">
-      <img src="https://i.ibb.co/f1YhWkt/czapka.jpg" alt="Czapka" class="w-full h-64 object-cover mb-4 rounded">
-      <h3 class="text-xl font-semibold text-gold mb-2">Czapka „Krąg Mocy”</h3>
-      <p class="text-lg mb-4">97 zł</p>
-      <button onclick="dodajDoKoszyka('Czapka Krąg Mocy', 97)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+  <!-- Historia zamówień -->
+  <div id="historia" class="kategoria hidden">
+    <h3 class="text-2xl text-gold font-bold mb-4">Twoja historia zamówień</h3>
+    <div id="listaZamowien" class="text-white bg-[#1a1410] p-6 rounded-xl border-4 border-gold max-w-2xl mx-auto">
+      <p>Brak historii – jeszcze nic nie zamówiłeś.</p>
+    </div>
+  </div>
+
+  <!-- Koszyk -->
+  <div class="mt-12 text-left max-w-2xl mx-auto bg-[#1a1410] border border-gold p-6 rounded-xl shadow-xl">
+    <h3 class="text-2xl text-gold font-bold mb-4">Twój koszyk</h3>
+    <ul id="koszykLista" class="text-white mb-4"></ul>
+    <p class="text-gold font-semibold">Łącznie: <span id="koszykSuma">0</span> zł</p>
+
+    <!-- Formularz zamówienia -->
+    <div class="mt-6">
+      <label class="text-white block mb-2">Notatka do zamówienia:</label>
+      <textarea id="notatka" class="w-full p-2 rounded mb-4" rows="3"></textarea>
+
+      <label class="text-white block mb-2">Dodaj plik graficzny (np. projekt):</label>
+      <input type="file" class="mb-4 text-white">
+
+      <button onclick="zlozZamowienie()" class="bg-gold text-black px-6 py-3 rounded-full font-semibold shadow-lg">Zamawiam wszystko</button>
     </div>
   </div>
 </section>
 
 <script>
+  let koszyk = [];
+  let historiaZamowien = [];
+
+  function dodajDoKoszyka(nazwa, cena) {
+    koszyk.push({ nazwa, cena });
+    aktualizujKoszyk();
+  }
+
+  function dodajProjekt() {
+    const typ = document.getElementById('typProduktu').value;
+    const tekst = document.getElementById('tekstProjektu').value;
+    const nazwa = `${typ} z napisem "${tekst}"`;
+    dodajDoKoszyka(nazwa, 199);
+    alert(`Dodano projekt: ${nazwa}`);
+  }
+
+  function aktualizujKoszyk() {
+    const lista = document.getElementById("koszykLista");
+    const suma = document.getElementById("koszykSuma");
+    lista.innerHTML = "";
+    let total = 0;
+    koszyk.forEach((item) => {
+      const el = document.createElement("li");
+      el.className = "mb-1";
+      el.textContent = `${item.nazwa} – ${item.cena} zł`;
+      lista.appendChild(el);
+      total += item.cena;
+    });
+    suma.textContent = total;
+  }
+
+  function zlozZamowienie() {
+    const notatka = document.getElementById("notatka").value;
+    const podsumowanie = koszyk.map(p => `${p.nazwa} (${p.cena} zł)`).join(", ");
+    alert(`Zamówienie złożone! \nNotatka: ${notatka}\nProdukty: ${podsumowanie}`);
+
+    // Zapisz do historii
+    historiaZamowien.push({ data: new Date().toLocaleString(), produkty: [...koszyk], notatka });
+
+    // Resetuj koszyk
+    koszyk = [];
+    aktualizujKoszyk();
+    document.getElementById("notatka").value = "";
+    aktualizujHistorie();
+  }
+
   function pokazKategorie(nazwa) {
-    const kategorie = document.querySelectorAll('.kategoria');
-    kategorie.forEach(k => k.classList.add('hidden'));
+    document.querySelectorAll('.kategoria').forEach(k => k.classList.add('hidden'));
     document.getElementById(nazwa).classList.remove('hidden');
   }
-</script> 
-<section id="projektuj" class="py-12 bg-gray-100">
+
+  function aktualizujHistorie() {
+    const historiaDiv = document.getElementById("listaZamowien");
+    historiaDiv.innerHTML = "";
+    if (historiaZamowien.length === 0) {
+      historiaDiv.innerHTML = "<p>Brak historii – jeszcze nic nie zamówiłeś.</p>";
+      return;
+    }
+    historiaZamowien.forEach((zamowienie, i) => {
+      const div = document.createElement("div");
+      div.className = "mb-4 border-b border-gold pb-2";
+      div.innerHTML = `
+        <p class="text-gold">Zamówienie #${i + 1} – ${zamowienie.data}</p>
+        <p class="text-white">Produkty: ${zamowienie.produkty.map(p => p.nazwa).join(", ")}</p>
+        <p class="text-sm text-gray-400">Notatka: ${zamowienie.notatka || "(brak)"}</p>
+      `;
+      historiaDiv.appendChild(div);
+    });
+  }
+</script><section id="projektuj" class="py-12 bg-gray-100">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-6 text-center">Zaprojektuj własny produkt</h2>
     
