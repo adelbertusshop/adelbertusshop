@@ -303,192 +303,197 @@
       <button onclick="dodajDoKoszyka('Koszulka Wojownik Cienia', 100)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
     </div>
   </div>
+<!-- Kobiety -->
+  <section id="zbiorka" class="py-16 bg-[#fdf6f0] text-gray-800 font-serif">
+  <div class="max-w-4xl mx-auto px-6 bg-white shadow-2xl rounded-3xl border-l-8 border-[#d97706] relative overflow-hidden">
+    <h2 class="text-4xl font-bold text-center mb-4 text-[#b45309] animate-pulse">Zbiórka: Dla Domu Dziecka</h2>
+    <p class="text-lg text-center mb-6 max-w-xl mx-auto leading-relaxed tracking-wide">
+      Sam wiem, jak to jest dorastać w Domu Dziecka. Dlatego dziś chcę coś oddać – razem z Tobą. Wspieramy dzieciaki, które jeszcze nie mają tyle szczęścia co my. Możesz pomóc finansowo, materialnie, albo po prostu sercem. Każda pomoc to iskra nadziei.
+    </p>
 
-  <!-- Kobiety -->
-  <div id="kobiety" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 hidden">
-    <div class="border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
-      <img src="https://i.ibb.co/2731mTFY/Resizer-17510539315581.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-4 rounded">
-      <h3 class="text-xl font-semibold text-gold mb-2">Koszulka „Zmysłowa Aura”</h3>
-      <p class="text-lg mb-4">100 zł</p>
-      <button onclick="dodajDoKoszyka('Koszulka Zmysłowa Aura', 100)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+    <div class="bg-[#fffbf5] p-6 rounded-xl border border-yellow-300 mb-6 shadow-lg hover:shadow-yellow-400 transition-shadow duration-500">
+      <h3 class="text-xl font-semibold text-center text-[#a16207] mb-2 underline decoration-yellow-400 decoration-4">Jak możesz pomóc?</h3>
+      <ul class="list-disc list-inside text-base space-y-2 text-gray-700">
+        <li>📲 <strong>Wyślij przelew BLIK</strong> na numer: <strong class="text-lg text-green-700">573-939-925</strong> z dopiskiem <em>„pomagam”</em></li>
+        <li>🎁 <strong>Przekaż dary rzeczowe</strong>, paczki lub potrzebne przedmioty (np. zabawki, ubrania, środki czystości, książki)</li>
+        <li>🧸 <strong>Zrób prezent konkretnemu dziecku</strong> – po kontakcie dostaniesz imię i listę potrzeb</li>
+        <li>📦 <strong>Zostań Stałym Darczyńcą</strong> – regularna pomoc raz w miesiącu to ogromne wsparcie</li>
+        <li>📞 <strong>Skontaktuj się z nami:</strong> <a href="tel:604296360" class="underline text-yellow-600 hover:text-yellow-700">604-296-360</a> lub <a href="mailto:mielniczukgrzegosz74@gmail.com" class="underline text-yellow-600 hover:text-yellow-700">mielniczukgrzegosz74@gmail.com</a></li>
+      </ul>
+      <p class="mt-4 text-center italic text-sm text-gray-500">Po kontakcie przekażemy Ci adres Domu Dziecka, do którego możesz wysłać pomoc bezpośrednio.</p>
     </div>
-  </div>
 
-  <!-- Projektuj -->
-  <div id="projektuj" class="kategoria hidden">
-    <h3 class="text-2xl text-gold font-bold mb-4">Stwórz własny projekt</h3>
-    <div class="bg-[#1a1410] text-white p-6 rounded-xl max-w-2xl mx-auto border-4 border-gold">
-      <label class="block mb-2">Wybierz typ produktu:</label>
-      <select id="typProduktu" class="w-full p-2 rounded mb-4">
-        <option>Koszulka</option>
-        <option>Bluza</option>
-        <option>Czapeczka</option>
-      </select>
-
-      <label class="block mb-2">Dodaj swój tekst:</label>
-      <input type="text" id="tekstProjektu" class="w-full p-2 rounded mb-4">
-
-      <label class="block mb-2">Dodaj grafikę:</label>
-      <input type="file" class="mb-4">
-
-      <button onclick="dodajProjekt()" class="bg-gold text-black px-6 py-3 rounded-full font-semibold shadow-lg">Dodaj do koszyka</button>
+    <div class="bg-yellow-50 p-6 rounded-xl shadow-inner mb-6 ring-2 ring-yellow-400 animate-pulse">
+      <h3 class="text-xl font-bold text-center text-yellow-800 mb-4">❤️ Kto już pomaga:</h3>
+      <ul class="space-y-3 text-gray-700 text-sm md:text-base">
+        <li>🌟 <strong>Kasia (Wrocław):</strong> Przesłała 4 paczki z ubraniami i książkami 📦</li>
+        <li>🌟 <strong>Marek (Rzeszów):</strong> Co miesiąc wspiera nas BLIKiem – 50 zł 💸</li>
+        <li>🌟 <strong>Ania & Tomek (Gdynia):</strong> Zorganizowali zbiórkę w swojej szkole 🏫</li>
+        <li>🌟 <strong>„Mama trójki” (Zielona Góra):</strong> Regularnie przekazuje pieluchy i mleko dla najmłodszych 👶</li>
+        <li>🌟 <strong>Bartek (Berlin):</strong> Przekazał 20 nowych plecaków szkolnych 🎒</li>
+      </ul>
     </div>
-  </div>
 
-  <!-- Historia zamówień -->
-  <div id="historia" class="kategoria hidden">
-    <h3 class="text-2xl text-gold font-bold mb-4">Twoja historia zamówień</h3>
-    <div id="listaZamowien" class="text-white bg-[#1a1410] p-6 rounded-xl border-4 border-gold max-w-2xl mx-auto">
-      <p>Brak historii – jeszcze nic nie zamówiłeś.</p>
+    <div class="bg-[#fff7ed] p-6 rounded-xl border border-orange-200 mb-6 shadow-lg hover:shadow-orange-300 transition-shadow duration-500">
+      <h3 class="text-xl font-bold text-center text-[#b45309] mb-2">🎖️ Strefa VIP Pomocników</h3>
+      <p class="text-center text-sm text-gray-700 mb-2">Jeśli pomagacie regularnie – traficie do naszej listy VIP. W zamian otrzymacie:</p>
+      <ul class="list-disc list-inside text-gray-700 text-sm space-y-1 text-center">
+        <li>🎫 Imienne podziękowanie w paczkach do dzieci</li>
+        <li>📷 Dostęp do zdjęć z rozdania darów</li>
+        <li>🕊️ Możliwość wysłania listu lub kartki do dziecka</li>
+      </ul>
     </div>
-  </div>
 
-  <!-- Koszyk -->
-  <div class="mt-12 text-left max-w-2xl mx-auto bg-[#1a1410] border border-gold p-6 rounded-xl shadow-xl">
-    <h3 class="text-2xl text-gold font-bold mb-4">Twój koszyk</h3>
-    <ul id="koszykLista" class="text-white mb-4"></ul>
-    <p class="text-gold font-semibold">Łącznie: <span id="koszykSuma">0</span> zł</p>
-
-    <!-- Formularz zamówienia -->
-    <div class="mt-6">
-      <label class="text-white block mb-2">Notatka do zamówienia:</label>
-      <textarea id="notatka" class="w-full p-2 rounded mb-4" rows="3"></textarea>
-
-      <label class="text-white block mb-2">Dodaj plik graficzny (np. projekt):</label>
-      <input type="file" class="mb-4 text-white">
-
-      <button onclick="zlozZamowienie()" class="bg-gold text-black px-6 py-3 rounded-full font-semibold shadow-lg">Zamawiam wszystko</button>
+    <!-- GALERIA DÓBR -->
+    <div class="mt-12">
+      <h3 class="text-2xl font-bold text-center text-[#b45309] mb-4">📸 Dary, które już dotarły:</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-4">
+        <img src="https://source.unsplash.com/400x300/?donation,clothes" alt="Paczki 1" class="rounded-xl shadow-md hover:scale-105 transform transition duration-300">
+        <img src="https://source.unsplash.com/400x300/?children,donation" alt="Paczki 2" class="rounded-xl shadow-md hover:scale-105 transform transition duration-300">
+        <img src="https://source.unsplash.com/400x300/?toys,charity" alt="Paczki 3" class="rounded-xl shadow-md hover:scale-105 transform transition duration-300">
+      </div>
+      <p class="text-center text-sm italic mt-2 text-gray-500">Te zdjęcia są symboliczne – Twoja pomoc może być kolejnym kadrem tej historii ❤️</p>
     </div>
-  </div>
-</section>
 
-<script>
-  let koszyk = [];
-  let historiaZamowien = [];
+    <!-- LIST OD DZIECKA -->
+    <div class="mt-16 bg-[#fff9e6] p-6 rounded-2xl shadow-inner border-l-4 border-yellow-500 relative hover:shadow-yellow-400 transition-shadow duration-300">
+      <div class="absolute -top-4 left-4 text-4xl">💌</div>
+      <h3 class="text-xl font-bold mb-2 text-[#92400e]">List od Zuzi (lat 10)</h3>
+      <p class="text-gray-800 text-base leading-relaxed italic">
+        „Dziękuję, że ktoś tam o mnie pomyślał. Dostałam miękki szalik, który pachnie jak dom. A w pudełku była książka o smokach – kocham smoki! Nie znam Was, ale wiem, że jesteście dobrzy. I kiedyś też będę pomagać innym. Obiecuję.”
+      </p>
+      <p class="mt-3 text-right text-sm text-gray-600">– Zuzia, wychowanka Domu Dziecka</p>
+    </div>
 
-  function dodajDoKoszyka(nazwa, cena) {
-    koszyk.push({ nazwa, cena });
-    aktualizujKoszyk();
-  }
+    <div class="flex flex-col items-center mt-8">
+      <h4 class="text-lg font-semibold mb-2">⏳ Kolejna wysyłka paczek za:</h4>
+      <div id="countdown" class="text-2xl font-bold text-red-600 animate-pulse"></div>
+    </div>
 
-  function dodajProjekt() {
-    const typ = document.getElementById('typProduktu').value;
-    const tekst = document.getElementById('tekstProjektu').value;
-    const nazwa = `${typ} z napisem "${tekst}"`;
-    dodajDoKoszyka(nazwa, 199);
-    alert(`Dodano projekt: ${nazwa}`);
-  }
-
-  function aktualizujKoszyk() {
-    const lista = document.getElementById("koszykLista");
-    const suma = document.getElementById("koszykSuma");
-    lista.innerHTML = "";
-    let total = 0;
-    koszyk.forEach((item) => {
-      const el = document.createElement("li");
-      el.className = "mb-1";
-      el.textContent = `${item.nazwa} – ${item.cena} zł`;
-      lista.appendChild(el);
-      total += item.cena;
-    });
-    suma.textContent = total;
-  }
-
-  function zlozZamowienie() {
-    const notatka = document.getElementById("notatka").value;
-    const podsumowanie = koszyk.map(p => `${p.nazwa} (${p.cena} zł)`).join(", ");
-    alert(`Zamówienie złożone! \nNotatka: ${notatka}\nProdukty: ${podsumowanie}`);
-
-    // Zapisz do historii
-    historiaZamowien.push({ data: new Date().toLocaleString(), produkty: [...koszyk], notatka });
-
-    // Resetuj koszyk
-    koszyk = [];
-    aktualizujKoszyk();
-    document.getElementById("notatka").value = "";
-    aktualizujHistorie();
-  }
-
-  function pokazKategorie(nazwa) {
-    document.querySelectorAll('.kategoria').forEach(k => k.classList.add('hidden'));
-    document.getElementById(nazwa).classList.remove('hidden');
-  }
-
-  function aktualizujHistorie() {
-    const historiaDiv = document.getElementById("listaZamowien");
-    historiaDiv.innerHTML = "";
-    if (historiaZamowien.length === 0) {
-      historiaDiv.innerHTML = "<p>Brak historii – jeszcze nic nie zamówiłeś.</p>";
-      return;
-    }
-    historiaZamowien.forEach((zamowienie, i) => {
-      const div = document.createElement("div");
-      div.className = "mb-4 border-b border-gold pb-2";
-      div.innerHTML = `
-        <p class="text-gold">Zamówienie #${i + 1} – ${zamowienie.data}</p>
-        <p class="text-white">Produkty: ${zamowienie.produkty.map(p => p.nazwa).join(", ")}</p>
-        <p class="text-sm text-gray-400">Notatka: ${zamowienie.notatka || "(brak)"}</p>
-      `;
-      historiaDiv.appendChild(div);
-    });
-  }
-</script><section id="projektuj" class="py-12 bg-gray-100">
-  <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-6 text-center">Zaprojektuj własny produkt</h2>
-    
-    <div class="border-2 border-gray-300 rounded-xl shadow-lg bg-white p-6">
-      <form id="projektForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="space-y-4">
-          <div>
-            <label class="block text-sm font-medium">Typ produktu</label>
-            <select name="typ" class="w-full mt-1 p-2 border rounded">
-              <option value="koszulka">Koszulka</option>
-              <option value="bluza">Bluza</option>
-              <option value="czapeczka">Czapeczka</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Kolor</label>
-            <input type="color" name="kolor" class="w-full mt-1 p-2 border rounded" />
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Rozmiar</label>
-            <select name="rozmiar" class="w-full mt-1 p-2 border rounded">
-              <option value="S">S</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-              <option value="XXL">XXL</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Dodaj tekst</label>
-            <input type="text" name="tekst" class="w-full mt-1 p-2 border rounded" placeholder="Twój tekst..." />
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Dodaj grafikę (URL)</label>
-            <input type="url" name="grafika" class="w-full mt-1 p-2 border rounded" placeholder="https://..." />
-          </div>
-        </div>
-
-        <div class="flex flex-col items-center justify-center bg-gray-50 p-4 rounded shadow-inner">
-          <p class="text-center mb-2 text-sm text-gray-600">Podgląd Twojego projektu (orientacyjny):</p>
-          <div class="w-64 h-64 border border-dashed border-gray-400 flex items-center justify-center bg-white rounded">
-            <span class="text-gray-400">[tu pojawi się podgląd]</span>
-          </div>
-        </div>
+    <!-- FORMULARZ KONTAKTOWY -->
+    <div class="mt-12 bg-[#fff7ed] p-8 rounded-2xl shadow-inner border-l-4 border-yellow-600 max-w-xl mx-auto">
+      <h3 class="text-2xl font-bold mb-6 text-center text-[#b45309]">Skontaktuj się z nami</h3>
+      <form id="formularzKontaktowy" class="space-y-4">
+        <input type="text" id="kontaktImie" placeholder="Twoje imię" required class="w-full p-3 border border-yellow-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+        <input type="email" id="kontaktEmail" placeholder="Twój e-mail" required class="w-full p-3 border border-yellow-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+        <textarea id="kontaktWiadomosc" placeholder="Twoja wiadomość" required rows="5" class="w-full p-3 border border-yellow-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 resize-none"></textarea>
+        <button type="submit" class="w-full bg-yellow-600 text-white py-3 rounded-lg font-semibold hover:bg-yellow-700 transition">Wyślij wiadomość</button>
       </form>
+      <p id="kontaktPotwierdzenie" class="text-green-700 mt-4 text-center hidden">Dziękujemy za kontakt! Odezwiemy się wkrótce.</p>
+    </div>
 
-      <div class="text-center mt-6">
-        <button onclick="dodajDoKoszykaProjekt()" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
-          Dodaj projekt do koszyka
-        </button>
+    <script>
+      const countdown = document.getElementById("countdown");
+      const targetDate = new Date();
+      targetDate.setDate(targetDate.getDate() + 14); // 14 dni do wysyłki
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+        if(distance <= 0) {
+          countdown.innerHTML = "Wysyłka właśnie trwa! Dziękujemy!";
+          return;
+        }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        countdown.innerHTML = `${days} dni, ${hours}h ${minutes}min`;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 60000);
+
+      // Obsługa formularza kontaktowego
+      document.getElementById('formularzKontaktowy').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const imie = document.getElementById('kontaktImie').value.trim();
+        const email = document.getElementById('kontaktEmail').value.trim();
+        const wiadomosc = document.getElementById('kontaktWiadomosc').value.trim();
+
+        if (!imie || !email || !wiadomosc) {
+          alert("Wypełnij wszystkie pola!");
+          return;
+        }
+
+        // Tutaj możesz dodać wysyłkę maila lub zapis do bazy
+
+        this.reset();
+        document.getElementById('kontaktPotwierdzenie').classList.remove('hidden');
+      });
+    </script>
+  </div>
+</section> <!-- Projektuj -->
+<div id="projektuj" class="kategoria hidden">
+  <div class="bg-[#1a1410] border-[6px] border-gold rounded-3xl shadow-2xl p-10 max-w-4xl mx-auto animate-fade-in">
+    <h3 class="text-3xl text-gold font-bold mb-6 text-center tracking-widest">🎨 Zaprojektuj Swój Własny Styl</h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Formularz -->
+      <div>
+        <label class="block text-white font-semibold mb-2">🧢 Wybierz typ produktu:</label>
+        <select id="typProduktu" class="w-full p-3 rounded-xl bg-[#2b221c] text-white border border-gold mb-6">
+          <option value="Koszulka">Koszulka</option>
+          <option value="Bluza">Bluza</option>
+          <option value="Czapeczka">Czapeczka</option>
+        </select>
+
+        <label class="block text-white font-semibold mb-2">✍️ Dodaj swój tekst:</label>
+        <input type="text" id="tekstProjektu" placeholder="Wpisz hasło lub cytat..." class="w-full p-3 rounded-xl bg-[#2b221c] text-white border border-gold mb-6" oninput="aktualizujPodgladTekstu()" />
+
+        <label class="block text-white font-semibold mb-2">🖼️ Dodaj grafikę:</label>
+        <input type="file" id="plikGraficzny" class="w-full p-2 mb-6 rounded-xl bg-[#2b221c] text-white border border-gold file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-gold file:text-black file:font-bold" />
+
+        <label class="block text-white font-semibold mb-2">🎨 Wybierz kolor produktu:</label>
+        <select id="kolorProduktu" class="w-full p-3 rounded-xl bg-[#2b221c] text-white border border-gold mb-6" onchange="zmienKolorPodgladu()">
+          <option value="#2b221c">Czarny</option>
+          <option value="#ffffff">Biały</option>
+          <option value="#f4f4f4">Szary</option>
+        </select>
+      </div>
+
+      <!-- Podgląd produktu -->
+      <div class="flex flex-col items-center justify-center text-center">
+        <div id="podgladProdukt" class="w-48 h-48 border-2 border-gold rounded-2xl flex items-center justify-center relative mb-4" style="background-color:#2b221c">
+          <span id="tekstNaProdukcie" class="absolute text-gold text-sm font-bold px-2 text-center">Twój tekst</span>
+        </div>
+        <p class="text-sm text-gray-400">* Podgląd poglądowy – finalny nadruk po akceptacji</p>
       </div>
     </div>
 
-    <p id="potwierdzenieProjekt" class="mt-6 text-center text-green-600 hidden">✅ Projekt dodany do koszyka!</p>
+    <div class="text-center mt-10">
+      <button onclick="dodajProjekt()" class="bg-gold hover:bg-yellow-400 text-black px-8 py-4 rounded-full font-bold tracking-wide text-lg shadow-xl transition duration-300">➕ Dodaj do koszyka (199 zł)</button>
+    </div>
   </div>
-</section>
+</div>
+
+<script>
+  function aktualizujPodgladTekstu() {
+    const tekst = document.getElementById("tekstProjektu").value;
+    document.getElementById("tekstNaProdukcie").textContent = tekst || "Twój tekst";
+  }
+
+  function zmienKolorPodgladu() {
+    const kolor = document.getElementById("kolorProduktu").value;
+    document.getElementById("podgladProdukt").style.backgroundColor = kolor;
+  }
+
+  function dodajProjekt() {
+    const produkt = document.getElementById("typProduktu").value;
+    const tekst = document.getElementById("tekstProjektu").value;
+    const kolor = document.getElementById("kolorProduktu").value;
+    const plik = document.getElementById("plikGraficzny").files[0];
+
+    const projekt = {
+      produkt,
+      tekst,
+      kolor,
+      grafika: plik ? plik.name : null
+    };
+
+    console.log("Dodano projekt:", projekt);
+    alert("Twój projekt został dodany do koszyka!");
+  }
+</script>
 <!-- Sekcja Marketplace -->
 <section id="marketplace" class="py-12 bg-gray-100">
   <div class="max-w-6xl mx-auto px-4">
@@ -523,19 +528,69 @@
         </div>
       </div>
 
-      <p class="mt-6 text-center text-sm text-gray-500 italic">
-        Chcesz dodać swój projekt do Marketplace? Napisz do nas przez formularz w sekcji <a href="#kontakt" class="underline">Kontakt</a>.
-      </p>
+      <div class="mt-6 text-center">
+        <p class="text-sm text-gray-700 mb-2 italic">
+          Chcesz dodać swój projekt do Marketplace? Wypełnij formularz w sekcji <a href="#kontakt" class="underline">Kontakt</a>.
+        </p>
+        <p class="text-sm text-gray-700 mb-1">Opłaty za wystawienie produktu:</p>
+        <ul class="text-sm text-gray-700 mb-4">
+          <li>1 dzień – 10 zł</li>
+          <li>1 tydzień – 50 zł</li>
+          <li>1 miesiąc – 150 zł</li>
+        </ul>
+        <p class="text-sm text-gray-700 mb-2">
+          Płatność BLIK na numer <strong>573-939-925</strong> z dopiskiem <strong>"marketplac"</strong>.
+        </p>
+        <p class="text-sm text-red-600 italic">
+          Wystawienie produktu możliwe dopiero po zaksięgowaniu wpłaty i akceptacji przez administratora.
+        </p>
+      </div>
     </div>
   </div>
-</section> 
+</section>
 
-  <!-- Sekcja Reklama -->
+<!-- Panel administratora Marketplace -->
+<section id="admin-panel" class="hidden py-12 bg-gray-200">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-2xl font-bold text-center mb-4">Panel Administratora Marketplace</h2>
+    <div class="bg-white p-6 rounded-xl shadow-xl">
+      <label for="adminPassword" class="block font-medium mb-2">Wprowadź hasło:</label>
+      <input type="password" id="adminPassword" class="w-full border rounded px-3 py-2 mb-4" placeholder="••••••••">
+      <button id="adminLoginBtn" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Zaloguj</button>
+      <div id="adminContent" class="mt-6 hidden">
+        <h3 class="text-xl font-semibold mb-2">Zarządzanie ogłoszeniami</h3>
+        <p class="text-sm text-gray-600 mb-4">Tutaj możesz dodawać, edytować i usuwać ogłoszenia sprzedawców.</p>
+        <!-- Przykładowy panel zarządzania -->
+        <textarea class="w-full h-40 border rounded p-3" placeholder="Wklej dane ogłoszenia"></textarea>
+        <div class="flex gap-4 mt-4">
+          <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Dodaj</button>
+          <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Usuń</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const loginBtn = document.getElementById('adminLoginBtn');
+  const adminContent = document.getElementById('adminContent');
+
+  loginBtn.addEventListener('click', () => {
+    const password = document.getElementById('adminPassword').value;
+    if (password === 'Wojownik.03') {
+      adminContent.classList.remove('hidden');
+    } else {
+      alert('Błędne hasło.');
+    }
+  });
+</script>
+
+<!-- Sekcja Reklama -->
 <section id="reklama" class="py-10 bg-yellow-100 text-center">
   <div class="max-w-5xl mx-auto border-2 border-yellow-400 rounded-2xl shadow-xl p-6 bg-white">
-    
+
     <div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-2xl border border-yellow-300">
-      <h2 class="text-3xl font-bold mb-4">Zareklamuj się na <span class="text-yellow-600">AdelbertusShop</span></h2>
+      <h2 class="text-3xl font-bold mb-4">Zareklamuj się na <span class="text-yellow-600">AdelbertusShop</span> <i class="fas fa-bullhorn ml-2"></i></h2>
       <p class="mb-2">Twoja reklama pojawi się na stronie głównej na 30 sekund.</p>
       <p class="mb-6 text-sm">Po wpłacie na BLIK: <strong>573-939-925</strong> z dopiskiem <strong>reklama</strong></p>
 
@@ -551,18 +606,18 @@
           <option>1 miesiąc – 189 zł</option>
         </select>
 
-        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded font-semibold transition">Wyślij zgłoszenie</button>
+        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded font-semibold transition"><i class="fas fa-paper-plane mr-2"></i>Wyślij zgłoszenie</button>
       </form>
 
       <!-- Strefa administratora -->
       <div class="mt-6">
-        <button onclick="pokazPanelAdmina()" class="text-sm text-blue-700 underline">Panel administratora</button>
+        <button onclick="pokazPanelAdmina()" class="text-sm text-blue-700 underline"><i class="fas fa-user-shield mr-1"></i>Panel administratora</button>
         <div id="panelAdmina" class="hidden mt-4 bg-white border p-4 rounded-xl shadow-md max-w-lg mx-auto">
           <input type="password" id="adminHaslo" placeholder="Podaj hasło" class="border p-2 mb-2 w-full rounded">
-          <button onclick="sprawdzHaslo()" class="bg-blue-500 text-white px-4 py-2 rounded font-semibold">Zaloguj</button>
+          <button onclick="sprawdzHaslo()" class="bg-blue-500 text-white px-4 py-2 rounded font-semibold"><i class="fas fa-sign-in-alt mr-1"></i>Zaloguj</button>
           <div id="adminKontrola" class="hidden mt-4">
             <textarea id="reklamaAdmina" placeholder="Treść reklamy od administratora" class="w-full p-2 border rounded mb-2"></textarea>
-            <button onclick="wyswietlReklameAdmina()" class="bg-green-500 text-white px-4 py-2 rounded font-semibold">Wyświetl reklamę</button>
+            <button onclick="wyswietlReklameAdmina()" class="bg-green-500 text-white px-4 py-2 rounded font-semibold"><i class="fas fa-play mr-1"></i>Wyświetl reklamę</button>
           </div>
         </div>
       </div>
@@ -615,11 +670,16 @@
       }
     }, 1000);
   };
-</script>  <section id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
+</script>
+
+<!-- Dodaj FontAwesome dla ikon jeśli jeszcze nie jest dodane -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Sekcja Blog & Opinie z możliwością komunikacji + VIP -->
+<section id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
   <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
 
   <div id="opinie" style="margin:30px 0; min-height:150px; font-style:italic; font-size:1.1rem; text-align:center; line-height:1.5; color:#ffd97d; text-shadow: 1px 1px 3px #552f00;"></div>
-  
+
   <form id="wiadomoscForm" style="display:flex; flex-direction: column; gap:15px; background:#3c2e15; padding:20px; border-radius:12px; box-shadow: 0 0 20px #aa8844cc;">
     <h3 style="color:#ffdd99; margin:0;">Napisz do nas</h3>
     <textarea id="wiadomosc" placeholder="Twoja wiadomość..." required style="resize:none; height:100px; padding:10px; border-radius:10px; border:none; font-size:1rem; font-family:'Georgia', serif;"></textarea>
@@ -628,6 +688,16 @@
       Wyślij
     </button>
   </form>
+
+  <div style="margin-top:40px;">
+    <h3 style="color:#ffdd99; font-size:1.8rem; text-align:center;">🎤 Strefa VIP – Wasze Głosy</h3>
+    <ul style="list-style:none; padding-left:0; color:#fcebbf;">
+      <li style="margin:10px 0;">💬 "To nie tylko sklep. To przestrzeń dla wolnych dusz." — Zenon, VIP</li>
+      <li style="margin:10px 0;">💬 "Szacunek, sztuka, ekspresja – tu można mówić od serca." — Weronika, VIP</li>
+      <li style="margin:10px 0;">💬 "Niech ten głos rozbrzmiewa dalej!" — Dominik, VIP</li>
+      <li style="margin:10px 0;">💬 "Dzięki za przestrzeń, której nie było nigdzie indziej." — Anka, VIP</li>
+    </ul>
+  </div>
 </section>
 
 <script>
@@ -647,7 +717,7 @@
     const opinia = opinie[index];
     opinieDiv.innerHTML = `<p>"${opinia.tekst}"</p><p style="font-weight:bold; margin-top:8px;">— ${opinia.autor}</p>`;
   }
-  
+
   pokazOpinie();
   setInterval(pokazOpinie, 1000*60*60*24*2); // co 2 dni zmiana opinii
 
@@ -662,40 +732,67 @@
   });
 </script>
 <section id="artysta" class="py-12 bg-gradient-to-br from-gray-50 to-gray-100">
-  <div class="max-w-3xl mx-auto bg-white shadow-2xl rounded-2xl p-8 border-4 border-gray-800">
-    <h2 class="text-3xl font-extrabold text-gray-900 mb-4 text-center">Artysta</h2>
-    <p class="mb-4 text-gray-800 leading-relaxed">
-      Mam na imię <strong>Wojciech</strong> i całe życie jestem związany ze sztuką. Kocham ją od najmłodszych lat, choć jestem samoukiem. Tworzę portrety realistyczne, pełne detali, maluję obrazy, wykonuję tatuaże oraz zajmuję się grafiką.
-    </p>
-    <p class="mb-4 text-gray-800 leading-relaxed">
-      Dzielę się sztuką z ludźmi, bo widzę, jak ich serca rozświetla moment, gdy otrzymują portret, koszulkę czy cokolwiek z obrazem. Wtedy na ich twarzach pojawia się uśmiech — a to właśnie sztuka daje radość.
-    </p>
-    <p class="mb-4 text-gray-800 leading-relaxed">
-      Dla mnie najpiękniejszą częścią pracy artysty jest to, że mogę wywołać ten uśmiech na czyjejś twarzy.
-    </p>
-    <p class="text-gray-800 leading-relaxed italic text-center">
-      Pozdrawiam serdecznie — w swoim imieniu oraz całego zespołu <strong>AdelbertusShop</strong>.
-    </p>
+  <div class="max-w-3xl mx-auto relative bg-white shadow-2xl rounded-2xl p-8 border-4 border-yellow-500">
+    
+    <!-- Zdobiona ramka -->
+    <div class="absolute inset-0 rounded-2xl border-8 border-double border-yellow-400 pointer-events-none z-10"></div>
+    <div class="absolute -inset-2 rounded-3xl border-4 border-yellow-300 blur-md opacity-50 z-0"></div>
+
+    <!-- Zawartość sekcji -->
+    <div class="relative z-20">
+      <h2 class="text-3xl font-extrabold text-gray-900 mb-4 text-center">Artysta</h2>
+      <p class="mb-4 text-gray-800 leading-relaxed">
+        Mam na imię <strong>Wojciech</strong> i całe życie jestem związany ze sztuką. Kocham ją od najmłodszych lat, choć jestem samoukiem. Tworzę portrety realistyczne, pełne detali, maluję obrazy, wykonuję tatuaże oraz zajmuję się grafiką.
+      </p>
+      <p class="mb-4 text-gray-800 leading-relaxed">
+        Dzielę się sztuką z ludźmi, bo widzę, jak ich serca rozświetla moment, gdy otrzymują portret, koszulkę czy cokolwiek z obrazem. Wtedy na ich twarzach pojawia się uśmiech — a to właśnie sztuka daje radość.
+      </p>
+      <p class="mb-4 text-gray-800 leading-relaxed">
+        Dla mnie najpiękniejszą częścią pracy artysty jest to, że mogę wywołać ten uśmiech na czyjejś twarzy.
+      </p>
+      <p class="text-gray-800 leading-relaxed italic text-center">
+        Pozdrawiam serdecznie — w swoim imieniu oraz całego zespołu <strong>AdelbertusShop</strong>.
+      </p>
+    </div>
   </div>
 </section> 
 <section id="kontakt" class="py-12 bg-[#2e1e0f] text-[#ffdd99] font-serif">
-  <div class="max-w-2xl mx-auto bg-[#3b2a16] shadow-2xl rounded-2xl p-8 border-l-4 border-yellow-600">
+  <div class="max-w-2xl mx-auto bg-[#3b2a16] shadow-2xl rounded-2xl p-8 border-l-4 border-yellow-600 relative">
+
     <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center text-shadow-custom">Kontakt</h2>
+    
     <p class="text-lg text-center mb-4">
       Masz pytanie, pomysł, zamówienie indywidualne? Śmiało, odezwij się!
     </p>
+
     <p class="text-center text-base mb-2">
       <strong>Email:</strong>
       <a href="mailto:mielniczukgrzegosz74@gmail.com" class="underline hover:text-yellow-400 transition">
         mielniczukgrzegosz74@gmail.com
       </a>
     </p>
-    <p class="text-center text-base">
+
+    <p class="text-center text-base mb-6">
       <strong>Telefon:</strong>
       <a href="tel:+48604296360" class="underline hover:text-yellow-400 transition">
         604-296-360
       </a>
     </p>
+
+    <!-- Social Media -->
+    <div class="flex justify-center gap-6 mt-4">
+      <a href="https://www.facebook.com/share/r/1Zon4G1if8/" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-400 transition">
+        <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
+          <path d="M22 12.07C22 6.48 17.52 2 12 2S2 6.48 2 12.07c0 5.01 3.66 9.16 8.44 9.93v-7.03H8.9v-2.9h1.54V9.41c0-1.52.9-2.36 2.29-2.36.66 0 1.35.12 1.35.12v1.49h-.76c-.75 0-.99.46-.99.93v1.11h1.69l-.27 2.9h-1.42v7.03C18.34 21.23 22 17.08 22 12.07z"/>
+        </svg>
+      </a>
+      <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-400 transition">
+        <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
+          <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.25-.75a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5z"/>
+        </svg>
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -704,26 +801,36 @@
   .text-shadow-custom {
     text-shadow: 0 0 8px #aa8844;
   }
-</style>    
- <section id="regulamin" class="py-12 px-6 bg-[#fdf8f0] text-[#2e1e0f] font-serif">
-  <div class="max-w-5xl mx-auto border-4 border-[#aa8844] rounded-xl shadow-2xl p-8 bg-white relative">
-    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#fdf8f0] px-4 text-[#aa8844] font-bold text-lg tracking-wide shadow-sm rounded-md">
-      ✦ REGULAMIN ✦
+</style>  
+  <section id="regulamin" class="py-16 px-6 bg-gradient-to-br from-[#faf5ee] to-[#fdf8f0] font-serif text-[#2e1e0f]">
+  <div class="max-w-5xl mx-auto border-[6px] border-[#caa25b] rounded-3xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)] p-10 bg-white relative">
+    
+    <!-- Etykieta -->
+    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-[#fdf8f0] px-6 py-1 text-[#caa25b] font-bold text-lg tracking-widest shadow-md rounded-md border border-[#caa25b] uppercase">
+      ✧ REGULAMIN ✧
     </div>
 
-    <h2 class="text-3xl font-bold mb-10 text-center text-[#2e1e0f]">Regulamin sklepu AdelbertusShop</h2>
+    <!-- Nagłówek -->
+    <h2 class="text-4xl font-bold mb-12 text-center text-[#2e1e0f] underline decoration-[#caa25b]/50">Regulamin sklepu AdelbertusShop</h2>
 
-    <div class="space-y-8 text-base leading-relaxed">
+    <div class="space-y-10 text-[17px] leading-relaxed">
+      
+      <!-- §1 -->
       <div>
-        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§1 Postanowienia ogólne</h3>
+        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+          <span>📜</span> §1 Postanowienia ogólne
+        </h3>
         <p>Sklep internetowy <strong>AdelbertusShop</strong> działa pod adresem [tu wstaw adres] i prowadzony jest przez osobę fizyczną wykonującą działalność nierejestrowaną na podstawie art. 5 ust. 1 ustawy Prawo przedsiębiorców.</p>
         <p>Kontakt: [adres e-mail], [numer telefonu – opcjonalnie]</p>
         <p>Podstawy prawne: Kodeks cywilny, Ustawa o prawach konsumenta, Prawo przedsiębiorców.</p>
       </div>
 
+      <!-- §2 -->
       <div>
-        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§2 Definicje</h3>
-        <ul class="list-disc pl-6">
+        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+          <span>📖</span> §2 Definicje
+        </h3>
+        <ul class="list-disc pl-6 space-y-1">
           <li><strong>Sprzedawca</strong> – osoba fizyczna prowadząca działalność nierejestrowaną.</li>
           <li><strong>Klient</strong> – osoba fizyczna dokonująca zakupu.</li>
           <li><strong>Konsument</strong> – klient, który nie działa w ramach działalności gospodarczej.</li>
@@ -732,14 +839,20 @@
         </ul>
       </div>
 
+      <!-- §3 -->
       <div>
-        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§3 Warunki sprzedaży</h3>
+        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+          <span>🛒</span> §3 Warunki sprzedaży
+        </h3>
         <p>Ceny towarów podawane są w złotych polskich i są cenami brutto. Koszt dostawy jest wskazywany przy zamówieniu. Zamówienia są przyjmowane poprzez stronę sklepu. Umowa zostaje zawarta z chwilą kliknięcia „Zamawiam”.</p>
       </div>
 
+      <!-- §4 -->
       <div>
-        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§4 Płatność i dostawa</h3>
-        <ul class="list-disc pl-6">
+        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+          <span>💳</span> §4 Płatność i dostawa
+        </h3>
+        <ul class="list-disc pl-6 space-y-1">
           <li>Płatność: przelew, BLIK, inne – ustalane indywidualnie.</li>
           <li>Zamówienia realizowane są po zaksięgowaniu wpłaty.</li>
           <li>Dostawa na terenie Polski – kurier, paczkomat.</li>
@@ -747,80 +860,93 @@
         </ul>
       </div>
 
+      <!-- §5 -->
       <div>
-        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§5 Odstąpienie od umowy</h3>
-        <ul class="list-disc pl-6">
+        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+          <span>↩️</span> §5 Odstąpienie od umowy
+        </h3>
+        <ul class="list-disc pl-6 space-y-1">
           <li>Konsument ma prawo odstąpić od umowy w ciągu 14 dni.</li>
           <li>Zwrot kosztów następuje do 14 dni po zwrocie towaru.</li>
           <li>Produkty personalizowane nie podlegają zwrotowi.</li>
         </ul>
       </div>
 
+      <!-- §6 -->
       <div>
-        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§6 Reklamacje</h3>
+        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+          <span>🛠️</span> §6 Reklamacje
+        </h3>
         <p>Reklamacje przyjmowane są drogą mailową. Klient powinien dołączyć opis problemu i zdjęcie. Sprzedawca odpowiada w ciągu 14 dni. W przypadku uznania reklamacji – produkt jest wymieniany, naprawiany lub zwracane są pieniądze.</p>
       </div>
 
+      <!-- §7 -->
       <div>
-        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§7 Dane osobowe</h3>
+        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+          <span>🔐</span> §7 Dane osobowe
+        </h3>
         <p>Dane osobowe przetwarzane są zgodnie z RODO wyłącznie w celu realizacji zamówienia. Klient ma prawo wglądu, poprawienia lub usunięcia swoich danych.</p>
       </div>
 
+      <!-- §8 -->
       <div>
-        <h3 class="font-semibold text-xl mb-2 text-[#5c3d15]">§8 Postanowienia końcowe</h3>
+        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+          <span>📌</span> §8 Postanowienia końcowe
+        </h3>
         <p>Regulamin obowiązuje od momentu opublikowania na stronie. Sprzedawca zastrzega sobie prawo do zmian. W sprawach nieuregulowanych zastosowanie mają przepisy prawa polskiego.</p>
       </div>
+
     </div>
   </div>
-</section>  <!-- Sekcja Zamówienia -->
-<section id="zamowienia" class="py-12 bg-gray-100">
-  <div class="max-w-4xl mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-6 text-center">Zamówienia</h2>
+</section> <!-- Sekcja Zamówienia -->
+<section id="zamowienia" class="py-16 bg-gradient-to-br from-[#fdf6e3] to-[#fae8c8] text-[#3e2f1c] font-serif">
+  <div class="max-w-4xl mx-auto px-6">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-10 tracking-wide text-[#3e2f1c]">Zamówienia</h2>
     
-    <div class="border-2 border-gray-300 rounded-xl shadow-lg bg-white p-6">
-      <form id="formularzZamowienia" class="space-y-4">
-        <!-- formularz jak wcześniej -->
+    <div class="bg-white/90 backdrop-blur-lg border-4 border-[#d6b370] rounded-3xl shadow-2xl p-10 ring-4 ring-[#f3e5ab]">
+      <form id="formularzZamowienia" class="space-y-6">
         <div>
-          <label class="block text-sm font-medium">Imię i nazwisko</label>
-          <input name="imie" type="text" required class="w-full mt-1 p-2 border rounded" placeholder="Jan Kowalski" />
+          <label class="block text-sm font-semibold">Imię i nazwisko</label>
+          <input name="imie" type="text" required class="w-full mt-2 p-3 border-2 border-[#d6b370] rounded-xl bg-[#fffaf0]" placeholder="Jan Kowalski" />
         </div>
         <div>
-          <label class="block text-sm font-medium">Adres e-mail</label>
-          <input name="email" type="email" required class="w-full mt-1 p-2 border rounded" placeholder="jan@example.com" />
+          <label class="block text-sm font-semibold">Adres e-mail</label>
+          <input name="email" type="email" required class="w-full mt-2 p-3 border-2 border-[#d6b370] rounded-xl bg-[#fffaf0]" placeholder="jan@example.com" />
         </div>
         <div>
-          <label class="block text-sm font-medium">Telefon</label>
-          <input name="telefon" type="tel" required class="w-full mt-1 p-2 border rounded" placeholder="604 296 650" />
+          <label class="block text-sm font-semibold">Telefon</label>
+          <input name="telefon" type="tel" required class="w-full mt-2 p-3 border-2 border-[#d6b370] rounded-xl bg-[#fffaf0]" placeholder="604 296 650" />
         </div>
         <div>
-          <label class="block text-sm font-medium">Adres dostawy</label>
-          <input name="adres" type="text" required class="w-full mt-1 p-2 border rounded" placeholder="ul. Przykładowa 1, 00-000 Miasto" />
+          <label class="block text-sm font-semibold">Adres dostawy</label>
+          <input name="adres" type="text" required class="w-full mt-2 p-3 border-2 border-[#d6b370] rounded-xl bg-[#fffaf0]" placeholder="ul. Przykładowa 1, 00-000 Miasto" />
         </div>
         <div>
-          <label class="block text-sm font-medium">Uwagi do zamówienia</label>
-          <textarea name="uwagi" class="w-full mt-1 p-2 border rounded" rows="4" placeholder="Np. projekt własny: biały nadruk, L..."></textarea>
+          <label class="block text-sm font-semibold">Uwagi do zamówienia</label>
+          <textarea name="uwagi" class="w-full mt-2 p-3 border-2 border-[#d6b370] rounded-xl bg-[#fffaf0]" rows="4" placeholder="Np. projekt własny: biały nadruk, L..."></textarea>
         </div>
 
-        <div class="bg-gray-50 p-4 rounded shadow-inner">
-          <h3 class="font-semibold text-md mb-2">💳 Płatność BLIK</h3>
-          <p class="text-sm text-gray-700">
-            Wyślij płatność na numer: <strong class="text-lg text-green-600">573-939-925</strong><br/>
+        <div class="bg-[#fff6da] border border-yellow-400 p-5 rounded-xl shadow-inner">
+          <h3 class="font-bold text-lg mb-2">💎 Płatność BLIK</h3>
+          <p class="text-sm text-gray-800">
+            Wyślij płatność na numer:<br/>
+            <span class="text-2xl font-extrabold text-green-700">573-939-925</span><br/>
             z dopiskiem: <em>"projekt własny", "koszyk", "marketplace"</em><br/>
-            Po opłaceniu wyślemy Ci potwierdzenie na e-mail lub SMS.
+            Po opłaceniu otrzymasz potwierdzenie na e-mail lub SMS.
           </p>
         </div>
 
         <div class="text-center pt-4">
-          <button type="submit" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
-            Zamawiam wszystko!
+          <button type="submit" class="bg-[#3e2f1c] text-[#f3e5ab] px-8 py-3 rounded-full hover:bg-[#2c2013] transition duration-300 shadow-lg text-lg font-semibold">
+            ✨ Zamawiam wszystko!
           </button>
         </div>
       </form>
     </div>
 
-    <p id="potwierdzenie" class="mt-6 text-center text-green-600 hidden">✅ Zamówienie wysłane! Sprawdź e-mail / SMS.</p>
+    <p id="potwierdzenie" class="mt-6 text-center text-green-700 hidden">✅ Zamówienie wysłane! Sprawdź e-mail / SMS.</p>
   </div>
-</section>
+</section>  
 <!-- Koszyk + Obsługa formularza -->
 <script>
   let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
