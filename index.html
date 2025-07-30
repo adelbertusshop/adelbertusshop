@@ -738,51 +738,20 @@
 </section>
 <!-- Koszyk + Obsługa formularza -->
 <script>
-  const koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
-  const lista = document.getElementById("koszyk-lista");
-  const suma = document.getElementById("koszyk-suma");
-  const formularz = document.getElementById("formularzZamowienia");
-  const potwierdzenie = document.getElementById("potwierdzenie");
+  let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+  function zapiszKoszyk() {
+    localStorage.setItem("koszyk", JSON.stringify(koszyk));
+  }
 
   function odswiezKoszyk() {
+    const lista = document.getElementById("koszyk-lista");
+    const suma = document.getElementById("koszyk-suma");
+    const licznik = document.getElementById("koszyk-licznik");
     lista.innerHTML = "";
     let total = 0;
-    koszyk.forEach(item => {
-      const li = document.createElement("li");
-      li.textContent = `${item.nazwa} - ${item.cena} zł`;
-      lista.appendChild(li);
-      total += parseFloat(item.cena);
-    });
-    suma.textContent = `Suma: ${total} zł`;
-  }
 
-  formularz.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    // Wyczyść koszyk
-    localStorage.removeItem("koszyk");
-
-    // Reset formularza i pokaż potwierdzenie
-    formularz.reset();
-    potwierdzenie.classList.remove("hidden");
-    odswiezKoszyk();
-  });
-
-  // Inicjalizacja
-  odswiezKoszyk();
-</script>  let koszyk = [];
-
-  function dodajDoKoszyka(nazwa, cena) {
-    koszyk.push({ nazwa, cena });
-    aktualizujKoszyk();
-  }
-
-  function aktualizujKoszyk() {
-    const lista = document.getElementById("koszyk-lista");
-    lista.innerHTML = "";
-    let suma = 0;
     koszyk.forEach((item, index) => {
-      suma += item.cena;
       const el = document.createElement("li");
       el.textContent = `${item.nazwa} - ${item.cena} zł`;
 
@@ -790,13 +759,38 @@
       btn.textContent = "Usuń";
       btn.onclick = () => {
         koszyk.splice(index, 1);
-        aktualizujKoszyk();
+        zapiszKoszyk();
+        odswiezKoszyk();
       };
 
       el.appendChild(btn);
       lista.appendChild(el);
+      total += parseFloat(item.cena);
     });
-    document.getElementById("koszyk-suma").textContent = `Suma: ${suma} zł`;
+
+    suma.textContent = `Suma: ${total} zł`;
+    licznik.textContent = koszyk.length;
+  }
+
+  function dodajDoKoszyka(nazwa, cena) {
+    koszyk.push({ nazwa, cena });
+    zapiszKoszyk();
+    odswiezKoszyk();
+    zagrajDzwiek();
+    animacjaKoszyka();
+  }
+
+  function zagrajDzwiek() {
+    const audio = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-classic-click-1117.mp3");
+    audio.play();
+  }
+
+  function animacjaKoszyka() {
+    const ikona = document.getElementById("ikona-koszyka");
+    if (ikona) {
+      ikona.classList.add("animate-bounce");
+      setTimeout(() => ikona.classList.remove("animate-bounce"), 500);
+    }
   }
 
   document.getElementById("formularzZamowienia").addEventListener("submit", function(e) {
@@ -817,10 +811,9 @@
       Płatność BLIK: 573-939-925 (projekt własny / koszyk / marketplace)
     `;
 
-    // 1. Wyślij e-mail do Ciebie
     Email.send({
-      SecureToken: "your-secure-token-here", // <--- tu wpisz swój token
-      To: "twoj-email@adres.pl",             // <--- tu swój email
+      SecureToken: "your-secure-token-here",
+      To: "twoj-email@adres.pl",
       From: "formularz@adelbertusshop.pl",
       Subject: "Nowe zamówienie ze sklepu",
       Body: zamowienie
@@ -828,7 +821,6 @@
       document.getElementById("potwierdzenie").classList.remove("hidden");
     });
 
-    // 2. Generuj PDF
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     doc.setFontSize(12);
@@ -836,19 +828,35 @@
     doc.text(zamowienie, 10, 20);
     doc.save("zamowienie.pdf");
 
-    // 3. Czyść koszyk i formularz
     koszyk = [];
-    aktualizujKoszyk();
+    zapiszKoszyk();
+    odswiezKoszyk();
     this.reset();
   });
 
-  // Funkcja scrollowania
   function scrollToSection(id) {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   }
+
+  odswiezKoszyk();
+</script>
+
+<style>
+  #koszyk-licznik {
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0 6px;
+    font-size: 0.75rem;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+  }
+</style>
+
 </script>
 </body>
 </html>
