@@ -347,208 +347,142 @@
     document.getElementById(nazwa).classList.remove('hidden');
   }
 </script> 
-  <section id="projektuj" class="py-12 bg-white text-black">
-  <div class="container mx-auto px-4">
-    <div class="max-w-6xl mx-auto bg-white border border-gray-200 rounded-3xl shadow-xl ring-1 ring-gray-200 p-8">
-      <h2 class="text-4xl font-bold text-center mb-8">Zaprojektuj swój produkt</h2>
-
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Podgląd produktu -->
-        <div class="border rounded-2xl p-6 bg-gray-100 shadow-inner">
-          <label class="block mb-2 font-semibold">Wybierz produkt:</label>
-          <select id="produkt" class="w-full mb-4 p-2 border rounded">
-            <option value="tshirt">Koszulka</option>
-            <option value="hoodie">Bluza</option>
-            <option value="cap">Czapka</option>
-          </select>
-
-          <div id="podglad" class="w-full h-64 flex items-center justify-center bg-white border rounded relative overflow-hidden">
-            <img id="produktImg" src="" alt="Produkt" class="absolute inset-0 w-full h-full object-contain opacity-30 pointer-events-none">
-            <img id="userImage" class="absolute w-24 h-24 object-contain" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
-            <div id="userText" class="absolute font-bold text-xl" style="top: 70%; left: 50%; transform: translate(-50%, -50%);">Twój tekst</div>
-          </div>
-        </div>
-
-        <!-- Formularz -->
-        <div class="border rounded-2xl p-6 bg-gray-50 space-y-4 shadow-inner">
+<section id="projektuj" class="py-12 bg-gray-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-6 text-center">Zaprojektuj własny produkt</h2>
+    
+    <div class="border-2 border-gray-300 rounded-xl shadow-lg bg-white p-6">
+      <form id="projektForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-4">
           <div>
-            <label class="block font-semibold">Dodaj grafikę:</label>
-            <input type="file" id="grafika" class="w-full border p-2 rounded" accept="image/*">
-          </div>
-
-          <div>
-            <label class="block font-semibold">Dodaj tekst:</label>
-            <input type="text" id="tekst" placeholder="Wpisz swój tekst" class="w-full border p-2 rounded">
-          </div>
-
-          <div>
-            <label class="block font-semibold">Czcionka:</label>
-            <select id="czcionka" class="w-full border p-2 rounded">
-              <option value="Arial">Arial</option>
-              <option value="Courier New">Courier</option>
-              <option value="Georgia">Georgia</option>
-              <option value="Monospace">Monospace</option>
+            <label class="block text-sm font-medium">Typ produktu</label>
+            <select name="typ" class="w-full mt-1 p-2 border rounded">
+              <option value="koszulka">Koszulka</option>
+              <option value="bluza">Bluza</option>
+              <option value="czapeczka">Czapeczka</option>
             </select>
           </div>
-
           <div>
-            <label class="block font-semibold">Kolor tekstu:</label>
-            <input type="color" id="kolorTekstu" class="w-full h-10 border p-1 rounded">
+            <label class="block text-sm font-medium">Kolor</label>
+            <input type="color" name="kolor" class="w-full mt-1 p-2 border rounded" />
           </div>
-
           <div>
-            <label class="block font-semibold">Dane kontaktowe:</label>
-            <input type="text" placeholder="Imię i nazwisko" class="w-full border p-2 rounded mb-2">
-            <input type="email" placeholder="E-mail" class="w-full border p-2 rounded mb-2">
-            <input type="tel" placeholder="Telefon" class="w-full border p-2 rounded">
+            <label class="block text-sm font-medium">Rozmiar</label>
+            <select name="rozmiar" class="w-full mt-1 p-2 border rounded">
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+            </select>
           </div>
-
           <div>
-            <label class="block font-semibold">Adres wysyłki:</label>
-            <textarea class="w-full border p-2 rounded" rows="3" placeholder="Ulica, miasto, kod pocztowy"></textarea>
+            <label class="block text-sm font-medium">Dodaj tekst</label>
+            <input type="text" name="tekst" class="w-full mt-1 p-2 border rounded" placeholder="Twój tekst..." />
           </div>
-
-          <div class="bg-yellow-100 p-4 rounded text-sm text-gray-700 border-l-4 border-yellow-500 shadow">
-            <p>💳 Wyślij płatność BLIK: <strong>573-939-925</strong> z dopiskiem: <strong>„projekt własny”</strong></p>
-            <p>📤 Projekt zostanie wysłany na e-mail lub SMS: <strong>604-296-650</strong></p>
+          <div>
+            <label class="block text-sm font-medium">Dodaj grafikę (URL)</label>
+            <input type="url" name="grafika" class="w-full mt-1 p-2 border rounded" placeholder="https://..." />
           </div>
-
-          <button class="bg-black text-white py-2 px-6 rounded hover:bg-gray-800 w-full">Wyślij projekt</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const produktSelect = document.getElementById('produkt');
-    const produktImg = document.getElementById('produktImg');
-    const userText = document.getElementById('userText');
-    const tekstInput = document.getElementById('tekst');
-    const kolorInput = document.getElementById('kolorTekstu');
-    const czcionkaInput = document.getElementById('czcionka');
-    const grafikaInput = document.getElementById('grafika');
-    const userImage = document.getElementById('userImage');
-
-    const produkty = {
-      tshirt: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tshirt_white.svg/512px-Tshirt_white.svg.png',
-      hoodie: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Hoodie_Template.png/512px-Hoodie_Template.png',
-      cap: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Baseball_cap.svg/512px-Baseball_cap.svg.png'
-    };
-
-    produktSelect.addEventListener('change', () => {
-      produktImg.src = produkty[produktSelect.value];
-    });
-
-    tekstInput.addEventListener('input', () => {
-      userText.textContent = tekstInput.value;
-    });
-
-    kolorInput.addEventListener('input', () => {
-      userText.style.color = kolorInput.value;
-    });
-
-    czcionkaInput.addEventListener('change', () => {
-      userText.style.fontFamily = czcionkaInput.value;
-    });
-
-    grafikaInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        userImage.src = event.target.result;
-      };
-      reader.readAsDataURL(file);
-    });
-
-    // Załaduj domyślny produkt
-    produktImg.src = produkty[produktSelect.value];
-  </script>
-</section>  <!-- Sekcja Marketplace -->
-  <section id="marketplace" class="py-12 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <div class="border-2 border-gray-200 rounded-xl shadow-xl p-8 bg-white">
-      <h2 class="text-3xl font-bold text-center mb-6">Marketplace – Hala Targowa</h2>
-      <p class="text-center text-lg mb-6">Wystaw swoje produkty! Wypełnij formularz, zapłać BLIK (573-939-925 z dopiskiem <strong>marketplace</strong>) i zyskaj swoją ikonę!</p>
-
-      <!-- Formularz wystawienia -->
-      <form id="marketplaceForm" class="bg-gray-50 p-6 rounded-xl shadow-inner mb-8" onsubmit="return dodajProduktMarketplace(event)">
-        <label class="block mb-2 font-semibold">Nazwa produktu</label>
-        <input type="text" id="nazwaProduktu" placeholder="Wpisz nazwę" class="w-full p-2 border rounded mb-4" required />
-
-        <label class="block mb-2 font-semibold">Opis produktu</label>
-        <textarea id="opisProduktu" placeholder="Opisz swój produkt" class="w-full p-2 border rounded mb-4" required></textarea>
-
-        <label class="block mb-2 font-semibold">Cena</label>
-        <input type="number" id="cenaProduktu" placeholder="99" class="w-full p-2 border rounded mb-4" min="1" required />
-
-        <label class="block mb-2 font-semibold">Okres emisji</label>
-        <select id="okresEmisji" class="w-full p-2 border rounded mb-4" required>
-          <option value="86400">Dzień – 10 zł</option>
-          <option value="604800">Tydzień – 50 zł</option>
-          <option value="2592000">Miesiąc – 150 zł</option>
-        </select>
-
-        <div class="bg-yellow-100 border border-yellow-300 p-4 rounded mb-6 text-sm text-gray-700">
-          💳 Wpłać na BLIK: <strong>573-939-925</strong> z dopiskiem <strong>marketplace</strong>
         </div>
 
-        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 w-full">Wyślij zgłoszenie</button>
+        <div class="flex flex-col items-center justify-center bg-gray-50 p-4 rounded shadow-inner">
+          <p class="text-center mb-2 text-sm text-gray-600">Podgląd Twojego projektu (orientacyjny):</p>
+          <div class="w-64 h-64 border border-dashed border-gray-400 flex items-center justify-center bg-white rounded">
+            <span class="text-gray-400">[tu pojawi się podgląd]</span>
+          </div>
+        </div>
       </form>
 
-      <!-- Ikony marketplace -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="ikonyMarketplace">
-        <!-- Tu będą dynamiczne produkty -->
-      </div>
-
-      <!-- Panel administratora -->
-      <div id="panelAdmina" class="mt-12">
-        <h3 class="text-xl font-bold mb-4">Panel Administratora</h3>
-        <input type="password" id="hasloAdmin" placeholder="Wpisz hasło" class="p-2 border rounded mb-4 w-full" />
-        <button onclick="zalogujAdmina()" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Zaloguj</button>
-
-        <div id="adminOpcje" class="hidden mt-6 space-y-2">
-          <p class="text-green-600">Zalogowano jako administrator.</p>
-          <button onclick="usunWybranyProdukt()" class="bg-red-600 text-white px-4 py-2 rounded w-full">Usuń zaznaczony produkt</button>
-          <button onclick="ponaglijKlienta()" class="bg-indigo-500 text-white px-4 py-2 rounded w-full">Ponaglij klienta</button>
-        </div>
+      <div class="text-center mt-6">
+        <button onclick="dodajDoKoszykaProjekt()" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
+          Dodaj projekt do koszyka
+        </button>
       </div>
     </div>
+
+    <p id="potwierdzenieProjekt" class="mt-6 text-center text-green-600 hidden">✅ Projekt dodany do koszyka!</p>
   </div>
 </section>
-  <section id="reklama" class="py-10 bg-yellow-100 text-center">
-  <div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-2xl border border-yellow-300">
-    <h2 class="text-3xl font-bold mb-4">Zareklamuj się na <span class="text-yellow-600">AdelbertusShop</span></h2>
-    <p class="mb-2">Twoja reklama pojawi się na stronie głównej na 30 sekund.</p>
-    <p class="mb-6 text-sm">Po wpłacie na BLIK: <strong>573-939-925</strong> z dopiskiem <strong>reklama</strong></p>
+<!-- Sekcja Marketplace -->
+<section id="marketplace" class="py-12 bg-gray-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-6 text-center">Marketplace</h2>
 
-    <form id="formularzReklamy" class="max-w-xl mx-auto p-4 bg-yellow-50 rounded-xl shadow">
-      <input type="text" placeholder="Nazwa firmy lub produktu" required class="w-full p-2 mb-2 border rounded">
-      <textarea placeholder="Treść reklamy" required class="w-full p-2 mb-2 border rounded"></textarea>
-      <input type="email" placeholder="Twój email" required class="w-full p-2 mb-2 border rounded">
+    <div class="border-2 border-gray-300 rounded-xl shadow-lg bg-white p-6">
+      <p class="text-lg mb-4 text-center text-gray-700">
+        Tu znajdziesz unikatowe projekty innych użytkowników – odważne, niepokorne, pełne stylu. Możesz je kupić lub zainspirować się do stworzenia własnego.
+      </p>
 
-      <select class="w-full p-2 mb-4 border rounded" required>
-        <option disabled selected>Wybierz okres reklamy</option>
-        <option>1 dzień – 10 zł</option>
-        <option>1 tydzień – 49 zł</option>
-        <option>1 miesiąc – 189 zł</option>
-      </select>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Przykładowe produkty -->
+        <div class="border rounded shadow p-4 text-center bg-gray-50">
+          <img src="https://via.placeholder.com/200x200" alt="Produkt 1" class="mx-auto mb-2 rounded">
+          <h3 class="font-semibold">Koszulka „NeoFuture”</h3>
+          <p class="text-sm text-gray-600">99 zł</p>
+          <button class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">Dodaj do koszyka</button>
+        </div>
 
-      <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded font-semibold transition">Wyślij zgłoszenie</button>
-    </form>
+        <div class="border rounded shadow p-4 text-center bg-gray-50">
+          <img src="https://via.placeholder.com/200x200" alt="Produkt 2" class="mx-auto mb-2 rounded">
+          <h3 class="font-semibold">Bluza „AntiSystem”</h3>
+          <p class="text-sm text-gray-600">150 zł</p>
+          <button class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">Dodaj do koszyka</button>
+        </div>
 
-    <!-- Strefa administratora -->
-    <div class="mt-6">
-      <button onclick="pokazPanelAdmina()" class="text-sm text-blue-700 underline">Panel administratora</button>
-      <div id="panelAdmina" class="hidden mt-4 bg-white border p-4 rounded-xl shadow-md max-w-lg mx-auto">
-        <input type="password" id="adminHaslo" placeholder="Podaj hasło" class="border p-2 mb-2 w-full rounded">
-        <button onclick="sprawdzHaslo()" class="bg-blue-500 text-white px-4 py-2 rounded font-semibold">Zaloguj</button>
-        <div id="adminKontrola" class="hidden mt-4">
-          <textarea id="reklamaAdmina" placeholder="Treść reklamy od administratora" class="w-full p-2 border rounded mb-2"></textarea>
-          <button onclick="wyswietlReklameAdmina()" class="bg-green-500 text-white px-4 py-2 rounded font-semibold">Wyświetl reklamę</button>
+        <div class="border rounded shadow p-4 text-center bg-gray-50">
+          <img src="https://via.placeholder.com/200x200" alt="Produkt 3" class="mx-auto mb-2 rounded">
+          <h3 class="font-semibold">Czapka „Wolność”</h3>
+          <p class="text-sm text-gray-600">79 zł</p>
+          <button class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">Dodaj do koszyka</button>
+        </div>
+      </div>
+
+      <p class="mt-6 text-center text-sm text-gray-500 italic">
+        Chcesz dodać swój projekt do Marketplace? Napisz do nas przez formularz w sekcji <a href="#kontakt" class="underline">Kontakt</a>.
+      </p>
+    </div>
+  </div>
+</section> 
+
+  <!-- Sekcja Reklama -->
+<section id="reklama" class="py-10 bg-yellow-100 text-center">
+  <div class="max-w-5xl mx-auto border-2 border-yellow-400 rounded-2xl shadow-xl p-6 bg-white">
+    
+    <div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-2xl border border-yellow-300">
+      <h2 class="text-3xl font-bold mb-4">Zareklamuj się na <span class="text-yellow-600">AdelbertusShop</span></h2>
+      <p class="mb-2">Twoja reklama pojawi się na stronie głównej na 30 sekund.</p>
+      <p class="mb-6 text-sm">Po wpłacie na BLIK: <strong>573-939-925</strong> z dopiskiem <strong>reklama</strong></p>
+
+      <form id="formularzReklamy" class="max-w-xl mx-auto p-4 bg-yellow-50 rounded-xl shadow">
+        <input type="text" placeholder="Nazwa firmy lub produktu" required class="w-full p-2 mb-2 border rounded">
+        <textarea placeholder="Treść reklamy" required class="w-full p-2 mb-2 border rounded"></textarea>
+        <input type="email" placeholder="Twój email" required class="w-full p-2 mb-2 border rounded">
+
+        <select class="w-full p-2 mb-4 border rounded" required>
+          <option disabled selected>Wybierz okres reklamy</option>
+          <option>1 dzień – 10 zł</option>
+          <option>1 tydzień – 49 zł</option>
+          <option>1 miesiąc – 189 zł</option>
+        </select>
+
+        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded font-semibold transition">Wyślij zgłoszenie</button>
+      </form>
+
+      <!-- Strefa administratora -->
+      <div class="mt-6">
+        <button onclick="pokazPanelAdmina()" class="text-sm text-blue-700 underline">Panel administratora</button>
+        <div id="panelAdmina" class="hidden mt-4 bg-white border p-4 rounded-xl shadow-md max-w-lg mx-auto">
+          <input type="password" id="adminHaslo" placeholder="Podaj hasło" class="border p-2 mb-2 w-full rounded">
+          <button onclick="sprawdzHaslo()" class="bg-blue-500 text-white px-4 py-2 rounded font-semibold">Zaloguj</button>
+          <div id="adminKontrola" class="hidden mt-4">
+            <textarea id="reklamaAdmina" placeholder="Treść reklamy od administratora" class="w-full p-2 border rounded mb-2"></textarea>
+            <button onclick="wyswietlReklameAdmina()" class="bg-green-500 text-white px-4 py-2 rounded font-semibold">Wyświetl reklamę</button>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -596,8 +530,7 @@
       }
     }, 1000);
   };
-</script>  <!-- Sekcja Reklama -->
-  <section id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
+</script>  <section id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
   <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
 
   <div id="opinie" style="margin:30px 0; min-height:150px; font-style:italic; font-size:1.1rem; text-align:center; line-height:1.5; color:#ffd97d; text-shadow: 1px 1px 3px #552f00;"></div>
@@ -643,8 +576,8 @@
     this.reset();
   });
 </script>
- <section id="artysta" class="py-12 bg-gradient-to-br from-gray-50 to-gray-100">
-  <div class="max-w-3xl mx-auto bg-white shadow-xl rounded-2xl p-8 border-l-4 border-gray-800">
+<section id="artysta" class="py-12 bg-gradient-to-br from-gray-50 to-gray-100">
+  <div class="max-w-3xl mx-auto bg-white shadow-2xl rounded-2xl p-8 border-4 border-gray-800">
     <h2 class="text-3xl font-extrabold text-gray-900 mb-4 text-center">Artysta</h2>
     <p class="mb-4 text-gray-800 leading-relaxed">
       Mam na imię <strong>Wojciech</strong> i całe życie jestem związany ze sztuką. Kocham ją od najmłodszych lat, choć jestem samoukiem. Tworzę portrety realistyczne, pełne detali, maluję obrazy, wykonuję tatuaże oraz zajmuję się grafiką.
@@ -659,7 +592,7 @@
       Pozdrawiam serdecznie — w swoim imieniu oraz całego zespołu <strong>AdelbertusShop</strong>.
     </p>
   </div>
-</section>    
+</section> 
 <section id="kontakt" class="py-12 bg-[#2e1e0f] text-[#ffdd99] font-serif">
   <div class="max-w-2xl mx-auto bg-[#3b2a16] shadow-2xl rounded-2xl p-8 border-l-4 border-yellow-600">
     <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center text-shadow-custom">Kontakt</h2>
@@ -758,61 +691,51 @@
 <section id="zamowienia" class="py-12 bg-gray-100">
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-6 text-center">Zamówienia</h2>
+    
+    <div class="border-2 border-gray-300 rounded-xl shadow-lg bg-white p-6">
+      <form id="formularzZamowienia" class="space-y-4">
+        <!-- formularz jak wcześniej -->
+        <div>
+          <label class="block text-sm font-medium">Imię i nazwisko</label>
+          <input name="imie" type="text" required class="w-full mt-1 p-2 border rounded" placeholder="Jan Kowalski" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Adres e-mail</label>
+          <input name="email" type="email" required class="w-full mt-1 p-2 border rounded" placeholder="jan@example.com" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Telefon</label>
+          <input name="telefon" type="tel" required class="w-full mt-1 p-2 border rounded" placeholder="604 296 650" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Adres dostawy</label>
+          <input name="adres" type="text" required class="w-full mt-1 p-2 border rounded" placeholder="ul. Przykładowa 1, 00-000 Miasto" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Uwagi do zamówienia</label>
+          <textarea name="uwagi" class="w-full mt-1 p-2 border rounded" rows="4" placeholder="Np. projekt własny: biały nadruk, L..."></textarea>
+        </div>
 
-    <!-- Koszyk -->
-    <div id="koszyk" class="bg-white p-4 mb-6 rounded shadow">
-      <h3 class="text-xl font-semibold mb-2">🛒 Twój koszyk</h3>
-      <ul id="koszyk-lista" class="list-disc pl-6 text-gray-700"></ul>
-      <p id="koszyk-suma" class="font-bold mt-2">Suma: 0 zł</p>
+        <div class="bg-gray-50 p-4 rounded shadow-inner">
+          <h3 class="font-semibold text-md mb-2">💳 Płatność BLIK</h3>
+          <p class="text-sm text-gray-700">
+            Wyślij płatność na numer: <strong class="text-lg text-green-600">573-939-925</strong><br/>
+            z dopiskiem: <em>"projekt własny", "koszyk", "marketplace"</em><br/>
+            Po opłaceniu wyślemy Ci potwierdzenie na e-mail lub SMS.
+          </p>
+        </div>
+
+        <div class="text-center pt-4">
+          <button type="submit" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
+            Zamawiam wszystko!
+          </button>
+        </div>
+      </form>
     </div>
-
-    <!-- Formularz -->
-    <form id="formularzZamowienia" class="space-y-4 bg-white p-6 rounded shadow">
-      <div>
-        <label class="block text-sm font-medium">Imię i nazwisko</label>
-        <input name="imie" type="text" required class="w-full mt-1 p-2 border rounded" placeholder="Jan Kowalski" />
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium">Adres e-mail</label>
-        <input name="email" type="email" required class="w-full mt-1 p-2 border rounded" placeholder="jan@example.com" />
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium">Telefon</label>
-        <input name="telefon" type="tel" required class="w-full mt-1 p-2 border rounded" placeholder="604 296 650" />
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium">Adres dostawy</label>
-        <input name="adres" type="text" required class="w-full mt-1 p-2 border rounded" placeholder="ul. Przykładowa 1, 00-000 Miasto" />
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium">Uwagi do zamówienia</label>
-        <textarea name="uwagi" class="w-full mt-1 p-2 border rounded" rows="4" placeholder="Np. projekt własny: biały nadruk, L..."></textarea>
-      </div>
-
-      <div class="bg-gray-50 p-4 rounded shadow-inner">
-        <h3 class="font-semibold text-md mb-2">💳 Płatność BLIK</h3>
-        <p class="text-sm text-gray-700">
-          Wyślij płatność na numer: <strong class="text-lg text-green-600">573-939-925</strong><br/>
-          z dopiskiem: <em>"projekt własny", "koszyk", "marketplace"</em><br/>
-          Po opłaceniu wyślemy Ci potwierdzenie na e-mail lub SMS.
-        </p>
-      </div>
-
-      <div class="text-center pt-4">
-        <button type="submit" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
-          Zamawiam wszystko!
-        </button>
-      </div>
-    </form>
 
     <p id="potwierdzenie" class="mt-6 text-center text-green-600 hidden">✅ Zamówienie wysłane! Sprawdź e-mail / SMS.</p>
   </div>
 </section>
-
 <!-- Koszyk + Obsługa formularza -->
 <script>
   const koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
