@@ -3,61 +3,230 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AdelbertusShop</title>
+  <title>AdelbertusShop - Koszyk i Zamówienie</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0a0909;
-      color: #f5eedd;
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #fff;
+      margin: 0; padding: 0;
     }
-
-    #banner {
-      background: linear-gradient(to right, #1a1410, #2b211b);
-      padding: 2.5rem;
-      text-align: center;
-      font-size: 1.5rem;
-      color: #e5c98d;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-shadow: 0 0 10px #bfa053;
-      border-bottom: 2px solid #d4af37;
-    }
-
-    /* Produkty */
-    #products {
-      padding: 2rem;
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .product {
-      border: 1px solid #d4af37;
+    #koszyk {
+      position: fixed;
+      bottom: 6rem;
+      right: 1rem;
+      width: 360px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: #222;
+      border-radius: 12px;
       padding: 1rem;
-      border-radius: 8px;
-      background-color: #1b1613;
-      width: 220px;
-      box-shadow: 0 0 10px #d4af3755;
-      text-align: center;
+      box-shadow: 0 0 12px #d4af37cc;
+      display: none;
+      z-index: 9999;
     }
-
-    .product h4 {
-      margin-bottom: 0.5rem;
+    #koszyk h3 {
+      margin-top: 0;
+      color: #d4af37;
     }
-
-    .product img {
-      max-width: 100%;
-      height: auto;
+    #listaKoszyka li {
+      display: flex;
+      justify-content: space-between;
       margin-bottom: 0.5rem;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.25rem;
+    }
+    #listaKoszyka li button {
+      background: transparent;
+      border: none;
+      color: #f44336;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    #sumaKoszyka {
+      font-weight: bold;
+      margin-top: 1rem;
+      color: #d4af37;
+    }
+    #toggleKoszykBtn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1rem;
+      background: #d4af37;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #d4af37cc;
+      color: #121212;
+      z-index: 9999;
+    }
+    form {
+      max-width: 480px;
+      margin: 2rem auto;
+      background: #222;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #d4af37cc;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
       border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+    form button {
+      background: #d4af37;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #121212;
+      transition: background 0.3s;
+    }
+    form button:hover {
+      background: #f5d76e;
+    }
+    input[readonly] {
+      background: #444;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
 
-<!-- GŁÓWNY BANER -->
+<!-- Koszyk -->
+<div id="koszyk" aria-label="Twój koszyk">
+  <h3>Twój koszyk</h3>
+  <ul id="listaKoszyka"></ul>
+  <p>Łącznie: <span id="sumaKoszyka">0</span> zł</p>
+  <button id="zamowBtn">Zamawiam wszystko</button>
+</div>
+
+<!-- Przycisk toggle koszyka -->
+<button id="toggleKoszykBtn" aria-label="Pokaż/ukryj koszyk">🛒</button>
+
+<!-- Formularz zamówienia -->
+<form id="formularzZamowienia" aria-label="Formularz zamówienia">
+  <h2>Zamówienie</h2>
+  <input type="text" name="imie" placeholder="Imię i nazwisko" required />
+  <input type="email" name="email" placeholder="E-mail" required />
+  <textarea name="uwagi" placeholder="Dodatkowe uwagi"></textarea>
+  
+  <!-- Ukryte pola BLIK -->
+  <input type="text" name="blikKod" id="blikKod" value="573-939-925" readonly />
+  <input type="text" name="blikDopis" id="blikDopis" value="projekt własny" readonly />
+  
+  <button type="submit">Wyślij zamówienie</button>
+</form>
+
+<script>
+  let koszyk = [];
+
+  // Dodaj do koszyka (przykład dodania, dostosuj wg potrzeb)
+  function dodajDoKoszyka(nazwa, cena) {
+    koszyk.push({ nazwa, cena });
+    aktualizujKoszyk();
+  }
+
+  function aktualizujKoszyk() {
+    const lista = document.getElementById('listaKoszyka');
+    const suma = document.getElementById('sumaKoszyka');
+    lista.innerHTML = '';
+    let total = 0;
+
+    koszyk.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.textContent = `${item.nazwa} — ${item.cena} zł`;
+
+      // Przycisk usuwania
+      const btn = document.createElement('button');
+      btn.textContent = '✖';
+      btn.setAttribute('aria-label', 'Usuń produkt');
+      btn.onclick = () => {
+        koszyk.splice(index, 1);
+        aktualizujKoszyk();
+      };
+
+      li.appendChild(btn);
+      lista.appendChild(li);
+      total += item.cena;
+    });
+
+    suma.textContent = total;
+  }
+
+  // Toggle widoczności koszyka
+  document.getElementById('toggleKoszykBtn').addEventListener('click', () => {
+    const koszykDiv = document.getElementById('koszyk');
+    if(koszykDiv.style.display === 'block') {
+      koszykDiv.style.display = 'none';
+    } else {
+      koszykDiv.style.display = 'block';
+    }
+  });
+
+  // Przycisk "Zamawiam wszystko" w koszyku pokazuje formularz (scroll)
+  document.getElementById('zamowBtn').addEventListener('click', () => {
+    document.getElementById('formularzZamowienia').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Obsługa formularza z wysyłką do backendu
+  document.getElementById('formularzZamowienia').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    if (koszyk.length === 0) {
+      alert('Twój koszyk jest pusty!');
+      return;
+    }
+
+    const formData = new FormData(this);
+
+    const daneZamowienia = {
+      imie: formData.get('imie'),
+      email: formData.get('email'),
+      uwagi: formData.get('uwagi'),
+      blikKod: formData.get('blikKod'),
+      blikDopis: formData.get('blikDopis'),
+      produkty: koszyk,
+    };
+
+    try {
+      const res = await fetch('/api/zamowienie', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(daneZamowienia),
+      });
+
+      if (!res.ok) throw new Error('Błąd serwera');
+      const data = await res.json();
+
+      if (data.success) {
+        alert('Dziękujemy za zamówienie! Numer zamówienia: ' + data.orderId);
+        koszyk = [];
+        aktualizujKoszyk();
+        this.reset();
+      } else {
+        alert('Błąd: ' + data.message);
+      }
+    } catch (err) {
+      alert('Nie udało się złożyć zamówienia. Spróbuj ponownie.');
+    }
+  });
+
+  // Przykładowe dodanie produktu do koszyka (tylko demo)
+  // dodajDoKoszyka("Koszulka Ufaj zanim...", 129);
+</script>
+
+</body>
+</html><!-- GŁÓWNY BANER -->
 <section class="relative h-screen w-full overflow-hidden">
   <img src="https://i.ibb.co/v6gkV1MN/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg"
        alt="Baner główny"
@@ -287,62 +456,275 @@
     </script>
   </div>
 </section> 
-    <section id="zamowienie" class="py-16 bg-[#0f0f0f] text-white">
-  <div class="max-w-4xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-gold text-center mb-8">Zamówienie</h2>
+<!-- Sekcja kreatora + zamówienia + ikona i dropdown koszyka -->
+<section id="zaprojektuj" class="py-16 bg-[#0f0f0f] text-white max-w-7xl mx-auto px-6">
+  <h2 class="text-4xl font-bold text-gold text-center mb-12">Zaprojektuj swój produkt</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <!-- Formularz kreatora -->
+    <form id="formularzProjektu" class="bg-[#1a1a1a] p-6 rounded-xl shadow-xl space-y-4 text-black">
+      <label>
+        Wybierz produkt:
+        <select id="produkt" required class="w-full p-2 rounded" onchange="zmienPodglad()">
+          <option value="">-- Wybierz --</option>
+          <option value="Koszulka">Koszulka (169 zł)</option>
+          <option value="Bluza">Bluza (219 zł)</option>
+          <option value="Czapka">Czapka (99 zł)</option>
+        </select>
+      </label>
 
-    <!-- Lista produktów z koszyka -->
-    <div id="podsumowanieKoszyka" class="bg-[#1a1a1a] p-6 rounded-xl shadow-xl mb-8">
-      <h3 class="text-2xl font-semibold text-gold mb-4">Twoje produkty:</h3>
-      <ul id="listaProduktow" class="mb-4 space-y-2 text-white"></ul>
-      <p id="sumaKoszyka" class="text-xl font-bold text-gold"></p>
-    </div>
+      <label>
+        Kolor produktu:
+        <input type="color" id="kolor" value="#ffffff" onchange="zmienPodglad()">
+      </label>
 
-    <!-- Formularz zamówienia -->
-    <form id="formularzZamowienia" class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#1a1a1a] p-6 rounded-xl shadow-xl">
-      <input type="text" name="imie" placeholder="Imię i nazwisko" required class="p-2 rounded text-black">
-      <input type="email" name="email" placeholder="E-mail" required class="p-2 rounded text-black">
-      <textarea name="uwagi" placeholder="Dodatkowe uwagi" class="p-2 rounded text-black md:col-span-2"></textarea>
-      <input type="file" name="plik" class="p-2 bg-white rounded text-black md:col-span-2">
-      <button type="submit" class="bg-gold text-black px-6 py-2 rounded md:col-span-2">Zamawiam wszystko</button>
+      <label>
+        Tekst na produkcie:
+        <input type="text" id="tekst" placeholder="Napisz coś..." oninput="aktualizujTekst()">
+      </label>
+
+      <label>
+        Czcionka:
+        <select id="czcionka" onchange="aktualizujTekst()">
+          <option value="Arial, sans-serif">Arial</option>
+          <option value="'Courier New', monospace">Courier New</option>
+          <option value="'Times New Roman', serif">Times New Roman</option>
+          <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
+        </select>
+      </label>
+
+      <label>
+        Wybierz rozmiar:
+        <select id="rozmiar" required class="w-full p-2 rounded">
+          <option value="">-- Wybierz --</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </label>
+
+      <label>
+        Dodaj grafikę (png/jpg):
+        <input type="file" accept="image/*" onchange="dodajObraz(event)">
+      </label>
+
+      <button type="button" onclick="dodajProjektDoKoszyka()" class="bg-gold text-black px-6 py-2 rounded w-full font-bold hover:bg-yellow-400 transition">
+        Dodaj projekt do koszyka
+      </button>
     </form>
+
+    <!-- Podgląd produktu -->
+    <div id="podglad" class="relative rounded-xl shadow-xl flex flex-col items-center justify-center bg-white p-6" style="min-height:400px;">
+      <div id="podgladTekst" class="absolute top-6 left-6 right-6 text-center text-2xl font-bold"></div>
+      <img id="podgladObraz" src="" alt="Podgląd grafiki" class="max-h-64 mt-24 object-contain" />
+    </div>
   </div>
 </section>
 
+<!-- Sekcja zamówienia -->
+<section id="zamowienie" class="py-16 bg-[#0f0f0f] text-white max-w-4xl mx-auto px-6">
+  <h2 class="text-3xl font-bold text-gold text-center mb-8">Zamówienie</h2>
+  <div id="podsumowanieKoszyka" class="bg-[#1a1a1a] p-6 rounded-xl shadow-xl mb-8">
+    <h3 class="text-2xl font-semibold text-gold mb-4">Twoje produkty:</h3>
+    <ul id="listaProduktow" class="mb-4 space-y-2 text-white"></ul>
+    <p id="sumaKoszyka" class="text-xl font-bold text-gold"></p>
+  </div>
+
+  <form id="formularzZamowienia" class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#1a1a1a] p-6 rounded-xl shadow-xl">
+    <input type="text" name="imie" placeholder="Imię i nazwisko" required class="p-2 rounded text-black">
+    <input type="email" name="email" placeholder="E-mail" required class="p-2 rounded text-black">
+    <textarea name="uwagi" placeholder="Dodatkowe uwagi" class="p-2 rounded text-black md:col-span-2"></textarea>
+    <input type="file" name="plik" class="p-2 bg-white rounded text-black md:col-span-2">
+    <button type="submit" class="bg-gold text-black px-6 py-2 rounded md:col-span-2 hover:bg-yellow-400 transition">Zamawiam wszystko</button>
+  </form>
+</section>
+
+<!-- Ikona koszyka -->
+<div id="cart-icon" aria-label="Koszyk" tabindex="0" 
+     class="fixed top-6 right-6 bg-[#1b1613] p-4 rounded-full border-2 border-gold cursor-pointer shadow-lg z-50 flex items-center justify-center">
+  <svg viewBox="0 0 24 24" aria-hidden="true" class="w-8 h-8 fill-current text-gold">
+    <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.618-2l1.25-7h13.868l-1.4 7H4.382zm1.604-9l1-2h10v2H6.382z"/>
+  </svg>
+  <span id="cart-count" class="absolute top-0 right-0 bg-gold text-black rounded-full px-2 text-xs font-bold -translate-y-1/2 translate-x-1/2 select-none">0</span>
+</div>
+
+<!-- Dropdown koszyka -->
+<div id="cart-dropdown" role="region" aria-live="polite" aria-label="Zawartość koszyka" 
+     class="fixed top-16 right-6 w-80 bg-[#1a1a1a] text-white border-2 border-gold p-4 rounded-xl shadow-lg z-40 hidden">
+  <h3 class="text-xl font-bold text-gold mb-4 text-center">Twój koszyk</h3>
+  <ul id="cart-items" class="mb-4 max-h-48 overflow-y-auto"></ul>
+  <p id="cart-total" class="font-bold text-lg text-center mb-4"></p>
+  <button id="checkout-btn" class="bg-gold text-black w-full py-2 rounded hover:bg-yellow-400 transition font-bold">Przejdź do kasy</button>
+</div>
+
 <script>
-  // Funkcja do wyświetlania koszyka
-  function pokazKoszyk() {
+  // --- Kreator ---
+  function zmienPodglad() {
+    const produkt = document.getElementById('produkt').value;
+    const kolor = document.getElementById('kolor').value;
+    const podglad = document.getElementById('podglad');
+    podglad.style.backgroundColor = kolor || '#fff';
+    document.getElementById('podgladTekst').textContent = '';
+    document.getElementById('podgladObraz').src = '';
+  }
+
+  function aktualizujTekst() {
+    const tekst = document.getElementById('tekst').value;
+    const czcionka = document.getElementById('czcionka').value;
+    const podgladTekst = document.getElementById('podgladTekst');
+    podgladTekst.textContent = tekst;
+    podgladTekst.style.fontFamily = czcionka;
+    podgladTekst.style.color = '#000';
+  }
+
+  function dodajObraz(event) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('podgladObraz').src = e.target.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  // --- Koszyk ---
+  let koszyk = JSON.parse(localStorage.getItem('koszyk')) || [];
+
+  function zapiszKoszyk() {
+    localStorage.setItem('koszyk', JSON.stringify(koszyk));
+  }
+
+  function odswiezKoszyk() {
+    // Lista w sekcji Zamówienie
     const lista = document.getElementById('listaProduktow');
     const suma = document.getElementById('sumaKoszyka');
-    const koszyk = JSON.parse(localStorage.getItem('koszyk')) || [];
+    // Dropdown koszyka
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const cartCount = document.getElementById('cart-count');
 
     lista.innerHTML = '';
+    cartItems.innerHTML = '';
+
     let lacznaCena = 0;
 
     koszyk.forEach((item, index) => {
-      const li = document.createElement('li');
-      li.textContent = `${index + 1}. ${item.nazwa} – ${item.cena} zł`;
-      lista.appendChild(li);
+      const liZamowienie = document.createElement('li');
+      liZamowienie.textContent = `${index + 1}. ${item.nazwa} – ${item.cena} zł`;
+      lista.appendChild(liZamowienie);
+
+      const liDropdown = document.createElement('li');
+      liDropdown.className = 'flex justify-between items-center py-1 border-b border-gold';
+      liDropdown.textContent = `${item.nazwa} – ${item.cena} zł`;
+
+      const btnUsun = document.createElement('button');
+      btnUsun.textContent = 'Usuń';
+      btnUsun.className = 'bg-gold text-black px-2 py-1 rounded ml-4 hover:bg-yellow-400 transition';
+      btnUsun.onclick = () => {
+        koszyk.splice(index, 1);
+        zapiszKoszyk();
+        odswiezKoszyk();
+      };
+
+      liDropdown.appendChild(btnUsun);
+      cartItems.appendChild(liDropdown);
+
       lacznaCena += item.cena;
     });
 
     suma.textContent = `Łącznie: ${lacznaCena} zł`;
+    cartTotal.textContent = `Suma: ${lacznaCena} zł`;
+    cartCount.textContent = koszyk.length;
   }
 
-  // Pokaż koszyk od razu po załadowaniu
-  document.addEventListener('DOMContentLoaded', pokazKoszyk);
+  function dodajDoKoszyka(nazwa, cena) {
+    koszyk.push({ nazwa, cena });
+    zapiszKoszyk();
+    odswiezKoszyk();
+    zagrajDzwiek();
+    animacjaKoszyka();
+  }
 
-  // Obsługa formularza
+  function dodajProjektDoKoszyka() {
+    const produkt = document.getElementById('produkt').value;
+    if(!produkt) return alert('Wybierz produkt!');
+    const rozmiar = document.getElementById('rozmiar').value;
+    if(!rozmiar) return alert('Wybierz rozmiar!');
+    const kolor = document.getElementById('kolor').value;
+    const tekst = document.getElementById('tekst').value.trim() || '(brak napisu)';
+    const cenaMap = { 'Koszulka': 169, 'Bluza': 219, 'Czapka': 99 };
+    const cena = cenaMap[produkt] || 0;
+    const nazwa = `${produkt} - ${rozmiar} - ${tekst} - kolor: ${kolor}`;
+    dodajDoKoszyka(nazwa, cena);
+  }
+
+  // Dzwiek kliknięcia dodania
+  function zagrajDzwiek() {
+    const audio = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-classic-click-1117.mp3");
+    audio.play();
+  }
+
+  // Animacja koszyka
+  function animacjaKoszyka() {
+    const ikona = document.getElementById("cart-icon");
+    if (ikona) {
+      ikona.classList.add("animate-bounce");
+      setTimeout(() => ikona.classList.remove("animate-bounce"), 500);
+    }
+  }
+
+  // Obsługa toggle dropdown koszyka
+  const cartIcon = document.getElementById('cart-icon');
+  const cartDropdown = document.getElementById('cart-dropdown');
+
+  cartIcon.addEventListener('click', (e) => {
+    e.stopPropagation();
+    cartDropdown.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!cartDropdown.contains(e.target) && !cartIcon.contains(e.target)) {
+      cartDropdown.classList.add('hidden');
+    }
+  });
+
+  // Obsługa formularza zamówienia
   document.getElementById('formularzZamowienia').addEventListener('submit', function(e) {
     e.preventDefault();
+    if (koszyk.length === 0) {
+      alert('Twój koszyk jest pusty!');
+      return;
+    }
 
     alert("Dziękujemy za zamówienie! ❤️\nOtrzymaliśmy je i skontaktujemy się wkrótce.");
-    
-    // Wyczyść koszyk
-    localStorage.removeItem('koszyk');
-    pokazKoszyk();
+
+    // Tu możesz dodać wywołanie wysyłki maila itp.
+
+    koszyk = [];
+    zapiszKoszyk();
+    odswiezKoszyk();
     this.reset();
   });
+
+  // Inicjalizacja widoku koszyka
+  document.addEventListener('DOMContentLoaded', odswiezKoszyk);
+</script>
+
+<style>
+  .text-gold {
+    color: #d4af37;
+  }
+  .bg-gold {
+    background-color: #d4af37;
+  }
+
+  /* Prosty efekt animacji dla bounce */
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-bounce {
+    animation: bounce 0.5s;
+  }
+</style>    
 </script><!-- Sekcja Marketplace -->
 <section id="marketplace" class="py-12 bg-gray-100">
   <div class="max-w-6xl mx-auto px-4">
@@ -742,61 +1124,7 @@
     </div>
   </div>
 </section> <!-- Sekcja Zamówienia -->
-<!-- SEKCJA: Projektuj -->
-<section id="projektuj" class="py-12 bg-gradient-to-br from-gray-50 to-white">
-  <div class="max-w-4xl mx-auto px-4">
-    <h2 class="text-4xl font-bold mb-6 text-center">Zaprojektuj własny produkt</h2>
 
-    <div class="grid md:grid-cols-2 gap-8 items-start">
-      <!-- Formularz -->
-      <div class="space-y-4">
-        <label class="block">
-          <span class="text-gray-700">Wybierz produkt:</span>
-          <select id="produkt" onchange="zmienPodglad()" class="w-full mt-1 border-gray-300 rounded-md shadow-sm">
-            <option value="koszulka">Koszulka – 99 zł</option>
-            <option value="bluza">Bluza – 150 zł</option>
-            <option value="czapka">Czapeczka – 79 zł</option>
-          </select>
-        </label>
-
-        <label class="block">
-          <span class="text-gray-700">Wybierz kolor:</span>
-          <input type="color" id="kolor" onchange="zmienPodglad()" class="mt-1 w-16 h-10 p-0 border rounded">
-        </label>
-
-        <label class="block">
-          <span class="text-gray-700">Dodaj tekst:</span>
-          <input type="text" id="tekst" oninput="aktualizujTekst()" placeholder="Twój tekst" class="w-full mt-1 border-gray-300 rounded-md shadow-sm">
-        </label>
-
-        <label class="block">
-          <span class="text-gray-700">Wybierz czcionkę:</span>
-          <select id="czcionka" onchange="aktualizujTekst()" class="w-full mt-1 border-gray-300 rounded-md shadow-sm">
-            <option value="Arial">Arial</option>
-            <option value="Courier New">Courier New</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Times New Roman">Times New Roman</option>
-          </select>
-        </label>
-
-        <label class="block">
-          <span class="text-gray-700">Dodaj grafikę:</span>
-          <input type="file" accept="image/*" onchange="dodajObraz(event)" class="mt-1">
-        </label>
-
-        <button onclick="dodajProjektDoKoszyka()" class="mt-4 px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">
-          Dodaj zaprojektowany produkt do koszyka
-        </button>
-      </div>
-
-      <!-- Podgląd -->
-      <div id="podglad" class="w-full h-96 bg-gray-100 rounded-lg relative flex items-center justify-center overflow-hidden">
-        <img id="podgladObraz" class="max-h-full max-w-full absolute" />
-        <span id="podgladTekst" class="text-xl font-bold z-10"></span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- KOSZYK -->
 <div id="koszyk" class="fixed bottom-6 right-6 bg-white shadow-2xl border border-gray-300 rounded-2xl p-6 w-96 z-50 hidden">
