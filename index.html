@@ -892,54 +892,7 @@
     </div>
   </div>
 </section> <!-- Sekcja Zamówienia -->
-<section id="zamowienia" class="py-16 bg-gradient-to-br from-[#fdf6e3] to-[#fae8c8] text-[#3e2f1c] font-serif">
-  <div class="max-w-4xl mx-auto px-6">
-    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-10 tracking-wide text-[#3e2f1c]">Zamówienia</h2>
-    
-    <div class="bg-white/90 backdrop-blur-lg border-4 border-[#d6b370] rounded-3xl shadow-2xl p-10 ring-4 ring-[#f3e5ab]">
-      <form id="formularzZamowienia" class="space-y-6">
-        <div>
-          <label class="block text-sm font-semibold">Imię i nazwisko</label>
-          <input name="imie" type="text" required class="w-full mt-2 p-3 border-2 border-[#d6b370] rounded-xl bg-[#fffaf0]" placeholder="Jan Kowalski" />
-        </div>
-        <div>
-          <label class="block text-sm font-semibold">Adres e-mail</label>
-          <input name="email" type="email" required class="w-full mt-2 p-3 border-2 border-[#d6b370] rounded-xl bg-[#fffaf0]" placeholder="jan@example.com" />
-        </div>
-        <div>
-          <label class="block text-sm font-semibold">Telefon</label>
-          <input name="telefon" type="tel" required class="w-full mt-2 p-3 border-2 border-[#d6b370] rounded-xl bg-[#fffaf0]" placeholder="604 296 650" />
-        </div>
-        <div>
-          <label class="block text-sm font-semibold">Adres dostawy</label>
-          <input name="adres" type="text" required class="w-full mt-2 p-3 border-2 border-[#d6b370] rounded-xl bg-[#fffaf0]" placeholder="ul. Przykładowa 1, 00-000 Miasto" />
-        </div>
-        <div>
-          <label class="block text-sm font-semibold">Uwagi do zamówienia</label>
-          <textarea name="uwagi" class="w-full mt-2 p-3 border-2 border-[#d6b370] rounded-xl bg-[#fffaf0]" rows="4" placeholder="Np. projekt własny: biały nadruk, L..."></textarea>
-        </div>
-
-        <div class="bg-[#fff6da] border border-yellow-400 p-5 rounded-xl shadow-inner">
-          <h3 class="font-bold text-lg mb-2">💎 Płatność BLIK</h3>
-          <p class="text-sm text-gray-800">
-            Wyślij płatność na numer:<br/>
-            <span class="text-2xl font-extrabold text-green-700">573-939-925</span><br/>
-            z dopiskiem: <em>"projekt własny", "koszyk", "marketplace"</em><br/>
-            Po opłaceniu otrzymasz potwierdzenie na e-mail lub SMS.
-          </p>
-        </div>
-
-        <div class="text-center pt-4">
-          <button type="submit" class="bg-[#3e2f1c] text-[#f3e5ab] px-8 py-3 rounded-full hover:bg-[#2c2013] transition duration-300 shadow-lg text-lg font-semibold">
-            ✨ Zamawiam wszystko!
-          </button>
-        </div>
-      </form>
-    </div>
-
-    <p id="potwierdzenie" class="mt-6 text-center text-green-700 hidden">✅ Zamówienie wysłane! Sprawdź e-mail / SMS.</p>
-  </div>
-</section>  
+  
 <!-- Koszyk + Obsługa formularza -->
 <script>
   let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
