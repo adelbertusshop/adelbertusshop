@@ -281,28 +281,97 @@
   </script>
 </body>
 </html>
-<section id="sklep" class="py-8 px-4 text-center">
-  <h2 class="text-3xl font-bold mb-8 text-gold">Sklep Świątynia Stylu</h2>
+<!-- SEKCJA SKLEPU -->
+<section id="sklep" class="py-16 bg-[#0f0f0f] text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-12 text-gold">Sklep Adelbertus</h2>
 
-  <!-- Kategorie -->
-  <div class="flex justify-center gap-6 mb-8">
-    <button onclick="pokazKategorie('mezczyzni')" class="bg-gold text-black px-6 py-2 rounded-full font-semibold shadow-lg">Mężczyźni</button>
-    <button onclick="pokazKategorie('kobiety')" class="bg-gold text-black px-6 py-2 rounded-full font-semibold shadow-lg">Kobiety</button>
-    <button onclick="pokazKategorie('projektuj')" class="bg-gold text-black px-6 py-2 rounded-full font-semibold shadow-lg">Projektuj</button>
-    <button onclick="pokazKategorie('historia')" class="bg-gold text-black px-6 py-2 rounded-full font-semibold shadow-lg">Historia</button>
-  </div>
-
-  <!-- Mężczyźni -->
-  <div id="mezczyzni" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-    <div class="border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
-      <img src="https://i.ibb.co/2731mTFY/Resizer-17510539315581.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-4 rounded">
-      <h3 class="text-xl font-semibold text-gold mb-2">Koszulka „Wojownik Cienia”</h3>
-      <p class="text-lg mb-4">100 zł</p>
-      <button onclick="dodajDoKoszyka('Koszulka Wojownik Cienia', 100)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+    <!-- Mężczyźni -->
+    <h3 class="text-2xl font-bold mb-6 text-gold">Mężczyźni</h3>
+    <div id="mezczyzni" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-12">
+      <!-- Koszulka -->
+      <div class="produkt border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
+        <img src="https://i.ibb.co/2731mTFY/Resizer-17510539315581.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-4 rounded">
+        <h3 class="text-xl font-semibold text-gold mb-2">Koszulka „Wojownik Cienia”</h3>
+        <p class="text-lg mb-4">100 zł</p>
+        <button onclick="dodajDoKoszyka('Koszulka Wojownik Cienia', 100)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+      </div>
+      <!-- Bluza -->
+      <div class="produkt border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
+        <img src="https://i.ibb.co/FmM4zrq/bluza.jpg" alt="Bluza" class="w-full h-64 object-cover mb-4 rounded">
+        <h3 class="text-xl font-semibold text-gold mb-2">Bluza „Mroczny Duch”</h3>
+        <p class="text-lg mb-4">199 zł</p>
+        <button onclick="dodajDoKoszyka('Bluza Mroczny Duch', 199)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+      </div>
+      <!-- Czapka -->
+      <div class="produkt border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
+        <img src="https://i.ibb.co/MZrGbrf/czapka.jpg" alt="Czapka" class="w-full h-64 object-cover mb-4 rounded">
+        <h3 class="text-xl font-semibold text-gold mb-2">Czapka „Symboliczna”</h3>
+        <p class="text-lg mb-4">79 zł</p>
+        <button onclick="dodajDoKoszyka('Czapka Symboliczna', 79)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+      </div>
     </div>
+
+    <!-- Kobiety -->
+    <h3 class="text-2xl font-bold mb-6 text-gold">Kobiety</h3>
+    <div id="kobiety" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-12">
+      <!-- Koszulka -->
+      <div class="produkt border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
+        <img src="https://i.ibb.co/GWnJjVR/koszulka-kobieta.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-4 rounded">
+        <h3 class="text-xl font-semibold text-gold mb-2">Koszulka „Dusza Wilczycy”</h3>
+        <p class="text-lg mb-4">100 zł</p>
+        <button onclick="dodajDoKoszyka('Koszulka Dusza Wilczycy', 100)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+      </div>
+      <!-- Bluza -->
+      <div class="produkt border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
+        <img src="https://i.ibb.co/h9Q4fcp/bluza-kobieta.jpg" alt="Bluza" class="w-full h-64 object-cover mb-4 rounded">
+        <h3 class="text-xl font-semibold text-gold mb-2">Bluza „Nieujarzmiona”</h3>
+        <p class="text-lg mb-4">199 zł</p>
+        <button onclick="dodajDoKoszyka('Bluza Nieujarzmiona', 199)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+      </div>
+      <!-- Czapka -->
+      <div class="produkt border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
+        <img src="https://i.ibb.co/sbs0XQn/czapka-kobieta.jpg" alt="Czapka" class="w-full h-64 object-cover mb-4 rounded">
+        <h3 class="text-xl font-semibold text-gold mb-2">Czapka „Oko Nocy”</h3>
+        <p class="text-lg mb-4">79 zł</p>
+        <button onclick="dodajDoKoszyka('Czapka Oko Nocy', 79)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+      </div>
+    </div>
+<!-- Zaprojektuj -->
+<h3 class="text-2xl font-bold mb-6 text-gold">Zaprojektuj</h3>
+<div id="zaprojektuj" class="bg-[#1a1a1a] p-6 rounded-xl shadow-xl mb-12">
+  <p class="mb-4">Zaprojektuj własną koszulkę, bluzę lub czapkę. Wybierz kolor, rozmiar, dodaj grafikę i tekst. Projekt zobaczysz na podglądzie, a gotowy produkt trafi do Twojego koszyka!</p>
+  
+  <form id="kreatorForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-black">
+    <select id="produkt" class="p-2 rounded" onchange="zmienPodglad()">
+      <option value="Koszulka">Koszulka – 129 zł</option>
+      <option value="Bluza">Bluza – 179 zł</option>
+      <option value="Czapka">Czapka – 89 zł</option>
+    </select>
+
+    <input type="text" id="rozmiar" placeholder="Rozmiar (S, M, L, XL)" class="p-2 rounded">
+    <input type="color" id="kolor" class="p-2 rounded">
+    <input type="text" id="tekst" placeholder="Twój tekst" class="p-2 rounded" oninput="aktualizujTekst()">
+    
+    <select id="czcionka" class="p-2 rounded" onchange="aktualizujTekst()">
+      <option value="Arial">Arial</option>
+      <option value="Courier New">Courier New</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Impact">Impact</option>
+      <option value="Verdana">Verdana</option>
+    </select>
+
+    <input type="file" id="grafika" class="p-2 bg-white rounded" onchange="dodajObraz(event)">
+    <button type="button" onclick="dodajProjektDoKoszyka()" class="bg-gold text-black px-6 py-2 rounded md:col-span-2">Dodaj projekt do koszyka</button>
+  </form>
+
+  <!-- Podgląd -->
+  <div class="mt-6 p-6 bg-white rounded-xl text-center relative" id="podglad" style="height: 300px;">
+    <div id="podgladTekst" class="absolute top-4 left-4 text-xl font-bold"></div>
+    <img id="podgladObraz" class="absolute top-0 left-0 right-0 bottom-0 mx-auto my-auto max-h-full" />
   </div>
-<!-- Kobiety -->
-  <section id="zbiorka" class="py-16 bg-[#fdf6f0] text-gray-800 font-serif">
+</div>    
+   <section id="zbiorka" class="py-16 bg-[#fdf6f0] text-gray-800 font-serif">
   <div class="max-w-4xl mx-auto px-6 bg-white shadow-2xl rounded-3xl border-l-8 border-[#d97706] relative overflow-hidden">
     <h2 class="text-4xl font-bold text-center mb-4 text-[#b45309] animate-pulse">Zbiórka: Dla Domu Dziecka</h2>
     <p class="text-lg text-center mb-6 max-w-xl mx-auto leading-relaxed tracking-wide">
@@ -420,79 +489,64 @@
       });
     </script>
   </div>
-</section> <!-- Projektuj -->
-<div id="projektuj" class="kategoria hidden">
-  <div class="bg-[#1a1410] border-[6px] border-gold rounded-3xl shadow-2xl p-10 max-w-4xl mx-auto animate-fade-in">
-    <h3 class="text-3xl text-gold font-bold mb-6 text-center tracking-widest">🎨 Zaprojektuj Swój Własny Styl</h3>
+</section> 
+    <section id="zamowienie" class="py-16 bg-[#0f0f0f] text-white">
+  <div class="max-w-4xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-gold text-center mb-8">Zamówienie</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Formularz -->
-      <div>
-        <label class="block text-white font-semibold mb-2">🧢 Wybierz typ produktu:</label>
-        <select id="typProduktu" class="w-full p-3 rounded-xl bg-[#2b221c] text-white border border-gold mb-6">
-          <option value="Koszulka">Koszulka</option>
-          <option value="Bluza">Bluza</option>
-          <option value="Czapeczka">Czapeczka</option>
-        </select>
-
-        <label class="block text-white font-semibold mb-2">✍️ Dodaj swój tekst:</label>
-        <input type="text" id="tekstProjektu" placeholder="Wpisz hasło lub cytat..." class="w-full p-3 rounded-xl bg-[#2b221c] text-white border border-gold mb-6" oninput="aktualizujPodgladTekstu()" />
-
-        <label class="block text-white font-semibold mb-2">🖼️ Dodaj grafikę:</label>
-        <input type="file" id="plikGraficzny" class="w-full p-2 mb-6 rounded-xl bg-[#2b221c] text-white border border-gold file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-gold file:text-black file:font-bold" />
-
-        <label class="block text-white font-semibold mb-2">🎨 Wybierz kolor produktu:</label>
-        <select id="kolorProduktu" class="w-full p-3 rounded-xl bg-[#2b221c] text-white border border-gold mb-6" onchange="zmienKolorPodgladu()">
-          <option value="#2b221c">Czarny</option>
-          <option value="#ffffff">Biały</option>
-          <option value="#f4f4f4">Szary</option>
-        </select>
-      </div>
-
-      <!-- Podgląd produktu -->
-      <div class="flex flex-col items-center justify-center text-center">
-        <div id="podgladProdukt" class="w-48 h-48 border-2 border-gold rounded-2xl flex items-center justify-center relative mb-4" style="background-color:#2b221c">
-          <span id="tekstNaProdukcie" class="absolute text-gold text-sm font-bold px-2 text-center">Twój tekst</span>
-        </div>
-        <p class="text-sm text-gray-400">* Podgląd poglądowy – finalny nadruk po akceptacji</p>
-      </div>
+    <!-- Lista produktów z koszyka -->
+    <div id="podsumowanieKoszyka" class="bg-[#1a1a1a] p-6 rounded-xl shadow-xl mb-8">
+      <h3 class="text-2xl font-semibold text-gold mb-4">Twoje produkty:</h3>
+      <ul id="listaProduktow" class="mb-4 space-y-2 text-white"></ul>
+      <p id="sumaKoszyka" class="text-xl font-bold text-gold"></p>
     </div>
 
-    <div class="text-center mt-10">
-      <button onclick="dodajProjekt()" class="bg-gold hover:bg-yellow-400 text-black px-8 py-4 rounded-full font-bold tracking-wide text-lg shadow-xl transition duration-300">➕ Dodaj do koszyka (199 zł)</button>
-    </div>
+    <!-- Formularz zamówienia -->
+    <form id="formularzZamowienia" class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#1a1a1a] p-6 rounded-xl shadow-xl">
+      <input type="text" name="imie" placeholder="Imię i nazwisko" required class="p-2 rounded text-black">
+      <input type="email" name="email" placeholder="E-mail" required class="p-2 rounded text-black">
+      <textarea name="uwagi" placeholder="Dodatkowe uwagi" class="p-2 rounded text-black md:col-span-2"></textarea>
+      <input type="file" name="plik" class="p-2 bg-white rounded text-black md:col-span-2">
+      <button type="submit" class="bg-gold text-black px-6 py-2 rounded md:col-span-2">Zamawiam wszystko</button>
+    </form>
   </div>
-</div>
+</section>
 
 <script>
-  function aktualizujPodgladTekstu() {
-    const tekst = document.getElementById("tekstProjektu").value;
-    document.getElementById("tekstNaProdukcie").textContent = tekst || "Twój tekst";
+  // Funkcja do wyświetlania koszyka
+  function pokazKoszyk() {
+    const lista = document.getElementById('listaProduktow');
+    const suma = document.getElementById('sumaKoszyka');
+    const koszyk = JSON.parse(localStorage.getItem('koszyk')) || [];
+
+    lista.innerHTML = '';
+    let lacznaCena = 0;
+
+    koszyk.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.textContent = `${index + 1}. ${item.nazwa} – ${item.cena} zł`;
+      lista.appendChild(li);
+      lacznaCena += item.cena;
+    });
+
+    suma.textContent = `Łącznie: ${lacznaCena} zł`;
   }
 
-  function zmienKolorPodgladu() {
-    const kolor = document.getElementById("kolorProduktu").value;
-    document.getElementById("podgladProdukt").style.backgroundColor = kolor;
-  }
+  // Pokaż koszyk od razu po załadowaniu
+  document.addEventListener('DOMContentLoaded', pokazKoszyk);
 
-  function dodajProjekt() {
-    const produkt = document.getElementById("typProduktu").value;
-    const tekst = document.getElementById("tekstProjektu").value;
-    const kolor = document.getElementById("kolorProduktu").value;
-    const plik = document.getElementById("plikGraficzny").files[0];
+  // Obsługa formularza
+  document.getElementById('formularzZamowienia').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-    const projekt = {
-      produkt,
-      tekst,
-      kolor,
-      grafika: plik ? plik.name : null
-    };
-
-    console.log("Dodano projekt:", projekt);
-    alert("Twój projekt został dodany do koszyka!");
-  }
-</script>
-<!-- Sekcja Marketplace -->
+    alert("Dziękujemy za zamówienie! ❤️\nOtrzymaliśmy je i skontaktujemy się wkrótce.");
+    
+    // Wyczyść koszyk
+    localStorage.removeItem('koszyk');
+    pokazKoszyk();
+    this.reset();
+  });
+</script><!-- Sekcja Marketplace -->
 <section id="marketplace" class="py-12 bg-gray-100">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-6 text-center">Marketplace</h2>
@@ -892,8 +946,41 @@
     </div>
   </div>
 </section> <!-- Sekcja Zamówienia -->
-  
-<!-- Koszyk + Obsługa formularza -->
+  <script>
+function zmienPodglad() {
+  const produkt = document.getElementById('produkt').value;
+  const kolor = document.getElementById('kolor').value;
+  const podglad = document.getElementById('podglad');
+  podglad.style.backgroundColor = kolor;
+  document.getElementById('podgladTekst').textContent = '';
+  document.getElementById('podgladObraz').src = '';
+}
+
+function aktualizujTekst() {
+  const tekst = document.getElementById('tekst').value;
+  const czcionka = document.getElementById('czcionka').value;
+  const kolor = document.getElementById('kolor').value;
+  const podgladTekst = document.getElementById('podgladTekst');
+  podgladTekst.textContent = tekst;
+  podgladTekst.style.fontFamily = czcionka;
+  podgladTekst.style.color = '#000';
+}
+
+function dodajObraz(event) {
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('podgladObraz').src = e.target.result;
+  }
+  reader.readAsDataURL(event.target.files[0]);
+}
+
+function dodajProjektDoKoszyka() {
+  const produkt = document.getElementById('produkt').value;
+  const cena = produkt === 'Koszulka' ? 129 : produkt === 'Bluza' ? 179 : 89;
+  const nazwa = produkt + ' (Projekt własny)';
+  dodajDoKoszyka(nazwa, cena);
+}
+</script><!-- Koszyk + Obsługa formularza -->
 <script>
   let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
 
