@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AdelbertusShop - Koszyk i Zamówienie</title>
+  <title>AdelbertusShop - Zamówienie</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,44 +11,7 @@
       color: #fff;
       margin: 0; padding: 0;
     }
-    #koszyk {
-      position: fixed;
-      bottom: 6rem;
-      right: 1rem;
-      width: 360px;
-      max-height: 400px;
-      overflow-y: auto;
-      background: #222;
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: 0 0 12px #d4af37cc;
-      display: none;
-      z-index: 9999;
-    }
-    #koszyk h3 {
-      margin-top: 0;
-      color: #d4af37;
-    }
-    #listaKoszyka li {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-      border-bottom: 1px solid #444;
-      padding-bottom: 0.25rem;
-    }
-    #listaKoszyka li button {
-      background: transparent;
-      border: none;
-      color: #f44336;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-    #sumaKoszyka {
-      font-weight: bold;
-      margin-top: 1rem;
-      color: #d4af37;
-    }
+
     #toggleKoszykBtn {
       position: fixed;
       bottom: 1.5rem;
@@ -64,6 +27,7 @@
       color: #121212;
       z-index: 9999;
     }
+
     form {
       max-width: 480px;
       margin: 2rem auto;
@@ -72,6 +36,7 @@
       border-radius: 12px;
       box-shadow: 0 0 12px #d4af37cc;
     }
+
     form input, form textarea {
       width: 100%;
       padding: 0.5rem;
@@ -80,6 +45,7 @@
       border: none;
       font-size: 1rem;
     }
+
     form button {
       background: #d4af37;
       border: none;
@@ -91,9 +57,11 @@
       color: #121212;
       transition: background 0.3s;
     }
+
     form button:hover {
       background: #f5d76e;
     }
+
     input[readonly] {
       background: #444;
       color: #ccc;
@@ -102,16 +70,8 @@
 </head>
 <body>
 
-<!-- Koszyk -->
-<div id="koszyk" aria-label="Twój koszyk">
-  <h3>Twój koszyk</h3>
-  <ul id="listaKoszyka"></ul>
-  <p>Łącznie: <span id="sumaKoszyka">0</span> zł</p>
-  <button id="zamowBtn">Zamawiam wszystko</button>
-</div>
-
-<!-- Przycisk toggle koszyka -->
-<button id="toggleKoszykBtn" aria-label="Pokaż/ukryj koszyk">🛒</button>
+<!-- Ikona koszyka -->
+<button id="toggleKoszykBtn" aria-label="Koszyk">🛒</button>
 
 <!-- Formularz zamówienia -->
 <form id="formularzZamowienia" aria-label="Formularz zamówienia">
@@ -119,73 +79,18 @@
   <input type="text" name="imie" placeholder="Imię i nazwisko" required />
   <input type="email" name="email" placeholder="E-mail" required />
   <textarea name="uwagi" placeholder="Dodatkowe uwagi"></textarea>
-  
+
   <!-- Ukryte pola BLIK -->
   <input type="text" name="blikKod" id="blikKod" value="573-939-925" readonly />
   <input type="text" name="blikDopis" id="blikDopis" value="projekt własny" readonly />
-  
+
   <button type="submit">Wyślij zamówienie</button>
 </form>
 
 <script>
-  let koszyk = [];
-
-  // Dodaj do koszyka (przykład dodania, dostosuj wg potrzeb)
-  function dodajDoKoszyka(nazwa, cena) {
-    koszyk.push({ nazwa, cena });
-    aktualizujKoszyk();
-  }
-
-  function aktualizujKoszyk() {
-    const lista = document.getElementById('listaKoszyka');
-    const suma = document.getElementById('sumaKoszyka');
-    lista.innerHTML = '';
-    let total = 0;
-
-    koszyk.forEach((item, index) => {
-      const li = document.createElement('li');
-      li.textContent = `${item.nazwa} — ${item.cena} zł`;
-
-      // Przycisk usuwania
-      const btn = document.createElement('button');
-      btn.textContent = '✖';
-      btn.setAttribute('aria-label', 'Usuń produkt');
-      btn.onclick = () => {
-        koszyk.splice(index, 1);
-        aktualizujKoszyk();
-      };
-
-      li.appendChild(btn);
-      lista.appendChild(li);
-      total += item.cena;
-    });
-
-    suma.textContent = total;
-  }
-
-  // Toggle widoczności koszyka
-  document.getElementById('toggleKoszykBtn').addEventListener('click', () => {
-    const koszykDiv = document.getElementById('koszyk');
-    if(koszykDiv.style.display === 'block') {
-      koszykDiv.style.display = 'none';
-    } else {
-      koszykDiv.style.display = 'block';
-    }
-  });
-
-  // Przycisk "Zamawiam wszystko" w koszyku pokazuje formularz (scroll)
-  document.getElementById('zamowBtn').addEventListener('click', () => {
-    document.getElementById('formularzZamowienia').scrollIntoView({ behavior: 'smooth' });
-  });
-
-  // Obsługa formularza z wysyłką do backendu
+  // Obsługa formularza zamówienia
   document.getElementById('formularzZamowienia').addEventListener('submit', async function(e) {
     e.preventDefault();
-
-    if (koszyk.length === 0) {
-      alert('Twój koszyk jest pusty!');
-      return;
-    }
 
     const formData = new FormData(this);
 
@@ -195,7 +100,7 @@
       uwagi: formData.get('uwagi'),
       blikKod: formData.get('blikKod'),
       blikDopis: formData.get('blikDopis'),
-      produkty: koszyk,
+      produkty: [] // brak koszyka – pusta lista
     };
 
     try {
@@ -210,8 +115,6 @@
 
       if (data.success) {
         alert('Dziękujemy za zamówienie! Numer zamówienia: ' + data.orderId);
-        koszyk = [];
-        aktualizujKoszyk();
         this.reset();
       } else {
         alert('Błąd: ' + data.message);
@@ -220,13 +123,11 @@
       alert('Nie udało się złożyć zamówienia. Spróbuj ponownie.');
     }
   });
-
-  // Przykładowe dodanie produktu do koszyka (tylko demo)
-  // dodajDoKoszyka("Koszulka Ufaj zanim...", 129);
 </script>
 
 </body>
-</html><!-- GŁÓWNY BANER -->
+</html>
+<!-- GŁÓWNY BANER -->
 <section class="relative h-screen w-full overflow-hidden">
   <img src="https://i.ibb.co/v6gkV1MN/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg"
        alt="Baner główny"
