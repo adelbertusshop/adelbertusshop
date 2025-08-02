@@ -149,484 +149,104 @@
 
 </body>
 </html>
-<!-- SEKCJA SKLEPU -->
-<section id="sklep" class="py-16 bg-[#0f0f0f] text-white">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-4xl font-bold text-center mb-12 text-gold">Sklep Adelbertus</h2>
+<!-- 🛒 SKLEP START -->
+<section id="sklep" class="py-12 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12">Sklep</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-    <!-- Mężczyźni -->
-    <h3 class="text-2xl font-bold mb-6 text-gold">Mężczyźni</h3>
-    <div id="mezczyzni" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-12">
-      <!-- Koszulka -->
-      <div class="produkt border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
-        <img src="https://i.ibb.co/Q3MXp909/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Ufaj zanim..." class="w-full h-64 object-cover mb-4 rounded">        <h3 class="text-xl font-semibold text-gold mb-2">Koszulka „Wojownik Cienia”</h3>
-        <p class="text-lg mb-4">100 zł</p>
-        <button onclick="dodajDoKoszyka('Koszulka Wojownik Cienia', 100)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
+      <!-- Przykładowy produkt -->
+      <div class="bg-gray-100 p-6 rounded-xl shadow-md text-center">
+        <img src="link-do-obrazka.jpg" alt="Koszulka" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
+        <h3 class="text-xl font-semibold mb-2">Koszulka „Wybrany”</h3>
+        <p class="text-gray-700 mb-2">99 zł</p>
+        <button onclick="dodajDoKoszyka('Koszulka Wybrany', 99)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
       </div>
-      <!-- Bluza -->
-      <div class="produkt border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
-        <img src="https://i.ibb.co/FmM4zrq/bluza.jpg" alt="Bluza" class="w-full h-64 object-cover mb-4 rounded">
-        <h3 class="text-xl font-semibold text-gold mb-2">Bluza „Mroczny Duch”</h3>
-        <p class="text-lg mb-4">199 zł</p>
-        <button onclick="dodajDoKoszyka('Bluza Mroczny Duch', 199)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
-      </div>
-      <!-- Czapka -->
-      <div class="produkt border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
-        <img src="https://i.ibb.co/MZrGbrf/czapka.jpg" alt="Czapka" class="w-full h-64 object-cover mb-4 rounded">
-        <h3 class="text-xl font-semibold text-gold mb-2">Czapka „Symboliczna”</h3>
-        <p class="text-lg mb-4">79 zł</p>
-        <button onclick="dodajDoKoszyka('Czapka Symboliczna', 79)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
-      </div>
+
+      <!-- Dodaj więcej produktów tu według potrzeb -->
+
     </div>
-
-    <!-- Kobiety -->
-    <h3 class="text-2xl font-bold mb-6 text-gold">Kobiety</h3>
-    <div id="kobiety" class="kategoria grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-12">
-      <!-- Koszulka -->
-      <div class="produkt border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
-        <img src="https://i.ibb.co/GWnJjVR/koszulka-kobieta.jpg" alt="Koszulka" class="w-full h-64 object-cover mb-4 rounded">
-        <h3 class="text-xl font-semibold text-gold mb-2">Koszulka „Dusza Wilczycy”</h3>
-        <p class="text-lg mb-4">100 zł</p>
-        <button onclick="dodajDoKoszyka('Koszulka Dusza Wilczycy', 100)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
-      </div>
-      <!-- Bluza -->
-      <div class="produkt border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
-        <img src="https://i.ibb.co/h9Q4fcp/bluza-kobieta.jpg" alt="Bluza" class="w-full h-64 object-cover mb-4 rounded">
-        <h3 class="text-xl font-semibold text-gold mb-2">Bluza „Nieujarzmiona”</h3>
-        <p class="text-lg mb-4">199 zł</p>
-        <button onclick="dodajDoKoszyka('Bluza Nieujarzmiona', 199)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
-      </div>
-      <!-- Czapka -->
-      <div class="produkt border-4 border-gold p-4 rounded-xl shadow-xl bg-[#1a1410]">
-        <img src="https://i.ibb.co/sbs0XQn/czapka-kobieta.jpg" alt="Czapka" class="w-full h-64 object-cover mb-4 rounded">
-        <h3 class="text-xl font-semibold text-gold mb-2">Czapka „Oko Nocy”</h3>
-        <p class="text-lg mb-4">79 zł</p>
-        <button onclick="dodajDoKoszyka('Czapka Oko Nocy', 79)" class="bg-gold text-black px-4 py-2 rounded">Dodaj do koszyka</button>
-      </div>
-    </div>
-<!-- Zaprojektuj -->
-<h3 class="text-2xl font-bold mb-6 text-gold">Zaprojektuj</h3>
-<div id="zaprojektuj" class="bg-[#1a1a1a] p-6 rounded-xl shadow-xl mb-12">
-  <p class="mb-4">Zaprojektuj własną koszulkę, bluzę lub czapkę. Wybierz kolor, rozmiar, dodaj grafikę i tekst. Projekt zobaczysz na podglądzie, a gotowy produkt trafi do Twojego koszyka!</p>
-  
-  <form id="kreatorForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-black">
-    <select id="produkt" class="p-2 rounded" onchange="zmienPodglad()">
-      <option value="Koszulka">Koszulka – 129 zł</option>
-      <option value="Bluza">Bluza – 179 zł</option>
-      <option value="Czapka">Czapka – 89 zł</option>
-    </select>
-
-    <input type="text" id="rozmiar" placeholder="Rozmiar (S, M, L, XL)" class="p-2 rounded">
-    <input type="color" id="kolor" class="p-2 rounded">
-    <input type="text" id="tekst" placeholder="Twój tekst" class="p-2 rounded" oninput="aktualizujTekst()">
-    
-    <select id="czcionka" class="p-2 rounded" onchange="aktualizujTekst()">
-      <option value="Arial">Arial</option>
-      <option value="Courier New">Courier New</option>
-      <option value="Georgia">Georgia</option>
-      <option value="Impact">Impact</option>
-      <option value="Verdana">Verdana</option>
-    </select>
-
-    <input type="file" id="grafika" class="p-2 bg-white rounded" onchange="dodajObraz(event)">
-    <button type="button" onclick="dodajProjektDoKoszyka()" class="bg-gold text-black px-6 py-2 rounded md:col-span-2">Dodaj projekt do koszyka</button>
-  </form>
-
-  <!-- Podgląd -->
-  <div class="mt-6 p-6 bg-white rounded-xl text-center relative" id="podglad" style="height: 300px;">
-    <div id="podgladTekst" class="absolute top-4 left-4 text-xl font-bold"></div>
-    <img id="podgladObraz" class="absolute top-0 left-0 right-0 bottom-0 mx-auto my-auto max-h-full" />
   </div>
-</div>    
-   <section id="zbiorka" class="py-16 bg-[#fdf6f0] text-gray-800 font-serif">
-  <div class="max-w-4xl mx-auto px-6 bg-white shadow-2xl rounded-3xl border-l-8 border-[#d97706] relative overflow-hidden">
-    <h2 class="text-4xl font-bold text-center mb-4 text-[#b45309] animate-pulse">Zbiórka: Dla Domu Dziecka</h2>
-    <p class="text-lg text-center mb-6 max-w-xl mx-auto leading-relaxed tracking-wide">
-      Sam wiem, jak to jest dorastać w Domu Dziecka. Dlatego dziś chcę coś oddać – razem z Tobą. Wspieramy dzieciaki, które jeszcze nie mają tyle szczęścia co my. Możesz pomóc finansowo, materialnie, albo po prostu sercem. Każda pomoc to iskra nadziei.
-    </p>
+</section>
+<!-- 🛒 SKLEP END -->
 
-    <div class="bg-[#fffbf5] p-6 rounded-xl border border-yellow-300 mb-6 shadow-lg hover:shadow-yellow-400 transition-shadow duration-500">
-      <h3 class="text-xl font-semibold text-center text-[#a16207] mb-2 underline decoration-yellow-400 decoration-4">Jak możesz pomóc?</h3>
-      <ul class="list-disc list-inside text-base space-y-2 text-gray-700">
-        <li>📲 <strong>Wyślij przelew BLIK</strong> na numer: <strong class="text-lg text-green-700">573-939-925</strong> z dopiskiem <em>„pomagam”</em></li>
-        <li>🎁 <strong>Przekaż dary rzeczowe</strong>, paczki lub potrzebne przedmioty (np. zabawki, ubrania, środki czystości, książki)</li>
-        <li>🧸 <strong>Zrób prezent konkretnemu dziecku</strong> – po kontakcie dostaniesz imię i listę potrzeb</li>
-        <li>📦 <strong>Zostań Stałym Darczyńcą</strong> – regularna pomoc raz w miesiącu to ogromne wsparcie</li>
-        <li>📞 <strong>Skontaktuj się z nami:</strong> <a href="tel:604296360" class="underline text-yellow-600 hover:text-yellow-700">604-296-360</a> lub <a href="mailto:mielniczukgrzegosz74@gmail.com" class="underline text-yellow-600 hover:text-yellow-700">mielniczukgrzegosz74@gmail.com</a></li>
-      </ul>
-      <p class="mt-4 text-center italic text-sm text-gray-500">Po kontakcie przekażemy Ci adres Domu Dziecka, do którego możesz wysłać pomoc bezpośrednio.</p>
-    </div>
-
-    <div class="bg-yellow-50 p-6 rounded-xl shadow-inner mb-6 ring-2 ring-yellow-400 animate-pulse">
-      <h3 class="text-xl font-bold text-center text-yellow-800 mb-4">❤️ Kto już pomaga:</h3>
-      <ul class="space-y-3 text-gray-700 text-sm md:text-base">
-        <li>🌟 <strong>Kasia (Wrocław):</strong> Przesłała 4 paczki z ubraniami i książkami 📦</li>
-        <li>🌟 <strong>Marek (Rzeszów):</strong> Co miesiąc wspiera nas BLIKiem – 50 zł 💸</li>
-        <li>🌟 <strong>Ania & Tomek (Gdynia):</strong> Zorganizowali zbiórkę w swojej szkole 🏫</li>
-        <li>🌟 <strong>„Mama trójki” (Zielona Góra):</strong> Regularnie przekazuje pieluchy i mleko dla najmłodszych 👶</li>
-        <li>🌟 <strong>Bartek (Berlin):</strong> Przekazał 20 nowych plecaków szkolnych 🎒</li>
-      </ul>
-    </div>
-
-    <div class="bg-[#fff7ed] p-6 rounded-xl border border-orange-200 mb-6 shadow-lg hover:shadow-orange-300 transition-shadow duration-500">
-      <h3 class="text-xl font-bold text-center text-[#b45309] mb-2">🎖️ Strefa VIP Pomocników</h3>
-      <p class="text-center text-sm text-gray-700 mb-2">Jeśli pomagacie regularnie – traficie do naszej listy VIP. W zamian otrzymacie:</p>
-      <ul class="list-disc list-inside text-gray-700 text-sm space-y-1 text-center">
-        <li>🎫 Imienne podziękowanie w paczkach do dzieci</li>
-        <li>📷 Dostęp do zdjęć z rozdania darów</li>
-        <li>🕊️ Możliwość wysłania listu lub kartki do dziecka</li>
-      </ul>
-    </div>
-
-    <!-- GALERIA DÓBR -->
-    <div class="mt-12">
-      <h3 class="text-2xl font-bold text-center text-[#b45309] mb-4">📸 Dary, które już dotarły:</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-4">
-        <img src="https://source.unsplash.com/400x300/?donation,clothes" alt="Paczki 1" class="rounded-xl shadow-md hover:scale-105 transform transition duration-300">
-        <img src="https://source.unsplash.com/400x300/?children,donation" alt="Paczki 2" class="rounded-xl shadow-md hover:scale-105 transform transition duration-300">
-        <img src="https://source.unsplash.com/400x300/?toys,charity" alt="Paczki 3" class="rounded-xl shadow-md hover:scale-105 transform transition duration-300">
-      </div>
-      <p class="text-center text-sm italic mt-2 text-gray-500">Te zdjęcia są symboliczne – Twoja pomoc może być kolejnym kadrem tej historii ❤️</p>
-    </div>
-
-    <!-- LIST OD DZIECKA -->
-    <div class="mt-16 bg-[#fff9e6] p-6 rounded-2xl shadow-inner border-l-4 border-yellow-500 relative hover:shadow-yellow-400 transition-shadow duration-300">
-      <div class="absolute -top-4 left-4 text-4xl">💌</div>
-      <h3 class="text-xl font-bold mb-2 text-[#92400e]">List od Zuzi (lat 10)</h3>
-      <p class="text-gray-800 text-base leading-relaxed italic">
-        „Dziękuję, że ktoś tam o mnie pomyślał. Dostałam miękki szalik, który pachnie jak dom. A w pudełku była książka o smokach – kocham smoki! Nie znam Was, ale wiem, że jesteście dobrzy. I kiedyś też będę pomagać innym. Obiecuję.”
-      </p>
-      <p class="mt-3 text-right text-sm text-gray-600">– Zuzia, wychowanka Domu Dziecka</p>
-    </div>
-
-    <div class="flex flex-col items-center mt-8">
-      <h4 class="text-lg font-semibold mb-2">⏳ Kolejna wysyłka paczek za:</h4>
-      <div id="countdown" class="text-2xl font-bold text-red-600 animate-pulse"></div>
-    </div>
-
-    <!-- FORMULARZ KONTAKTOWY -->
-    <div class="mt-12 bg-[#fff7ed] p-8 rounded-2xl shadow-inner border-l-4 border-yellow-600 max-w-xl mx-auto">
-      <h3 class="text-2xl font-bold mb-6 text-center text-[#b45309]">Skontaktuj się z nami</h3>
-      <form id="formularzKontaktowy" class="space-y-4">
-        <input type="text" id="kontaktImie" placeholder="Twoje imię" required class="w-full p-3 border border-yellow-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-        <input type="email" id="kontaktEmail" placeholder="Twój e-mail" required class="w-full p-3 border border-yellow-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-        <textarea id="kontaktWiadomosc" placeholder="Twoja wiadomość" required rows="5" class="w-full p-3 border border-yellow-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 resize-none"></textarea>
-        <button type="submit" class="w-full bg-yellow-600 text-white py-3 rounded-lg font-semibold hover:bg-yellow-700 transition">Wyślij wiadomość</button>
-      </form>
-      <p id="kontaktPotwierdzenie" class="text-green-700 mt-4 text-center hidden">Dziękujemy za kontakt! Odezwiemy się wkrótce.</p>
-    </div>
-
-    <script>
-      const countdown = document.getElementById("countdown");
-      const targetDate = new Date();
-      targetDate.setDate(targetDate.getDate() + 14); // 14 dni do wysyłki
-
-      function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-        if(distance <= 0) {
-          countdown.innerHTML = "Wysyłka właśnie trwa! Dziękujemy!";
-          return;
-        }
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        countdown.innerHTML = `${days} dni, ${hours}h ${minutes}min`;
-      }
-
-      updateCountdown();
-      setInterval(updateCountdown, 60000);
-
-      // Obsługa formularza kontaktowego
-      document.getElementById('formularzKontaktowy').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const imie = document.getElementById('kontaktImie').value.trim();
-        const email = document.getElementById('kontaktEmail').value.trim();
-        const wiadomosc = document.getElementById('kontaktWiadomosc').value.trim();
-
-        if (!imie || !email || !wiadomosc) {
-          alert("Wypełnij wszystkie pola!");
-          return;
-        }
-
-        // Tutaj możesz dodać wysyłkę maila lub zapis do bazy
-
-        this.reset();
-        document.getElementById('kontaktPotwierdzenie').classList.remove('hidden');
-      });
-    </script>
+<!-- 🎨 PROJEKTUJ START -->
+<section id="projektuj" class="py-12 bg-gradient-to-br from-white to-gray-50">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-4xl font-bold mb-6">Zaprojektuj swój produkt</h2>
+    <p class="mb-4 text-gray-600">Dodaj własną grafikę, tekst, wybierz kolor i rozmiar.</p>
+    <input type="file" accept="image/*" class="mb-4 block mx-auto">
+    <input type="text" placeholder="Twój tekst" class="mb-4 block w-full max-w-md mx-auto p-2 border rounded">
+    <select class="mb-4 block w-full max-w-md mx-auto p-2 border rounded">
+      <option>Kolor: Czarny</option>
+      <option>Biały</option>
+      <option>Czerwony</option>
+    </select>
+    <select class="mb-6 block w-full max-w-md mx-auto p-2 border rounded">
+      <option>Rozmiar: M</option>
+      <option>S</option>
+      <option>L</option>
+      <option>XL</option>
+    </select>
+    <button class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
   </div>
-</section> 
-<!-- Sekcja kreatora + zamówienia + ikona i dropdown koszyka -->
-<section id="zaprojektuj" class="py-16 bg-[#0f0f0f] text-white max-w-7xl mx-auto px-6">
-  <h2 class="text-4xl font-bold text-gold text-center mb-12">Zaprojektuj swój produkt</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-    <!-- Formularz kreatora -->
-    <form id="formularzProjektu" class="bg-[#1a1a1a] p-6 rounded-xl shadow-xl space-y-4 text-black">
-      <label>
-        Wybierz produkt:
-        <select id="produkt" required class="w-full p-2 rounded" onchange="zmienPodglad()">
-          <option value="">-- Wybierz --</option>
-          <option value="Koszulka">Koszulka (169 zł)</option>
-          <option value="Bluza">Bluza (219 zł)</option>
-          <option value="Czapka">Czapka (99 zł)</option>
-        </select>
-      </label>
+</section>
+<!-- 🎨 PROJEKTUJ END -->
 
-      <label>
-        Kolor produktu:
-        <input type="color" id="kolor" value="#ffffff" onchange="zmienPodglad()">
-      </label>
-
-      <label>
-        Tekst na produkcie:
-        <input type="text" id="tekst" placeholder="Napisz coś..." oninput="aktualizujTekst()">
-      </label>
-
-      <label>
-        Czcionka:
-        <select id="czcionka" onchange="aktualizujTekst()">
-          <option value="Arial, sans-serif">Arial</option>
-          <option value="'Courier New', monospace">Courier New</option>
-          <option value="'Times New Roman', serif">Times New Roman</option>
-          <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
-        </select>
-      </label>
-
-      <label>
-        Wybierz rozmiar:
-        <select id="rozmiar" required class="w-full p-2 rounded">
-          <option value="">-- Wybierz --</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-        </select>
-      </label>
-
-      <label>
-        Dodaj grafikę (png/jpg):
-        <input type="file" accept="image/*" onchange="dodajObraz(event)">
-      </label>
-
-      <button type="button" onclick="dodajProjektDoKoszyka()" class="bg-gold text-black px-6 py-2 rounded w-full font-bold hover:bg-yellow-400 transition">
-        Dodaj projekt do koszyka
-      </button>
+<!-- 🧾 ZAMÓWIENIA START -->
+<section id="zamowienia" class="py-12 bg-white border-t">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-6">Zamówienia</h2>
+    <form id="formularzZamowienia" class="space-y-4">
+      <textarea placeholder="Twoje uwagi do zamówienia..." class="w-full p-3 border rounded"></textarea>
+      <input type="file" class="w-full p-2 border rounded" />
+      <button type="submit" class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">Zamawiam wszystko</button>
     </form>
-
-    <!-- Podgląd produktu -->
-    <div id="podglad" class="relative rounded-xl shadow-xl flex flex-col items-center justify-center bg-white p-6" style="min-height:400px;">
-      <div id="podgladTekst" class="absolute top-6 left-6 right-6 text-center text-2xl font-bold"></div>
-      <img id="podgladObraz" src="" alt="Podgląd grafiki" class="max-h-64 mt-24 object-contain" />
-    </div>
   </div>
 </section>
+<!-- 🧾 ZAMÓWIENIA END -->
 
-<!-- Sekcja zamówienia -->
-<section id="zamowienie" class="py-16 bg-[#0f0f0f] text-white max-w-4xl mx-auto px-6">
-  <h2 class="text-3xl font-bold text-gold text-center mb-8">Zamówienie</h2>
-  <div id="podsumowanieKoszyka" class="bg-[#1a1a1a] p-6 rounded-xl shadow-xl mb-8">
-    <h3 class="text-2xl font-semibold text-gold mb-4">Twoje produkty:</h3>
-    <ul id="listaProduktow" class="mb-4 space-y-2 text-white"></ul>
-    <p id="sumaKoszyka" class="text-xl font-bold text-gold"></p>
-  </div>
-
-  <form id="formularzZamowienia" class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#1a1a1a] p-6 rounded-xl shadow-xl">
-    <input type="text" name="imie" placeholder="Imię i nazwisko" required class="p-2 rounded text-black">
-    <input type="email" name="email" placeholder="E-mail" required class="p-2 rounded text-black">
-    <textarea name="uwagi" placeholder="Dodatkowe uwagi" class="p-2 rounded text-black md:col-span-2"></textarea>
-    <input type="file" name="plik" class="p-2 bg-white rounded text-black md:col-span-2">
-    <button type="submit" class="bg-gold text-black px-6 py-2 rounded md:col-span-2 hover:bg-yellow-400 transition">Zamawiam wszystko</button>
-  </form>
-</section>
-
-<!-- Ikona koszyka -->
-<div id="cart-icon" aria-label="Koszyk" tabindex="0" 
-     class="fixed top-6 right-6 bg-[#1b1613] p-4 rounded-full border-2 border-gold cursor-pointer shadow-lg z-50 flex items-center justify-center">
-  <svg viewBox="0 0 24 24" aria-hidden="true" class="w-8 h-8 fill-current text-gold">
-    <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-12.618-2l1.25-7h13.868l-1.4 7H4.382zm1.604-9l1-2h10v2H6.382z"/>
-  </svg>
-  <span id="cart-count" class="absolute top-0 right-0 bg-gold text-black rounded-full px-2 text-xs font-bold -translate-y-1/2 translate-x-1/2 select-none">0</span>
+<!-- 🧺 KOSZYK (panel z prawej) -->
+<div id="koszyk" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg p-6 overflow-y-auto hidden z-50">
+  <h3 class="text-2xl font-bold mb-4">Twój koszyk</h3>
+  <ul id="listaKoszyka" class="mb-4"></ul>
+  <p id="sumaKoszyka" class="font-bold mb-4">Suma: 0 zł</p>
+  <button onclick="zamknijKoszyk()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Zamknij</button>
 </div>
-
-<!-- Dropdown koszyka -->
-<div id="cart-dropdown" role="region" aria-live="polite" aria-label="Zawartość koszyka" 
-     class="fixed top-16 right-6 w-80 bg-[#1a1a1a] text-white border-2 border-gold p-4 rounded-xl shadow-lg z-40 hidden">
-  <h3 class="text-xl font-bold text-gold mb-4 text-center">Twój koszyk</h3>
-  <ul id="cart-items" class="mb-4 max-h-48 overflow-y-auto"></ul>
-  <p id="cart-total" class="font-bold text-lg text-center mb-4"></p>
-  <button id="checkout-btn" class="bg-gold text-black w-full py-2 rounded hover:bg-yellow-400 transition font-bold">Przejdź do kasy</button>
-</div>
+<button onclick="pokazKoszyk()" class="fixed bottom-6 right-6 bg-black text-white px-6 py-3 rounded-full shadow-xl hover:bg-gray-800 z-50">🛍️ Koszyk</button>
 
 <script>
-  // --- Kreator ---
-  function zmienPodglad() {
-    const produkt = document.getElementById('produkt').value;
-    const kolor = document.getElementById('kolor').value;
-    const podglad = document.getElementById('podglad');
-    podglad.style.backgroundColor = kolor || '#fff';
-    document.getElementById('podgladTekst').textContent = '';
-    document.getElementById('podgladObraz').src = '';
-  }
+let koszyk = [];
 
-  function aktualizujTekst() {
-    const tekst = document.getElementById('tekst').value;
-    const czcionka = document.getElementById('czcionka').value;
-    const podgladTekst = document.getElementById('podgladTekst');
-    podgladTekst.textContent = tekst;
-    podgladTekst.style.fontFamily = czcionka;
-    podgladTekst.style.color = '#000';
-  }
+function dodajDoKoszyka(nazwa, cena) {
+  koszyk.push({ nazwa, cena });
+  aktualizujKoszyk();
+  pokazKoszyk();
+}
 
-  function dodajObraz(event) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      document.getElementById('podgladObraz').src = e.target.result;
-    }
-    reader.readAsDataURL(event.target.files[0]);
-  }
-
-  // --- Koszyk ---
-  let koszyk = JSON.parse(localStorage.getItem('koszyk')) || [];
-
-  function zapiszKoszyk() {
-    localStorage.setItem('koszyk', JSON.stringify(koszyk));
-  }
-
-  function odswiezKoszyk() {
-    // Lista w sekcji Zamówienie
-    const lista = document.getElementById('listaProduktow');
-    const suma = document.getElementById('sumaKoszyka');
-    // Dropdown koszyka
-    const cartItems = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    const cartCount = document.getElementById('cart-count');
-
-    lista.innerHTML = '';
-    cartItems.innerHTML = '';
-
-    let lacznaCena = 0;
-
-    koszyk.forEach((item, index) => {
-      const liZamowienie = document.createElement('li');
-      liZamowienie.textContent = `${index + 1}. ${item.nazwa} – ${item.cena} zł`;
-      lista.appendChild(liZamowienie);
-
-      const liDropdown = document.createElement('li');
-      liDropdown.className = 'flex justify-between items-center py-1 border-b border-gold';
-      liDropdown.textContent = `${item.nazwa} – ${item.cena} zł`;
-
-      const btnUsun = document.createElement('button');
-      btnUsun.textContent = 'Usuń';
-      btnUsun.className = 'bg-gold text-black px-2 py-1 rounded ml-4 hover:bg-yellow-400 transition';
-      btnUsun.onclick = () => {
-        koszyk.splice(index, 1);
-        zapiszKoszyk();
-        odswiezKoszyk();
-      };
-
-      liDropdown.appendChild(btnUsun);
-      cartItems.appendChild(liDropdown);
-
-      lacznaCena += item.cena;
-    });
-
-    suma.textContent = `Łącznie: ${lacznaCena} zł`;
-    cartTotal.textContent = `Suma: ${lacznaCena} zł`;
-    cartCount.textContent = koszyk.length;
-  }
-
-  function dodajDoKoszyka(nazwa, cena) {
-    koszyk.push({ nazwa, cena });
-    zapiszKoszyk();
-    odswiezKoszyk();
-    zagrajDzwiek();
-    animacjaKoszyka();
-  }
-
-  function dodajProjektDoKoszyka() {
-    const produkt = document.getElementById('produkt').value;
-    if(!produkt) return alert('Wybierz produkt!');
-    const rozmiar = document.getElementById('rozmiar').value;
-    if(!rozmiar) return alert('Wybierz rozmiar!');
-    const kolor = document.getElementById('kolor').value;
-    const tekst = document.getElementById('tekst').value.trim() || '(brak napisu)';
-    const cenaMap = { 'Koszulka': 169, 'Bluza': 219, 'Czapka': 99 };
-    const cena = cenaMap[produkt] || 0;
-    const nazwa = `${produkt} - ${rozmiar} - ${tekst} - kolor: ${kolor}`;
-    dodajDoKoszyka(nazwa, cena);
-  }
-
-  // Dzwiek kliknięcia dodania
-  function zagrajDzwiek() {
-    const audio = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-classic-click-1117.mp3");
-    audio.play();
-  }
-
-  // Animacja koszyka
-  function animacjaKoszyka() {
-    const ikona = document.getElementById("cart-icon");
-    if (ikona) {
-      ikona.classList.add("animate-bounce");
-      setTimeout(() => ikona.classList.remove("animate-bounce"), 500);
-    }
-  }
-
-  // Obsługa toggle dropdown koszyka
-  const cartIcon = document.getElementById('cart-icon');
-  const cartDropdown = document.getElementById('cart-dropdown');
-
-  cartIcon.addEventListener('click', (e) => {
-    e.stopPropagation();
-    cartDropdown.classList.toggle('hidden');
+function aktualizujKoszyk() {
+  const lista = document.getElementById("listaKoszyka");
+  const suma = document.getElementById("sumaKoszyka");
+  lista.innerHTML = "";
+  let total = 0;
+  koszyk.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = `${item.nazwa} - ${item.cena} zł`;
+    lista.appendChild(li);
+    total += item.cena;
   });
+  suma.textContent = `Suma: ${total} zł`;
+}
 
-  document.addEventListener('click', (e) => {
-    if (!cartDropdown.contains(e.target) && !cartIcon.contains(e.target)) {
-      cartDropdown.classList.add('hidden');
-    }
-  });
+function pokazKoszyk() {
+  document.getElementById("koszyk").classList.remove("hidden");
+}
 
-  // Obsługa formularza zamówienia
-  document.getElementById('formularzZamowienia').addEventListener('submit', function(e) {
-    e.preventDefault();
-    if (koszyk.length === 0) {
-      alert('Twój koszyk jest pusty!');
-      return;
-    }
-
-    alert("Dziękujemy za zamówienie! ❤️\nOtrzymaliśmy je i skontaktujemy się wkrótce.");
-
-    // Tu możesz dodać wywołanie wysyłki maila itp.
-
-    koszyk = [];
-    zapiszKoszyk();
-    odswiezKoszyk();
-    this.reset();
-  });
-
-  // Inicjalizacja widoku koszyka
-  document.addEventListener('DOMContentLoaded', odswiezKoszyk);
+function zamknijKoszyk() {
+  document.getElementById("koszyk").classList.add("hidden");
+}
 </script>
-
-<style>
-  .text-gold {
-    color: #d4af37;
-  }
-  .bg-gold {
-    background-color: #d4af37;
-  }
-
-  /* Prosty efekt animacji dla bounce */
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  .animate-bounce {
-    animation: bounce 0.5s;
-  }
-</style>    
-</script><!-- Sekcja Marketplace -->
+<!-- Sekcja Marketplace -->
 <section id="marketplace" class="py-12 bg-gray-100">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-6 text-center">Marketplace</h2>
