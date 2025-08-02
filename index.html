@@ -88,41 +88,7 @@
 </form>
 
 <script>
-  // Obsługa formularza zamówienia
-  document.getElementById('formularzZamowienia').addEventListener('submit', async function(e) {
-    e.preventDefault();
 
-    const formData = new FormData(this);
-
-    const daneZamowienia = {
-      imie: formData.get('imie'),
-      email: formData.get('email'),
-      uwagi: formData.get('uwagi'),
-      blikKod: formData.get('blikKod'),
-      blikDopis: formData.get('blikDopis'),
-      produkty: [] // brak koszyka – pusta lista
-    };
-
-    try {
-      const res = await fetch('/api/zamowienie', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(daneZamowienia),
-      });
-
-      if (!res.ok) throw new Error('Błąd serwera');
-      const data = await res.json();
-
-      if (data.success) {
-        alert('Dziękujemy za zamówienie! Numer zamówienia: ' + data.orderId);
-        this.reset();
-      } else {
-        alert('Błąd: ' + data.message);
-      }
-    } catch (err) {
-      alert('Nie udało się złożyć zamówienia. Spróbuj ponownie.');
-    }
-  });
 </script>
 
 </body>
@@ -245,6 +211,70 @@ function pokazKoszyk() {
 function zamknijKoszyk() {
   document.getElementById("koszyk").classList.add("hidden");
 }
+</script>
+<section id="zbiorka" class="py-12 bg-gradient-to-br from-yellow-50 to-yellow-100 border-4 border-yellow-500 rounded-2xl shadow-xl">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="bg-white p-8 rounded-2xl shadow-md border-l-8 border-yellow-600">
+      <h2 class="text-4xl font-extrabold text-yellow-800 mb-6 text-center">Pomoc dla dzieci z domu dziecka</h2>
+      
+      <p class="text-lg text-gray-800 mb-4">Jako właściciel tego sklepu – były wychowanek domu dziecka – wiem jedno: <strong>dzieci potrzebują nadziei</strong>. Uśmiech dziecka to więcej niż słowa – to zdrowie, wiara, że są na tym świecie ludzie dobrzy. Pomagając, dajemy nie tylko dary, ale też drogowskaz. Dzieci uczą się dobra przez przykład, który im zostawiamy.</p>
+
+      <p class="text-md text-gray-700 mb-3">
+        👉 <strong>Wpłaty BLIK:</strong> <span class="font-bold text-yellow-700">573-939-925</span> z dopiskiem "<strong>pomoc</strong>"
+      </p>
+      <p class="text-md text-gray-700 mb-3">
+        🎁 <strong>Przekazywanie darów, rzeczy, paczek:</strong> prosimy o kontakt:
+      </p>
+      <ul class="list-disc list-inside text-gray-700 mb-4">
+        <li><strong>Telefon:</strong> 604 296 360</li>
+        <li><strong>E-mail:</strong> mielniczukgrzegosz74@gmail.com</li>
+      </ul>
+      <p class="text-md text-gray-700 mb-6">Udzielimy wszelkich informacji, gdzie i jak przesłać dary. Każdy gest ma znaczenie.</p>
+
+      <div class="bg-yellow-100 p-6 rounded-xl shadow-inner mb-6">
+        <h3 class="text-2xl font-semibold text-yellow-800 mb-3">Następna wysyłka paczek za:</h3>
+        <div id="countdown" class="text-3xl font-bold text-yellow-700 text-center">Ładowanie...</div>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-yellow-400 shadow-sm mb-6">
+        <h4 class="text-xl font-semibold text-yellow-800 mb-2">Wspierają nas:</h4>
+        <ul class="list-disc list-inside text-gray-700">
+          <li>Anna – samotna mama, która co miesiąc wysyła zabawki</li>
+          <li>Pan Marek z Gdańska – wpłaca regularnie BLIKiem</li>
+          <li>Dominika – artystka, przekazuje własnoręcznie robione misie</li>
+          <li>“Anonimowy Anioł” – co miesiąc wysyła wielką paczkę z ubraniami</li>
+        </ul>
+      </div>
+
+      <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 italic text-gray-800 mb-6">
+        <p class="mb-2">„Dziękujemy! Dzięki Waszej pomocy czujemy się zauważeni, ważni… kochani. Gdy otwieramy paczki – oczy się świecą. To nie tylko rzeczy – to uczucia, których często nam brak. Dziękujemy z całego serca.”</p>
+        <p class="text-right font-semibold">– dzieci z Domu Dziecka</p>
+      </div>
+
+      <div class="text-center">
+        <p class="text-md text-gray-700 mb-2">📦 Każda paczka to nadzieja. Każdy przelew – iskierka światła.</p>
+        <p class="text-lg font-bold text-yellow-700">Dołącz do nas i pomóż tworzyć lepsze jutro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Prosty licznik do najbliższej wysyłki – ustaw datę
+const wysylkaDate = new Date("2025-08-15T12:00:00").getTime();
+const countdown = document.getElementById("countdown");
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = wysylkaDate - now;
+  if (distance < 0) {
+    countdown.innerHTML = "Wysyłka w drodze!";
+    return;
+  }
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  countdown.innerHTML = `${days} dni, ${hours} godz., ${minutes} min`;
+}, 1000);
 </script>
 <!-- Sekcja Marketplace -->
 <section id="marketplace" class="py-12 bg-gray-100">
