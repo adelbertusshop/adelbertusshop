@@ -657,46 +657,50 @@ setInterval(() => {
     </div>
   </div>
 </section> 
-<!-- KOSZYK -->
-<div id="koszyk" class="fixed bottom-6 right-6 bg-white shadow-2xl border border-gray-300 rounded-2xl p-6 w-96 z-50 hidden">
-  <h3 class="text-xl font-bold mb-4">Twój koszyk</h3>
-  <ul id="listaKoszyka" class="space-y-3"></ul>
-  <p class="mt-4 font-semibold">Łącznie: <span id="sumaKoszyka">0</span> zł</p>
-  <button onclick="pokazFormularzZamowienia()" class="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Zamawiam wszystko</button>
+<!-- Przycisk Koszyka -->
+<button onclick="toggleKoszyk()" class="fixed bottom-6 right-6 bg-black text-white px-4 py-2 rounded-full shadow-lg z-50">
+  🛒 Koszyk (<span id="koszykLicznik">0</span>)
+</button>
+<!-- Panel Koszyka -->
+<div id="koszykPanel" class="fixed top-0 right-0 w-96 h-full bg-white shadow-2xl p-6 overflow-y-auto transform translate-x-full transition-transform duration-300 z-50">
+  <h2 class="text-2xl font-bold mb-4">Twój koszyk</h2>
+  <ul id="koszykLista" class="mb-4 space-y-2"></ul>
+  <p class="font-semibold">Razem: <span id="koszykSuma">0</span> zł</p>
+  <button onclick="pokazFormularzZamowienia()" class="mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-800">Zamawiam wszystko</button>
 </div>
 
-<!-- PRZYCISK KOSZYKA -->
-<button onclick="toggleKoszyk()" class="fixed bottom-6 right-6 bg-black text-white px-4 py-2 rounded-full shadow-xl z-50">🛒</button>
+<!-- Przycisk koszyka -->
+<button onclick="toggleKoszyk()" class="fixed bottom-6 right-6 bg-black text-white p-4 rounded-full shadow-xl hover:bg-gray-800 z-50">
+  🛒
+</button>
+
+<!-- Formularz zamówienia -->
+<div id="formularzZamowienia" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
+  <div class="bg-white p-8 rounded-xl max-w-lg w-full shadow-2xl relative">
+    <button onclick="zamknijFormularz()" class="absolute top-2 right-2 text-gray-500 hover:text-black">✖</button>
+    <h3 class="text-2xl font-bold mb-4">Finalizacja zamówienia</h3>
+    <form id="formularz" onsubmit="wyslijZamowienie(event)">
+      <input type="text" name="name" placeholder="Imię i nazwisko" class="w-full border p-2 mb-4 rounded" required>
+      <input type="email" name="email" placeholder="Twój e-mail" class="w-full border p-2 mb-4 rounded" required>
+      <textarea name="message" placeholder="Dodatkowe informacje" class="w-full border p-2 mb-4 rounded"></textarea>
+      <input type="file" name="attachment" class="w-full mb-4">
+      <input type="hidden" name="produkty" id="produktyInput">
+      <input type="hidden" name="suma" id="sumaInput">
+      <button type="submit" class="bg-black text-white py-2 px-4 rounded hover:bg-gray-800">Wyślij zamówienie</button>
+    </form>
+  </div>
+</div>
 
 <!-- SKRYPTY -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
-  emailjs.init("TWÓJ_PUBLIC_KEY"); // <-- TU PODMIEN PUBLICZNY KLUCZ
+  emailjs.init("TWÓJ_PUBLIC_KEY"); // ← ✨ TU WSTAW SWÓJ PUBLIC KEY Z EMAILJS
 
-  let koszyk = [];
+  const koszyk = [];
 
-  function zmienPodglad() {
-    const kolor = document.getElementById('kolor').value;
-    document.getElementById('podglad').style.backgroundColor = kolor;
-    document.getElementById('podgladTekst').textContent = '';
-    document.getElementById('podgladObraz').src = '';
-  }
-
-  function aktualizujTekst() {
-    const tekst = document.getElementById('tekst').value;
-    const czcionka = document.getElementById('czcionka').value;
-    const podgladTekst = document.getElementById('podgladTekst');
-    podgladTekst.textContent = tekst;
-    podgladTekst.style.fontFamily = czcionka;
-    podgladTekst.style.color = '#000';
-  }
-
-  function dodajObraz(event) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      document.getElementById('podgladObraz').src = e.target.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
+  function toggleKoszyk() {
+    const panel = document.getElementById('koszykPanel');
+    panel.classList.toggle('translate-x-full');
   }
 
   function dodajDoKoszyka(nazwa, cena) {
@@ -704,92 +708,118 @@ setInterval(() => {
     aktualizujKoszyk();
   }
 
-  function dodajProjektDoKoszyka() {
-    const produkt = document.getElementById('produkt').value;
-    const tekst = document.getElementById('tekst').value;
-    let cena = 99;
-    if (produkt === 'bluza') cena = 150;
-    if (produkt === 'czapka') cena = 79;
-    const nazwa = `Projekt: ${produkt} – "${tekst}"`;
-    dodajDoKoszyka(nazwa, cena);
-    alert("Produkt dodany do koszyka!");
-  }
-
   function aktualizujKoszyk() {
-    const lista = document.getElementById('listaKoszyka');
-    const suma = document.getElementById('sumaKoszyka');
+    const lista = document.getElementById('koszykLista');
+    const sumaEl = document.getElementById('koszykSuma');
     lista.innerHTML = '';
-    let total = 0;
-    koszyk.forEach((item, index) => {
+    let suma = 0;
+
+    koszyk.forEach((item, i) => {
       const li = document.createElement('li');
-      li.className = 'flex justify-between items-center';
-      li.innerHTML = `
-        <span>${item.nazwa}</span>
-        <div>
-          <span>${item.cena} zł</span>
-          <button onclick="usunZKoszyka(${index})" class="ml-2 text-red-600 hover:text-red-800">✖</button>
-        </div>`;
+      li.className = 'flex justify-between border-b pb-1';
+      li.innerHTML = `<span>${item.nazwa}</span><span>${item.cena} zł</span>`;
       lista.appendChild(li);
-      total += item.cena;
+      suma += item.cena;
     });
-    suma.textContent = total;
-  }
 
-  function usunZKoszyka(index) {
-    koszyk.splice(index, 1);
-    aktualizujKoszyk();
-  }
-
-  function toggleKoszyk() {
-    document.getElementById('koszyk').classList.toggle('hidden');
+    sumaEl.textContent = suma.toFixed(2);
   }
 
   function pokazFormularzZamowienia() {
-    document.getElementById("formularzZamowienia").classList.remove("hidden");
+    document.getElementById('formularzZamowienia').classList.remove('hidden');
+    document.getElementById('produktyInput').value = koszyk.map(i => i.nazwa + ' - ' + i.cena + ' zł').join(', ');
+    document.getElementById('sumaInput').value = koszyk.reduce((acc, item) => acc + item.cena, 0).toFixed(2);
   }
 
-  function zamknijFormularzZamowienia() {
-    document.getElementById("formularzZamowienia").classList.add("hidden");
+  function zamknijFormularz() {
+    document.getElementById('formularzZamowienia').classList.add('hidden');
   }
 
-  function wyslijPotwierdzenieZamowienia() {
-    const zamowienieId = Math.floor(Math.random() * 1000000);
-    const email = document.getElementById("email").value;
-    const nazwa = "Zamówienie z AdelbertusShop";
-    const cena = document.getElementById('sumaKoszyka').textContent;
+  function wyslijZamowienie(e) {
+    e.preventDefault();
+    const form = document.getElementById('formularz');
+    const dane = new FormData(form);
 
-    const params = {
-      "identyfikator_zamówienia": zamowienieId,
-      "nazwa": nazwa,
-      "cena": cena + " zł",
-      "koszt": cena + " zł",
-      "e-mail": email
-    };
-
-    emailjs.send("service_gwz0ja7", "template_064b7uo", params)
-      .then(function(response) {
-        alert("✔️ Wysłano potwierdzenie na maila!");
-      }, function(error) {
-        alert("❌ Coś poszło nie tak: " + error.text);
-      });
+    emailjs.sendForm("service_id", "template_id", form)
+      .then(() => {
+        alert("Zamówienie zostało wysłane! ✅");
+        zamknijFormularz();
+        koszyk.length = 0;
+        aktualizujKoszyk();
+        form.reset();
+      })
+      .catch(() => alert("Błąd podczas wysyłania. Spróbuj ponownie. ❌"));
   }
 </script>
+<!-- 🧾 PANEL KOSZYKA I FORMULARZ ZAMÓWIENIA -->
+<div id="koszykPanel" class="hidden fixed top-0 right-0 w-full md:w-96 h-full bg-white text-black shadow-lg z-50 overflow-y-auto p-6">
+  <h2 class="text-2xl font-bold mb-4">Twój koszyk</h2>
+  <ul id="koszykLista" class="mb-4 space-y-2"></ul>
+  <p id="sumaKoszyka" class="text-lg font-semibold mb-4">Suma: 0 zł</p>
 
-<!-- FORMULARZ ZAMÓWIENIA -->
-<div id="formularzZamowienia" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
-  <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative">
-    <button onclick="zamknijFormularzZamowienia()" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">✖</button>
-    <h2 class="text-2xl font-bold mb-4 text-center">Zamówienie</h2>
-    <form onsubmit="event.preventDefault(); wyslijPotwierdzenieZamowienia(); zamknijFormularzZamowienia();">
-      <label class="block mb-2 font-semibold" for="email">Adres e-mail:</label>
-      <input id="email" type="email" required class="w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black" />
-      <label class="block mb-2 font-semibold" for="notatka">Notatka do zamówienia:</label>
-      <textarea id="notatka" rows="3" class="w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"></textarea>
-      <label class="block mb-2 font-semibold" for="plik">Załącz plik graficzny (opcjonalnie):</label>
-      <input id="plik" type="file" accept="image/*" class="mb-4" />
-      <button type="submit" class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">Wyślij zamówienie</button>
-    </form>
-  </div>
+  <form id="zamowienieForm" class="space-y-4">
+    <input type="text" id="imie" name="imie" required placeholder="Twoje imię" class="w-full border border-gray-300 rounded p-2" />
+    <input type="email" id="email" name="email" required placeholder="Twój e-mail" class="w-full border border-gray-300 rounded p-2" />
+    <textarea id="notatki" name="notatki" placeholder="Notatki do zamówienia (opcjonalne)" class="w-full border border-gray-300 rounded p-2"></textarea>
+    <input type="file" id="plik" name="plik" accept="image/*" class="w-full" />
+    <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Zamawiam wszystko</button>
+  </form>
 </div>
 
+<script>
+  const koszykBtn = document.getElementById("toggleKoszykBtn");
+  const koszykPanel = document.getElementById("koszykPanel");
+  const koszykLista = document.getElementById("koszykLista");
+  const sumaKoszyka = document.getElementById("sumaKoszyka");
+  const zamowienieForm = document.getElementById("zamowienieForm");
+
+  let koszyk = [];
+
+  koszykBtn.addEventListener("click", () => {
+    koszykPanel.classList.toggle("hidden");
+  });
+
+  function dodajDoKoszyka(nazwa, cena) {
+    koszyk.push({ nazwa, cena });
+    aktualizujKoszyk();
+  }
+
+  function aktualizujKoszyk() {
+    koszykLista.innerHTML = "";
+    let suma = 0;
+    koszyk.forEach((produkt, index) => {
+      suma += produkt.cena;
+      const li = document.createElement("li");
+      li.className = "flex justify-between items-center";
+      li.innerHTML = `
+        <span>${produkt.nazwa}</span>
+        <span>${produkt.cena} zł</span>
+      `;
+      koszykLista.appendChild(li);
+    });
+    sumaKoszyka.textContent = `Suma: ${suma} zł`;
+  }
+
+  zamowienieForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const imie = document.getElementById("imie").value;
+    const email = document.getElementById("email").value;
+    const notatki = document.getElementById("notatki").value;
+    const plik = document.getElementById("plik").files[0];
+
+    let zamowienie = `Imię: ${imie}\nEmail: ${email}\nNotatki: ${notatki}\nZamówione:\n`;
+    koszyk.forEach(p => {
+      zamowienie += `- ${p.nazwa} (${p.cena} zł)\n`;
+    });
+
+    alert("Zamówienie wysłane! Szczegóły:\n\n" + zamowienie);
+    koszyk = [];
+    aktualizujKoszyk();
+    zamowienieForm.reset();
+    koszykPanel.classList.add("hidden");
+  });
+</script>
+
+</body>
+</html>
 
