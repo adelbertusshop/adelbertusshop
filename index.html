@@ -12,7 +12,6 @@
       margin: 0;
       padding: 0;
     }
-
     #toggleKoszykBtn {
       position: fixed;
       bottom: 1.5rem;
@@ -28,7 +27,26 @@
       color: #121212;
       z-index: 9999;
     }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: none;
+    }
+    form button {
+      background-color: #d4af37;
+      color: black;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
+
+  <!-- ✅ EmailJS SDK -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -50,68 +68,90 @@
   </div>
 </section>
 
-<!-- 🧥 PRODUKTY (placeholder – wklejamy tu produkty wg kategorii) -->
-<section id="products" class="py-12 bg-[#1e1e1e]">
-  <!-- Tutaj będą produkty z podziałem na kategorie: Mężczyźni, Kobiety, itd. -->
-</section>
-
-<!-- 🛍️ SKLEP START (przykład) -->
-<section id="sklep" class="py-12 bg-white text-black">
+<!-- 🧥 PRODUKTY -->
+<section id="products" class="py-12 bg-[#1e1e1e] text-white">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-4xl font-bold text-center mb-12">Sklep</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
       <!-- ✅ PRZYKŁADOWY PRODUKT -->
-      <div class="bg-gray-100 p-6 rounded-xl shadow-md text-center">
+      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
         <img src="link-do-obrazka.jpg" alt="Koszulka" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
         <h3 class="text-xl font-semibold mb-2">Koszulka „Wybrany”</h3>
         <p class="text-gray-700 mb-2">99 zł</p>
         <button onclick="dodajDoKoszyka('Koszulka Wybrany', 99)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
       </div>
-
-      <!-- Tu dodamy kolejne produkty -->
-
     </div>
   </div>
-</section><!-- 🛒 SKLEP END -->
+</section>
 
-<!-- 🎨 PROJEKTUJ START -->
+<!-- 📩 ZAMÓWIENIA / FORMULARZ KONTAKTOWY -->
+<section id="zamowienia" class="py-12 bg-[#222] text-white">
+  <div class="max-w-xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-6">Zamówienia / Kontakt</h2>
+    <form id="formularzZamowienia">
+      <input type="text" name="user_name" placeholder="Twoje imię" required />
+      <input type="email" name="user_email" placeholder="Twój e-mail" required />
+      <textarea name="message" placeholder="Treść wiadomości lub zamówienia" rows="5" required></textarea>
+      <button type="submit">Wyślij zamówienie</button>
+    </form>
+    <p id="statusWysylki" class="text-center mt-4"></p>
+  </div>
+</section>
+
+<!-- ✅ EmailJS init i obsługa formularza -->
+<script>
+  emailjs.init("TWÓJ_PUBLIC_KEY"); // 🔐 Wklej tu swój klucz publiczny z EmailJS
+
+  document.getElementById("formularzZamowienia").addEventListener("submit", function (e) {
+    e.preventDefault();
+    emailjs.sendForm("TWÓJ_SERVICE_ID", "TWÓJ_TEMPLATE_ID", this)
+      .then(() => {
+        document.getElementById("statusWysylki").innerText = "✅ Zamówienie wysłane!";
+        this.reset();
+      }, (error) => {
+        document.getElementById("statusWysylki").innerText = "❌ Błąd: " + error.text;
+      });
+  });
+</script>
+
+</body>
+</html>
+
+<!-- 🎨 PROJEKTUJ -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-white to-gray-50">
   <div class="max-w-4xl mx-auto px-4 text-center">
     <h2 class="text-4xl font-bold mb-6">Zaprojektuj swój produkt</h2>
     <p class="mb-4 text-gray-600">Dodaj własną grafikę, tekst, wybierz kolor i rozmiar.</p>
-    <input type="file" accept="image/*" class="mb-4 block mx-auto">
-    <input type="text" placeholder="Twój tekst" class="mb-4 block w-full max-w-md mx-auto p-2 border rounded">
-    <select class="mb-4 block w-full max-w-md mx-auto p-2 border rounded">
-      <option>Kolor: Czarny</option>
-      <option>Biały</option>
-      <option>Czerwony</option>
+    <input type="file" accept="image/*" id="projektGrafika" class="mb-4 block mx-auto">
+    <input type="text" id="projektTekst" placeholder="Twój tekst" class="mb-4 block w-full max-w-md mx-auto p-2 border rounded">
+    <select id="projektKolor" class="mb-4 block w-full max-w-md mx-auto p-2 border rounded">
+      <option value="Czarny">Kolor: Czarny</option>
+      <option value="Biały">Biały</option>
+      <option value="Czerwony">Czerwony</option>
     </select>
-    <select class="mb-6 block w-full max-w-md mx-auto p-2 border rounded">
-      <option>Rozmiar: M</option>
-      <option>S</option>
-      <option>L</option>
-      <option>XL</option>
+    <select id="projektRozmiar" class="mb-6 block w-full max-w-md mx-auto p-2 border rounded">
+      <option value="M">Rozmiar: M</option>
+      <option value="S">S</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
     </select>
-    <button class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+    <button onclick="dodajProjektDoKoszyka()" class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
   </div>
 </section>
-<!-- 🎨 PROJEKTUJ END -->
 
-<!-- 🧾 ZAMÓWIENIA START -->
+<!-- 🧾 ZAMÓWIENIA (z EmailJS) -->
 <section id="zamowienia" class="py-12 bg-white border-t">
   <div class="max-w-3xl mx-auto px-4">
     <h2 class="text-4xl font-bold text-center mb-6">Zamówienia</h2>
     <form id="formularzZamowienia" class="space-y-4">
-      <textarea placeholder="Twoje uwagi do zamówienia..." class="w-full p-3 border rounded"></textarea>
-      <input type="file" class="w-full p-2 border rounded" />
+      <textarea id="uwagi" placeholder="Twoje uwagi do zamówienia..." class="w-full p-3 border rounded"></textarea>
+      <input type="file" id="plikZamowienia" class="w-full p-2 border rounded" />
       <button type="submit" class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">Zamawiam wszystko</button>
     </form>
   </div>
 </section>
-<!-- 🧾 ZAMÓWIENIA END -->
 
-<!-- 🧺 KOSZYK (panel z prawej) -->
+<!-- 🧺 KOSZYK -->
 <div id="koszyk" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg p-6 overflow-y-auto hidden z-50">
   <h3 class="text-2xl font-bold mb-4">Twój koszyk</h3>
   <ul id="listaKoszyka" class="mb-4"></ul>
@@ -120,11 +160,25 @@
 </div>
 <button onclick="pokazKoszyk()" class="fixed bottom-6 right-6 bg-black text-white px-6 py-3 rounded-full shadow-xl hover:bg-gray-800 z-50">🛍️ Koszyk</button>
 
+<!-- 🔧 SKRYPTY -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
 <script>
+emailjs.init("twój_user_ID_z_emailjs"); // 🔁 Wklej tu swój EmailJS User ID
+
 let koszyk = [];
 
 function dodajDoKoszyka(nazwa, cena) {
   koszyk.push({ nazwa, cena });
+  aktualizujKoszyk();
+  pokazKoszyk();
+}
+
+function dodajProjektDoKoszyka() {
+  const tekst = document.getElementById("projektTekst").value;
+  const kolor = document.getElementById("projektKolor").value;
+  const rozmiar = document.getElementById("projektRozmiar").value;
+  const nazwa = `Projekt: ${tekst || 'Brak tekstu'} (${kolor}, ${rozmiar})`;
+  koszyk.push({ nazwa, cena: 199 });
   aktualizujKoszyk();
   pokazKoszyk();
 }
@@ -150,6 +204,34 @@ function pokazKoszyk() {
 function zamknijKoszyk() {
   document.getElementById("koszyk").classList.add("hidden");
 }
+
+// 📨 Wysyłka zamówienia przez EmailJS
+document.getElementById("formularzZamowienia").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const uwagi = document.getElementById("uwagi").value;
+  const zamowienie = koszyk.map(item => `${item.nazwa} - ${item.cena} zł`).join("\n");
+  const plik = document.getElementById("plikZamowienia").files[0];
+
+  const formData = new FormData();
+  formData.append("uwagi", uwagi);
+  formData.append("zamowienie", zamowienie);
+  if (plik) {
+    formData.append("plik", plik);
+  }
+
+  emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+    zamowienie,
+    uwagi
+  }).then(() => {
+    alert("Zamówienie zostało wysłane!");
+    koszyk = [];
+    aktualizujKoszyk();
+    document.getElementById("formularzZamowienia").reset();
+  }, (error) => {
+    alert("Błąd podczas wysyłania zamówienia: " + error.text);
+  });
+});
 </script>
 <section id="zbiorka" class="py-12 bg-gradient-to-br from-yellow-50 to-yellow-100 border-4 border-yellow-500 rounded-2xl shadow-xl">
   <div class="max-w-4xl mx-auto px-6">
@@ -575,8 +657,6 @@ setInterval(() => {
     </div>
   </div>
 </section> 
-
-
 <!-- KOSZYK -->
 <div id="koszyk" class="fixed bottom-6 right-6 bg-white shadow-2xl border border-gray-300 rounded-2xl p-6 w-96 z-50 hidden">
   <h3 class="text-xl font-bold mb-4">Twój koszyk</h3>
@@ -586,102 +666,97 @@ setInterval(() => {
 </div>
 
 <!-- PRZYCISK KOSZYKA -->
-<button onclick="toggleKoszyk()" class="fixed bottom-6 right-6 bg-black text-white px-4 py-2 rounded-full shadow-xl z-50">
-  🛒
-</button>
+<button onclick="toggleKoszyk()" class="fixed bottom-6 right-6 bg-black text-white px-4 py-2 rounded-full shadow-xl z-50">🛒</button>
 
 <!-- SKRYPTY -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-function zmienPodglad() {
-  const produkt = document.getElementById('produkt').value;
-  const kolor = document.getElementById('kolor').value;
-  const podglad = document.getElementById('podglad');
-  podglad.style.backgroundColor = kolor;
-  document.getElementById('podgladTekst').textContent = '';
-  document.getElementById('podgladObraz').src = '';
-}
+  emailjs.init("TWÓJ_PUBLIC_KEY"); // <-- TU PODMIEN PUBLICZNY KLUCZ
 
-function aktualizujTekst() {
-  const tekst = document.getElementById('tekst').value;
-  const czcionka = document.getElementById('czcionka').value;
-  const podgladTekst = document.getElementById('podgladTekst');
-  podgladTekst.textContent = tekst;
-  podgladTekst.style.fontFamily = czcionka;
-  podgladTekst.style.color = '#000';
-}
+  let koszyk = [];
 
-function dodajObraz(event) {
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    document.getElementById('podgladObraz').src = e.target.result;
+  function zmienPodglad() {
+    const kolor = document.getElementById('kolor').value;
+    document.getElementById('podglad').style.backgroundColor = kolor;
+    document.getElementById('podgladTekst').textContent = '';
+    document.getElementById('podgladObraz').src = '';
   }
-  reader.readAsDataURL(event.target.files[0]);
-}
 
-// --- KOSZYK ---
-let koszyk = [];
+  function aktualizujTekst() {
+    const tekst = document.getElementById('tekst').value;
+    const czcionka = document.getElementById('czcionka').value;
+    const podgladTekst = document.getElementById('podgladTekst');
+    podgladTekst.textContent = tekst;
+    podgladTekst.style.fontFamily = czcionka;
+    podgladTekst.style.color = '#000';
+  }
 
-function dodajDoKoszyka(nazwa, cena) {
-  koszyk.push({ nazwa, cena });
-  aktualizujKoszyk();
-}
+  function dodajObraz(event) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('podgladObraz').src = e.target.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
 
-function dodajProjektDoKoszyka() {
-  const produkt = document.getElementById('produkt').value;
-  let cena = 99;
-  if (produkt === 'bluza') cena = 150;
-  if (produkt === 'czapka') cena = 79;
-  const tekst = document.getElementById('tekst').value;
-  const nazwa = `Projekt: ${produkt} – "${tekst}"`;
-  dodajDoKoszyka(nazwa, cena);
-  alert("Produkt dodany do koszyka!");
-}
+  function dodajDoKoszyka(nazwa, cena) {
+    koszyk.push({ nazwa, cena });
+    aktualizujKoszyk();
+  }
 
-function aktualizujKoszyk() {
-  const lista = document.getElementById('listaKoszyka');
-  const suma = document.getElementById('sumaKoszyka');
-  lista.innerHTML = '';
-  let total = 0;
+  function dodajProjektDoKoszyka() {
+    const produkt = document.getElementById('produkt').value;
+    const tekst = document.getElementById('tekst').value;
+    let cena = 99;
+    if (produkt === 'bluza') cena = 150;
+    if (produkt === 'czapka') cena = 79;
+    const nazwa = `Projekt: ${produkt} – "${tekst}"`;
+    dodajDoKoszyka(nazwa, cena);
+    alert("Produkt dodany do koszyka!");
+  }
 
-  koszyk.forEach((item, index) => {
-    const li = document.createElement('li');
-    li.className = 'flex justify-between items-center';
-    li.innerHTML = `
-      <span>${item.nazwa}</span>
-      <div>
-        <span>${item.cena} zł</span>
-        <button onclick="usunZKoszyka(${index})" class="ml-2 text-red-600 hover:text-red-800">✖</button>
-      </div>`;
-    lista.appendChild(li);
-    total += item.cena;
-  });
+  function aktualizujKoszyk() {
+    const lista = document.getElementById('listaKoszyka');
+    const suma = document.getElementById('sumaKoszyka');
+    lista.innerHTML = '';
+    let total = 0;
+    koszyk.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.className = 'flex justify-between items-center';
+      li.innerHTML = `
+        <span>${item.nazwa}</span>
+        <div>
+          <span>${item.cena} zł</span>
+          <button onclick="usunZKoszyka(${index})" class="ml-2 text-red-600 hover:text-red-800">✖</button>
+        </div>`;
+      lista.appendChild(li);
+      total += item.cena;
+    });
+    suma.textContent = total;
+  }
 
-  suma.textContent = total;
-}
+  function usunZKoszyka(index) {
+    koszyk.splice(index, 1);
+    aktualizujKoszyk();
+  }
 
-function usunZKoszyka(index) {
-  koszyk.splice(index, 1);
-  aktualizujKoszyk();
-}
+  function toggleKoszyk() {
+    document.getElementById('koszyk').classList.toggle('hidden');
+  }
 
-function toggleKoszyk() {
-  const koszykDiv = document.getElementById('koszyk');
-  koszykDiv.classList.toggle('hidden');
-}
+  function pokazFormularzZamowienia() {
+    document.getElementById("formularzZamowienia").classList.remove("hidden");
+  }
 
-function pokazFormularzZamowienia() {
-  alert("Tu będzie formularz zamówienia – dodamy go zaraz, gdy dasz znak.");
-}
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script type="text/javascript">
-  emailjs.init("TWÓJ_PUBLIC_KEY"); // <- podmień na swój klucz z EmailJS
+  function zamknijFormularzZamowienia() {
+    document.getElementById("formularzZamowienia").classList.add("hidden");
+  }
 
   function wyslijPotwierdzenieZamowienia() {
     const zamowienieId = Math.floor(Math.random() * 1000000);
     const email = document.getElementById("email").value;
     const nazwa = "Zamówienie z AdelbertusShop";
-    const cena = "99"; // na razie na sztywno
+    const cena = document.getElementById('sumaKoszyka').textContent;
 
     const params = {
       "identyfikator_zamówienia": zamowienieId,
@@ -699,38 +774,22 @@ function pokazFormularzZamowienia() {
       });
   }
 </script>
-  <!-- FORMULARZ ZAMÓWIENIA -->
+
+<!-- FORMULARZ ZAMÓWIENIA -->
 <div id="formularzZamowienia" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
   <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative">
     <button onclick="zamknijFormularzZamowienia()" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">✖</button>
     <h2 class="text-2xl font-bold mb-4 text-center">Zamówienie</h2>
-    
     <form onsubmit="event.preventDefault(); wyslijPotwierdzenieZamowienia(); zamknijFormularzZamowienia();">
       <label class="block mb-2 font-semibold" for="email">Adres e-mail:</label>
       <input id="email" type="email" required class="w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black" />
-
       <label class="block mb-2 font-semibold" for="notatka">Notatka do zamówienia:</label>
       <textarea id="notatka" rows="3" class="w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"></textarea>
-
       <label class="block mb-2 font-semibold" for="plik">Załącz plik graficzny (opcjonalnie):</label>
       <input id="plik" type="file" accept="image/*" class="mb-4" />
-
       <button type="submit" class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">Wyślij zamówienie</button>
     </form>
   </div>
 </div>
-
-<script>
-  function pokazFormularzZamowienia() {
-    document.getElementById("formularzZamowienia").classList.remove("hidden");
-  }
-
-  function zamknijFormularzZamowienia() {
-    document.getElementById("formularzZamowienia").classList.add("hidden");
-  }
-</script>
-
-</body>
-</html>
 
 
