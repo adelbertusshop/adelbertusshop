@@ -139,17 +139,6 @@
   </div>
 </section>
 
-<!-- 🧾 ZAMÓWIENIA (z EmailJS) -->
-<section id="zamowienia" class="py-12 bg-white border-t">
-  <div class="max-w-3xl mx-auto px-4">
-    <h2 class="text-4xl font-bold text-center mb-6">Zamówienia</h2>
-    <form id="formularzZamowienia" class="space-y-4">
-      <textarea id="uwagi" placeholder="Twoje uwagi do zamówienia..." class="w-full p-3 border rounded"></textarea>
-      <input type="file" id="plikZamowienia" class="w-full p-2 border rounded" />
-      <button type="submit" class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">Zamawiam wszystko</button>
-    </form>
-  </div>
-</section>
 
 <!-- 🧺 KOSZYK -->
 <div id="koszyk" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg p-6 overflow-y-auto hidden z-50">
@@ -233,52 +222,58 @@ document.getElementById("formularzZamowienia").addEventListener("submit", functi
   });
 });
 </script>
-<section id="zbiorka" class="py-12 bg-gradient-to-br from-yellow-50 to-yellow-100 border-4 border-yellow-500 rounded-2xl shadow-xl">
-  <div class="max-w-4xl mx-auto px-6">
-    <div class="bg-white p-8 rounded-2xl shadow-md border-l-8 border-yellow-600">
-      <h2 class="text-4xl font-extrabold text-yellow-800 mb-6 text-center">Pomoc dla dzieci z domu dziecka</h2>
-      
-      <p class="text-lg text-gray-800 mb-4">Jako właściciel tego sklepu – były wychowanek domu dziecka – wiem jedno: <strong>dzieci potrzebują nadziei</strong>. Uśmiech dziecka to więcej niż słowa – to zdrowie, wiara, że są na tym świecie ludzie dobrzy. Pomagając, dajemy nie tylko dary, ale też drogowskaz. Dzieci uczą się dobra przez przykład, który im zostawiamy.</p>
+<!-- START: Ramka ozdobna wokół sekcji Zbiórka -->
+<div class="relative z-10 bg-black bg-opacity-90 p-2 sm:p-4 rounded-3xl shadow-[0_0_25px_rgba(255,215,0,0.5)] border-4 border-yellow-600 max-w-5xl mx-auto my-10">
 
-      <p class="text-md text-gray-700 mb-3">
-        👉 <strong>Wpłaty BLIK:</strong> <span class="font-bold text-yellow-700">573-939-925</span> z dopiskiem "<strong>pomoc</strong>"
-      </p>
-      <p class="text-md text-gray-700 mb-3">
-        🎁 <strong>Przekazywanie darów, rzeczy, paczek:</strong> prosimy o kontakt:
-      </p>
-      <ul class="list-disc list-inside text-gray-700 mb-4">
-        <li><strong>Telefon:</strong> 604 296 360</li>
-        <li><strong>E-mail:</strong> mielniczukgrzegosz74@gmail.com</li>
-      </ul>
-      <p class="text-md text-gray-700 mb-6">Udzielimy wszelkich informacji, gdzie i jak przesłać dary. Każdy gest ma znaczenie.</p>
+  <section id="zbiorka" class="py-12 bg-gradient-to-br from-yellow-50 to-yellow-100 border-4 border-yellow-500 rounded-2xl shadow-xl">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="bg-white p-8 rounded-2xl shadow-md border-l-8 border-yellow-600">
+        <h2 class="text-4xl font-extrabold text-yellow-800 mb-6 text-center">Pomoc dla dzieci z domu dziecka</h2>
+        
+        <p class="text-lg text-gray-800 mb-4">Jako właściciel tego sklepu – były wychowanek domu dziecka – wiem jedno: <strong>dzieci potrzebują nadziei</strong>. Uśmiech dziecka to więcej niż słowa – to zdrowie, wiara, że są na tym świecie ludzie dobrzy. Pomagając, dajemy nie tylko dary, ale też drogowskaz. Dzieci uczą się dobra przez przykład, który im zostawiamy.</p>
 
-      <div class="bg-yellow-100 p-6 rounded-xl shadow-inner mb-6">
-        <h3 class="text-2xl font-semibold text-yellow-800 mb-3">Następna wysyłka paczek za:</h3>
-        <div id="countdown" class="text-3xl font-bold text-yellow-700 text-center">Ładowanie...</div>
-      </div>
-
-      <div class="bg-white p-4 rounded-xl border border-yellow-400 shadow-sm mb-6">
-        <h4 class="text-xl font-semibold text-yellow-800 mb-2">Wspierają nas:</h4>
-        <ul class="list-disc list-inside text-gray-700">
-          <li>Anna – samotna mama, która co miesiąc wysyła zabawki</li>
-          <li>Pan Marek z Gdańska – wpłaca regularnie BLIKiem</li>
-          <li>Dominika – artystka, przekazuje własnoręcznie robione misie</li>
-          <li>“Anonimowy Anioł” – co miesiąc wysyła wielką paczkę z ubraniami</li>
+        <p class="text-md text-gray-700 mb-3">
+          👉 <strong>Wpłaty BLIK:</strong> <span class="font-bold text-yellow-700">573-939-925</span> z dopiskiem "<strong>pomoc</strong>"
+        </p>
+        <p class="text-md text-gray-700 mb-3">
+          🎁 <strong>Przekazywanie darów, rzeczy, paczek:</strong> prosimy o kontakt:
+        </p>
+        <ul class="list-disc list-inside text-gray-700 mb-4">
+          <li><strong>Telefon:</strong> 604 296 360</li>
+          <li><strong>E-mail:</strong> mielniczukgrzegosz74@gmail.com</li>
         </ul>
-      </div>
+        <p class="text-md text-gray-700 mb-6">Udzielimy wszelkich informacji, gdzie i jak przesłać dary. Każdy gest ma znaczenie.</p>
 
-      <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 italic text-gray-800 mb-6">
-        <p class="mb-2">„Dziękujemy! Dzięki Waszej pomocy czujemy się zauważeni, ważni… kochani. Gdy otwieramy paczki – oczy się świecą. To nie tylko rzeczy – to uczucia, których często nam brak. Dziękujemy z całego serca.”</p>
-        <p class="text-right font-semibold">– dzieci z Domu Dziecka</p>
-      </div>
+        <div class="bg-yellow-100 p-6 rounded-xl shadow-inner mb-6">
+          <h3 class="text-2xl font-semibold text-yellow-800 mb-3">Następna wysyłka paczek za:</h3>
+          <div id="countdown" class="text-3xl font-bold text-yellow-700 text-center">Ładowanie...</div>
+        </div>
 
-      <div class="text-center">
-        <p class="text-md text-gray-700 mb-2">📦 Każda paczka to nadzieja. Każdy przelew – iskierka światła.</p>
-        <p class="text-lg font-bold text-yellow-700">Dołącz do nas i pomóż tworzyć lepsze jutro.</p>
+        <div class="bg-white p-4 rounded-xl border border-yellow-400 shadow-sm mb-6">
+          <h4 class="text-xl font-semibold text-yellow-800 mb-2">Wspierają nas:</h4>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>Anna – samotna mama, która co miesiąc wysyła zabawki</li>
+            <li>Pan Marek z Gdańska – wpłaca regularnie BLIKiem</li>
+            <li>Dominika – artystka, przekazuje własnoręcznie robione misie</li>
+            <li>“Anonimowy Anioł” – co miesiąc wysyła wielką paczkę z ubraniami</li>
+          </ul>
+        </div>
+
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 italic text-gray-800 mb-6">
+          <p class="mb-2">„Dziękujemy! Dzięki Waszej pomocy czujemy się zauważeni, ważni… kochani. Gdy otwieramy paczki – oczy się świecą. To nie tylko rzeczy – to uczucia, których często nam brak. Dziękujemy z całego serca.”</p>
+          <p class="text-right font-semibold">– dzieci z Domu Dziecka</p>
+        </div>
+
+        <div class="text-center">
+          <p class="text-md text-gray-700 mb-2">📦 Każda paczka to nadzieja. Każdy przelew – iskierka światła.</p>
+          <p class="text-lg font-bold text-yellow-700">Dołącz do nas i pomóż tworzyć lepsze jutro.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+</div>
+<!-- END: Ramka ozdobna -->
 
 <script>
 // Prosty licznik do najbliższej wysyłki – ustaw datę
@@ -822,4 +817,5 @@ setInterval(() => {
 
 </body>
 </html>
+
 
