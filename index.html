@@ -733,5 +733,32 @@ function toggleKoszyk() {
 function pokazFormularzZamowienia() {
   alert("Tu będzie formularz zamówienia – dodamy go zaraz, gdy dasz znak.");
 }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+  emailjs.init("TWÓJ_PUBLIC_KEY"); // <- podmień na swój klucz z EmailJS
+
+  function wyslijPotwierdzenieZamowienia() {
+    const zamowienieId = Math.floor(Math.random() * 1000000);
+    const email = document.getElementById("email").value;
+    const nazwa = "Zamówienie z AdelbertusShop";
+    const cena = "99"; // na razie na sztywno
+
+    const params = {
+      "identyfikator_zamówienia": zamowienieId,
+      "nazwa": nazwa,
+      "cena": cena + " zł",
+      "koszt": cena + " zł",
+      "e-mail": email
+    };
+
+    emailjs.send("service_gwz0ja7", "template_064b7uo", params)
+      .then(function(response) {
+        alert("✔️ Wysłano potwierdzenie na maila!");
+      }, function(error) {
+        alert("❌ Coś poszło nie tak: " + error.text);
+      });
+  }
 </script></body>
 </html>
+
