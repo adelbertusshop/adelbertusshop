@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AdelbertusShop - Zamówienie</title>
+  <title>AdelbertusShop</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #121212;
       color: #fff;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
     }
 
     #toggleKoszykBtn {
@@ -27,73 +28,14 @@
       color: #121212;
       z-index: 9999;
     }
-
-    form {
-      max-width: 480px;
-      margin: 2rem auto;
-      background: #222;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 0 12px #d4af37cc;
-    }
-
-    form input, form textarea {
-      width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-    }
-
-    form button {
-      background: #d4af37;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      font-weight: bold;
-      font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      color: #121212;
-      transition: background 0.3s;
-    }
-
-    form button:hover {
-      background: #f5d76e;
-    }
-
-    input[readonly] {
-      background: #444;
-      color: #ccc;
-    }
   </style>
 </head>
 <body>
 
-<!-- Ikona koszyka -->
+<!-- 🛒 IKONA KOSZYKA -->
 <button id="toggleKoszykBtn" aria-label="Koszyk">🛒</button>
 
-<!-- Formularz zamówienia -->
-<form id="formularzZamowienia" aria-label="Formularz zamówienia">
-  <h2>Zamówienie</h2>
-  <input type="text" name="imie" placeholder="Imię i nazwisko" required />
-  <input type="email" name="email" placeholder="E-mail" required />
-  <textarea name="uwagi" placeholder="Dodatkowe uwagi"></textarea>
-
-  <!-- Ukryte pola BLIK -->
-  <input type="text" name="blikKod" id="blikKod" value="573-939-925" readonly />
-  <input type="text" name="blikDopis" id="blikDopis" value="projekt własny" readonly />
-
-  <button type="submit">Wyślij zamówienie</button>
-</form>
-
-<script>
-
-</script>
-
-</body>
-</html>
-<!-- GŁÓWNY BANER -->
+<!-- 🎯 GŁÓWNY BANER -->
 <section class="relative h-screen w-full overflow-hidden">
   <img src="https://i.ibb.co/v6gkV1MN/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg"
        alt="Baner główny"
@@ -108,20 +50,18 @@
   </div>
 </section>
 
-<!-- PRODUKTY -->
-<section id="products">
-  <!-- Wklejasz tutaj produkty -->
+<!-- 🧥 PRODUKTY (placeholder – wklejamy tu produkty wg kategorii) -->
+<section id="products" class="py-12 bg-[#1e1e1e]">
+  <!-- Tutaj będą produkty z podziałem na kategorie: Mężczyźni, Kobiety, itd. -->
 </section>
 
-</body>
-</html>
-<!-- 🛒 SKLEP START -->
-<section id="sklep" class="py-12 bg-white">
+<!-- 🛍️ SKLEP START (przykład) -->
+<section id="sklep" class="py-12 bg-white text-black">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-4xl font-bold text-center mb-12">Sklep</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-      <!-- Przykładowy produkt -->
+      <!-- ✅ PRZYKŁADOWY PRODUKT -->
       <div class="bg-gray-100 p-6 rounded-xl shadow-md text-center">
         <img src="link-do-obrazka.jpg" alt="Koszulka" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
         <h3 class="text-xl font-semibold mb-2">Koszulka „Wybrany”</h3>
@@ -129,12 +69,11 @@
         <button onclick="dodajDoKoszyka('Koszulka Wybrany', 99)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
       </div>
 
-      <!-- Dodaj więcej produktów tu według potrzeb -->
+      <!-- Tu dodamy kolejne produkty -->
 
     </div>
   </div>
-</section>
-<!-- 🛒 SKLEP END -->
+</section><!-- 🛒 SKLEP END -->
 
 <!-- 🎨 PROJEKTUJ START -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-white to-gray-50">
@@ -635,7 +574,7 @@ setInterval(() => {
 
     </div>
   </div>
-</section> <!-- Sekcja Zamówienia -->
+</section> 
 
 
 <!-- KOSZYK -->
@@ -759,6 +698,39 @@ function pokazFormularzZamowienia() {
         alert("❌ Coś poszło nie tak: " + error.text);
       });
   }
-</script></body>
+</script>
+  <!-- FORMULARZ ZAMÓWIENIA -->
+<div id="formularzZamowienia" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
+  <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative">
+    <button onclick="zamknijFormularzZamowienia()" class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">✖</button>
+    <h2 class="text-2xl font-bold mb-4 text-center">Zamówienie</h2>
+    
+    <form onsubmit="event.preventDefault(); wyslijPotwierdzenieZamowienia(); zamknijFormularzZamowienia();">
+      <label class="block mb-2 font-semibold" for="email">Adres e-mail:</label>
+      <input id="email" type="email" required class="w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black" />
+
+      <label class="block mb-2 font-semibold" for="notatka">Notatka do zamówienia:</label>
+      <textarea id="notatka" rows="3" class="w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"></textarea>
+
+      <label class="block mb-2 font-semibold" for="plik">Załącz plik graficzny (opcjonalnie):</label>
+      <input id="plik" type="file" accept="image/*" class="mb-4" />
+
+      <button type="submit" class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">Wyślij zamówienie</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function pokazFormularzZamowienia() {
+    document.getElementById("formularzZamowienia").classList.remove("hidden");
+  }
+
+  function zamknijFormularzZamowienia() {
+    document.getElementById("formularzZamowienia").classList.add("hidden");
+  }
+</script>
+
+</body>
 </html>
+
 
