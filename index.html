@@ -156,23 +156,94 @@
     </p>
   </div>
 </section>
+<!-- ====================== SKLEP PREMIUM ====================== -->
+<section id="sklep" class="py-16 bg-[#121212] text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-5xl font-bold text-center text-[#d4af37] mb-16">Ekskluzywny Sklep</h2>
 
-<!-- 🧥 PRODUKTY -->
-<section id="products" class="py-12 bg-[#1e1e1e] text-white">
-  <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-4xl font-bold text-center mb-12">Sklep</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- ✅ PRZYKŁADOWY PRODUKT -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="link-do-obrazka.jpg" alt="Koszulka" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h3 class="text-xl font-semibold mb-2">Koszulka „Wybrany”</h3>
-        <p class="text-gray-700 mb-2">99 zł</p>
-        <button onclick="dodajDoKoszyka('Koszulka Wybrany', 99)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+    <!-- === Kategorie === -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+
+      <!-- === Mężczyźni === -->
+      <div class="bg-white text-black p-6 rounded-xl shadow-lg hover:scale-105 transition-transform">
+        <h3 class="text-2xl font-semibold mb-4 text-center">Mężczyźni</h3>
+        <ul class="space-y-3 text-center">
+          <li><a href="#koszulki-mezczyzni" class="text-lg font-medium hover:text-[#d4af37]">Koszulki - 120 zł</a></li>
+          <li><a href="#bluzy-mezczyzni" class="text-lg font-medium hover:text-[#d4af37]">Bluzy - 200 zł</a></li>
+          <li><a href="#bluzyKaptur-mezczyzni" class="text-lg font-medium hover:text-[#d4af37]">Bluzy z kapturem - 200 zł</a></li>
+          <li><a href="#czapki-mezczyzni" class="text-lg font-medium hover:text-[#d4af37]">Czapki - 99 zł</a></li>
+          <li><a href="#akcesoria-mezczyzni" class="text-lg font-medium hover:text-[#d4af37]">Akcesoria - 70-100 zł</a></li>
+        </ul>
+      </div>
+
+      <!-- === Kobiety === -->
+      <div class="bg-white text-black p-6 rounded-xl shadow-lg hover:scale-105 transition-transform">
+        <h3 class="text-2xl font-semibold mb-4 text-center">Kobiety</h3>
+        <ul class="space-y-3 text-center">
+          <li><a href="#koszulki-kobiety" class="text-lg font-medium hover:text-[#d4af37]">Koszulki - 120 zł</a></li>
+          <li><a href="#bluzy-kobiety" class="text-lg font-medium hover:text-[#d4af37]">Bluzy - 200 zł</a></li>
+          <li><a href="#bluzyKaptur-kobiety" class="text-lg font-medium hover:text-[#d4af37]">Bluzy z kapturem - 200 zł</a></li>
+          <li><a href="#czapki-kobiety" class="text-lg font-medium hover:text-[#d4af37]">Czapki - 99 zł</a></li>
+          <li><a href="#akcesoria-kobiety" class="text-lg font-medium hover:text-[#d4af37]">Akcesoria - 70-100 zł</a></li>
+        </ul>
+      </div>
+
+      <!-- === Nowości === -->
+      <div class="bg-white text-black p-6 rounded-xl shadow-lg hover:scale-105 transition-transform">
+        <h3 class="text-2xl font-semibold mb-4 text-center">Nowości</h3>
+        <p class="text-center text-gray-600">Wkrótce dostępne nowe kolekcje...</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ==================== PRODUKTY ==================== -->
+
+<!-- === Koszulki Mężczyźni === -->
+<section id="koszulki-mezczyzni" class="py-12 bg-black text-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h3 class="text-3xl font-bold text-[#d4af37] mb-8 text-center">Koszulki Mężczyźni</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Produkt 1 -->
+      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
+        <img src="link-do-obrazka.jpg" alt="Koszulka" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
+        <h4 class="text-xl font-semibold mb-2">Koszulka „Wybrany”</h4>
+        <p class="text-gray-700 mb-2">120 zł</p>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Rozmiar: S</option>
+          <option>M</option>
+          <option>L</option>
+          <option>XL</option>
+        </select>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Kolor: Czarny</option>
+          <option>Biały</option>
+          <option>Złoty</option>
+        </select>
+        <button onclick="dodajDoKoszyka('Koszulka Wybrany', 120)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+      </div>
+
+      <!-- Produkt 2 -->
+      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
+        <img src="link-do-obrazka2.jpg" alt="Koszulka" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
+        <h4 class="text-xl font-semibold mb-2">Koszulka „Premium”</h4>
+        <p class="text-gray-700 mb-2">120 zł</p>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Rozmiar: S</option>
+          <option>M</option>
+          <option>L</option>
+          <option>XL</option>
+        </select>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Kolor: Czarny</option>
+          <option>Biały</option>
+          <option>Złoty</option>
+        </select>
+        <button onclick="dodajDoKoszyka('Koszulka Premium', 120)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- 📩 ZAMÓWIENIA / FORMULARZ KONTAKTOWY -->
 <section id="zamowienia" class="py-12 bg-[#222] text-white">
   <div class="max-w-xl mx-auto px-4">
@@ -282,8 +353,7 @@ function startCzasomierz(sekundy) {
       document.getElementById('reklamaAdmina').value = "";
     }
   }, 1000);
-}    
-<!-- 🎨 PROJEKTUJ -->
+}    <!-- 🎨 PROJEKTUJ -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-white to-gray-50">
   <div class="max-w-4xl mx-auto px-4 text-center">
     <h2 class="text-4xl font-bold mb-6">Zaprojektuj swój produkt</h2>
@@ -306,88 +376,6 @@ function startCzasomierz(sekundy) {
 </section>
 
 
-<!-- 🧺 KOSZYK -->
-<div id="koszyk" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg p-6 overflow-y-auto hidden z-50">
-  <h3 class="text-2xl font-bold mb-4">Twój koszyk</h3>
-  <ul id="listaKoszyka" class="mb-4"></ul>
-  <p id="sumaKoszyka" class="font-bold mb-4">Suma: 0 zł</p>
-  <button onclick="zamknijKoszyk()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Zamknij</button>
-</div>
-<button onclick="pokazKoszyk()" class="fixed bottom-6 right-6 bg-black text-white px-6 py-3 rounded-full shadow-xl hover:bg-gray-800 z-50">🛍️ Koszyk</button>
-
-<!-- 🔧 SKRYPTY -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
-<script>
-emailjs.init("twój_user_ID_z_emailjs"); // 🔁 Wklej tu swój EmailJS User ID
-
-let koszyk = [];
-
-function dodajDoKoszyka(nazwa, cena) {
-  koszyk.push({ nazwa, cena });
-  aktualizujKoszyk();
-  pokazKoszyk();
-}
-
-function dodajProjektDoKoszyka() {
-  const tekst = document.getElementById("projektTekst").value;
-  const kolor = document.getElementById("projektKolor").value;
-  const rozmiar = document.getElementById("projektRozmiar").value;
-  const nazwa = `Projekt: ${tekst || 'Brak tekstu'} (${kolor}, ${rozmiar})`;
-  koszyk.push({ nazwa, cena: 199 });
-  aktualizujKoszyk();
-  pokazKoszyk();
-}
-
-function aktualizujKoszyk() {
-  const lista = document.getElementById("listaKoszyka");
-  const suma = document.getElementById("sumaKoszyka");
-  lista.innerHTML = "";
-  let total = 0;
-  koszyk.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = `${item.nazwa} - ${item.cena} zł`;
-    lista.appendChild(li);
-    total += item.cena;
-  });
-  suma.textContent = `Suma: ${total} zł`;
-}
-
-function pokazKoszyk() {
-  document.getElementById("koszyk").classList.remove("hidden");
-}
-
-function zamknijKoszyk() {
-  document.getElementById("koszyk").classList.add("hidden");
-}
-
-// 📨 Wysyłka zamówienia przez EmailJS
-document.getElementById("formularzZamowienia").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const uwagi = document.getElementById("uwagi").value;
-  const zamowienie = koszyk.map(item => `${item.nazwa} - ${item.cena} zł`).join("\n");
-  const plik = document.getElementById("plikZamowienia").files[0];
-
-  const formData = new FormData();
-  formData.append("uwagi", uwagi);
-  formData.append("zamowienie", zamowienie);
-  if (plik) {
-    formData.append("plik", plik);
-  }
-
-  emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-    zamowienie,
-    uwagi
-  }).then(() => {
-    alert("Zamówienie zostało wysłane!");
-    koszyk = [];
-    aktualizujKoszyk();
-    document.getElementById("formularzZamowienia").reset();
-  }, (error) => {
-    alert("Błąd podczas wysyłania zamówienia: " + error.text);
-  });
-});
-</script>
 <!-- START: Ramka ozdobna wokół sekcji Zbiórka -->
 <div class="relative z-10 bg-black bg-opacity-90 p-2 sm:p-4 rounded-3xl shadow-[0_0_25px_rgba(255,215,0,0.5)] border-4 border-yellow-600 max-w-5xl mx-auto my-10">
 
@@ -840,6 +828,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
