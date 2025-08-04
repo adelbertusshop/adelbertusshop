@@ -652,5 +652,26 @@ setInterval(() => {
     </div>
   </div>
 </section> 
+</main> <!-- Jeśli masz otwarte <main>, zamykamy je wcześniej -->
 
+<!-- 🔻 START: BODY I DOLNA SEKCJA Z BANEREM I PRZYCISKIEM POWROTU 🔻 -->
+<body>
+  <section class="bg-black text-white py-4 px-6 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-gray-700">
+    <div class="text-center md:text-left">
+      <p class="text-lg font-semibold">🔥 Zaprojektuj coś swojego. Wyróżnij się!</p>
+      <p class="text-sm text-gray-300">Kliknij u góry w sekcję „Zaprojektuj” i stwórz coś niepowtarzalnego.</p>
+    </div>
+    <button onclick="scrollToTop()" class="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-200 transition">
+      ⬆️ Do góry
+    </button>
+  </section>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
+<!-- 🔺 KONIEC KODU 🔺 -->
 
