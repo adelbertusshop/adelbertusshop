@@ -5,54 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #121212;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-    }
-    #toggleKoszykBtn {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1rem;
-      background: #d4af37;
-      border: none;
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 0 15px #d4af37cc;
-      color: #121212;
-      z-index: 9999;
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      border: none;
-    }
-    form button {
-      background-color: #d4af37;
-      color: black;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  </style>
+    <link rel="stylesheet" href="style.css"> /* === Podstawowy wygląd === */
+body {
+  font-family: Arial, sans-serif;
+  background: #121212;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
 
-  <!-- ✅ EmailJS SDK -->
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-</head>
-<body>
+/* Przycisk koszyka */
+#toggleKoszykBtn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1rem;
+  background: #d4af37;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #d4af37cc;
+  color: #121212;
+  z-index: 9999;
+}
 
-<!-- 🛒 IKONA KOSZYKA -->
-<button id="toggleKoszykBtn" aria-label="Koszyk">🛒</button>
+/* Formularze */
+form input, form textarea, form select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: none;
+}
 
+form button {
+  background-color: #d4af37;
+  color: black;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Koszyk */
+#koszyk {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80%;
+  max-width: 320px;
+  height: 100%;
+  background: white;
+  color: black;
+  padding: 1rem;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.4);
+  overflow-y: auto;
+  display: none;
+  z-index: 50;
+}
+
+/* Sekcje */
+section {
+  padding: 40px 20px;
+}
+
+h1,h2,h3,h4,h5 {
+  font-weight: bold;
+}
+
+button:hover {
+  opacity: 0.9;
+}
 <!-- 🎯 GŁÓWNY BANER -->
 <section class="relative h-screen w-full overflow-hidden">
   <img src="https://i.ibb.co/v6gkV1MN/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg"
@@ -100,23 +126,100 @@
 
 <!-- ✅ EmailJS init i obsługa formularza -->
 <script>
-  emailjs.init("TWÓJ_PUBLIC_KEY"); // 🔐 Wklej tu swój klucz publiczny z EmailJS
+emailjs.init("TWÓJ_PUBLIC_KEY"); // Podaj swój klucz EmailJS
 
-  document.getElementById("formularzZamowienia").addEventListener("submit", function (e) {
-    e.preventDefault();
-    emailjs.sendForm("TWÓJ_SERVICE_ID", "TWÓJ_TEMPLATE_ID", this)
-      .then(() => {
-        document.getElementById("statusWysylki").innerText = "✅ Zamówienie wysłane!";
-        this.reset();
-      }, (error) => {
-        document.getElementById("statusWysylki").innerText = "❌ Błąd: " + error.text;
-      });
+let koszyk = [];
+
+// Dodawanie do koszyka
+function dodajDoKoszyka(nazwa, cena) {
+  koszyk.push({ nazwa, cena });
+  aktualizujKoszyk();
+  pokazKoszyk();
+}
+
+// Dodawanie projektów do koszyka
+function dodajProjektDoKoszyka() {
+  const tekst = document.getElementById("projektTekst").value;
+  const kolor = document.getElementById("projektKolor").value;
+  const rozmiar = document.getElementById("projektRozmiar").value;
+  const nazwa = `Projekt: ${tekst || 'Brak tekstu'} (${kolor}, ${rozmiar})`;
+  koszyk.push({ nazwa, cena: 199 });
+  aktualizujKoszyk();
+  pokazKoszyk();
+}
+
+// Aktualizacja koszyka
+function aktualizujKoszyk() {
+  const lista = document.getElementById("listaKoszyka");
+  const suma = document.getElementById("sumaKoszyka");
+  lista.innerHTML = "";
+  let total = 0;
+  koszyk.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = `${item.nazwa} - ${item.cena} zł`;
+    lista.appendChild(li);
+    total += item.cena;
   });
-</script>
+  suma.textContent = `Suma: ${total} zł`;
+}
 
-</body>
-</html>
+function pokazKoszyk() {
+  document.getElementById("koszyk").style.display = "block";
+}
 
+function zamknijKoszyk() {
+  document.getElementById("koszyk").style.display = "none";
+}
+
+// Formularz EmailJS
+document.getElementById("formularzZamowienia").addEventListener("submit", function (e) {
+  e.preventDefault();
+  emailjs.sendForm("TWÓJ_SERVICE_ID", "TWÓJ_TEMPLATE_ID", this)
+    .then(() => {
+      document.getElementById("statusWysylki").innerText = "✅ Zamówienie wysłane!";
+      this.reset();
+    }, (error) => {
+      document.getElementById("statusWysylki").innerText = "❌ Błąd: " + error.text;
+    });
+});
+
+// Skrypt reklamy (pozostaje bez zmian)
+function pokazPanelAdmina() {
+  document.getElementById('panelAdmina').classList.toggle('hidden');
+}
+
+function sprawdzHaslo() {
+  const haslo = document.getElementById('adminHaslo').value;
+  if (haslo === 'Wojownik.03') {
+    document.getElementById('adminKontrola').classList.remove('hidden');
+  } else {
+    alert("Nieprawidłowe hasło.");
+  }
+}
+
+function wyswietlReklameAdmina() {
+  const tekst = document.getElementById('reklamaAdmina').value;
+  if (tekst.trim()) {
+    document.getElementById('trescReklamyGlowne').innerText = tekst;
+    document.getElementById('reklamaGlowneOkno').classList.remove('hidden');
+    startCzasomierz(30);
+  }
+}
+
+function startCzasomierz(sekundy) {
+  let licznik = sekundy;
+  const czas = document.getElementById('czasomierz');
+  czas.textContent = `Reklama zniknie za ${licznik} sekund`;
+  const interval = setInterval(() => {
+    licznik--;
+    czas.textContent = `Reklama zniknie za ${licznik} sekund`;
+    if (licznik <= 0) {
+      clearInterval(interval);
+      document.getElementById('reklamaGlowneOkno').classList.add('hidden');
+      document.getElementById('reklamaAdmina').value = "";
+    }
+  }, 1000);
+}    
 <!-- 🎨 PROJEKTUJ -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-white to-gray-50">
   <div class="max-w-4xl mx-auto px-4 text-center">
@@ -671,7 +774,8 @@ setInterval(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
-</body>
+    <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
