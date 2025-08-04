@@ -1,84 +1,95 @@
-<!DOCTYPE html>
-<html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop</title>
+
+  <!-- Styl strony -->
   <style>
-    <link rel="stylesheet" href="style.css"> /* === Podstawowy wygląd === */
-body {
-  font-family: Arial, sans-serif;
-  background: #121212;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-}
+    /* === Podstawowy wygląd === */
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
 
-/* Przycisk koszyka */
-#toggleKoszykBtn {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1rem;
-  background: #d4af37;
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 0 15px #d4af37cc;
-  color: #121212;
-  z-index: 9999;
-}
+    /* Przycisk koszyka */
+    #toggleKoszykBtn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1rem;
+      background: #d4af37;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #d4af37cc;
+      color: #121212;
+      z-index: 9999;
+    }
 
-/* Formularze */
-form input, form textarea, form select {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  border: none;
-}
+    /* Formularze */
+    form input, form textarea, form select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: none;
+    }
 
-form button {
-  background-color: #d4af37;
-  color: black;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
+    form button {
+      background-color: #d4af37;
+      color: black;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-/* Koszyk */
-#koszyk {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 80%;
-  max-width: 320px;
-  height: 100%;
-  background: white;
-  color: black;
-  padding: 1rem;
-  box-shadow: -2px 0 5px rgba(0,0,0,0.4);
-  overflow-y: auto;
-  display: none;
-  z-index: 50;
-}
+    /* Koszyk */
+    #koszyk {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 80%;
+      max-width: 320px;
+      height: 100%;
+      background: white;
+      color: black;
+      padding: 1rem;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.4);
+      overflow-y: auto;
+      display: none;
+      z-index: 50;
+    }
 
-/* Sekcje */
-section {
-  padding: 40px 20px;
-}
+    /* Sekcje */
+    section {
+      padding: 40px 20px;
+    }
 
-h1,h2,h3,h4,h5 {
-  font-weight: bold;
-}
+    h1,h2,h3,h4,h5 {
+      font-weight: bold;
+    }
 
-button:hover {
-  opacity: 0.9;
-}
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+
+  <!-- Skrypty -->
+  <script>
+    console.log("script.js działa poprawnie");
+  </script>
+</head>
+
+  <!-- Skrypt JavaScript -->
+  <script src="script.js" defer></script>
+</head>
 <!-- 🎯 GŁÓWNY BANER -->
 <section class="relative h-screen w-full overflow-hidden">
   <img src="https://i.ibb.co/v6gkV1MN/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg"
@@ -777,5 +788,6 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
