@@ -3,9 +3,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AdelbertusShop</title>
 
-  <!-- Styl strony -->
+  <!-- Zewnętrzny plik stylów -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Podstawowe style -->
   <style>
-    /* === Podstawowy wygląd === */
     body {
       font-family: Arial, sans-serif;
       background: #121212;
@@ -31,26 +33,7 @@
       z-index: 9999;
     }
 
-    /* Formularze */
-    form input, form textarea, form select {
-      width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      border: none;
-    }
-
-    form button {
-      background-color: #d4af37;
-      color: black;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    /* Koszyk */
+    /* Okno koszyka */
     #koszyk {
       position: fixed;
       top: 0;
@@ -64,32 +47,54 @@
       box-shadow: -2px 0 5px rgba(0,0,0,0.4);
       overflow-y: auto;
       display: none;
-      z-index: 50;
+      z-index: 10000;
     }
 
-    /* Sekcje */
-    section {
-      padding: 40px 20px;
+    #koszyk h2 {
+      margin-top: 0;
     }
 
-    h1,h2,h3,h4,h5 {
+    #zamknijKoszykBtn {
+      display: block;
+      margin-top: 20px;
+      background: #d4af37;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
       font-weight: bold;
-    }
-
-    button:hover {
-      opacity: 0.9;
+      cursor: pointer;
     }
   </style>
 
-  <!-- Skrypty -->
+  <!-- Skrypt koszyka -->
   <script>
-    console.log("script.js działa poprawnie");
+    document.addEventListener("DOMContentLoaded", function () {
+      const koszyk = document.getElementById("koszyk");
+      const toggleKoszykBtn = document.getElementById("toggleKoszykBtn");
+      const zamknijKoszykBtn = document.getElementById("zamknijKoszykBtn");
+
+      toggleKoszykBtn.addEventListener("click", () => {
+        koszyk.style.display = "block";
+      });
+
+      zamknijKoszykBtn.addEventListener("click", () => {
+        koszyk.style.display = "none";
+      });
+    });
   </script>
 </head>
 
-  <!-- Skrypt JavaScript -->
-  <script src="script.js" defer></script>
-</head>
+<body>
+  <!-- Twój koszyk -->
+  <div id="koszyk">
+    <h2>Twój koszyk</h2>
+    <p>Brak produktów.</p>
+    <button id="zamknijKoszykBtn">Zamknij</button>
+  </div>
+
+  <!-- Przycisk koszyka -->
+  <button id="toggleKoszykBtn">🛒</button>
+</body> 
 <!-- 🎯 GŁÓWNY BANER -->
 <section class="relative h-screen w-full overflow-hidden">
   <img src="https://i.ibb.co/v6gkV1MN/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg"
@@ -788,6 +793,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
