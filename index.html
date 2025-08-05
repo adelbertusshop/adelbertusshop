@@ -792,56 +792,32 @@ setInterval(() => {
       document.getElementById("thanksMessage").value = "";
     }
   }
-</script><!-- Sekcja Marketplace -->
+<!-- Sekcja Marketplace -->
 <section id="marketplace" class="py-12 bg-gray-100">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-6 text-center">Marketplace</h2>
+    <p class="text-lg mb-4 text-center text-gray-700">
+      Wystaw, kupuj i sprzedawaj dowolne przedmioty – elektronika, ubrania, motoryzacja, dom i wiele innych.
+    </p>
 
-    <div class="border-2 border-gray-300 rounded-xl shadow-lg bg-white p-6">
-      <p class="text-lg mb-4 text-center text-gray-700">
-        Tu znajdziesz unikatowe projekty innych użytkowników – odważne, niepokorne, pełne stylu. Możesz je kupić lub zainspirować się do stworzenia własnego.
-      </p>
+    <!-- Kategorie -->
+    <div class="flex flex-wrap gap-4 justify-center mb-8">
+      <button class="category-btn bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition" data-cat="elektronika">Elektronika</button>
+      <button class="category-btn bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition" data-cat="ubrania">Ubrania</button>
+      <button class="category-btn bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition" data-cat="motoryzacja">Motoryzacja</button>
+      <button class="category-btn bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition" data-cat="dom">Dom</button>
+      <button class="category-btn bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition" data-cat="inne">Inne</button>
+    </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Przykładowe produkty -->
-        <div class="border rounded shadow p-4 text-center bg-gray-50">
-          <img src="https://via.placeholder.com/200x200" alt="Produkt 1" class="mx-auto mb-2 rounded">
-          <h3 class="font-semibold">Koszulka „NeoFuture”</h3>
-          <p class="text-sm text-gray-600">99 zł</p>
-          <button class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">Dodaj do koszyka</button>
-        </div>
-
-        <div class="border rounded shadow p-4 text-center bg-gray-50">
-          <img src="https://via.placeholder.com/200x200" alt="Produkt 2" class="mx-auto mb-2 rounded">
-          <h3 class="font-semibold">Bluza „AntiSystem”</h3>
-          <p class="text-sm text-gray-600">150 zł</p>
-          <button class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">Dodaj do koszyka</button>
-        </div>
-
-        <div class="border rounded shadow p-4 text-center bg-gray-50">
-          <img src="https://via.placeholder.com/200x200" alt="Produkt 3" class="mx-auto mb-2 rounded">
-          <h3 class="font-semibold">Czapka „Wolność”</h3>
-          <p class="text-sm text-gray-600">79 zł</p>
-          <button class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">Dodaj do koszyka</button>
-        </div>
-      </div>
-
-      <div class="mt-6 text-center">
-        <p class="text-sm text-gray-700 mb-2 italic">
-          Chcesz dodać swój projekt do Marketplace? Wypełnij formularz w sekcji <a href="#kontakt" class="underline">Kontakt</a>.
-        </p>
-        <p class="text-sm text-gray-700 mb-1">Opłaty za wystawienie produktu:</p>
-        <ul class="text-sm text-gray-700 mb-4">
-          <li>1 dzień – 10 zł</li>
-          <li>1 tydzień – 50 zł</li>
-          <li>1 miesiąc – 150 zł</li>
-        </ul>
-        <p class="text-sm text-gray-700 mb-2">
-          Płatność BLIK na numer <strong>573-939-925</strong> z dopiskiem <strong>"marketplac"</strong>.
-        </p>
-        <p class="text-sm text-red-600 italic">
-          Wystawienie produktu możliwe dopiero po zaksięgowaniu wpłaty i akceptacji przez administratora.
-        </p>
+    <!-- Lista produktów (dynamiczna) -->
+    <div id="product-list" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Przykładowy produkt -->
+      <div class="border rounded shadow p-4 text-center bg-gray-50">
+        <img src="https://via.placeholder.com/200x200" alt="Produkt przykładowy" class="mx-auto mb-2 rounded">
+        <h3 class="font-semibold">Przykładowy produkt</h3>
+        <p class="text-sm text-gray-600">Cena: 120 zł</p>
+        <!-- PayPal -->
+        <div id="paypal-container-product1" class="mt-2"></div>
       </div>
     </div>
   </div>
@@ -869,20 +845,32 @@ setInterval(() => {
   </div>
 </section>
 
+<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
 <script>
-  const loginBtn = document.getElementById('adminLoginBtn');
-  const adminContent = document.getElementById('adminContent');
-
-  loginBtn.addEventListener('click', () => {
+  // Admin login
+  document.getElementById('adminLoginBtn').addEventListener('click', () => {
     const password = document.getElementById('adminPassword').value;
     if (password === 'Wojownik.03') {
-      adminContent.classList.remove('hidden');
+      document.getElementById('adminContent').classList.remove('hidden');
     } else {
       alert('Błędne hasło.');
     }
   });
-</script>
 
+  // PayPal Example Render (dla produktu przykładowego)
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{ amount: { value: '120.00', currency_code: 'PLN' } }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        alert('Transakcja zakończona powodzeniem przez ' + details.payer.name.given_name);
+      });
+    }
+  }).render('#paypal-container-product1');
+</script>
 <!-- Sekcja Reklama -->
 <section id="reklama" class="py-10 bg-yellow-100 text-center">
   <div class="max-w-5xl mx-auto border-2 border-yellow-400 rounded-2xl shadow-xl p-6 bg-white">
@@ -1174,6 +1162,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
