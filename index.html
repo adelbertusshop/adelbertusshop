@@ -704,7 +704,95 @@ setInterval(() => {
   countdown.innerHTML = `${days} dni, ${hours} godz., ${minutes} min`;
 }, 1000);
 </script>
-<!-- Sekcja Marketplace -->
+<section id="zbiorka" style="padding: 2rem; text-align: center; background: linear-gradient(135deg,#ffd700,#ffa500); color: #121212;">
+  <h2>Zbiórka Charytatywna</h2>
+  <p style="max-width:700px;margin:0 auto;">
+    Jestem byłym wychowankiem domu dziecka. Czuję potrzebę pomagania tym, którzy nadal tam mieszkają.  
+    Zbieramy paczki, darowizny i wszystko, co może pomóc dzieciom. Każda pomoc jest bezcenna.
+  </p>
+
+  <!-- PayPal -->
+  <div style="margin:2rem 0;">
+    <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+    <div id="paypal-container-L4639S4363CZE"></div>
+    <script>
+      paypal.HostedButtons({ hostedButtonId: "L4639S4363CZE" })
+        .render("#paypal-container-L4639S4363CZE");
+    </script>
+  </div>
+
+  <!-- BLIK -->
+  <div style="background:#121212;color:#fff;padding:1rem;border-radius:8px;display:inline-block;">
+    Przelew BLIK: <strong>573-939-925</strong><br/>
+    Dopisek: <em>pomoc</em>
+  </div>
+
+  <!-- Zegar -->
+  <div style="margin-top:2rem;font-size:1.5rem;font-weight:bold;">
+    Kolejna wysyłka paczek za: <span id="countdown"></span>
+  </div>
+
+  <!-- Lista wspierających -->
+  <div style="margin-top:2rem;background:#fff;color:#121212;padding:1rem;border-radius:8px;display:inline-block;">
+    <h3>Pomagają nam:</h3>
+    <ul style="list-style:none;padding:0;">
+      <li>Agnieszka K. – paczki z odzieżą</li>
+      <li>Janusz M. – wpłata 200 zł</li>
+      <li>Firma X – sprzęt sportowy</li>
+    </ul>
+  </div>
+
+  <!-- Podziękowanie -->
+  <div style="margin-top:2rem;background:#fff;color:#121212;padding:1rem;border-radius:8px;display:inline-block;max-width:700px;">
+    <h3>Podziękowania</h3>
+    <p>"Dzięki Wam możemy czuć, że ktoś o nas pamięta. Każdy gest jest dla nas ważny – dziękujemy z całego serca!"</p>
+  </div>
+
+  <!-- Formularz podziękowań -->
+  <div style="margin-top:2rem;max-width:700px;margin:auto;">
+    <h3>Napisz swoje podziękowania</h3>
+    <textarea id="thanksMessage" placeholder="Twoje podziękowania..." style="width:100%;height:100px;"></textarea>
+    <br/>
+    <button onclick="sendThanks()" style="background:#ffa500;border:none;padding:0.8rem 1.2rem;border-radius:8px;margin-top:0.5rem;">Wyślij</button>
+    <p id="thanksOutput" style="margin-top:1rem;color:green;font-weight:bold;"></p>
+  </div>
+
+  <p style="margin-top:2rem;font-size:0.9rem;">
+    Kontakt: 604 296 360 | mielniczukgrzegosz74@gmail.com
+  </p>
+</section>
+
+<script>
+  // Zegar (reset co 7 dni)
+  function startCountdown() {
+    const now = new Date();
+    const next = new Date(now);
+    next.setDate(now.getDate() + (7 - now.getDay())); // np. co niedzielę
+    next.setHours(12, 0, 0, 0);
+    function updateTimer() {
+      const diff = next - new Date();
+      if (diff <= 0) return document.getElementById("countdown").textContent = "Dzisiaj!";
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff / (1000*60*60)) % 24);
+      const minutes = Math.floor((diff / (1000*60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      document.getElementById("countdown").textContent =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  }
+  startCountdown();
+
+  // Podziękowania wysyłane na ekran
+  function sendThanks() {
+    const msg = document.getElementById("thanksMessage").value.trim();
+    if(msg) {
+      document.getElementById("thanksOutput").textContent = "Dziękujemy za Twoje słowa!";
+      document.getElementById("thanksMessage").value = "";
+    }
+  }
+</script><!-- Sekcja Marketplace -->
 <section id="marketplace" class="py-12 bg-gray-100">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-6 text-center">Marketplace</h2>
@@ -1086,6 +1174,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
