@@ -51,29 +51,10 @@
       z-index: 1000;
     }
 
-    #koszyk h2 {
-      margin-top: 0;
-    }
-
-    #koszyk ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    #koszyk li {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-
-    #koszyk button {
-      background: #d4af37;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+    #koszyk h2 { margin-top: 0; }
+    #koszyk ul { list-style: none; padding: 0; margin: 0; }
+    #koszyk li { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    #koszyk button { background: #d4af37; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; }
   </style>
 </head>
 
@@ -91,7 +72,20 @@
 
   <!-- Skrypt koszyka -->
   <script>
-    let koszyk = [];
+    let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+    const licznikKoszyka = document.createElement("div");
+    licznikKoszyka.id = "licznikKoszyka";
+    licznikKoszyka.style.position = "fixed";
+    licznikKoszyka.style.bottom = "4.5rem";
+    licznikKoszyka.style.right = "1rem";
+    licznikKoszyka.style.background = "#d4af37";
+    licznikKoszyka.style.color = "#121212";
+    licznikKoszyka.style.fontWeight = "bold";
+    licznikKoszyka.style.padding = "4px 8px";
+    licznikKoszyka.style.borderRadius = "50%";
+    licznikKoszyka.style.zIndex = "1002";
+    document.body.appendChild(licznikKoszyka);
 
     document.getElementById("toggleKoszykBtn").addEventListener("click", () => {
       document.getElementById("koszyk").style.display = "block";
@@ -101,10 +95,32 @@
       document.getElementById("koszyk").style.display = "none";
     });
 
-    function dodajDoKoszyka(nazwa, cena) {
-      koszyk.push({ nazwa, cena });
+    document.querySelectorAll(".dodaj-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const nazwa = btn.dataset.nazwa;
+        const cena = parseFloat(btn.dataset.cena);
+        const rozmiarSelect = document.querySelector(`select[name='${btn.dataset.rozmiar}']`);
+        const kolorSelect = document.querySelector(`select[name='${btn.dataset.kolor}']`);
+        const rozmiar = rozmiarSelect ? rozmiarSelect.value : "Domyślny";
+        const kolor = kolorSelect ? kolorSelect.value : "Domyślny";
+
+        dodajDoKoszyka(nazwa, cena, rozmiar, kolor);
+      });
+    });
+
+    function dodajDoKoszyka(nazwa, cena, rozmiar, kolor) {
+      const istniejący = koszyk.find(p => p.nazwa === nazwa && p.rozmiar === rozmiar && p.kolor === kolor);
+      if (istniejący) {
+        istniejący.ilosc++;
+      } else {
+        koszyk.push({ nazwa, cena, rozmiar, kolor, ilosc: 1 });
+      }
+      zapiszKoszyk();
       aktualizujKoszyk();
-      alert(nazwa + " został dodany do koszyka!");
+    }
+
+    function zapiszKoszyk() {
+      localStorage.setItem("koszyk", JSON.stringify(koszyk));
     }
 
     function aktualizujKoszyk() {
@@ -112,18 +128,47 @@
       const sumaEl = document.getElementById('sumaKoszyk');
       lista.innerHTML = '';
       let suma = 0;
+      let liczbaProduktów = 0;
+
       koszyk.forEach((produkt, index) => {
-        suma += produkt.cena;
+        suma += produkt.cena * produkt.ilosc;
+        liczbaProduktów += produkt.ilosc;
+
         const li = document.createElement('li');
-        li.textContent = `${produkt.nazwa} – ${produkt.cena} zł`;
-        const btn = document.createElement('button');
-        btn.textContent = 'Usuń';
-        btn.onclick = () => { koszyk.splice(index, 1); aktualizujKoszyk(); };
-        li.appendChild(btn);
+        li.innerHTML = `
+          ${produkt.nazwa} (${produkt.rozmiar}, ${produkt.kolor}) – 
+          ${produkt.cena} zł x ${produkt.ilosc}
+        `;
+
+        const plusBtn = document.createElement('button');
+        plusBtn.textContent = '+';
+        plusBtn.onclick = () => { produkt.ilosc++; zapiszKoszyk(); aktualizujKoszyk(); };
+
+        const minusBtn = document.createElement('button');
+        minusBtn.textContent = '-';
+        minusBtn.onclick = () => {
+          produkt.ilosc--;
+          if (produkt.ilosc <= 0) koszyk.splice(index, 1);
+          zapiszKoszyk();
+          aktualizujKoszyk();
+        };
+
+        const usunBtn = document.createElement('button');
+        usunBtn.textContent = 'Usuń';
+        usunBtn.onclick = () => { koszyk.splice(index, 1); zapiszKoszyk(); aktualizujKoszyk(); };
+
+        li.appendChild(plusBtn);
+        li.appendChild(minusBtn);
+        li.appendChild(usunBtn);
         lista.appendChild(li);
       });
+
       sumaEl.textContent = suma;
+      licznikKoszyka.textContent = liczbaProduktów;
+      licznikKoszyka.style.display = liczbaProduktów > 0 ? "block" : "none";
     }
+
+    aktualizujKoszyk();
   </script>
 </body>
 </html>
@@ -1040,6 +1085,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
