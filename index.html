@@ -17,8 +17,6 @@
       margin: 0;
       padding: 0;
     }
-
-    /* Przycisk koszyka */
     #toggleKoszykBtn {
       position: fixed;
       bottom: 1.5rem;
@@ -34,14 +32,12 @@
       color: #121212;
       z-index: 1001;
     }
-
-    /* Okno koszyka */
     #koszyk {
       position: fixed;
       top: 50%;
       right: 20px;
       transform: translateY(-50%);
-      width: 280px;
+      width: 300px;
       background: white;
       color: black;
       padding: 20px;
@@ -50,62 +46,52 @@
       display: none;
       z-index: 1000;
     }
-
     #koszyk h2 { margin-top: 0; }
     #koszyk ul { list-style: none; padding: 0; margin: 0; }
-    #koszyk li { display: flex; justify-content: space-between; margin-bottom: 10px; }
-    #koszyk button { background: #d4af37; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; }
+    #koszyk li { display: flex; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; }
+    #koszyk button { background: #d4af37; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; margin-left: 5px; }
+    #licznikKoszyka {
+      position: fixed;
+      bottom: 4.5rem;
+      right: 1rem;
+      background: #d4af37;
+      color: #121212;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 50%;
+      z-index: 1002;
+    }
   </style>
 </head>
-
 <body>
-  <!-- Twój koszyk -->
+  <!-- Koszyk -->
   <div id="koszyk">
     <h2>Twój koszyk</h2>
     <ul id="listaKoszyk"></ul>
     <p><strong>Suma: </strong><span id="sumaKoszyk">0</span> zł</p>
+    <!-- PayPal przycisk -->
+    <div id="paypal-button-container"></div>
     <button id="zamknijKoszykBtn">Zamknij</button>
   </div>
 
   <!-- Przycisk koszyka -->
   <button id="toggleKoszykBtn">🛒</button>
 
-  <!-- Skrypt koszyka -->
+  <div id="licznikKoszyka"></div>
+
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
+
   <script>
     let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
 
-    const licznikKoszyka = document.createElement("div");
-    licznikKoszyka.id = "licznikKoszyka";
-    licznikKoszyka.style.position = "fixed";
-    licznikKoszyka.style.bottom = "4.5rem";
-    licznikKoszyka.style.right = "1rem";
-    licznikKoszyka.style.background = "#d4af37";
-    licznikKoszyka.style.color = "#121212";
-    licznikKoszyka.style.fontWeight = "bold";
-    licznikKoszyka.style.padding = "4px 8px";
-    licznikKoszyka.style.borderRadius = "50%";
-    licznikKoszyka.style.zIndex = "1002";
-    document.body.appendChild(licznikKoszyka);
+    const licznikKoszyka = document.getElementById("licznikKoszyka");
 
     document.getElementById("toggleKoszykBtn").addEventListener("click", () => {
       document.getElementById("koszyk").style.display = "block";
     });
-
     document.getElementById("zamknijKoszykBtn").addEventListener("click", () => {
       document.getElementById("koszyk").style.display = "none";
-    });
-
-    document.querySelectorAll(".dodaj-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const nazwa = btn.dataset.nazwa;
-        const cena = parseFloat(btn.dataset.cena);
-        const rozmiarSelect = document.querySelector(`select[name='${btn.dataset.rozmiar}']`);
-        const kolorSelect = document.querySelector(`select[name='${btn.dataset.kolor}']`);
-        const rozmiar = rozmiarSelect ? rozmiarSelect.value : "Domyślny";
-        const kolor = kolorSelect ? kolorSelect.value : "Domyślny";
-
-        dodajDoKoszyka(nazwa, cena, rozmiar, kolor);
-      });
     });
 
     function dodajDoKoszyka(nazwa, cena, rozmiar, kolor) {
@@ -135,10 +121,7 @@
         liczbaProduktów += produkt.ilosc;
 
         const li = document.createElement('li');
-        li.innerHTML = `
-          ${produkt.nazwa} (${produkt.rozmiar}, ${produkt.kolor}) – 
-          ${produkt.cena} zł x ${produkt.ilosc}
-        `;
+        li.innerHTML = `${produkt.nazwa} (${produkt.rozmiar}, ${produkt.kolor}) – ${produkt.cena} zł x ${produkt.ilosc}`;
 
         const plusBtn = document.createElement('button');
         plusBtn.textContent = '+';
@@ -163,12 +146,30 @@
         lista.appendChild(li);
       });
 
-      sumaEl.textContent = suma;
+      sumaEl.textContent = suma.toFixed(2);
       licznikKoszyka.textContent = liczbaProduktów;
       licznikKoszyka.style.display = liczbaProduktów > 0 ? "block" : "none";
     }
 
     aktualizujKoszyk();
+
+    // PayPal dynamiczny przycisk
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        const suma = document.getElementById("sumaKoszyk").textContent;
+        return actions.order.create({
+          purchase_units: [{ amount: { value: suma, currency_code: 'PLN' } }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Dziękujemy za zakup, ' + details.payer.name.given_name + '!');
+          koszyk = [];
+          zapiszKoszyk();
+          aktualizujKoszyk();
+        });
+      }
+    }).render('#paypal-button-container');
   </script>
 </body>
 </html>
@@ -1085,6 +1086,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
