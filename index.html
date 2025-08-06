@@ -610,30 +610,125 @@ function startCzasomierz(sekundy) {
       document.getElementById('reklamaGlowneOkno').classList.add('hidden');
       document.getElementById('reklamaAdmina').value = "";
     }
-  }, 1000);
-}    <!-- 🎨 PROJEKTUJ -->
-<section id="projektuj" class="py-12 bg-gradient-to-br from-white to-gray-50">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <h2 class="text-4xl font-bold mb-6">Zaprojektuj swój produkt</h2>
-    <p class="mb-4 text-gray-600">Dodaj własną grafikę, tekst, wybierz kolor i rozmiar.</p>
-    <input type="file" accept="image/*" id="projektGrafika" class="mb-4 block mx-auto">
-    <input type="text" id="projektTekst" placeholder="Twój tekst" class="mb-4 block w-full max-w-md mx-auto p-2 border rounded">
-    <select id="projektKolor" class="mb-4 block w-full max-w-md mx-auto p-2 border rounded">
-      <option value="Czarny">Kolor: Czarny</option>
-      <option value="Biały">Biały</option>
-      <option value="Czerwony">Czerwony</option>
-    </select>
-    <select id="projektRozmiar" class="mb-6 block w-full max-w-md mx-auto p-2 border rounded">
-      <option value="M">Rozmiar: M</option>
-      <option value="S">S</option>
-      <option value="L">L</option>
-      <option value="XL">XL</option>
-    </select>
-    <button onclick="dodajProjektDoKoszyka()" class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+  }<!-- 🎨 PROJEKTUJ Z PODGLĄDEM I PAYPAL -->
+<section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h2 class="text-4xl font-bold mb-6 text-yellow-400 drop-shadow-lg">Zaprojektuj swój produkt</h2>
+    <p class="mb-8 text-gray-300">Dodaj własną grafikę, tekst, wybierz kolor i rozmiar, a następnie zapłać online.</p>
+
+    <!-- Panel wyboru -->
+    <div class="flex flex-col md:flex-row gap-8 justify-center">
+      
+      <!-- Podgląd koszulki -->
+      <div class="relative bg-gray-100 p-4 rounded-xl shadow-lg">
+        <img id="koszulkaPodglad" src="https://via.placeholder.com/400x500?text=Koszulka" 
+             alt="Koszulka" class="mx-auto rounded-lg transition">
+        <img id="naklejonaGrafika" src="" 
+             class="absolute top-1/2 left-1/2 w-32 opacity-90 cursor-move hidden" 
+             style="transform:translate(-50%, -50%);">
+        <div id="naklejonyTekst" 
+             class="absolute top-2/3 left-1/2 text-2xl font-bold text-black hidden" 
+             style="transform:translate(-50%, -50%);">
+        </div>
+      </div>
+
+      <!-- Opcje projektu -->
+      <div class="flex-1 max-w-md mx-auto bg-gray-800 rounded-xl p-6 shadow-lg">
+        <input type="file" accept="image/*" id="projektGrafika" 
+               class="mb-4 block w-full text-sm text-gray-400 border border-gray-600 rounded p-2">
+        <input type="text" id="projektTekst" placeholder="Twój tekst" 
+               class="mb-4 block w-full p-2 border border-gray-600 rounded bg-gray-700 text-white">
+
+        <select id="projektKolor" 
+                class="mb-4 block w-full p-2 border border-gray-600 rounded bg-gray-700 text-white">
+          <option value="https://via.placeholder.com/400x500/000000/FFFFFF?text=Koszulka+Czarna">Czarna</option>
+          <option value="https://via.placeholder.com/400x500/FFFFFF/000000?text=Koszulka+Biała">Biała</option>
+          <option value="https://via.placeholder.com/400x500/FF0000/FFFFFF?text=Koszulka+Czerwona">Czerwona</option>
+        </select>
+
+        <select id="projektRozmiar" 
+                class="mb-4 block w-full p-2 border border-gray-600 rounded bg-gray-700 text-white">
+          <option value="M">Rozmiar: M</option>
+          <option value="S">S</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+
+        <!-- Skala grafiki -->
+        <label class="block text-gray-300 mb-2">Skala grafiki</label>
+        <input type="range" id="skalaGrafiki" min="0.5" max="2" step="0.1" value="1" 
+               class="w-full mb-4">
+
+        <!-- Dodaj do koszyka -->
+        <button id="dodajProjektBtn" 
+                class="w-full bg-yellow-500 text-black font-bold py-2 rounded hover:bg-yellow-400 transition">
+          Dodaj do koszyka
+        </button>
+
+        <!-- PayPal -->
+        <div class="mt-6">
+          <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+          <div id="paypal-container-L4639S4363CZE"></div>
+          <script>
+            paypal.HostedButtons({
+              hostedButtonId: "L4639S4363CZE",
+            }).render("#paypal-container-L4639S4363CZE");
+          </script>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
+<script>
+  const koszulkaPodglad = document.getElementById("koszulkaPodglad");
+  const naklejonaGrafika = document.getElementById("naklejonaGrafika");
+  const naklejonyTekst = document.getElementById("naklejonyTekst");
 
+  // Wczytywanie grafiki
+  document.getElementById("projektGrafika").addEventListener("change", e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      naklejonaGrafika.src = ev.target.result;
+      naklejonaGrafika.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // Tekst na koszulce
+  document.getElementById("projektTekst").addEventListener("input", e => {
+    naklejonyTekst.textContent = e.target.value;
+    naklejonyTekst.style.display = e.target.value ? "block" : "none";
+  });
+
+  // Zmiana koloru koszulki
+  document.getElementById("projektKolor").addEventListener("change", e => {
+    koszulkaPodglad.src = e.target.value;
+  });
+
+  // Skala grafiki
+  document.getElementById("skalaGrafiki").addEventListener("input", e => {
+    naklejonaGrafika.style.transform = `translate(-50%, -50%) scale(${e.target.value})`;
+  });
+
+  // Drag & Drop grafiki
+  let isDragging = false;
+  naklejonaGrafika.addEventListener("mousedown", () => isDragging = true);
+  document.addEventListener("mouseup", () => isDragging = false);
+  document.addEventListener("mousemove", e => {
+    if (!isDragging) return;
+    naklejonaGrafika.style.left = e.clientX - koszulkaPodglad.getBoundingClientRect().left + "px";
+    naklejonaGrafika.style.top = e.clientY - koszulkaPodglad.getBoundingClientRect().top + "px";
+  });
+
+  // Dodawanie projektu do koszyka
+  document.getElementById("dodajProjektBtn").addEventListener("click", () => {
+    alert("Projekt został dodany do koszyka!");
+    // Możesz tu podpiąć swoją funkcję dodawania do koszyka
+  });
+</script>                               
 <!-- START: Ramka ozdobna wokół sekcji Zbiórka -->
 <div class="relative z-10 bg-black bg-opacity-90 p-2 sm:p-4 rounded-3xl shadow-[0_0_25px_rgba(255,215,0,0.5)] border-4 border-yellow-600 max-w-5xl mx-auto my-10">
 
@@ -1221,6 +1316,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
