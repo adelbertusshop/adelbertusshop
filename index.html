@@ -796,82 +796,164 @@ setInterval(() => {
 <section id="marketplace" class="py-12 bg-gray-100">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-6 text-center">Marketplace</h2>
-    <p class="text-lg mb-4 text-center text-gray-700">
-      Wystaw, kupuj i sprzedawaj dowolne przedmioty – elektronika, ubrania, motoryzacja, dom i wiele innych.
-    </p>
 
-    <!-- Kategorie -->
-    <div class="flex flex-wrap gap-4 justify-center mb-8">
-      <button class="category-btn bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition" data-cat="elektronika">Elektronika</button>
-      <button class="category-btn bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition" data-cat="ubrania">Ubrania</button>
-      <button class="category-btn bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition" data-cat="motoryzacja">Motoryzacja</button>
-      <button class="category-btn bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition" data-cat="dom">Dom</button>
-      <button class="category-btn bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition" data-cat="inne">Inne</button>
-    </div>
+    <!-- Lista ofert -->
+    <div id="ofertyLista" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
 
-    <!-- Lista produktów (dynamiczna) -->
-    <div id="product-list" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- Przykładowy produkt -->
-      <div class="border rounded shadow p-4 text-center bg-gray-50">
-        <img src="https://via.placeholder.com/200x200" alt="Produkt przykładowy" class="mx-auto mb-2 rounded">
-        <h3 class="font-semibold">Przykładowy produkt</h3>
-        <p class="text-sm text-gray-600">Cena: 120 zł</p>
-        <!-- PayPal -->
-        <div id="paypal-container-product1" class="mt-2"></div>
-      </div>
+    <!-- PayPal do zakupów -->
+    <div class="mt-8 text-center">
+      <div id="paypal-container-marketplace"></div>
     </div>
   </div>
 </section>
 
 <!-- Panel administratora Marketplace -->
-<section id="admin-panel" class="hidden py-12 bg-gray-200">
+<section id="admin-panel" class="py-12 bg-gray-200">
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-2xl font-bold text-center mb-4">Panel Administratora Marketplace</h2>
     <div class="bg-white p-6 rounded-xl shadow-xl">
       <label for="adminPassword" class="block font-medium mb-2">Wprowadź hasło:</label>
       <input type="password" id="adminPassword" class="w-full border rounded px-3 py-2 mb-4" placeholder="••••••••">
       <button id="adminLoginBtn" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">Zaloguj</button>
+
       <div id="adminContent" class="mt-6 hidden">
-        <h3 class="text-xl font-semibold mb-2">Zarządzanie ogłoszeniami</h3>
-        <p class="text-sm text-gray-600 mb-4">Tutaj możesz dodawać, edytować i usuwać ogłoszenia sprzedawców.</p>
-        <!-- Przykładowy panel zarządzania -->
-        <textarea class="w-full h-40 border rounded p-3" placeholder="Wklej dane ogłoszenia"></textarea>
-        <div class="flex gap-4 mt-4">
-          <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Dodaj</button>
-          <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Usuń</button>
+        <h3 class="text-xl font-semibold mb-4">Zarządzanie ogłoszeniami</h3>
+        
+        <!-- Formularz nowego produktu -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <input type="text" id="produktNazwa" placeholder="Nazwa produktu" class="border rounded p-2">
+          <input type="number" id="produktCena" placeholder="Cena (PLN)" class="border rounded p-2">
+          <input type="text" id="produktOpis" placeholder="Opis produktu" class="border rounded p-2">
+          <input type="text" id="produktZdjecie" placeholder="URL zdjęcia" class="border rounded p-2">
         </div>
+        <button id="dodajProduktBtn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Dodaj produkt</button>
+        
+        <!-- Tabela produktów -->
+        <table class="mt-6 w-full border">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border px-2 py-1">Nazwa</th>
+              <th class="border px-2 py-1">Cena</th>
+              <th class="border px-2 py-1">Akcje</th>
+            </tr>
+          </thead>
+          <tbody id="produktyTabela"></tbody>
+        </table>
       </div>
     </div>
   </div>
 </section>
 
-<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
 <script>
-  // Admin login
+  let produkty = JSON.parse(localStorage.getItem("produktyMarketplace")) || [];
+
+  // --- Rysowanie ofert ---
+  function renderOferty() {
+    const lista = document.getElementById('ofertyLista');
+    lista.innerHTML = '';
+
+    produkty.forEach((produkt, index) => {
+      const div = document.createElement('div');
+      div.className = 'border rounded shadow p-4 text-center bg-gray-50';
+
+      div.innerHTML = `
+        <img src="${produkt.zdjecie}" alt="${produkt.nazwa}" class="mx-auto mb-2 rounded h-40 w-full object-cover">
+        <h3 class="font-semibold">${produkt.nazwa}</h3>
+        <p class="text-sm text-gray-600 mb-2">${produkt.opis}</p>
+        <p class="text-lg font-bold">${produkt.cena} zł</p>
+        <button class="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+          onclick="dodajDoKoszyka('${produkt.nazwa}', ${produkt.cena})">Dodaj do koszyka</button>
+      `;
+      lista.appendChild(div);
+    });
+  }
+
+  // --- Renderowanie tabeli admina ---
+  function renderTabela() {
+    const tabela = document.getElementById('produktyTabela');
+    tabela.innerHTML = '';
+    produkty.forEach((p, i) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td class="border px-2 py-1">${p.nazwa}</td>
+        <td class="border px-2 py-1">${p.cena} zł</td>
+        <td class="border px-2 py-1 text-center">
+          <button class="bg-yellow-500 text-white px-2 py-1 rounded mr-2" onclick="edytujProdukt(${i})">Edytuj</button>
+          <button class="bg-red-600 text-white px-2 py-1 rounded" onclick="usunProdukt(${i})">Usuń</button>
+        </td>
+      `;
+      tabela.appendChild(tr);
+    });
+  }
+
+  // --- Zapis do localStorage ---
+  function zapiszProdukty() {
+    localStorage.setItem("produktyMarketplace", JSON.stringify(produkty));
+    renderOferty();
+    renderTabela();
+  }
+
+  // --- Dodawanie produktu ---
+  document.getElementById('dodajProduktBtn').addEventListener('click', () => {
+    const nazwa = document.getElementById('produktNazwa').value.trim();
+    const cena = parseFloat(document.getElementById('produktCena').value);
+    const opis = document.getElementById('produktOpis').value.trim();
+    const zdjecie = document.getElementById('produktZdjecie').value.trim() || 'https://via.placeholder.com/200';
+
+    if (!nazwa || isNaN(cena)) {
+      alert('Podaj poprawne dane!');
+      return;
+    }
+
+    produkty.push({ nazwa, cena, opis, zdjecie });
+    zapiszProdukty();
+
+    document.getElementById('produktNazwa').value = '';
+    document.getElementById('produktCena').value = '';
+    document.getElementById('produktOpis').value = '';
+    document.getElementById('produktZdjecie').value = '';
+  });
+
+  // --- Edytowanie produktu ---
+  function edytujProdukt(index) {
+    const produkt = produkty[index];
+    const nazwa = prompt("Nowa nazwa:", produkt.nazwa);
+    const cena = parseFloat(prompt("Nowa cena:", produkt.cena));
+    const opis = prompt("Nowy opis:", produkt.opis);
+    const zdjecie = prompt("Nowy URL zdjęcia:", produkt.zdjecie);
+
+    if (!nazwa || isNaN(cena)) return;
+    produkty[index] = { nazwa, cena, opis, zdjecie };
+    zapiszProdukty();
+  }
+
+  // --- Usuwanie produktu ---
+  function usunProdukt(index) {
+    if (confirm("Na pewno usunąć?")) {
+      produkty.splice(index, 1);
+      zapiszProdukty();
+    }
+  }
+
+  // --- Logowanie administratora ---
   document.getElementById('adminLoginBtn').addEventListener('click', () => {
     const password = document.getElementById('adminPassword').value;
     if (password === 'Wojownik.03') {
       document.getElementById('adminContent').classList.remove('hidden');
+      renderTabela();
     } else {
       alert('Błędne hasło.');
     }
   });
 
-  // PayPal Example Render (dla produktu przykładowego)
-  paypal.Buttons({
-    createOrder: function(data, actions) {
-      return actions.order.create({
-        purchase_units: [{ amount: { value: '120.00', currency_code: 'PLN' } }]
-      });
-    },
-    onApprove: function(data, actions) {
-      return actions.order.capture().then(function(details) {
-        alert('Transakcja zakończona powodzeniem przez ' + details.payer.name.given_name);
-      });
-    }
-  }).render('#paypal-container-product1');
-</script>
-<!-- Sekcja Reklama -->
+  // --- Start ---
+  renderOferty();
+
+  // --- PayPal ---
+  paypal.HostedButtons({
+    hostedButtonId: "L4639S4363CZE",
+  }).render("#paypal-container-marketplace");
+</script><!-- Sekcja Reklama -->
 <section id="reklama" class="py-10 bg-yellow-100 text-center">
   <div class="max-w-5xl mx-auto border-2 border-yellow-400 rounded-2xl shadow-xl p-6 bg-white">
 
@@ -1162,6 +1244,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
