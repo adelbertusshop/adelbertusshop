@@ -240,20 +240,52 @@
     }).render('#paypal-button-container');
   </script>
 </body>
-</html><!-- 🎯 GŁÓWNY BANER -->
-<section class="relative h-screen w-full overflow-hidden">
-  <img src="https://i.ibb.co/v6gkV1MN/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg"
-       alt="Baner główny"
-       class="absolute inset-0 w-full h-full object-cover object-center opacity-90">
-  <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center text-center px-6">
-    <h1 class="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">
-      Adelbertus Shop
-    </h1>
-    <p class="mt-4 text-xl md:text-2xl text-gray-200 font-medium max-w-2xl drop-shadow-md">
-      Ubrania z duszą, pomoc z serca. Połącz styl z misją ✨
-    </p>
+<!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+<section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
+  <!-- Napis nad banerem -->
+  <div class="z-20 text-center pt-6 px-4 animate-fade-down">
+    <h2 class="text-xl md:text-3xl font-bold text-yellow-400 drop-shadow-[0_0_10px_#d4af37] border border-yellow-400 rounded-lg inline-block px-4 py-2 bg-black bg-opacity-50">
+      To nie produkt, To lustro. Gotowy zobaczyć, co w nim jest
+    </h2>
+  </div>
+
+  <!-- Obraz banera -->
+  <div class="relative flex-1">
+    <img src="https://i.ibb.co/Z1VjqzN8/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg"
+         alt="Baner główny"
+         class="absolute inset-0 w-full h-full object-cover object-center opacity-90 scale-105 transition-transform duration-1000 ease-out hover:scale-110">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-6 animate-fade-up">
+      <h1 class="text-4xl md:text-6xl font-extrabold text-yellow-300 drop-shadow-[0_0_15px_#d4af37] border-b-2 border-yellow-500 pb-2">
+        Adelbertus Shop
+      </h1>
+      <p class="mt-4 text-xl md:text-2xl text-gray-200 font-medium max-w-2xl drop-shadow-md">
+        Ubrania z duszą, pomoc z serca. Połącz styl z misją ✨
+      </p>
+    </div>
+  </div>
+
+  <!-- Napis pod banerem -->
+  <div class="z-20 text-center pb-6 px-4 animate-fade-up">
+    <h3 class="text-lg md:text-2xl font-semibold text-yellow-200 drop-shadow-[0_0_10px_#d4af37] border border-yellow-400 rounded-lg inline-block px-4 py-2 bg-black bg-opacity-50">
+      Każdy może kupić, ale nie każdy zrozumie.
+    </h3>
   </div>
 </section>
+
+<!-- Animacje CSS -->
+<style>
+@keyframes fadeDown { 
+  0% { opacity: 0; transform: translateY(-30px); } 
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp { 
+  0% { opacity: 0; transform: translateY(30px); } 
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-down { animation: fadeDown 1.5s ease forwards; }
+.animate-fade-up { animation: fadeUp 1.5s ease forwards; }
+</style>  
 <!-- ====================== SKLEP PREMIUM ====================== -->
 <section id="sklep" class="py-16 bg-[#121212] text-white">
   <div class="max-w-7xl mx-auto px-6">
@@ -1361,6 +1393,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
