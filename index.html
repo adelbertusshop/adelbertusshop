@@ -502,115 +502,8 @@
     </div>
   </div>
 </section>  
-</section><!-- 📩 ZAMÓWIENIA / FORMULARZ KONTAKTOWY -->
-<section id="zamowienia" class="py-12 bg-[#222] text-white">
-  <div class="max-w-xl mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-6">Zamówienia / Kontakt</h2>
-    <form id="formularzZamowienia">
-      <input type="text" name="user_name" placeholder="Twoje imię" required />
-      <input type="email" name="user_email" placeholder="Twój e-mail" required />
-      <textarea name="message" placeholder="Treść wiadomości lub zamówienia" rows="5" required></textarea>
-      <button type="submit">Wyślij zamówienie</button>
-    </form>
-    <p id="statusWysylki" class="text-center mt-4"></p>
-  </div>
-</section>
 
-<!-- ✅ EmailJS init i obsługa formularza -->
-<script>
-emailjs.init("TWÓJ_PUBLIC_KEY"); // Podaj swój klucz EmailJS
-
-let koszyk = [];
-
-// Dodawanie do koszyka
-function dodajDoKoszyka(nazwa, cena) {
-  koszyk.push({ nazwa, cena });
-  aktualizujKoszyk();
-  pokazKoszyk();
-}
-
-// Dodawanie projektów do koszyka
-function dodajProjektDoKoszyka() {
-  const tekst = document.getElementById("projektTekst").value;
-  const kolor = document.getElementById("projektKolor").value;
-  const rozmiar = document.getElementById("projektRozmiar").value;
-  const nazwa = `Projekt: ${tekst || 'Brak tekstu'} (${kolor}, ${rozmiar})`;
-  koszyk.push({ nazwa, cena: 199 });
-  aktualizujKoszyk();
-  pokazKoszyk();
-}
-
-// Aktualizacja koszyka
-function aktualizujKoszyk() {
-  const lista = document.getElementById("listaKoszyka");
-  const suma = document.getElementById("sumaKoszyka");
-  lista.innerHTML = "";
-  let total = 0;
-  koszyk.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = `${item.nazwa} - ${item.cena} zł`;
-    lista.appendChild(li);
-    total += item.cena;
-  });
-  suma.textContent = `Suma: ${total} zł`;
-}
-
-function pokazKoszyk() {
-  document.getElementById("koszyk").style.display = "block";
-}
-
-function zamknijKoszyk() {
-  document.getElementById("koszyk").style.display = "none";
-}
-
-// Formularz EmailJS
-document.getElementById("formularzZamowienia").addEventListener("submit", function (e) {
-  e.preventDefault();
-  emailjs.sendForm("TWÓJ_SERVICE_ID", "TWÓJ_TEMPLATE_ID", this)
-    .then(() => {
-      document.getElementById("statusWysylki").innerText = "✅ Zamówienie wysłane!";
-      this.reset();
-    }, (error) => {
-      document.getElementById("statusWysylki").innerText = "❌ Błąd: " + error.text;
-    });
-});
-
-// Skrypt reklamy (pozostaje bez zmian)
-function pokazPanelAdmina() {
-  document.getElementById('panelAdmina').classList.toggle('hidden');
-}
-
-function sprawdzHaslo() {
-  const haslo = document.getElementById('adminHaslo').value;
-  if (haslo === 'Wojownik.03') {
-    document.getElementById('adminKontrola').classList.remove('hidden');
-  } else {
-    alert("Nieprawidłowe hasło.");
-  }
-}
-
-function wyswietlReklameAdmina() {
-  const tekst = document.getElementById('reklamaAdmina').value;
-  if (tekst.trim()) {
-    document.getElementById('trescReklamyGlowne').innerText = tekst;
-    document.getElementById('reklamaGlowneOkno').classList.remove('hidden');
-    startCzasomierz(30);
-  }
-}
-
-function startCzasomierz(sekundy) {
-  let licznik = sekundy;
-  const czas = document.getElementById('czasomierz');
-  czas.textContent = `Reklama zniknie za ${licznik} sekund`;
-  const interval = setInterval(() => {
-    licznik--;
-    czas.textContent = `Reklama zniknie za ${licznik} sekund`;
-    if (licznik <= 0) {
-      clearInterval(interval);
-      document.getElementById('reklamaGlowneOkno').classList.add('hidden');
-      document.getElementById('reklamaAdmina').value = "";
-    }
-  }<!-- 🎨 PROJEKTUJ Z PODGLĄDEM I PAYPAL -->
+  <!-- 🎨 PROJEKTUJ Z PODGLĄDEM I PAYPAL -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
   <div class="max-w-6xl mx-auto px-4 text-center">
     <h2 class="text-4xl font-bold mb-6 text-yellow-400 drop-shadow-lg">Zaprojektuj swój produkt</h2>
@@ -1316,6 +1209,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
