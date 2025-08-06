@@ -501,128 +501,213 @@
       </div>
     </div>
   </div>
-</section>  
+</section> 
+<!-- ======== SEKJA PROJEKTOWANIA UBRAŃ (ZŁOTA RAMKA) ======== -->
+<section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+  <div class="max-w-6xl mx-auto px-6 py-10 border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
 
-  <!-- 🎨 PROJEKTUJ Z PODGLĄDEM I PAYPAL -->
-<section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
-  <div class="max-w-6xl mx-auto px-4 text-center">
-    <h2 class="text-4xl font-bold mb-6 text-yellow-400 drop-shadow-lg">Zaprojektuj swój produkt</h2>
-    <p class="mb-8 text-gray-300">Dodaj własną grafikę, tekst, wybierz kolor i rozmiar, a następnie zapłać online.</p>
+    <h2 class="text-4xl font-bold mb-6 text-yellow-400 drop-shadow-lg text-center">Zaprojektuj Swój Produkt</h2>
+    <p class="mb-8 text-gray-300 text-center">Koszulki, bluzy i czapki z Twoim stylem – pełna personalizacja i podgląd 360°.</p>
 
-    <!-- Panel wyboru -->
-    <div class="flex flex-col md:flex-row gap-8 justify-center">
-      
-      <!-- Podgląd koszulki -->
-      <div class="relative bg-gray-100 p-4 rounded-xl shadow-lg">
-        <img id="koszulkaPodglad" src="https://via.placeholder.com/400x500?text=Koszulka" 
-             alt="Koszulka" class="mx-auto rounded-lg transition">
-        <img id="naklejonaGrafika" src="" 
-             class="absolute top-1/2 left-1/2 w-32 opacity-90 cursor-move hidden" 
-             style="transform:translate(-50%, -50%);">
-        <div id="naklejonyTekst" 
-             class="absolute top-2/3 left-1/2 text-2xl font-bold text-black hidden" 
-             style="transform:translate(-50%, -50%);">
-        </div>
-      </div>
+    <!-- Wybór produktu -->
+    <div class="mb-6 flex justify-center gap-4 flex-wrap">
+      <button class="produktBtn bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded shadow" data-typ="koszulka">Koszulka</button>
+      <button class="produktBtn bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded shadow" data-typ="bluza">Bluza</button>
+      <button class="produktBtn bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded shadow" data-typ="czapka">Czapka</button>
+    </div>
 
-      <!-- Opcje projektu -->
-      <div class="flex-1 max-w-md mx-auto bg-gray-800 rounded-xl p-6 shadow-lg">
-        <input type="file" accept="image/*" id="projektGrafika" 
-               class="mb-4 block w-full text-sm text-gray-400 border border-gray-600 rounded p-2">
-        <input type="text" id="projektTekst" placeholder="Twój tekst" 
-               class="mb-4 block w-full p-2 border border-gray-600 rounded bg-gray-700 text-white">
+    <!-- Podgląd -->
+    <canvas id="podgladProdukt" width="400" height="400" class="mx-auto mb-6 border-4 border-yellow-500 rounded-lg bg-white shadow-lg"></canvas>
+    <div class="mb-6 flex justify-center gap-4 flex-wrap">
+      <button id="przodBtn" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded">Podgląd przodu</button>
+      <button id="tylBtn" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded">Podgląd tyłu</button>
+      <button id="pobierzProjekt" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz widok</button>
+      <button id="pobierzPrzod" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz tylko przód</button>
+      <button id="pobierzTyl" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz tylko tył</button>
+    </div>
 
-        <select id="projektKolor" 
-                class="mb-4 block w-full p-2 border border-gray-600 rounded bg-gray-700 text-white">
-          <option value="https://via.placeholder.com/400x500/000000/FFFFFF?text=Koszulka+Czarna">Czarna</option>
-          <option value="https://via.placeholder.com/400x500/FFFFFF/000000?text=Koszulka+Biała">Biała</option>
-          <option value="https://via.placeholder.com/400x500/FF0000/FFFFFF?text=Koszulka+Czerwona">Czerwona</option>
+    <!-- Personalizacja -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
+      <div>
+        <label class="block mb-2 font-semibold">Tekst:</label>
+        <input type="text" id="projektTekst" placeholder="Twój tekst" class="w-full p-2 rounded text-black mb-4">
+
+        <label class="block mb-2 font-semibold">Czcionka:</label>
+        <select id="czcionka" class="w-full p-2 rounded text-black mb-4">
+          <option value="Arial">Arial</option>
+          <option value="Courier New">Courier New</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Impact">Impact</option>
+          <option value="Comic Sans MS">Comic Sans</option>
         </select>
 
-        <select id="projektRozmiar" 
-                class="mb-4 block w-full p-2 border border-gray-600 rounded bg-gray-700 text-white">
-          <option value="M">Rozmiar: M</option>
+        <label class="block mb-2 font-semibold">Rozmiar tekstu:</label>
+        <input type="range" id="rozmiarTekstu" min="10" max="60" value="30" class="w-full mb-4">
+
+        <label class="block mb-2 font-semibold">Kolor tekstu:</label>
+        <input type="color" id="kolorTekstu" value="#000000" class="w-full h-12 mb-4">
+
+        <label class="block mb-2 font-semibold">Kolor produktu:</label>
+        <input type="color" id="kolorProduktu" value="#ffffff" class="w-full h-12 mb-4">
+
+        <label class="block mb-2 font-semibold">Dodaj grafikę:</label>
+        <input type="file" id="projektGrafika" accept="image/*" class="w-full mb-4">
+      </div>
+
+      <div>
+        <label class="block mb-2 font-semibold">Rozmiar produktu:</label>
+        <select id="projektRozmiar" class="w-full p-2 rounded text-black mb-4">
           <option value="S">S</option>
+          <option value="M" selected>M</option>
           <option value="L">L</option>
           <option value="XL">XL</option>
         </select>
 
-        <!-- Skala grafiki -->
-        <label class="block text-gray-300 mb-2">Skala grafiki</label>
-        <input type="range" id="skalaGrafiki" min="0.5" max="2" step="0.1" value="1" 
-               class="w-full mb-4">
+        <label class="block mb-2 font-semibold">Umiejscowienie nadruku:</label>
+        <select id="umiejscowienie" class="w-full p-2 rounded text-black mb-4">
+          <option value="front">Przód</option>
+          <option value="tył">Tył</option>
+          <option value="rękawLewy">Rękaw lewy</option>
+          <option value="rękawPrawy">Rękaw prawy</option>
+          <option value="kaptur">Kaptur (tylko bluza)</option>
+          <option value="daszek">Daszek (tylko czapka)</option>
+          <option value="bokLewy">Bok lewy (czapka)</option>
+          <option value="bokPrawy">Bok prawy (czapka)</option>
+        </select>
 
-        <!-- Dodaj do koszyka -->
-        <button id="dodajProjektBtn" 
-                class="w-full bg-yellow-500 text-black font-bold py-2 rounded hover:bg-yellow-400 transition">
-          Dodaj do koszyka
-        </button>
-
-        <!-- PayPal -->
-        <div class="mt-6">
-          <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
-          <div id="paypal-container-L4639S4363CZE"></div>
-          <script>
-            paypal.HostedButtons({
-              hostedButtonId: "L4639S4363CZE",
-            }).render("#paypal-container-L4639S4363CZE");
-          </script>
-        </div>
+        <button id="dodajDoKoszyka" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded-lg shadow-lg transition">Dodaj do koszyka</button>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Koszyk -->
+<div id="koszyk" style="display:none; position:fixed; top:50%; right:20px; transform:translateY(-50%); width:300px; background:white; color:black; padding:20px; border-radius:10px; box-shadow:0 0 20px rgba(0,0,0,0.5); z-index:9999;">
+  <h2>Koszyk</h2>
+  <ul id="listaKoszyka"></ul>
+  <p id="sumaKoszyka" class="font-bold mt-2"></p>
+  <div id="paypal-container-L4639S4363CZE" class="mt-4"></div>
+  <button onclick="document.getElementById('koszyk').style.display='none'" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">Zamknij</button>
+</div>
+
+<!-- PayPal -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+<script>paypal.HostedButtons({ hostedButtonId: "L4639S4363CZE" }).render("#paypal-container-L4639S4363CZE");</script>
+
 <script>
-  const koszulkaPodglad = document.getElementById("koszulkaPodglad");
-  const naklejonaGrafika = document.getElementById("naklejonaGrafika");
-  const naklejonyTekst = document.getElementById("naklejonyTekst");
+const canvas = document.getElementById('podgladProdukt');
+const ctx = canvas.getContext('2d');
+let aktualnyTyp = 'koszulka';
+let obrazek = null;
+let widokTyl = false;
+let koszyk = [];
 
-  // Wczytywanie grafiki
-  document.getElementById("projektGrafika").addEventListener("change", e => {
-    const file = e.target.files[0];
-    if (!file) return;
+function rysujProdukt() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  // Kolor produktu
+  ctx.fillStyle = document.getElementById('kolorProduktu').value;
+  ctx.beginPath();
+  ctx.arc(canvas.width/2, canvas.height/2, 150, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Oznaczenie widoku
+  ctx.fillStyle = widokTyl ? "#ff0000" : "#00ff00";
+  ctx.font = "20px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText(widokTyl ? "TYŁ" : "PRZÓD", canvas.width/2, 40);
+
+  // Tekst
+  const tekst = document.getElementById('projektTekst').value;
+  const czcionka = document.getElementById('czcionka').value;
+  const rozmiar = document.getElementById('rozmiarTekstu').value;
+  ctx.font = `${rozmiar}px ${czcionka}`;
+  ctx.fillStyle = document.getElementById('kolorTekstu').value;
+  ctx.fillText(tekst, canvas.width/2, canvas.height/2);
+
+  // Obrazek
+  if(obrazek){
+    ctx.drawImage(obrazek, canvas.width/2-50, canvas.height/2-50, 100, 100);
+  }
+
+  requestAnimationFrame(rysujProdukt);
+}
+
+document.getElementById('przodBtn').addEventListener('click', ()=> widokTyl = false);
+document.getElementById('tylBtn').addEventListener('click', ()=> widokTyl = true);
+
+// Pobranie aktualnego widoku
+document.getElementById('pobierzProjekt').addEventListener('click', ()=>{
+  const link = document.createElement('a');
+  link.download = widokTyl ? 'projekt_tyl.png' : 'projekt_przod.png';
+  link.href = canvas.toDataURL();
+  link.click();
+});
+
+// Pobranie przodu niezależnie
+document.getElementById('pobierzPrzod').addEventListener('click', ()=>{
+  widokTyl = false;
+  setTimeout(()=>{
+    const link = document.createElement('a');
+    link.download = 'projekt_przod.png';
+    link.href = canvas.toDataURL();
+    link.click();
+  },300);
+});
+
+// Pobranie tyłu niezależnie
+document.getElementById('pobierzTyl').addEventListener('click', ()=>{
+  widokTyl = true;
+  setTimeout(()=>{
+    const link = document.createElement('a');
+    link.download = 'projekt_tyl.png';
+    link.href = canvas.toDataURL();
+    link.click();
+  },300);
+});
+
+// Ładowanie grafiki
+document.getElementById('projektGrafika').addEventListener('change', e=>{
+  const file = e.target.files[0];
+  if(file){
     const reader = new FileReader();
-    reader.onload = ev => {
-      naklejonaGrafika.src = ev.target.result;
-      naklejonaGrafika.style.display = "block";
-    };
+    reader.onload = evt=>{
+      obrazek = new Image();
+      obrazek.src = evt.target.result;
+    }
     reader.readAsDataURL(file);
-  });
+  }
+});
 
-  // Tekst na koszulce
-  document.getElementById("projektTekst").addEventListener("input", e => {
-    naklejonyTekst.textContent = e.target.value;
-    naklejonyTekst.style.display = e.target.value ? "block" : "none";
-  });
+// Typ produktu
+document.querySelectorAll('.produktBtn').forEach(btn=>{
+  btn.addEventListener('click', ()=> aktualnyTyp = btn.dataset.typ);
+});
 
-  // Zmiana koloru koszulki
-  document.getElementById("projektKolor").addEventListener("change", e => {
-    koszulkaPodglad.src = e.target.value;
-  });
+// Koszyk
+document.getElementById('dodajDoKoszyka').addEventListener('click', ()=>{
+  const nazwa = `${aktualnyTyp} ${document.getElementById('projektTekst').value || 'bez tekstu'} (${document.getElementById('projektRozmiar').value})`;
+  const cena = 199;
+  koszyk.push({nazwa, cena});
+  aktualizujKoszyk();
+  document.getElementById('koszyk').style.display='block';
+});
 
-  // Skala grafiki
-  document.getElementById("skalaGrafiki").addEventListener("input", e => {
-    naklejonaGrafika.style.transform = `translate(-50%, -50%) scale(${e.target.value})`;
+function aktualizujKoszyk(){
+  const lista = document.getElementById('listaKoszyka');
+  lista.innerHTML = "";
+  let suma = 0;
+  koszyk.forEach(item=>{
+    const li = document.createElement('li');
+    li.textContent = `${item.nazwa} - ${item.cena} zł`;
+    lista.appendChild(li);
+    suma += item.cena;
   });
+  document.getElementById('sumaKoszyka').textContent = `Suma: ${suma} zł`;
+}
 
-  // Drag & Drop grafiki
-  let isDragging = false;
-  naklejonaGrafika.addEventListener("mousedown", () => isDragging = true);
-  document.addEventListener("mouseup", () => isDragging = false);
-  document.addEventListener("mousemove", e => {
-    if (!isDragging) return;
-    naklejonaGrafika.style.left = e.clientX - koszulkaPodglad.getBoundingClientRect().left + "px";
-    naklejonaGrafika.style.top = e.clientY - koszulkaPodglad.getBoundingClientRect().top + "px";
-  });
-
-  // Dodawanie projektu do koszyka
-  document.getElementById("dodajProjektBtn").addEventListener("click", () => {
-    alert("Projekt został dodany do koszyka!");
-    // Możesz tu podpiąć swoją funkcję dodawania do koszyka
-  });
-</script>                               
-<!-- START: Ramka ozdobna wokół sekcji Zbiórka -->
+rysujProdukt();
+</script><!-- START: Ramka ozdobna wokół sekcji Zbiórka -->
 <div class="relative z-10 bg-black bg-opacity-90 p-2 sm:p-4 rounded-3xl shadow-[0_0_25px_rgba(255,215,0,0.5)] border-4 border-yellow-600 max-w-5xl mx-auto my-10">
 
   <section id="zbiorka" class="py-12 bg-gradient-to-br from-yellow-50 to-yellow-100 border-4 border-yellow-500 rounded-2xl shadow-xl">
@@ -1209,6 +1294,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
