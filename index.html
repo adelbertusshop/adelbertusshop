@@ -907,81 +907,182 @@ setInterval(() => {
 
   renderProducts();
   renderAdminProducts();
-</script><!-- Sekcja Reklama -->
-<section id="reklama" class="py-10 bg-yellow-100 text-center">
-  <div class="max-w-5xl mx-auto border-2 border-yellow-400 rounded-2xl shadow-xl p-6 bg-white">
+<!-- Sekcja Reklama -->
+<section id="reklama" class="py-16 bg-gray-900 text-center text-yellow-100">
+  <div class="max-w-5xl mx-auto border-4 border-yellow-500 rounded-2xl shadow-2xl p-8 bg-gray-800">
+    <h2 class="text-4xl font-bold mb-4 text-yellow-400"><i class="fas fa-bullhorn mr-2"></i>Zareklamuj się na AdelbertusShop</h2>
+    <p class="mb-2 text-lg">Twoja reklama pojawi się na stronie głównej na <strong>30 sekund</strong> po akceptacji.</p>
+    <p class="mb-6 text-sm">Płatność: <strong>BLIK 573-939-925</strong> lub PayPal (poniżej).</p>
 
-    <div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-2xl border border-yellow-300">
-      <h2 class="text-3xl font-bold mb-4">Zareklamuj się na <span class="text-yellow-600">AdelbertusShop</span> <i class="fas fa-bullhorn ml-2"></i></h2>
-      <p class="mb-2">Twoja reklama pojawi się na stronie głównej na 30 sekund.</p>
-      <p class="mb-6 text-sm">Po wpłacie na BLIK: <strong>573-939-925</strong> z dopiskiem <strong>reklama</strong></p>
+    <!-- PayPal -->
+    <div class="my-4">
+      <div id="paypal-container-reklama"></div>
+      <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+      <script>
+        paypal.HostedButtons({
+          hostedButtonId: "L4639S4363CZE",
+        }).render("#paypal-container-reklama");
+      </script>
+    </div>
+<!-- Sekcja Reklama -->
+<section id="reklama" class="py-16 bg-gray-900 text-center text-yellow-100">
+  <div class="max-w-6xl mx-auto border-4 border-yellow-500 rounded-2xl shadow-2xl p-8 bg-gray-800">
+    <h2 class="text-4xl font-bold mb-4 text-yellow-400"><i class="fas fa-bullhorn mr-2"></i>Zareklamuj się na AdelbertusShop</h2>
+    <p class="mb-2 text-lg">Twoja reklama pojawi się na stronie głównej na <strong>30 sekund</strong> po akceptacji.</p>
+    <p class="mb-6 text-sm">Płatność: <strong>BLIK 573-939-925</strong> lub PayPal (poniżej).</p>
 
-      <form id="formularzReklamy" class="max-w-xl mx-auto p-4 bg-yellow-50 rounded-xl shadow">
-        <input type="text" placeholder="Nazwa firmy lub produktu" required class="w-full p-2 mb-2 border rounded">
-        <textarea placeholder="Treść reklamy" required class="w-full p-2 mb-2 border rounded"></textarea>
-        <input type="email" placeholder="Twój email" required class="w-full p-2 mb-2 border rounded">
+    <!-- PayPal -->
+    <div class="my-4">
+      <div id="paypal-container-reklama"></div>
+      <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+      <script>
+        paypal.HostedButtons({
+          hostedButtonId: "L4639S4363CZE",
+        }).render("#paypal-container-reklama");
+      </script>
+    </div>
 
-        <select class="w-full p-2 mb-4 border rounded" required>
-          <option disabled selected>Wybierz okres reklamy</option>
-          <option>1 dzień – 10 zł</option>
-          <option>1 tydzień – 49 zł</option>
-          <option>1 miesiąc – 189 zł</option>
-        </select>
+    <!-- Formularz reklamy -->
+    <form id="formularzReklamy" class="max-w-xl mx-auto p-4 bg-gray-700 rounded-xl shadow">
+      <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy lub produktu" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
+      <textarea id="trescReklamy" placeholder="Treść reklamy" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100"></textarea>
+      <input type="email" id="emailReklamodawcy" placeholder="Twój email" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
 
-        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded font-semibold transition"><i class="fas fa-paper-plane mr-2"></i>Wyślij zgłoszenie</button>
-      </form>
+      <!-- Upload logotypu -->
+      <input type="file" id="logoReklamy" accept="image/*" class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
+      <div id="logoPodglad" class="mb-4 hidden">
+        <p class="text-sm mb-1 text-yellow-300">Podgląd logotypu:</p>
+        <img id="podgladObrazka" src="" alt="Podgląd logotypu" class="max-h-32 mx-auto rounded shadow-lg">
+      </div>
 
-      <!-- Strefa administratora -->
-      <div class="mt-6">
-        <button onclick="pokazPanelAdmina()" class="text-sm text-blue-700 underline"><i class="fas fa-user-shield mr-1"></i>Panel administratora</button>
-        <div id="panelAdmina" class="hidden mt-4 bg-white border p-4 rounded-xl shadow-md max-w-lg mx-auto">
-          <input type="password" id="adminHaslo" placeholder="Podaj hasło" class="border p-2 mb-2 w-full rounded">
-          <button onclick="sprawdzHaslo()" class="bg-blue-500 text-white px-4 py-2 rounded font-semibold"><i class="fas fa-sign-in-alt mr-1"></i>Zaloguj</button>
-          <div id="adminKontrola" class="hidden mt-4">
-            <textarea id="reklamaAdmina" placeholder="Treść reklamy od administratora" class="w-full p-2 border rounded mb-2"></textarea>
-            <button onclick="wyswietlReklameAdmina()" class="bg-green-500 text-white px-4 py-2 rounded font-semibold"><i class="fas fa-play mr-1"></i>Wyświetl reklamę</button>
-          </div>
-        </div>
+      <select id="okresReklamy" class="w-full p-2 mb-4 border rounded bg-gray-900 text-yellow-100" required>
+        <option disabled selected>Wybierz okres reklamy</option>
+        <option>1 dzień – 10 zł</option>
+        <option>1 tydzień – 49 zł</option>
+        <option>1 miesiąc – 189 zł</option>
+      </select>
+
+      <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded font-semibold transition">
+        <i class="fas fa-paper-plane mr-2"></i>Wyślij zgłoszenie
+      </button>
+    </form>
+
+    <!-- Lista ostatnich reklam (rotacja) -->
+    <div class="mt-8">
+      <h3 class="text-2xl font-semibold text-yellow-400 mb-4"><i class="fas fa-star mr-1"></i>Ostatnie reklamy</h3>
+      <div id="sliderReklam" class="h-24 flex items-center justify-center text-lg italic text-yellow-200">
+        Brak reklam do wyświetlenia
       </div>
     </div>
 
+    <!-- Panel administratora -->
+    <div class="mt-10">
+      <button onclick="pokazPanelAdmina()" class="text-sm text-yellow-400 underline">
+        <i class="fas fa-user-shield mr-1"></i>Panel administratora
+      </button>
+      <div id="panelAdmina" class="hidden mt-4 bg-gray-700 border p-4 rounded-xl shadow-md max-w-2xl mx-auto">
+        <input type="password" id="adminHaslo" placeholder="Podaj hasło" class="border p-2 mb-2 w-full rounded bg-gray-900 text-yellow-100">
+        <button onclick="sprawdzHaslo()" class="bg-yellow-500 text-white px-4 py-2 rounded font-semibold">
+          <i class="fas fa-sign-in-alt mr-1"></i>Zaloguj
+        </button>
+        <div id="adminKontrola" class="hidden mt-4">
+          <h4 class="text-yellow-300 mb-2 font-semibold">Zgłoszone reklamy (do zatwierdzenia):</h4>
+          <ul id="listaZgloszen" class="text-sm text-yellow-100 space-y-2"></ul>
+          <textarea id="reklamaAdmina" placeholder="Treść reklamy od administratora" class="w-full p-2 border rounded mb-2 bg-gray-900 text-yellow-100"></textarea>
+          <button onclick="wyswietlReklameAdmina()" class="bg-green-500 text-white px-4 py-2 rounded font-semibold">
+            <i class="fas fa-play mr-1"></i>Wyświetl reklamę
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- Reklama wyświetlana na stronie -->
 <div id="reklamaGlowneOkno" class="hidden fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-yellow-300 text-black px-6 py-4 rounded-xl shadow-2xl max-w-md text-center">
+  <img id="logoGlowne" src="" alt="" class="max-h-24 mx-auto mb-2 hidden">
   <p id="trescReklamyGlowne" class="text-lg font-semibold"></p>
   <p class="text-xs mt-2" id="czasomierz"></p>
 </div>
 
 <script>
-  const pokazPanelAdmina = () => {
-    document.getElementById('panelAdmina').classList.toggle('hidden');
+  let listaReklam = [];
+  let zatwierdzoneReklamy = [];
+  let indexSlider = 0;
+
+  document.getElementById('logoReklamy').addEventListener('change', e => {
+    const plik = e.target.files[0];
+    if(plik){
+      const reader = new FileReader();
+      reader.onload = ev => {
+        document.getElementById('podgladObrazka').src = ev.target.result;
+        document.getElementById('logoPodglad').classList.remove('hidden');
+      };
+      reader.readAsDataURL(plik);
+    }
+  });
+
+  document.getElementById('formularzReklamy').addEventListener('submit', e => {
+    e.preventDefault();
+    const nazwa = document.getElementById('nazwaFirmy').value.trim();
+    const tresc = document.getElementById('trescReklamy').value.trim();
+    const email = document.getElementById('emailReklamodawcy').value.trim();
+    const okres = document.getElementById('okresReklamy').value;
+    const logo = document.getElementById('podgladObrazka').src;
+
+    if(nazwa && tresc && email){
+      listaReklam.push({ nazwa, tresc, logo });
+      alert("Reklama zgłoszona, oczekuje na akceptację administratora.");
+      e.target.reset();
+      document.getElementById('logoPodglad').classList.add('hidden');
+    }
+  });
+
+  const pokazPanelAdmina = () => document.getElementById('panelAdmina').classList.toggle('hidden');
+  const sprawdzHaslo = () => {
+    if(document.getElementById('adminHaslo').value === 'Wojownik.03'){
+      document.getElementById('adminKontrola').classList.remove('hidden');
+      aktualizujListeZgloszen();
+    } else alert("Nieprawidłowe hasło.");
   };
 
-  const sprawdzHaslo = () => {
-    const haslo = document.getElementById('adminHaslo').value;
-    if (haslo === 'Wojownik.03') {
-      document.getElementById('adminKontrola').classList.remove('hidden');
-    } else {
-      alert("Nieprawidłowe hasło.");
-    }
+  const aktualizujListeZgloszen = () => {
+    const lista = document.getElementById('listaZgloszen');
+    lista.innerHTML = listaReklam.map((r,i)=>`
+      <li class="flex justify-between items-center border-b border-yellow-500 pb-1">
+        <span><b>${r.nazwa}</b>: ${r.tresc}</span>
+        <div class="space-x-2">
+          <button onclick="zatwierdzReklame(${i})" class="bg-green-600 px-2 py-1 rounded text-white text-xs">Zatwierdź</button>
+          <button onclick="odrzucReklame(${i})" class="bg-red-600 px-2 py-1 rounded text-white text-xs">Odrzuć</button>
+        </div>
+      </li>`).join("");
+  };
+
+  const zatwierdzReklame = i => {
+    zatwierdzoneReklamy.push(listaReklam[i]);
+    listaReklam.splice(i,1);
+    aktualizujListeZgloszen();
+  };
+
+  const odrzucReklame = i => {
+    listaReklam.splice(i,1);
+    aktualizujListeZgloszen();
   };
 
   const wyswietlReklameAdmina = () => {
     const tekst = document.getElementById('reklamaAdmina').value;
     if (tekst.trim()) {
       document.getElementById('trescReklamyGlowne').innerText = tekst;
+      document.getElementById('logoGlowne').classList.add('hidden');
       document.getElementById('reklamaGlowneOkno').classList.remove('hidden');
       startCzasomierz(30);
     }
   };
 
-  const startCzasomierz = (sekundy) => {
+  const startCzasomierz = sekundy => {
     let licznik = sekundy;
     const czas = document.getElementById('czasomierz');
     czas.textContent = `Reklama zniknie za ${licznik} sekund`;
-
     const interval = setInterval(() => {
       licznik--;
       czas.textContent = `Reklama zniknie za ${licznik} sekund`;
@@ -992,9 +1093,18 @@ setInterval(() => {
       }
     }, 1000);
   };
-</script>
 
-<!-- Dodaj FontAwesome dla ikon jeśli jeszcze nie jest dodane -->
+  // Rotacja zatwierdzonych reklam
+  setInterval(()=>{
+    if(zatwierdzoneReklamy.length > 0){
+      const reklama = zatwierdzoneReklamy[indexSlider % zatwierdzoneReklamy.length];
+      document.getElementById('sliderReklam').innerHTML = `
+        ${reklama.logo ? `<img src="${reklama.logo}" class="h-12 mx-auto mb-2 rounded">` : ""}
+        <p>"${reklama.tresc}" – <b>${reklama.nazwa}</b></p>`;
+      indexSlider++;
+    }
+  },5000);
+</script><!-- Dodaj FontAwesome dla ikon jeśli jeszcze nie jest dodane -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <!-- Sekcja Blog & Opinie z możliwością komunikacji + VIP -->
 <section id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
@@ -1198,6 +1308,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
