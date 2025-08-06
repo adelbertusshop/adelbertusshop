@@ -107,6 +107,15 @@
   </style>
 </head>
 <body>
+  <!-- 🔊 Ambient heartbeat AdelbertusShop -->
+  <audio id="heartbeatAudio" autoplay loop>
+    <source src="https://files.catbox.moe/nhe3vi.mp3" type="audio/mpeg">
+  </audio>
+  <script>
+    const heartbeat = document.getElementById('heartbeatAudio');
+    heartbeat.volume = 0.15; // ciche odtwarzanie
+  </script>
+
   <!-- Koszyk -->
   <div id="koszyk">
     <h2>Twój koszyk</h2>
@@ -240,6 +249,7 @@
     }).render('#paypal-button-container');
   </script>
 </body>
+</html>
 <!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
@@ -1393,6 +1403,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
