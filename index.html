@@ -107,15 +107,25 @@
   </style>
 </head>
 <body>
-  <!-- 🔊 Ambient heartbeat AdelbertusShop -->
-  <audio id="heartbeatAudio" autoplay loop>
-    <source src="https://files.catbox.moe/nhe3vi.mp3" type="audio/mpeg">
-  </audio>
-  <script>
-    const heartbeat = document.getElementById('heartbeatAudio');
-    heartbeat.volume = 0.15; // ciche odtwarzanie
-  </script>
+ <!-- Hipnotyczny dźwięk w tle -->
+<audio id="hipnotycznyDzwiek" autoplay loop muted playsinline>
+  <source src="https://freelanceruploads.s3.amazonaws.com/adelbertusshop_mystic_loop_low.mp3" type="audio/mpeg">
+  Twoja przeglądarka nie wspiera odtwarzacza audio.
+</audio>
 
+<script>
+  window.addEventListener('load', function () {
+    const audio = document.getElementById('hipnotycznyDzwiek');
+    audio.volume = 0.03; // bardzo cicho
+    audio.muted = false; // odmutowanie jeśli możliwe
+    audio.play().catch(() => {
+      // Auto-play może być zablokowany, odtworzenie przy pierwszym kliknięciu
+      document.body.addEventListener('click', () => {
+        audio.play();
+      }, { once: true });
+    });
+  });
+</script>
   <!-- Koszyk -->
   <div id="koszyk">
     <h2>Twój koszyk</h2>
@@ -270,7 +280,7 @@
         Adelbertus Shop
       </h1>
       <p class="mt-4 text-xl md:text-2xl text-gray-200 font-medium max-w-2xl drop-shadow-md">
-        Ubrania z duszą, pomoc z serca. Połącz styl z misją ✨
+        
       </p>
     </div>
   </div>
@@ -1403,6 +1413,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
