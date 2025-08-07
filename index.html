@@ -12,6 +12,12 @@
       margin: 0;
       padding: 0;
     }
+
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     #toggleKoszykBtn {
       position: fixed;
       bottom: 1.5rem;
@@ -110,7 +116,6 @@
   </style>
 </head>
 <body>
-<!-- Hipnotyczny dźwięk w tle -->
 <audio id="hipnotycznyDzwiek" autoplay loop muted playsinline>
   <source src="https://freelanceruploads.s3.amazonaws.com/adelbertusshop_mystic_loop_low.mp3" type="audio/mpeg">
   Twoja przeglądarka nie wspiera odtwarzacza audio.
@@ -129,25 +134,20 @@
   });
 </script>
 
-<!-- Koszyk -->
 <div id="koszyk">
   <h2>Twój koszyk</h2>
   <ul id="listaKoszyk"></ul>
   <p><strong>Suma: </strong><span id="sumaKoszyk">0</span> zł</p>
   <div id="paypal-button-container"></div>
-  <!-- DODANY HOSTED BUTTON -->
   <div id="paypal-container-L4639S4363CZE"></div>
   <button id="zamknijKoszykBtn">Zamknij</button>
 </div>
 
-<!-- Przycisk koszyka -->
 <button id="toggleKoszykBtn">🛒</button>
 <div id="licznikKoszyka"></div>
 
-<!-- PayPal SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN&components=buttons,hosted-buttons"></script>
 
-<!-- Dźwięk dodania -->
 <audio id="koszykDzwiek" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
 
 <script>
@@ -263,13 +263,12 @@
     }
   }).render('#paypal-button-container');
 
-  // Hosted Button - renderujemy obok dynamicznego
   paypal.HostedButtons({
     hostedButtonId: "L4639S4363CZE"
   }).render("#paypal-container-L4639S4363CZE");
 </script>
 </body>
-</html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+</html></html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -709,19 +708,6 @@
   </div>
 </section>
 
-<!-- Koszyk -->
-<div id="koszyk" style="display:none; position:fixed; top:50%; right:20px; transform:translateY(-50%); width:300px; background:white; color:black; padding:20px; border-radius:10px; box-shadow:0 0 20px rgba(0,0,0,0.5); z-index:9999;">
-  <h2>Koszyk</h2>
-  <ul id="listaKoszyka"></ul>
-  <p id="sumaKoszyka" class="font-bold mt-2"></p>
-  <div id="paypal-container-L4639S4363CZE" class="mt-4"></div>
-  <button onclick="document.getElementById('koszyk').style.display='none'" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">Zamknij</button>
-</div>
-
-<!-- PayPal -->
-<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
-<script>paypal.HostedButtons({ hostedButtonId: "L4639S4363CZE" }).render("#paypal-container-L4639S4363CZE");</script>
-
 <script>
 const canvas = document.getElementById('podgladProdukt');
 const ctx = canvas.getContext('2d');
@@ -731,19 +717,29 @@ let widokTyl = false;
 let koszyk = [];
 
 function rysujProdukt() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Kolor produktu
   ctx.fillStyle = document.getElementById('kolorProduktu').value;
-  ctx.beginPath();
-  ctx.arc(canvas.width/2, canvas.height/2, 150, 0, Math.PI * 2);
-  ctx.fill();
+
+  // Rysuj kształt zależnie od typu produktu
+  if (aktualnyTyp === 'koszulka') {
+    ctx.fillRect(120, 100, 160, 200);
+  } else if (aktualnyTyp === 'bluza') {
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2, canvas.height / 2, 120, 0, Math.PI * 2);
+    ctx.fill();
+  } else if (aktualnyTyp === 'czapka') {
+    ctx.beginPath();
+    ctx.ellipse(canvas.width / 2, canvas.height / 2, 100, 60, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
 
   // Oznaczenie widoku
   ctx.fillStyle = widokTyl ? "#ff0000" : "#00ff00";
   ctx.font = "20px Arial";
   ctx.textAlign = "center";
-  ctx.fillText(widokTyl ? "TYŁ" : "PRZÓD", canvas.width/2, 40);
+  ctx.fillText(widokTyl ? "TYŁ" : "PRZÓD", canvas.width / 2, 40);
 
   // Tekst
   const tekst = document.getElementById('projektTekst').value;
@@ -751,81 +747,76 @@ function rysujProdukt() {
   const rozmiar = document.getElementById('rozmiarTekstu').value;
   ctx.font = `${rozmiar}px ${czcionka}`;
   ctx.fillStyle = document.getElementById('kolorTekstu').value;
-  ctx.fillText(tekst, canvas.width/2, canvas.height/2);
+  ctx.fillText(tekst, canvas.width / 2, canvas.height / 2);
 
   // Obrazek
-  if(obrazek){
-    ctx.drawImage(obrazek, canvas.width/2-50, canvas.height/2-50, 100, 100);
+  if (obrazek) {
+    ctx.drawImage(obrazek, canvas.width / 2 - 50, canvas.height / 2 - 50, 100, 100);
   }
 
   requestAnimationFrame(rysujProdukt);
 }
 
-document.getElementById('przodBtn').addEventListener('click', ()=> widokTyl = false);
-document.getElementById('tylBtn').addEventListener('click', ()=> widokTyl = true);
+document.getElementById('przodBtn').addEventListener('click', () => widokTyl = false);
+document.getElementById('tylBtn').addEventListener('click', () => widokTyl = true);
 
-// Pobranie aktualnego widoku
-document.getElementById('pobierzProjekt').addEventListener('click', ()=>{
+document.getElementById('pobierzProjekt').addEventListener('click', () => {
   const link = document.createElement('a');
   link.download = widokTyl ? 'projekt_tyl.png' : 'projekt_przod.png';
   link.href = canvas.toDataURL();
   link.click();
 });
-
-// Pobranie przodu niezależnie
-document.getElementById('pobierzPrzod').addEventListener('click', ()=>{
+document.getElementById('pobierzPrzod').addEventListener('click', () => {
   widokTyl = false;
-  setTimeout(()=>{
+  setTimeout(() => {
     const link = document.createElement('a');
     link.download = 'projekt_przod.png';
     link.href = canvas.toDataURL();
     link.click();
-  },300);
+  }, 300);
 });
-
-// Pobranie tyłu niezależnie
-document.getElementById('pobierzTyl').addEventListener('click', ()=>{
+document.getElementById('pobierzTyl').addEventListener('click', () => {
   widokTyl = true;
-  setTimeout(()=>{
+  setTimeout(() => {
     const link = document.createElement('a');
     link.download = 'projekt_tyl.png';
     link.href = canvas.toDataURL();
     link.click();
-  },300);
+  }, 300);
 });
 
-// Ładowanie grafiki
-document.getElementById('projektGrafika').addEventListener('change', e=>{
+document.getElementById('projektGrafika').addEventListener('change', e => {
   const file = e.target.files[0];
-  if(file){
+  if (file) {
     const reader = new FileReader();
-    reader.onload = evt=>{
+    reader.onload = evt => {
       obrazek = new Image();
+      obrazek.onload = () => rysujProdukt();
       obrazek.src = evt.target.result;
     }
     reader.readAsDataURL(file);
   }
 });
 
-// Typ produktu
-document.querySelectorAll('.produktBtn').forEach(btn=>{
-  btn.addEventListener('click', ()=> aktualnyTyp = btn.dataset.typ);
+document.querySelectorAll('.produktBtn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    aktualnyTyp = btn.dataset.typ;
+  });
 });
 
-// Koszyk
-document.getElementById('dodajDoKoszyka').addEventListener('click', ()=>{
+document.getElementById('dodajDoKoszyka').addEventListener('click', () => {
   const nazwa = `${aktualnyTyp} ${document.getElementById('projektTekst').value || 'bez tekstu'} (${document.getElementById('projektRozmiar').value})`;
   const cena = 199;
-  koszyk.push({nazwa, cena});
+  koszyk.push({ nazwa, cena });
   aktualizujKoszyk();
-  document.getElementById('koszyk').style.display='block';
+  document.getElementById('koszyk').style.display = 'block';
 });
 
-function aktualizujKoszyk(){
+function aktualizujKoszyk() {
   const lista = document.getElementById('listaKoszyka');
   lista.innerHTML = "";
   let suma = 0;
-  koszyk.forEach(item=>{
+  koszyk.forEach(item => {
     const li = document.createElement('li');
     li.textContent = `${item.nazwa} - ${item.cena} zł`;
     lista.appendChild(li);
@@ -835,7 +826,7 @@ function aktualizujKoszyk(){
 }
 
 rysujProdukt();
-</script><!-- START: Ramka ozdobna wokół sekcji Zbiórka -->
+</script></script><!-- START: Ramka ozdobna wokół sekcji Zbiórka -->
 <div class="relative z-10 bg-black bg-opacity-90 p-2 sm:p-4 rounded-3xl shadow-[0_0_25px_rgba(255,215,0,0.5)] border-4 border-yellow-600 max-w-5xl mx-auto my-10">
 
   <section id="zbiorka" class="py-12 bg-gradient-to-br from-yellow-50 to-yellow-100 border-4 border-yellow-500 rounded-2xl shadow-xl">
@@ -1422,6 +1413,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
