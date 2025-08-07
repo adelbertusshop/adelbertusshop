@@ -107,7 +107,7 @@
   </style>
 </head>
 <body>
- <!-- Hipnotyczny dźwięk w tle -->
+<!-- Hipnotyczny dźwięk w tle -->
 <audio id="hipnotycznyDzwiek" autoplay loop muted playsinline>
   <source src="https://freelanceruploads.s3.amazonaws.com/adelbertusshop_mystic_loop_low.mp3" type="audio/mpeg">
   Twoja przeglądarka nie wspiera odtwarzacza audio.
@@ -116,148 +116,148 @@
 <script>
   window.addEventListener('load', function () {
     const audio = document.getElementById('hipnotycznyDzwiek');
-    audio.volume = 0.03; // bardzo cicho
-    audio.muted = false; // odmutowanie jeśli możliwe
+    audio.volume = 0.03;
+    audio.muted = false;
     audio.play().catch(() => {
-      // Auto-play może być zablokowany, odtworzenie przy pierwszym kliknięciu
       document.body.addEventListener('click', () => {
         audio.play();
       }, { once: true });
     });
   });
 </script>
-  <!-- Koszyk -->
-  <div id="koszyk">
-    <h2>Twój koszyk</h2>
-    <ul id="listaKoszyk"></ul>
-    <p><strong>Suma: </strong><span id="sumaKoszyk">0</span> zł</p>
-    <div id="paypal-button-container"></div>
-    <button id="zamknijKoszykBtn">Zamknij</button>
-  </div>
 
-  <!-- Przycisk koszyka -->
-  <button id="toggleKoszykBtn">🛒</button>
-  <div id="licznikKoszyka"></div>
+<!-- Koszyk -->
+<div id="koszyk">
+  <h2>Twój koszyk</h2>
+  <ul id="listaKoszyk"></ul>
+  <p><strong>Suma: </strong><span id="sumaKoszyk">0</span> zł</p>
+  <div id="paypal-button-container"></div>
+  <button id="zamknijKoszykBtn">Zamknij</button>
+</div>
 
-  <!-- PayPal SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
+<!-- Przycisk koszyka -->
+<button id="toggleKoszykBtn">🛒</button>
+<div id="licznikKoszyka"></div>
 
-  <!-- Dźwięk dodania -->
-  <audio id="koszykDzwiek" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
+<!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
 
-  <script>
-    let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
-    const licznikKoszyka = document.getElementById("licznikKoszyka");
-    const koszykEl = document.getElementById("koszyk");
-    const dzwiek = document.getElementById("koszykDzwiek");
+<!-- Dźwięk dodania -->
+<audio id="koszykDzwiek" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
 
-    document.getElementById("toggleKoszykBtn").addEventListener("click", () => {
-      koszykEl.classList.toggle("show");
-    });
-    document.getElementById("zamknijKoszykBtn").addEventListener("click", () => {
-      koszykEl.classList.remove("show");
-    });
+<script>
+  let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+  const licznikKoszyka = document.getElementById("licznikKoszyka");
+  const koszykEl = document.getElementById("koszyk");
+  const dzwiek = document.getElementById("koszykDzwiek");
 
-    function dodajDoKoszyka(nazwa, cena, rozmiar, kolor, obrazek = null) {
-      const istniejący = koszyk.find(p => p.nazwa === nazwa && p.rozmiar === rozmiar && p.kolor === kolor);
-      if (istniejący) {
-        istniejący.ilosc++;
-      } else {
-        koszyk.push({ nazwa, cena, rozmiar, kolor, obrazek, ilosc: 1 });
+  document.getElementById("toggleKoszykBtn").addEventListener("click", () => {
+    koszykEl.classList.toggle("show");
+  });
+  document.getElementById("zamknijKoszykBtn").addEventListener("click", () => {
+    koszykEl.classList.remove("show");
+  });
+
+  function dodajDoKoszyka(nazwa, cena, rozmiar, kolor, obrazek = null) {
+    const istniejący = koszyk.find(p => p.nazwa === nazwa && p.rozmiar === rozmiar && p.kolor === kolor);
+    if (istniejący) {
+      istniejący.ilosc++;
+    } else {
+      koszyk.push({ nazwa, cena, rozmiar, kolor, obrazek, ilosc: 1 });
+    }
+    zapiszKoszyk();
+    aktualizujKoszyk(true);
+    dzwiek.play();
+  }
+
+  function zapiszKoszyk() {
+    localStorage.setItem("koszyk", JSON.stringify(koszyk));
+  }
+
+  function aktualizujKoszyk(flash = false) {
+    const lista = document.getElementById('listaKoszyk');
+    const sumaEl = document.getElementById('sumaKoszyk');
+    lista.innerHTML = '';
+    let suma = 0;
+    let liczbaProduktów = 0;
+
+    koszyk.forEach((produkt, index) => {
+      suma += produkt.cena * produkt.ilosc;
+      liczbaProduktów += produkt.ilosc;
+
+      const li = document.createElement('li');
+      if (flash) {
+        li.classList.add('flash');
+        setTimeout(() => li.classList.remove('flash'), 500);
       }
-      zapiszKoszyk();
-      aktualizujKoszyk(true);
-      dzwiek.play();
-    }
 
-    function zapiszKoszyk() {
-      localStorage.setItem("koszyk", JSON.stringify(koszyk));
-    }
+      const info = document.createElement('div');
+      info.style.display = "flex";
+      info.style.alignItems = "center";
 
-    function aktualizujKoszyk(flash = false) {
-      const lista = document.getElementById('listaKoszyk');
-      const sumaEl = document.getElementById('sumaKoszyk');
-      lista.innerHTML = '';
-      let suma = 0;
-      let liczbaProduktów = 0;
+      if (produkt.obrazek) {
+        const img = document.createElement('img');
+        img.src = produkt.obrazek;
+        img.classList.add('koszyk-miniatura');
+        info.appendChild(img);
+      }
+      const txt = document.createElement('span');
+      txt.textContent = `${produkt.nazwa} (${produkt.rozmiar}, ${produkt.kolor}) – ${produkt.cena} zł x ${produkt.ilosc}`;
+      info.appendChild(txt);
 
-      koszyk.forEach((produkt, index) => {
-        suma += produkt.cena * produkt.ilosc;
-        liczbaProduktów += produkt.ilosc;
+      const actions = document.createElement('div');
+      const plusBtn = document.createElement('button');
+      plusBtn.textContent = '+';
+      plusBtn.onclick = () => { produkt.ilosc++; zapiszKoszyk(); aktualizujKoszyk(); };
 
-        const li = document.createElement('li');
-        if (flash) {
-          li.classList.add('flash');
-          setTimeout(() => li.classList.remove('flash'), 500);
-        }
+      const minusBtn = document.createElement('button');
+      minusBtn.textContent = '-';
+      minusBtn.onclick = () => {
+        produkt.ilosc--;
+        if (produkt.ilosc <= 0) koszyk.splice(index, 1);
+        zapiszKoszyk();
+        aktualizujKoszyk();
+      };
 
-        const info = document.createElement('div');
-        info.style.display = "flex";
-        info.style.alignItems = "center";
+      const usunBtn = document.createElement('button');
+      usunBtn.textContent = 'Usuń';
+      usunBtn.onclick = () => { koszyk.splice(index, 1); zapiszKoszyk(); aktualizujKoszyk(); };
 
-        if (produkt.obrazek) {
-          const img = document.createElement('img');
-          img.src = produkt.obrazek;
-          img.classList.add('koszyk-miniatura');
-          info.appendChild(img);
-        }
-        const txt = document.createElement('span');
-        txt.textContent = `${produkt.nazwa} (${produkt.rozmiar}, ${produkt.kolor}) – ${produkt.cena} zł x ${produkt.ilosc}`;
-        info.appendChild(txt);
+      actions.appendChild(plusBtn);
+      actions.appendChild(minusBtn);
+      actions.appendChild(usunBtn);
 
-        const actions = document.createElement('div');
-        const plusBtn = document.createElement('button');
-        plusBtn.textContent = '+';
-        plusBtn.onclick = () => { produkt.ilosc++; zapiszKoszyk(); aktualizujKoszyk(); };
+      li.appendChild(info);
+      li.appendChild(actions);
+      lista.appendChild(li);
+    });
 
-        const minusBtn = document.createElement('button');
-        minusBtn.textContent = '-';
-        minusBtn.onclick = () => {
-          produkt.ilosc--;
-          if (produkt.ilosc <= 0) koszyk.splice(index, 1);
-          zapiszKoszyk();
-          aktualizujKoszyk();
-        };
+    sumaEl.textContent = suma.toFixed(2);
+    licznikKoszyka.textContent = liczbaProduktów;
+    licznikKoszyka.style.display = liczbaProduktów > 0 ? "block" : "none";
+  }
 
-        const usunBtn = document.createElement('button');
-        usunBtn.textContent = 'Usuń';
-        usunBtn.onclick = () => { koszyk.splice(index, 1); zapiszKoszyk(); aktualizujKoszyk(); };
+  aktualizujKoszyk();
 
-        actions.appendChild(plusBtn);
-        actions.appendChild(minusBtn);
-        actions.appendChild(usunBtn);
-
-        li.appendChild(info);
-        li.appendChild(actions);
-        lista.appendChild(li);
+  paypal.Buttons({
+    style: { color: 'gold', shape: 'pill', label: 'pay', height: 40 },
+    createOrder: function(data, actions) {
+      const suma = document.getElementById("sumaKoszyk").textContent;
+      return actions.order.create({
+        purchase_units: [{ amount: { value: suma, currency_code: 'PLN' } }]
       });
-
-      sumaEl.textContent = suma.toFixed(2);
-      licznikKoszyka.textContent = liczbaProduktów;
-      licznikKoszyka.style.display = liczbaProduktów > 0 ? "block" : "none";
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        alert('Dziękujemy za zakup, ' + details.payer.name.given_name + '!');
+        koszyk = [];
+        zapiszKoszyk();
+        aktualizujKoszyk();
+        koszykEl.classList.remove("show");
+      });
     }
-
-    aktualizujKoszyk();
-
-    paypal.Buttons({
-      style: { color: 'gold', shape: 'pill', label: 'pay', height: 40 },
-      createOrder: function(data, actions) {
-        const suma = document.getElementById("sumaKoszyk").textContent;
-        return actions.order.create({
-          purchase_units: [{ amount: { value: suma, currency_code: 'PLN' } }]
-        });
-      },
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          alert('Dziękujemy za zakup, ' + details.payer.name.given_name + '!');
-          koszyk = [];
-          zapiszKoszyk();
-          aktualizujKoszyk();
-          koszykEl.classList.remove("show");
-        });
-      }
-    }).render('#paypal-button-container');
-  </script>
+  }).render('#paypal-button-container');
+</script>
 </body>
 </html>
 <!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
@@ -1413,6 +1413,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
