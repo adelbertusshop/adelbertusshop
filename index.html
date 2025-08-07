@@ -104,6 +104,9 @@
     #paypal-button-container {
       margin-top: 20px;
     }
+    #paypal-container-L4639S4363CZE {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -132,6 +135,8 @@
   <ul id="listaKoszyk"></ul>
   <p><strong>Suma: </strong><span id="sumaKoszyk">0</span> zł</p>
   <div id="paypal-button-container"></div>
+  <!-- DODANY HOSTED BUTTON -->
+  <div id="paypal-container-L4639S4363CZE"></div>
   <button id="zamknijKoszykBtn">Zamknij</button>
 </div>
 
@@ -140,7 +145,7 @@
 <div id="licznikKoszyka"></div>
 
 <!-- PayPal SDK -->
-<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN&components=buttons,hosted-buttons"></script>
 
 <!-- Dźwięk dodania -->
 <audio id="koszykDzwiek" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
@@ -257,10 +262,14 @@
       });
     }
   }).render('#paypal-button-container');
+
+  // Hosted Button - renderujemy obok dynamicznego
+  paypal.HostedButtons({
+    hostedButtonId: "L4639S4363CZE"
+  }).render("#paypal-container-L4639S4363CZE");
 </script>
 </body>
-</html>
-<!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+</html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -1413,6 +1422,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
