@@ -826,14 +826,14 @@ function aktualizujKoszyk() {
 }
 
 rysujProdukt();
-</script></script><!-- START: Ramka ozdobna wokół sekcji Zbiórka -->
+<!-- START: Ramka ozdobna wokół sekcji Zbiórka -->
 <div class="relative z-10 bg-black bg-opacity-90 p-2 sm:p-4 rounded-3xl shadow-[0_0_25px_rgba(255,215,0,0.5)] border-4 border-yellow-600 max-w-5xl mx-auto my-10">
 
   <section id="zbiorka" class="py-12 bg-gradient-to-br from-yellow-50 to-yellow-100 border-4 border-yellow-500 rounded-2xl shadow-xl">
     <div class="max-w-4xl mx-auto px-6">
       <div class="bg-white p-8 rounded-2xl shadow-md border-l-8 border-yellow-600">
         <h2 class="text-4xl font-extrabold text-yellow-800 mb-6 text-center">Pomoc dla dzieci z domu dziecka</h2>
-        
+
         <p class="text-lg text-gray-800 mb-4">Jako właściciel tego sklepu – były wychowanek domu dziecka – wiem jedno: <strong>dzieci potrzebują nadziei</strong>. Uśmiech dziecka to więcej niż słowa – to zdrowie, wiara, że są na tym świecie ludzie dobrzy. Pomagając, dajemy nie tylko dary, ale też drogowskaz. Dzieci uczą się dobra przez przykład, który im zostawiamy.</p>
 
         <p class="text-md text-gray-700 mb-3">
@@ -868,6 +868,37 @@ rysujProdukt();
           <p class="text-right font-semibold">– dzieci z Domu Dziecka</p>
         </div>
 
+        <!-- PAYPAL BUTTON START -->
+        <div class="text-center mb-6">
+          <h3 class="text-xl font-bold text-yellow-800 mb-2">Wesprzyj przez PayPal:</h3>
+          <paypal-add-to-cart-button data-id="VCXGVWK7VBN4U"></paypal-add-to-cart-button>
+          <script>
+            cartPaypal.AddToCart({ id: "VCXGVWK7VBN4U" });
+          </script>
+        </div>
+        <!-- PAYPAL BUTTON END -->
+
+        <!-- START: Dodatkowe elementy rozwoju -->
+        <div class="text-center bg-yellow-50 border border-yellow-300 rounded-xl p-4 mb-6">
+          <h3 class="text-lg font-bold text-yellow-800 mb-2">🎯 Cel: 20 paczek</h3>
+          <div class="w-full bg-yellow-200 rounded-full h-4 overflow-hidden">
+            <div id="progressBar" class="bg-yellow-500 h-4 w-[65%]"></div>
+          </div>
+          <p class="mt-2 text-sm text-gray-700">13 z 20 paczek gotowych!</p>
+        </div>
+
+        <div class="text-center bg-white border border-yellow-300 rounded-xl p-4 mb-6">
+          <h3 class="text-lg font-bold text-yellow-800 mb-2">🧑‍🤝‍🧑 Liczba Darczyńców</h3>
+          <p class="text-2xl font-extrabold text-yellow-700">27</p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-inner p-4 mb-6">
+          <h3 class="text-lg font-bold text-yellow-800 mb-2">💬 Opinie wspierających (karuzela):</h3>
+          <div id="testimonialCarousel" class="text-gray-700 italic">
+            <p>„Cieszę się, że mogę pomóc. To dla mnie zaszczyt.” – Anna</p>
+          </div>
+        </div>
+
         <div class="text-center">
           <p class="text-md text-gray-700 mb-2">📦 Każda paczka to nadzieja. Każdy przelew – iskierka światła.</p>
           <p class="text-lg font-bold text-yellow-700">Dołącz do nas i pomóż tworzyć lepsze jutro.</p>
@@ -875,12 +906,10 @@ rysujProdukt();
       </div>
     </div>
   </section>
-
 </div>
 <!-- END: Ramka ozdobna -->
 
 <script>
-// Prosty licznik do najbliższej wysyłki – ustaw datę
 const wysylkaDate = new Date("2025-08-15T12:00:00").getTime();
 const countdown = document.getElementById("countdown");
 setInterval(() => {
@@ -896,139 +925,95 @@ setInterval(() => {
   countdown.innerHTML = `${days} dni, ${hours} godz., ${minutes} min`;
 }, 1000);
 </script>
+<!-- Marketplace 1.0 Gold -->
+<div class="bg-[#121212] text-white py-16 px-4" id="marketplace">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl sm:text-5xl font-extrabold text-center text-yellow-400 mb-10 drop-shadow-md">Marketplace</h2>
 
-  <!-- Sekcja Marketplace -->
-<section id="marketplace" style="padding:50px 20px; background:#121212; color:#f5f0e6; font-family:'Segoe UI', sans-serif;">
-  <h2 style="text-align:center; font-size:2.8rem; color:#d4af37; text-shadow:0 0 10px #d4af37;">Marketplace</h2>
+    <!-- Produkty -->
+    <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
 
-  <!-- Lista produktów -->
-  <div id="productList" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px; margin-top:40px;"></div>
+    <!-- PayPal Wsparcie -->
+    <div class="text-center mt-16">
+      <h3 class="text-2xl font-bold text-yellow-300 mb-4">Wesprzyj platformę lub kup bezpośrednio:</h3>
+      <paypal-add-to-cart-button data-id="VCXGVWK7VBN4U"></paypal-add-to-cart-button>
+      <script>cartPaypal.AddToCart({ id: "VCXGVWK7VBN4U" });</script>
+    </div>
 
-  <!-- Sekcja PayPal globalna -->
-  <div style="text-align:center; margin-top:50px;">
-    <h3 style="color:#d4af37;">Wesprzyj platformę lub kup bezpośrednio:</h3>
-    <div id="paypal-container-L4639S4363CZE"></div>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
-    <script>
-      paypal.HostedButtons({ hostedButtonId: "L4639S4363CZE" }).render("#paypal-container-L4639S4363CZE");
-    </script>
-  </div>
-</section>
+    <!-- Reklama -->
+    <div class="bg-yellow-900 bg-opacity-10 border border-yellow-500 p-6 rounded-xl mt-12">
+      <h4 class="text-xl font-semibold text-yellow-300 mb-2">📣 Reklamuj się tutaj!</h4>
+      <p>30 sekund Twojej reklamy na stronie Marketplace – opłać przez <strong>BLIK</strong> lub <strong>PayPal</strong>.</p>
+      <p class="text-sm text-yellow-400 mt-2">Kontakt: mielniczukgrzegosz74@gmail.com</p>
+    </div>
 
-<!-- Panel administratora Marketplace -->
-<section id="admin-panel" style="padding:50px 20px; background:#1b1b1b; color:#f5f0e6;">
-  <h2 style="text-align:center; font-size:2rem; color:#d4af37;">Panel Administratora Marketplace</h2>
-  <div style="max-width:600px; margin:30px auto; background:#222; padding:20px; border-radius:15px; box-shadow:0 0 15px #d4af37;">
-    <label for="adminPassword" style="display:block; margin-bottom:10px;">Hasło administratora:</label>
-    <input type="password" id="adminPassword" placeholder="••••••" style="width:100%; padding:10px; margin-bottom:15px; border:none; border-radius:8px;">
-    <button id="adminLoginBtn" style="width:100%; background:#d4af37; color:#121212; padding:10px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">Zaloguj</button>
+    <!-- Panel Admina -->
+    <div id="admin-panel" class="hidden mt-16 bg-gray-800 bg-opacity-50 p-6 rounded-xl border border-yellow-700">
+      <h3 class="text-2xl font-bold text-yellow-300 mb-4">Panel Administratora</h3>
+      <input id="product-name" class="block w-full mb-2 p-2 rounded text-black" placeholder="Nazwa produktu">
+      <input id="product-desc" class="block w-full mb-2 p-2 rounded text-black" placeholder="Opis">
+      <input id="product-price" type="number" class="block w-full mb-2 p-2 rounded text-black" placeholder="Cena (zł)">
+      <input id="product-image" class="block w-full mb-2 p-2 rounded text-black" placeholder="URL obrazka">
+      <button onclick="addProduct()" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded">Dodaj produkt</button>
+    </div>
 
-    <div id="adminContent" style="display:none; margin-top:20px;">
-      <h3 style="color:#d4af37;">Dodaj produkt</h3>
-      <input type="text" id="productName" placeholder="Nazwa produktu" style="width:100%; padding:8px; margin:5px 0; border-radius:8px; border:none;">
-      <input type="text" id="productDescription" placeholder="Opis produktu" style="width:100%; padding:8px; margin:5px 0; border-radius:8px; border:none;">
-      <input type="number" id="productPrice" placeholder="Cena" style="width:100%; padding:8px; margin:5px 0; border-radius:8px; border:none;">
-      <input type="text" id="productImage" placeholder="URL obrazu" style="width:100%; padding:8px; margin:5px 0; border-radius:8px; border:none;">
-      <button id="addProductBtn" style="width:100%; background:#d4af37; color:#121212; padding:10px; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-top:10px;">Dodaj produkt</button>
-
-      <h3 style="color:#d4af37; margin-top:30px;">Zarządzaj produktami</h3>
-      <div id="adminProductList" style="margin-top:10px;"></div>
+    <!-- Autoryzacja do admina -->
+    <div class="mt-10 text-center">
+      <input id="admin-pass" class="p-2 text-black rounded" placeholder="Hasło administratora">
+      <button onclick="checkAdmin()" class="ml-2 bg-yellow-600 px-4 py-2 rounded font-bold hover:bg-yellow-700">Zaloguj</button>
     </div>
   </div>
-</section>
+</div>
 
 <script>
-  let products = JSON.parse(localStorage.getItem('products')) || [
-    { name: "Koszulka 'NeoFuture'", description: "Stylowa koszulka z nowoczesnym designem.", price: 99, image: "https://via.placeholder.com/200" },
-    { name: "Bluza 'AntiSystem'", description: "Bluza dla buntowników.", price: 150, image: "https://via.placeholder.com/200" },
-    { name: "Czapka 'Wolność'", description: "Czapka dla wolnych dusz.", price: 79, image: "https://via.placeholder.com/200" }
-  ];
-
-  const productList = document.getElementById('productList');
-  const adminProductList = document.getElementById('adminProductList');
+  let products = JSON.parse(localStorage.getItem("products")) || [];
 
   function renderProducts() {
-    productList.innerHTML = '';
-    products.forEach((p, index) => {
-      productList.innerHTML += `
-        <div style="background:#1f1f1f; padding:20px; border-radius:12px; text-align:center; box-shadow:0 0 10px #d4af37;">
-          <img src="${p.image}" alt="${p.name}" style="width:100%; height:auto; border-radius:8px; margin-bottom:15px;">
-          <h4 style="color:#d4af37;">${p.name}</h4>
-          <p style="font-size:0.9rem; color:#ccc;">${p.description}</p>
-          <p style="font-weight:bold; font-size:1.2rem; margin:10px 0;">${p.price} zł</p>
-          <button style="background:#d4af37; color:#121212; border:none; padding:10px; width:100%; border-radius:8px; cursor:pointer; font-weight:bold;">Kup teraz</button>
-        </div>`;
+    const list = document.getElementById("product-list");
+    list.innerHTML = "";
+    products.forEach((product, index) => {
+      list.innerHTML += `
+        <div class="bg-gray-900 p-4 rounded-xl border border-yellow-600 shadow-lg">
+          <img src="${product.image}" alt="${product.name}" class="rounded mb-3 w-full h-52 object-cover">
+          <h4 class="text-xl font-bold text-yellow-400">${product.name}</h4>
+          <p class="text-gray-300">${product.desc}</p>
+          <p class="text-yellow-300 font-bold my-2">${product.price} zł</p>
+          <button onclick="removeProduct(${index})" class="text-sm text-red-400 underline">Usuń</button>
+        </div>
+      `;
     });
   }
 
-  function renderAdminProducts() {
-    adminProductList.innerHTML = '';
-    products.forEach((p, index) => {
-      adminProductList.innerHTML += `
-        <div style="background:#333; padding:10px; border-radius:8px; margin:5px 0;">
-          <p><strong>${p.name}</strong> – ${p.price} zł</p>
-          <button onclick="removeProduct(${index})" style="background:red; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Usuń</button>
-        </div>`;
-    });
+  function addProduct() {
+    const name = document.getElementById("product-name").value;
+    const desc = document.getElementById("product-desc").value;
+    const price = document.getElementById("product-price").value;
+    const image = document.getElementById("product-image").value;
+    if (!name || !desc || !price || !image) return alert("Wypełnij wszystkie pola");
+    products.push({ name, desc, price, image });
+    localStorage.setItem("products", JSON.stringify(products));
+    renderProducts();
   }
 
   function removeProduct(index) {
     products.splice(index, 1);
-    saveProducts();
+    localStorage.setItem("products", JSON.stringify(products));
     renderProducts();
-    renderAdminProducts();
   }
 
-  function saveProducts() {
-    localStorage.setItem('products', JSON.stringify(products));
-  }
-
-  document.getElementById('addProductBtn').addEventListener('click', () => {
-    const name = document.getElementById('productName').value;
-    const description = document.getElementById('productDescription').value;
-    const price = parseFloat(document.getElementById('productPrice').value);
-    const image = document.getElementById('productImage').value;
-
-    if (!name || !description || !price || !image) {
-      alert('Uzupełnij wszystkie pola!');
-      return;
-    }
-
-    products.push({ name, description, price, image });
-    saveProducts();
-    renderProducts();
-    renderAdminProducts();
-    alert('Produkt dodany!');
-  });
-
-  document.getElementById('adminLoginBtn').addEventListener('click', () => {
-    const pass = document.getElementById('adminPassword').value;
+  function checkAdmin() {
+    const pass = document.getElementById("admin-pass").value;
     if (pass === "Wojownik.03") {
-      document.getElementById('adminContent').style.display = 'block';
+      document.getElementById("admin-panel").classList.remove("hidden");
     } else {
-      alert('Błędne hasło!');
+      alert("Błędne hasło");
     }
-  });
+  }
 
   renderProducts();
-  renderAdminProducts();
-<!-- Sekcja Reklama -->
-<section id="reklama" class="py-16 bg-gray-900 text-center text-yellow-100">
-  <div class="max-w-5xl mx-auto border-4 border-yellow-500 rounded-2xl shadow-2xl p-8 bg-gray-800">
-    <h2 class="text-4xl font-bold mb-4 text-yellow-400"><i class="fas fa-bullhorn mr-2"></i>Zareklamuj się na AdelbertusShop</h2>
-    <p class="mb-2 text-lg">Twoja reklama pojawi się na stronie głównej na <strong>30 sekund</strong> po akceptacji.</p>
-    <p class="mb-6 text-sm">Płatność: <strong>BLIK 573-939-925</strong> lub PayPal (poniżej).</p>
+</script>
 
-    <!-- PayPal -->
-    <div class="my-4">
-      <div id="paypal-container-reklama"></div>
-      <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
-      <script>
-        paypal.HostedButtons({
-          hostedButtonId: "L4639S4363CZE",
-        }).render("#paypal-container-reklama");
-      </script>
-    </div>
+
 <!-- Sekcja Reklama -->
 <section id="reklama" class="py-16 bg-gray-900 text-center text-yellow-100">
   <div class="max-w-6xl mx-auto border-4 border-yellow-500 rounded-2xl shadow-2xl p-8 bg-gray-800">
@@ -1413,6 +1398,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
