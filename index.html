@@ -825,11 +825,18 @@ function aktualizujKoszyk() {
   document.getElementById('sumaKoszyka').textContent = `Suma: ${suma} zł`;
 }
 
-rysujProdukt();
-<!-- START: Ramka ozdobna wokół sekcji Zbiórka -->
-<div class="relative z-10 bg-black bg-opacity-90 p-2 sm:p-4 rounded-3xl shadow-[0_0_40px_rgba(255,215,0,0.8)] border-[6px] border-yellow-400 ring-8 ring-yellow-300 ring-offset-2 ring-offset-black max-w-5xl mx-auto my-10">
-
-  <section id="zbiorka" class="py-12 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl shadow-xl">
+rysujProdukt
+<!-- START: Ramka ozdobna (widoczna bez Tailwind) -->
+<div style="
+  border: 6px solid gold;
+  box-shadow: 0 0 30px gold;
+  padding: 20px;
+  margin: 40px auto;
+  max-width: 1000px;
+  border-radius: 20px;
+  background-color: #000000e6;
+  color: white;
+">  <section id="zbiorka" class="py-12 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl shadow-xl">
     <div class="max-w-4xl mx-auto px-6">
       <div class="bg-white p-8 rounded-2xl shadow-md border-l-8 border-yellow-600">
         <h2 class="text-4xl font-extrabold text-yellow-800 mb-6 text-center">Pomoc dla dzieci z domu dziecka</h2>
@@ -924,6 +931,8 @@ setInterval(() => {
   countdown.innerHTML = `${days} dni, ${hours} godz., ${minutes} min`;
 }, 1000);
 </script>  
+</div>
+<!-- END: Ramka ozdobna -->
 <!-- Marketplace 1.0 Gold -->
 <div class="bg-[#121212] text-white py-16 px-4" id="marketplace">
   <div class="max-w-6xl mx-auto">
@@ -1397,6 +1406,7 @@ setInterval(() => {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
