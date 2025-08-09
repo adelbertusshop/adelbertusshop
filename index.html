@@ -1269,95 +1269,7 @@ function aktualizujKoszyk() {
   });
   document.getElementById('sumaKoszyka').textContent = `Suma: ${suma} zł`;
 }
-
 rysujProdukt
-<section id="zbiorka" class="bg-black text-gold py-16 px-6">
-  <div class="max-w-5xl mx-auto text-center">
-    <h2 class="text-4xl font-bold mb-4 text-gold">Pomoc dla Domów Dziecka</h2>
-    <p class="text-cream text-lg mb-8">Jako były wychowanek domu dziecka wiem, jak wiele znaczy każdy gest serca. Dlatego stworzyliśmy specjalną sekcję zbiórki, aby wspólnie nieść pomoc dzieciom, które tego potrzebują najbardziej.</p>
-
-    <div class="bg-cream text-black p-6 rounded-xl shadow-xl mb-8">
-      <h3 class="text-2xl font-bold mb-2">Wspomóż zbiórkę BLIK: <span class="text-red-600">573-939-925</span></h3>
-      <p class="mb-2">Z dopiskiem: <strong>"pomoc"</strong></p>
-      <p class="text-sm">Każda wpłata to krok ku lepszej przyszłości dla dzieci!</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-      <div class="bg-gold text-black p-4 rounded-xl">
-        <h4 class="text-xl font-bold">📦 Ilość zebranych paczek:</h4>
-        <p class="text-3xl font-mono">162</p>
-      </div>
-      <div class="bg-gold text-black p-4 rounded-xl">
-        <h4 class="text-xl font-bold">⏰ Czas do najbliższej wysyłki:</h4>
-        <p class="text-2xl" id="countdown">00d 00h 00m 00s</p>
-      </div>
-    </div>
-
-    <div class="mb-8">
-      <h3 class="text-2xl font-bold mb-4">📬 Kontakt w sprawie darów rzeczowych:</h3>
-      <p class="text-cream">e-mail: <a href="mailto:mielniczukgrzegosz74@gmail.com" class="underline">mielniczukgrzegosz74@gmail.com</a></p>
-      <p class="text-cream">tel: <span class="underline">(udzielimy informacji o adresie placówki)</span></p>
-    </div>
-
-    <div class="mb-12">
-      <h3 class="text-2xl font-bold mb-4">👨‍👩‍👧‍👦 Fikcyjni darczyńcy (przykład):</h3>
-      <ul class="text-cream">
-        <li>⭐ Anna K. z Gdańska – 3 paczki</li>
-        <li>⭐ Michał W. z Poznania – przelew BLIK 200 zł</li>
-        <li>⭐ Fundacja Serca Dzieci – 12 plecaków</li>
-        <li>⭐ Karolina & Paweł – 6 kompletów odzieży</li>
-      </ul>
-    </div>
-
-    <div class="bg-white text-black p-6 rounded-xl shadow-xl">
-      <h3 class="text-2xl font-bold mb-4">💌 Listy od dzieci:</h3>
-      <div class="text-left space-y-4">
-        <blockquote class="border-l-4 border-gold pl-4 italic">
-          "Dziękuję za nowy plecak! W końcu mam w czym nosić książki do szkoły. – Kamil, 11 lat"
-        </blockquote>
-        <blockquote class="border-l-4 border-gold pl-4 italic">
-          "Nigdy nie miałem własnej kurtki. Teraz już mam. – Patryk, 9 lat"
-        </blockquote>
-        <blockquote class="border-l-4 border-gold pl-4 italic">
-          "Czuję, że ktoś o mnie myśli. Dziękuję! – Julia, 13 lat"
-        </blockquote>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-// Prosty zegar odliczający czas do wysyłki (np. co tydzień)
-const countdownEl = document.getElementById("countdown");
-const targetDate = new Date();
-targetDate.setDate(targetDate.getDate() + (7 - targetDate.getDay()));
-targetDate.setHours(12, 0, 0, 0);
-
-function updateCountdown() {
-  const now = new Date();
-  const distance = targetDate - now;
-
-  if (distance > 0) {
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  } else {
-    countdownEl.textContent = "Wysyłka trwa!";
-  }
-}
-
-updateCountdown();
-setInterval(updateCountdown, 1000);
-</script>
-
-<style>
-.text-gold { color: #d4af37; }
-.bg-gold { background-color: #d4af37; }
-.text-cream { color: #f5f5dc; }
-.bg-cream { background-color: #f5f5dc; }
-</style>
   
 <!-- Marketplace 1.0 Gold -->
 <div class="bg-[#121212] text-white py-16 px-4" id="marketplace">
@@ -1631,6 +1543,92 @@ setInterval(updateCountdown, 1000);
 </script><!-- Dodaj FontAwesome dla ikon jeśli jeszcze nie jest dodane -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <!-- Sekcja Blog & Opinie z możliwością komunikacji + VIP -->
+<!-- === Sekcja Zbiórka - Pomoc dzieciom z domów dziecka === -->
+<section id="zbiorka" class="py-12 bg-gray-900 text-white">
+  <div class="max-w-5xl mx-auto px-8">
+    <h2 class="text-4xl font-bold text-[#d4af37] mb-8 text-center tracking-wide">Pomoc Dzieciom z Domów Dziecka</h2>
+    
+    <div class="bg-gradient-to-r from-yellow-900 via-yellow-700 to-yellow-900 rounded-3xl p-1 mb-10 shadow-lg">
+      <div class="bg-gray-900 rounded-3xl p-8">
+        <p class="text-lg leading-relaxed mb-6">
+          Każda złotówka, każda paczka, każda chwila uwagi – to dla tych dzieci światło w ciemności.  
+          Jako były wychowanek domu dziecka wiem, że potrzeba pomocy jest ogromna.  
+          Nie zostawiajmy ich samych. Razem możemy dać im coś, co zostanie na całe życie – nadzieję.
+        </p>
+
+        <div class="bg-gray-800 p-6 rounded-xl mb-8 shadow-inner">
+          <h3 class="text-2xl font-semibold mb-4 text-[#d4af37]">Jak możesz pomóc?</h3>
+          <ul class="list-disc list-inside mb-4 space-y-2 text-left">
+            <li><strong>Przekaż darowiznę przez BLIK:</strong> <span class="font-mono">573-939-925</span> (z dopiskiem <em>"Pomoc"</em>)</li>
+            <li>Przyjmujemy paczki, ubrania, książki, zabawki i inne dary</li>
+            <li>Chcesz wysłać paczkę? Napisz do nas: 
+              <a href="mailto:mielniczukgrzegosz74@gmail.com" class="text-[#d4af37] underline">mielniczukgrzegosz74@gmail.com</a>  
+              lub zadzwoń: <strong>604-296-360</strong>
+            </li>
+          </ul>
+
+          <div id="licznik" class="text-xl font-mono mt-6 text-center bg-yellow-800 rounded-md py-2">
+            Następna paczka do wysłania za: <span id="daysLeft">30</span> dni
+          </div>
+        </div>
+
+        <div class="mb-10 text-left bg-[#1a1a1a] p-6 rounded-xl shadow-md">
+          <h3 class="text-2xl font-semibold mb-4 text-[#d4af37]">List od dzieci</h3>
+          <blockquote class="italic text-gray-300 border-l-4 border-[#d4af37] pl-4">
+            „Dziękujemy, że jesteście z nami, choć nie widzimy Was na co dzień.  
+            Każda paczka, każda pomoc to dla nas nie tylko rzeczy – to dowód, że świat nie zapomniał o nas.  
+            Dzięki Wam mamy siłę wierzyć, że jutro może być lepsze.”  
+            <br> – Dzieci z Domów Dziecka
+          </blockquote>
+        </div>
+
+        <div class="mb-10">
+          <h3 class="text-2xl font-semibold mb-4 text-[#d4af37]">Nasi bohaterowie – pomagają z całego serca:</h3>
+          <ul class="list-disc list-inside space-y-2 text-left">
+            <li><strong>Anna Kowalska</strong> – Wolontariuszka, która co miesiąc organizuje zbiórki ubrań</li>
+            <li><strong>Michał Nowak</strong> – Przedsiębiorca, który wspiera finansowo i logistycznie</li>
+            <li><strong>Magda Wiśniewska</strong> – Psycholog, która pomaga dzieciom przez rozmowę i wsparcie emocjonalne</li>
+            <li><strong>Janusz Zieliński</strong> – Kierowca, który dostarcza paczki prosto do domów dziecka</li>
+          </ul>
+        </div>
+
+        <div class="mb-10 text-left bg-gray-800 rounded-xl p-6 shadow-inner">
+          <h3 class="text-2xl font-semibold mb-4 text-[#d4af37]">Jak paczki trafiają do dzieci?</h3>
+          <p class="mb-4">
+            Wszystkie zebrane dary są starannie sortowane i pakowane przez naszych wolontariuszy w magazynie.  
+            Następnie transportujemy je bezpośrednio do wybranych domów dziecka w całej Polsce.  
+            Nasi kierowcy i wolontariusze osobiście dostarczają paczki, dbając, by każde dziecko otrzymało pomoc,  
+            której naprawdę potrzebuje.
+          </p>
+          <p>
+            Dzięki temu mamy pewność, że Wasza pomoc trafia tam, gdzie jest najbardziej potrzebna,  
+            a dzieci mogą poczuć się bezpiecznie i kochane.
+          </p>
+        </div>
+
+        <p class="text-lg font-semibold text-center">
+          Pomaganie to nie tylko gest – to obowiązek każdego z nas.  
+          Dzieci z domów dziecka nie wybrały swojego losu, ale my możemy wybrać, czy im pomożemy.  
+          Dołącz do nas – bo dobro wraca.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const daysLeftEl = document.getElementById('daysLeft');
+    const lastSentDate = new Date('2025-07-01');
+    const now = new Date();
+    const msInDay = 24 * 60 * 60 * 1000;
+    const cycleDays = 30;
+
+    let daysPassed = Math.floor((now - lastSentDate) / msInDay);
+    let daysLeft = cycleDays - (daysPassed % cycleDays);
+    daysLeftEl.textContent = daysLeft;
+  })();
+</script>    
 <section id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
   <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
 
@@ -1832,6 +1830,7 @@ setInterval(updateCountdown, 1000);
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
