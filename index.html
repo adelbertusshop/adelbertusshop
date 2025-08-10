@@ -2018,6 +2018,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
       // ilość + przyciski +
       const qtySpan = document.createElement("span");
 <!-- Sekcja Reklama -->
+<section 
 <section id="reklama" class="py-16 bg-gray-900 text-center text-yellow-100">
   <div class="max-w-6xl mx-auto p-4 border-4 border-yellow-500 rounded-2xl shadow-2xl">
     <div class="bg-gray-800 p-8 rounded-2xl">
@@ -2025,7 +2026,6 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
       <p class="mb-2 text-lg">Twoja reklama pojawi się na stronie głównej na <strong>30 sekund</strong> po akceptacji.</p>
       <p class="mb-6 text-sm">Płatność: <strong>BLIK 573-939-925</strong> lub PayPal (poniżej).</p>
 
-      <!-- PayPal -->
       <div class="my-4">
         <div id="paypal-container-reklama"></div>
         <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
@@ -2036,13 +2036,11 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
         </script>
       </div>
 
-      <!-- Formularz reklamy -->
       <form id="formularzReklamy" class="max-w-xl mx-auto p-4 bg-gray-700 rounded-xl shadow" novalidate>
         <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy lub produktu" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" minlength="2" maxlength="50">
         <textarea id="trescReklamy" placeholder="Treść reklamy" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" minlength="10" maxlength="200"></textarea>
         <input type="email" id="emailReklamodawcy" placeholder="Twój email" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
 
-        <!-- Upload logotypu -->
         <input type="file" id="logoReklamy" accept="image/*" class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
         <div id="logoPodglad" class="mb-4 hidden">
           <p class="text-sm mb-1 text-yellow-300">Podgląd logotypu:</p>
@@ -2061,7 +2059,6 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
         </button>
       </form>
 
-      <!-- Lista ostatnich reklam (rotacja) -->
       <div class="mt-8">
         <h3 class="text-2xl font-semibold text-yellow-400 mb-4"><i class="fas fa-star mr-1"></i>Ostatnie reklamy</h3>
         <div id="sliderReklam" class="h-24 flex items-center justify-center text-lg italic text-yellow-200">
@@ -2069,7 +2066,6 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
         </div>
       </div>
 
-      <!-- Panel administratora -->
       <div class="mt-10">
         <button onclick="pokazPanelAdmina()" class="text-sm text-yellow-400 underline">
           <i class="fas fa-user-shield mr-1"></i>Panel administratora
@@ -2092,7 +2088,6 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
   </div>
 </section>
 
-<!-- Reklama wyświetlana na stronie -->
 <div id="reklamaGlowneOkno" class="hidden fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-yellow-300 text-black px-6 py-4 rounded-xl shadow-2xl max-w-md text-center">
   <img id="logoGlowne" src="" alt="" class="max-h-24 mx-auto mb-2 hidden rounded">
   <p id="trescReklamyGlowne" class="text-lg font-semibold"></p>
@@ -2100,13 +2095,13 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
 </div>
 
 <script>
-  // --- Inicjalizacja danych z localStorage ---
   let listaReklam = JSON.parse(localStorage.getItem('listaReklam')) || [];
   let zatwierdzoneReklamy = JSON.parse(localStorage.getItem('zatwierdzoneReklamy')) || [];
-  let indexSlider = 0;
   let adminZalogowany = false;
+  let indexReklamy = 0;
+  let czasPokazuSekundy = 30;
 
-  // --- Podgląd logotypu ---
+  // Podgląd loga
   document.getElementById('logoReklamy').addEventListener('change', e => {
     const plik = e.target.files[0];
     if (plik) {
@@ -2119,7 +2114,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     }
   });
 
-  // --- Walidacja i wysłanie formularza reklamy ---
+  // Formularz zgłoszenia reklamy
   document.getElementById('formularzReklamy').addEventListener('submit', e => {
     e.preventDefault();
     const nazwa = document.getElementById('nazwaFirmy').value.trim();
@@ -2133,19 +2128,17 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
       return;
     }
 
-    // Podstawowa walidacja emaila
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       alert('Podaj poprawny adres email.');
       return;
     }
 
-    // Dodajemy do listy zgłoszeń status 'oczekująca'
     listaReklam.push({
       nazwa,
       tresc,
       email,
-      okres,  // dni
+      okres, // dni
       logo,
       status: 'oczekująca',
       dataZgloszenia: new Date().toISOString()
@@ -2157,12 +2150,11 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     document.getElementById('logoPodglad').classList.add('hidden');
   });
 
-  // --- Panel admina ---
-  const pokazPanelAdmina = () => {
+  // Panel admina
+  function pokazPanelAdmina() {
     document.getElementById('panelAdmina').classList.toggle('hidden');
-  };
-
-  const sprawdzHaslo = () => {
+  }
+  function sprawdzHaslo() {
     const pass = document.getElementById('adminHaslo').value;
     if (pass === 'Wojownik.03') {
       adminZalogowany = true;
@@ -2175,25 +2167,23 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     } else {
       alert("Nieprawidłowe hasło.");
     }
-  };
-
-  const wylogujAdmina = () => {
+  }
+  function wylogujAdmina() {
     adminZalogowany = false;
     document.getElementById('adminKontrola').classList.add('hidden');
     document.getElementById('btnWyloguj').classList.add('hidden');
     document.getElementById('adminHaslo').disabled = false;
     alert("Wylogowano administratora.");
-  };
+  }
 
-  // --- Aktualizacja listy zgłoszeń ---
-  const aktualizujListeZgloszen = () => {
+  // Aktualizacja listy zgłoszeń
+  function aktualizujListeZgloszen() {
     const lista = document.getElementById('listaZgloszen');
     lista.innerHTML = '';
     if (listaReklam.length === 0) {
       lista.innerHTML = '<li class="italic">Brak zgłoszeń.</li>';
       return;
     }
-
     listaReklam.forEach((r, i) => {
       if (r.status === 'oczekująca') {
         const li = document.createElement('li');
@@ -2208,109 +2198,70 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
         lista.appendChild(li);
       }
     });
-  };
+  }
 
-  // --- Zatwierdzanie reklamy ---
-  const zatwierdzReklame = (index) => {
+  // Zatwierdzanie reklamy
+  function zatwierdzReklame(index) {
     if (!adminZalogowany) return alert("Brak dostępu administratora.");
-
     const reklama = listaReklam[index];
     reklama.status = 'zatwierdzona';
     reklama.dataZatwierdzenia = new Date().toISOString();
+    reklama.dataWygasniecia = new Date(Date.now() + reklama.okres * 24 * 60 * 60 * 1000).toISOString();
 
-    // Dodajemy do zatwierdzonych
     zatwierdzoneReklamy.push(reklama);
-    // Usuwamy z listy zgłoszeń
     listaReklam.splice(index, 1);
 
     zapiszReklamy();
     aktualizujListeZgloszen();
     alert(`Reklama "${reklama.nazwa}" zatwierdzona.`);
-  };
+  }
 
-  // --- Odrzucanie reklamy ---
-  const odrzucReklame = (index) => {
+  // Odrzucanie reklamy
+  function odrzucReklame(index) {
     if (!adminZalogowany) return alert("Brak dostępu administratora.");
-
-    const reklama = listaReklam[index];
     listaReklam.splice(index, 1);
     zapiszReklamy();
     aktualizujListeZgloszen();
-    alert(`Reklama "${reklama.nazwa}" odrzucona.`);
-  };
-
-  // --- Zapisywanie do localStorage ---
-  const zapiszReklamy = () => {
-    localStorage.setItem('listaReklam', JSON.stringify(listaReklam));
-    localStorage.setItem('zatwierdzoneReklamy', JSON.stringify(zatwier      
-<section id="zbiorka" class="py-12 bg-gray-100">
-  <div class="max-w-4xl mx-auto px-4">
-    <div class="border-4 border-yellow-500 rounded-lg p-8 bg-white shadow-lg">
-      <h2 class="text-3xl font-bold mb-6 text-center text-yellow-700">Zbiórka – Pomoc dzieciom z domów dziecka</h2>
-
-      <p class="mb-4 text-gray-700 leading-relaxed">
-        Jako były wychowanek domu dziecka wiem, jak ważna jest pomoc. Każdy gest – nawet najmniejszy – może odmienić życie dziecka.
-        Dlatego proszę o wsparcie tej zbiórki. Razem możemy sprawić, by świat był dla nich lepszy.
-      </p>
-
-      <div class="bg-yellow-50 border border-yellow-400 p-4 rounded mb-6">
-        <p class="font-semibold text-lg text-yellow-700">
-          BLIK: <span class="text-black">573-939-925</span> z dopiskiem <strong>„Pomoc”</strong><br>
-          E-mail: <a href="mailto:mielniczukgrzegosz74@gmail.com" class="text-blue-600 underline">mielniczukgrzegosz74@gmail.com</a><br>
-          Tel: <span class="text-black">604-296-360</span>
-        </p>
-        <p class="text-sm text-gray-600 mt-2">Można też przekazywać paczki i dary – po szczegóły napisz lub zadzwoń.</p>
-      </div>
-
-      <div class="mb-6">
-        <h3 class="text-xl font-bold text-yellow-700 mb-2">Ostatnie osoby, które pomogły:</h3>
-        <ul class="list-disc list-inside text-gray-700">
-          <li>Anna K. – paczka z ubraniami</li>
-          <li>Paweł M. – wpłata 200 zł</li>
-          <li>Katarzyna S. – zestaw książek dla dzieci</li>
-          <li>„Anonimowy Anioł” – wpłata 500 zł</li>
-        </ul>
-      </div>
-
-      <div class="mb-6 text-center">
-        <p class="text-lg font-semibold text-yellow-700">Do wysyłki kolejnej paczki zostało:</p>
-        <p id="countdown" class="text-3xl font-bold text-red-600"></p>
-      </div>
-
-      <blockquote class="italic text-gray-600 border-l-4 border-yellow-500 pl-4">
-        Kochani! Dziękujemy za każdą pomoc. Dzięki Wam mamy nowe buty, kurtki i słodycze.
-        To najpiękniejszy prezent, jaki mogliśmy dostać. – Dzieci z domu dziecka
-      </blockquote>
-    </div>
-  </div>
-</section>
-
-<script>
-  // Ustaw datę wysyłki paczki (przykład: 7 dni od teraz)
-  const targetDate = new Date();
-  targetDate.setDate(targetDate.getDate() + 7);
-
-  const countdownElement = document.getElementById('countdown');
-  function updateCountdown() {
-    const now = new Date();
-    const timeLeft = targetDate - now;
-
-    if (timeLeft <= 0) {
-      countdownElement.textContent = "Paczka została wysłana!";
-      return;
-    }
-
-    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-
-    countdownElement.textContent = `${days} dni, ${hours} godz., ${minutes} min`;
+    alert(`Reklama odrzucona.`);
   }
 
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
-</script>    
-<section id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
+  // Zapisywanie reklam
+  function zapiszReklamy() {
+    localStorage.setItem('listaReklam', JSON.stringify(listaReklam));
+    localStorage.setItem('zatwierdzoneReklamy', JSON.stringify(zatwierdzoneReklamy));
+  }
+
+  // Usuwanie wygasłych reklam
+  function usunWygasleReklamy() {
+    const teraz = new Date();
+    zatwierdzoneReklamy = zatwierdzoneReklamy.filter(r => {
+      const expiry = new Date(r.dataWygasniecia);
+      return expiry > teraz;
+    });
+    zapiszReklamy();
+  }
+
+  // Wyświetlanie aktywnej reklamy (rotator)
+  function pokazReklame() {
+    usunWygasleReklamy();
+    if (zatwierdzoneReklamy.length === 0) {
+      document.getElementById('sliderReklam').textContent = "Brak reklam do wyświetlenia";
+      document.getElementById('reklamaGlowneOkno').classList.add('hidden');
+      return;
+    }
+    indexReklamy %= zatwierdzoneReklamy.length;
+    const reklama = zatwierdzoneReklamy[indexReklamy];
+    // Pokaz podgląd w sliderze (scrolling tekst lub fade)
+    document.getElementById('sliderReklam').textContent = `${reklama.nazwa}: ${reklama.tresc}`;
+    // Pokaz reklamę główną na 30 sekund z odliczaniem
+    const glowneOkno = document.getElementById('reklamaGlowneOkno');
+    const logo = document.getElementById('logoGlowne');
+    const tresc = document.getElementById('trescReklamyGlowne');
+    const czas = document.getElementById('czasomierz');
+
+    if (reklama.logo) {
+      
+                   id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
   <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
 
   <div id="opinie" style="margin:30px 0; min-height:150px; font-style:italic; font-size:1.1rem; text-align:center; line-height:1.5; color:#ffd97d; text-shadow: 1px 1px 3px #552f00;"></div>
@@ -2533,6 +2484,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
