@@ -1074,10 +1074,11 @@
     </div>
   </div>
 </section> 
+<!-- ====== Sekcja: Zaprojektuj Swój Produkt (pełna wersja - przód/tył) ====== -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
   <div class="max-w-6xl mx-auto px-6 py-10">
     <h2 class="text-4xl font-bold mb-6 text-yellow-400 drop-shadow-lg text-center">Zaprojektuj Swój Produkt</h2>
-    <p class="mb-8 text-gray-300 text-center">Koszulki, bluzy i czapki z Twoim stylem – pełna personalizacja i podgląd 360°.</p>
+    <p class="mb-8 text-gray-300 text-center">Koszulki, bluzy i czapki z Twoim stylem – edytuj przód i tył osobno.</p>
 
     <!-- Wybór produktu -->
     <div class="mb-6 flex justify-center gap-4 flex-wrap">
@@ -1086,324 +1087,468 @@
       <button class="produktBtn bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded shadow" data-typ="czapka">Czapka</button>
     </div>
 
-    <!-- Podgląd -->
-    <canvas id="podgladProdukt" width="400" height="400" class="mx-auto mb-6 border-4 border-yellow-500 rounded-lg bg-white shadow-lg"></canvas>
-    <div class="mb-6 flex justify-center gap-4 flex-wrap">
-      <button id="przodBtn" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded">Podgląd przodu</button>
-      <button id="tylBtn" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded">Podgląd tyłu</button>
-      <button id="pobierzProjekt" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz widok</button>
-      <button id="pobierzPrzod" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz tylko przód</button>
-      <button id="pobierzTyl" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz tylko tył</button>
+    <!-- Widok toggle (przód/tył) -->
+    <div class="mb-4 flex justify-center gap-4">
+      <button id="przodBtn" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded">Edytuj: PRZÓD</button>
+      <button id="tylBtn" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded">Edytuj: TYŁ</button>
     </div>
 
-    <!-- Personalizacja -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
-      <div>
-        <label class="block mb-2 font-semibold">Tekst:</label>
-        <input type="text" id="projektTekst" placeholder="Twój tekst" class="w-full p-2 rounded text-black mb-4">
-
-        <label class="block mb-2 font-semibold">Czcionka:</label>
-        <select id="czcionka" class="w-full p-2 rounded text-black mb-4">
-          <option value="Arial">Arial</option>
-          <option value="Courier New">Courier New</option>
-          <option value="Georgia">Georgia</option>
-          <option value="Impact">Impact</option>
-          <option value="Comic Sans MS">Comic Sans</option>
-        </select>
-
-        <label class="block mb-2 font-semibold">Rozmiar tekstu:</label>
-        <input type="range" id="rozmiarTekstu" min="10" max="60" value="30" class="w-full mb-4">
-
-        <label class="block mb-2 font-semibold">Kolor tekstu:</label>
-        <input type="color" id="kolorTekstu" value="#000000" class="w-full h-12 mb-4">
-
-        <label class="block mb-2 font-semibold">Kolor produktu:</label>
-        <input type="color" id="kolorProduktu" value="#ffffff" class="w-full h-12 mb-4">
-
-        <label class="block mb-2 font-semibold">Dodaj grafikę:</label>
-        <input type="file" id="projektGrafika" accept="image/*" class="w-full mb-4">
+    <!-- Layout: canvas + controls -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+      <!-- PODGLĄD -->
+      <div class="md:col-span-2">
+        <canvas id="podgladProdukt" width="560" height="560" class="mx-auto mb-4 border-4 border-yellow-500 rounded-lg bg-white shadow-lg"></canvas>
+        <div class="flex justify-center gap-4">
+          <button id="pobierzProjekt" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz bieżący widok</button>
+          <button id="pobierzOba" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz przód + tył (osobne pliki)</button>
+        </div>
       </div>
 
+      <!-- KONTROLS -->
       <div>
-        <label class="block mb-2 font-semibold">Rozmiar produktu:</label>
-        <select id="projektRozmiar" class="w-full p-2 rounded text-black mb-4">
-          <option value="S">S</option>
-          <option value="M" selected>M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-        </select>
+        <div class="mb-4">
+          <label class="block mb-2 font-semibold">Tekst (dla aktualnego widoku):</label>
+          <input type="text" id="projektTekst" placeholder="Twój tekst" class="w-full p-2 rounded text-black mb-2">
+        </div>
 
-        <label class="block mb-2 font-semibold">Umiejscowienie nadruku:</label>
-        <select id="umiejscowienie" class="w-full p-2 rounded text-black mb-4">
-          <option value="front">Przód</option>
-          <option value="tył">Tył</option>
-          <option value="rękawLewy">Rękaw lewy</option>
-          <option value="rękawPrawy">Rękaw prawy</option>
-          <option value="kaptur">Kaptur (tylko bluza)</option>
-          <option value="daszek">Daszek (tylko czapka)</option>
-          <option value="bokLewy">Bok lewy (czapka)</option>
-          <option value="bokPrawy">Bok prawy (czapka)</option>
-        </select>
+        <div class="mb-3">
+          <label class="block mb-2 font-semibold">Czcionka:</label>
+          <select id="czcionka" class="w-full p-2 rounded text-black mb-2">
+            <option value="Arial">Arial</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Impact">Impact</option>
+            <option value="Comic Sans MS">Comic Sans</option>
+          </select>
+        </div>
 
-        <button id="dodajDoKoszyka" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded-lg shadow-lg transition">Dodaj do koszyka</button>
+        <div class="mb-3">
+          <label class="block mb-2 font-semibold">Rozmiar tekstu:</label>
+          <input type="range" id="rozmiarTekstu" min="10" max="80" value="36" class="w-full mb-3">
+        </div>
+
+        <div class="mb-3">
+          <label class="block mb-2 font-semibold">Kolor tekstu:</label>
+          <input type="color" id="kolorTekstu" value="#000000" class="w-full h-12 mb-3">
+        </div>
+
+        <div class="mb-3">
+          <label class="block mb-2 font-semibold">Kolor produktu (tła koszulki/bluzy/czapki):</label>
+          <input type="color" id="kolorProduktu" value="#ffffff" class="w-full h-12 mb-3">
+        </div>
+
+        <div class="mb-3">
+          <label class="block mb-2 font-semibold">Dodaj grafikę (dla aktualnego widoku):</label>
+          <input type="file" id="projektGrafika" accept="image/*" class="w-full mb-3">
+        </div>
+
+        <div class="mb-3">
+          <label class="block mb-2 font-semibold">Umiejscowienie nadruku:</label>
+          <select id="umiejscowienie" class="w-full p-2 rounded text-black mb-3">
+            <option value="front">Przód (środek)</option>
+            <option value="top">Góra</option>
+            <option value="bottom">Dół</option>
+            <option value="left">Lewo</option>
+            <option value="right">Prawo</option>
+            <option value="sleeveLeft">Rękaw lewy</option>
+            <option value="sleeveRight">Rękaw prawy</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="block mb-2 font-semibold">Rozmiar produktu:</label>
+          <select id="projektRozmiar" class="w-full p-2 rounded text-black mb-3">
+            <option value="S">S</option>
+            <option value="M" selected>M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </div>
+
+        <div>
+          <button id="dodajDoKoszyka" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded-lg shadow-lg transition">Dodaj do koszyka</button>
+        </div>
       </div>
+    </div>
+
+    <!-- Koszyk (prosty widżet) -->
+    <div id="koszyk" class="mt-8 max-w-4xl mx-auto bg-gray-900 p-4 rounded-xl border border-yellow-600">
+      <h3 class="text-yellow-400 font-bold mb-3">Koszyk projektów</h3>
+      <ul id="listaKoszyka" class="text-gray-300 list-disc list-inside mb-3"></ul>
+      <p id="sumaKoszyka" class="text-yellow-300 font-bold">Suma: 0 zł</p>
     </div>
   </div>
 </section>
 
 <script>
+/* ---------------------
+  Projektor: front/back
+   - dwa obiekty projektu: projektPrzod, projektTyl
+   - currentView = 'front'|'back'
+   - controls zapisują/odczytują z aktualnego projektu
+----------------------*/
+
+(() => {
+  // elements
   const canvas = document.getElementById('podgladProdukt');
   const ctx = canvas.getContext('2d');
 
-  let aktualnyTyp = 'koszulka';
-  let widokTyl = false;
-  let obrazek = null;
-  let koszyk = [];
+  const btnPrzod = document.getElementById('przodBtn');
+  const btnTyl = document.getElementById('tylBtn');
 
-  let tekst = '';
-  let czcionka = 'Arial';
-  let rozmiarTekstu = 30;
-  let kolorTekstu = '#000000';
-  let kolorProduktu = '#ffffff';
-  let umiejscowienie = 'front';
+  const inputTekst = document.getElementById('projektTekst');
+  const selectCzcionka = document.getElementById('czcionka');
+  const rangeRozmiar = document.getElementById('rozmiarTekstu');
+  const inputKolorTekstu = document.getElementById('kolorTekstu');
+  const inputKolorProduktu = document.getElementById('kolorProduktu');
+  const fileGrafika = document.getElementById('projektGrafika');
+  const selectUmiejscowienie = document.getElementById('umiejscowienie');
+  const selectRozmiar = document.getElementById('projektRozmiar');
 
-  function rysujProdukt() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const btnPobierz = document.getElementById('pobierzProjekt');
+  const btnPobierzOba = document.getElementById('pobierzOba');
+  const btnDodaj = document.getElementById('dodajDoKoszyka');
 
-    ctx.fillStyle = kolorProduktu;
-    ctx.strokeStyle = '#333';
-    ctx.lineWidth = 2;
+  const listaKoszykaEl = document.getElementById('listaKoszyka');
+  const sumaKoszykaEl = document.getElementById('sumaKoszyka');
 
-    if (aktualnyTyp === 'koszulka') {
-      ctx.fillRect(120, 100, 160, 200);
-      ctx.strokeRect(120, 100, 160, 200);
-    } else if (aktualnyTyp === 'bluza') {
-      ctx.beginPath();
-      ctx.ellipse(canvas.width / 2, canvas.height / 2, 120, 160, 0, 0, 2 * Math.PI);
-      ctx.fill();
-      ctx.stroke();
-    } else if (aktualnyTyp === 'czapka') {
-      ctx.beginPath();
-      ctx.ellipse(canvas.width / 2, canvas.height / 2 + 40, 130, 80, 0, 0, 2 * Math.PI);
-      ctx.fill();
-      ctx.stroke();
-    }
+  // state
+  let productType = 'koszulka';
+  let currentView = 'front'; // 'front' or 'back'
 
-    ctx.fillStyle = kolorTekstu;
-    ctx.font = `${rozmiarTekstu}px ${czcionka}`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
+  // projects hold view-specific settings
+  const projektPrzod = {
+    tekst: '',
+    czcionka: 'Arial',
+    rozmiar: 36,
+    kolorTekstu: '#000000',
+    kolorProduktu: '#ffffff',
+    grafikaDataUrl: null,
+    umiejscowienie: 'front',
+    rozmiarProdukt: 'M'
+  };
 
-    let textX = canvas.width / 2;
-    let textY = canvas.height / 2;
+  const projektTyl = {
+    tekst: '',
+    czcionka: 'Arial',
+    rozmiar: 36,
+    kolorTekstu: '#000000',
+    kolorProduktu: '#ffffff',
+    grafikaDataUrl: null,
+    umiejscowienie: 'front',
+    rozmiarProdukt: 'M'
+  };
 
-    switch (umiejscowienie) {
-      case 'front':
-        textX = canvas.width / 2;
-        textY = aktualnyTyp === 'czapka' ? canvas.height / 2 + 20 : canvas.height / 2;
-        break;
-      case 'tył':
-        textX = canvas.width / 2;
-        textY = aktualnyTyp === 'czapka' ? canvas.height / 2 + 20 : canvas.height / 2 + 50;
-        break;
-      case 'rękawLewy':
-        textX = 130;
-        textY = 150;
-        break;
-      case 'rękawPrawy':
-        textX = 280;
-        textY = 150;
-        break;
-      case 'kaptur':
-        if (aktualnyTyp === 'bluza') {
-          textX = canvas.width / 2;
-          textY = 60;
-        } else {
-          textX = -9999;
-        }
-        break;
-      case 'daszek':
-        if (aktualnyTyp === 'czapka') {
-          textX = canvas.width / 2;
-          textY = canvas.height / 2 - 40;
-        } else {
-          textX = -9999;
-        }
-        break;
-      case 'bokLewy':
-        if (aktualnyTyp === 'czapka') {
-          textX = canvas.width / 2 - 80;
-          textY = canvas.height / 2 + 40;
-        } else {
-          textX = -9999;
-        }
-        break;
-      case 'bokPrawy':
-        if (aktualnyTyp === 'czapka') {
-          textX = canvas.width / 2 + 80;
-          textY = canvas.height / 2 + 40;
-        } else {
-          textX = -9999;
-        }
-        break;
-      default:
-        textX = canvas.width / 2;
-        textY = canvas.height / 2;
-    }
+  let koszyk = []; // prosty koszyk w pamięci
 
-    if (textX !== -9999 && tekst.trim() !== '') {
-      ctx.fillText(tekst, textX, textY);
-    }
-
-    if (obrazek) {
-      let imgX = canvas.width / 2 - 50;
-      let imgY = canvas.height / 2 - 50;
-
-      switch (umiejscowienie) {
-        case 'front':
-          imgX = canvas.width / 2 - 50;
-          imgY = canvas.height / 2 + 20;
-          break;
-        case 'tył':
-          imgX = canvas.width / 2 - 50;
-          imgY = canvas.height / 2 + 70;
-          break;
-        case 'rękawLewy':
-          imgX = 100;
-          imgY = 180;
-          break;
-        case 'rękawPrawy':
-          imgX = 250;
-          imgY = 180;
-          break;
-        case 'kaptur':
-          imgX = canvas.width / 2 - 50;
-          imgY = 10;
-          break;
-        case 'daszek':
-          imgX = canvas.width / 2 - 50;
-          imgY = canvas.height / 2 - 80;
-          break;
-        case 'bokLewy':
-          imgX = canvas.width / 2 - 120;
-          imgY = canvas.height / 2 + 40;
-          break;
-        case 'bokPrawy':
-          imgX = canvas.width / 2 + 20;
-          imgY = canvas.height / 2 + 40;
-          break;
-      }
-      ctx.drawImage(obrazek, imgX, imgY, 100, 100);
-    }
-
-    ctx.fillStyle = widokTyl ? "#ff0000" : "#00ff00";
-    ctx.font = "20px Arial";
-    ctx.fillText(widokTyl ? "TYŁ" : "PRZÓD", canvas.width / 2, 40);
+  // helper: get active project object
+  function getActiveProject() {
+    return currentView === 'front' ? projektPrzod : projektTyl;
   }
 
-  // Eventy wyboru typu produktu
-  document.querySelectorAll('.produktBtn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      aktualnyTyp = btn.dataset.typ;
+  // load active project values into controls
+  function loadProjectToControls() {
+    const p = getActiveProject();
+    inputTekst.value = p.tekst;
+    selectCzcionka.value = p.czcionka || 'Arial';
+    rangeRozmiar.value = p.rozmiar || 36;
+    inputKolorTekstu.value = p.kolorTekstu || '#000000';
+    inputKolorProduktu.value = p.kolorProduktu || '#ffffff';
+    selectUmiejscowienie.value = p.umiejscowienie || 'front';
+    selectRozmiar.value = p.rozmiarProdukt || 'M';
+    // reset file input (can't set value programmatically). Keep grafikaDataUrl in projekt object.
+    fileGrafika.value = '';
+  }
+
+  // save controls values into active project
+  function saveControlsToProject() {
+    const p = getActiveProject();
+    p.tekst = inputTekst.value;
+    p.czcionka = selectCzcionka.value;
+    p.rozmiar = parseInt(rangeRozmiar.value, 10);
+    p.kolorTekstu = inputKolorTekstu.value;
+    p.kolorProduktu = inputKolorProduktu.value;
+    p.umiejscowienie = selectUmiejscowienie.value;
+    p.rozmiarProdukt = selectRozmiar.value;
+  }
+
+  // switch view: save current, switch flag, load new
+  function switchView(view) {
+    // save current
+    saveControlsToProject();
+    currentView = view;
+    // visual cue
+    btnPrzod.classList.toggle('ring-2', currentView === 'front');
+    btnTyl.classList.toggle('ring-2', currentView === 'back');
+    // load
+    loadProjectToControls();
+    // redraw
+    rysujProdukt();
+  }
+
+  // listen product type buttons (koszulka/bluza/czapka)
+  document.querySelectorAll('.produktBtn').forEach(b => {
+    b.addEventListener('click', () => {
+      productType = b.dataset.typ;
+      // optional: change defaults for each type (shape proportions)
       rysujProdukt();
     });
   });
 
-  // Podgląd przód/tył
-  document.getElementById('przodBtn').addEventListener('click', () => {
-    widokTyl = false;
-    rysujProdukt();
-  });
-  document.getElementById('tylBtn').addEventListener('click', () => {
-    widokTyl = true;
-    rysujProdukt();
+  // FILE UPLOAD: attach image to active project as dataURL
+  fileGrafika.addEventListener('change', e => {
+    const f = e.target.files[0];
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      getActiveProject().grafikaDataUrl = ev.target.result;
+      rysujProdukt();
+    };
+    reader.readAsDataURL(f);
   });
 
-  // Pobieranie obrazów
-  function pobierzObraz(nazwa) {
-    const link = document.createElement('a');
-    link.download = nazwa;
-    link.href = canvas.toDataURL();
-    link.click();
+  // control listeners (save on change + redraw)
+  [inputTekst, selectCzcionka, rangeRozmiar, inputKolorTekstu, inputKolorProduktu, selectUmiejscowienie, selectRozmiar]
+    .forEach(el => el.addEventListener('input', () => {
+      saveControlsToProject();
+      rysujProdukt();
+    }));
+
+  // view buttons
+  btnPrzod.addEventListener('click', () => switchView('front'));
+  btnTyl.addEventListener('click', () => switchView('back'));
+
+  // draw function — uses active project to render front or back view differently if needed
+  function rysujProdukt() {
+    // clear
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const p = getActiveProject();
+
+    // background / product base
+    // shape depends on productType; keep proportions sensible for 560x560 canvas
+    ctx.fillStyle = p.kolorProduktu || '#fff';
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 3;
+
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+
+    if (productType === 'koszulka') {
+      // shirt rectangle
+      const w = 280, h = 360;
+      ctx.fillRect(cx - w/2, cy - h/2, w, h);
+      ctx.strokeRect(cx - w/2, cy - h/2, w, h);
+    } else if (productType === 'bluza') {
+      // hoodie rounded
+      ctx.beginPath();
+      ctx.roundRect(cx - 150, cy - 180, 300, 360, 30);
+      ctx.fill();
+      ctx.stroke();
+    } else if (productType === 'czapka') {
+      // cap ellipse
+      ctx.beginPath();
+      ctx.ellipse(cx, cy + 40, 220, 120, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    } else {
+      // default rectangle
+      ctx.fillRect(80, 80, 400, 400);
+      ctx.strokeRect(80, 80, 400, 400);
+    }
+
+    // if back view, slightly dim product to show "tył" or change style (small visual cue)
+    if (currentView === 'back') {
+      ctx.fillStyle = 'rgba(0,0,0,0.06)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // draw grafik if present
+    if (p.grafikaDataUrl) {
+      const img = new Image();
+      img.onload = () => {
+        // position based on umiejscowienie
+        const pos = computePositionFor(p.umiejscowienie, productType);
+        const drawW = Math.min(220, img.width);
+        const drawH = Math.min(220, img.height);
+        ctx.drawImage(img, pos.x - drawW/2, pos.y - drawH/2, drawW, drawH);
+        // after drawing image, draw text on top
+        drawTextOver(p);
+      };
+      img.src = p.grafikaDataUrl;
+    } else {
+      drawTextOver(p);
+    }
+
+    // small label which view
+    ctx.fillStyle = '#111';
+    ctx.font = '14px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText(`Widok: ${currentView === 'front' ? 'PRZÓD' : 'TYŁ'}  •  Produkt: ${productType}`, 10, canvas.height - 12);
   }
 
-  document.getElementById('pobierzProjekt').addEventListener('click', () => {
-    pobierzObraz('projekt_widok.png');
-  });
-  document.getElementById('pobierzPrzod').addEventListener('click', () => {
-    widokTyl = false;
-    rysujProdukt();
-    setTimeout(() => pobierzObraz('projekt_przod.png'), 200);
-  });
-  document.getElementById('pobierzTyl').addEventListener('click', () => {
-    widokTyl = true;
-    rysujProdukt();
-    setTimeout(() => pobierzObraz('projekt_tyl.png'), 200);
-  });
+  // draw text respecting settings
+  function drawTextOver(p) {
+    ctx.fillStyle = p.kolorTekstu || '#000';
+    ctx.font = `${p.rozmiar || 36}px ${p.czcionka || 'Arial'}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    if (!p.tekst) return;
+    const pos = computePositionFor(p.umiejscowienie, productType, true);
+    // auto-wrap long text: simple approach
+    const maxWidth = 380;
+    wrapText(ctx, p.tekst, pos.x, pos.y, maxWidth, p.rozmiar || 36);
+  }
 
-  // Obsługa inputów personalizacji
-  document.getElementById('projektTekst').addEventListener('input', e => {
-    tekst = e.target.value;
-    rysujProdukt();
-  });
-  document.getElementById('czcionka').addEventListener('change', e => {
-    czcionka = e.target.value;
-    rysujProdukt();
-  });
-  document.getElementById('rozmiarTekstu').addEventListener('input', e => {
-    rozmiarTekstu = e.target.value;
-    rysujProdukt();
-  });
-  document.getElementById('kolorTekstu').addEventListener('input', e => {
-    kolorTekstu = e.target.value;
-    rysujProdukt();
-  });
-  document.getElementById('kolorProduktu').addEventListener('input', e => {
-    kolorProduktu = e.target.value;
-    rysujProdukt();
-  });
-  document.getElementById('umiejscowienie').addEventListener('change', e => {
-    umiejscowienie = e.target.value;
-    rysujProdukt();
-  });
+  // compute drawing center point for each umiejscowienie
+  function computePositionFor(um, type) {
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    switch (um) {
+      case 'front': return { x: cx, y: cy - (type === 'czapka' ? 20 : 0) };
+      case 'top': return { x: cx, y: cy - 120 };
+      case 'bottom': return { x: cx, y: cy + 120 };
+      case 'left': return { x: cx - 80, y: cy };
+      case 'right': return { x: cx + 80, y: cy };
+      case 'sleeveLeft': return { x: cx - 140, y: cy - 80 };
+      case 'sleeveRight': return { x: cx + 140, y: cy - 80 };
+      default: return { x: cx, y: cy };
+    }
+  }
 
-  // Upload grafiki
-  document.getElementById('projektGrafika').addEventListener('change', e => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = evt => {
-        obrazek = new Image();
-        obrazek.onload = () => rysujProdukt();
-        obrazek.src = evt.target.result;
+  // helper wrapText
+  function wrapText(context, text, x, y, maxWidth, lineHeight) {
+    const words = text.split(' ');
+    let line = '';
+    let testLine, metrics, testWidth;
+    let curY = y;
+    for (let n = 0; n < words.length; n++) {
+      testLine = line + words[n] + ' ';
+      metrics = context.measureText(testLine);
+      testWidth = metrics.width;
+      if (testWidth > maxWidth && n > 0) {
+        context.fillText(line.trim(), x, curY);
+        line = words[n] + ' ';
+        curY += lineHeight * 0.9;
+      } else {
+        line = testLine;
       }
-      reader.readAsDataURL(file);
-    } else {
-      obrazek = null;
-      rysujProdukt();
     }
+    if (line) context.fillText(line.trim(), x, curY);
+  }
+
+  // addToCart: save both front & back in one product entry
+  btnDodaj.addEventListener('click', () => {
+    // save current controls to active project before grabbing both
+    saveControlsToProject();
+    // basic validation
+    const front = { ...projektPrzod };
+    const back = { ...projektTyl };
+
+    if (!front.tekst && !front.grafikaDataUrl) {
+      if (!confirm('Przód jest pusty. Dodać do koszyka mimo to?')) return;
+    }
+
+    const prodName = `${productType.toUpperCase()} • ${front.tekst || 'bez tekstu'}`;
+    const cena = productType === 'bluza' ? 200 : productType === 'czapka' ? 99 : 120; // simple pricing
+    const item = {
+      name: prodName,
+      price: cena,
+      type: productType,
+      front,
+      back,
+      qty: 1
+    };
+    koszyk.push(item);
+    updateCartUI();
+    alert(`Dodano do koszyka: ${prodName} — ${cena} zł`);
   });
 
-  // Dodaj do koszyka
-  document.getElementById('dodajDoKoszyka').addEventListener('click', () => {
-    const rozmiar = document.getElementById('projektRozmiar').value;
-    if (!tekst.trim() && !obrazek) {
-      alert('Dodaj tekst lub grafikę, żeby dodać do koszyka.');
-      return;
-    }
+  // update cart UI
+  function updateCartUI() {
+    listaKoszykaEl.innerHTML = '';
+    let suma = 0;
+    koszyk.forEach((it, idx) => {
+      suma += it.price * it.qty;
+      const li = document.createElement('li');
+      li.textContent = `${it.name} — ${it.price} zł (${it.qty} szt.)`;
+      // add small remove button
+      const btn = document.createElement('button');
+      btn.textContent = ' Usuń';
+      btn.className = 'ml-2 text-red-400';
+      btn.onclick = () => { koszyk.splice(idx,1); updateCartUI(); };
+      li.appendChild(btn);
+      listaKoszykaEl.appendChild(li);
+    });
+    sumaKoszykaEl.textContent = `Suma: ${suma.toFixed(2)} zł`;
+  }
 
-    const produktNazwa = `${aktualnyTyp.charAt(0).toUpperCase() + aktualnyTyp.slice(1)} - ${tekst || 'bez tekstu'} - rozmiar ${rozmiar}`;
-    const cena = 199;
-
-    koszyk.push({ nazwa: produktNazwa, cena, typ: aktualnyTyp, tekst, rozmiar, kolorProduktu, kolorTekstu, umiejscowienie });
-
-    alert(`Produkt "${produktNazwa}" dodany do koszyka za ${cena} zł.`);
-
-    console.log('Aktualny koszyk:', koszyk);
+  // download current view PNG
+  btnPobierz.addEventListener('click', () => {
+    saveControlsToProject();
+    const data = canvas.toDataURL('image/png');
+    downloadDataUrl(data, `${productType}_${currentView}.png`);
   });
 
+  // download both views (render each then download)
+  btnPobierzOba.addEventListener('click', async () => {
+    // save controls first
+    saveControlsToProject();
+    // render front
+    currentView = 'front'; loadProjectToControls(); rysujProdukt();
+    await pause(200);
+    const frontData = canvas.toDataURL('image/png');
+    downloadDataUrl(frontData, `${productType}_front.png`);
+    // render back
+    currentView = 'back'; loadProjectToControls(); rysujProdukt();
+    await pause(200);
+    const backData = canvas.toDataURL('image/png');
+    downloadDataUrl(backData, `${productType}_back.png`);
+    // restore view to front
+    currentView = 'front'; loadProjectToControls(); rysujProdukt();
+  });
+
+  function downloadDataUrl(dataUrl, filename) {
+    const a = document.createElement('a');
+    a.href = dataUrl;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  function pause(ms){ return new Promise(res => setTimeout(res, ms)); }
+
+  // initial load
+  loadProjectToControls();
   rysujProdukt();
-</script>      
+
+  // expose small API to console for quick debugging
+  window._projektPrzod = projektPrzod;
+  window._projektTyl = projektTyl;
+  window._koszyk = koszyk;
+
+})();
+</script>
+
+<style>
+/* small polyfill for rounded rect if browser lacks ctx.roundRect */
+canvas { image-rendering: -webkit-optimize-contrast; }
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+    if (w < 2 * r) r = w / 2;
+    if (h < 2 * r) r = h / 2;
+    this.beginPath();
+    this.moveTo(x + r, y);
+    this.arcTo(x + w, y, x + w, y + h, r);
+    this.arcTo(x + w, y + h, x, y + h, r);
+    this.arcTo(x, y + h, x, y, r);
+    this.arcTo(x, y, x + w, y, r);
+    this.closePath();
+    return this;
+  }
+}
+</style>
 <!-- Marketplace 2.0 Gold -->
 <div class="max-w-6xl mx-auto p-4 border-4 border-yellow-500 rounded-2xl shadow-2xl" id="marketplace-wrapper">
   <div class="bg-[#121212] text-white py-16 px-4" id="marketplace">
@@ -2077,6 +2222,7 @@
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
