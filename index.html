@@ -1074,10 +1074,8 @@
     </div>
   </div>
 </section> 
-<!-- ======== SEKJA PROJEKTOWANIA UBRAŃ (ZŁOTA RAMKA) ======== -->
-<section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-  <div class="max-w-6xl mx-auto px-6 py-10 border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
-
+<section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
+  <div class="max-w-6xl mx-auto px-6 py-10">
     <h2 class="text-4xl font-bold mb-6 text-yellow-400 drop-shadow-lg text-center">Zaprojektuj Swój Produkt</h2>
     <p class="mb-8 text-gray-300 text-center">Koszulki, bluzy i czapki z Twoim stylem – pełna personalizacja i podgląd 360°.</p>
 
@@ -1151,162 +1149,45 @@
       </div>
     </div>
   </div>
-</section>
+</section>      
+  <!-- Marketplace 1.0 Gold -->
+<div class="max-w-6xl mx-auto p-4 border-4 border-yellow-500 rounded-2xl shadow-2xl" id="marketplace-wrapper">
+  <div class="bg-[#121212] text-white py-16 px-4" id="marketplace">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl sm:text-5xl font-extrabold text-center text-yellow-400 mb-10 drop-shadow-md">Marketplace</h2>
 
-<script>
-const canvas = document.getElementById('podgladProdukt');
-const ctx = canvas.getContext('2d');
-let aktualnyTyp = 'koszulka';
-let obrazek = null;
-let widokTyl = false;
-let koszyk = [];
+      <!-- Produkty -->
+      <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
 
-function rysujProdukt() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+      <!-- PayPal Wsparcie -->
+      <div class="text-center mt-16">
+        <h3 class="text-2xl font-bold text-yellow-300 mb-4">Wesprzyj platformę lub kup bezpośrednio:</h3>
+        <paypal-add-to-cart-button data-id="VCXGVWK7VBN4U"></paypal-add-to-cart-button>
+        <script>cartPaypal.AddToCart({ id: "VCXGVWK7VBN4U" });</script>
+      </div>
 
-  // Kolor produktu
-  ctx.fillStyle = document.getElementById('kolorProduktu').value;
+      <!-- Reklama -->
+      <div class="bg-yellow-900 bg-opacity-10 border border-yellow-500 p-6 rounded-xl mt-12">
+        <h4 class="text-xl font-semibold text-yellow-300 mb-2">📣 Reklamuj się tutaj!</h4>
+        <p>30 sekund Twojej reklamy na stronie Marketplace – opłać przez <strong>BLIK</strong> lub <strong>PayPal</strong>.</p>
+        <p class="text-sm text-yellow-400 mt-2">Kontakt: mielniczukgrzegosz74@gmail.com</p>
+      </div>
 
-  // Rysuj kształt zależnie od typu produktu
-  if (aktualnyTyp === 'koszulka') {
-    ctx.fillRect(120, 100, 160, 200);
-  } else if (aktualnyTyp === 'bluza') {
-    ctx.beginPath();
-    ctx.arc(canvas.width / 2, canvas.height / 2, 120, 0, Math.PI * 2);
-    ctx.fill();
-  } else if (aktualnyTyp === 'czapka') {
-    ctx.beginPath();
-    ctx.ellipse(canvas.width / 2, canvas.height / 2, 100, 60, 0, 0, Math.PI * 2);
-    ctx.fill();
-  }
+      <!-- Panel Admina -->
+      <div id="admin-panel" class="hidden mt-16 bg-gray-800 bg-opacity-50 p-6 rounded-xl border border-yellow-700">
+        <h3 class="text-2xl font-bold text-yellow-300 mb-4">Panel Administratora</h3>
+        <input id="product-name" class="block w-full mb-2 p-2 rounded text-black" placeholder="Nazwa produktu">
+        <input id="product-desc" class="block w-full mb-2 p-2 rounded text-black" placeholder="Opis">
+        <input id="product-price" type="number" class="block w-full mb-2 p-2 rounded text-black" placeholder="Cena (zł)">
+        <input id="product-image" class="block w-full mb-2 p-2 rounded text-black" placeholder="URL obrazka">
+        <button onclick="addProduct()" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded">Dodaj produkt</button>
+      </div>
 
-  // Oznaczenie widoku
-  ctx.fillStyle = widokTyl ? "#ff0000" : "#00ff00";
-  ctx.font = "20px Arial";
-  ctx.textAlign = "center";
-  ctx.fillText(widokTyl ? "TYŁ" : "PRZÓD", canvas.width / 2, 40);
-
-  // Tekst
-  const tekst = document.getElementById('projektTekst').value;
-  const czcionka = document.getElementById('czcionka').value;
-  const rozmiar = document.getElementById('rozmiarTekstu').value;
-  ctx.font = `${rozmiar}px ${czcionka}`;
-  ctx.fillStyle = document.getElementById('kolorTekstu').value;
-  ctx.fillText(tekst, canvas.width / 2, canvas.height / 2);
-
-  // Obrazek
-  if (obrazek) {
-    ctx.drawImage(obrazek, canvas.width / 2 - 50, canvas.height / 2 - 50, 100, 100);
-  }
-
-  requestAnimationFrame(rysujProdukt);
-}
-
-document.getElementById('przodBtn').addEventListener('click', () => widokTyl = false);
-document.getElementById('tylBtn').addEventListener('click', () => widokTyl = true);
-
-document.getElementById('pobierzProjekt').addEventListener('click', () => {
-  const link = document.createElement('a');
-  link.download = widokTyl ? 'projekt_tyl.png' : 'projekt_przod.png';
-  link.href = canvas.toDataURL();
-  link.click();
-});
-document.getElementById('pobierzPrzod').addEventListener('click', () => {
-  widokTyl = false;
-  setTimeout(() => {
-    const link = document.createElement('a');
-    link.download = 'projekt_przod.png';
-    link.href = canvas.toDataURL();
-    link.click();
-  }, 300);
-});
-document.getElementById('pobierzTyl').addEventListener('click', () => {
-  widokTyl = true;
-  setTimeout(() => {
-    const link = document.createElement('a');
-    link.download = 'projekt_tyl.png';
-    link.href = canvas.toDataURL();
-    link.click();
-  }, 300);
-});
-
-document.getElementById('projektGrafika').addEventListener('change', e => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = evt => {
-      obrazek = new Image();
-      obrazek.onload = () => rysujProdukt();
-      obrazek.src = evt.target.result;
-    }
-    reader.readAsDataURL(file);
-  }
-});
-
-document.querySelectorAll('.produktBtn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    aktualnyTyp = btn.dataset.typ;
-  });
-});
-
-document.getElementById('dodajDoKoszyka').addEventListener('click', () => {
-  const nazwa = `${aktualnyTyp} ${document.getElementById('projektTekst').value || 'bez tekstu'} (${document.getElementById('projektRozmiar').value})`;
-  const cena = 199;
-  koszyk.push({ nazwa, cena });
-  aktualizujKoszyk();
-  document.getElementById('koszyk').style.display = 'block';
-});
-
-function aktualizujKoszyk() {
-  const lista = document.getElementById('listaKoszyka');
-  lista.innerHTML = "";
-  let suma = 0;
-  koszyk.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = `${item.nazwa} - ${item.cena} zł`;
-    lista.appendChild(li);
-    suma += item.cena;
-  });
-  document.getElementById('sumaKoszyka').textContent = `Suma: ${suma} zł`;
-}
-rysujProdukt
-  
-<!-- Marketplace 1.0 Gold -->
-<div class="bg-[#121212] text-white py-16 px-4" id="marketplace">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-4xl sm:text-5xl font-extrabold text-center text-yellow-400 mb-10 drop-shadow-md">Marketplace</h2>
-
-    <!-- Produkty -->
-    <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-
-    <!-- PayPal Wsparcie -->
-    <div class="text-center mt-16">
-      <h3 class="text-2xl font-bold text-yellow-300 mb-4">Wesprzyj platformę lub kup bezpośrednio:</h3>
-      <paypal-add-to-cart-button data-id="VCXGVWK7VBN4U"></paypal-add-to-cart-button>
-      <script>cartPaypal.AddToCart({ id: "VCXGVWK7VBN4U" });</script>
-    </div>
-
-    <!-- Reklama -->
-    <div class="bg-yellow-900 bg-opacity-10 border border-yellow-500 p-6 rounded-xl mt-12">
-      <h4 class="text-xl font-semibold text-yellow-300 mb-2">📣 Reklamuj się tutaj!</h4>
-      <p>30 sekund Twojej reklamy na stronie Marketplace – opłać przez <strong>BLIK</strong> lub <strong>PayPal</strong>.</p>
-      <p class="text-sm text-yellow-400 mt-2">Kontakt: mielniczukgrzegosz74@gmail.com</p>
-    </div>
-
-    <!-- Panel Admina -->
-    <div id="admin-panel" class="hidden mt-16 bg-gray-800 bg-opacity-50 p-6 rounded-xl border border-yellow-700">
-      <h3 class="text-2xl font-bold text-yellow-300 mb-4">Panel Administratora</h3>
-      <input id="product-name" class="block w-full mb-2 p-2 rounded text-black" placeholder="Nazwa produktu">
-      <input id="product-desc" class="block w-full mb-2 p-2 rounded text-black" placeholder="Opis">
-      <input id="product-price" type="number" class="block w-full mb-2 p-2 rounded text-black" placeholder="Cena (zł)">
-      <input id="product-image" class="block w-full mb-2 p-2 rounded text-black" placeholder="URL obrazka">
-      <button onclick="addProduct()" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded">Dodaj produkt</button>
-    </div>
-
-    <!-- Autoryzacja do admina -->
-    <div class="mt-10 text-center">
-      <input id="admin-pass" class="p-2 text-black rounded" placeholder="Hasło administratora">
-      <button onclick="checkAdmin()" class="ml-2 bg-yellow-600 px-4 py-2 rounded font-bold hover:bg-yellow-700">Zaloguj</button>
+      <!-- Autoryzacja do admina -->
+      <div class="mt-10 text-center">
+        <input id="admin-pass" class="p-2 text-black rounded" placeholder="Hasło administratora">
+        <button onclick="checkAdmin()" class="ml-2 bg-yellow-600 px-4 py-2 rounded font-bold hover:bg-yellow-700">Zaloguj</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1358,76 +1239,76 @@ rysujProdukt
 
   renderProducts();
 </script>
-
-
 <!-- Sekcja Reklama -->
 <section id="reklama" class="py-16 bg-gray-900 text-center text-yellow-100">
-  <div class="max-w-6xl mx-auto border-4 border-yellow-500 rounded-2xl shadow-2xl p-8 bg-gray-800">
-    <h2 class="text-4xl font-bold mb-4 text-yellow-400"><i class="fas fa-bullhorn mr-2"></i>Zareklamuj się na AdelbertusShop</h2>
-    <p class="mb-2 text-lg">Twoja reklama pojawi się na stronie głównej na <strong>30 sekund</strong> po akceptacji.</p>
-    <p class="mb-6 text-sm">Płatność: <strong>BLIK 573-939-925</strong> lub PayPal (poniżej).</p>
+  <div class="max-w-6xl mx-auto p-4 border-4 border-yellow-500 rounded-2xl shadow-2xl">
+    <div class="bg-gray-800 p-8 rounded-2xl">
+      <h2 class="text-4xl font-bold mb-4 text-yellow-400"><i class="fas fa-bullhorn mr-2"></i>Zareklamuj się na AdelbertusShop</h2>
+      <p class="mb-2 text-lg">Twoja reklama pojawi się na stronie głównej na <strong>30 sekund</strong> po akceptacji.</p>
+      <p class="mb-6 text-sm">Płatność: <strong>BLIK 573-939-925</strong> lub PayPal (poniżej).</p>
 
-    <!-- PayPal -->
-    <div class="my-4">
-      <div id="paypal-container-reklama"></div>
-      <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
-      <script>
-        paypal.HostedButtons({
-          hostedButtonId: "L4639S4363CZE",
-        }).render("#paypal-container-reklama");
-      </script>
-    </div>
-
-    <!-- Formularz reklamy -->
-    <form id="formularzReklamy" class="max-w-xl mx-auto p-4 bg-gray-700 rounded-xl shadow">
-      <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy lub produktu" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
-      <textarea id="trescReklamy" placeholder="Treść reklamy" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100"></textarea>
-      <input type="email" id="emailReklamodawcy" placeholder="Twój email" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
-
-      <!-- Upload logotypu -->
-      <input type="file" id="logoReklamy" accept="image/*" class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
-      <div id="logoPodglad" class="mb-4 hidden">
-        <p class="text-sm mb-1 text-yellow-300">Podgląd logotypu:</p>
-        <img id="podgladObrazka" src="" alt="Podgląd logotypu" class="max-h-32 mx-auto rounded shadow-lg">
+      <!-- PayPal -->
+      <div class="my-4">
+        <div id="paypal-container-reklama"></div>
+        <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+        <script>
+          paypal.HostedButtons({
+            hostedButtonId: "L4639S4363CZE",
+          }).render("#paypal-container-reklama");
+        </script>
       </div>
 
-      <select id="okresReklamy" class="w-full p-2 mb-4 border rounded bg-gray-900 text-yellow-100" required>
-        <option disabled selected>Wybierz okres reklamy</option>
-        <option>1 dzień – 10 zł</option>
-        <option>1 tydzień – 49 zł</option>
-        <option>1 miesiąc – 189 zł</option>
-      </select>
+      <!-- Formularz reklamy -->
+      <form id="formularzReklamy" class="max-w-xl mx-auto p-4 bg-gray-700 rounded-xl shadow">
+        <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy lub produktu" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
+        <textarea id="trescReklamy" placeholder="Treść reklamy" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100"></textarea>
+        <input type="email" id="emailReklamodawcy" placeholder="Twój email" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
 
-      <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded font-semibold transition">
-        <i class="fas fa-paper-plane mr-2"></i>Wyślij zgłoszenie
-      </button>
-    </form>
+        <!-- Upload logotypu -->
+        <input type="file" id="logoReklamy" accept="image/*" class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
+        <div id="logoPodglad" class="mb-4 hidden">
+          <p class="text-sm mb-1 text-yellow-300">Podgląd logotypu:</p>
+          <img id="podgladObrazka" src="" alt="Podgląd logotypu" class="max-h-32 mx-auto rounded shadow-lg">
+        </div>
 
-    <!-- Lista ostatnich reklam (rotacja) -->
-    <div class="mt-8">
-      <h3 class="text-2xl font-semibold text-yellow-400 mb-4"><i class="fas fa-star mr-1"></i>Ostatnie reklamy</h3>
-      <div id="sliderReklam" class="h-24 flex items-center justify-center text-lg italic text-yellow-200">
-        Brak reklam do wyświetlenia
-      </div>
-    </div>
+        <select id="okresReklamy" class="w-full p-2 mb-4 border rounded bg-gray-900 text-yellow-100" required>
+          <option disabled selected>Wybierz okres reklamy</option>
+          <option>1 dzień – 10 zł</option>
+          <option>1 tydzień – 49 zł</option>
+          <option>1 miesiąc – 189 zł</option>
+        </select>
 
-    <!-- Panel administratora -->
-    <div class="mt-10">
-      <button onclick="pokazPanelAdmina()" class="text-sm text-yellow-400 underline">
-        <i class="fas fa-user-shield mr-1"></i>Panel administratora
-      </button>
-      <div id="panelAdmina" class="hidden mt-4 bg-gray-700 border p-4 rounded-xl shadow-md max-w-2xl mx-auto">
-        <input type="password" id="adminHaslo" placeholder="Podaj hasło" class="border p-2 mb-2 w-full rounded bg-gray-900 text-yellow-100">
-        <button onclick="sprawdzHaslo()" class="bg-yellow-500 text-white px-4 py-2 rounded font-semibold">
-          <i class="fas fa-sign-in-alt mr-1"></i>Zaloguj
+        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded font-semibold transition">
+          <i class="fas fa-paper-plane mr-2"></i>Wyślij zgłoszenie
         </button>
-        <div id="adminKontrola" class="hidden mt-4">
-          <h4 class="text-yellow-300 mb-2 font-semibold">Zgłoszone reklamy (do zatwierdzenia):</h4>
-          <ul id="listaZgloszen" class="text-sm text-yellow-100 space-y-2"></ul>
-          <textarea id="reklamaAdmina" placeholder="Treść reklamy od administratora" class="w-full p-2 border rounded mb-2 bg-gray-900 text-yellow-100"></textarea>
-          <button onclick="wyswietlReklameAdmina()" class="bg-green-500 text-white px-4 py-2 rounded font-semibold">
-            <i class="fas fa-play mr-1"></i>Wyświetl reklamę
+      </form>
+
+      <!-- Lista ostatnich reklam (rotacja) -->
+      <div class="mt-8">
+        <h3 class="text-2xl font-semibold text-yellow-400 mb-4"><i class="fas fa-star mr-1"></i>Ostatnie reklamy</h3>
+        <div id="sliderReklam" class="h-24 flex items-center justify-center text-lg italic text-yellow-200">
+          Brak reklam do wyświetlenia
+        </div>
+      </div>
+
+      <!-- Panel administratora -->
+      <div class="mt-10">
+        <button onclick="pokazPanelAdmina()" class="text-sm text-yellow-400 underline">
+          <i class="fas fa-user-shield mr-1"></i>Panel administratora
+        </button>
+        <div id="panelAdmina" class="hidden mt-4 bg-gray-700 border p-4 rounded-xl shadow-md max-w-2xl mx-auto">
+          <input type="password" id="adminHaslo" placeholder="Podaj hasło" class="border p-2 mb-2 w-full rounded bg-gray-900 text-yellow-100">
+          <button onclick="sprawdzHaslo()" class="bg-yellow-500 text-white px-4 py-2 rounded font-semibold">
+            <i class="fas fa-sign-in-alt mr-1"></i>Zaloguj
           </button>
+          <div id="adminKontrola" class="hidden mt-4">
+            <h4 class="text-yellow-300 mb-2 font-semibold">Zgłoszone reklamy (do zatwierdzenia):</h4>
+            <ul id="listaZgloszen" class="text-sm text-yellow-100 space-y-2"></ul>
+            <textarea id="reklamaAdmina" placeholder="Treść reklamy od administratora" class="w-full p-2 border rounded mb-2 bg-gray-900 text-yellow-100"></textarea>
+            <button onclick="wyswietlReklameAdmina()" class="bg-green-500 text-white px-4 py-2 rounded font-semibold">
+              <i class="fas fa-play mr-1"></i>Wyświetl reklamę
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -1540,94 +1421,77 @@ rysujProdukt
       indexSlider++;
     }
   },5000);
-</script><!-- Dodaj FontAwesome dla ikon jeśli jeszcze nie jest dodane -->
+</script>
+
+<!-- Dodaj FontAwesome dla ikon jeśli jeszcze nie jest dodane -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Sekcja Blog & Opinie z możliwością komunikacji + VIP -->
-<!-- === Sekcja Zbiórka - Pomoc dzieciom z domów dziecka === -->
-<section id="zbiorka" class="py-12 bg-gray-900 text-white">
-  <div class="max-w-5xl mx-auto px-8">
-    <h2 class="text-4xl font-bold text-[#d4af37] mb-8 text-center tracking-wide">Pomoc Dzieciom z Domów Dziecka</h2>
-    
-    <div class="bg-gradient-to-r from-yellow-900 via-yellow-700 to-yellow-900 rounded-3xl p-1 mb-10 shadow-lg">
-      <div class="bg-gray-900 rounded-3xl p-8">
-        <p class="text-lg leading-relaxed mb-6">
-          Każda złotówka, każda paczka, każda chwila uwagi – to dla tych dzieci światło w ciemności.  
-          Jako były wychowanek domu dziecka wiem, że potrzeba pomocy jest ogromna.  
-          Nie zostawiajmy ich samych. Razem możemy dać im coś, co zostanie na całe życie – nadzieję.
+
+<section id="zbiorka" class="py-12 bg-gray-100">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="border-4 border-yellow-500 rounded-lg p-8 bg-white shadow-lg">
+      <h2 class="text-3xl font-bold mb-6 text-center text-yellow-700">Zbiórka – Pomoc dzieciom z domów dziecka</h2>
+
+      <p class="mb-4 text-gray-700 leading-relaxed">
+        Jako były wychowanek domu dziecka wiem, jak ważna jest pomoc. Każdy gest – nawet najmniejszy – może odmienić życie dziecka.
+        Dlatego proszę o wsparcie tej zbiórki. Razem możemy sprawić, by świat był dla nich lepszy.
+      </p>
+
+      <div class="bg-yellow-50 border border-yellow-400 p-4 rounded mb-6">
+        <p class="font-semibold text-lg text-yellow-700">
+          BLIK: <span class="text-black">573-939-925</span> z dopiskiem <strong>„Pomoc”</strong><br>
+          E-mail: <a href="mailto:mielniczukgrzegosz74@gmail.com" class="text-blue-600 underline">mielniczukgrzegosz74@gmail.com</a><br>
+          Tel: <span class="text-black">604-296-360</span>
         </p>
-
-        <div class="bg-gray-800 p-6 rounded-xl mb-8 shadow-inner">
-          <h3 class="text-2xl font-semibold mb-4 text-[#d4af37]">Jak możesz pomóc?</h3>
-          <ul class="list-disc list-inside mb-4 space-y-2 text-left">
-            <li><strong>Przekaż darowiznę przez BLIK:</strong> <span class="font-mono">573-939-925</span> (z dopiskiem <em>"Pomoc"</em>)</li>
-            <li>Przyjmujemy paczki, ubrania, książki, zabawki i inne dary</li>
-            <li>Chcesz wysłać paczkę? Napisz do nas: 
-              <a href="mailto:mielniczukgrzegosz74@gmail.com" class="text-[#d4af37] underline">mielniczukgrzegosz74@gmail.com</a>  
-              lub zadzwoń: <strong>604-296-360</strong>
-            </li>
-          </ul>
-
-          <div id="licznik" class="text-xl font-mono mt-6 text-center bg-yellow-800 rounded-md py-2">
-            Następna paczka do wysłania za: <span id="daysLeft">30</span> dni
-          </div>
-        </div>
-
-        <div class="mb-10 text-left bg-[#1a1a1a] p-6 rounded-xl shadow-md">
-          <h3 class="text-2xl font-semibold mb-4 text-[#d4af37]">List od dzieci</h3>
-          <blockquote class="italic text-gray-300 border-l-4 border-[#d4af37] pl-4">
-            „Dziękujemy, że jesteście z nami, choć nie widzimy Was na co dzień.  
-            Każda paczka, każda pomoc to dla nas nie tylko rzeczy – to dowód, że świat nie zapomniał o nas.  
-            Dzięki Wam mamy siłę wierzyć, że jutro może być lepsze.”  
-            <br> – Dzieci z Domów Dziecka
-          </blockquote>
-        </div>
-
-        <div class="mb-10">
-          <h3 class="text-2xl font-semibold mb-4 text-[#d4af37]">Nasi bohaterowie – pomagają z całego serca:</h3>
-          <ul class="list-disc list-inside space-y-2 text-left">
-            <li><strong>Anna Kowalska</strong> – Wolontariuszka, która co miesiąc organizuje zbiórki ubrań</li>
-            <li><strong>Michał Nowak</strong> – Przedsiębiorca, który wspiera finansowo i logistycznie</li>
-            <li><strong>Magda Wiśniewska</strong> – Psycholog, która pomaga dzieciom przez rozmowę i wsparcie emocjonalne</li>
-            <li><strong>Janusz Zieliński</strong> – Kierowca, który dostarcza paczki prosto do domów dziecka</li>
-          </ul>
-        </div>
-
-        <div class="mb-10 text-left bg-gray-800 rounded-xl p-6 shadow-inner">
-          <h3 class="text-2xl font-semibold mb-4 text-[#d4af37]">Jak paczki trafiają do dzieci?</h3>
-          <p class="mb-4">
-            Wszystkie zebrane dary są starannie sortowane i pakowane przez naszych wolontariuszy w magazynie.  
-            Następnie transportujemy je bezpośrednio do wybranych domów dziecka w całej Polsce.  
-            Nasi kierowcy i wolontariusze osobiście dostarczają paczki, dbając, by każde dziecko otrzymało pomoc,  
-            której naprawdę potrzebuje.
-          </p>
-          <p>
-            Dzięki temu mamy pewność, że Wasza pomoc trafia tam, gdzie jest najbardziej potrzebna,  
-            a dzieci mogą poczuć się bezpiecznie i kochane.
-          </p>
-        </div>
-
-        <p class="text-lg font-semibold text-center">
-          Pomaganie to nie tylko gest – to obowiązek każdego z nas.  
-          Dzieci z domów dziecka nie wybrały swojego losu, ale my możemy wybrać, czy im pomożemy.  
-          Dołącz do nas – bo dobro wraca.
-        </p>
+        <p class="text-sm text-gray-600 mt-2">Można też przekazywać paczki i dary – po szczegóły napisz lub zadzwoń.</p>
       </div>
+
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-yellow-700 mb-2">Ostatnie osoby, które pomogły:</h3>
+        <ul class="list-disc list-inside text-gray-700">
+          <li>Anna K. – paczka z ubraniami</li>
+          <li>Paweł M. – wpłata 200 zł</li>
+          <li>Katarzyna S. – zestaw książek dla dzieci</li>
+          <li>„Anonimowy Anioł” – wpłata 500 zł</li>
+        </ul>
+      </div>
+
+      <div class="mb-6 text-center">
+        <p class="text-lg font-semibold text-yellow-700">Do wysyłki kolejnej paczki zostało:</p>
+        <p id="countdown" class="text-3xl font-bold text-red-600"></p>
+      </div>
+
+      <blockquote class="italic text-gray-600 border-l-4 border-yellow-500 pl-4">
+        Kochani! Dziękujemy za każdą pomoc. Dzięki Wam mamy nowe buty, kurtki i słodycze.
+        To najpiękniejszy prezent, jaki mogliśmy dostać. – Dzieci z domu dziecka
+      </blockquote>
     </div>
   </div>
 </section>
 
 <script>
-  (function() {
-    const daysLeftEl = document.getElementById('daysLeft');
-    const lastSentDate = new Date('2025-07-01');
-    const now = new Date();
-    const msInDay = 24 * 60 * 60 * 1000;
-    const cycleDays = 30;
+  // Ustaw datę wysyłki paczki (przykład: 7 dni od teraz)
+  const targetDate = new Date();
+  targetDate.setDate(targetDate.getDate() + 7);
 
-    let daysPassed = Math.floor((now - lastSentDate) / msInDay);
-    let daysLeft = cycleDays - (daysPassed % cycleDays);
-    daysLeftEl.textContent = daysLeft;
-  })();
+  const countdownElement = document.getElementById('countdown');
+  function updateCountdown() {
+    const now = new Date();
+    const timeLeft = targetDate - now;
+
+    if (timeLeft <= 0) {
+      countdownElement.textContent = "Paczka została wysłana!";
+      return;
+    }
+
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+    countdownElement.textContent = `${days} dni, ${hours} godz., ${minutes} min`;
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 </script>    
 <section id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
   <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
@@ -1686,128 +1550,150 @@ rysujProdukt
   });
 </script>
 <section id="artysta" class="py-12 bg-gradient-to-br from-gray-50 to-gray-100">
-  <div class="max-w-3xl mx-auto relative bg-white shadow-2xl rounded-2xl p-8 border-4 border-yellow-500">
+  <div class="max-w-4xl mx-auto relative bg-white shadow-2xl rounded-2xl p-8 border-4 border-yellow-500">
     
     <!-- Zdobiona ramka -->
     <div class="absolute inset-0 rounded-2xl border-8 border-double border-yellow-400 pointer-events-none z-10"></div>
     <div class="absolute -inset-2 rounded-3xl border-4 border-yellow-300 blur-md opacity-50 z-0"></div>
 
     <!-- Zawartość sekcji -->
-    <div class="relative z-20">
-      <h2 class="text-3xl font-extrabold text-gray-900 mb-4 text-center">Artysta</h2>
-      <p class="mb-4 text-gray-800 leading-relaxed">
-        Mam na imię <strong>Wojciech</strong> i całe życie jestem związany ze sztuką. Kocham ją od najmłodszych lat, choć jestem samoukiem. Tworzę portrety realistyczne, pełne detali, maluję obrazy, wykonuję tatuaże oraz zajmuję się grafiką.
-      </p>
-      <p class="mb-4 text-gray-800 leading-relaxed">
-        Dzielę się sztuką z ludźmi, bo widzę, jak ich serca rozświetla moment, gdy otrzymują portret, koszulkę czy cokolwiek z obrazem. Wtedy na ich twarzach pojawia się uśmiech — a to właśnie sztuka daje radość.
-      </p>
-      <p class="mb-4 text-gray-800 leading-relaxed">
-        Dla mnie najpiękniejszą częścią pracy artysty jest to, że mogę wywołać ten uśmiech na czyjejś twarzy.
-      </p>
-      <p class="text-gray-800 leading-relaxed italic text-center">
-        Pozdrawiam serdecznie — w swoim imieniu oraz całego zespołu <strong>AdelbertusShop</strong>.
-      </p>
+    <div class="relative z-20 grid md:grid-cols-2 gap-6 items-center">
+      
+      <!-- Tekst -->
+      <div>
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-4 text-center md:text-left">Artysta</h2>
+        <p class="mb-4 text-gray-800 leading-relaxed">
+          Mam na imię <strong>Wojciech</strong> i całe życie jestem związany ze sztuką. Kocham ją od najmłodszych lat, choć jestem samoukiem. Tworzę portrety realistyczne, pełne detali, maluję obrazy, wykonuję tatuaże oraz zajmuję się grafiką.
+        </p>
+        <p class="mb-4 text-gray-800 leading-relaxed">
+          Dzielę się sztuką z ludźmi, bo widzę, jak ich serca rozświetla moment, gdy otrzymują portret, koszulkę czy cokolwiek z obrazem. Wtedy na ich twarzach pojawia się uśmiech — a to właśnie sztuka daje radość.
+        </p>
+        <p class="mb-4 text-gray-800 leading-relaxed">
+          Dla mnie najpiękniejszą częścią pracy artysty jest to, że mogę wywołać ten uśmiech na czyjejś twarzy.
+        </p>
+        <p class="text-gray-800 leading-relaxed italic text-center md:text-left">
+          Pozdrawiam serdecznie — w swoim imieniu oraz całego zespołu <strong>AdelbertusShop</strong>.
+        </p>
+      </div>
+
+      <!-- Przykład z ramką i zdjęciem -->
+      <div class="relative">
+        <div class="relative rounded-xl overflow-hidden shadow-lg border-8 border-yellow-400 border-double">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" 
+               alt="Paczki docierające do dzieci" 
+               class="w-full h-full object-cover">
+        </div>
+        <p class="mt-3 text-sm text-center text-gray-600 italic">
+          Przykład ramki z obrazkiem — paczki dotarły do dzieci.
+        </p>
+      </div>
+
     </div>
   </div>
-</section> 
+</section>
+<section id="regulamin" class="py-16 px-6 bg-gradient-to-br from-[#faf5ee] to-[#fdf8f0] font-serif text-[#2e1e0f]">
+  <div class="max-w-5xl mx-auto relative bg-white shadow-2xl rounded-3xl p-10 border-4 border-yellow-500">
 
-  <section id="regulamin" class="py-16 px-6 bg-gradient-to-br from-[#faf5ee] to-[#fdf8f0] font-serif text-[#2e1e0f]">
-  <div class="max-w-5xl mx-auto border-[6px] border-[#caa25b] rounded-3xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)] p-10 bg-white relative">
-    
+    <!-- Zdobiona ramka -->
+    <div class="absolute inset-0 rounded-3xl border-8 border-double border-yellow-400 pointer-events-none z-10"></div>
+    <div class="absolute -inset-2 rounded-[2rem] border-4 border-yellow-300 blur-md opacity-50 z-0"></div>
+
     <!-- Etykieta -->
-    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-[#fdf8f0] px-6 py-1 text-[#caa25b] font-bold text-lg tracking-widest shadow-md rounded-md border border-[#caa25b] uppercase">
+    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-[#fdf8f0] px-6 py-1 text-[#caa25b] font-bold text-lg tracking-widest shadow-md rounded-md border border-[#caa25b] uppercase z-20">
       ✧ REGULAMIN ✧
     </div>
 
     <!-- Nagłówek -->
-    <h2 class="text-4xl font-bold mb-12 text-center text-[#2e1e0f] underline decoration-[#caa25b]/50">Regulamin sklepu AdelbertusShop</h2>
+    <div class="relative z-20">
+      <h2 class="text-4xl font-bold mb-12 text-center text-[#2e1e0f] underline decoration-[#caa25b]/50">Regulamin sklepu AdelbertusShop</h2>
 
-    <div class="space-y-10 text-[17px] leading-relaxed">
-      
-      <!-- §1 -->
-      <div>
-        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-          <span>📜</span> §1 Postanowienia ogólne
-        </h3>
-        <p>Sklep internetowy <strong>AdelbertusShop</strong> działa pod adresem [tu wstaw adres] i prowadzony jest przez osobę fizyczną wykonującą działalność nierejestrowaną na podstawie art. 5 ust. 1 ustawy Prawo przedsiębiorców.</p>
-        <p>Kontakt: [adres e-mail], [numer telefonu – opcjonalnie]</p>
-        <p>Podstawy prawne: Kodeks cywilny, Ustawa o prawach konsumenta, Prawo przedsiębiorców.</p>
+      <div class="space-y-10 text-[17px] leading-relaxed">
+        
+        <!-- §1 -->
+        <div>
+          <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+            <span>📜</span> §1 Postanowienia ogólne
+          </h3>
+          <p>Sklep internetowy <strong>AdelbertusShop</strong> działa pod adresem [tu wstaw adres] i prowadzony jest przez osobę fizyczną wykonującą działalność nierejestrowaną na podstawie art. 5 ust. 1 ustawy Prawo przedsiębiorców.</p>
+          <p>Kontakt: [adres e-mail], [numer telefonu – opcjonalnie]</p>
+          <p>Podstawy prawne: Kodeks cywilny, Ustawa o prawach konsumenta, Prawo przedsiębiorców.</p>
+        </div>
+
+        <!-- §2 -->
+        <div>
+          <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+            <span>📖</span> §2 Definicje
+          </h3>
+          <ul class="list-disc pl-6 space-y-1">
+            <li><strong>Sprzedawca</strong> – osoba fizyczna prowadząca działalność nierejestrowaną.</li>
+            <li><strong>Klient</strong> – osoba fizyczna dokonująca zakupu.</li>
+            <li><strong>Konsument</strong> – klient, który nie działa w ramach działalności gospodarczej.</li>
+            <li><strong>Towar</strong> – produkt oferowany w sklepie.</li>
+            <li><strong>Umowa zawarta na odległość</strong> – umowa zawarta przez internet.</li>
+          </ul>
+        </div>
+
+        <!-- §3 -->
+        <div>
+          <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+            <span>🛒</span> §3 Warunki sprzedaży
+          </h3>
+          <p>Ceny towarów podawane są w złotych polskich i są cenami brutto. Koszt dostawy jest wskazywany przy zamówieniu. Zamówienia są przyjmowane poprzez stronę sklepu. Umowa zostaje zawarta z chwilą kliknięcia „Zamawiam”.</p>
+        </div>
+
+        <!-- §4 -->
+        <div>
+          <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+            <span>💳</span> §4 Płatność i dostawa
+          </h3>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Płatność: przelew, BLIK, inne – ustalane indywidualnie.</li>
+            <li>Zamówienia realizowane są po zaksięgowaniu wpłaty.</li>
+            <li>Dostawa na terenie Polski – kurier, paczkomat.</li>
+            <li>Czas realizacji: do 7 dni roboczych (chyba że ustalono inaczej).</li>
+          </ul>
+        </div>
+
+        <!-- §5 -->
+        <div>
+          <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+            <span>↩️</span> §5 Odstąpienie od umowy
+          </h3>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Konsument ma prawo odstąpić od umowy w ciągu 14 dni.</li>
+            <li>Zwrot kosztów następuje do 14 dni po zwrocie towaru.</li>
+            <li>Produkty personalizowane nie podlegają zwrotowi.</li>
+          </ul>
+        </div>
+
+        <!-- §6 -->
+        <div>
+          <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+            <span>🛠️</span> §6 Reklamacje
+          </h3>
+          <p>Reklamacje przyjmowane są drogą mailową. Klient powinien dołączyć opis problemu i zdjęcie. Sprzedawca odpowiada w ciągu 14 dni. W przypadku uznania reklamacji – produkt jest wymieniany, naprawiany lub zwracane są pieniądze.</p>
+        </div>
+
+        <!-- §7 -->
+        <div>
+          <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+            <span>🔐</span> §7 Dane osobowe
+          </h3>
+          <p>Dane osobowe przetwarzane są zgodnie z RODO wyłącznie w celu realizacji zamówienia. Klient ma prawo wglądu, poprawienia lub usunięcia swoich danych.</p>
+        </div>
+
+        <!-- §8 -->
+        <div>
+          <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
+            <span>📌</span> §8 Postanowienia końcowe
+          </h3>
+          <p>Regulamin obowiązuje od momentu opublikowania na stronie. Sprzedawca zastrzega sobie prawo do zmian. W sprawach nieuregulowanych zastosowanie mają przepisy prawa polskiego.</p>
+        </div>
+
       </div>
-
-      <!-- §2 -->
-      <div>
-        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-          <span>📖</span> §2 Definicje
-        </h3>
-        <ul class="list-disc pl-6 space-y-1">
-          <li><strong>Sprzedawca</strong> – osoba fizyczna prowadząca działalność nierejestrowaną.</li>
-          <li><strong>Klient</strong> – osoba fizyczna dokonująca zakupu.</li>
-          <li><strong>Konsument</strong> – klient, który nie działa w ramach działalności gospodarczej.</li>
-          <li><strong>Towar</strong> – produkt oferowany w sklepie.</li>
-          <li><strong>Umowa zawarta na odległość</strong> – umowa zawarta przez internet.</li>
-        </ul>
-      </div>
-
-      <!-- §3 -->
-      <div>
-        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-          <span>🛒</span> §3 Warunki sprzedaży
-        </h3>
-        <p>Ceny towarów podawane są w złotych polskich i są cenami brutto. Koszt dostawy jest wskazywany przy zamówieniu. Zamówienia są przyjmowane poprzez stronę sklepu. Umowa zostaje zawarta z chwilą kliknięcia „Zamawiam”.</p>
-      </div>
-
-      <!-- §4 -->
-      <div>
-        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-          <span>💳</span> §4 Płatność i dostawa
-        </h3>
-        <ul class="list-disc pl-6 space-y-1">
-          <li>Płatność: przelew, BLIK, inne – ustalane indywidualnie.</li>
-          <li>Zamówienia realizowane są po zaksięgowaniu wpłaty.</li>
-          <li>Dostawa na terenie Polski – kurier, paczkomat.</li>
-          <li>Czas realizacji: do 7 dni roboczych (chyba że ustalono inaczej).</li>
-        </ul>
-      </div>
-
-      <!-- §5 -->
-      <div>
-        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-          <span>↩️</span> §5 Odstąpienie od umowy
-        </h3>
-        <ul class="list-disc pl-6 space-y-1">
-          <li>Konsument ma prawo odstąpić od umowy w ciągu 14 dni.</li>
-          <li>Zwrot kosztów następuje do 14 dni po zwrocie towaru.</li>
-          <li>Produkty personalizowane nie podlegają zwrotowi.</li>
-        </ul>
-      </div>
-
-      <!-- §6 -->
-      <div>
-        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-          <span>🛠️</span> §6 Reklamacje
-        </h3>
-        <p>Reklamacje przyjmowane są drogą mailową. Klient powinien dołączyć opis problemu i zdjęcie. Sprzedawca odpowiada w ciągu 14 dni. W przypadku uznania reklamacji – produkt jest wymieniany, naprawiany lub zwracane są pieniądze.</p>
-      </div>
-
-      <!-- §7 -->
-      <div>
-        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-          <span>🔐</span> §7 Dane osobowe
-        </h3>
-        <p>Dane osobowe przetwarzane są zgodnie z RODO wyłącznie w celu realizacji zamówienia. Klient ma prawo wglądu, poprawienia lub usunięcia swoich danych.</p>
-      </div>
-
-      <!-- §8 -->
-      <div>
-        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-          <span>📌</span> §8 Postanowienia końcowe
-        </h3>
-        <p>Regulamin obowiązuje od momentu opublikowania na stronie. Sprzedawca zastrzega sobie prawo do zmian. W sprawach nieuregulowanych zastosowanie mają przepisy prawa polskiego.</p>
-      </div>
-
     </div>
   </div>
-</section> 
+</section>    
 </main> <!-- Jeśli masz otwarte <main>, zamykamy je wcześniej -->
 
 <!-- 🔻 START: BODY I DOLNA SEKCJA Z BANEREM I PRZYCISKIEM POWROTU 🔻 -->
@@ -1830,6 +1716,7 @@ rysujProdukt
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
