@@ -1149,8 +1149,262 @@
       </div>
     </div>
   </div>
-</section>      
-  <!-- Marketplace 1.0 Gold -->
+</section>
+
+<script>
+  const canvas = document.getElementById('podgladProdukt');
+  const ctx = canvas.getContext('2d');
+
+  let aktualnyTyp = 'koszulka';
+  let widokTyl = false;
+  let obrazek = null;
+  let koszyk = [];
+
+  let tekst = '';
+  let czcionka = 'Arial';
+  let rozmiarTekstu = 30;
+  let kolorTekstu = '#000000';
+  let kolorProduktu = '#ffffff';
+  let umiejscowienie = 'front';
+
+  function rysujProdukt() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = kolorProduktu;
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 2;
+
+    if (aktualnyTyp === 'koszulka') {
+      ctx.fillRect(120, 100, 160, 200);
+      ctx.strokeRect(120, 100, 160, 200);
+    } else if (aktualnyTyp === 'bluza') {
+      ctx.beginPath();
+      ctx.ellipse(canvas.width / 2, canvas.height / 2, 120, 160, 0, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.stroke();
+    } else if (aktualnyTyp === 'czapka') {
+      ctx.beginPath();
+      ctx.ellipse(canvas.width / 2, canvas.height / 2 + 40, 130, 80, 0, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = kolorTekstu;
+    ctx.font = `${rozmiarTekstu}px ${czcionka}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    let textX = canvas.width / 2;
+    let textY = canvas.height / 2;
+
+    switch (umiejscowienie) {
+      case 'front':
+        textX = canvas.width / 2;
+        textY = aktualnyTyp === 'czapka' ? canvas.height / 2 + 20 : canvas.height / 2;
+        break;
+      case 'tył':
+        textX = canvas.width / 2;
+        textY = aktualnyTyp === 'czapka' ? canvas.height / 2 + 20 : canvas.height / 2 + 50;
+        break;
+      case 'rękawLewy':
+        textX = 130;
+        textY = 150;
+        break;
+      case 'rękawPrawy':
+        textX = 280;
+        textY = 150;
+        break;
+      case 'kaptur':
+        if (aktualnyTyp === 'bluza') {
+          textX = canvas.width / 2;
+          textY = 60;
+        } else {
+          textX = -9999;
+        }
+        break;
+      case 'daszek':
+        if (aktualnyTyp === 'czapka') {
+          textX = canvas.width / 2;
+          textY = canvas.height / 2 - 40;
+        } else {
+          textX = -9999;
+        }
+        break;
+      case 'bokLewy':
+        if (aktualnyTyp === 'czapka') {
+          textX = canvas.width / 2 - 80;
+          textY = canvas.height / 2 + 40;
+        } else {
+          textX = -9999;
+        }
+        break;
+      case 'bokPrawy':
+        if (aktualnyTyp === 'czapka') {
+          textX = canvas.width / 2 + 80;
+          textY = canvas.height / 2 + 40;
+        } else {
+          textX = -9999;
+        }
+        break;
+      default:
+        textX = canvas.width / 2;
+        textY = canvas.height / 2;
+    }
+
+    if (textX !== -9999 && tekst.trim() !== '') {
+      ctx.fillText(tekst, textX, textY);
+    }
+
+    if (obrazek) {
+      let imgX = canvas.width / 2 - 50;
+      let imgY = canvas.height / 2 - 50;
+
+      switch (umiejscowienie) {
+        case 'front':
+          imgX = canvas.width / 2 - 50;
+          imgY = canvas.height / 2 + 20;
+          break;
+        case 'tył':
+          imgX = canvas.width / 2 - 50;
+          imgY = canvas.height / 2 + 70;
+          break;
+        case 'rękawLewy':
+          imgX = 100;
+          imgY = 180;
+          break;
+        case 'rękawPrawy':
+          imgX = 250;
+          imgY = 180;
+          break;
+        case 'kaptur':
+          imgX = canvas.width / 2 - 50;
+          imgY = 10;
+          break;
+        case 'daszek':
+          imgX = canvas.width / 2 - 50;
+          imgY = canvas.height / 2 - 80;
+          break;
+        case 'bokLewy':
+          imgX = canvas.width / 2 - 120;
+          imgY = canvas.height / 2 + 40;
+          break;
+        case 'bokPrawy':
+          imgX = canvas.width / 2 + 20;
+          imgY = canvas.height / 2 + 40;
+          break;
+      }
+      ctx.drawImage(obrazek, imgX, imgY, 100, 100);
+    }
+
+    ctx.fillStyle = widokTyl ? "#ff0000" : "#00ff00";
+    ctx.font = "20px Arial";
+    ctx.fillText(widokTyl ? "TYŁ" : "PRZÓD", canvas.width / 2, 40);
+  }
+
+  // Eventy wyboru typu produktu
+  document.querySelectorAll('.produktBtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      aktualnyTyp = btn.dataset.typ;
+      rysujProdukt();
+    });
+  });
+
+  // Podgląd przód/tył
+  document.getElementById('przodBtn').addEventListener('click', () => {
+    widokTyl = false;
+    rysujProdukt();
+  });
+  document.getElementById('tylBtn').addEventListener('click', () => {
+    widokTyl = true;
+    rysujProdukt();
+  });
+
+  // Pobieranie obrazów
+  function pobierzObraz(nazwa) {
+    const link = document.createElement('a');
+    link.download = nazwa;
+    link.href = canvas.toDataURL();
+    link.click();
+  }
+
+  document.getElementById('pobierzProjekt').addEventListener('click', () => {
+    pobierzObraz('projekt_widok.png');
+  });
+  document.getElementById('pobierzPrzod').addEventListener('click', () => {
+    widokTyl = false;
+    rysujProdukt();
+    setTimeout(() => pobierzObraz('projekt_przod.png'), 200);
+  });
+  document.getElementById('pobierzTyl').addEventListener('click', () => {
+    widokTyl = true;
+    rysujProdukt();
+    setTimeout(() => pobierzObraz('projekt_tyl.png'), 200);
+  });
+
+  // Obsługa inputów personalizacji
+  document.getElementById('projektTekst').addEventListener('input', e => {
+    tekst = e.target.value;
+    rysujProdukt();
+  });
+  document.getElementById('czcionka').addEventListener('change', e => {
+    czcionka = e.target.value;
+    rysujProdukt();
+  });
+  document.getElementById('rozmiarTekstu').addEventListener('input', e => {
+    rozmiarTekstu = e.target.value;
+    rysujProdukt();
+  });
+  document.getElementById('kolorTekstu').addEventListener('input', e => {
+    kolorTekstu = e.target.value;
+    rysujProdukt();
+  });
+  document.getElementById('kolorProduktu').addEventListener('input', e => {
+    kolorProduktu = e.target.value;
+    rysujProdukt();
+  });
+  document.getElementById('umiejscowienie').addEventListener('change', e => {
+    umiejscowienie = e.target.value;
+    rysujProdukt();
+  });
+
+  // Upload grafiki
+  document.getElementById('projektGrafika').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = evt => {
+        obrazek = new Image();
+        obrazek.onload = () => rysujProdukt();
+        obrazek.src = evt.target.result;
+      }
+      reader.readAsDataURL(file);
+    } else {
+      obrazek = null;
+      rysujProdukt();
+    }
+  });
+
+  // Dodaj do koszyka
+  document.getElementById('dodajDoKoszyka').addEventListener('click', () => {
+    const rozmiar = document.getElementById('projektRozmiar').value;
+    if (!tekst.trim() && !obrazek) {
+      alert('Dodaj tekst lub grafikę, żeby dodać do koszyka.');
+      return;
+    }
+
+    const produktNazwa = `${aktualnyTyp.charAt(0).toUpperCase() + aktualnyTyp.slice(1)} - ${tekst || 'bez tekstu'} - rozmiar ${rozmiar}`;
+    const cena = 199;
+
+    koszyk.push({ nazwa: produktNazwa, cena, typ: aktualnyTyp, tekst, rozmiar, kolorProduktu, kolorTekstu, umiejscowienie });
+
+    alert(`Produkt "${produktNazwa}" dodany do koszyka za ${cena} zł.`);
+
+    console.log('Aktualny koszyk:', koszyk);
+  });
+
+  rysujProdukt();
+</script>      
+<!-- Marketplace 2.0 Gold -->
 <div class="max-w-6xl mx-auto p-4 border-4 border-yellow-500 rounded-2xl shadow-2xl" id="marketplace-wrapper">
   <div class="bg-[#121212] text-white py-16 px-4" id="marketplace">
     <div class="max-w-6xl mx-auto">
@@ -1158,6 +1412,14 @@
 
       <!-- Produkty -->
       <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+      <!-- Koszyk -->
+      <div id="koszyk-wrapper" class="mt-10 bg-gray-900 p-4 rounded-xl border border-yellow-600 max-w-4xl mx-auto">
+        <h3 class="text-yellow-400 text-2xl mb-4">Twój Koszyk</h3>
+        <ul id="koszyk-lista" class="mb-4 list-disc list-inside text-gray-300"></ul>
+        <p id="koszyk-suma" class="text-yellow-300 font-bold mb-4">Suma: 0 zł</p>
+        <button id="wyczyscKoszyk" class="bg-red-600 hover:bg-red-700 py-2 px-4 rounded text-white font-bold">Wyczyść koszyk</button>
+      </div>
 
       <!-- PayPal Wsparcie -->
       <div class="text-center mt-16">
@@ -1178,9 +1440,10 @@
         <h3 class="text-2xl font-bold text-yellow-300 mb-4">Panel Administratora</h3>
         <input id="product-name" class="block w-full mb-2 p-2 rounded text-black" placeholder="Nazwa produktu">
         <input id="product-desc" class="block w-full mb-2 p-2 rounded text-black" placeholder="Opis">
-        <input id="product-price" type="number" class="block w-full mb-2 p-2 rounded text-black" placeholder="Cena (zł)">
+        <input id="product-price" type="number" min="0.01" step="0.01" class="block w-full mb-2 p-2 rounded text-black" placeholder="Cena (zł)">
         <input id="product-image" class="block w-full mb-2 p-2 rounded text-black" placeholder="URL obrazka">
-        <button onclick="addProduct()" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded">Dodaj produkt</button>
+        <button onclick="addProduct()" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded mb-4 w-full">Dodaj produkt</button>
+        <button onclick="logoutAdmin()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full">Wyloguj</button>
       </div>
 
       <!-- Autoryzacja do admina -->
@@ -1194,51 +1457,110 @@
 
 <script>
   let products = JSON.parse(localStorage.getItem("products")) || [];
+  let koszyk = [];
 
   function renderProducts() {
     const list = document.getElementById("product-list");
     list.innerHTML = "";
+    if(products.length === 0) {
+      list.innerHTML = '<p class="text-center text-yellow-400 col-span-full">Brak produktów w marketplace.</p>';
+      return;
+    }
     products.forEach((product, index) => {
       list.innerHTML += `
-        <div class="bg-gray-900 p-4 rounded-xl border border-yellow-600 shadow-lg">
+        <div class="bg-gray-900 p-4 rounded-xl border border-yellow-600 shadow-lg flex flex-col">
           <img src="${product.image}" alt="${product.name}" class="rounded mb-3 w-full h-52 object-cover">
           <h4 class="text-xl font-bold text-yellow-400">${product.name}</h4>
-          <p class="text-gray-300">${product.desc}</p>
+          <p class="text-gray-300 flex-grow">${product.desc}</p>
           <p class="text-yellow-300 font-bold my-2">${product.price} zł</p>
-          <button onclick="removeProduct(${index})" class="text-sm text-red-400 underline">Usuń</button>
+          <div class="flex justify-between items-center">
+            <button onclick="removeProduct(${index})" class="text-sm text-red-400 underline">Usuń</button>
+            <button onclick="addToCart(${index})" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-1 px-3 rounded">Dodaj do koszyka</button>
+          </div>
         </div>
       `;
     });
   }
 
   function addProduct() {
-    const name = document.getElementById("product-name").value;
-    const desc = document.getElementById("product-desc").value;
-    const price = document.getElementById("product-price").value;
-    const image = document.getElementById("product-image").value;
-    if (!name || !desc || !price || !image) return alert("Wypełnij wszystkie pola");
-    products.push({ name, desc, price, image });
+    const name = document.getElementById("product-name").value.trim();
+    const desc = document.getElementById("product-desc").value.trim();
+    const price = parseFloat(document.getElementById("product-price").value);
+    const image = document.getElementById("product-image").value.trim();
+
+    if (!name || !desc || !image || isNaN(price) || price <= 0) {
+      alert("Wypełnij wszystkie pola poprawnie. Cena musi być liczbą dodatnią.");
+      return;
+    }
+
+    products.push({ name, desc, price: price.toFixed(2), image });
     localStorage.setItem("products", JSON.stringify(products));
     renderProducts();
+    alert(`Produkt "${name}" dodany pomyślnie.`);
+    // Reset formularza
+    document.getElementById("product-name").value = "";
+    document.getElementById("product-desc").value = "";
+    document.getElementById("product-price").value = "";
+    document.getElementById("product-image").value = "";
   }
 
   function removeProduct(index) {
+    if (!confirm(`Czy na pewno chcesz usunąć produkt "${products[index].name}"?`)) return;
     products.splice(index, 1);
     localStorage.setItem("products", JSON.stringify(products));
     renderProducts();
+    alert("Produkt został usunięty.");
   }
 
   function checkAdmin() {
     const pass = document.getElementById("admin-pass").value;
     if (pass === "Wojownik.03") {
       document.getElementById("admin-panel").classList.remove("hidden");
+      document.getElementById("admin-pass").value = "";
     } else {
       alert("Błędne hasło");
     }
   }
 
+  function logoutAdmin() {
+    document.getElementById("admin-panel").classList.add("hidden");
+  }
+
+  function addToCart(index) {
+    const produkt = products[index];
+    koszyk.push(produkt);
+    alert(`Dodano "${produkt.name}" do koszyka.`);
+    renderCart();
+  }
+
+  function renderCart() {
+    const lista = document.getElementById("koszyk-lista");
+    const sumaEl = document.getElementById("koszyk-suma");
+    lista.innerHTML = "";
+    let suma = 0;
+    koszyk.forEach((item, idx) => {
+      suma += parseFloat(item.price);
+      const li = document.createElement("li");
+      li.textContent = `${item.name} - ${item.price} zł`;
+      lista.appendChild(li);
+    });
+    sumaEl.textContent = `Suma: ${suma.toFixed(2)} zł`;
+  }
+
+  document.getElementById("wyczyscKoszyk").addEventListener("click", () => {
+    if (koszyk.length === 0) {
+      alert("Koszyk jest już pusty.");
+      return;
+    }
+    if (confirm("Czy na pewno chcesz wyczyścić koszyk?")) {
+      koszyk = [];
+      renderCart();
+    }
+  });
+
   renderProducts();
-</script>
+  renderCart();
+</script>      
 <!-- Sekcja Reklama -->
 <section id="reklama" class="py-16 bg-gray-900 text-center text-yellow-100">
   <div class="max-w-6xl mx-auto p-4 border-4 border-yellow-500 rounded-2xl shadow-2xl">
@@ -1259,9 +1581,9 @@
       </div>
 
       <!-- Formularz reklamy -->
-      <form id="formularzReklamy" class="max-w-xl mx-auto p-4 bg-gray-700 rounded-xl shadow">
-        <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy lub produktu" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
-        <textarea id="trescReklamy" placeholder="Treść reklamy" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100"></textarea>
+      <form id="formularzReklamy" class="max-w-xl mx-auto p-4 bg-gray-700 rounded-xl shadow" novalidate>
+        <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy lub produktu" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" minlength="2" maxlength="50">
+        <textarea id="trescReklamy" placeholder="Treść reklamy" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" minlength="10" maxlength="200"></textarea>
         <input type="email" id="emailReklamodawcy" placeholder="Twój email" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
 
         <!-- Upload logotypu -->
@@ -1273,9 +1595,9 @@
 
         <select id="okresReklamy" class="w-full p-2 mb-4 border rounded bg-gray-900 text-yellow-100" required>
           <option disabled selected>Wybierz okres reklamy</option>
-          <option>1 dzień – 10 zł</option>
-          <option>1 tydzień – 49 zł</option>
-          <option>1 miesiąc – 189 zł</option>
+          <option value="1">1 dzień – 10 zł</option>
+          <option value="7">1 tydzień – 49 zł</option>
+          <option value="30">1 miesiąc – 189 zł</option>
         </select>
 
         <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded font-semibold transition">
@@ -1301,13 +1623,12 @@
           <button onclick="sprawdzHaslo()" class="bg-yellow-500 text-white px-4 py-2 rounded font-semibold">
             <i class="fas fa-sign-in-alt mr-1"></i>Zaloguj
           </button>
+          <button onclick="wylogujAdmina()" class="bg-red-600 text-white px-4 py-2 rounded font-semibold mt-2 hidden" id="btnWyloguj">
+            <i class="fas fa-sign-out-alt mr-1"></i>Wyloguj
+          </button>
           <div id="adminKontrola" class="hidden mt-4">
             <h4 class="text-yellow-300 mb-2 font-semibold">Zgłoszone reklamy (do zatwierdzenia):</h4>
             <ul id="listaZgloszen" class="text-sm text-yellow-100 space-y-2"></ul>
-            <textarea id="reklamaAdmina" placeholder="Treść reklamy od administratora" class="w-full p-2 border rounded mb-2 bg-gray-900 text-yellow-100"></textarea>
-            <button onclick="wyswietlReklameAdmina()" class="bg-green-500 text-white px-4 py-2 rounded font-semibold">
-              <i class="fas fa-play mr-1"></i>Wyświetl reklamę
-            </button>
           </div>
         </div>
       </div>
@@ -1317,19 +1638,22 @@
 
 <!-- Reklama wyświetlana na stronie -->
 <div id="reklamaGlowneOkno" class="hidden fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-yellow-300 text-black px-6 py-4 rounded-xl shadow-2xl max-w-md text-center">
-  <img id="logoGlowne" src="" alt="" class="max-h-24 mx-auto mb-2 hidden">
+  <img id="logoGlowne" src="" alt="" class="max-h-24 mx-auto mb-2 hidden rounded">
   <p id="trescReklamyGlowne" class="text-lg font-semibold"></p>
   <p class="text-xs mt-2" id="czasomierz"></p>
 </div>
 
 <script>
-  let listaReklam = [];
-  let zatwierdzoneReklamy = [];
+  // --- Inicjalizacja danych z localStorage ---
+  let listaReklam = JSON.parse(localStorage.getItem('listaReklam')) || [];
+  let zatwierdzoneReklamy = JSON.parse(localStorage.getItem('zatwierdzoneReklamy')) || [];
   let indexSlider = 0;
+  let adminZalogowany = false;
 
+  // --- Podgląd logotypu ---
   document.getElementById('logoReklamy').addEventListener('change', e => {
     const plik = e.target.files[0];
-    if(plik){
+    if (plik) {
       const reader = new FileReader();
       reader.onload = ev => {
         document.getElementById('podgladObrazka').src = ev.target.result;
@@ -1339,93 +1663,130 @@
     }
   });
 
+  // --- Walidacja i wysłanie formularza reklamy ---
   document.getElementById('formularzReklamy').addEventListener('submit', e => {
     e.preventDefault();
     const nazwa = document.getElementById('nazwaFirmy').value.trim();
     const tresc = document.getElementById('trescReklamy').value.trim();
     const email = document.getElementById('emailReklamodawcy').value.trim();
-    const okres = document.getElementById('okresReklamy').value;
-    const logo = document.getElementById('podgladObrazka').src;
+    const okres = parseInt(document.getElementById('okresReklamy').value);
+    const logo = document.getElementById('podgladObrazka').src || '';
 
-    if(nazwa && tresc && email){
-      listaReklam.push({ nazwa, tresc, logo });
-      alert("Reklama zgłoszona, oczekuje na akceptację administratora.");
-      e.target.reset();
-      document.getElementById('logoPodglad').classList.add('hidden');
+    if (!nazwa || !tresc || !email || !okres) {
+      alert('Wypełnij wszystkie pola i wybierz okres reklamy.');
+      return;
     }
+
+    // Podstawowa walidacja emaila
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Podaj poprawny adres email.');
+      return;
+    }
+
+    // Dodajemy do listy zgłoszeń status 'oczekująca'
+    listaReklam.push({
+      nazwa,
+      tresc,
+      email,
+      okres,  // dni
+      logo,
+      status: 'oczekująca',
+      dataZgloszenia: new Date().toISOString()
+    });
+
+    localStorage.setItem('listaReklam', JSON.stringify(listaReklam));
+    alert("Reklama zgłoszona, oczekuje na akceptację administratora.");
+    e.target.reset();
+    document.getElementById('logoPodglad').classList.add('hidden');
   });
 
-  const pokazPanelAdmina = () => document.getElementById('panelAdmina').classList.toggle('hidden');
-  const sprawdzHaslo = () => {
-    if(document.getElementById('adminHaslo').value === 'Wojownik.03'){
-      document.getElementById('adminKontrola').classList.remove('hidden');
-      aktualizujListeZgloszen();
-    } else alert("Nieprawidłowe hasło.");
+  // --- Panel admina ---
+  const pokazPanelAdmina = () => {
+    document.getElementById('panelAdmina').classList.toggle('hidden');
   };
 
+  const sprawdzHaslo = () => {
+    const pass = document.getElementById('adminHaslo').value;
+    if (pass === 'Wojownik.03') {
+      adminZalogowany = true;
+      document.getElementById('adminKontrola').classList.remove('hidden');
+      document.getElementById('btnWyloguj').classList.remove('hidden');
+      document.getElementById('adminHaslo').value = '';
+      document.getElementById('adminHaslo').disabled = true;
+      aktualizujListeZgloszen();
+      alert("Zalogowano jako administrator.");
+    } else {
+      alert("Nieprawidłowe hasło.");
+    }
+  };
+
+  const wylogujAdmina = () => {
+    adminZalogowany = false;
+    document.getElementById('adminKontrola').classList.add('hidden');
+    document.getElementById('btnWyloguj').classList.add('hidden');
+    document.getElementById('adminHaslo').disabled = false;
+    alert("Wylogowano administratora.");
+  };
+
+  // --- Aktualizacja listy zgłoszeń ---
   const aktualizujListeZgloszen = () => {
     const lista = document.getElementById('listaZgloszen');
-    lista.innerHTML = listaReklam.map((r,i)=>`
-      <li class="flex justify-between items-center border-b border-yellow-500 pb-1">
-        <span><b>${r.nazwa}</b>: ${r.tresc}</span>
-        <div class="space-x-2">
-          <button onclick="zatwierdzReklame(${i})" class="bg-green-600 px-2 py-1 rounded text-white text-xs">Zatwierdź</button>
-          <button onclick="odrzucReklame(${i})" class="bg-red-600 px-2 py-1 rounded text-white text-xs">Odrzuć</button>
-        </div>
-      </li>`).join("");
-  };
-
-  const zatwierdzReklame = i => {
-    zatwierdzoneReklamy.push(listaReklam[i]);
-    listaReklam.splice(i,1);
-    aktualizujListeZgloszen();
-  };
-
-  const odrzucReklame = i => {
-    listaReklam.splice(i,1);
-    aktualizujListeZgloszen();
-  };
-
-  const wyswietlReklameAdmina = () => {
-    const tekst = document.getElementById('reklamaAdmina').value;
-    if (tekst.trim()) {
-      document.getElementById('trescReklamyGlowne').innerText = tekst;
-      document.getElementById('logoGlowne').classList.add('hidden');
-      document.getElementById('reklamaGlowneOkno').classList.remove('hidden');
-      startCzasomierz(30);
+    lista.innerHTML = '';
+    if (listaReklam.length === 0) {
+      lista.innerHTML = '<li class="italic">Brak zgłoszeń.</li>';
+      return;
     }
-  };
 
-  const startCzasomierz = sekundy => {
-    let licznik = sekundy;
-    const czas = document.getElementById('czasomierz');
-    czas.textContent = `Reklama zniknie za ${licznik} sekund`;
-    const interval = setInterval(() => {
-      licznik--;
-      czas.textContent = `Reklama zniknie za ${licznik} sekund`;
-      if (licznik <= 0) {
-        clearInterval(interval);
-        document.getElementById('reklamaGlowneOkno').classList.add('hidden');
-        document.getElementById('reklamaAdmina').value = "";
+    listaReklam.forEach((r, i) => {
+      if (r.status === 'oczekująca') {
+        const li = document.createElement('li');
+        li.className = "flex justify-between items-center border-b border-yellow-500 pb-1";
+        li.innerHTML = `
+          <span><b>${r.nazwa}</b>: ${r.tresc}</span>
+          <div class="space-x-2">
+            <button onclick="zatwierdzReklame(${i})" class="bg-green-600 px-2 py-1 rounded text-white text-xs">Zatwierdź</button>
+            <button onclick="odrzucReklame(${i})" class="bg-red-600 px-2 py-1 rounded text-white text-xs">Odrzuć</button>
+          </div>
+        `;
+        lista.appendChild(li);
       }
-    }, 1000);
+    });
   };
 
-  // Rotacja zatwierdzonych reklam
-  setInterval(()=>{
-    if(zatwierdzoneReklamy.length > 0){
-      const reklama = zatwierdzoneReklamy[indexSlider % zatwierdzoneReklamy.length];
-      document.getElementById('sliderReklam').innerHTML = `
-        ${reklama.logo ? `<img src="${reklama.logo}" class="h-12 mx-auto mb-2 rounded">` : ""}
-        <p>"${reklama.tresc}" – <b>${reklama.nazwa}</b></p>`;
-      indexSlider++;
-    }
-  },5000);
-</script>
+  // --- Zatwierdzanie reklamy ---
+  const zatwierdzReklame = (index) => {
+    if (!adminZalogowany) return alert("Brak dostępu administratora.");
 
-<!-- Dodaj FontAwesome dla ikon jeśli jeszcze nie jest dodane -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    const reklama = listaReklam[index];
+    reklama.status = 'zatwierdzona';
+    reklama.dataZatwierdzenia = new Date().toISOString();
 
+    // Dodajemy do zatwierdzonych
+    zatwierdzoneReklamy.push(reklama);
+    // Usuwamy z listy zgłoszeń
+    listaReklam.splice(index, 1);
+
+    zapiszReklamy();
+    aktualizujListeZgloszen();
+    alert(`Reklama "${reklama.nazwa}" zatwierdzona.`);
+  };
+
+  // --- Odrzucanie reklamy ---
+  const odrzucReklame = (index) => {
+    if (!adminZalogowany) return alert("Brak dostępu administratora.");
+
+    const reklama = listaReklam[index];
+    listaReklam.splice(index, 1);
+    zapiszReklamy();
+    aktualizujListeZgloszen();
+    alert(`Reklama "${reklama.nazwa}" odrzucona.`);
+  };
+
+  // --- Zapisywanie do localStorage ---
+  const zapiszReklamy = () => {
+    localStorage.setItem('listaReklam', JSON.stringify(listaReklam));
+    localStorage.setItem('zatwierdzoneReklamy', JSON.stringify(zatwier      
 <section id="zbiorka" class="py-12 bg-gray-100">
   <div class="max-w-4xl mx-auto px-4">
     <div class="border-4 border-yellow-500 rounded-lg p-8 bg-white shadow-lg">
@@ -1716,6 +2077,7 @@
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
