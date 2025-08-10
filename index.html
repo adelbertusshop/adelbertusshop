@@ -93,6 +93,7 @@
       border-radius: 50%;
       z-index: 1002;
       display: none;
+      user-select: none;
     }
     #zamknijKoszykBtn {
       width: 100%;
@@ -127,12 +128,14 @@
 
 <script>
   let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
   const licznikKoszyka = document.getElementById("licznikKoszyka");
   const koszykEl = document.getElementById("koszyk");
 
   document.getElementById("toggleKoszykBtn").addEventListener("click", () => {
     koszykEl.classList.toggle("show");
   });
+
   document.getElementById("zamknijKoszykBtn").addEventListener("click", () => {
     koszykEl.classList.remove("show");
   });
@@ -218,7 +221,7 @@
 
   aktualizujKoszyk();
 
-  // Funkcja dodawania produktu do koszyka, tak jak masz w sklepie
+  // Funkcja dodawania produktu do koszyka - przykładowa, jeśli potrzebujesz zintegrować z resztą sklepu
   function dodajDoKoszyka(nazwa, cena, rozmiar, kolor, obrazek = null) {
     const istniejący = koszyk.find(p => p.nazwa === nazwa && p.rozmiar === rozmiar && p.kolor === kolor);
     if (istniejący) {
@@ -230,7 +233,7 @@
     aktualizujKoszyk();
   }
 
-  // Inicjalizacja PayPal
+  // Inicjalizacja PayPal Buttons
   paypal.Buttons({
     style: { color: 'gold', shape: 'pill', label: 'pay', height: 40 },
     createOrder: function(data, actions) {
@@ -269,10 +272,10 @@
       alert("Wystąpił błąd podczas płatności PayPal.");
     }
   }).render('#paypal-button-container');
+
 </script>
 </body>
-</html>
-</html></html></html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+</html></html></html></html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -2484,6 +2487,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
