@@ -1553,81 +1553,391 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
   }
 }
 </style>
-<!-- Marketplace 2.0 Gold -->
-<div class="max-w-6xl mx-auto p-4 border-4 border-yellow-500 rounded-2xl shadow-2xl" id="marketplace-wrapper">
+<!-- Marketplace 2.0 Gold Ultra Turbo -->
+<style>
+  /* Reset i podstawy */
+  #marketplace-wrapper {
+    max-width: 96rem;
+    margin: auto;
+    padding: 1rem;
+    border: 6px solid #d4af37;
+    border-radius: 2rem;
+    box-shadow: 0 0 30px #d4af37cc;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+  }
+
+  #marketplace h2 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ffd700;
+    text-shadow: 2px 2px 8px #000;
+  }
+
+  #product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .product-card {
+    background: #222;
+    border: 2px solid #d4af37;
+    border-radius: 1.5rem;
+    box-shadow: 0 0 15px #d4af37bb;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #ffd700ee;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 6px #000;
+  }
+
+  .product-desc {
+    flex-grow: 1;
+    color: #ccc;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    font-size: 1rem;
+  }
+
+  .product-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffa500;
+    margin-bottom: 1rem;
+  }
+
+  .btn {
+    background: #d4af37;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 1rem;
+    font-weight: 700;
+    color: #121212;
+    transition: background 0.3s ease;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background: #ffd700;
+  }
+
+  .btn-danger {
+    background: #bb2525;
+    color: #fff;
+  }
+  .btn-danger:hover {
+    background: #ff4040;
+  }
+
+  #koszyk-wrapper {
+    margin-top: 3rem;
+    background: #111;
+    padding: 2rem;
+    border-radius: 2rem;
+    border: 3px solid #d4af37;
+    box-shadow: 0 0 25px #d4af37cc inset;
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #koszyk-wrapper h3 {
+    font-size: 2rem;
+    color: #ffd700;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-shadow: 1px 1px 6px #000;
+  }
+
+  #koszyk-lista {
+    list-style: none;
+    padding-left: 0;
+    max-height: 240px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    color: #eee;
+  }
+
+  #koszyk-lista li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    margin-bottom: 0.7rem;
+    background: #222;
+    border-radius: 1rem;
+    box-shadow: 0 0 8px #d4af37aa;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  #koszyk-lista li span.qty {
+    background: #ffd700;
+    color: #121212;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.7rem;
+    margin-left: 1rem;
+    font-weight: 700;
+  }
+
+  #koszyk-lista li button {
+    margin-left: 1rem;
+    background: #bb2525;
+    border: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.8rem;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.3s ease;
+  }
+  #koszyk-lista li button:hover {
+    background: #ff4040;
+  }
+
+  #koszyk-suma {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #ffd700;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 6px #000;
+  }
+
+  #wyczyscKoszyk {
+    display: block;
+    margin: 0 auto 1.5rem;
+  }
+
+  /* Admin Panel */
+  #admin-panel {
+    margin-top: 3rem;
+    background: rgba(212, 175, 55, 0.15);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    border: 3px solid #d4af37;
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 20px #d4af37cc inset;
+  }
+  #admin-panel h3 {
+    color: #ffd700;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 6px #000;
+  }
+  #admin-panel input {
+    width: 100%;
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  #admin-panel input:focus {
+    outline: 3px solid #ffd700;
+  }
+  #admin-panel button {
+    width: 100%;
+    font-weight: 800;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 1.2rem;
+  }
+  #admin-panel button:hover {
+    background: #ffd700;
+    color: #121212;
+  }
+
+  /* Login */
+  #admin-login {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  #admin-pass {
+    width: 250px;
+    padding: 0.7rem;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  #admin-login button {
+    margin-left: 1rem;
+    padding: 0.7rem 1.3rem;
+    font-weight: 700;
+    background: #d4af37;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 1rem;
+  }
+  #admin-login button:hover {
+    background: #ffd700;
+  }
+
+  /* Notyfikacje - Snackbar */
+  #snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 1rem;
+    padding: 1rem;
+    position: fixed;
+    z-index: 1100;
+    left: 50%;
+    bottom: 3rem;
+    transform: translateX(-50%);
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 0 15px #d4af37cc;
+  }
+  #snackbar.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 3s;
+  }
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 3rem; opacity: 1;}
+  }
+  @keyframes fadeout {
+    from {bottom: 3rem; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+  /* Reklama */
+  #marketplace-wrapper > div > div > div.bg-yellow-900 {
+    max-width: 40rem;
+    margin: 3rem auto 0;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    border: 3px solid #d4af37;
+    background: linear-gradient(45deg, #4d3e00, #d4af37);
+    color: #1a1a1a;
+    font-weight: 700;
+    box-shadow: 0 0 20px #d4af37cc;
+  }
+  #marketplace-wrapper > div > div > div.bg-yellow-900 h4 {
+    font-size: 1.8rem;
+  }
+  #marketplace-wrapper > div > div > div.bg-yellow-900 p {
+    margin-top: 0.5rem;
+  }
+</style>
+
+<div id="marketplace-wrapper">
   <div class="bg-[#121212] text-white py-16 px-4" id="marketplace">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl sm:text-5xl font-extrabold text-center text-yellow-400 mb-10 drop-shadow-md">Marketplace</h2>
+      <h2>Marketplace</h2>
 
       <!-- Produkty -->
-      <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+      <div id="product-list"></div>
 
       <!-- Koszyk -->
-      <div id="koszyk-wrapper" class="mt-10 bg-gray-900 p-4 rounded-xl border border-yellow-600 max-w-4xl mx-auto">
-        <h3 class="text-yellow-400 text-2xl mb-4">Twój Koszyk</h3>
-        <ul id="koszyk-lista" class="mb-4 list-disc list-inside text-gray-300"></ul>
-        <p id="koszyk-suma" class="text-yellow-300 font-bold mb-4">Suma: 0 zł</p>
-        <button id="wyczyscKoszyk" class="bg-red-600 hover:bg-red-700 py-2 px-4 rounded text-white font-bold">Wyczyść koszyk</button>
-      </div>
-
-      <!-- PayPal Wsparcie -->
-      <div class="text-center mt-16">
-        <h3 class="text-2xl font-bold text-yellow-300 mb-4">Wesprzyj platformę lub kup bezpośrednio:</h3>
-        <paypal-add-to-cart-button data-id="VCXGVWK7VBN4U"></paypal-add-to-cart-button>
-        <script>cartPaypal.AddToCart({ id: "VCXGVWK7VBN4U" });</script>
+      <div id="koszyk-wrapper">
+        <h3>Twój Koszyk</h3>
+        <ul id="koszyk-lista"></ul>
+        <p id="koszyk-suma">Suma: 0 zł</p>
+        <button id="wyczyscKoszyk" class="btn btn-danger">Wyczyść koszyk</button>
+        <div id="paypal-button-container"></div>
       </div>
 
       <!-- Reklama -->
-      <div class="bg-yellow-900 bg-opacity-10 border border-yellow-500 p-6 rounded-xl mt-12">
-        <h4 class="text-xl font-semibold text-yellow-300 mb-2">📣 Reklamuj się tutaj!</h4>
+      <div>
+        <h4>📣 Reklamuj się tutaj!</h4>
         <p>30 sekund Twojej reklamy na stronie Marketplace – opłać przez <strong>BLIK</strong> lub <strong>PayPal</strong>.</p>
-        <p class="text-sm text-yellow-400 mt-2">Kontakt: mielniczukgrzegosz74@gmail.com</p>
+        <p class="text-sm">Kontakt: mielniczukgrzegosz74@gmail.com</p>
       </div>
 
       <!-- Panel Admina -->
-      <div id="admin-panel" class="hidden mt-16 bg-gray-800 bg-opacity-50 p-6 rounded-xl border border-yellow-700">
-        <h3 class="text-2xl font-bold text-yellow-300 mb-4">Panel Administratora</h3>
-        <input id="product-name" class="block w-full mb-2 p-2 rounded text-black" placeholder="Nazwa produktu">
-        <input id="product-desc" class="block w-full mb-2 p-2 rounded text-black" placeholder="Opis">
-        <input id="product-price" type="number" min="0.01" step="0.01" class="block w-full mb-2 p-2 rounded text-black" placeholder="Cena (zł)">
-        <input id="product-image" class="block w-full mb-2 p-2 rounded text-black" placeholder="URL obrazka">
-        <button onclick="addProduct()" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded mb-4 w-full">Dodaj produkt</button>
-        <button onclick="logoutAdmin()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full">Wyloguj</button>
+      <div id="admin-panel" class="hidden">
+        <h3>Panel Administratora</h3>
+        <input id="product-name" placeholder="Nazwa produktu" />
+        <input id="product-desc" placeholder="Opis" />
+        <input id="product-price" type="number" min="0.01" step="0.01" placeholder="Cena (zł)" />
+        <input id="product-image" placeholder="URL obrazka" />
+        <button onclick="addProduct()" class="btn">Dodaj produkt</button>
+        <button onclick="logoutAdmin()" class="btn btn-danger">Wyloguj</button>
       </div>
 
-      <!-- Autoryzacja do admina -->
-      <div class="mt-10 text-center">
-        <input id="admin-pass" class="p-2 text-black rounded" placeholder="Hasło administratora">
-        <button onclick="checkAdmin()" class="ml-2 bg-yellow-600 px-4 py-2 rounded font-bold hover:bg-yellow-700">Zaloguj</button>
+      <!-- Admin login -->
+      <div id="admin-login">
+        <input id="admin-pass" type="password" placeholder="Hasło administratora" />
+        <button onclick="checkAdmin()" class="btn">Zaloguj</button>
       </div>
     </div>
   </div>
 </div>
 
+<div id="snackbar"></div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
+
 <script>
+  // Snackbar helper
+  function showSnackbar(message) {
+    const sb = document.getElementById('snackbar');
+    sb.textContent = message;
+    sb.className = "show";
+    setTimeout(() => { sb.className = sb.className.replace("show", ""); }, 3500);
+  }
+
   let products = JSON.parse(localStorage.getItem("products")) || [];
-  let koszyk = [];
+  let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
 
   function renderProducts() {
     const list = document.getElementById("product-list");
     list.innerHTML = "";
-    if(products.length === 0) {
-      list.innerHTML = '<p class="text-center text-yellow-400 col-span-full">Brak produktów w marketplace.</p>';
+    if (products.length === 0) {
+      list.innerHTML = '<p class="text-center text-yellow-400">Brak produktów w marketplace.</p>';
       return;
     }
     products.forEach((product, index) => {
-      list.innerHTML += `
-        <div class="bg-gray-900 p-4 rounded-xl border border-yellow-600 shadow-lg flex flex-col">
-          <img src="${product.image}" alt="${product.name}" class="rounded mb-3 w-full h-52 object-cover">
-          <h4 class="text-xl font-bold text-yellow-400">${product.name}</h4>
-          <p class="text-gray-300 flex-grow">${product.desc}</p>
-          <p class="text-yellow-300 font-bold my-2">${product.price} zł</p>
-          <div class="flex justify-between items-center">
-            <button onclick="removeProduct(${index})" class="text-sm text-red-400 underline">Usuń</button>
-            <button onclick="addToCart(${index})" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-1 px-3 rounded">Dodaj do koszyka</button>
-          </div>
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" />
+        <h4 class="product-name">${product.name}</h4>
+        <p class="product-desc">${product.desc}</p>
+        <p class="product-price">${product.price} zł</p>
+        <div style="display:flex; justify-content:space-between;">
+          <button onclick="removeProduct(${index})" class="btn btn-danger">Usuń</button>
+          <button onclick="addToCart(${index})" class="btn">Dodaj do koszyka</button>
         </div>
       `;
+      list.appendChild(card);
     });
   }
 
@@ -1638,15 +1948,14 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     const image = document.getElementById("product-image").value.trim();
 
     if (!name || !desc || !image || isNaN(price) || price <= 0) {
-      alert("Wypełnij wszystkie pola poprawnie. Cena musi być liczbą dodatnią.");
+      showSnackbar("Wypełnij wszystkie pola poprawnie. Cena musi być liczbą dodatnią.");
       return;
     }
 
     products.push({ name, desc, price: price.toFixed(2), image });
     localStorage.setItem("products", JSON.stringify(products));
     renderProducts();
-    alert(`Produkt "${name}" dodany pomyślnie.`);
-    // Reset formularza
+    showSnackbar(`Produkt "${name}" dodany pomyślnie.`);
     document.getElementById("product-name").value = "";
     document.getElementById("product-desc").value = "";
     document.getElementById("product-price").value = "";
@@ -1658,28 +1967,43 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     products.splice(index, 1);
     localStorage.setItem("products", JSON.stringify(products));
     renderProducts();
-    alert("Produkt został usunięty.");
+
+    // Usuń z koszyka jeśli jest
+    koszyk = koszyk.filter(item => item.name !== products[index]?.name);
+    localStorage.setItem("koszyk", JSON.stringify(koszyk));
+    renderCart();
+
+    showSnackbar("Produkt został usunięty.");
   }
 
   function checkAdmin() {
     const pass = document.getElementById("admin-pass").value;
     if (pass === "Wojownik.03") {
       document.getElementById("admin-panel").classList.remove("hidden");
-      document.getElementById("admin-pass").value = "";
+      document.getElementById("admin-login").style.display = "none";
+      showSnackbar("Zalogowano pomyślnie!");
     } else {
-      alert("Błędne hasło");
+      showSnackbar("Błędne hasło");
     }
   }
 
   function logoutAdmin() {
     document.getElementById("admin-panel").classList.add("hidden");
+    document.getElementById("admin-login").style.display = "block";
+    showSnackbar("Wylogowano.");
   }
 
   function addToCart(index) {
     const produkt = products[index];
-    koszyk.push(produkt);
-    alert(`Dodano "${produkt.name}" do koszyka.`);
+    let istnieje = koszyk.find(p => p.name === produkt.name);
+    if (istnieje) {
+      istnieje.qty++;
+    } else {
+      koszyk.push({...produkt, qty: 1});
+    }
+    localStorage.setItem("koszyk", JSON.stringify(koszyk));
     renderCart();
+    showSnackbar(`Dodano "${produkt.name}" do koszyka.`);
   }
 
   function renderCart() {
@@ -1688,28 +2012,11 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     lista.innerHTML = "";
     let suma = 0;
     koszyk.forEach((item, idx) => {
-      suma += parseFloat(item.price);
+      suma += parseFloat(item.price) * item.qty;
       const li = document.createElement("li");
       li.textContent = `${item.name} - ${item.price} zł`;
-      lista.appendChild(li);
-    });
-    sumaEl.textContent = `Suma: ${suma.toFixed(2)} zł`;
-  }
-
-  document.getElementById("wyczyscKoszyk").addEventListener("click", () => {
-    if (koszyk.length === 0) {
-      alert("Koszyk jest już pusty.");
-      return;
-    }
-    if (confirm("Czy na pewno chcesz wyczyścić koszyk?")) {
-      koszyk = [];
-      renderCart();
-    }
-  });
-
-  renderProducts();
-  renderCart();
-</script>      
+      // ilość + przyciski +
+      const qtySpan = document.createElement("span");
 <!-- Sekcja Reklama -->
 <section id="reklama" class="py-16 bg-gray-900 text-center text-yellow-100">
   <div class="max-w-6xl mx-auto p-4 border-4 border-yellow-500 rounded-2xl shadow-2xl">
@@ -2226,6 +2533,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
