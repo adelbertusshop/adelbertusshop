@@ -1889,61 +1889,60 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     if (!confirm(`Czy na pewno chcesz usunąć produkt "${products[index].name}"?`)) return;
     const removedName = products[index].name;
     products.splice(index,      
- Sekcja Reklama -->
-<section 
+<!-- Sekcja Reklama -->
+<!-- Sekcja Reklama -->
 <section id="reklama" class="py-16 bg-gray-900 text-center text-yellow-100">
   <div class="max-w-6xl mx-auto p-4 border-4 border-yellow-500 rounded-2xl shadow-2xl">
     <div class="bg-gray-800 p-8 rounded-2xl">
-      <h2 class="text-4xl font-bold mb-4 text-yellow-400"><i class="fas fa-bullhorn mr-2"></i>Zareklamuj się na AdelbertusShop</h2>
-      <p class="mb-2 text-lg">Twoja reklama pojawi się na stronie głównej na <strong>30 sekund</strong> po akceptacji.</p>
-      <p class="mb-6 text-sm">Płatność: <strong>BLIK 573-939-925</strong> lub PayPal (poniżej).</p>
+      <h2 class="text-4xl font-bold mb-4 text-yellow-400">
+        <i class="fas fa-bullhorn mr-2"></i>Zareklamuj się na AdelbertusShop
+      </h2>
+      <p class="mb-2 text-lg">
+        Płatność BLIK: <strong>573-939-925</strong><br/>
+        Lub zapłać PayPalem poniżej (PLN).
+      </p>
+      <div id="paypal-container-reklama" class="mb-6"></div>
 
-      <div class="my-4">
-        <div id="paypal-container-reklama"></div>
-        <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
-        <script>
-          paypal.HostedButtons({
-            hostedButtonId: "L4639S4363CZE",
-          }).render("#paypal-container-reklama");
-        </script>
-      </div>
-
+      <!-- Formularz reklamy -->
       <form id="formularzReklamy" class="max-w-xl mx-auto p-4 bg-gray-700 rounded-xl shadow" novalidate>
-        <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy lub produktu" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" minlength="2" maxlength="50">
-        <textarea id="trescReklamy" placeholder="Treść reklamy" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" minlength="10" maxlength="200"></textarea>
-        <input type="email" id="emailReklamodawcy" placeholder="Twój email" required class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
-
-        <input type="file" id="logoReklamy" accept="image/*" class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100">
+        <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy lub produktu" required
+          class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" minlength="2" maxlength="50" />
+        <textarea id="trescReklamy" placeholder="Treść reklamy" required
+          class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" minlength="10" maxlength="200"></textarea>
+        <input type="email" id="emailReklamodawcy" placeholder="Twój email" required
+          class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" />
+        <input type="file" id="logoReklamy" accept="image/*"
+          class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" />
         <div id="logoPodglad" class="mb-4 hidden">
           <p class="text-sm mb-1 text-yellow-300">Podgląd logotypu:</p>
-          <img id="podgladObrazka" src="" alt="Podgląd logotypu" class="max-h-32 mx-auto rounded shadow-lg">
+          <img id="podgladObrazka" src="" alt="Podgląd logotypu" class="max-h-32 mx-auto rounded shadow-lg" />
         </div>
-
         <select id="okresReklamy" class="w-full p-2 mb-4 border rounded bg-gray-900 text-yellow-100" required>
           <option disabled selected>Wybierz okres reklamy</option>
           <option value="1">1 dzień – 10 zł</option>
           <option value="7">1 tydzień – 49 zł</option>
           <option value="30">1 miesiąc – 189 zł</option>
         </select>
-
         <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded font-semibold transition">
-          <i class="fas fa-paper-plane mr-2"></i>Wyślij zgłoszenie
+          <i class="fas fa-paper-plane mr-2"></i>Wyślij zgłoszenie (płatność Blik lub PayPal)
         </button>
       </form>
 
+      <!-- Slider reklam -->
       <div class="mt-8">
-        <h3 class="text-2xl font-semibold text-yellow-400 mb-4"><i class="fas fa-star mr-1"></i>Ostatnie reklamy</h3>
+        <h3 class="text-2xl font-semibold text-yellow-400 mb-4"><i class="fas fa-star mr-1"></i>Aktywne reklamy</h3>
         <div id="sliderReklam" class="h-24 flex items-center justify-center text-lg italic text-yellow-200">
           Brak reklam do wyświetlenia
         </div>
       </div>
 
+      <!-- Panel admina -->
       <div class="mt-10">
         <button onclick="pokazPanelAdmina()" class="text-sm text-yellow-400 underline">
           <i class="fas fa-user-shield mr-1"></i>Panel administratora
         </button>
         <div id="panelAdmina" class="hidden mt-4 bg-gray-700 border p-4 rounded-xl shadow-md max-w-2xl mx-auto">
-          <input type="password" id="adminHaslo" placeholder="Podaj hasło" class="border p-2 mb-2 w-full rounded bg-gray-900 text-yellow-100">
+          <input type="password" id="adminHaslo" placeholder="Podaj hasło" class="border p-2 mb-2 w-full rounded bg-gray-900 text-yellow-100" />
           <button onclick="sprawdzHaslo()" class="bg-yellow-500 text-white px-4 py-2 rounded font-semibold">
             <i class="fas fa-sign-in-alt mr-1"></i>Zaloguj
           </button>
@@ -1960,20 +1959,48 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
   </div>
 </section>
 
+<!-- Okno głównej reklamy -->
 <div id="reklamaGlowneOkno" class="hidden fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-yellow-300 text-black px-6 py-4 rounded-xl shadow-2xl max-w-md text-center">
-  <img id="logoGlowne" src="" alt="" class="max-h-24 mx-auto mb-2 hidden rounded">
+  <img id="logoGlowne" src="" alt="" class="max-h-24 mx-auto mb-2 hidden rounded" />
   <p id="trescReklamyGlowne" class="text-lg font-semibold"></p>
   <p class="text-xs mt-2" id="czasomierz"></p>
 </div>
 
+<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
 <script>
+  // Init PayPal przycisk - przekierowanie do płatności za reklamę
+  paypal.Buttons({
+    style: {
+      layout: 'horizontal',
+      color: 'gold',
+      shape: 'pill',
+      label: 'pay'
+    },
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: '49.00' }, // standardowa cena 7 dni
+          description: 'Reklama na AdelbertusShop - 7 dni'
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        alert('Dziękujemy za płatność PayPal, Twoja reklama oczekuje na zatwierdzenie admina.');
+        // Możesz tu dodać automatyczne zatwierdzenie lub inne akcje
+      });
+    }
+  }).render('#paypal-container-reklama');
+
+  // Zmienne
   let listaReklam = JSON.parse(localStorage.getItem('listaReklam')) || [];
   let zatwierdzoneReklamy = JSON.parse(localStorage.getItem('zatwierdzoneReklamy')) || [];
   let adminZalogowany = false;
   let indexReklamy = 0;
   let czasPokazuSekundy = 30;
+  let timerInterval;
 
-  // Podgląd loga
+  // Podgląd logo
   document.getElementById('logoReklamy').addEventListener('change', e => {
     const plik = e.target.files[0];
     if (plik) {
@@ -1986,7 +2013,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     }
   });
 
-  // Formularz zgłoszenia reklamy
+  // Formularz reklamy - dodaje reklamę do listy oczekujących
   document.getElementById('formularzReklamy').addEventListener('submit', e => {
     e.preventDefault();
     const nazwa = document.getElementById('nazwaFirmy').value.trim();
@@ -2010,16 +2037,17 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
       nazwa,
       tresc,
       email,
-      okres, // dni
+      okres,
       logo,
       status: 'oczekująca',
       dataZgloszenia: new Date().toISOString()
     });
 
     localStorage.setItem('listaReklam', JSON.stringify(listaReklam));
-    alert("Reklama zgłoszona, oczekuje na akceptację administratora.");
+    alert('Reklama zgłoszona, oczekuje na zatwierdzenie administratora.');
     e.target.reset();
     document.getElementById('logoPodglad').classList.add('hidden');
+    aktualizujListeZgloszen();
   });
 
   // Panel admina
@@ -2035,9 +2063,9 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
       document.getElementById('adminHaslo').value = '';
       document.getElementById('adminHaslo').disabled = true;
       aktualizujListeZgloszen();
-      alert("Zalogowano jako administrator.");
+      alert('Zalogowano jako administrator.');
     } else {
-      alert("Nieprawidłowe hasło.");
+      alert('Nieprawidłowe hasło.');
     }
   }
   function wylogujAdmina() {
@@ -2045,10 +2073,10 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     document.getElementById('adminKontrola').classList.add('hidden');
     document.getElementById('btnWyloguj').classList.add('hidden');
     document.getElementById('adminHaslo').disabled = false;
-    alert("Wylogowano administratora.");
+    alert('Wylogowano administratora.');
   }
 
-  // Aktualizacja listy zgłoszeń
+  // Aktualizacja listy zgłoszeń w panelu admina
   function aktualizujListeZgloszen() {
     const lista = document.getElementById('listaZgloszen');
     lista.innerHTML = '';
@@ -2072,9 +2100,9 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     });
   }
 
-  // Zatwierdzanie reklamy
+  // Zatwierdzanie reklamy - przenosi do zatwierdzonych
   function zatwierdzReklame(index) {
-    if (!adminZalogowany) return alert("Brak dostępu administratora.");
+    if (!adminZalogowany) return alert('Brak dostępu administratora.');
     const reklama = listaReklam[index];
     reklama.status = 'zatwierdzona';
     reklama.dataZatwierdzenia = new Date().toISOString();
@@ -2088,16 +2116,16 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     alert(`Reklama "${reklama.nazwa}" zatwierdzona.`);
   }
 
-  // Odrzucanie reklamy
+  // Odrzucanie reklamy - usuwa z oczekujących
   function odrzucReklame(index) {
-    if (!adminZalogowany) return alert("Brak dostępu administratora.");
+    if (!adminZalogowany) return alert('Brak dostępu administratora.');
     listaReklam.splice(index, 1);
     zapiszReklamy();
     aktualizujListeZgloszen();
-    alert(`Reklama odrzucona.`);
+    alert('Reklama odrzucona.');
   }
 
-  // Zapisywanie reklam
+  // Zapisywanie w localStorage
   function zapiszReklamy() {
     localStorage.setItem('listaReklam', JSON.stringify(listaReklam));
     localStorage.setItem('zatwierdzoneReklamy', JSON.stringify(zatwierdzoneReklamy));
@@ -2113,7 +2141,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     zapiszReklamy();
   }
 
-  // Wyświetlanie aktywnej reklamy (rotator)
+  // Rotator reklam - pokazuje na zmianę reklamy zatwierdzone
   function pokazReklame() {
     usunWygasleReklamy();
     if (zatwierdzoneReklamy.length === 0) {
@@ -2123,15 +2151,42 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     }
     indexReklamy %= zatwierdzoneReklamy.length;
     const reklama = zatwierdzoneReklamy[indexReklamy];
-    // Pokaz podgląd w sliderze (scrolling tekst lub fade)
     document.getElementById('sliderReklam').textContent = `${reklama.nazwa}: ${reklama.tresc}`;
-    // Pokaz reklamę główną na 30 sekund z odliczaniem
+
     const glowneOkno = document.getElementById('reklamaGlowneOkno');
     const logo = document.getElementById('logoGlowne');
     const tresc = document.getElementById('trescReklamyGlowne');
     const czas = document.getElementById('czasomierz');
 
     if (reklama.logo) {
+      logo.src = reklama.logo;
+      logo.classList.remove('hidden');
+    } else {
+      logo.classList.add('hidden');
+    }
+    tresc.textContent = reklama.tresc;
+    glowneOkno.classList.remove('hidden');
+
+    let czasPozostaly = czasPokazuSekundy;
+    czas.textContent = `Pozostało: ${czasPozostaly} sekund`;
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      czasPozostaly--;
+      if (czasPozostaly <= 0) {
+        clearInterval(timerInterval);
+        glowneOkno.classList.add('hidden');
+        indexReklamy++;
+        pokazReklame();
+      } else {
+        czas.textContent = `Pozostało: ${czasPozostaly} sekund`;
+      }
+    }, 1000);
+  }
+
+  // Startujemy rotator
+  pokazReklame();
+</script>
       
                    id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
   <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
@@ -2356,6 +2411,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
