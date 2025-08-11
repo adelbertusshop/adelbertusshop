@@ -1452,717 +1452,435 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
   }
 }
 </style>
-<!-- Marketplace 2.0 Gold Ultra Turbo -->
+<!-- Marketplace + Reklama (wklej całość tam gdzie chcesz) -->
 <style>
-  /* Reset i podstawy */
-  #marketplace-wrapper {
-    max-width: 96rem;
-    margin: auto;
-    padding: 1rem;
-    border: 6px solid #d4af37;
-    border-radius: 2rem;
-    box-shadow: 0 0 30px #d4af37cc;
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #fff;
-  }
-
-  #marketplace h2 {
-    font-size: 3.5rem;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #ffd700;
-    text-shadow: 2px 2px 8px #000;
-  }
-
-  #product-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.75rem;
-  }
-
-  .product-card {
-    background: #222;
-    border: 2px solid #d4af37;
-    border-radius: 1.5rem;
-    box-shadow: 0 0 15px #d4af37bb;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-  }
-  .product-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px #ffd700ee;
-  }
-
-  .product-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .product-name {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #ffd700;
-    margin-bottom: 0.5rem;
-    text-shadow: 1px 1px 6px #000;
-  }
-
-  .product-desc {
-    flex-grow: 1;
-    color: #ccc;
-    margin-bottom: 1rem;
-    line-height: 1.3;
-    font-size: 1rem;
-  }
-
-  .product-price {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #ffa500;
-    margin-bottom: 1rem;
-  }
-
-  .btn {
-    background: #d4af37;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 1rem;
-    font-weight: 700;
-    color: #121212;
-    transition: background 0.3s ease;
-    cursor: pointer;
-  }
-  .btn:hover {
-    background: #ffd700;
-  }
-
-  .btn-danger {
-    background: #bb2525;
-    color: #fff;
-  }
-  .btn-danger:hover {
-    background: #ff4040;
-  }
-
-  #koszyk-wrapper {
-    margin-top: 3rem;
-    background: #111;
-    padding: 2rem;
-    border-radius: 2rem;
-    border: 3px solid #d4af37;
-    box-shadow: 0 0 25px #d4af37cc inset;
-    max-width: 50rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  #koszyk-wrapper h3 {
-    font-size: 2rem;
-    color: #ffd700;
-    margin-bottom: 1rem;
-    text-align: center;
-    text-shadow: 1px 1px 6px #000;
-  }
-
-  #koszyk-lista {
-    list-style: none;
-    padding-left: 0;
-    max-height: 240px;
-    overflow-y: auto;
-    margin-bottom: 1rem;
-    color: #eee;
-  }
-
-  #koszyk-lista li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.6rem 1rem;
-    margin-bottom: 0.7rem;
-    background: #222;
-    border-radius: 1rem;
-    box-shadow: 0 0 8px #d4af37aa;
-    font-weight: 600;
-    font-size: 1.1rem;
-  }
-
-  #koszyk-lista li span.qty {
-    background: #ffd700;
-    color: #121212;
-    padding: 0.2rem 0.6rem;
-    border-radius: 0.7rem;
-    margin-left: 1rem;
-    font-weight: 700;
-  }
-
-  #koszyk-lista li button {
-    margin-left: 0.5rem;
-    background: #bb2525;
-    border: none;
-    padding: 0.3rem 0.7rem;
-    border-radius: 0.8rem;
-    color: white;
-    cursor: pointer;
-    font-weight: 700;
-    transition: background 0.3s ease;
-  }
-  #koszyk-lista li button:hover {
-    background: #ff4040;
-  }
-
-  #koszyk-suma {
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: #ffd700;
-    text-align: center;
-    margin-bottom: 1rem;
-    text-shadow: 1px 1px 6px #000;
-  }
-
-  #wyczyscKoszyk {
-    display: block;
-    margin: 0 auto 1.5rem;
-  }
-
-  /* Admin Panel */
-  #admin-panel {
-    margin-top: 3rem;
-    background: rgba(212, 175, 55, 0.15);
-    border-radius: 1.5rem;
-    padding: 2rem;
-    border: 3px solid #d4af37;
-    max-width: 40rem;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 0 20px #d4af37cc inset;
-  }
-  #admin-panel h3 {
-    color: #ffd700;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: 1rem;
-    text-shadow: 1px 1px 6px #000;
-  }
-  #admin-panel input {
-    width: 100%;
-    padding: 0.7rem;
-    margin-bottom: 1rem;
-    border-radius: 1rem;
-    border: none;
-    font-weight: 600;
-    font-size: 1rem;
-  }
-  #admin-panel input:focus {
-    outline: 3px solid #ffd700;
-  }
-  #admin-panel button {
-    width: 100%;
-    font-weight: 800;
-    padding: 0.8rem;
-    border-radius: 1rem;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    font-size: 1.2rem;
-  }
-  #admin-panel button:hover {
-    background: #ffd700;
-    color: #121212;
-  }
-
-  /* Login */
-  #admin-login {
-    text-align: center;
-    margin-top: 2rem;
-  }
-  #admin-pass {
-    width: 250px;
-    padding: 0.7rem;
-    border-radius: 1rem;
-    border: none;
-    font-size: 1rem;
-    font-weight: 600;
-  }
-  #admin-login button {
-    margin-left: 1rem;
-    padding: 0.7rem 1.3rem;
-    font-weight: 700;
-    background: #d4af37;
-    border: none;
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    font-size: 1rem;
-  }
-  #admin-login button:hover {
-    background: #ffd700;
-  }
-
-  /* Notyfikacje - Snackbar */
-  #snackbar {
-    visibility: hidden;
-    min-width: 250px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 1rem;
-    padding: 1rem;
-    position: fixed;
-    z-index: 1100;
-    left: 50%;
-    bottom: 3rem;
-    transform: translateX(-50%);
-    font-weight: 700;
-    font-size: 1.1rem;
-    box-shadow: 0 0 15px #d4af37cc;
-  }
-  #snackbar.show {
-    visibility: visible;
-    animation: fadein 0.5s, fadeout 0.5s 3s;
-  }
-  @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 3rem; opacity: 1;}
-  }
-  @keyframes fadeout {
-    from {bottom: 3rem; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
-  }
-
-  /* Reklama */
-  #marketplace-wrapper > div > div > div.bg-yellow-900 {
-    max-width: 40rem;
-    margin: 3rem auto 0;
-    padding: 1.5rem;
-    border-radius: 1.5rem;
-    border: 3px solid #d4af37;
-    background: linear-gradient(45deg, #4d3e00, #d4af37);
-    color: #1a1a1a;
-    font-weight: 700;
-    box-shadow: 0 0 20px #d4af37cc;
-  }
-  #marketplace-wrapper > div > div > div.bg-yellow-900 h4 {
-    font-size: 1.8rem;
-  }
-  #marketplace-wrapper > div > div > div.bg-yellow-900 p {
-    margin-top: 0.5rem;
-  }
+  /* Minimalne style sekcji (dostosuj do projektu) */
+  #mp-wrapper{max-width:1100px;margin:2rem auto;padding:1.2rem;border:4px solid #d4af37;border-radius:16px;background:#0f0f0f;color:#fff}
+  #mp-header{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+  #mp-header h2{color:#ffd700;margin:0;font-size:2rem}
+  #product-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;margin-top:1rem}
+  .mp-card{background:#1b1b1b;padding:12px;border-radius:12px;border:2px solid #2b2b2b}
+  .mp-card img{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:8px}
+  .mp-name{color:#ffd700;font-weight:800}
+  .mp-desc{color:#ccc;font-size:0.95rem;height:42px;overflow:hidden}
+  .mp-price{color:#ffa500;font-weight:800;margin-top:6px}
+  .mp-actions{display:flex;gap:.5rem;margin-top:8px;justify-content:flex-end}
+  .btn{background:#d4af37;border:none;padding:.5rem .8rem;border-radius:10px;cursor:pointer;font-weight:800;color:#121212}
+  .btn-danger{background:#bb2525;color:#fff}
+  /* koszyk w tej sekcji */
+  #mp-cart{margin-top:1.4rem;background:#111;padding:12px;border-radius:12px;border:2px solid #2b2b2b}
+  #mp-cart h3{color:#ffd700;margin:0 0 .6rem 0}
+  #mp-cart ul{list-style:none;padding:0;margin:0;max-height:220px;overflow:auto}
+  #mp-cart li{display:flex;justify-content:space-between;padding:8px;background:#1a1a1a;margin-bottom:8px;border-radius:8px}
+  #mp-cart .qty{background:#ffd700;color:#121212;padding:2px 8px;border-radius:8px;margin-left:8px;font-weight:800}
+  /* reklama */
+  #ad-area{margin-top:1.4rem;padding:12px;border-radius:12px;border:2px dashed #d4af37;background:#121212}
+  #ad-slots{display:flex;gap:.6rem;margin-top:.8rem}
+  .ad-slot{flex:1;min-height:80px;border-radius:10px;background:#2b2b2b;color:#fff;display:flex;align-items:center;justify-content:center;padding:8px;position:relative}
+  .ad-slot .slot-title{position:absolute;top:6px;left:8px;font-size:12px;color:#ffd700}
+  /* admin panel (proste) */
+  #admin-panel{margin-top:1rem;padding:12px;border-radius:12px;background:rgba(212,175,55,0.06);border:1px solid #3a3a3a}
+  #mp-form input,#mp-form textarea, #mp-form select{width:100%;padding:.6rem;margin:.4rem 0;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff}
+  .small{font-size:.9rem;color:#ccc}
+  .center{text-align:center}
 </style>
 
-<div id="marketplace-wrapper">
-  <div class="bg-[#121212] text-white py-16 px-4" id="marketplace">
-    <div class="max-w-6xl mx-auto">
-      <h2>Marketplace</h2>
+<div id="mp-wrapper">
+  <div id="mp-header">
+    <h2>Marketplace – sprzedawaj do 3 produktów + reklama</h2>
+    <div class="small">BLIK: <strong>573-939-925</strong> (z dopiskiem "reklama") • PayPal: po prawej</div>
+  </div>
 
-      <!-- Produkty -->
-      <div id="product-list"></div>
+  <!-- Product list -->
+  <div id="product-list"></div>
 
-      <!-- Koszyk -->
-      <div id="koszyk-wrapper">
-        <h3>Twój Koszyk</h3>
-        <ul id="koszyk-lista"></ul>
-        <p id="koszyk-suma">Suma: 0 zł</p>
-        <button id="wyczyscKoszyk" class="btn btn-danger">Wyczyść koszyk</button>
-        <div id="paypal-button-container"></div>
+  <!-- Cart -->
+  <div id="mp-cart">
+    <h3>Twój koszyk</h3>
+    <ul id="mp-cart-list"></ul>
+    <div id="mp-cart-sum" class="center" style="margin-top:8px;font-weight:900;color:#ffd700">Suma: 0.00 zł</div>
+    <div class="center" style="margin-top:8px">
+      <button id="mp-clear" class="btn btn-danger">Wyczyść koszyk</button>
+      <!-- PayPal checkout for cart is handled globally on site; here we provide a quick checkout button that opens PayPal Buttons container -->
+      <div id="mp-paypal-container" style="margin-top:8px"></div>
+    </div>
+  </div>
+
+  <!-- Ad area: form for seller to submit (max 3 products per seller) -->
+  <div id="ad-area">
+    <h3 class="small">Zgłoszenie sprzedaży + reklama (maks 3 produkty na zgłoszenie)</h3>
+
+    <form id="mp-form">
+      <input id="seller-name" placeholder="Nazwa sprzedawcy / firma (wymagane)" required />
+      <input id="seller-email" placeholder="E-mail (odbierzesz powiadomienia)" type="email" required />
+
+      <label class="small">Produkty (wpisz max 3) — nazwa | opis | cena | obrazek(URL)</label>
+      <div id="products-inputs">
+        <textarea placeholder="Produkt 1: nazwa | opis | cena | url" rows="2"></textarea>
+        <textarea placeholder="Produkt 2 (opcjonalnie)" rows="2"></textarea>
+        <textarea placeholder="Produkt 3 (opcjonalnie)" rows="2"></textarea>
       </div>
 
-      <!-- Reklama -->
-      <div>
-        <h4>📣 Reklamuj się tutaj!</h4>
-        <p>30 sekund Twojej reklamy na stronie Marketplace – opłać przez <strong>BLIK</strong> lub <strong>PayPal</strong>.</p>
-        <p class="text-sm">Kontakt: mielniczukgrzegosz74@gmail.com</p>
+      <label class="small">Reklama (opcjonalnie)</label>
+      <textarea id="ad-text" placeholder="Tekst reklamy (max 200 znaków)" rows="2"></textarea>
+      <input id="ad-logo" type="text" placeholder="URL logotypu (opcjonalnie)" />
+
+      <select id="ad-period">
+        <option value="0">Nie chcę reklamy (tylko listing)</option>
+        <option value="1">1 dzień – 10 zł</option>
+        <option value="7">1 tydzień – 49 zł</option>
+        <option value="30">1 miesiąc – 189 zł</option>
+      </select>
+
+      <div class="small">Wybierz sposób zapłaty za reklamę:</div>
+      <label><input type="radio" name="pay-method" value="blik" checked /> BLIK (573-939-925)</label>
+      <label><input type="radio" name="pay-method" value="paypal" /> PayPal (przycisk poniżej)</label>
+
+      <div style="margin-top:.6rem" class="center">
+        <!-- Twój hosted PayPal button na reklamy (w razie wyboru PayPal) -->
+        <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+        <div id="paypal-container-L4639S4363CZE"></div>
+        <script>
+          // Hosted button will render; nie wiążemy go automatycznie z formularzem (weryfikacja ręczna)
+          if(window.paypal && paypal.HostedButtons){
+            try {
+              paypal.HostedButtons({ hostedButtonId: "L4639S4363CZE" }).render("#paypal-container-L4639S4363CZE");
+            } catch(e){ /* ignore if already loaded */ }
+          }
+        </script>
       </div>
 
-      <!-- Panel Admina -->
-      <div id="admin-panel" class="hidden">
-        <h3>Panel Administratora</h3>
-        <input id="product-name" placeholder="Nazwa produktu" />
-        <input id="product-desc" placeholder="Opis" />
-        <input id="product-price" type="number" min="0.01" step="0.01" placeholder="Cena (zł)" />
-        <input id="product-image" placeholder="URL obrazka" />
-        <button onclick="addProduct()" class="btn">Dodaj produkt</button>
-        <button onclick="logoutAdmin()" class="btn btn-danger">Wyloguj</button>
+      <div style="margin-top:.8rem" class="center">
+        <button type="button" id="mp-submit" class="btn">Wyślij zgłoszenie</button>
+      </div>
+      <p class="small">Po wysłaniu: zgłoszenie trafi do panelu administratora. Jeśli wybrałeś BLIK -> wykonaj przelew z dopiskiem "reklama", następnie w panelu admina zatwierdzę po weryfikacji płatności. (Bez backendu płatność weryfikujesz ręcznie.)</p>
+    </form>
+
+    <!-- Ad slots (3) visible na stronie -->
+    <div id="ad-slots">
+      <div class="ad-slot" data-slot="0"><div class="slot-title">Slot 1</div><div class="slot-content small">Brak reklamy</div></div>
+      <div class="ad-slot" data-slot="1"><div class="slot-title">Slot 2</div><div class="slot-content small">Brak reklamy</div></div>
+      <div class="ad-slot" data-slot="2"><div class="slot-title">Slot 3</div><div class="slot-content small">Brak reklamy</div></div>
+    </div>
+
+    <!-- Admin control -->
+    <div id="admin-panel" class="">
+      <h3 class="small">Panel admina (tylko ty)</h3>
+      <div class="small">Wprowadź hasło, by zobaczyć zgłoszenia</div>
+      <input id="admin-pass" type="password" placeholder="Hasło admina" />
+      <div style="margin:.5rem 0">
+        <button id="admin-login-btn" class="btn">Zaloguj</button>
+        <button id="admin-logout-btn" class="btn btn-danger" style="display:none">Wyloguj</button>
       </div>
 
-      <!-- Admin login -->
-      <div id="admin-login">
-        <input id="admin-pass" type="password" placeholder="Hasło administratora" />
-        <button onclick="checkAdmin()" class="btn">Zaloguj</button>
+      <div id="admin-controls" style="display:none;margin-top:.6rem">
+        <div><strong>Zgłoszenia:</strong></div>
+        <ul id="applications-list" style="max-height:220px;overflow:auto;padding:0;margin:8px 0;list-style:none"></ul>
+        <div class="small center">
+          <button id="admin-refresh" class="btn">Odśwież</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div id="snackbar"></div>
-
-<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
-
 <script>
-  // Snackbar helper
-  function showSnackbar(message) {
-    const sb = document.getElementById('snackbar');
-    sb.textContent = message;
-    sb.className = "show";
-    setTimeout(() => { sb.className = sb.className.replace("show", ""); }, 3500);
+  // Dane w localStorage:
+  // products - akceptowane produkty (marketplace)
+  // apps - zgłoszenia sprzedawców (oczekujące)
+  // ads - zatwierdzone reklamy (przydzielone do slotów) -> {slot, name, text, logo, expires}
+
+  const storage = {
+    products: JSON.parse(localStorage.getItem('mp_products')||'[]'),
+    apps: JSON.parse(localStorage.getItem('mp_apps')||'[]'),
+    ads: JSON.parse(localStorage.getItem('mp_ads')||'[]'),
+    cart: JSON.parse(localStorage.getItem('mp_cart')||'[]')
+  };
+
+  // Helper persist
+  function saveAll(){
+    localStorage.setItem('mp_products', JSON.stringify(storage.products));
+    localStorage.setItem('mp_apps', JSON.stringify(storage.apps));
+    localStorage.setItem('mp_ads', JSON.stringify(storage.ads));
+    localStorage.setItem('mp_cart', JSON.stringify(storage.cart));
   }
 
-  let products = JSON.parse(localStorage.getItem("products")) || [];
-  let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
-
-  function renderProducts() {
-    const list = document.getElementById("product-list");
-    list.innerHTML = "";
-    if (products.length === 0) {
-      list.innerHTML = '<p class="text-center text-yellow-400">Brak produktów w marketplace.</p>';
+  // --- RENDER marketplace products ---
+  const productListEl = document.getElementById('product-list');
+  function renderProducts(){
+    productListEl.innerHTML = '';
+    if(storage.products.length === 0){
+      productListEl.innerHTML = '<div class="small center">Brak produktów w marketplace</div>';
       return;
     }
-    products.forEach((product, index) => {
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      card.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" />
-        <h4 class="product-name">${product.name}</h4>
-        <p class="product-desc">${product.desc}</p>
-        <p class="product-price">${product.price} zł</p>
-        <div style="display:flex; justify-content:space-between;">
-          <button onclick="removeProduct(${index})" class="btn btn-danger">Usuń</button>
-          <button onclick="addToCart(${index})" class="btn">Dodaj do koszyka</button>
+    storage.products.forEach((p, idx) => {
+      const div = document.createElement('div');
+      div.className = 'mp-card';
+      div.innerHTML = `
+        <img src="${p.image||'https://via.placeholder.com/400x300?text=Brak'}" alt="${p.name}">
+        <div class="mp-name">${p.name}</div>
+        <div class="mp-desc">${p.desc}</div>
+        <div class="mp-price">${parseFloat(p.price).toFixed(2)} zł</div>
+        <div class="mp-actions">
+          <button class="btn" onclick="mpAddToCart(${idx})">Dodaj</button>
         </div>
       `;
-      list.appendChild(card);
+      productListEl.appendChild(div);
     });
   }
 
-  function addProduct() {
-    const name = document.getElementById("product-name").value.trim();
-    const desc = document.getElementById("product-desc").value.trim();
-    const price = parseFloat(document.getElementById("product-price").value);
-    const image = document.getElementById("product-image").value.trim();
-
-    if (!name || !desc || !image || isNaN(price) || price <= 0) {
-      showSnackbar("Wypełnij wszystkie pola poprawnie. Cena musi być liczbą dodatnią.");
-      return;
-    }
-
-    products.push({ name, desc, price: price.toFixed(2), image });
-    localStorage.setItem("products", JSON.stringify(products));
-    renderProducts();
-    showSnackbar(`Produkt "${name}" dodany pomyślnie.`);
-    document.getElementById("product-name").value = "";
-    document.getElementById("product-desc").value = "";
-    document.getElementById("product-price").value = "";
-    document.getElementById("product-image").value = "";
-  }
-
-  function removeProduct(index) {
-    if (!confirm(`Czy na pewno chcesz usunąć produkt "${products[index].name}"?`)) return;
-    const removedName = products[index].name;
-    products.splice(index,      
-<!-- Sekcja Reklama -->
-<!-- Sekcja Reklama -->
-<section id="reklama" class="py-16 bg-gray-900 text-center text-yellow-100">
-  <div class="max-w-6xl mx-auto p-4 border-4 border-yellow-500 rounded-2xl shadow-2xl">
-    <div class="bg-gray-800 p-8 rounded-2xl">
-      <h2 class="text-4xl font-bold mb-4 text-yellow-400">
-        <i class="fas fa-bullhorn mr-2"></i>Zareklamuj się na AdelbertusShop
-      </h2>
-      <p class="mb-2 text-lg">
-        Płatność BLIK: <strong>573-939-925</strong><br/>
-        Lub zapłać PayPalem poniżej (PLN).
-      </p>
-      <div id="paypal-container-reklama" class="mb-6"></div>
-
-      <!-- Formularz reklamy -->
-      <form id="formularzReklamy" class="max-w-xl mx-auto p-4 bg-gray-700 rounded-xl shadow" novalidate>
-        <input type="text" id="nazwaFirmy" placeholder="Nazwa firmy lub produktu" required
-          class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" minlength="2" maxlength="50" />
-        <textarea id="trescReklamy" placeholder="Treść reklamy" required
-          class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" minlength="10" maxlength="200"></textarea>
-        <input type="email" id="emailReklamodawcy" placeholder="Twój email" required
-          class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" />
-        <input type="file" id="logoReklamy" accept="image/*"
-          class="w-full p-2 mb-2 border rounded bg-gray-900 text-yellow-100" />
-        <div id="logoPodglad" class="mb-4 hidden">
-          <p class="text-sm mb-1 text-yellow-300">Podgląd logotypu:</p>
-          <img id="podgladObrazka" src="" alt="Podgląd logotypu" class="max-h-32 mx-auto rounded shadow-lg" />
-        </div>
-        <select id="okresReklamy" class="w-full p-2 mb-4 border rounded bg-gray-900 text-yellow-100" required>
-          <option disabled selected>Wybierz okres reklamy</option>
-          <option value="1">1 dzień – 10 zł</option>
-          <option value="7">1 tydzień – 49 zł</option>
-          <option value="30">1 miesiąc – 189 zł</option>
-        </select>
-        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded font-semibold transition">
-          <i class="fas fa-paper-plane mr-2"></i>Wyślij zgłoszenie (płatność Blik lub PayPal)
-        </button>
-      </form>
-
-      <!-- Slider reklam -->
-      <div class="mt-8">
-        <h3 class="text-2xl font-semibold text-yellow-400 mb-4"><i class="fas fa-star mr-1"></i>Aktywne reklamy</h3>
-        <div id="sliderReklam" class="h-24 flex items-center justify-center text-lg italic text-yellow-200">
-          Brak reklam do wyświetlenia
-        </div>
-      </div>
-
-      <!-- Panel admina -->
-      <div class="mt-10">
-        <button onclick="pokazPanelAdmina()" class="text-sm text-yellow-400 underline">
-          <i class="fas fa-user-shield mr-1"></i>Panel administratora
-        </button>
-        <div id="panelAdmina" class="hidden mt-4 bg-gray-700 border p-4 rounded-xl shadow-md max-w-2xl mx-auto">
-          <input type="password" id="adminHaslo" placeholder="Podaj hasło" class="border p-2 mb-2 w-full rounded bg-gray-900 text-yellow-100" />
-          <button onclick="sprawdzHaslo()" class="bg-yellow-500 text-white px-4 py-2 rounded font-semibold">
-            <i class="fas fa-sign-in-alt mr-1"></i>Zaloguj
-          </button>
-          <button onclick="wylogujAdmina()" class="bg-red-600 text-white px-4 py-2 rounded font-semibold mt-2 hidden" id="btnWyloguj">
-            <i class="fas fa-sign-out-alt mr-1"></i>Wyloguj
-          </button>
-          <div id="adminKontrola" class="hidden mt-4">
-            <h4 class="text-yellow-300 mb-2 font-semibold">Zgłoszone reklamy (do zatwierdzenia):</h4>
-            <ul id="listaZgloszen" class="text-sm text-yellow-100 space-y-2"></ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Okno głównej reklamy -->
-<div id="reklamaGlowneOkno" class="hidden fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-yellow-300 text-black px-6 py-4 rounded-xl shadow-2xl max-w-md text-center">
-  <img id="logoGlowne" src="" alt="" class="max-h-24 mx-auto mb-2 hidden rounded" />
-  <p id="trescReklamyGlowne" class="text-lg font-semibold"></p>
-  <p class="text-xs mt-2" id="czasomierz"></p>
-</div>
-
-<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
-<script>
-  // Init PayPal przycisk - przekierowanie do płatności za reklamę
-  paypal.Buttons({
-    style: {
-      layout: 'horizontal',
-      color: 'gold',
-      shape: 'pill',
-      label: 'pay'
-    },
-    createOrder: function(data, actions) {
-      return actions.order.create({
-        purchase_units: [{
-          amount: { value: '49.00' }, // standardowa cena 7 dni
-          description: 'Reklama na AdelbertusShop - 7 dni'
-        }]
-      });
-    },
-    onApprove: function(data, actions) {
-      return actions.order.capture().then(function(details) {
-        alert('Dziękujemy za płatność PayPal, Twoja reklama oczekuje na zatwierdzenie admina.');
-        // Możesz tu dodać automatyczne zatwierdzenie lub inne akcje
-      });
-    }
-  }).render('#paypal-container-reklama');
-
-  // Zmienne
-  let listaReklam = JSON.parse(localStorage.getItem('listaReklam')) || [];
-  let zatwierdzoneReklamy = JSON.parse(localStorage.getItem('zatwierdzoneReklamy')) || [];
-  let adminZalogowany = false;
-  let indexReklamy = 0;
-  let czasPokazuSekundy = 30;
-  let timerInterval;
-
-  // Podgląd logo
-  document.getElementById('logoReklamy').addEventListener('change', e => {
-    const plik = e.target.files[0];
-    if (plik) {
-      const reader = new FileReader();
-      reader.onload = ev => {
-        document.getElementById('podgladObrazka').src = ev.target.result;
-        document.getElementById('logoPodglad').classList.remove('hidden');
-      };
-      reader.readAsDataURL(plik);
-    }
-  });
-
-  // Formularz reklamy - dodaje reklamę do listy oczekujących
-  document.getElementById('formularzReklamy').addEventListener('submit', e => {
-    e.preventDefault();
-    const nazwa = document.getElementById('nazwaFirmy').value.trim();
-    const tresc = document.getElementById('trescReklamy').value.trim();
-    const email = document.getElementById('emailReklamodawcy').value.trim();
-    const okres = parseInt(document.getElementById('okresReklamy').value);
-    const logo = document.getElementById('podgladObrazka').src || '';
-
-    if (!nazwa || !tresc || !email || !okres) {
-      alert('Wypełnij wszystkie pola i wybierz okres reklamy.');
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      alert('Podaj poprawny adres email.');
-      return;
-    }
-
-    listaReklam.push({
-      nazwa,
-      tresc,
-      email,
-      okres,
-      logo,
-      status: 'oczekująca',
-      dataZgloszenia: new Date().toISOString()
+  // --- CART (local for marketplace) ---
+  const cartListEl = document.getElementById('mp-cart-list');
+  const cartSumEl = document.getElementById('mp-cart-sum');
+  function renderCart(){
+    cartListEl.innerHTML = '';
+    let sum = 0;
+    storage.cart.forEach((it, i) => {
+      sum += parseFloat(it.price)*it.qty;
+      const li = document.createElement('li');
+      li.innerHTML = `<span>${it.name} (${it.qty}x) - ${parseFloat(it.price).toFixed(2)} zł</span>
+                      <div>
+                        <button onclick="mpCartChange(${i},-1)">-</button>
+                        <button onclick="mpCartChange(${i},1)">+</button>
+                        <button onclick="mpCartRemove(${i})">Usuń</button>
+                      </div>`;
+      cartListEl.appendChild(li);
     });
+    cartSumEl.textContent = 'Suma: ' + sum.toFixed(2) + ' zł';
+    localStorage.setItem('mp_cart', JSON.stringify(storage.cart));
+    renderCartPayPal();
+  }
 
-    localStorage.setItem('listaReklam', JSON.stringify(listaReklam));
-    alert('Reklama zgłoszona, oczekuje na zatwierdzenie administratora.');
-    e.target.reset();
-    document.getElementById('logoPodglad').classList.add('hidden');
-    aktualizujListeZgloszen();
+  function mpAddToCart(prodIdx){
+    const p = storage.products[prodIdx];
+    const found = storage.cart.find(x=>x.name===p.name);
+    if(found) found.qty++;
+    else storage.cart.push({name:p.name, price:p.price, qty:1});
+    saveAll();
+    renderCart();
+    alert('Dodano do koszyka: ' + p.name);
+  }
+  window.mpAddToCart = mpAddToCart;
+
+  function mpCartChange(i,delta){
+    storage.cart[i].qty += delta;
+    if(storage.cart[i].qty <=0) storage.cart.splice(i,1);
+    saveAll();
+    renderCart();
+  }
+  window.mpCartChange = mpCartChange;
+
+  function mpCartRemove(i){
+    storage.cart.splice(i,1); saveAll(); renderCart();
+  }
+  window.mpCartRemove = mpCartRemove;
+
+  document.getElementById('mp-clear').addEventListener('click', ()=>{ if(confirm('Wyczyścić koszyk?')){ storage.cart=[]; saveAll(); renderCart(); } });
+
+  // --- PayPal Buttons for cart (renders into mp-paypal-container) ---
+  function renderCartPayPal(){
+    const container = document.getElementById('mp-paypal-container');
+    container.innerHTML = '';
+    if(storage.cart.length === 0) return;
+    // remove previous if any (paypal requires fresh container)
+    paypal.Buttons({
+      style: { color: 'gold', shape: 'pill', label: 'pay', height: 40 },
+      createOrder: (data, actions) => {
+        const total = storage.cart.reduce((s,i)=>s + parseFloat(i.price)*i.qty,0).toFixed(2);
+        const items = storage.cart.map(i=>({ name:i.name, unit_amount:{currency_code:'PLN', value:parseFloat(i.price).toFixed(2)}, quantity: i.qty.toString() }));
+        return actions.order.create({
+          purchase_units: [{ amount:{ currency_code:'PLN', value: total, breakdown:{ item_total:{currency_code:'PLN', value: total}}}, items }]
+        });
+      },
+      onApprove: (data, actions) => actions.order.capture().then(details=>{
+        alert('Płatność przyjęta. Dziękujemy, ' + (details.payer.name?.given_name||'kliencie') + '!');
+        storage.cart = []; saveAll(); renderCart(); renderProducts();
+      }),
+      onError: (err) => { console.error(err); alert('Błąd płatności PayPal'); }
+    }).render('#mp-paypal-container');
+  }
+
+  // --- Submission form handling (seller) ---
+  document.getElementById('mp-submit').addEventListener('click', ()=>{
+    const seller = document.getElementById('seller-name').value.trim();
+    const email = document.getElementById('seller-email').value.trim();
+    const productTextAreas = Array.from(document.querySelectorAll('#products-inputs textarea'));
+    const products = productTextAreas.map(t => t.value.trim()).filter(v=>v.length>0).slice(0,3);
+    const adText = document.getElementById('ad-text').value.trim();
+    const adLogo = document.getElementById('ad-logo').value.trim();
+    const adPeriod = parseInt(document.getElementById('ad-period').value||'0');
+    const payMethod = document.querySelector('input[name="pay-method"]:checked').value;
+
+    if(!seller || !email || products.length===0){
+      alert('Wypełnij nazwę sprzedawcy, e-mail i przynajmniej 1 produkt.');
+      return;
+    }
+
+    // parse products into structured objects: format "name | desc | price | url"
+    const parsed = [];
+    for(const line of products){
+      const parts = line.split('|').map(s=>s.trim());
+      if(parts.length < 3){ alert('Produkt musi mieć format: nazwa | opis | cena | url(opcjonalnie)'); return; }
+      const price = parseFloat(parts[2].replace(',','.'));
+      if(isNaN(price) || price <= 0){ alert('Podaj poprawną cenę przy produkcie: ' + parts[0]); return; }
+      parsed.push({ name: parts[0], desc: parts[1], price: price.toFixed(2), image: parts[3] || '' });
+    }
+
+    // create application
+    const app = {
+      id: 'app_' + Date.now(),
+      seller, email,
+      products: parsed,
+      ad: adPeriod>0 ? { text: adText, logo: adLogo, period: adPeriod } : null,
+      payMethod,
+      created: new Date().toISOString(),
+      status: 'oczekujaca' // admin will approve
+    };
+
+    storage.apps.push(app);
+    saveAll();
+
+    // create mailto link so admin receives quick mail (since no backend); it's prefilled with details
+    const subject = encodeURIComponent('Nowe zgłoszenie marketplace: ' + seller);
+    const body = encodeURIComponent(
+      `Sprzedawca: ${seller}\nEmail: ${email}\nPłatność reklam: ${payMethod}\nProdukty:\n` +
+      parsed.map(p=>`- ${p.name} | ${p.desc} | ${p.price} zł | ${p.image}`).join('\n') +
+      `\n\nReklama: ${app.ad ? JSON.stringify(app.ad) : 'brak'}\n\nID zgłoszenia: ${app.id}`
+    );
+    // pokaż użytkownikowi link mailto (może wysłać lub ty klikniesz, żeby wysłać)
+    const mailto = `mailto:${encodeURIComponent('mielniczukgrzegosz74@gmail.com')}?subject=${subject}&body=${body}`;
+    // otwórz okno mailto w nowej karcie (użytkownik może wysłać)
+    window.open(mailto,'_blank');
+
+    alert('Zgłoszenie wysłane. Po opłaceniu (jeśli dotyczy) i mojej weryfikacji zatwierdzę listing/reklamę.');
+    document.getElementById('mp-form').reset();
   });
 
-  // Panel admina
-  function pokazPanelAdmina() {
-    document.getElementById('panelAdmina').classList.toggle('hidden');
-  }
-  function sprawdzHaslo() {
-    const pass = document.getElementById('adminHaslo').value;
-    if (pass === 'Wojownik.03') {
-      adminZalogowany = true;
-      document.getElementById('adminKontrola').classList.remove('hidden');
-      document.getElementById('btnWyloguj').classList.remove('hidden');
-      document.getElementById('adminHaslo').value = '';
-      document.getElementById('adminHaslo').disabled = true;
-      aktualizujListeZgloszen();
+  // --- Admin area ---
+  const adminPassInput = document.getElementById('admin-pass');
+  const adminLoginBtn = document.getElementById('admin-login-btn');
+  const adminLogoutBtn = document.getElementById('admin-logout-btn');
+  const adminControls = document.getElementById('admin-controls');
+  const applicationsList = document.getElementById('applications-list');
+
+  const ADMIN_PASS = 'Wojownik.03';
+  let adminLogged = false;
+
+  adminLoginBtn.addEventListener('click', ()=>{
+    if(adminPassInput.value === ADMIN_PASS){
+      adminLogged = true;
+      adminControls.style.display = 'block';
+      adminLoginBtn.style.display = 'none';
+      adminLogoutBtn.style.display = 'inline-block';
+      adminPassInput.style.display = 'none';
+      renderApplications();
       alert('Zalogowano jako administrator.');
-    } else {
-      alert('Nieprawidłowe hasło.');
-    }
-  }
-  function wylogujAdmina() {
-    adminZalogowany = false;
-    document.getElementById('adminKontrola').classList.add('hidden');
-    document.getElementById('btnWyloguj').classList.add('hidden');
-    document.getElementById('adminHaslo').disabled = false;
-    alert('Wylogowano administratora.');
-  }
+    } else alert('Błędne hasło.');
+  });
 
-  // Aktualizacja listy zgłoszeń w panelu admina
-  function aktualizujListeZgloszen() {
-    const lista = document.getElementById('listaZgloszen');
-    lista.innerHTML = '';
-    if (listaReklam.length === 0) {
-      lista.innerHTML = '<li class="italic">Brak zgłoszeń.</li>';
-      return;
-    }
-    listaReklam.forEach((r, i) => {
-      if (r.status === 'oczekująca') {
-        const li = document.createElement('li');
-        li.className = "flex justify-between items-center border-b border-yellow-500 pb-1";
-        li.innerHTML = `
-          <span><b>${r.nazwa}</b>: ${r.tresc}</span>
-          <div class="space-x-2">
-            <button onclick="zatwierdzReklame(${i})" class="bg-green-600 px-2 py-1 rounded text-white text-xs">Zatwierdź</button>
-            <button onclick="odrzucReklame(${i})" class="bg-red-600 px-2 py-1 rounded text-white text-xs">Odrzuć</button>
-          </div>
-        `;
-        lista.appendChild(li);
-      }
+  adminLogoutBtn.addEventListener('click', ()=>{
+    adminLogged = false;
+    adminControls.style.display = 'none';
+    adminLoginBtn.style.display = 'inline-block';
+    adminLogoutBtn.style.display = 'none';
+    adminPassInput.style.display = 'inline-block';
+    adminPassInput.value = '';
+  });
+
+  function renderApplications(){
+    applicationsList.innerHTML = '';
+    if(storage.apps.length === 0) { applicationsList.innerHTML = '<li class="small">Brak zgłoszeń</li>'; return; }
+    storage.apps.forEach((app, idx)=>{
+      const li = document.createElement('li');
+      li.style.padding = '8px'; li.style.borderBottom = '1px solid #333'; li.style.display='flex'; li.style.justifyContent='space-between';
+      const left = document.createElement('div');
+      left.innerHTML = `<strong>${app.seller}</strong><br><span class="small">${app.email}</span><br><span class="small">Produkty: ${app.products.map(p=>p.name).join(', ')}</span><br><span class="small">Reklama: ${app.ad?app.ad.period+' dni':''}</span>`;
+      const right = document.createElement('div');
+      right.innerHTML = `<button class="btn" onclick="adminApprove(${idx})">Zatwierdź</button>
+                         <button class="btn btn-danger" style="margin-left:6px" onclick="adminReject(${idx})">Odrzuć</button>`;
+      li.appendChild(left); li.appendChild(right);
+      applicationsList.appendChild(li);
     });
   }
 
-  // Zatwierdzanie reklamy - przenosi do zatwierdzonych
-  function zatwierdzReklame(index) {
-    if (!adminZalogowany) return alert('Brak dostępu administratora.');
-    const reklama = listaReklam[index];
-    reklama.status = 'zatwierdzona';
-    reklama.dataZatwierdzenia = new Date().toISOString();
-    reklama.dataWygasniecia = new Date(Date.now() + reklama.okres * 24 * 60 * 60 * 1000).toISOString();
-
-    zatwierdzoneReklamy.push(reklama);
-    listaReklam.splice(index, 1);
-
-    zapiszReklamy();
-    aktualizujListeZgloszen();
-    alert(`Reklama "${reklama.nazwa}" zatwierdzona.`);
-  }
-
-  // Odrzucanie reklamy - usuwa z oczekujących
-  function odrzucReklame(index) {
-    if (!adminZalogowany) return alert('Brak dostępu administratora.');
-    listaReklam.splice(index, 1);
-    zapiszReklamy();
-    aktualizujListeZgloszen();
-    alert('Reklama odrzucona.');
-  }
-
-  // Zapisywanie w localStorage
-  function zapiszReklamy() {
-    localStorage.setItem('listaReklam', JSON.stringify(listaReklam));
-    localStorage.setItem('zatwierdzoneReklamy', JSON.stringify(zatwierdzoneReklamy));
-  }
-
-  // Usuwanie wygasłych reklam
-  function usunWygasleReklamy() {
-    const teraz = new Date();
-    zatwierdzoneReklamy = zatwierdzoneReklamy.filter(r => {
-      const expiry = new Date(r.dataWygasniecia);
-      return expiry > teraz;
-    });
-    zapiszReklamy();
-  }
-
-  // Rotator reklam - pokazuje na zmianę reklamy zatwierdzone
-  function pokazReklame() {
-    usunWygasleReklamy();
-    if (zatwierdzoneReklamy.length === 0) {
-      document.getElementById('sliderReklam').textContent = "Brak reklam do wyświetlenia";
-      document.getElementById('reklamaGlowneOkno').classList.add('hidden');
-      return;
-    }
-    indexReklamy %= zatwierdzoneReklamy.length;
-    const reklama = zatwierdzoneReklamy[indexReklamy];
-    document.getElementById('sliderReklam').textContent = `${reklama.nazwa}: ${reklama.tresc}`;
-
-    const glowneOkno = document.getElementById('reklamaGlowneOkno');
-    const logo = document.getElementById('logoGlowne');
-    const tresc = document.getElementById('trescReklamyGlowne');
-    const czas = document.getElementById('czasomierz');
-
-    if (reklama.logo) {
-      logo.src = reklama.logo;
-      logo.classList.remove('hidden');
-    } else {
-      logo.classList.add('hidden');
-    }
-    tresc.textContent = reklama.tresc;
-    glowneOkno.classList.remove('hidden');
-
-    let czasPozostaly = czasPokazuSekundy;
-    czas.textContent = `Pozostało: ${czasPozostaly} sekund`;
-
-    clearInterval(timerInterval);
-    timerInterval = setInterval(() => {
-      czasPozostaly--;
-      if (czasPozostaly <= 0) {
-        clearInterval(timerInterval);
-        glowneOkno.classList.add('hidden');
-        indexReklamy++;
-        pokazReklame();
-      } else {
-        czas.textContent = `Pozostało: ${czasPozostaly} sekund`;
+  window.adminApprove = function(idx){
+    const app = storage.apps[idx];
+    if(!app) return;
+    // add products to marketplace (limit? we accept up to 3)
+    app.products.forEach(p => storage.products.push({...p, seller: app.seller}));
+    // if ad requested -> allocate to first free slot
+    if(app.ad){
+      // compute expiry timestamp
+      const expires = Date.now() + app.ad.period * 24*60*60*1000;
+      // find free slot
+      const usedSlots = storage.ads.map(a=>a.slot);
+      let freeSlot = [0,1,2].find(s=>!usedSlots.includes(s));
+      if(freeSlot === undefined){
+        // if none free, replace the soonest expiring ad or deny (we'll choose to replace the oldest expiry)
+        storage.ads.sort((a,b)=>a.expires - b.expires);
+        freeSlot = storage.ads[0].slot;
+        storage.ads = storage.ads.filter(a=>a.slot !== freeSlot);
       }
-    }, 1000);
+      storage.ads.push({ slot: freeSlot, seller: app.seller, text: app.ad.text||'', logo: app.ad.logo||'', expires });
+    }
+    // remove application
+    storage.apps.splice(idx,1);
+    saveAll();
+    renderProducts();
+    renderApplications();
+    renderAds();
+    alert('Zatwierdzono zgłoszenie i opublikowano produkty/reklamę.');
+  };
+
+  window.adminReject = function(idx){
+    if(!confirm('Odrzucić zgłoszenie?')) return;
+    storage.apps.splice(idx,1);
+    saveAll();
+    renderApplications();
+    alert('Zgłoszenie odrzucone.');
+  };
+
+  // --- Ads rendering & auto-expire ---
+  const adSlotEls = Array.from(document.querySelectorAll('.ad-slot'));
+  function renderAds(){
+    // remove expired
+    const now = Date.now();
+    storage.ads = storage.ads.filter(a=>a.expires > now);
+    // clear slots
+    adSlotEls.forEach(el=>{ el.querySelector('.slot-content').innerText = 'Brak reklamy'; el.querySelector('.slot-content').classList.add('small'); });
+    storage.ads.forEach(a=>{
+      const el = document.querySelector(`.ad-slot[data-slot="${a.slot}"]`);
+      if(el){
+        el.querySelector('.slot-content').classList.remove('small');
+        el.querySelector('.slot-content').innerHTML = `<div style="text-align:center"><strong>${a.seller}</strong><div style="font-size:0.95rem;margin-top:6px">${a.text}</div>${a.logo?`<div style="margin-top:6px"><img src="${a.logo}" style="max-height:50px;max-width:100%;border-radius:6px"></div>`:''}</div>`;
+      }
+    });
+    saveAll();
   }
 
-  // Startujemy rotator
-  pokazReklame();
-</script>
+  // Schedule periodic expire check
+  setInterval(()=>{ renderAds(); }, 60*1000); // co minutę
+  // initial render
+  renderProducts();
+  renderCart();
+  renderAds();
+
+  // render applications on admin login refresh button
+  document.getElementById('admin-refresh').addEventListener('click', ()=> renderApplications());
+
+  // helper to show apps if admin logged initially
+  if(adminLogged) renderApplications();
+
+  // expose for console debugging
+  window.MPstorage = storage;
+
+  // --- Notes about payments & BLIK ---
+  // Ten system nie ma serwera — więc:
+  // - PayPal dla finalnej kasy klientów działa (checkout w koszyku korzysta z PayPal Buttons).
+  // - Pobieranie opłat reklamy: użytkownik może użyć przycisku Hosted PayPal (w formularzu reklamy) lub wykonać przelew BLIK na numer: 573-939-925 z dopiskiem "reklama".
+  // - Po dokonaniu płatności administracja w panelu ręcznie zatwierdza zgłoszenie (przycisk Zatwierdź). To zabezpieczenie przy braku backendu.
+  // - Jeśli chcesz automatyczną weryfikację płatności (PayPal IPN / Webhook lub serwer do sprawdzania przelewów) — trzeba dopiąć backend (mogę to zrobić).
+</script>      
       
                    id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
   <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
@@ -2387,6 +2105,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
