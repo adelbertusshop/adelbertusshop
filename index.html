@@ -1627,7 +1627,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
   }
 
   #koszyk-lista li button {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     background: #bb2525;
     border: none;
     padding: 0.3rem 0.7rem;
@@ -1887,12 +1887,13 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
 
   function removeProduct(index) {
     if (!confirm(`Czy na pewno chcesz usunąć produkt "${products[index].name}"?`)) return;
+    const removedName = products[index].name;
     products.splice(index, 1);
     localStorage.setItem("products", JSON.stringify(products));
     renderProducts();
 
     // Usuń z koszyka jeśli jest
-    koszyk = koszyk.filter(item => item.name !== products[index]?.name);
+    koszyk = koszyk.filter(item => item.name !== removedName);
     localStorage.setItem("koszyk", JSON.stringify(koszyk));
     renderCart();
 
@@ -1934,13 +1935,51 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     const sumaEl = document.getElementById("koszyk-suma");
     lista.innerHTML = "";
     let suma = 0;
+
     koszyk.forEach((item, idx) => {
       suma += parseFloat(item.price) * item.qty;
+
       const li = document.createElement("li");
+
+      // Tekst z nazwą i ceną
       li.textContent = `${item.name} - ${item.price} zł`;
-      // ilość + przyciski +
+
+      // Ilość
       const qtySpan = document.createElement("span");
-<!-- Sekcja Reklama -->
+      qtySpan.className = "qty";
+      qtySpan.textContent = item.qty;
+      li.appendChild(qtySpan);
+
+      // Przycisk zmniejsz ilość
+      const btnMinus = document.createElement("button");
+      btnMinus.textContent = "-";
+      btnMinus.title = "Zmniejsz ilość";
+      btnMinus.onclick = () => {
+        if (item.qty > 1) {
+          item.qty--;
+        } else {
+          if (confirm(`Usunąć produkt "${item.name}" z koszyka?`)) {
+            koszyk.splice(idx, 1);
+          }
+        }
+        localStorage.setItem("koszyk", JSON.stringify(koszyk));
+        renderCart();
+      };
+      li.appendChild(btnMinus);
+
+      // Przycisk zwiększ ilość
+      const btnPlus = document.createElement("button");
+      btnPlus.textContent = "+";
+      btnPlus.title = "Zwiększ ilość";
+      btnPlus.onclick = () => {
+        item.qty++;
+        localStorage.setItem("koszyk", JSON.stringify(koszyk));
+        renderCart();
+      };
+      li.appendChild(btnPlus);
+
+      // Przycisk usu      
+ Sekcja Reklama -->
 <section 
 <section id="reklama" class="py-16 bg-gray-900 text-center text-yellow-100">
   <div class="max-w-6xl mx-auto p-4 border-4 border-yellow-500 rounded-2xl shadow-2xl">
@@ -2407,6 +2446,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
