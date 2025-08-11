@@ -1888,97 +1888,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
   function removeProduct(index) {
     if (!confirm(`Czy na pewno chcesz usunąć produkt "${products[index].name}"?`)) return;
     const removedName = products[index].name;
-    products.splice(index, 1);
-    localStorage.setItem("products", JSON.stringify(products));
-    renderProducts();
-
-    // Usuń z koszyka jeśli jest
-    koszyk = koszyk.filter(item => item.name !== removedName);
-    localStorage.setItem("koszyk", JSON.stringify(koszyk));
-    renderCart();
-
-    showSnackbar("Produkt został usunięty.");
-  }
-
-  function checkAdmin() {
-    const pass = document.getElementById("admin-pass").value;
-    if (pass === "Wojownik.03") {
-      document.getElementById("admin-panel").classList.remove("hidden");
-      document.getElementById("admin-login").style.display = "none";
-      showSnackbar("Zalogowano pomyślnie!");
-    } else {
-      showSnackbar("Błędne hasło");
-    }
-  }
-
-  function logoutAdmin() {
-    document.getElementById("admin-panel").classList.add("hidden");
-    document.getElementById("admin-login").style.display = "block";
-    showSnackbar("Wylogowano.");
-  }
-
-  function addToCart(index) {
-    const produkt = products[index];
-    let istnieje = koszyk.find(p => p.name === produkt.name);
-    if (istnieje) {
-      istnieje.qty++;
-    } else {
-      koszyk.push({...produkt, qty: 1});
-    }
-    localStorage.setItem("koszyk", JSON.stringify(koszyk));
-    renderCart();
-    showSnackbar(`Dodano "${produkt.name}" do koszyka.`);
-  }
-
-  function renderCart() {
-    const lista = document.getElementById("koszyk-lista");
-    const sumaEl = document.getElementById("koszyk-suma");
-    lista.innerHTML = "";
-    let suma = 0;
-
-    koszyk.forEach((item, idx) => {
-      suma += parseFloat(item.price) * item.qty;
-
-      const li = document.createElement("li");
-
-      // Tekst z nazwą i ceną
-      li.textContent = `${item.name} - ${item.price} zł`;
-
-      // Ilość
-      const qtySpan = document.createElement("span");
-      qtySpan.className = "qty";
-      qtySpan.textContent = item.qty;
-      li.appendChild(qtySpan);
-
-      // Przycisk zmniejsz ilość
-      const btnMinus = document.createElement("button");
-      btnMinus.textContent = "-";
-      btnMinus.title = "Zmniejsz ilość";
-      btnMinus.onclick = () => {
-        if (item.qty > 1) {
-          item.qty--;
-        } else {
-          if (confirm(`Usunąć produkt "${item.name}" z koszyka?`)) {
-            koszyk.splice(idx, 1);
-          }
-        }
-        localStorage.setItem("koszyk", JSON.stringify(koszyk));
-        renderCart();
-      };
-      li.appendChild(btnMinus);
-
-      // Przycisk zwiększ ilość
-      const btnPlus = document.createElement("button");
-      btnPlus.textContent = "+";
-      btnPlus.title = "Zwiększ ilość";
-      btnPlus.onclick = () => {
-        item.qty++;
-        localStorage.setItem("koszyk", JSON.stringify(koszyk));
-        renderCart();
-      };
-      li.appendChild(btnPlus);
-
-      // Przycisk usu      
+    products.splice(index,      
  Sekcja Reklama -->
 <section 
 <section id="reklama" class="py-16 bg-gray-900 text-center text-yellow-100">
@@ -2446,6 +2356,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
