@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AdelbertusShop - Minimalistyczny Koszyk</title>
+  <title>AdelbertusShop - Koszyk z Twoją Płatnością</title>
   <style>
     body { font-family: Arial, sans-serif; background:#121212; color:#fff; margin:0; padding:0; }
     #toggleKoszykBtn {
@@ -52,32 +52,50 @@
       border-radius: 8px; cursor: pointer; border:none; transition: background 0.3s ease;
     }
     #zamknijKoszykBtn:hover { background: #666; }
+    #blik-info {
+      background: #d4af37;
+      color: #121212;
+      padding: 10px 15px;
+      border-radius: 12px;
+      font-weight: bold;
+      max-width: 320px;
+      margin: 10px auto;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
   </style>
 </head>
 <body>
 
-<button id="toggleKoszykBtn">🛒</button>
+<button id="toggleKoszykBtn" title="Pokaż / Ukryj koszyk">🛒</button>
 <div id="licznikKoszyka"></div>
 
 <div id="koszyk">
   <h2>Twój koszyk</h2>
   <ul id="listaKoszyk"></ul>
   <p><strong>Suma: </strong><span id="sumaKoszyk">0.00</span> zł</p>
-  <div id="paypal-button-container"></div>
+
+  <!-- Twój PayPal Hosted Button -->
+  <div id="paypal-container-L4639S4363CZE"></div>
+
+  <!-- Informacja o BLIK -->
+  <div id="blik-info">
+    Płać BLIKiem: <span style="font-size:1.4rem;">573-939-925</span>
+  </div>
+
   <button id="zamknijKoszykBtn">Zamknij</button>
 </div>
 
 <section id="produkty">
-  <!-- Dodaj tutaj produkty, np.:
-  <div class="produkt">
-    <h3>Przykładowy produkt</h3>
+  <!-- Przykładowy produkt do testów -->
+  <div style="margin:20px; padding:20px; background:#222; border-radius:10px; max-width:320px; color:#fff;">
+    <h3>Przykładowa koszulka</h3>
     <p>99 zł</p>
-    <button onclick="dodajDoKoszyka('Przykładowy produkt', 99)">Dodaj do koszyka</button>
+    <button onclick="dodajDoKoszyka('Przykładowa koszulka', 99)">Dodaj do koszyka</button>
   </div>
-  -->
 </section>
 
-<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&currency=PLN"></script>
 
 <script>
   let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
@@ -106,9 +124,8 @@
       liczbaProduktow += produkt.ilosc;
 
       const li = document.createElement("li");
-      li.textContent = `${produkt.nazwa} (${produkt.rozmiar}, ${produkt.kolor}) - ${produkt.cena} zł x ${produkt.ilosc}`;
+      li.textContent = `${produkt.nazwa} (${produkt.rozmiar || 'M'}, ${produkt.kolor || 'czarny'}) - ${produkt.cena} zł x ${produkt.ilosc}`;
 
-      // Przycisk Usuń
       const btnUsun = document.createElement("button");
       btnUsun.textContent = "Usuń";
       btnUsun.onclick = () => {
@@ -133,69 +150,28 @@
     }
     zapiszKoszyk();
     aktualizujKoszyk();
-    renderPayPalButton();
   }
 
   function usunProdukt(index) {
     koszyk.splice(index, 1);
     zapiszKoszyk();
     aktualizujKoszyk();
-    renderPayPalButton();
   }
 
-  function renderPayPalButton() {
-    const container = document.getElementById('paypal-button-container');
-    container.innerHTML = '';
-
-    if (koszyk.length === 0) return;
-
-    paypal.Buttons({
-      style: { color: 'gold', shape: 'pill', label: 'pay', height: 40 },
-      createOrder: function(data, actions) {
-        const total = koszyk.reduce((sum, item) => sum + item.cena * item.ilosc, 0).toFixed(2);
-        const itemsForPayPal = koszyk.map(item => ({
-          name: item.nazwa,
-          unit_amount: { currency_code: "PLN", value: item.cena.toFixed(2) },
-          quantity: item.ilosc.toString()
-        }));
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              currency_code: "PLN",
-              value: total,
-              breakdown: { item_total: { currency_code: "PLN", value: total } }
-            },
-            items: itemsForPayPal
-          }]
-        });
-      },
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          alert('Dziękujemy za zakup, ' + details.payer.name.given_name + '!');
-          koszyk = [];
-          zapiszKoszyk();
-          aktualizujKoszyk();
-          koszykEl.classList.remove("show");
-          renderPayPalButton();
-        });
-      },
-      onError: function(err) {
-        console.error(err);
-        alert("Wystąpił błąd podczas płatności PayPal.");
-      }
-    }).render('#paypal-button-container');
-  }
+  // Renderuj PayPal Hosted Button raz
+  paypal.HostedButtons({
+    hostedButtonId: "L4639S4363CZE"
+  }).render("#paypal-container-L4639S4363CZE");
 
   // Inicjuj stan
   aktualizujKoszyk();
-  renderPayPalButton();
 
-  // Globalne funkcje
+  // Udostępniam globalnie
   window.dodajDoKoszyka = dodajDoKoszyka;
 </script>
 
 </body>
-</html></html></html></html></html></html></html></html></html></html></html></html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+</html></html></html></html></html></html></html></html></html></html></html></html></html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -2411,6 +2387,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
