@@ -24,6 +24,22 @@
     #listaKoszyk li {
       padding: 8px;
       border-bottom: 1px solid #444;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #listaKoszyk li button {
+      background: #d4af37;
+      color: #121212;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 4px 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    #listaKoszyk li button:hover {
+      background: #ffd700;
     }
     #licznikKoszyka {
       position: fixed; bottom: 4.5rem; right: 1rem;
@@ -36,33 +52,6 @@
       border-radius: 8px; cursor: pointer; border:none; transition: background 0.3s ease;
     }
     #zamknijKoszykBtn:hover { background: #666; }
-    /* Produkty */
-    #produkty {
-      display: flex; flex-wrap: wrap; justify-content: center;
-      padding: 20px; gap: 20px; margin-top: 80px;
-    }
-    .produkt {
-      background: #222; border-radius: 12px; width: 220px; padding: 15px;
-      text-align: center; box-shadow: 0 0 10px #d4af37aa;
-      transition: transform 0.3s ease;
-    }
-    .produkt:hover { transform: scale(1.05); }
-    .produkt img {
-      width: 100%; border-radius: 8px; margin-bottom: 10px;
-      height: 180px; object-fit: cover;
-    }
-    .produkt h3 {
-      margin: 0 0 10px 0; font-size: 1.1rem; color: #ffd700;
-    }
-    .produkt p {
-      margin: 5px 0 15px 0; font-weight: bold; font-size: 1rem; color: #fff;
-    }
-    .produkt button {
-      width: 100%; padding: 8px 0; font-weight: bold; font-size: 1rem;
-      background: #d4af37; color: #121212; border-radius: 8px; cursor: pointer;
-      border: none; transition: background 0.3s ease;
-    }
-    .produkt button:hover { background: #ffd700; }
   </style>
 </head>
 <body>
@@ -79,7 +68,13 @@
 </div>
 
 <section id="produkty">
-  <!-- Pusty, dodaj własne produkty według potrzeb -->
+  <!-- Dodaj tutaj produkty, np.:
+  <div class="produkt">
+    <h3>Przykładowy produkt</h3>
+    <p>99 zł</p>
+    <button onclick="dodajDoKoszyka('Przykładowy produkt', 99)">Dodaj do koszyka</button>
+  </div>
+  -->
 </section>
 
 <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
@@ -106,12 +101,21 @@
     let suma = 0;
     let liczbaProduktow = 0;
 
-    koszyk.forEach(produkt => {
+    koszyk.forEach((produkt, index) => {
       suma += produkt.cena * produkt.ilosc;
       liczbaProduktow += produkt.ilosc;
 
       const li = document.createElement("li");
       li.textContent = `${produkt.nazwa} (${produkt.rozmiar}, ${produkt.kolor}) - ${produkt.cena} zł x ${produkt.ilosc}`;
+
+      // Przycisk Usuń
+      const btnUsun = document.createElement("button");
+      btnUsun.textContent = "Usuń";
+      btnUsun.onclick = () => {
+        usunProdukt(index);
+      };
+
+      li.appendChild(btnUsun);
       listaKoszyk.appendChild(li);
     });
 
@@ -127,6 +131,13 @@
     } else {
       koszyk.push({ nazwa, cena, rozmiar, kolor, ilosc: 1 });
     }
+    zapiszKoszyk();
+    aktualizujKoszyk();
+    renderPayPalButton();
+  }
+
+  function usunProdukt(index) {
+    koszyk.splice(index, 1);
     zapiszKoszyk();
     aktualizujKoszyk();
     renderPayPalButton();
@@ -184,7 +195,7 @@
 </script>
 
 </body>
-</html></html></html></html></html></html></html></html></html></html></html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+</html></html></html></html></html></html></html></html></html></html></html></html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -2396,6 +2407,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
