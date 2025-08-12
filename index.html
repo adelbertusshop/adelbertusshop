@@ -63,6 +63,14 @@
       text-align: center;
       font-family: Arial, sans-serif;
     }
+
+    /* Niestandardowe klasy dla rotateX i rotateY */
+    .group:hover .rotate-x-1 {
+      transform: rotateX(6deg);
+    }
+    .group:hover .rotate-y-1 {
+      transform: rotateY(6deg);
+    }
   </style>
 </head>
 <body>
@@ -161,8 +169,7 @@
   window.dodajDoKoszyka = dodajDoKoszyka;
 </script>
 
-</body>
-</html></html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+</body></html></html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -2018,7 +2025,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <!-- Rama 3D -->
     <div class="relative rounded-[2rem] p-1 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-300 
                 shadow-[0_10px_25px_rgba(0,0,0,0.25)] transform transition-transform duration-500 
-                group-hover:rotate-x-1 group-hover:rotate-y-1 group-hover:scale-[1.02]">
+                rotate-x-0 rotate-y-0 group-hover:rotate-x-1 group-hover:rotate-y-1 group-hover:scale-[1.02]">
       
       <!-- Wewnętrzna ramka z fakturą -->
       <div class="relative bg-white shadow-xl rounded-[1.75rem] border-[6px] border-yellow-400 overflow-hidden">
@@ -2048,8 +2055,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
       </div>
     </div>
   </div>
-</section>      
-<section id="regulamin" class="py-16 px-6 bg-gradient-to-br from-[#faf5ee] to-[#fdf8f0] font-serif text-[#2e1e0f]">
+</section><section id="regulamin" class="py-16 px-6 bg-gradient-to-br from-[#faf5ee] to-[#fdf8f0] font-serif text-[#2e1e0f]">
   <div class="max-w-5xl mx-auto relative bg-white shadow-2xl rounded-3xl p-10 border-4 border-yellow-500">
 
     <!-- Zdobiona ramka -->
@@ -2174,6 +2180,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
