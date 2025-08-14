@@ -1,175 +1,189 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AdelbertusShop - Koszyk z Twoją Płatnością</title>
-  <style>
-    body { font-family: Arial, sans-serif; background:#121212; color:#fff; margin:0; padding:0; }
-    #toggleKoszykBtn {
-      position: fixed; bottom:1.5rem; right:1rem;
-      background:#d4af37; border:none; border-radius:50%;
-      width:60px; height:60px; font-size:24px; cursor:pointer; color:#121212; z-index:1001;
-      box-shadow:0 0 15px #d4af37cc; transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    #toggleKoszykBtn:hover { transform: scale(1.1); box-shadow: 0 0 25px #ffd700; }
-    #koszyk {
-      position: fixed; top:50%; right:-340px; transform: translateY(-50%);
-      width: 340px; background:#1e1e1e; padding:20px; border-radius: 15px 0 0 15px;
-      box-shadow: -4px 0 20px rgba(0,0,0,0.6); transition: right 0.5s ease; z-index: 1000; color:#fff;
-    }
-    #koszyk.show { right: 0; }
-    #koszyk h2 { margin-top:0; color:#ffd700; }
-    #listaKoszyk { list-style:none; padding:0; margin:0; max-height: 300px; overflow-y: auto; }
-    #listaKoszyk li {
-      padding: 8px;
-      border-bottom: 1px solid #444;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    #listaKoszyk li button {
-      background: #d4af37;
-      color: #121212;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      padding: 4px 8px;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
-    #listaKoszyk li button:hover {
-      background: #ffd700;
-    }
-    #licznikKoszyka {
-      position: fixed; bottom: 4.5rem; right: 1rem;
-      background: #d4af37; color: #121212; font-weight: bold;
-      padding: 4px 8px; border-radius: 50%; z-index: 1002; display: none; user-select:none;
-    }
-    #zamknijKoszykBtn {
-      width: 100%; margin-top: 15px;
-      background: #444; color: #fff; padding: 10px;
-      border-radius: 8px; cursor: pointer; border:none; transition: background 0.3s ease;
-    }
-    #zamknijKoszykBtn:hover { background: #666; }
-    #blik-info {
-      background: #d4af37;
-      color: #121212;
-      padding: 10px 15px;
-      border-radius: 12px;
-      font-weight: bold;
-      max-width: 320px;
-      margin: 10px auto;
-      text-align: center;
-      font-family: Arial, sans-serif;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koszyk stały w rogu</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
     }
 
-    /* Niestandardowe klasy dla rotateX i rotateY */
-    .group:hover .rotate-x-1 {
-      transform: rotateX(6deg);
+    /* Przycisk koszyka */
+    .cart-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #222;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 1000;
     }
-    .group:hover .rotate-y-1 {
-      transform: rotateY(6deg);
+
+    .cart-count {
+        background: red;
+        border-radius: 50%;
+        padding: 4px 8px;
+        font-size: 14px;
     }
-  </style>
+
+    /* Panel koszyka */
+    .cart-panel {
+        position: fixed;
+        bottom: 70px;
+        right: 20px;
+        width: 300px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        display: none;
+        flex-direction: column;
+        z-index: 1000;
+    }
+
+    .cart-panel-header {
+        background: #222;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .cart-items {
+        max-height: 200px;
+        overflow-y: auto;
+        padding: 10px;
+    }
+
+    .cart-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+
+    .cart-item button {
+        background: red;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 2px 6px;
+    }
+
+    .cart-footer {
+        padding: 10px;
+        border-top: 1px solid #ccc;
+        text-align: center;
+    }
+
+    .checkout-btn {
+        background: green;
+        color: white;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+</style>
 </head>
 <body>
 
-<button id="toggleKoszykBtn" title="Pokaż / Ukryj koszyk">🛒</button>
-<div id="licznikKoszyka"></div>
+<h1>Przykładowy sklep</h1>
+<p>Klikaj na przyciski, aby dodać produkty do koszyka.</p>
+<button onclick="addToCart('Koszulka', 99)">Dodaj Koszulkę - 99 zł</button>
+<button onclick="addToCart('Bluza', 150)">Dodaj Bluza - 150 zł</button>
+<button onclick="addToCart('Czapka', 79)">Dodaj Czapka - 79 zł</button>
 
-<div id="koszyk">
-  <h2>Twój koszyk</h2>
-  <ul id="listaKoszyk"></ul>
-  <p><strong>Suma: </strong><span id="sumaKoszyk">0.00</span> zł</p>
+<!-- Przycisk koszyka -->
+<button class="cart-button" onclick="toggleCart()">
+    🛒 Koszyk <span class="cart-count">0</span>
+</button>
 
-  <!-- Twój PayPal Hosted Button -->
-  <div id="paypal-container-L4639S4363CZE"></div>
+<!-- Panel koszyka -->
+<div class="cart-panel">
+    <div class="cart-panel-header">Twój koszyk</div>
+    <div class="cart-items"></div>
+    <div class="cart-footer">
+        <!-- Przycisk zamówienia -->
+        <button class="checkout-btn" onclick="checkout()">Zamawiam</button>
 
-  <!-- Informacja o BLIK -->
-  <div id="blik-info">
-    Płać BLIKiem: <span style="font-size:1.4rem;">573-939-925</span>
-  </div>
-
-  <button id="zamknijKoszykBtn">Zamknij</button>
+        <!-- PayPal -->
+        <div id="paypal-container-L4639S4363CZE"></div>
+    </div>
 </div>
 
-<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&currency=PLN"></script>
-
+<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 <script>
-  let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+    let cart = [];
 
-  const toggleBtn = document.getElementById("toggleKoszykBtn");
-  const koszykEl = document.getElementById("koszyk");
-  const listaKoszyk = document.getElementById("listaKoszyk");
-  const sumaKoszyk = document.getElementById("sumaKoszyk");
-  const licznikKoszyka = document.getElementById("licznikKoszyka");
-  const zamknijBtn = document.getElementById("zamknijKoszykBtn");
-
-  toggleBtn.addEventListener("click", () => koszykEl.classList.toggle("show"));
-  zamknijBtn.addEventListener("click", () => koszykEl.classList.remove("show"));
-
-  function zapiszKoszyk() {
-    localStorage.setItem("koszyk", JSON.stringify(koszyk));
-  }
-
-  function aktualizujKoszyk() {
-    listaKoszyk.innerHTML = "";
-    let suma = 0;
-    let liczbaProduktow = 0;
-
-    koszyk.forEach((produkt, index) => {
-      suma += produkt.cena * produkt.ilosc;
-      liczbaProduktow += produkt.ilosc;
-
-      const li = document.createElement("li");
-      li.textContent = `${produkt.nazwa} (${produkt.rozmiar || 'M'}, ${produkt.kolor || 'czarny'}) - ${produkt.cena} zł x ${produkt.ilosc}`;
-
-      const btnUsun = document.createElement("button");
-      btnUsun.textContent = "Usuń";
-      btnUsun.onclick = () => {
-        usunProdukt(index);
-      };
-
-      li.appendChild(btnUsun);
-      listaKoszyk.appendChild(li);
-    });
-
-    sumaKoszyk.textContent = suma.toFixed(2);
-    licznikKoszyka.textContent = liczbaProduktow;
-    licznikKoszyka.style.display = liczbaProduktow > 0 ? "block" : "none";
-  }
-
-  function dodajDoKoszyka(nazwa, cena, rozmiar = 'M', kolor = 'czarny') {
-    const istnieje = koszyk.find(p => p.nazwa === nazwa && p.rozmiar === rozmiar && p.kolor === kolor);
-    if (istnieje) {
-      istnieje.ilosc++;
-    } else {
-      koszyk.push({ nazwa, cena, rozmiar, kolor, ilosc: 1 });
+    function addToCart(name, price) {
+        cart.push({ name, price });
+        updateCartCount();
+        updateCartPanel();
     }
-    zapiszKoszyk();
-    aktualizujKoszyk();
-  }
 
-  function usunProdukt(index) {
-    koszyk.splice(index, 1);
-    zapiszKoszyk();
-    aktualizujKoszyk();
-  }
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartCount();
+        updateCartPanel();
+    }
 
-  // Renderuj PayPal Hosted Button raz
-  paypal.HostedButtons({
-    hostedButtonId: "L4639S4363CZE"
-  }).render("#paypal-container-L4639S4363CZE");
+    function updateCartCount() {
+        document.querySelector(".cart-count").textContent = cart.length;
+    }
 
-  // Inicjuj stan
-  aktualizujKoszyk();
+    function updateCartPanel() {
+        const cartItemsContainer = document.querySelector(".cart-items");
+        cartItemsContainer.innerHTML = "";
+        cart.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.classList.add("cart-item");
+            div.innerHTML = `
+                ${item.name} - ${item.price} zł
+                <button onclick="removeFromCart(${index})">X</button>
+            `;
+            cartItemsContainer.appendChild(div);
+        });
+    }
 
-  // Udostępniam globalnie
-  window.dodajDoKoszyka = dodajDoKoszyka;
+    function toggleCart() {
+        const panel = document.querySelector(".cart-panel");
+        panel.style.display = (panel.style.display === "flex") ? "none" : "flex";
+    }
+
+    function checkout() {
+        if (cart.length === 0) {
+            alert("Koszyk jest pusty!");
+            return;
+        }
+        alert("Zamówienie wysłane! Szczegóły: " + JSON.stringify(cart));
+        cart = [];
+        updateCartCount();
+        updateCartPanel();
+        toggleCart();
+    }
+
+    // PayPal
+    paypal.HostedButtons({
+        hostedButtonId: "L4639S4363CZE",
+    }).render("#paypal-container-L4639S4363CZE");
 </script>
 
-</body></html></html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+</body>
+</html>
+</html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -2161,6 +2175,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
