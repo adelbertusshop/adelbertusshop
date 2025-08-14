@@ -1,189 +1,316 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Koszyk stały w rogu</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AdelbertusShop — koszyk + dynamiczny PayPal + formularz</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
+  body{font-family:Arial,Helvetica,sans-serif;background:#f3f3f3;color:#111;margin:0;padding:20px}
+  h1{margin-top:0}
+  .products{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0 24px}
+  .product{background:#fff;border:1px solid #e1e1e1;border-radius:10px;padding:12px;width:220px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+  .product h3{margin:0 0 6px;font-size:16px}
+  .product p{margin:0 0 10px;color:#555}
+  .product button{background:#222;color:#fff;border:none;border-radius:6px;padding:8px 10px;cursor:pointer}
+  .product button:hover{background:#000}
 
-    /* Przycisk koszyka */
-    .cart-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: #222;
-        color: #fff;
-        border: none;
-        border-radius: 50px;
-        padding: 12px 20px;
-        cursor: pointer;
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        z-index: 1000;
-    }
+  .cart-button{position:fixed;bottom:20px;right:20px;background:#222;color:#fff;border:none;border-radius:50px;padding:12px 20px;cursor:pointer;display:flex;align-items:center;gap:8px;z-index:1000}
+  .cart-count{background:#e53935;border-radius:50%;padding:4px 8px;font-size:14px}
 
-    .cart-count {
-        background: red;
-        border-radius: 50%;
-        padding: 4px 8px;
-        font-size: 14px;
-    }
-
-    /* Panel koszyka */
-    .cart-panel {
-        position: fixed;
-        bottom: 70px;
-        right: 20px;
-        width: 300px;
-        background: white;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        display: none;
-        flex-direction: column;
-        z-index: 1000;
-    }
-
-    .cart-panel-header {
-        background: #222;
-        color: white;
-        padding: 10px;
-        font-size: 16px;
-        font-weight: bold;
-        text-align: center;
-    }
-
-    .cart-items {
-        max-height: 200px;
-        overflow-y: auto;
-        padding: 10px;
-    }
-
-    .cart-item {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 8px;
-    }
-
-    .cart-item button {
-        background: red;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        padding: 2px 6px;
-    }
-
-    .cart-footer {
-        padding: 10px;
-        border-top: 1px solid #ccc;
-        text-align: center;
-    }
-
-    .checkout-btn {
-        background: green;
-        color: white;
-        padding: 8px 12px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        margin-bottom: 10px;
-    }
+  .cart-panel{position:fixed;bottom:80px;right:20px;width:360px;background:#fff;border:1px solid #ccc;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.18);display:none;flex-direction:column;z-index:1000}
+  .cart-panel-header{background:#222;color:#fff;padding:12px;font-weight:bold;border-radius:12px 12px 0 0;display:flex;justify-content:space-between;align-items:center}
+  .cart-items{max-height:260px;overflow-y:auto;padding:12px}
+  .cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .remove-btn{background:#e53935;color:#fff;border:none;border-radius:6px;padding:6px 8px;cursor:pointer}
+  .cart-footer{padding:12px;border-top:1px solid #eee}
+  .summary{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .blik-box{background:#ffe082;color:#111;border:1px dashed #ffca28;border-radius:10px;padding:10px;text-align:center;margin-bottom:10px;font-weight:bold}
+  .paypal-wrap{background:#f5f5f5;border:1px solid #e0e0e0;border-radius:10px;padding:10px;margin-bottom:8px}
+  .actions{display:flex;gap:8px}
+  .btn{flex:1;padding:10px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+  .btn-primary{background:#2e7d32;color:#fff}
+  .btn-light{background:#eee}
+  /* Modal formularza */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:1100}
+  .modal-content{background:#fff;border-radius:12px;padding:18px;max-width:520px;width:100%}
+  .modal h3{margin-top:0}
+  .form-row{display:flex;gap:8px;margin-bottom:8px}
+  .form-row input,.form-row textarea{flex:1;padding:8px;border:1px solid #ccc;border-radius:6px}
+  .small{font-size:13px;color:#666;margin-bottom:8px}
 </style>
 </head>
 <body>
 
-<h1>Przykładowy sklep</h1>
-<p>Klikaj na przyciski, aby dodać produkty do koszyka.</p>
-<button onclick="addToCart('Koszulka', 99)">Dodaj Koszulkę - 99 zł</button>
-<button onclick="addToCart('Bluza', 150)">Dodaj Bluza - 150 zł</button>
-<button onclick="addToCart('Czapka', 79)">Dodaj Czapka - 79 zł</button>
+<h1>AdelbertusShop — produkty</h1>
+<p>Kliknij „Dodaj do koszyka”, potem otwórz koszyk (prawy dolny róg). Płatności: BLIK i PayPal (dynamiczne).</p>
+
+<div class="products" id="products">
+  <div class="product">
+    <h3>Koszulka „Adelbertus”</h3>
+    <p>99 zł</p>
+    <button onclick="addToCart('Koszulka „Adelbertus”',99)">Dodaj do koszyka</button>
+  </div>
+  <div class="product">
+    <h3>Bluza „Adelbertus”</h3>
+    <p>150 zł</p>
+    <button onclick="addToCart('Bluza „Adelbertus”',150)">Dodaj do koszyka</button>
+  </div>
+  <div class="product">
+    <h3>Czapka „Adelbertus”</h3>
+    <p>79 zł</p>
+    <button onclick="addToCart('Czapka „Adelbertus”',79)">Dodaj do koszyka</button>
+  </div>
+</div>
 
 <!-- Przycisk koszyka -->
-<button class="cart-button" onclick="toggleCart()">
-    🛒 Koszyk <span class="cart-count">0</span>
+<button class="cart-button" onclick="toggleCart()" aria-label="Pokaż/ukryj koszyk">
+  🛒 Koszyk <span class="cart-count">0</span>
 </button>
 
 <!-- Panel koszyka -->
-<div class="cart-panel">
-    <div class="cart-panel-header">Twój koszyk</div>
-    <div class="cart-items"></div>
-    <div class="cart-footer">
-        <!-- Przycisk zamówienia -->
-        <button class="checkout-btn" onclick="checkout()">Zamawiam</button>
+<div class="cart-panel" id="cartPanel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+  <div class="cart-panel-header">
+    <div id="cartTitle">Twój koszyk</div>
+    <button class="cart-close" onclick="toggleCart()" aria-label="Zamknij">✕</button>
+  </div>
 
-        <!-- PayPal -->
-        <div id="paypal-container-L4639S4363CZE"></div>
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-footer">
+    <div class="summary">
+      <strong>Suma:</strong>
+      <strong><span id="cartTotal">0.00</span> zł</strong>
     </div>
+
+    <div class="blik-box">
+      Płatność BLIK: <span style="font-size:1.2rem;letter-spacing:1px">573-939-925</span><br>
+      Tytuł płatności: <em>„Zamówienie AdelbertusShop”</em>
+    </div>
+
+    <div class="paypal-wrap">
+      <!-- tutaj wyrenderuje PayPal Buttons dynamiczne -->
+      <div id="paypal-buttons-container"></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-light" onclick="clearCart()">Wyczyść</button>
+      <button class="btn btn-primary" onclick="openOrderForm()">Formularz zamówienia</button>
+    </div>
+  </div>
 </div>
 
-<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+<!-- Formularz zamówienia (modal) -->
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <h3>Formularz zamówienia</h3>
+    <p class="small">Wypełnij dane — po zatwierdzeniu wyślemy e-mail z informacjami o zamówieniu (mailto) lub możesz podpiąć serwer.</p>
+    <div style="margin-bottom:8px">
+      <input id="customerName" placeholder="Imię i nazwisko" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-bottom:8px">
+      <input id="customerEmail" placeholder="Email" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-bottom:8px">
+      <textarea id="customerAddress" placeholder="Adres do wysyłki (ulica, kod, miasto)" rows="3" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc"></textarea>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-primary" onclick="submitOrderForm()">Wyślij zamówienie (mailto)</button>
+      <button class="btn btn-light" onclick="closeOrderForm()">Anuluj</button>
+    </div>
+    <p class="small" style="margin-top:8px">Uwaga: żeby wysyłać maile automatycznie potrzebny jest backend — poniższa metoda otworzy klienta pocztowego użytkownika.</p>
+  </div>
+</div>
+
+<!-- PayPal SDK (Buttons, createOrder) -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
+
 <script>
-    let cart = [];
+  // ---------- Stan koszyka ----------
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    function addToCart(name, price) {
-        cart.push({ name, price });
-        updateCartCount();
-        updateCartPanel();
+  const cartCountEl = document.querySelector('.cart-count');
+  const cartItemsEl = document.getElementById('cartItems');
+  const cartTotalEl = document.getElementById('cartTotal');
+  const cartPanelEl = document.getElementById('cartPanel');
+
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  function addToCart(name, price) {
+    const existing = cart.find(i => i.name === name && i.price === price);
+    if (existing) {
+      existing.qty = (existing.qty || 1) + 1;
+    } else {
+      cart.push({ name, price, qty: 1 });
+    }
+    renderCart();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    renderCart();
+  }
+
+  function clearCart() {
+    if (!cart.length) return;
+    if (!confirm('Na pewno wyczyścić koszyk?')) return;
+    cart = [];
+    renderCart();
+  }
+
+  function calcTotal() {
+    return cart.reduce((sum, i) => sum + Number(i.price) * Number(i.qty || 1), 0);
+  }
+
+  function renderCart() {
+    // licznik
+    const itemsCount = cart.reduce((acc, i) => acc + (i.qty || 1), 0);
+    cartCountEl.textContent = itemsCount;
+
+    // pozycje
+    cartItemsEl.innerHTML = '';
+    cart.forEach((item, index) => {
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+      row.innerHTML = `
+        <div style="flex:1">
+          <div style="font-weight:700">${item.name}</div>
+          <div style="font-size:13px;color:#555">${item.price} zł × ${item.qty}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+          <div>
+            <button class="remove-btn" onclick="decreaseQty(${index})">-</button>
+            <button class="remove-btn" onclick="increaseQty(${index})">+</button>
+          </div>
+          <button class="remove-btn" onclick="removeFromCart(${index})">Usuń</button>
+        </div>
+      `;
+      cartItemsEl.appendChild(row);
+    });
+
+    cartTotalEl.textContent = calcTotal().toFixed(2);
+    saveCart();
+
+    // jeśli koszyk się zmienił, zresetuj PayPal Buttons i renderuj na nowo
+    renderPayPalButtons();
+  }
+
+  function increaseQty(index){ cart[index].qty = (cart[index].qty||1)+1; renderCart(); }
+  function decreaseQty(index){ cart[index].qty = Math.max(1,(cart[index].qty||1)-1); renderCart(); }
+
+  function toggleCart(){
+    const visible = getComputedStyle(cartPanelEl).display === 'flex';
+    cartPanelEl.style.display = visible ? 'none' : 'flex';
+  }
+
+  // ---------- Formularz zamówienia (modal) ----------
+  const orderModal = document.getElementById('orderModal');
+  function openOrderForm(){ orderModal.style.display = 'flex'; }
+  function closeOrderForm(){ orderModal.style.display = 'none'; }
+
+  function submitOrderForm(){
+    const name = document.getElementById('customerName').value.trim();
+    const email = document.getElementById('customerEmail').value.trim();
+    const address = document.getElementById('customerAddress').value.trim();
+
+    if (!name || !email || !address) {
+      alert('Uzupełnij wszystkie pola formularza.');
+      return;
     }
 
-    function removeFromCart(index) {
-        cart.splice(index, 1);
-        updateCartCount();
-        updateCartPanel();
+    // przygotuj treść zamówienia
+    const total = calcTotal().toFixed(2);
+    const lines = cart.map(i => `${i.name} x ${i.qty} = ${(i.price * i.qty).toFixed(2)} zł`).join('%0D%0A');
+
+    const subject = encodeURIComponent(`Zamówienie ze sklepu AdelbertusShop — ${name}`);
+    const body = encodeURIComponent(
+      `Imię i nazwisko: ${name}\nEmail: ${email}\nAdres: ${address}\n\nZamówienie:\n${cart.map(i=>`${i.name} x ${i.qty} = ${(i.price*i.qty).toFixed(2)} zł`).join('\n')}\n\nSuma: ${total} zł\n\n(Płatność możliwa przez BLIK lub PayPal)`
+    );
+
+    // Otwórz klienta pocztowego z prewypełnionym mailem do Ciebie:
+    const adminEmail = 'mielniczukgrzegosz74@gmail.com';
+    const mailto = `mailto:${adminEmail}?subject=${subject}&body=${body}`;
+    window.location.href = mailto;
+
+    // możesz tutaj też wysłać fetch do własnego backendu:
+    // sendOrderByServer({name,email,address,cart,total});
+
+    // opcjonalnie: wyczyść koszyk (usuń komentarz jeśli chcesz automatycznie czyścić)
+    // cart = []; renderCart(); closeOrderForm();
+  }
+
+  // placeholder: jak będziesz miał serwer, podmień tę funkcję
+  function sendOrderByServer(payload){
+    // fetch('/api/order', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+    // .then(r=>r.json()).then(res=>console.log(res)).catch(e=>console.error(e));
+  }
+
+  // ---------- PayPal dynamic buttons ----------
+  let paypalRendered = false;
+  function renderPayPalButtons(){
+    const container = document.getElementById('paypal-buttons-container');
+    container.innerHTML = ''; // wyczyść
+
+    if (!cart.length) {
+      // Brak koszyka -> nie renderuj buttonów PayPal (albo pokaż info)
+      container.innerHTML = '<div style="color:#666;font-size:13px">Dodaj produkty, aby zapłacić przez PayPal.</div>';
+      paypalRendered = false;
+      return;
     }
 
-    function updateCartCount() {
-        document.querySelector(".cart-count").textContent = cart.length;
-    }
-
-    function updateCartPanel() {
-        const cartItemsContainer = document.querySelector(".cart-items");
-        cartItemsContainer.innerHTML = "";
-        cart.forEach((item, index) => {
-            const div = document.createElement("div");
-            div.classList.add("cart-item");
-            div.innerHTML = `
-                ${item.name} - ${item.price} zł
-                <button onclick="removeFromCart(${index})">X</button>
-            `;
-            cartItemsContainer.appendChild(div);
+    // Renderuj przyciski (createOrder) dynamicznie
+    paypal.Buttons({
+      style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay' },
+      createOrder: function(data, actions) {
+        const total = calcTotal().toFixed(2);
+        const purchase_units = [{
+          amount: {
+            currency_code: "PLN",
+            value: total,
+            breakdown: {
+              item_total: { currency_code: "PLN", value: total }
+            }
+          },
+          items: cart.map(item => ({
+            name: item.name,
+            unit_amount: { currency_code: "PLN", value: Number(item.price).toFixed(2) },
+            quantity: String(item.qty || 1)
+          }))
+        }];
+        return actions.order.create({ purchase_units });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          const payerName = details.payer.name?.given_name || '';
+          alert('Płatność zakończona sukcesem. Dziękujemy, ' + (payerName || 'Kliencie') + '!');
+          // wyczyść koszyk po sukcesie
+          cart = [];
+          renderCart();
+          toggleCart();
+          // opcjonalnie powiadom admina mailem — tutaj pokazemy mailto z info o płatności
+          const adminEmail = 'mielniczukgrzegosz74@gmail.com';
+          const subject = encodeURIComponent('Nowe zamówienie — opłacone PayPal');
+          const body = encodeURIComponent(`Szczegóły płatności:\nPayer: ${details.payer.name?.given_name || ''} ${details.payer.name?.surname || ''}\nPayer email: ${details.payer.email_address || ''}\nOrderID: ${data.orderID}\n\nZamówienie jest opłacone. (Przykłowa wiadomość — warto podpiąć serwer wysyłający e-maile automatycznie.)`);
+          // otwórz mailto (opcjonalne)
+          // window.location.href = `mailto:${adminEmail}?subject=${subject}&body=${body}`;
         });
-    }
+      },
+      onError: function(err){
+        console.error('PayPal error', err);
+        alert('Wystąpił błąd podczas płatności PayPal. Spróbuj ponownie.');
+      }
+    }).render('#paypal-buttons-container').then(()=> {
+      paypalRendered = true;
+    }).catch(err=>{
+      console.error('Render PayPal failed', err);
+      container.innerHTML = '<div style="color:#c00">Błąd ładowania PayPal.</div>';
+    });
+  }
 
-    function toggleCart() {
-        const panel = document.querySelector(".cart-panel");
-        panel.style.display = (panel.style.display === "flex") ? "none" : "flex";
-    }
-
-    function checkout() {
-        if (cart.length === 0) {
-            alert("Koszyk jest pusty!");
-            return;
-        }
-        alert("Zamówienie wysłane! Szczegóły: " + JSON.stringify(cart));
-        cart = [];
-        updateCartCount();
-        updateCartPanel();
-        toggleCart();
-    }
-
-    // PayPal
-    paypal.HostedButtons({
-        hostedButtonId: "L4639S4363CZE",
-    }).render("#paypal-container-L4639S4363CZE");
+  // inicjalizacja
+  renderCart();
+  // uważaj: PayPal Buttons będą renderowane gdy dodasz produkt (renderCart wywołuje renderPayPalButtons)
 </script>
 
 </body>
-</html>
-</html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+</html></html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -2175,6 +2302,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
