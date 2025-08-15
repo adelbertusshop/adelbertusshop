@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="utf-8" />
@@ -90,7 +90,6 @@
 <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
 
 <script>
-  // ---------- Stan koszyka ----------
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
   const cartCountEl = document.querySelector('.cart-count');
@@ -100,22 +99,22 @@
 
   function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); }
 
-  // --- Działający fragment „Dodaj do koszyka” ---
+  // --- Działająca funkcja „Dodaj do koszyka” ---
   function addToCart(name, price) {
     const existing = cart.find(i => i.name === name && i.price === price);
-    if (existing) { existing.qty = (existing.qty || 1) + 1; }
+    if (existing) { existing.qty = (existing.qty||1) + 1; }
     else { cart.push({ name, price, qty: 1 }); }
     renderCart();
   }
 
-  function removeFromCart(index) { cart.splice(index, 1); renderCart(); }
-  function clearCart() { if (!cart.length) return; if (!confirm('Na pewno wyczyścić koszyk?')) return; cart = []; renderCart(); }
-  function calcTotal() { return cart.reduce((sum, i) => sum + Number(i.price) * Number(i.qty || 1), 0); }
+  function removeFromCart(index){ cart.splice(index,1); renderCart(); }
+  function clearCart(){ if(!cart.length) return; if(!confirm('Na pewno wyczyścić koszyk?')) return; cart=[]; renderCart(); }
+  function calcTotal(){ return cart.reduce((sum,i)=>sum + Number(i.price)*(i.qty||1),0); }
 
-  function renderCart() {
-    cartCountEl.textContent = cart.reduce((acc, i) => acc + (i.qty || 1), 0);
+  function renderCart(){
+    cartCountEl.textContent = cart.reduce((acc,i)=>acc + (i.qty||1),0);
     cartItemsEl.innerHTML = '';
-    cart.forEach((item, index) => {
+    cart.forEach((item,index)=>{
       const row = document.createElement('div');
       row.className = 'cart-item';
       row.innerHTML = `
@@ -138,12 +137,8 @@
     renderPayPalButtons();
   }
 
-  function increaseQty(index){ cart[index].qty = (cart[index].qty||1)+1; renderCart(); }
-  function decreaseQty(index){ cart[index].qty = Math.max(1,(cart[index].qty||1)-1); renderCart(); }
-  function toggleCart(){ const visible = getComputedStyle(cartPanelEl).display === 'flex'; cartPanelEl.style.display = visible ? 'none' : 'flex'; }
-
-  // ---------- Formularz zamówienia ----------   
-  
+  function increaseQty(index){ cart[index].qty=(cart  
+                                                
        🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
@@ -1789,6 +1784,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
