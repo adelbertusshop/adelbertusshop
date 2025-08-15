@@ -954,7 +954,7 @@ function dodajDoKoszyka(nazwa, cena) {
     </div>
   </div>
 </section>
-      <!-- ====== Sekcja: Zaprojektuj Swój Produkt (pełna wersja - przód/tył) ====== -->
+<!-- ====== Sekcja: Zaprojektuj Swój Produkt (pełna wersja) ====== -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
   <div class="max-w-6xl mx-auto px-6 py-10">
     <h2 class="text-4xl font-bold mb-6 text-yellow-400 drop-shadow-lg text-center">Zaprojektuj Swój Produkt</h2>
@@ -969,7 +969,7 @@ function dodajDoKoszyka(nazwa, cena) {
 
     <!-- Widok toggle (przód/tył) -->
     <div class="mb-4 flex justify-center gap-4">
-      <button id="przodBtn" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded">Edytuj: PRZÓD</button>
+      <button id="przodBtn" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded ring-2">Edytuj: PRZÓD</button>
       <button id="tylBtn" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded">Edytuj: TYŁ</button>
     </div>
 
@@ -977,10 +977,11 @@ function dodajDoKoszyka(nazwa, cena) {
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
       <!-- PODGLĄD -->
       <div class="md:col-span-2">
-        <canvas id="podgladProdukt" width="560" height="560" class="mx-auto mb-4 border-4 border-yellow-500 rounded-lg bg-white shadow-lg"></canvas>
-        <div class="flex justify-center gap-4">
+        <canvas id="podgladProdukt" width="560" height="560" class="mx-auto mb-4 border-4 border-yellow-500 rounded-lg bg-white shadow-lg touch-none"></canvas>
+        <div class="flex justify-center gap-4 flex-wrap">
           <button id="pobierzProjekt" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz bieżący widok</button>
-          <button id="pobierzOba" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz przód + tył (osobne pliki)</button>
+          <button id="pobierzOba" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz przód + tył</button>
+          <button id="wyslijEmail" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Wyślij na e-mail</button>
         </div>
       </div>
 
@@ -1004,7 +1005,7 @@ function dodajDoKoszyka(nazwa, cena) {
 
         <div class="mb-3">
           <label class="block mb-2 font-semibold">Rozmiar tekstu:</label>
-          <input type="range" id="rozmiarTekstu" min="10" max="80" value="36" class="w-full mb-3">
+          <input type="range" id="rozmiarTekstu" min="10" max="120" value="36" class="w-full mb-3">
         </div>
 
         <div class="mb-3">
@@ -1013,7 +1014,7 @@ function dodajDoKoszyka(nazwa, cena) {
         </div>
 
         <div class="mb-3">
-          <label class="block mb-2 font-semibold">Kolor produktu (tła koszulki/bluzy/czapki):</label>
+          <label class="block mb-2 font-semibold">Kolor produktu (tło):</label>
           <input type="color" id="kolorProduktu" value="#ffffff" class="w-full h-12 mb-3">
         </div>
 
@@ -1023,7 +1024,7 @@ function dodajDoKoszyka(nazwa, cena) {
         </div>
 
         <div class="mb-3">
-          <label class="block mb-2 font-semibold">Umiejscowienie nadruku:</label>
+          <label class="block mb-2 font-semibold">Umiejscowienie startowe nadruku:</label>
           <select id="umiejscowienie" class="w-full p-2 rounded text-black mb-3">
             <option value="front">Przód (środek)</option>
             <option value="top">Góra</option>
@@ -1033,6 +1034,7 @@ function dodajDoKoszyka(nazwa, cena) {
             <option value="sleeveLeft">Rękaw lewy</option>
             <option value="sleeveRight">Rękaw prawy</option>
           </select>
+          <p class="text-xs text-gray-400">Po ustawieniu – przytrzymaj na podglądzie i przeciągnij, aby przesunąć napis.</p>
         </div>
 
         <div class="mb-4">
@@ -1045,7 +1047,7 @@ function dodajDoKoszyka(nazwa, cena) {
           </select>
         </div>
 
-        <div>
+        <div class="flex gap-2">
           <button id="dodajDoKoszyka" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded-lg shadow-lg transition">Dodaj do koszyka</button>
         </div>
       </div>
@@ -1061,14 +1063,20 @@ function dodajDoKoszyka(nazwa, cena) {
 </section>
 
 <script>
-/* ---------------------
-  Projektor: front/back
-   - dwa obiekty projektu: projektPrzod, projektTyl
-   - currentView = 'front'|'back'
-   - controls zapisują/odczytują z aktualnego projektu
-----------------------*/
+/* ===== Wspólny koszyk + zgodność nazw funkcji ===== */
+window.__CART__ = window.__CART__ || [];
+function addToCart(name, price, imageUrl = null, payload = null) {
+  window.__CART__.push({ name, price, imageUrl, payload, qty: 1, id: Date.now() + Math.random().toString(16).slice(2) });
+  if (typeof updateCartUI === 'function') updateCartUI();
+}
+function dodajDoKoszyka(name, price) {
+  addToCart(name, price);
+}
 
+/* ===== Sekcja: Projektor (front/back + drag & drop tekstu) ===== */
 (() => {
+  const EMAIL_KEY = '26es87U-rjUzsUtV7';
+
   // elements
   const canvas = document.getElementById('podgladProdukt');
   const ctx = canvas.getContext('2d');
@@ -1087,6 +1095,7 @@ function dodajDoKoszyka(nazwa, cena) {
 
   const btnPobierz = document.getElementById('pobierzProjekt');
   const btnPobierzOba = document.getElementById('pobierzOba');
+  const btnEmail = document.getElementById('wyslijEmail');
   const btnDodaj = document.getElementById('dodajDoKoszyka');
 
   const listaKoszykaEl = document.getElementById('listaKoszyka');
@@ -1095,38 +1104,51 @@ function dodajDoKoszyka(nazwa, cena) {
   // state
   let productType = 'koszulka';
   let currentView = 'front'; // 'front' or 'back'
+  const canvasSize = { w: canvas.width, h: canvas.height };
 
-  // projects hold view-specific settings
-  const projektPrzod = {
-    tekst: '',
-    czcionka: 'Arial',
-    rozmiar: 36,
-    kolorTekstu: '#000000',
-    kolorProduktu: '#ffffff',
-    grafikaDataUrl: null,
-    umiejscowienie: 'front',
-    rozmiarProdukt: 'M'
-  };
+  // projekt bazowy (z pozycją napisu do drag & drop)
+  function makeProject() {
+    const start = computePositionFor('front', productType);
+    return {
+      tekst: '',
+      czcionka: 'Arial',
+      rozmiar: 36,
+      kolorTekstu: '#000000',
+      kolorProduktu: '#ffffff',
+      grafikaDataUrl: null,
+      umiejscowienie: 'front',
+      rozmiarProdukt: 'M',
+      textX: start.x,
+      textY: start.y,
+    };
+  }
 
-  const projektTyl = {
-    tekst: '',
-    czcionka: 'Arial',
-    rozmiar: 36,
-    kolorTekstu: '#000000',
-    kolorProduktu: '#ffffff',
-    grafikaDataUrl: null,
-    umiejscowienie: 'front',
-    rozmiarProdukt: 'M'
-  };
+  const projektPrzod = makeProject();
+  const projektTyl = makeProject();
 
-  let koszyk = []; // prosty koszyk w pamięci
+  // drag state
+  let drag = { active: false, offsetX: 0, offsetY: 0 };
 
-  // helper: get active project object
+  // polyfill roundRect (JS – nie w CSS)
+  if (!CanvasRenderingContext2D.prototype.roundRect) {
+    CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+      if (w < 2 * r) r = w / 2;
+      if (h < 2 * r) r = h / 2;
+      this.beginPath();
+      this.moveTo(x + r, y);
+      this.arcTo(x + w, y, x + w, y + h, r);
+      this.arcTo(x + w, y + h, x, y + h, r);
+      this.arcTo(x, y + h, x, y, r);
+      this.arcTo(x, y, x + w, y, r);
+      this.closePath();
+      return this;
+    }
+  }
+
   function getActiveProject() {
     return currentView === 'front' ? projektPrzod : projektTyl;
   }
 
-  // load active project values into controls
   function loadProjectToControls() {
     const p = getActiveProject();
     inputTekst.value = p.tekst;
@@ -1136,11 +1158,9 @@ function dodajDoKoszyka(nazwa, cena) {
     inputKolorProduktu.value = p.kolorProduktu || '#ffffff';
     selectUmiejscowienie.value = p.umiejscowienie || 'front';
     selectRozmiar.value = p.rozmiarProdukt || 'M';
-    // reset file input (can't set value programmatically). Keep grafikaDataUrl in projekt object.
     fileGrafika.value = '';
   }
 
-  // save controls values into active project
   function saveControlsToProject() {
     const p = getActiveProject();
     p.tekst = inputTekst.value;
@@ -1148,34 +1168,38 @@ function dodajDoKoszyka(nazwa, cena) {
     p.rozmiar = parseInt(rangeRozmiar.value, 10);
     p.kolorTekstu = inputKolorTekstu.value;
     p.kolorProduktu = inputKolorProduktu.value;
+    // przy zmianie umiejscowienia – ustaw startowy punkt i dalej pozwól przesuwać
+    if (p.umiejscowienie !== selectUmiejscowienie.value) {
+      const pos = computePositionFor(selectUmiejscowienie.value, productType, true);
+      p.textX = pos.x; p.textY = pos.y;
+    }
     p.umiejscowienie = selectUmiejscowienie.value;
     p.rozmiarProdukt = selectRozmiar.value;
   }
 
-  // switch view: save current, switch flag, load new
   function switchView(view) {
-    // save current
     saveControlsToProject();
     currentView = view;
-    // visual cue
     btnPrzod.classList.toggle('ring-2', currentView === 'front');
     btnTyl.classList.toggle('ring-2', currentView === 'back');
-    // load
     loadProjectToControls();
-    // redraw
     rysujProdukt();
   }
 
-  // listen product type buttons (koszulka/bluza/czapka)
   document.querySelectorAll('.produktBtn').forEach(b => {
     b.addEventListener('click', () => {
+      saveControlsToProject();
       productType = b.dataset.typ;
-      // optional: change defaults for each type (shape proportions)
+      // reset pozycji tekstu dla obu widoków względem nowego typu
+      ['front', 'back'].forEach(v => {
+        const p = v === 'front' ? projektPrzod : projektTyl;
+        const pos = computePositionFor(p.umiejscowienie || 'front', productType, true);
+        p.textX = pos.x; p.textY = pos.y;
+      });
       rysujProdukt();
     });
   });
 
-  // FILE UPLOAD: attach image to active project as dataURL
   fileGrafika.addEventListener('change', e => {
     const f = e.target.files[0];
     if (!f) return;
@@ -1187,100 +1211,128 @@ function dodajDoKoszyka(nazwa, cena) {
     reader.readAsDataURL(f);
   });
 
-  // control listeners (save on change + redraw)
   [inputTekst, selectCzcionka, rangeRozmiar, inputKolorTekstu, inputKolorProduktu, selectUmiejscowienie, selectRozmiar]
     .forEach(el => el.addEventListener('input', () => {
       saveControlsToProject();
       rysujProdukt();
     }));
 
-  // view buttons
   btnPrzod.addEventListener('click', () => switchView('front'));
   btnTyl.addEventListener('click', () => switchView('back'));
 
-  // draw function — uses active project to render front or back view differently if needed
+  // ====== Rysowanie ======
   function rysujProdukt() {
-    // clear
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     const p = getActiveProject();
 
-    // background / product base
-    // shape depends on productType; keep proportions sensible for 560x560 canvas
+    // baza (kształt)
+    ctx.save();
     ctx.fillStyle = p.kolorProduktu || '#fff';
     ctx.strokeStyle = '#333';
     ctx.lineWidth = 3;
-
     const cx = canvas.width / 2;
     const cy = canvas.height / 2;
 
     if (productType === 'koszulka') {
-      // shirt rectangle
       const w = 280, h = 360;
       ctx.fillRect(cx - w/2, cy - h/2, w, h);
       ctx.strokeRect(cx - w/2, cy - h/2, w, h);
     } else if (productType === 'bluza') {
-      // hoodie rounded
       ctx.beginPath();
       ctx.roundRect(cx - 150, cy - 180, 300, 360, 30);
       ctx.fill();
       ctx.stroke();
     } else if (productType === 'czapka') {
-      // cap ellipse
       ctx.beginPath();
       ctx.ellipse(cx, cy + 40, 220, 120, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
     } else {
-      // default rectangle
       ctx.fillRect(80, 80, 400, 400);
       ctx.strokeRect(80, 80, 400, 400);
     }
+    ctx.restore();
 
-    // if back view, slightly dim product to show "tył" or change style (small visual cue)
+    // "TYŁ" wizualny sygnał
     if (currentView === 'back') {
       ctx.fillStyle = 'rgba(0,0,0,0.06)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-    // draw grafik if present
+    // obrazek (asynchronicznie, ale po onload wymuszamy redraw tekstu)
     if (p.grafikaDataUrl) {
       const img = new Image();
       img.onload = () => {
-        // position based on umiejscowienie
         const pos = computePositionFor(p.umiejscowienie, productType);
-        const drawW = Math.min(220, img.width);
-        const drawH = Math.min(220, img.height);
+        const maxDim = 220;
+        const scale = Math.min(maxDim / img.width, maxDim / img.height, 1);
+        const drawW = img.width * scale;
+        const drawH = img.height * scale;
         ctx.drawImage(img, pos.x - drawW/2, pos.y - drawH/2, drawW, drawH);
-        // after drawing image, draw text on top
-        drawTextOver(p);
+        drawTextOver(p); // tekst nad obrazem
       };
       img.src = p.grafikaDataUrl;
     } else {
       drawTextOver(p);
     }
 
-    // small label which view
+    // label
     ctx.fillStyle = '#111';
     ctx.font = '14px Arial';
     ctx.textAlign = 'left';
     ctx.fillText(`Widok: ${currentView === 'front' ? 'PRZÓD' : 'TYŁ'}  •  Produkt: ${productType}`, 10, canvas.height - 12);
   }
 
-  // draw text respecting settings
   function drawTextOver(p) {
-    ctx.fillStyle = p.kolorTekstu || '#000';
+    if (!p.tekst) return;
+
+    // metryki – do wykrywania kliknięcia
     ctx.font = `${p.rozmiar || 36}px ${p.czcionka || 'Arial'}`;
+    const maxWidth = 380;
+    const lines = breakLines(ctx, p.tekst, maxWidth);
+    const lineHeight = (p.rozmiar || 36) * 0.95;
+
+    // wylicz bounding box
+    const textW = Math.max(...lines.map(l => ctx.measureText(l).width));
+    const textH = lines.length * lineHeight;
+    const bx = p.textX - textW / 2;
+    const by = p.textY - textH / 2;
+
+    // półprzezroczyste tło pod napisem (łatwiej łapać drag) – można wyłączyć
+    ctx.save();
+    ctx.fillStyle = 'rgba(255,255,255,0.0)';
+    ctx.fillRect(bx - 6, by - 6, textW + 12, textH + 12);
+    ctx.restore();
+
+    // sam tekst
+    ctx.fillStyle = p.kolorTekstu || '#000';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    if (!p.tekst) return;
-    const pos = computePositionFor(p.umiejscowienie, productType, true);
-    // auto-wrap long text: simple approach
-    const maxWidth = 380;
-    wrapText(ctx, p.tekst, pos.x, pos.y, maxWidth, p.rozmiar || 36);
+    lines.forEach((line, i) => {
+      ctx.fillText(line, p.textX, p.textY - (textH - lineHeight)/2 + i * lineHeight);
+    });
+
+    // zapisz hitbox do projektu
+    p.__hitbox = { x: bx - 6, y: by - 6, w: textW + 12, h: textH + 12 };
   }
 
-  // compute drawing center point for each umiejscowienie
+  function breakLines(context, text, maxWidth) {
+    const words = text.split(' ');
+    const lines = [];
+    let line = '';
+    for (let n = 0; n < words.length; n++) {
+      const test = (line ? line + ' ' : '') + words[n];
+      if (context.measureText(test).width > maxWidth && line) {
+        lines.push(line);
+        line = words[n];
+      } else {
+        line = test;
+      }
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+
   function computePositionFor(um, type) {
     const cx = canvas.width / 2;
     const cy = canvas.height / 2;
@@ -1296,96 +1348,117 @@ function dodajDoKoszyka(nazwa, cena) {
     }
   }
 
-  // helper wrapText
-  function wrapText(context, text, x, y, maxWidth, lineHeight) {
-    const words = text.split(' ');
-    let line = '';
-    let testLine, metrics, testWidth;
-    let curY = y;
-    for (let n = 0; n < words.length; n++) {
-      testLine = line + words[n] + ' ';
-      metrics = context.measureText(testLine);
-      testWidth = metrics.width;
-      if (testWidth > maxWidth && n > 0) {
-        context.fillText(line.trim(), x, curY);
-        line = words[n] + ' ';
-        curY += lineHeight * 0.9;
-      } else {
-        line = testLine;
-      }
-    }
-    if (line) context.fillText(line.trim(), x, curY);
+  // ===== Drag & Drop (mysz + dotyk) dla napisu =====
+  function pointInRect(px, py, r) { return r && px >= r.x && px <= r.x + r.w && py >= r.y && py <= r.y + r.h; }
+  function getMousePos(evt) {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+    const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+    return {
+      x: (clientX - rect.left) * (canvas.width / rect.width),
+      y: (clientY - rect.top) * (canvas.height / rect.height)
+    };
   }
 
-  // addToCart: save both front & back in one product entry
-  btnDodaj.addEventListener('click', () => {
-    // save current controls to active project before grabbing both
-    saveControlsToProject();
-    // basic validation
-    const front = { ...projektPrzod };
-    const back = { ...projektTyl };
-
-    if (!front.tekst && !front.grafikaDataUrl) {
-      if (!confirm('Przód jest pusty. Dodać do koszyka mimo to?')) return;
+  function onDown(evt) {
+    const p = getActiveProject();
+    if (!p.tekst) return;
+    const pos = getMousePos(evt);
+    if (pointInRect(pos.x, pos.y, p.__hitbox)) {
+      drag.active = true;
+      drag.offsetX = pos.x - p.textX;
+      drag.offsetY = pos.y - p.textY;
+      evt.preventDefault();
     }
+  }
 
-    const prodName = `${productType.toUpperCase()} • ${front.tekst || 'bez tekstu'}`;
-    const cena = productType === 'bluza' ? 200 : productType === 'czapka' ? 99 : 120; // simple pricing
-    const item = {
-      name: prodName,
-      price: cena,
-      type: productType,
-      front,
-      back,
-      qty: 1
-    };
-    koszyk.push(item);
-    updateCartUI();
-    alert(`Dodano do koszyka: ${prodName} — ${cena} zł`);
-  });
+  function onMove(evt) {
+    if (!drag.active) return;
+    const p = getActiveProject();
+    const pos = getMousePos(evt);
+    p.textX = pos.x - drag.offsetX;
+    p.textY = pos.y - drag.offsetY;
+    rysujProdukt();
+    evt.preventDefault();
+  }
 
-  // update cart UI
+  function onUp() {
+    drag.active = false;
+  }
+
+  canvas.addEventListener('mousedown', onDown);
+  canvas.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onUp);
+  canvas.addEventListener('touchstart', onDown, { passive: false });
+  canvas.addEventListener('touchmove', onMove, { passive: false });
+  window.addEventListener('touchend', onUp);
+
+  // ===== Koszyk + akcje =====
   function updateCartUI() {
+    const cart = window.__CART__;
     listaKoszykaEl.innerHTML = '';
     let suma = 0;
-    koszyk.forEach((it, idx) => {
+    cart.forEach((it, idx) => {
       suma += it.price * it.qty;
       const li = document.createElement('li');
       li.textContent = `${it.name} — ${it.price} zł (${it.qty} szt.)`;
-      // add small remove button
       const btn = document.createElement('button');
       btn.textContent = ' Usuń';
       btn.className = 'ml-2 text-red-400';
-      btn.onclick = () => { koszyk.splice(idx,1); updateCartUI(); };
+      btn.onclick = () => { cart.splice(idx,1); updateCartUI(); };
       li.appendChild(btn);
       listaKoszykaEl.appendChild(li);
     });
     sumaKoszykaEl.textContent = `Suma: ${suma.toFixed(2)} zł`;
   }
+  window.updateCartUI = updateCartUI;
 
-  // download current view PNG
-  btnPobierz.addEventListener('click', () => {
+  btnDodaj.addEventListener('click', () => {
     saveControlsToProject();
-    const data = canvas.toDataURL('image/png');
-    downloadDataUrl(data, `${productType}_${currentView}.png`);
+    const front = { ...projektPrzod };
+    const back = { ...projektTyl };
+    const cena = productType === 'bluza' ? 200 : productType === 'czapka' ? 99 : 120;
+    const prodName = `${productType.toUpperCase()} • ${front.tekst || 'bez tekstu'} (${selectRozmiar.value})`;
+    addToCart(prodName, cena, null, { productType, front, back });
+    alert(`Dodano do koszyka: ${prodName} — ${cena} zł`);
   });
 
-  // download both views (render each then download)
-  btnPobierzOba.addEventListener('click', async () => {
-    // save controls first
+  // eksporty
+  btnPobierz.addEventListener('click', () => {
     saveControlsToProject();
-    // render front
+    downloadDataUrl(canvas.toDataURL('image/png'), `${productType}_${currentView}.png`);
+  });
+
+  btnPobierzOba.addEventListener('click', async () => {
+    saveControlsToProject();
+    // front
     currentView = 'front'; loadProjectToControls(); rysujProdukt();
-    await pause(200);
-    const frontData = canvas.toDataURL('image/png');
-    downloadDataUrl(frontData, `${productType}_front.png`);
-    // render back
+    await pause(80);
+    downloadDataUrl(canvas.toDataURL('image/png'), `${productType}_front.png`);
+    // back
     currentView = 'back'; loadProjectToControls(); rysujProdukt();
-    await pause(200);
-    const backData = canvas.toDataURL('image/png');
-    downloadDataUrl(backData, `${productType}_back.png`);
-    // restore view to front
+    await pause(80);
+    downloadDataUrl(canvas.toDataURL('image/png'), `${productType}_back.png`);
+    // back to front
     currentView = 'front'; loadProjectToControls(); rysujProdukt();
+  });
+
+  // mailto (klient lokalny) – w treści JSON + klucz
+  btnEmail.addEventListener('click', () => {
+    saveControlsToProject();
+    const payload = {
+      key: EMAIL_KEY,
+      productType,
+      front: { ...projektPrzod },
+      back: { ...projektTyl },
+      size: selectRozmiar.value
+    };
+    const to = prompt('Podaj adres e-mail (np. zamowienia@twojsklep.pl):', '');
+    if (!to) return;
+    const subject = encodeURIComponent(`Projekt ${productType} — ${selectRozmiar.value}`);
+    const body = encodeURIComponent(`Dane projektu (JSON):\n\n${JSON.stringify(payload, null, 2)}\n\n— wygenerowano z kreatora.`);
+    const href = `mailto:${to}?subject=${subject}&body=${body}`;
+    window.location.href = href;
   });
 
   function downloadDataUrl(dataUrl, filename) {
@@ -1396,39 +1469,22 @@ function dodajDoKoszyka(nazwa, cena) {
     a.click();
     a.remove();
   }
-
   function pause(ms){ return new Promise(res => setTimeout(res, ms)); }
 
-  // initial load
+  // init
   loadProjectToControls();
   rysujProdukt();
 
-  // expose small API to console for quick debugging
+  // debug
   window._projektPrzod = projektPrzod;
   window._projektTyl = projektTyl;
-  window._koszyk = koszyk;
-
 })();
 </script>
 
 <style>
-/* small polyfill for rounded rect if browser lacks ctx.roundRect */
-canvas { image-rendering: -webkit-optimize-contrast; }
-if (!CanvasRenderingContext2D.prototype.roundRect) {
-  CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
-    if (w < 2 * r) r = w / 2;
-    if (h < 2 * r) r = h / 2;
-    this.beginPath();
-    this.moveTo(x + r, y);
-    this.arcTo(x + w, y, x + w, y + h, r);
-    this.arcTo(x + w, y + h, x, y + h, r);
-    this.arcTo(x, y + h, x, y, r);
-    this.arcTo(x, y, x + w, y, r);
-    this.closePath();
-    return this;
-  }
-}
-</style>
+/* Drobne UX dla drag na mobile (wyłączenie scrolla w canvas podczas przesuwania) */
+#podgladProdukt { touch-action: none; }
+</style>        
 <section id="zbiorka" class="py-16 bg-gradient-to-br from-yellow-50 to-yellow-100">
   <div class="max-w-5xl mx-auto px-6 relative bg-white p-8 rounded-3xl border-8 border-yellow-400 shadow-2xl
               ring-4 ring-yellow-300 ring-opacity-70 hover:ring-opacity-100 transition duration-500">
@@ -1794,6 +1850,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
