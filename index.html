@@ -35,7 +35,7 @@
 
 <h1>AdelbertusShop</h1>
 
-<!-- Sekcja Sklep: Mężczyźni -->
+<!-- Sklep: Mężczyźni -->
 <section id="koszulki-mezczyzni">
   <h2>Koszulki Mężczyźni</h2>
   <div class="product">
@@ -68,7 +68,7 @@
   </div>
 </section>
 
-<!-- Sekcja Sklep: Kobiety -->
+<!-- Sklep: Kobiety -->
 <section id="koszulki-kobiety">
   <h2>Koszulki Kobiety</h2>
   <div class="product">
@@ -96,7 +96,7 @@
   </div>
 </section>
 
-<!-- Marketplace / Reklama -->
+<!-- Marketplace -->
 <section id="marketplace">
   <h2>Marketplace</h2>
   <div class="product">
@@ -116,12 +116,11 @@
   </div>
 </section>
 
-<!-- Przycisk koszyka -->
+<!-- Koszyk -->
 <button class="cart-button" onclick="toggleCart()" aria-label="Pokaż/ukryj koszyk">
   🛒 Koszyk <span class="cart-count">0</span>
 </button>
 
-<!-- Panel koszyka -->
 <div class="cart-panel" id="cartPanel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
   <div class="cart-panel-header">
     <div id="cartTitle">Twój koszyk</div>
@@ -170,64 +169,18 @@
   </div>
 </div>
 
-<!-- PayPal SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
 
 <script>
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const cartCountEl = document.querySelector('.cart-count');
-  const cartItemsEl = document.getElementById('cartItems');
-  const cartTotalEl = document.getElementById('cartTotal');
-  const cartPanelEl = document.getElementById('cartPanel');
+let cart = JSON.parse(localStorage.getItem('cart'))||[];
+const cartCountEl=document.querySelector('.cart-count');
+const cartItemsEl=document.getElementById('cartItems');
+const cartTotalEl=document.getElementById('cartTotal');
+const cartPanelEl=document.getElementById('cartPanel');
 
-  function saveCart(){ localStorage.setItem('cart', JSON.stringify(cart)); }
-
-  function addToCart(name, price){
-    const existing = cart.find(i=>i.name===name && i.price===price);
-    if(existing){ existing.qty = (existing.qty||1)+1; } 
-    else { cart.push({name, price, qty:1}); }
-    renderCart();
-  }
-
-  function removeFromCart(index){ cart.splice(index,1); renderCart(); }
-  function clearCart(){ if(!cart.length) return; if(!confirm('Na pewno wyczyścić koszyk?')) return; cart=[]; renderCart(); }
-  function calcTotal(){ return cart.reduce((sum,i)=>sum+Number(i.price)*(i.qty||1),0); }
-
-  function renderCart(){
-    cartCountEl.textContent = cart.reduce((acc,i)=>acc+(i.qty||1),0);
-    cartItemsEl.innerHTML='';
-    cart.forEach((item,index)=>{
-      const row=document.createElement('div');
-      row.className='cart-item';
-      row.innerHTML=`
-        <div style="flex:1">
-          <div style="font-weight:700">${item.name}</div>
-          <div style="font-size:13px;color:#555">${item.price} zł × ${item.qty}</div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
-          <div>
-            <button class="remove-btn" onclick="decreaseQty(${index})">-</button>
-            <button class="remove-btn" onclick="increaseQty(${index})">+</button>
-          </div>
-          <button class="remove-btn" onclick="removeFromCart(${index})">Usuń</button>
-        </div>
-      `;
-      cartItemsEl.appendChild(row);
-    });
-    cartTotalEl.textContent = calcTotal().toFixed(2);
-    saveCart();
-    renderPayPalButtons();
-  }
-
-  function increaseQty(index){ cart[index].qty=(cart[index].qty||1)+1; renderCart(); }
-  function decreaseQty(index){ cart[index].qty=Math.max(1,(cart[index].qty||1)-1); renderCart(); }
-  function toggleCart(){ const visible=getComputedStyle(cartPanelEl).display==='flex'; cartPanelEl.style.display=visible?'none':'flex'; }
-
-  const orderModal=document.getElementById('orderModal');
-  function openOrderForm(){ orderModal.style.display='flex'; }
-  function
-</html>/html><!-- 
-🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+function saveCart(){ localStorage.setItem('cart',JSON.stringify(cart)); }
+function addToCart(name,price){ const existing=cart.find(i=>i.name===name && i.price===price); if(existing){ existing.qty=(existing.qty||1)+1; }else{ cart.push({name,price,qty:1}); } renderCart(); }
+function removeFromCart(index){ cart.splice(index,🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -1873,6 +1826,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
