@@ -142,7 +142,8 @@
   function decreaseQty(index){ cart[index].qty = Math.max(1,(cart[index].qty||1)-1); renderCart(); }
   function toggleCart(){ const visible = getComputedStyle(cartPanelEl).display === 'flex'; cartPanelEl.style.display = visible ? 'none' : 'flex'; }
 
-  // ---------- Formularz zamówienia ----------       
+  // ---------- Formularz zamówienia ----------   
+  
        🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
@@ -1788,6 +1789,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
