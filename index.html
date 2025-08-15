@@ -99,11 +99,11 @@
 
   function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); }
 
-  // --- Działająca funkcja dodawania do koszyka ---
-  function addToCart(name, price){
-    const existing = cart.find(item => item.name === name);
-    if(existing){ existing.qty = (existing.qty || 1) + 1; }
-    else{ cart.push({name, price, qty:1}); }
+  // --- Działająca funkcja „Dodaj do koszyka” ---
+  function addToCart(name, price) {
+    const existing = cart.find(i => i.name === name && i.price === price);
+    if (existing) { existing.qty = (existing.qty||1) + 1; }
+    else { cart.push({ name, price, qty: 1 }); }
     renderCart();
   }
 
@@ -137,9 +137,9 @@
     renderPayPalButtons();
   }
 
-  function increaseQty(index){ cart[index].qty = (cart[index].qty||1)+1; renderCart(); }
-  function decreaseQty(index){ cart[index].qty = Math.max(1,(cart[index].qty||1)-1); renderCart(); }
-  function toggleCart(){ const visible = getComputedStyle(cartPanelEl).display==='flex'; cartPanelEl.style.display = visible?'none':'flex'; }
+  function increaseQty(index){ cart[index].qty=(cart[index].qty||1)+1; renderCart(); }
+  function decreaseQty(index){ cart[index].qty=Math.max(1,(cart[index].qty||1)-1); renderCart(); }
+  function toggleCart(){ const visible = getComputedStyle(cartPanelEl).display==='flex'; cartPanelEl.style.display=visible?'none':'flex'; }
 
   const orderModal = document.getElementById('orderModal');
   function openOrderForm(){ orderModal.style.display='flex'; }
@@ -149,7 +149,40 @@
     const name = document.getElementById('customerName').value.trim();
     const email = document.getElementById('customerEmail').value.trim();
     const address = document.getElementById('customerAddress').value.trim();
-    if(!name||🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+    if(!name||!email||!address){ alert('Uzupełnij wszystkie pola formularza.'); return; }
+    const total = calcTotal().toFixed(2);
+    const subject = encodeURIComponent(`Zamówienie ze sklepu AdelbertusShop — ${name}`);
+    const body = encodeURIComponent(`Imię i nazwisko: ${name}\nEmail: ${email}\nAdres: ${address}\n\nZamówienie:\n${cart.map(i=>`${i.name} x ${i.qty} = ${(i.price*i.qty).toFixed(2)} zł`).join('\n')}\n\nSuma: ${total} zł\n\n(Płatność możliwa przez BLIK lub PayPal)`);
+    const adminEmail = 'mielniczukgrzegosz74@gmail.com';
+    window.location.href = `mailto:${adminEmail}?subject=${subject}&body=${body}`;
+  }
+
+  function renderPayPalButtons(){
+    const container = document.getElementById('paypal-buttons-container');
+    container.innerHTML='';
+    if(!cart.length){ container.innerHTML='<div style="color:#666;font-size:13px">Dodaj produkty, aby zapłacić przez PayPal.</div>'; return; }
+    paypal.Buttons({
+      style:{layout:'vertical',color:'gold',shape:'rect',label:'pay'},
+      createOrder:function(data,actions){
+        const total=calcTotal().toFixed(2);
+        return actions.order.create({
+          purchase_units:[{
+            amount:{currency_code:"PLN",value:total},
+            items:cart.map(item=>({name:item.name,unit_amount:{currency_code:"PLN",value:Number(item.price).toFixed(2)},quantity:String(item.qty||1)}))
+          }]
+        });
+      },
+      onApprove:function(data,actions){ return actions.order.capture().then(function(details){ alert('Płatność zakończona sukcesem. Dziękujemy, '+(details.payer.name?.given_name||'Kliencie')+'!'); cart=[]; renderCart(); toggleCart(); }); },
+      onError:function(err){ console.error('PayPal error',err); alert('Wystąpił błąd podczas płatności PayPal. Spróbuj ponownie.'); }
+    }).render('#paypal-buttons-container');
+  }
+
+  // Inicjalizacja
+  renderCart();
+</script>
+</body>
+</html>       
+       🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -1794,6 +1827,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
