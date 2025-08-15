@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>AdelbertusShop — koszyk + PayPal + BLIK + zamówienia</title>
+<title>AdelbertusShop — sklep + marketplace + zaprojektuj + koszyk</title>
 <style>
   body{font-family:Arial,Helvetica,sans-serif;background:#f3f3f3;color:#111;margin:0;padding:20px}
-  h1{margin-top:0}
+  h1,h2{margin-top:0}
+  .product{border:1px solid #ccc;padding:10px;margin-bottom:8px;border-radius:8px;display:flex;justify-content:space-between;align-items:center}
   .cart-button{position:fixed;bottom:20px;right:20px;background:#222;color:#fff;border:none;border-radius:50px;padding:12px 20px;cursor:pointer;display:flex;align-items:center;gap:8px;z-index:1000}
   .cart-count{background:#e53935;border-radius:50%;padding:4px 8px;font-size:14px}
   .cart-panel{position:fixed;bottom:80px;right:20px;width:360px;background:#fff;border:1px solid #ccc;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.18);display:none;flex-direction:column;z-index:1000}
@@ -31,6 +32,89 @@
 </style>
 </head>
 <body>
+
+<h1>AdelbertusShop</h1>
+
+<!-- Sekcja Sklep: Mężczyźni -->
+<section id="koszulki-mezczyzni">
+  <h2>Koszulki Mężczyźni</h2>
+  <div class="product">
+    <span>Nie pasujesz do...</span>
+    <span>120</span>
+    <button onclick="addToCart('Nie pasujesz do...', 120)">Dodaj do koszyka</button>
+  </div>
+  <div class="product">
+    <span>Buntownik z wyboru</span>
+    <span>120</span>
+    <button onclick="addToCart('Buntownik z wyboru', 120)">Dodaj do koszyka</button>
+  </div>
+</section>
+
+<section id="bluzy-mezczyzni">
+  <h2>Bluzy Mężczyźni</h2>
+  <div class="product">
+    <span>Bluza klasyczna</span>
+    <span>200</span>
+    <button onclick="addToCart('Bluza klasyczna', 200)">Dodaj do koszyka</button>
+  </div>
+</section>
+
+<section id="czapki-mezczyzni">
+  <h2>Czapki Mężczyźni</h2>
+  <div class="product">
+    <span>Czapka street</span>
+    <span>99</span>
+    <button onclick="addToCart('Czapka street', 99)">Dodaj do koszyka</button>
+  </div>
+</section>
+
+<!-- Sekcja Sklep: Kobiety -->
+<section id="koszulki-kobiety">
+  <h2>Koszulki Kobiety</h2>
+  <div class="product">
+    <span>Elegancka koszulka</span>
+    <span>120</span>
+    <button onclick="addToCart('Elegancka koszulka', 120)">Dodaj do koszyka</button>
+  </div>
+</section>
+
+<section id="bluzy-kobiety">
+  <h2>Bluzy Kobiety</h2>
+  <div class="product">
+    <span>Bluza damska</span>
+    <span>200</span>
+    <button onclick="addToCart('Bluza damska', 200)">Dodaj do koszyka</button>
+  </div>
+</section>
+
+<section id="czapki-kobiety">
+  <h2>Czapki Kobiety</h2>
+  <div class="product">
+    <span>Czapka elegancka</span>
+    <span>99</span>
+    <button onclick="addToCart('Czapka elegancka', 99)">Dodaj do koszyka</button>
+  </div>
+</section>
+
+<!-- Marketplace / Reklama -->
+<section id="marketplace">
+  <h2>Marketplace</h2>
+  <div class="product">
+    <span>Limitowana koszulka</span>
+    <span>199</span>
+    <button onclick="addToCart('Limitowana koszulka', 199)">Dodaj do koszyka</button>
+  </div>
+</section>
+
+<!-- Zaprojektuj -->
+<section id="zaprojektuj">
+  <h2>Zaprojektuj własny produkt</h2>
+  <div class="product">
+    <span>Twój projekt</span>
+    <span>199</span>
+    <button onclick="addToCart('Twój projekt', 199)">Dodaj do koszyka</button>
+  </div>
+</section>
 
 <!-- Przycisk koszyka -->
 <button class="cart-button" onclick="toggleCart()" aria-label="Pokaż/ukryj koszyk">
@@ -68,7 +152,7 @@
   </div>
 </div>
 
-<!-- Formularz zamówienia (modal) -->
+<!-- Formularz zamówienia -->
 <div class="modal" id="orderModal">
   <div class="modal-content">
     <h3>Formularz zamówienia</h3>
@@ -76,13 +160,13 @@
     <div style="margin-bottom:8px">
       <input id="customerName" placeholder="Imię i nazwisko" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-bottom:8px">
       <input id="customerEmail" placeholder="Email" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-bottom:8px">
-      <textarea id="customerAddress" placeholder="Adres do wysyłki (ulica, kod, miasto)" rows="3" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc"></textarea>
+      <textarea id="customerAddress" placeholder="Adres do wysyłki" rows="3" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc"></textarea>
     </div>
     <div style="display:flex;gap:8px">
       <button class="btn btn-primary" onclick="submitOrderForm()">Wyślij zamówienie (mailto)</button>
       <button class="btn btn-light" onclick="closeOrderForm()">Anuluj</button>
     </div>
-    <p class="small" style="margin-top:8px">Uwaga: żeby wysyłać maile automatycznie potrzebny jest backend — poniższa metoda otworzy klienta pocztowego użytkownika.</p>
+    <p class="small" style="margin-top:8px">Uwaga: automatyczna wysyłka wymaga backendu — poniższa metoda otworzy klienta pocztowego.</p>
   </div>
 </div>
 
@@ -90,34 +174,32 @@
 <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
 
 <script>
-  // ---------- Stan koszyka ----------
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
   const cartCountEl = document.querySelector('.cart-count');
   const cartItemsEl = document.getElementById('cartItems');
   const cartTotalEl = document.getElementById('cartTotal');
   const cartPanelEl = document.getElementById('cartPanel');
 
-  function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); }
+  function saveCart(){ localStorage.setItem('cart', JSON.stringify(cart)); }
 
-  function addToCart(name, price) {
-    const existing = cart.find(i => i.name === name && i.price === price);
-    if (existing) { existing.qty = (existing.qty || 1) + 1; }
-    else { cart.push({ name, price, qty: 1 }); }
+  function addToCart(name, price){
+    const existing = cart.find(i=>i.name===name && i.price===price);
+    if(existing){ existing.qty = (existing.qty||1)+1; } 
+    else { cart.push({name, price, qty:1}); }
     renderCart();
   }
 
-  function removeFromCart(index) { cart.splice(index, 1); renderCart(); }
-  function clearCart() { if (!cart.length) return; if (!confirm('Na pewno wyczyścić koszyk?')) return; cart = []; renderCart(); }
-  function calcTotal() { return cart.reduce((sum, i) => sum + Number(i.price) * Number(i.qty || 1), 0); }
+  function removeFromCart(index){ cart.splice(index,1); renderCart(); }
+  function clearCart(){ if(!cart.length) return; if(!confirm('Na pewno wyczyścić koszyk?')) return; cart=[]; renderCart(); }
+  function calcTotal(){ return cart.reduce((sum,i)=>sum+Number(i.price)*(i.qty||1),0); }
 
-  function renderCart() {
-    cartCountEl.textContent = cart.reduce((acc, i) => acc + (i.qty || 1), 0);
-    cartItemsEl.innerHTML = '';
-    cart.forEach((item, index) => {
-      const row = document.createElement('div');
-      row.className = 'cart-item';
-      row.innerHTML = `
+  function renderCart(){
+    cartCountEl.textContent = cart.reduce((acc,i)=>acc+(i.qty||1),0);
+    cartItemsEl.innerHTML='';
+    cart.forEach((item,index)=>{
+      const row=document.createElement('div');
+      row.className='cart-item';
+      row.innerHTML=`
         <div style="flex:1">
           <div style="font-weight:700">${item.name}</div>
           <div style="font-size:13px;color:#555">${item.price} zł × ${item.qty}</div>
@@ -137,64 +219,13 @@
     renderPayPalButtons();
   }
 
-  function increaseQty(index){ cart[index].qty = (cart[index].qty||1)+1; renderCart(); }
-  function decreaseQty(index){ cart[index].qty = Math.max(1,(cart[index].qty||1)-1); renderCart(); }
-  function toggleCart(){ const visible = getComputedStyle(cartPanelEl).display === 'flex'; cartPanelEl.style.display = visible ? 'none' : 'flex'; }
+  function increaseQty(index){ cart[index].qty=(cart[index].qty||1)+1; renderCart(); }
+  function decreaseQty(index){ cart[index].qty=Math.max(1,(cart[index].qty||1)-1); renderCart(); }
+  function toggleCart(){ const visible=getComputedStyle(cartPanelEl).display==='flex'; cartPanelEl.style.display=visible?'none':'flex'; }
 
-  // ---------- Formularz zamówienia ----------
-  const orderModal = document.getElementById('orderModal');
-  function openOrderForm(){ orderModal.style.display = 'flex'; }
-  function closeOrderForm(){ orderModal.style.display = 'none'; }
-
-  function submitOrderForm(){
-    const name = document.getElementById('customerName').value.trim();
-    const email = document.getElementById('customerEmail').value.trim();
-    const address = document.getElementById('customerAddress').value.trim();
-    if (!name || !email || !address) { alert('Uzupełnij wszystkie pola formularza.'); return; }
-    const total = calcTotal().toFixed(2);
-    const subject = encodeURIComponent(`Zamówienie ze sklepu AdelbertusShop — ${name}`);
-    const body = encodeURIComponent(
-      `Imię i nazwisko: ${name}\nEmail: ${email}\nAdres: ${address}\n\nZamówienie:\n${cart.map(i=>`${i.name} x ${i.qty} = ${(i.price*i.qty).toFixed(2)} zł`).join('\n')}\n\nSuma: ${total} zł\n\n(Płatność możliwa przez BLIK lub PayPal)`
-    );
-    const adminEmail = 'mielniczukgrzegosz74@gmail.com';
-    window.location.href = `mailto:${adminEmail}?subject=${subject}&body=${body}`;
-  }
-
-  // ---------- PayPal ----------
-  function renderPayPalButtons(){
-    const container = document.getElementById('paypal-buttons-container');
-    container.innerHTML = '';
-    if (!cart.length) { container.innerHTML = '<div style="color:#666;font-size:13px">Dodaj produkty, aby zapłacić przez PayPal.</div>'; return; }
-    paypal.Buttons({
-      style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay' },
-      createOrder: function(data, actions) {
-        const total = calcTotal().toFixed(2);
-        return actions.order.create({
-          purchase_units: [{
-            amount: { currency_code: "PLN", value: total },
-            items: cart.map(item => ({
-              name: item.name,
-              unit_amount: { currency_code: "PLN", value: Number(item.price).toFixed(2) },
-              quantity: String(item.qty || 1)
-            }))
-          }]
-        });
-      },
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          const payerName = details.payer.name?.given_name || '';
-          alert('Płatność zakończona sukcesem. Dziękujemy, ' + (payerName || 'Kliencie') + '!');
-          cart = []; renderCart(); toggleCart();
-        });
-      },
-      onError: function(err){ console.error('PayPal error', err); alert('Wystąpił błąd podczas płatności PayPal. Spróbuj ponownie.'); }
-    }).render('#paypal-buttons-container');
-  }
-
-  // Inicjalizacja
-  renderCart();
-</script>
-</body>
+  const orderModal=document.getElementById('orderModal');
+  function openOrderForm(){ orderModal.style.display='flex'; }
+  function
 </html>/html><!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
@@ -1841,6 +1872,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
