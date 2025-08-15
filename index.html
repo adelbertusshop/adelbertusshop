@@ -196,7 +196,16 @@
   renderCart();
 </script>
 </body>
-</html>  <!-- Obraz banera -->
+  <!-- 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+<section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
+  <!-- Napis nad banerem -->
+  <div class="z-20 text-center pt-6 px-4 animate-fade-down">
+    <h2 class="text-xl md:text-3xl font-bold text-yellow-400 drop-shadow-[0_0_10px_#d4af37] border border-yellow-400 rounded-lg inline-block px-4 py-2 bg-black bg-opacity-50">
+      To nie produkt, To lustro. Gotowy zobaczyć, co w nim jest
+    </h2>
+  </div>
+
+  <!-- Obraz banera -->
   <div class="relative flex-1">
     <img src="https://i.ibb.co/Z1VjqzN8/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg"
          alt="Baner główny"
@@ -232,8 +241,7 @@
 }
 .animate-fade-down { animation: fadeDown 1.5s ease forwards; }
 .animate-fade-up { animation: fadeUp 1.5s ease forwards; }
-</style>    
-<!-- ====================== SKLEP PREMIUM ====================== -->
+</style><!-- ====================== SKLEP PREMIUM ====================== -->
 <section id="sklep" class="py-16 bg-[#121212] text-white">
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-5xl font-bold text-center text-[#d4af37] mb-16">Ekskluzywny Sklep</h2>
@@ -1833,6 +1841,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
