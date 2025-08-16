@@ -44,9 +44,7 @@
 <h1>Sklep AdelbertusShop</h1>
 
 <!-- Produkty -->
-<div class="products" id="productList">
-  <!-- Produkty będą wypełniane JS -->
-</div>
+<div class="products" id="productList"></div>
 
 <!-- Przycisk koszyka -->
 <button class="cart-button" onclick="toggleCart()" aria-label="Pokaż/ukryj koszyk">
@@ -68,11 +66,13 @@
       <strong><span id="cartTotal">0.00</span> zł</strong>
     </div>
 
+    <!-- BLIK (informacyjnie, zgodnie z Twoim życzeniem) -->
     <div class="blik-box">
       Płatność BLIK: <span style="font-size:1.2rem;letter-spacing:1px">573-939-925</span><br>
       Tytuł płatności: <em>„Zamówienie AdelbertusShop”</em>
     </div>
 
+    <!-- Jedyna metoda online: PayPal -->
     <div class="paypal-wrap">
       <div id="paypal-buttons-container"></div>
     </div>
@@ -84,11 +84,11 @@
   </div>
 </div>
 
-<!-- Formularz zamówienia (modal) -->
+<!-- Formularz zamówienia (mailto) -->
 <div class="modal" id="orderModal">
   <div class="modal-content">
     <h3>Formularz zamówienia</h3>
-    <p class="small">Wypełnij dane — po zatwierdzeniu wyślemy e-mail z informacjami o zamówieniu.</p>
+    <p class="small">Wypełnij dane — po zatwierdzeniu otworzy się klient poczty z podsumowaniem koszyka.</p>
     <div style="margin-bottom:8px">
       <input id="customerName" placeholder="Imię i nazwisko" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-bottom:8px">
       <input id="customerEmail" placeholder="Email" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;margin-bottom:8px">
@@ -98,14 +98,23 @@
       <button class="btn btn-primary" onclick="submitOrderForm()">Wyślij zamówienie (mailto)</button>
       <button class="btn btn-light" onclick="closeOrderForm()">Anuluj</button>
     </div>
-    <p class="small" style="margin-top:8px">Uwaga: żeby wysyłać maile automatycznie potrzebny jest backend — poniższa metoda otworzy klienta pocztowego użytkownika.</p>
+    <p class="small" style="margin-top:8px">Płatność online: tylko PayPal. Możesz też zrobić przelew BLIK na numer powyżej.</p>
   </div>
 </div>
 
-<!-- PayPal SDK -->
+<!-- PayPal SDK (tylko PayPal, PLN) -->
 <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
 
-  const productListEl=document.getElementById('productList');
+<script>
+  // ===== Produkty (przykładowe – podmień na swoje) =====
+  const products = [
+    {name:"Koszulka Adelbertus", price:49.99, img:"https://via.placeholder.com/180x180?text=Koszulka"},
+    {name:"Bluza Adelbertus",   price:99.99, img:"https://via.placeholder.com/180x180?text=Bluza"},
+    {name:"Czapka Adelbertus",  price:39.99, img:"https://via.placeholder.com/180x180?text=Czapka"},
+    {name:"Kubek Adelbertus",   price:29.99, img:"https://via.placeholder.com/180x180?text=Kubek"}
+  ];
+
+  const productListEl = document.getElementById('productList');
   products.forEach(p=>{
     const div=document.createElement('div');
     div.className='product';
@@ -113,12 +122,12 @@
       <img src="${p.img}" alt="${p.name}">
       <div class="product-name">${p.name}</div>
       <div class="product-price">${p.price} zł</div>
-      <button class="btn-add" onclick="addToCart('${p.name}',${p.price})">Dodaj do koszyka</button>
+      <button class="btn-add" onclick="addToCart('${p.name.replace(/'/g,"\\'")}', ${p.price})">Dodaj do koszyka</button>
     `;
     productListEl.appendChild(div);
   });
 
-  // --- Koszyk ---
+  // ===== Koszyk =====
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   const cartCountEl = document.querySelector('.cart-count');
   const cartItemsEl = document.getElementById('cartItems');
@@ -126,23 +135,23 @@
   const cartPanelEl = document.getElementById('cartPanel');
   const orderModal = document.getElementById('orderModal');
 
-  function saveCart(){ localStorage.setItem('cart',JSON.stringify(cart)); }
+  function saveCart(){ localStorage.setItem('cart', JSON.stringify(cart)); }
 
-  function addToCart(name,price){
-    const existing = cart.find(i=>i.name===name && i.price===price);
-    if(existing) existing.qty = (existing.qty||1)+1;
-    else cart.push({name,price,qty:1});
+  function addToCart(name, price){
+    const existing = cart.find(i => i.name === name && i.price === price);
+    if (existing) existing.qty = (existing.qty || 1) + 1;
+    else cart.push({ name, price, qty: 1 });
     animateCartButton();
     renderCart();
   }
 
   function removeFromCart(index){ cart.splice(index,1); renderCart(); }
   function clearCart(){ if(!cart.length) return; if(!confirm('Na pewno wyczyścić koszyk?')) return; cart=[]; renderCart(); }
-  function calcTotal(){ return cart.reduce((sum,i)=>sum+Number(i.price)*(Number(i.qty||1)),0); }
+  function calcTotal(){ return cart.reduce((sum,i)=> sum + Number(i.price) * Number(i.qty||1), 0); }
 
   function renderCart(){
-    cartCountEl.textContent = cart.reduce((acc,i)=>acc+(i.qty||1),0);
-    cartItemsEl.innerHTML='';
+    cartCountEl.textContent = cart.reduce((acc,i)=> acc + (i.qty||1), 0);
+    cartItemsEl.innerHTML = '';
     cart.forEach((item,index)=>{
       const row=document.createElement('div');
       row.className='cart-item';
@@ -166,67 +175,86 @@
     renderPayPalButtons();
   }
 
-  function increaseQty(index){ cart[index].qty=(cart[index].qty||1)+1; renderCart(); }
-  function decreaseQty(index){ cart[index].qty=Math.max(1,(cart[index].qty||1)-1); renderCart(); }
+  function increaseQty(index){ cart[index].qty = (cart[index].qty||1) + 1; renderCart(); }
+  function decreaseQty(index){ cart[index].qty = Math.max(1, (cart[index].qty||1) - 1); renderCart(); }
   function toggleCart(){ cartPanelEl.classList.toggle('show'); }
 
   function animateCartButton(){
     cartCountEl.classList.add('bump');
-    setTimeout(()=>cartCountEl.classList.remove('bump'),200);
+    setTimeout(()=>cartCountEl.classList.remove('bump'), 200);
   }
 
+  // ===== Formularz (mailto) =====
   function openOrderForm(){ orderModal.style.display='flex'; }
   function closeOrderForm(){ orderModal.style.display='none'; }
-
   function submitOrderForm(){
-    const name=document.getElementById('customerName').value.trim();
-    const email=document.getElementById('customerEmail').value.trim();
-    const address=document.getElementById('customerAddress').value.trim();
+    const name   = document.getElementById('customerName').value.trim();
+    const email  = document.getElementById('customerEmail').value.trim();
+    const address= document.getElementById('customerAddress').value.trim();
     if(!name||!email||!address){ alert('Uzupełnij wszystkie pola formularza.'); return; }
-    const total=calcTotal().toFixed(2);
-    const subject=encodeURIComponent(`Zamówienie ze sklepu AdelbertusShop — ${name}`);
-    const body=encodeURIComponent(
-      `Imię i nazwisko: ${name}\nEmail: ${email}\nAdres: ${address}\n\nZamówienie:\n${cart.map(i=>`${i.name} x ${i.qty} = ${(i.price*i.qty).toFixed(2)} zł`).join('\n')}\n\nSuma: ${total} zł\n\nPłatność możliwa przez BLIK: 573-939-925 lub PayPal`
+    const total  = calcTotal().toFixed(2);
+    const subject= encodeURIComponent(`Zamówienie ze sklepu AdelbertusShop — ${name}`);
+    const lines  = cart.map(i=>`${i.name} × ${i.qty} = ${(i.price*i.qty).toFixed(2)} zł`).join('\n');
+    const body   = encodeURIComponent(
+`Imię i nazwisko: ${name}
+Email: ${email}
+Adres: ${address}
+
+Zamówienie:
+${lines}
+
+Suma: ${total} zł
+
+Płatność: PayPal (przycisk w koszyku) lub BLIK: 573-939-925`
     );
     const adminEmail='mielniczukgrzegosz74@gmail.com';
     window.location.href=`mailto:${adminEmail}?subject=${subject}&body=${body}`;
   }
 
+  // ===== PayPal (TYLKO PayPal) =====
   function renderPayPalButtons(){
-    const container=document.getElementById('paypal-buttons-container');
-    container.innerHTML='';
-    if(!cart.length){ container.innerHTML='<div style="color:#666;font-size:13px">Dodaj produkty, aby zapłacić przez PayPal.</div>'; return; }
+    const container = document.getElementById('paypal-buttons-container');
+    container.innerHTML = '';
+    if(!cart.length){
+      container.innerHTML = '<div style="color:#666;font-size:13px">Dodaj produkty, aby zapłacić przez PayPal.</div>';
+      return;
+    }
     paypal.Buttons({
-      style:{layout:'vertical',color:'gold',shape:'rect',label:'pay'},
-      createOrder:function(data,actions){
-        const total=calcTotal().toFixed(2);
+      style:{ layout:'vertical', color:'gold', shape:'rect', label:'pay' },
+      createOrder: function(data, actions){
+        const total = calcTotal().toFixed(2);
         return actions.order.create({
-          purchase_units:[{
-            amount:{currency_code:"PLN",value:total},
-            items:cart.map(item=>({
-              name:item.name,
-              unit_amount:{currency_code:"PLN",value:Number(item.price).toFixed(2)},
-              quantity:String(item.qty||1)
+          purchase_units: [{
+            amount: { currency_code: "PLN", value: total },
+            items: cart.map(item => ({
+              name: item.name,
+              unit_amount: { currency_code: "PLN", value: Number(item.price).toFixed(2) },
+              quantity: String(item.qty || 1)
             }))
           }]
         });
       },
-      onApprove:function(data,actions){
+      onApprove: function(data, actions){
         return actions.order.capture().then(function(details){
-          const payerName=details.payer.name?.given_name||'';
-          alert('Płatność zakończona sukcesem. Dziękujemy, '+(payerName||'Kliencie')+'!');
-          cart=[]; renderCart(); toggleCart();
+          const payerName = details.payer?.name?.given_name || 'Kliencie';
+          alert('Płatność zakończona sukcesem. Dziękujemy, ' + payerName + '!');
+          cart = [];
+          renderCart();
+          toggleCart();
         });
       },
-      onError:function(err){ console.error('PayPal error',err); alert('Wystąpił błąd podczas płatności PayPal. Spróbuj ponownie.'); }
+      onError: function(err){
+        console.error('PayPal error', err);
+        alert('Wystąpił błąd podczas płatności PayPal. Spróbuj ponownie.');
+      }
     }).render('#paypal-buttons-container');
   }
 
+  // Init
   renderCart();
 </script>
 </body>
 </html>
-
 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
@@ -1654,6 +1682,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
