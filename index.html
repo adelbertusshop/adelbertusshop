@@ -3,74 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Koszyk</title>
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=PLN"></script>
+<title>Sklep z Koszykiem</title>
+<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
 <style>
   body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
-  .koszyk { max-width: 600px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2);}
+  .sklep, .koszyk { max-width: 600px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2);}
   .produkt { display: flex; justify-content: space-between; margin-bottom: 10px; }
-  .produkt span { display: block; }
+  button { padding: 5px 10px; cursor: pointer; border-radius: 5px; border: none; background: #28a745; color: #fff; }
   .paypal-btn { margin-top: 20px; }
 </style>
 </head>
 <body>
 
+<div class="sklep">
+  <h2>Produkty</h2>
+  <div class="produkt">
+    <span>Koszulka A</span>
+    <span>99 zł</span>
+    <button onclick="dodajDoKoszyka('Koszulka A', 99)">Dodaj do koszyka</button>
+  </div>
+  <div class="produkt">
+    <span>Bluza B</span>
+    <span>150 zł</span>
+    <button onclick="dodajDoKoszyka('Bluza B', 150)">Dodaj do koszyka</button>
+  </div>
+  <div class="produkt">
+    <span>Czapka C</span>
+    <span>79 zł</span>
+    <button onclick="dodajDoKoszyka('Czapka C', 79)">Dodaj do koszyka</button>
+  </div>
+</div>
+
 <div class="koszyk">
   <h2>Twój Koszyk</h2>
-  
-  <div class="produkt" data-nazwa="Produkt 1" data-cena="99">
-    <span>Produkt 1</span>
-    <span>99 zł</span>
-  </div>
-  <div class="produkt" data-nazwa="Produkt 2" data-cena="150">
-    <span>Produkt 2</span>
-    <span>150 zł</span>
-  </div>
-  <div class="produkt" data-nazwa="Produkt 3" data-cena="79">
-    <span>Produkt 3</span>
-    <span>79 zł</span>
-  </div>
-
+  <div id="produkty-container"></div>
   <p><strong>Łącznie: <span id="total">0</span> zł</strong></p>
-
   <button id="sendMail">Wyślij zamówienie mailem</button>
-  
-  <div id="paypal-button-container" class="paypal-btn"></div>
+  <div id="paypal-container" class="paypal-btn"></div>
 </div>
 
 <script>
-  // Obliczanie sumy
+  let produkty = [];
+
+  const produktyContainer = document.getElementById('produkty-container');
+  const totalElem = document.getElementById('total');
+
   function updateTotal() {
-    const produkty = document.querySelectorAll('.produkt');
-    let suma = 0;
-    produkty.forEach(p => {
-      suma += parseFloat(p.dataset.cena);
-    });
-    document.getElementById('total').innerText = suma;
+    let suma = produkty.reduce((acc, p) => acc + p.cena, 0);
+    totalElem.innerText = suma;
     return suma;
   }
 
-  updateTotal();
-
-  // Mail zamówienia
-  document.getElementById('sendMail').addEventListener('click', () => {
-    const produkty = document.querySelectorAll('.produkt');
-    let treść = 'Zamówienie:\n\n';
+  function renderProdukty() {
+    produktyContainer.innerHTML = '';
     produkty.forEach(p => {
-      treść += `${p.dataset.nazwa} - ${p.dataset.cena} zł\n`;
+      const div = document.createElement('div');
+      div.className = 'produkt';
+      div.innerHTML = `<span>${p.nazwa}</span><span>${p.cena} zł</span>`;
+      produktyContainer.appendChild(div);
     });
+    updateTotal();
+  }
+
+  function dodajDoKoszyka(nazwa, cena) {
+    produkty.push({nazwa, cena});
+    renderProdukty();
+  }
+
+  document.getElementById('sendMail').addEventListener('click', () => {
+    if(produkty.length === 0){ alert('Koszyk jest pusty!'); return; }
+    let treść = 'Zamówienie:\n\n';
+    produkty.forEach(p => treść += `${p.nazwa} - ${p.cena} zł\n`);
     treść += `\nŁącznie: ${updateTotal()} zł`;
     window.location.href = `mailto:twójemail@domena.com?subject=Zamówienie&body=${encodeURIComponent(treść)}`;
   });
 
-  // PayPal
   paypal.Buttons({
     createOrder: function(data, actions) {
       return actions.order.create({
         purchase_units: [{
-          amount: {
-            value: updateTotal()
-          }
+          amount: { value: updateTotal() }
         }]
       });
     },
@@ -79,7 +91,8 @@
         alert('Dziękujemy za zamówienie, ' + details.payer.name.given_name + '!');
       });
     }
-  }).render('#paypal-button-container');
+  }).render('#paypal-container');
+
 </script>
 
 </body>
@@ -1511,6 +1524,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
