@@ -9,12 +9,27 @@
   body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
   .koszyk { max-width: 600px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2);}
   .paypal-btn { margin-top: 20px; }
+  .produkt { margin-bottom: 10px; }
+  .produkt button { margin-left: 10px; }
 </style>
 </head>
 <body>
 
 <div class="koszyk">
-  <h2>Twój Koszyk</h2>
+  <h2>Twój Koszyk 🛒</h2>
+
+  <div class="produkt">
+    Koszulka „Nie pasujesz do…” - 99 zł
+    <button class="addToCart" data-price="99">Dodaj do koszyka</button>
+  </div>
+  <div class="produkt">
+    Bluza „Buntownik z wyboru” - 150 zł
+    <button class="addToCart" data-price="150">Dodaj do koszyka</button>
+  </div>
+  <div class="produkt">
+    Czapka „Uliczny styl” - 79 zł
+    <button class="addToCart" data-price="79">Dodaj do koszyka</button>
+  </div>
 
   <p><strong>Łącznie: <span id="total">0</span> zł</strong></p>
 
@@ -24,14 +39,21 @@
 </div>
 
 <script>
-  // Funkcja aktualizacji sumy (koszyk pusty, więc 0)
-  function updateTotal() {
-    return 0;
-  }
+  let total = 0;
+
+  // Dodawanie produktów do koszyka
+  const buttons = document.querySelectorAll('.addToCart');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const price = parseInt(btn.getAttribute('data-price'));
+      total += price;
+      document.getElementById('total').textContent = total;
+    });
+  });
 
   // Mail zamówienia
   document.getElementById('sendMail').addEventListener('click', () => {
-    const treść = `Zamówienie:\n\nŁącznie: ${updateTotal()} zł`;
+    const treść = `Zamówienie:\n\nŁącznie: ${total} zł`;
     window.location.href = `mailto:twójemail@domena.com?subject=Zamówienie&body=${encodeURIComponent(treść)}`;
   });
 
@@ -42,8 +64,7 @@
 </script>
 
 </body>
-</html>
-🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+</html>🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -1470,6 +1491,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
