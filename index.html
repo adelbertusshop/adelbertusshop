@@ -889,8 +889,7 @@ function dodajDoKoszyka(nazwa, cena) {
           <option>L</option>
           <option>XL</option>
         </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarn      
+             
 <!-- ====== Sekcja: Zaprojektuj Swój Produkt ====== -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
   <div class="max-w-6xl mx-auto px-6 py-10">
@@ -1196,89 +1195,8 @@ function addToCart(name, price, imageUrl = null, payload = null) {
   }
 
   function computePositionFor(um,type){const cx=canvas.width/2,cy=canvas.height/2; switch(um){case'front':return {x:cx,y:cy-(type==='czapka'?20:        
-<section id="zbiorka" class="py-16 bg-gradient-to-br from-yellow-50 to-yellow-100">
-  <div class="max-w-5xl mx-auto px-6 relative bg-white p-8 rounded-3xl border-8 border-yellow-400 shadow-2xl
-              ring-4 ring-yellow-300 ring-opacity-70 hover:ring-opacity-100 transition duration-500">
-    
-    <!-- Ramka dekoracyjna -->
-    <div class="absolute inset-0 rounded-3xl border-4 border-double border-yellow-500 pointer-events-none z-10"></div>
-    <div class="absolute -inset-3 rounded-4xl border-8 border-yellow-300 opacity-40 blur-lg pointer-events-none z-0"></div>
-
-    <!-- Nagłówek -->
-    <h2 class="relative text-4xl font-extrabold text-gray-900 mb-4 text-center z-20">📦 Zbiórka na Dom Dziecka</h2>
-    <p class="relative text-lg text-gray-700 text-center mb-6 z-20">
-      Pomóżmy razem dzieciom, które czekają na odrobinę ciepła, radości i poczucia, że są ważne.  
-      Twoja pomoc może odmienić ich dzień, a nawet całe życie.
-    </p>
-
-    <!-- Dane kontaktowe -->
-    <div class="relative bg-yellow-50 p-4 rounded-xl shadow-md mb-6 text-center border border-yellow-300 z-20">
-      <p class="font-bold text-lg text-gray-800">📱 Przelew BLIK: <span class="text-yellow-700">573-939-925</span></p>
-      <p class="text-gray-800">📧 E-mail: <a href="mailto:mielniczukgrzegosz74@gmail.com" class="text-blue-600 underline">mielniczukgrzegosz74@gmail.com</a></p>
-      <p class="text-gray-800">📞 Kontakt: 604-296-360</p>
-      <p class="text-sm italic text-gray-600">Po przelewie lub chęci wysyłki darów — skontaktuj się z nami, podamy adres.</p>
-    </div>
-
-    <!-- Lista darczyńców -->
-    <div class="relative mb-6 z-20">
-      <h3 class="text-2xl font-bold text-gray-900 mb-3">❤️ Ostatni darczyńcy</h3>
-      <ul class="space-y-2 text-gray-700">
-        <li>🎁 <strong>Anna K.</strong> — paczka z książkami i pluszakami</li>
-        <li>🎁 <strong>Jan M.</strong> — 10 ciepłych kurtek zimowych</li>
-        <li>🎁 <strong>Magdalena S.</strong> — karton słodyczy i gier planszowych</li>
-        <li>🎁 <strong>Piotr L.</strong> — 5 plecaków szkolnych</li>
-      </ul>
-    </div>
-
-    <!-- Licznik do wysyłki -->
-    <div class="relative mb-8 text-center z-20">
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">⏳ Następna wysyłka paczek za:</h3>
-      <p id="countdown" class="text-3xl font-bold text-yellow-700"></p>
-    </div>
-
-    <!-- List od dzieci -->
-    <div class="relative bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-lg shadow-md mb-8 z-20">
-      <p class="italic text-gray-800">
-        „Dziękujemy z całego serca za paczki, które od Was dostajemy.  
-        Każdy koc, zabawka, książka czy słodycz jest dla nas jak prezent od losu.  
-        Kiedy widzimy, że ktoś o nas pamięta, czujemy się potrzebni i kochani.  
-        Może nie możemy się Wam odwdzięczyć tym samym, ale obiecujemy, że dobro, które nam dajecie, będziemy przekazywać dalej w życiu.  
-        Dziękujemy, że jesteście naszymi Aniołami.”
-      </p>
-      <p class="mt-3 text-right font-bold text-gray-900">— Dzieci z Domu Dziecka</p>
-    </div>
-
-    <!-- Twoje przesłanie -->
-    <p class="relative text-center text-gray-700 italic z-20">
-      Jako były wychowanek domu dziecka wiem, jak wiele znaczy taka pomoc.  
-      Dlatego każde wsparcie jest dla mnie osobistą misją. — <strong>Wojciech</strong>
-    </p>
-
-  </div>
-</section>
-
-<!-- Skrypt licznika -->
-<script>
-  function startCountdown() {
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 7); // Za 7 dni
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
-      if (diff <= 0) {
-        document.getElementById('countdown').innerText = "Dziś wysyłamy paczki! ❤️";
-        return;
-      }
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      document.getElementById('countdown').innerText = `${days} dni, ${hours} godz., ${minutes} min.`;
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  }
-  startCountdown();
-</script>      
+<section
+                                                                                                                             
 <!-- Marketplace + reklamy natychmiastowe -->
 <div id="mp-wrapper" style="max-width:1100px;margin:2rem auto;padding:1.2rem;border:4px solid #d4af37;border-radius:16px;background:#0f0f0f;color:#fff;font-family:sans-serif;">
   <h2>Marketplace & Reklama</h2>
@@ -1419,6 +1337,90 @@ function renderProducts(){
     this.reset();
   });
 </script>
+
+ id="zbiorka" class="py-16 bg-gradient-to-br from-yellow-50 to-yellow-100">
+  <div class="max-w-5xl mx-auto px-6 relative bg-white p-8 rounded-3xl border-8 border-yellow-400 shadow-2xl
+              ring-4 ring-yellow-300 ring-opacity-70 hover:ring-opacity-100 transition duration-500">
+    
+    <!-- Ramka dekoracyjna -->
+    <div class="absolute inset-0 rounded-3xl border-4 border-double border-yellow-500 pointer-events-none z-10"></div>
+    <div class="absolute -inset-3 rounded-4xl border-8 border-yellow-300 opacity-40 blur-lg pointer-events-none z-0"></div>
+
+    <!-- Nagłówek -->
+    <h2 class="relative text-4xl font-extrabold text-gray-900 mb-4 text-center z-20">📦 Zbiórka na Dom Dziecka</h2>
+    <p class="relative text-lg text-gray-700 text-center mb-6 z-20">
+      Pomóżmy razem dzieciom, które czekają na odrobinę ciepła, radości i poczucia, że są ważne.  
+      Twoja pomoc może odmienić ich dzień, a nawet całe życie.
+    </p>
+
+    <!-- Dane kontaktowe -->
+    <div class="relative bg-yellow-50 p-4 rounded-xl shadow-md mb-6 text-center border border-yellow-300 z-20">
+      <p class="font-bold text-lg text-gray-800">📱 Przelew BLIK: <span class="text-yellow-700">573-939-925</span></p>
+      <p class="text-gray-800">📧 E-mail: <a href="mailto:mielniczukgrzegosz74@gmail.com" class="text-blue-600 underline">mielniczukgrzegosz74@gmail.com</a></p>
+      <p class="text-gray-800">📞 Kontakt: 604-296-360</p>
+      <p class="text-sm italic text-gray-600">Po przelewie lub chęci wysyłki darów — skontaktuj się z nami, podamy adres.</p>
+    </div>
+
+    <!-- Lista darczyńców -->
+    <div class="relative mb-6 z-20">
+      <h3 class="text-2xl font-bold text-gray-900 mb-3">❤️ Ostatni darczyńcy</h3>
+      <ul class="space-y-2 text-gray-700">
+        <li>🎁 <strong>Anna K.</strong> — paczka z książkami i pluszakami</li>
+        <li>🎁 <strong>Jan M.</strong> — 10 ciepłych kurtek zimowych</li>
+        <li>🎁 <strong>Magdalena S.</strong> — karton słodyczy i gier planszowych</li>
+        <li>🎁 <strong>Piotr L.</strong> — 5 plecaków szkolnych</li>
+      </ul>
+    </div>
+
+    <!-- Licznik do wysyłki -->
+    <div class="relative mb-8 text-center z-20">
+      <h3 class="text-xl font-semibold text-gray-900 mb-2">⏳ Następna wysyłka paczek za:</h3>
+      <p id="countdown" class="text-3xl font-bold text-yellow-700"></p>
+    </div>
+
+    <!-- List od dzieci -->
+    <div class="relative bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-lg shadow-md mb-8 z-20">
+      <p class="italic text-gray-800">
+        „Dziękujemy z całego serca za paczki, które od Was dostajemy.  
+        Każdy koc, zabawka, książka czy słodycz jest dla nas jak prezent od losu.  
+        Kiedy widzimy, że ktoś o nas pamięta, czujemy się potrzebni i kochani.  
+        Może nie możemy się Wam odwdzięczyć tym samym, ale obiecujemy, że dobro, które nam dajecie, będziemy przekazywać dalej w życiu.  
+        Dziękujemy, że jesteście naszymi Aniołami.”
+      </p>
+      <p class="mt-3 text-right font-bold text-gray-900">— Dzieci z Domu Dziecka</p>
+    </div>
+
+    <!-- Twoje przesłanie -->
+    <p class="relative text-center text-gray-700 italic z-20">
+      Jako były wychowanek domu dziecka wiem, jak wiele znaczy taka pomoc.  
+      Dlatego każde wsparcie jest dla mnie osobistą misją. — <strong>Wojciech</strong>
+    </p>
+
+  </div>
+</section>
+
+<!-- Skrypt licznika -->
+<script>
+  function startCountdown() {
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 7); // Za 7 dni
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').innerText = "Dziś wysyłamy paczki! ❤️";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      document.getElementById('countdown').innerText = `${days} dni, ${hours} godz., ${minutes} min.`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  }
+  startCountdown();
+</script>      
 <section id="artysta" class="py-12 bg-gradient-to-br from-gray-50 to-gray-100">
   <div class="max-w-4xl mx-auto relative p-8 bg-white rounded-2xl border-8 border-yellow-500 shadow-lg">
     <h2 class="text-3xl font-extrabold text-gray-900 mb-4 text-center">Artysta</h2>
@@ -1561,6 +1563,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
