@@ -39,10 +39,34 @@
   .btn { border:none; border-radius:8px; padding:10px 14px; cursor:pointer; font-weight:700; }
   .btn-primary { background:#2e7d32; color:#fff; }
   .btn-light { background:#eee; color:#111; }
+  
+  /* Dodatkowe style */
+  #imagePreview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  #adPreviewContent a {
+    transition: opacity 0.3s;
+  }
+
+  #adPreviewContent a:hover {
+    opacity: 0.8;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  /* Animacja przycisku */
+  button[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 </style>
 </head>
 <body>
-
 <!-- Ikona koszyka (bez produktów przykładowych) -->
 <div id="cartIcon" title="Otwórz koszyk">🛒<span class="count" id="cartCount">0</span></div>
 
@@ -1164,92 +1188,90 @@ function addToCart(name, price, imageUrl = null, payload = null) {
 
   function computePositionFor(um,type){const cx=canvas.width/2,cy=canvas.height/2; switch(um){case'front':return {x:cx,y:cy-(type==='czapka'?20:        
 <section
-                                                                                                                             
-<!-- Marketplace + reklamy natychmiastowe -->
-<div id="mp-wrapper" style="max-width:1100px;margin:2rem auto;padding:1.2rem;border:4px solid #d4af37;border-radius:16px;background:#0f0f0f;color:#fff;font-family:sans-serif;">
-  <h2>Marketplace & Reklama</h2>
-  <small>BLIK: <strong>573-939-925</strong> • PayPal po prawej</small>
-
-  <!-- Produkty -->
-  <div id="product-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;margin-top:1rem;"></div>
-
-  <!-- Koszyk -->
-  <div id="mp-cart" style="margin-top:1.5rem;background:#111;padding:12px;border-radius:12px;border:2px solid #2b2b2b;">
-    <h3>Twój koszyk</h3>
-    <ul id="mp-cart-list" style="list-style:none;padding:0;margin:0;max-height:220px;overflow:auto;"></ul>
-    <div id="mp-cart-sum" style="margin-top:8px;font-weight:900;color:#ffd700">Suma: 0.00 zł</div>
-    <div id="mp-paypal-container" style="margin-top:8px;"></div>
-    <button id="mp-clear" style="margin-top:8px;padding:.5rem .8rem;border-radius:10px;background:#bb2525;color:#fff;border:none;cursor:pointer;">Wyczyść koszyk</button>
-  </div>
-
-  <!-- Dane klienta (dla maila) -->
-  <div style="margin-top:1rem;">
-    <input id="order-name" placeholder="Imię i nazwisko / firma" style="width:100%;padding:.6rem;margin:.4rem 0;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff;" required />
-    <input id="order-email" placeholder="E-mail" type="email" style="width:100%;padding:.6rem;margin:.4rem 0;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff;" required />
-    <input id="order-phone" placeholder="Telefon (opcjonalnie)" style="width:100%;padding:.6rem;margin:.4rem 0;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff;" />
-  </div>
-
-  <!-- Formularz zgłoszenia sprzedaży + reklamy -->
-  <form id="mp-form" style="margin-top:1.5rem;">
-    <input id="seller-name" placeholder="Nazwa sprzedawcy" style="width:100%;padding:.6rem;margin:.4rem 0;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff;" required />
-    <input id="seller-email" placeholder="E-mail" type="email" style="width:100%;padding:.6rem;margin:.4rem 0;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff;" required />
-    <textarea placeholder="Produkt 1: nazwa|opis|cena|URL(opcjonalnie)" rows="2" style="width:100%;padding:.6rem;margin:.4rem 0;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff;"></textarea>
-    <textarea placeholder="Produkt 2 (opcjonalnie)" rows="2" style="width:100%;padding:.6rem;margin:.4rem 0;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff;"></textarea>
-    <textarea placeholder="Produkt 3 (opcjonalnie)" rows="2" style="width:100%;padding:.6rem;margin:.4rem 0;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff;"></textarea>
-    <textarea id="ad-text" placeholder="Reklama (max 200 znaków)" rows="2" style="width:100%;padding:.6rem;margin:.4rem 0;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff;"></textarea>
-    <input id="ad-logo" type="text" placeholder="URL logotypu" style="width:100%;padding:.6rem;margin:.4rem 0;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff;" />
-    <select id="ad-period" style="width:100%;padding:.6rem;margin:.4rem 0;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff;">
-      <option value="0">Nie chcę reklamy</option>
-      <option value="1">1 dzień – 10 zł</option>
-      <option value="7">1 tydzień – 49 zł</option>
-      <option value="30">1 miesiąc – 189 zł</option>
-    </select>
-    <label><input type="radio" name="pay-method" value="blik" checked /> BLIK</label>
-    <label><input type="radio" name="pay-method" value="paypal" /> PayPal</label>
-    <button type="button" id="mp-submit" style="padding:.5rem .8rem;border-radius:10px;background:#d4af37;border:none;font-weight:800;color:#121212;cursor:pointer;margin-top:.6rem;">Wyślij zgłoszenie</button>
-  </form>
-
-  <!-- Sloty reklamowe -->
-  <div id="ad-slots" style="display:flex;gap:.6rem;margin-top:1.4rem;">
-    <div class="ad-slot" data-slot="0" style="flex:1;min-height:80px;border-radius:10px;background:#2b2b2b;color:#fff;display:flex;align-items:center;justify-content:center;padding:8px;position:relative;">
-      <div class="slot-title" style="position:absolute;top:6px;left:8px;font-size:12px;color:#ffd700">Slot 1</div>
-      <div class="slot-content small">Brak reklamy</div>
-    </div>
-    <div class="ad-slot" data-slot="1" style="flex:1;min-height:80px;border-radius:10px;background:#2b2b2b;color:#fff;display:flex;align-items:center;justify-content:center;padding:8px;position:relative;">
-      <div class="slot-title" style="position:absolute;top:6px;left:8px;font-size:12px;color:#ffd700">Slot 2</div>
-      <div class="slot-content small">Brak reklamy</div>
-    </div>
-    <div class="ad-slot" data-slot="2" style="flex:1;min-height:80px;border-radius:10px;background:#2b2b2b;color:#fff;display:flex;align-items:center;justify-content:center;padding:8px;position:relative;">
-      <div class="slot-title" style="position:absolute;top:6px;left:8px;font-size:12px;color:#ffd700">Slot 3</div>
-      <div class="slot-content small">Brak reklamy</div>
-    </div>
-  </div>
-</div>
-
-<script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
-
-<script>
-const storage = {
-  products: JSON.parse(localStorage.getItem('mp_products')||'[]'),
-  ads: JSON.parse(localStorage.getItem('mp_ads')||'[]'),
-  cart: JSON.parse(localStorage.getItem('mp_cart')||'[]')
-};
-
-function saveAll(){
-  localStorage.setItem('mp_products', JSON.stringify(storage.products));
-  localStorage.setItem('mp_ads', JSON.stringify(storage.ads));
-  localStorage.setItem('mp_cart', JSON.stringify(storage.cart));
-}
-
-// --- Produkty ---
-function renderProducts(){
-  const el = document.getElementById('product-list');
-  el.innerHTML = '';
-  if(storage.products.length===0){ el.innerHTML='<small>Brak produktów</small>'; return; }
-  storage.products.forEach((p,idx)=>{
-    const div = document.create
+<!-- === Marketplace === -->
+<section id="marketplace" class="marketplace">
+  <div class="marketplace-form">
+    <h2>Dodaj swój produkt</h2>
+    <form id="marketplaceForm" action="https://formsubmit.co/26es87U-rjUzsUtV7" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="Nowy produkt w Marketplace - AdelbertusShop">
+      <input type="hidden" name="_template" value="table">
       
-                   id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <input type="text" name="Nazwa produktu" placeholder="Nazwa produktu*" required>
+        <input type="number" name="Cena" placeholder="Cena (PLN)*" min="1" step="0.01" required>
+      </div>
+      
+      <textarea name="Opis" placeholder="Opis produktu*" rows="3" required></textarea>
+      
+      <div class="mt-4">
+        <input type="url" name="Zdjęcie" placeholder="Link do zdjęcia*" required 
+               class="w-full" id="productImageInput">
+        <div id="imagePreview" class="mt-2 hidden">
+          <img src="" alt="Podgląd" class="max-h-32 border rounded">
+        </div>
+      </div>
+      
+      <input type="email" name="Email" placeholder="Twój email*" required class="mt-4">
+      
+      <div id="ageVerification" class="hidden mt-4 p-2 bg-yellow-50 rounded">
+        <label class="flex items-center">
+          <input type="checkbox" name="wiek" required class="mr-2">
+          <span>Oświadczam, że mam ukończone 18 lat</span>
+        </label>
+      </div>
+      
+      <button type="submit" id="submitMarketplace" 
+              class="mt-4 bg-[#d4af37] text-black px-6 py-2 rounded font-bold">
+        Wyślij zgłoszenie
+      </button>
+    </form>
+  </div>
+  
+  <div id="marketplaceProducts" class="product-grid mt-8"></div>
+</section>
+<!-- === Reklama === -->
+<section id="reklama" class="reklama">
+  <div class="ad-form">
+    <h2>Zamów reklamę</h2>
+    <form id="adForm" action="https://formsubmit.co/26es87U-rjUzsUtV7" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="Nowa reklama - AdelbertusShop">
+      
+      <input type="text" name="Nazwa firmy" placeholder="Nazwa firmy/marki*" required>
+      
+      <div class="flex justify-between items-center mt-4">
+        <label>Opis reklamy* (max 200 znaków)</label>
+        <span id="charCounter" class="text-sm text-gray-500">0/200</span>
+      </div>
+      <textarea name="Opis reklamy" id="adText" rows="3" maxlength="200" required></textarea>
+      
+      <input type="url" name="Link" placeholder="URL docelowy*" required class="mt-4">
+      
+      <select name="Okres reklamy" id="adPeriod" required class="mt-4 w-full p-2 border rounded">
+        <option value="">Wybierz okres*</option>
+        <option value="7 dni">1 tydzień - 50 zł</option>
+        <option value="14 dni">2 tygodnie - 90 zł</option>
+        <option value="30 dni">1 miesiąc - 150 zł</option>
+      </select>
+      <div id="priceDisplay" class="text-right text-sm text-[#d4af37] font-bold mt-1"></div>
+      
+      <input type="email" name="Email" placeholder="Twój email*" required class="mt-4">
+      
+      <button type="submit" id="submitAd" 
+              class="mt-4 bg-[#d4af37] text-black px-6 py-2 rounded font-bold">
+        Zamów reklamę
+      </button>
+    </form>
+  </div>
+  
+  <div id="adPreview" class="mt-8 p-4 border-2 border-dashed border-[#d4af37] rounded-lg hidden">
+    <h3 class="font-bold mb-2">Podgląd reklamy:</h3>
+    <div id="adPreviewContent"></div>
+  </div>
+</section>  
+      
+     id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
   <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
 
   <div id="opinie" style="margin:30px 0; min-height:150px; font-style:italic; font-size:1.1rem; text-align:center; line-height:1.5; color:#ffd97d; text-shadow: 1px 1px 3px #552f00;"></div>
@@ -1528,9 +1550,117 @@ function renderProducts(){
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
-    <script src="script.js"></script></body>
+  <script src="script.js"></script>
+// ========== Marketplace ==========
+// Podgląd zdjęcia
+document.getElementById('productImageInput').addEventListener('change', function() {
+  const preview = document.getElementById('imagePreview');
+  const img = preview.querySelector('img');
+  
+  if (this.value.match(/\.(jpeg|jpg|png|webp)$/)) {
+    img.src = this.value;
+    preview.classList.remove('hidden');
+  } else {
+    alert('Akceptujemy tylko linki do zdjęć (JPG/PNG/WEBP)');
+    this.value = '';
+    preview.classList.add('hidden');
+  }
+});
+
+// Weryfikacja wieku dla określonych kategorii
+document.addEventListener('DOMContentLoaded', function() {
+  const ageCheck = document.getElementById('ageVerification');
+  // Jeśli masz pole "Kategoria" w formularzu:
+  const categorySelect = document.querySelector('select[name="Kategoria"]');
+  if (categorySelect) {
+    categorySelect.addEventListener('change', function() {
+      ageCheck.classList.toggle('hidden', !['Alkohol', 'Tytoń'].includes(this.value));
+    });
+  }
+});
+
+// ========== Reklama ==========
+// Licznik znaków
+document.getElementById('adText').addEventListener('input', function() {
+  const counter = document.getElementById('charCounter');
+  counter.textContent = `${this.value.length}/200`;
+});
+
+// Automatyczne wyliczanie ceny
+document.getElementById('adPeriod').addEventListener('change', function() {
+  const prices = { '7 dni':50, '14 dni':90, '30 dni':150 };
+  const priceEl = document.getElementById('priceDisplay');
+  if (this.value) priceEl.textContent = `Cena: ${prices[this.value]} zł`;
+});
+
+// Podgląd reklamy
+document.querySelectorAll('#adForm input, #adForm textarea, #adForm select').forEach(el => {
+  el.addEventListener('input', updateAdPreview);
+});
+
+function updateAdPreview() {
+  const form = document.getElementById('adForm');
+  const preview = document.getElementById('adPreviewContent');
+  const data = new FormData(form);
+  
+  if (!data.get('Nazwa firmy') || !data.get('Opis reklamy')) {
+    document.getElementById('adPreview').classList.add('hidden');
+    return;
+  }
+
+  preview.innerHTML = `
+    <div class="p-4 bg-[#1a1a1a] text-white rounded">
+      <h4 class="text-[#d4af37] font-bold">${data.get('Nazwa firmy')}</h4>
+      <p class="my-2">${data.get('Opis reklamy')}</p>
+      ${data.get('Link') ? `
+        <a href="${data.get('Link')}" target="_blank" 
+           class="text-[#d4af37] hover:underline">Odwiedź stronę →</a>
+      ` : ''}
+    </div>
+  `;
+  document.getElementById('adPreview').classList.remove('hidden');
+}
+
+// ========== Wspólne funkcje ==========
+// Zapisywanie w localStorage
+function saveSubmission(type, formData) {
+  const submissions = JSON.parse(localStorage.getItem(`${type}Submissions`) || '[]');
+  submissions.push(Object.fromEntries(formData));
+  localStorage.setItem(`${type}Submissions`, JSON.stringify(submissions));
+}
+
+// Blokada przycisków po wysłaniu
+function disableButton(btn, seconds = 30) {
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  
+  let remaining = seconds;
+  const interval = setInterval(() => {
+    btn.textContent = `Poczekaj ${remaining}s...`;
+    remaining--;
+    
+    if (remaining < 0) {
+      clearInterval(interval);
+      btn.disabled = false;
+      btn.textContent = originalText;
+    }
+  }, 1000);
+}
+
+// Obsługa formularzy
+document.getElementById('marketplaceForm').addEventListener('submit', function(e) {
+  saveSubmission('marketplace', new FormData(this));
+  disableButton(document.getElementById('submitMarketplace'));
+});
+
+document.getElementById('adForm').addEventListener('submit', function(e) {
+  saveSubmission('ad', new FormData(this));
+  disableButton(document.getElementById('submitAd')));
+});  
+</body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
