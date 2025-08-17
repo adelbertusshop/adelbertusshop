@@ -739,25 +739,14 @@
 <!-- === Funkcja dodajDoKoszyka === -->
 <script>
 function dodajDoKoszyka(nazwa, cena) {
-  // Pobranie koszyka z localStorage lub utworzenie nowego
   let koszyk = JSON.parse(localStorage.getItem('koszyk')) || [];
-  
-  // Dodanie produktu z unikalnym ID, żeby każdy wpis był osobny
-  const produkt = {
-    id: Date.now() + Math.random(), // unikalny identyfikator
-    nazwa: nazwa,
-    cena: cena
-  };
-  
+  const produkt = { id: Date.now() + Math.random(), nazwa: nazwa, cena: cena };
   koszyk.push(produkt);
-  
-  // Zapisanie z powrotem
   localStorage.setItem('koszyk', JSON.stringify(koszyk));
-  
-  // Potwierdzenie
   alert(`${nazwa} została dodana do koszyka!`);
 }
 </script>
+
 <!-- === Bluzy Kobiety === -->
 <section id="bluzy-kobiety" class="py-12 bg-black text-white">
   <div class="max-w-6xl mx-auto px-4">
@@ -890,7 +879,8 @@ function dodajDoKoszyka(nazwa, cena) {
           <option>L</option>
           <option>XL</option>
         </select>
-             
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Kolor: Cz             
 <!-- ====== Sekcja: Zaprojektuj Swój Produkt ====== -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
   <div class="max-w-6xl mx-auto px-6 py-10">
@@ -1564,6 +1554,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
