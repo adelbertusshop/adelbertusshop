@@ -741,8 +741,14 @@ function dodajDoKoszyka(nazwa, cena) {
   // Pobranie koszyka z localStorage lub utworzenie nowego
   let koszyk = JSON.parse(localStorage.getItem('koszyk')) || [];
   
-  // Dodanie produktu
-  koszyk.push({ nazwa: nazwa, cena: cena });
+  // Dodanie produktu z unikalnym ID, żeby każdy wpis był osobny
+  const produkt = {
+    id: Date.now() + Math.random(), // unikalny identyfikator
+    nazwa: nazwa,
+    cena: cena
+  };
+  
+  koszyk.push(produkt);
   
   // Zapisanie z powrotem
   localStorage.setItem('koszyk', JSON.stringify(koszyk));
@@ -884,72 +890,7 @@ function dodajDoKoszyka(nazwa, cena) {
           <option>XL</option>
         </select>
         <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Złoty</option>
-        </select>
-        <button onclick="dodajDoKoszyka('Bluza z kapturem Shadow', 220)" class="bg-black text-[#d4af37] px-4 py-2 rounded-full hover:bg-gray-800 font-bold">Dodaj do koszyka</button>
-      </div>
-
-      <!-- Bluza z kapturem 3 -->
-      <div class="bg-[#d4af37] text-black p-6 rounded-xl shadow-md text-center">
-        <img src="LINK_DO_OBRAZKA_KAPTUR_3" alt="Bluza z kapturem 3" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-bold mb-2">Bluza z kapturem „Luna”</h4>
-        <p class="text-black mb-4 font-semibold">220 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-          <option>XL</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Złoty</option>
-        </select>
-        <button onclick="dodajDoKoszyka('Bluza z kapturem Luna', 220)" class="bg-black text-[#d4af37] px-4 py-2 rounded-full hover:bg-gray-800 font-bold">Dodaj do koszyka</button>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- === Czapki Kobiety === -->
-<section id="czapki-kobiety" class="py-12 bg-black text-white">
-  <div class="max-w-6xl mx-auto px-4">
-    <h3 class="text-3xl font-bold text-[#d4af37] mb-8 text-center">Czapki Kobiety</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-      <!-- Czapka 1 -->
-      <div class="bg-[#d4af37] text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/7tjLrjmR/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Czapka damska 1" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-bold mb-2">Czapka „Sun”</h4>
-        <p class="text-black mb-4 font-semibold">79 zł</p>
-        <button onclick="dodajDoKoszyka('Czapka Sun', 79)" class="bg-black text-[#d4af37] px-4 py-2 rounded-full hover:bg-gray-800 font-bold">Dodaj do koszyka</button>
-      </div>
-
-      <!-- Czapka 2 -->
-      <div class="bg-[#d4af37] text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/x8YGh2tP/Screenshot-20250609-154137-Chat-GPT-2.jpg" alt="Czapka damska 2" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-bold mb-2">Czapka „Moon”</h4>
-        <p class="text-black mb-4 font-semibold">79 zł</p>
-        <button onclick="dodajDoKoszyka('Czapka Moon', 79)" class="bg-black text-[#d4af37] px-4 py-2 rounded-full hover:bg-gray-800 font-bold">Dodaj do koszyka</button>
-      </div>
-
-      <!-- Czapka 3 -->
-      <div class="bg-[#d4af37] text-black p-
-
-<!-- === Akcesoria Kobiety === -->
-<section id="akcesoria-kobiety" class="py-12 bg-black text-white">
-  <div class="max-w-6xl mx-auto px-4">
-    <h3 class="text-3xl font-bold text-[#d4af37] mb-8 text-center">Akcesoria Kobiety</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <button onclick="dodajDoKoszyka('Bransoletka Elegance', 99)">Dodaj do koszyka</button>
-      <button onclick="dodajDoKoszyka('Portfel Golden Touch', 100)">Dodaj do koszyka</button>
-    </div>
-  </div>
-</section>
+          <option>Kolor: Czarn      
 <!-- ====== Sekcja: Zaprojektuj Swój Produkt ====== -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
   <div class="max-w-6xl mx-auto px-6 py-10">
@@ -1620,6 +1561,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
