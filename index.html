@@ -66,13 +66,6 @@
   </div>
 </div>
 
-<!-- Główna karta "Koszyk" (zgodnie z Twoim szkieletem) -->
-<div class="koszyk">
-  <h2>Twój Koszyk</h2>
-  <p><strong>Łącznie: <span id="totalMirror">0</span> zł</strong></p>
-  <button id="sendMailMirror">Wyślij zamówienie mailem</button>
-</div>
-
 <script>
   // ======== Minimalny, dynamiczny koszyk (bez żadnych przykładowych produktów) ========
   let cart = []; // {name, price, qty}
@@ -85,7 +78,6 @@
   const cartEmptyEl = document.getElementById('cartEmpty');
   const cartCountEl = document.getElementById('cartCount');
   const totalEl = document.getElementById('total');
-  const totalMirrorEl = document.getElementById('totalMirror');
 
   function toggleCart(show) {
     if (typeof show === 'boolean') {
@@ -104,7 +96,6 @@
   function updateTotals() {
     const total = cart.reduce((s,i)=> s + i.price * i.qty, 0);
     totalEl.textContent = total.toFixed(2);
-    totalMirrorEl.textContent = total.toFixed(2);
     cartCountEl.textContent = cart.reduce((s,i)=> s + i.qty, 0);
     cartEmptyEl.style.display = cart.length ? 'none' : 'block';
     return total;
@@ -155,18 +146,7 @@
     renderCart();
   };
 
-  // ====== Delegacja: przycisk .add-to-cart (data-name, data-price) – bez dodawania przykładów ======
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.add-to-cart');
-    if (!btn) return;
-    const name = btn.getAttribute('data-name') || 'Produkt';
-    const price = parseFloat(btn.getAttribute('data-price') || '0');
-    if (!Number.isFinite(price)) return;
-    window.addToCart(name, price);
-    toggleCart(true);
-  });
-
-  // ====== Mail (oba przyciski: w panelu i w sekcji głównej) ======
+  // ====== Mail ======
   function sendMail() {
     const lines = cart.length
       ? cart.map(i => `${i.name} × ${i.qty} = ${(i.price*i.qty).toFixed(2)} zł`).join('\n')
@@ -178,7 +158,6 @@
     window.location.href = `mailto:${mail}?subject=Zamówienie&body=${encodeURIComponent(body)}`;
   }
   document.getElementById('sendMail').addEventListener('click', sendMail);
-  document.getElementById('sendMailMirror').addEventListener('click', sendMail);
 
   // ====== PayPal Hosted Button (stały) ======
   paypal.HostedButtons({
@@ -191,8 +170,6 @@
 
 </body>
 </html>
-</html></html>
-
 
 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
@@ -1554,6 +1531,7 @@ function renderProducts(){
     <script src="script.js"></script></body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
