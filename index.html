@@ -92,7 +92,7 @@
 
 <script>
   // ======== Minimalny, dynamiczny koszyk (bez żadnych przykładowych produktów) ========
-  let cart = []; // {name, price, qty}
+  let cart = JSON.parse(localStorage.getItem('koszyk')) || []; // Ładowanie koszyka z localStorage
 
   // UI refs
   const cartIcon = document.getElementById('cartIcon');
@@ -118,10 +118,11 @@
   closeCartBtn.addEventListener('click', () => toggleCart(false));
 
   function updateTotals() {
-    const total = cart.reduce((s,i)=> s + i.price * i.qty, 0);
+    const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
     totalEl.textContent = total.toFixed(2);
-    cartCountEl.textContent = cart.reduce((s,i)=> s + i.qty, 0);
+    cartCountEl.textContent = cart.reduce((s,i) => s + i.qty, 0);
     cartEmptyEl.style.display = cart.length ? 'none' : 'block';
+    localStorage.setItem('koszyk', JSON.stringify(cart)); // Zapis do localStorage
     return total;
   }
 
@@ -134,6 +135,8 @@
         <div>
           <div style="font-weight:700">${item.name}</div>
           <div style="color:#bbb;font-size:13px">${item.price.toFixed(2)} zł × ${item.qty}</div>
+          ${item.size ? `<div style="color:#bbb;font-size:13px">Rozmiar: ${item.size}</div>` : ''}
+          ${item.color ? `<div style="color:#bbb;font-size:13px">Kolor: ${item.color}</div>` : ''}
         </div>
         <div>
           <button class="btn btn-light" data-act="dec" data-idx="${idx}">-</button>
@@ -160,20 +163,50 @@
   });
 
   // ====== PUBLICZNA FUNKCJA: wywołuj z dowolnego miejsca/produktu ======
-  // window.addToCart("Nazwa produktu", 123.45)
-  window.addToCart = function(name, price) {
+  window.addToCart = function(name, price, size = '', color = '') {
     const p = Number(price);
     if (!name || !Number.isFinite(p)) return;
-    const found = cart.find(i => i.name === name && i.price === p);
-    if (found) found.qty++;
-    else cart.push({ name, price: p, qty: 1 });
+    
+    // Sprawdzanie czy produkt już istnieje (z tym samym rozmiarem i kolorem)
+    const productId = `${name}-${size}-${color}`;
+    const found = cart.find(i => 
+      i.name === name && 
+      i.price === p && 
+      i.size === size && 
+      i.color === color
+    );
+    
+    if (found) {
+      found.qty++;
+    } else {
+      cart.push({ 
+        name, 
+        price: p, 
+        qty: 1,
+        size,
+        color
+      });
+    }
+    
     renderCart();
+    
+    // Pokazanie powiadomienia
+    const notification = document.createElement('div');
+    notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg animate-bounce';
+    notification.textContent = `${name} dodano do koszyka!`;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 3000);
   };
 
   // ====== Mail ======
   function sendMail() {
     const lines = cart.length
-      ? cart.map(i => `${i.name} × ${i.qty} = ${(i.price*i.qty).toFixed(2)} zł`).join('\n')
+      ? cart.map(i => `
+          ${i.name} 
+          ${i.size ? `(Rozmiar: ${i.size})` : ''}
+          ${i.color ? `(Kolor: ${i.color})` : ''}
+          × ${i.qty} = ${(i.price*i.qty).toFixed(2)} zł
+        `.trim()).join('\n')
       : 'Koszyk pusty.';
     const total = updateTotals().toFixed(2);
     const body = `Zamówienie:\n\n${lines}\n\nSuma: ${total} zł`;
@@ -194,7 +227,6 @@
 
 </body>
 </html>
-
 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
@@ -624,19 +656,18 @@
         <img src="https://i.ibb.co/CsvXf3qh/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka damska Urban Muse" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
         <h4 class="text-xl font-semibold mb-2">Koszulka „Urban Muse”</h4>
         <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full" id="rozmiar-urban-muse">
-          <option value="XS">Rozmiar: XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Rozmiar: XS</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
         </select>
-        <select class="border p-2 rounded mb-3 w-full" id="kolor-urban-muse">
-          <option value="Czarny">Kolor: Czarny</option>
-          <option value="Biały">Biały</option>
-          <option value="Złoty">Złoty</option>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Kolor: Czarny</option>
+          <option>Biały</option>
+          <option>Złoty</option>
         </select>
-        <button onclick="dodajDoKoszyka('Koszulka Urban Muse', 120, 'rozmiar-urban-muse', 'kolor-urban-muse', 'https://i.ibb.co/CsvXf3qh/Screenshot-20250714-002343-Files-by-Google-2.jpg')" 
-                class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+        <button data-product="Koszulka Urban Muse" data-price="120" class="dodaj-do-koszyka bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
       </div>
 
       <!-- Koszulka 2 -->
@@ -644,19 +675,18 @@
         <img src="https://i.ibb.co/KpJkrBFN/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka damska City Glow" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
         <h4 class="text-xl font-semibold mb-2">Koszulka „City Glow”</h4>
         <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full" id="rozmiar-city-glow">
-          <option value="XS">Rozmiar: XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Rozmiar: XS</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
         </select>
-        <select class="border p-2 rounded mb-3 w-full" id="kolor-city-glow">
-          <option value="Czarny">Kolor: Czarny</option>
-          <option value="Biały">Biały</option>
-          <option value="Złoty">Złoty</option>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Kolor: Czarny</option>
+          <option>Biały</option>
+          <option>Złoty</option>
         </select>
-        <button onclick="dodajDoKoszyka('Koszulka City Glow', 120, 'rozmiar-city-glow', 'kolor-city-glow', 'https://i.ibb.co/KpJkrBFN/Screenshot-20250714-002113-Files-by-Google-2.jpg')" 
-                class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+        <button data-product="Koszulka City Glow" data-price="120" class="dodaj-do-koszyka bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
       </div>
 
       <!-- Koszulka 3 -->
@@ -664,19 +694,18 @@
         <img src="https://i.ibb.co/TxckTpGb/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka damska Neon Dreams" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
         <h4 class="text-xl font-semibold mb-2">Koszulka „Neon Dreams”</h4>
         <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full" id="rozmiar-neon-dreams">
-          <option value="XS">Rozmiar: XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Rozmiar: XS</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
         </select>
-        <select class="border p-2 rounded mb-3 w-full" id="kolor-neon-dreams">
-          <option value="Czarny">Kolor: Czarny</option>
-          <option value="Biały">Biały</option>
-          <option value="Złoty">Złoty</option>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Kolor: Czarny</option>
+          <option>Biały</option>
+          <option>Złoty</option>
         </select>
-        <button onclick="dodajDoKoszyka('Koszulka Neon Dreams', 120, 'rozmiar-neon-dreams', 'kolor-neon-dreams', 'https://i.ibb.co/TxckTpGb/file-00000000fd5861f78cb774cd7808e871.png')" 
-                class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+        <button data-product="Koszulka Neon Dreams" data-price="120" class="dodaj-do-koszyka bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
       </div>
 
       <!-- Koszulka 4 -->
@@ -684,19 +713,18 @@
         <img src="https://i.ibb.co/cSTT3dK7/file-000000007e84620a86b41cfadc98dc4a.png" alt="Koszulka damska Street Bloom" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
         <h4 class="text-xl font-semibold mb-2">Koszulka „Street Bloom”</h4>
         <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full" id="rozmiar-street-bloom">
-          <option value="XS">Rozmiar: XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Rozmiar: XS</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
         </select>
-        <select class="border p-2 rounded mb-3 w-full" id="kolor-street-bloom">
-          <option value="Czarny">Kolor: Czarny</option>
-          <option value="Biały">Biały</option>
-          <option value="Złoty">Złoty</option>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Kolor: Czarny</option>
+          <option>Biały</option>
+          <option>Złoty</option>
         </select>
-        <button onclick="dodajDoKoszyka('Koszulka Street Bloom', 120, 'rozmiar-street-bloom', 'kolor-street-bloom', 'https://i.ibb.co/cSTT3dK7/file-000000007e84620a86b41cfadc98dc4a.png')" 
-                class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+        <button data-product="Koszulka Street Bloom" data-price="120" class="dodaj-do-koszyka bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
       </div>
 
       <!-- Koszulka 5 -->
@@ -704,19 +732,18 @@
         <img src="https://i.ibb.co/QschK18/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Koszulka damska Rebel Soul" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
         <h4 class="text-xl font-semibold mb-2">Koszulka „Rebel Soul”</h4>
         <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full" id="rozmiar-rebel-soul">
-          <option value="XS">Rozmiar: XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Rozmiar: XS</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
         </select>
-        <select class="border p-2 rounded mb-3 w-full" id="kolor-rebel-soul">
-          <option value="Czarny">Kolor: Czarny</option>
-          <option value="Biały">Biały</option>
-          <option value="Złoty">Złoty</option>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Kolor: Czarny</option>
+          <option>Biały</option>
+          <option>Złoty</option>
         </select>
-        <button onclick="dodajDoKoszyka('Koszulka Rebel Soul', 120, 'rozmiar-rebel-soul', 'kolor-rebel-soul', 'https://i.ibb.co/QschK18/Screenshot-20250608-161603-Chat-GPT-3.jpg')" 
-                class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+        <button data-product="Koszulka Rebel Soul" data-price="120" class="dodaj-do-koszyka bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
       </div>
 
       <!-- Koszulka 6 -->
@@ -724,19 +751,18 @@
         <img src="https://i.ibb.co/V1F3LMH/5.jpg" alt="Koszulka damska Minimalistka" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
         <h4 class="text-xl font-semibold mb-2">Koszulka „Minimalistka”</h4>
         <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full" id="rozmiar-minimalistka">
-          <option value="XS">Rozmiar: XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Rozmiar: XS</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
         </select>
-        <select class="border p-2 rounded mb-3 w-full" id="kolor-minimalistka">
-          <option value="Czarny">Kolor: Czarny</option>
-          <option value="Biały">Biały</option>
-          <option value="Złoty">Złoty</option>
+        <select class="border p-2 rounded mb-3 w-full">
+          <option>Kolor: Czarny</option>
+          <option>Biały</option>
+          <option>Złoty</option>
         </select>
-        <button onclick="dodajDoKoszyka('Koszulka Minimalistka', 120, 'rozmiar-minimalistka', 'kolor-minimalistka', 'https://i.ibb.co/V1F3LMH/5.jpg')" 
-                class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+        <button data-product="Koszulka Minimalistka" data-price="120" class="dodaj-do-koszyka bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
       </div>
 
     </div>
@@ -745,63 +771,109 @@
 
 <!-- === Funkcja dodajDoKoszyka === -->
 <script>
-function dodajDoKoszyka(nazwa, cena, rozmiarId, kolorId, obrazUrl) {
-  // Pobierz wybrane wartości rozmiaru i koloru
-  const rozmiar = document.getElementById(rozmiarId)?.value || 'M';
-  const kolor = document.getElementById(kolorId)?.value || 'Czarny';
+document.addEventListener('DOMContentLoaded', function() {
+  // Nasłuchiwanie na wszystkie przyciski
+  document.querySelectorAll('.dodaj-do-koszyka').forEach(button => {
+    button.addEventListener('click', function() {
+      const productName = this.getAttribute('data-product');
+      const price = parseFloat(this.getAttribute('data-price'));
+      
+      // Znajdź kontener produktu
+      const productContainer = this.closest('.bg-white');
+      
+      // Pobierz wybrane wartości
+      const sizeSelect = productContainer.querySelector('select:nth-of-type(1)');
+      const colorSelect = productContainer.querySelector('select:nth-of-type(2)');
+      const size = sizeSelect ? sizeSelect.options[sizeSelect.selectedIndex].text : '';
+      const color = colorSelect ? colorSelect.options[colorSelect.selectedIndex].text : '';
+      
+      // Pobierz URL obrazka
+      const img = productContainer.querySelector('img');
+      const imageUrl = img ? img.src : '';
+      
+      // Dodaj do koszyka
+      addToCart(productName, price, size, color, imageUrl);
+    });
+  });
   
-  // Stwórz unikalny identyfikator produktu
-  const produktId = `${nazwa}-${rozmiar}-${kolor}`.toLowerCase().replace(/\s+/g, '-');
-  
-  // Pobierz aktualny koszyk
-  let koszyk = JSON.parse(localStorage.getItem('koszyk')) || [];
-  
-  // Sprawdź czy produkt już jest w koszyku
-  const istniejeWKoszyku = koszyk.some(item => item.id === produktId);
-  
-  if (istniejeWKoszyku) {
-    alert('Ten produkt (z tym rozmiarem i kolorem) jest już w Twoim koszyku!');
-    return;
+  // Funkcja dodająca do koszyka
+  function addToCart(name, price, size, color, imageUrl) {
+    let cart = JSON.parse(localStorage.getItem('koszyk')) || [];
+    
+    // Stwórz unikalny ID
+    const uniqueId = `${name}-${size}-${color}`.replace(/\s+/g, '-');
+    
+    // Sprawdź czy produkt już istnieje
+    const existingItem = cart.find(item => item.id === uniqueId);
+    
+    if (existingItem) {
+      alert('Ten produkt jest już w Twoim koszyku!');
+      return;
+    }
+    
+    // Dodaj nowy produkt
+    const product = {
+      id: uniqueId,
+      name: name,
+      price: price,
+      size: size,
+      color: color,
+      image: imageUrl,
+      quantity: 1
+    };
+    
+    cart.push(product);
+    localStorage.setItem('koszyk', JSON.stringify(cart));
+    
+    // Pokaż powiadomienie
+    showNotification(`${name} dodana do koszyka!`);
+    
+    // Aktualizuj licznik koszyka
+    updateCartCounter(cart.length);
   }
   
-  // Dodaj nowy produkt do koszyka
-  const produkt = { 
-    id: produktId,
-    nazwa: nazwa, 
-    cena: cena,
-    rozmiar: rozmiar,
-    kolor: kolor,
-    obraz: obrazUrl,
-    ilosc: 1
-  };
-  
-  koszyk.push(produkt);
-  localStorage.setItem('koszyk', JSON.stringify(koszyk));
-  
-  // Powiadomienie z animacją
-  const notification = document.createElement('div');
-  notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg animate-bounce';
-  notification.innerHTML = `
-    <p>${nazwa} (${rozmiar}, ${kolor}) dodana do koszyka!</p>
-    <p class="text-sm">Cena: ${cena} zł</p>
-  `;
-  document.body.appendChild(notification);
-  
-  setTimeout(() => {
-    notification.classList.remove('animate-bounce');
-    notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
-    setTimeout(() => notification.remove(), 300);
-  }, 2000);
-  
-  // Aktualizuj licznik koszyka (jeśli istnieje)
-  const licznikKoszyka = document.getElementById('licznik-koszyka');
-  if (licznikKoszyka) {
-    licznikKoszyka.textContent = koszyk.length;
-    licznikKoszyka.classList.add('animate-ping');
-    setTimeout(() => licznikKoszyka.classList.remove('animate-ping'), 500);
+  // Funkcja pokazująca powiadomienie
+  function showNotification(message) {
+    // Usuń istniejące powiadomienia
+    const existing = document.querySelector('.cart-notification');
+    if (existing) existing.remove();
+    
+    // Stwórz nowe powiadomienie
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    // Automatyczne ukrycie po 3 sekundach
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
   }
-}
-</script>            
+  
+  // Funkcja aktualizująca licznik koszyka
+  function updateCartCounter(count) {
+    let counter = document.getElementById('cart-counter');
+    
+    if (!counter) {
+      // Stwórz licznik jeśli nie istnieje
+      counter = document.createElement('span');
+      counter.id = 'cart-counter';
+      counter.className = 'absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs';
+      
+      const cartIcon = document.getElementById('cart-icon');
+      if (cartIcon) {
+        cartIcon.appendChild(counter);
+      }
+    }
+    
+    counter.textContent = count;
+  }
+  
+  // Inicjalizacja licznika przy ładowaniu strony
+  const cart = JSON.parse(localStorage.getItem('koszyk')) || [];
+  updateCartCounter(cart.length);
+});
+</script>
 <!-- ====== Sekcja: Zaprojektuj Swój Produkt ====== -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
   <div class="max-w-6xl mx-auto px-6 py-10">
@@ -1823,6 +1895,7 @@ if (adForm) {
 </body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
