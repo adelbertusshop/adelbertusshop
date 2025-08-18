@@ -1189,89 +1189,133 @@ function addToCart(name, price, imageUrl = null, payload = null) {
 
   function computePositionFor(um,type){const cx=canvas.width/2,cy=canvas.height/2; switch(um){case'front':return {x:cx,y:cy-(type==='czapka'?20:        
 <section
-<!-- === Marketplace === -->
-<section id="marketplace" class="marketplace">
-  <div class="marketplace-form">
-    <h2>Dodaj swój produkt</h2>
-    <form id="marketplaceForm" action="https://formsubmit.co/26es87U-rjUzsUtV7" method="POST">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_subject" value="Nowy produkt w Marketplace - AdelbertusShop">
-      <input type="hidden" name="_template" value="table">
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-        <input type="text" name="Nazwa produktu" placeholder="Nazwa produktu*" required>
-        <input type="number" name="Cena" placeholder="Cena (PLN)*" min="1" step="0.01" required>
-      </div>
-      
-      <textarea name="Opis" placeholder="Opis produktu*" rows="3" required></textarea>
-      
-      <div class="mt-4">
-        <input type="url" name="Zdjęcie" placeholder="Link do zdjęcia*" required 
-               class="w-full" id="productImageInput">
-        <div id="imagePreview" class="mt-2 hidden">
-          <img src="" alt="Podgląd" class="max-h-32 border rounded">
-        </div>
-      </div>
-      
-      <input type="email" name="Email" placeholder="Twój email*" required class="mt-4">
-      
-      <div id="ageVerification" class="hidden mt-4 p-2 bg-yellow-50 rounded">
-        <label class="flex items-center">
-          <input type="checkbox" name="wiek" required class="mr-2">
-          <span>Oświadczam, że mam ukończone 18 lat</span>
-        </label>
-      </div>
-      
-      <button type="submit" id="submitMarketplace" 
-              class="mt-4 bg-[#d4af37] text-black px-6 py-2 rounded font-bold">
-        Wyślij zgłoszenie
-      </button>
-    </form>
-  </div>
+<script>
+// ========== Marketplace ==========
+// Podgląd zdjęcia
+document.getElementById('productImageInput')?.addEventListener('change', function() {
+  const preview = document.getElementById('imagePreview');
+  if (!preview) return;
   
-  <div id="marketplaceProducts" class="product-grid mt-8"></div>
-</section>
-<!-- === Reklama === -->
-<section id="reklama" class="reklama">
-  <div class="ad-form">
-    <h2>Zamów reklamę</h2>
-    <form id="adForm" action="https://formsubmit.co/26es87U-rjUzsUtV7" method="POST">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_subject" value="Nowa reklama - AdelbertusShop">
-      
-      <input type="text" name="Nazwa firmy" placeholder="Nazwa firmy/marki*" required>
-      
-      <div class="flex justify-between items-center mt-4">
-        <label>Opis reklamy* (max 200 znaków)</label>
-        <span id="charCounter" class="text-sm text-gray-500">0/200</span>
-      </div>
-      <textarea name="Opis reklamy" id="adText" rows="3" maxlength="200" required></textarea>
-      
-      <input type="url" name="Link" placeholder="URL docelowy*" required class="mt-4">
-      
-      <select name="Okres reklamy" id="adPeriod" required class="mt-4 w-full p-2 border rounded">
-        <option value="">Wybierz okres*</option>
-        <option value="7 dni">1 tydzień - 50 zł</option>
-        <option value="14 dni">2 tygodnie - 90 zł</option>
-        <option value="30 dni">1 miesiąc - 150 zł</option>
-      </select>
-      <div id="priceDisplay" class="text-right text-sm text-[#d4af37] font-bold mt-1"></div>
-      
-      <input type="email" name="Email" placeholder="Twój email*" required class="mt-4">
-      
-      <button type="submit" id="submitAd" 
-              class="mt-4 bg-[#d4af37] text-black px-6 py-2 rounded font-bold">
-        Zamów reklamę
-      </button>
-    </form>
-  </div>
+  const img = preview.querySelector('img');
+  if (this.value.match(/\.(jpe?g|png|webp)$/i)) {
+    img.src = this.value;
+    preview.classList.remove('hidden');
+  } else {
+    alert('Akceptujemy tylko linki do zdjęć (JPG/PNG/WEBP)');
+    this.value = '';
+    preview.classList.add('hidden');
+  }
+});
+
+// Weryfikacja wieku
+const categorySelect = document.querySelector('select[name="Kategoria"]');
+if (categorySelect) {
+  categorySelect.addEventListener('change', function() {
+    const ageCheck = document.getElementById('ageVerification');
+    if (ageCheck) {
+      ageCheck.classList.toggle('hidden', !['Alkohol', 'Tytoń'].includes(this.value));
+    }
+  });
+}
+
+// ========== Reklama ==========
+// Licznik znaków
+const adText = document.getElementById('adText');
+if (adText) {
+  adText.addEventListener('input', function() {
+    const counter = document.getElementById('charCounter');
+    if (counter) counter.textContent = `${this.value.length}/200`;
+  });
+}
+
+// Wyliczanie ceny
+const adPeriod = document.getElementById('adPeriod');
+if (adPeriod) {
+  adPeriod.addEventListener('change', function() {
+    const prices = { '7 dni':50, '14 dni':90, '30 dni':150 };
+    const priceEl = document.getElementById('priceDisplay');
+    if (priceEl && this.value) priceEl.textContent = `Cena: ${prices[this.value]} zł`;
+  });
+}
+
+// Podgląd reklamy
+function updateAdPreview() {
+  const form = document.getElementById('adForm');
+  const preview = document.getElementById('adPreview');
+  const content = document.getElementById('adPreviewContent');
   
-  <div id="adPreview" class="mt-8 p-4 border-2 border-dashed border-[#d4af37] rounded-lg hidden">
-    <h3 class="font-bold mb-2">Podgląd reklamy:</h3>
-    <div id="adPreviewContent"></div>
-  </div>
-</section>  
-      
+  if (!form || !preview || !content) return;
+
+  const data = new FormData(form);
+  if (!data.get('Nazwa firmy') || !data.get('Opis reklamy')) {
+    preview.classList.add('hidden');
+    return;
+  }
+
+  content.innerHTML = `
+    <div class="p-4 bg-[#1a1a1a] text-white rounded">
+      <h4 class="text-[#d4af37] font-bold">${data.get('Nazwa firmy')}</h4>
+      <p class="my-2">${data.get('Opis reklamy')}</p>
+      ${data.get('Link') ? `
+        <a href="${data.get('Link')}" target="_blank" class="text-[#d4af37] hover:underline">
+          Odwiedź stronę →
+        </a>` : ''}
+    </div>
+  `;
+  preview.classList.remove('hidden');
+}
+
+document.querySelectorAll('#adForm input, #adForm textarea, #adForm select').forEach(el => {
+  el.addEventListener('input', updateAdPreview);
+});
+
+// ========== Wspólne funkcje ==========
+// Zapisywanie zgłoszeń
+function saveSubmission(type, formData) {
+  try {
+    const submissions = JSON.parse(localStorage.getItem(`${type}Submissions`) || '[]');
+    submissions.push(Object.fromEntries(formData));
+    localStorage.setItem(`${type}Submissions`, JSON.stringify(submissions));
+  } catch (e) {
+    console.error('Błąd zapisu:', e);
+  }
+}
+
+// Blokada przycisków
+function disableButton(btn, seconds = 30) {
+  if (!btn) return;
+  
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  
+  let remaining = seconds;
+  const interval = setInterval(() => {
+    btn.textContent = `Poczekaj ${remaining}s...`;
+    if (--remaining < 0) {
+      clearInterval(interval);
+      btn.disabled = false;
+      btn.textContent = originalText;
+    }
+  }, 1000);
+}
+
+// Obsługa formularzy
+const marketplaceForm = document.getElementById('marketplaceForm');
+if (marketplaceForm) {
+  marketplaceForm.addEventListener('submit', function(e) {
+    saveSubmission('marketplace', new FormData(this));
+    disableButton(document.getElementById('submitMarketplace'));
+  });
+}
+
+const adForm = document.getElementById('adForm');
+if (adForm) {
+  adForm.addEventListener('submit', function(e) {
+    saveSubmission('ad', new FormData(this));
+    disableButton(document.getElementById('submitAd'));
+  });
+}
+</script>      
      id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
   <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
 
@@ -1552,116 +1596,10 @@ function addToCart(name, price, imageUrl = null, payload = null) {
     }
   </script>
   <script src="script.js"></script>
-  
-// ========== Marketplace ==========
-// Podgląd zdjęcia
-document.getElementById('productImageInput').addEventListener('change', function() {
-  const preview = document.getElementById('imagePreview');
-  const img = preview.querySelector('img');
-  
-  if (this.value.match(/\.(jpeg|jpg|png|webp)$/)) {
-    img.src = this.value;
-    preview.classList.remove('hidden');
-  } else {
-    alert('Akceptujemy tylko linki do zdjęć (JPG/PNG/WEBP)');
-    this.value = '';
-    preview.classList.add('hidden');
-  }
-});
-
-// Weryfikacja wieku dla określonych kategorii
-document.addEventListener('DOMContentLoaded', function() {
-  const ageCheck = document.getElementById('ageVerification');
-  // Jeśli masz pole "Kategoria" w formularzu:
-  const categorySelect = document.querySelector('select[name="Kategoria"]');
-  if (categorySelect) {
-    categorySelect.addEventListener('change', function() {
-      ageCheck.classList.toggle('hidden', !['Alkohol', 'Tytoń'].includes(this.value));
-    });
-  }
-});
-
-// ========== Reklama ==========
-// Licznik znaków
-document.getElementById('adText').addEventListener('input', function() {
-  const counter = document.getElementById('charCounter');
-  counter.textContent = `${this.value.length}/200`;
-});
-
-// Automatyczne wyliczanie ceny
-document.getElementById('adPeriod').addEventListener('change', function() {
-  const prices = { '7 dni':50, '14 dni':90, '30 dni':150 };
-  const priceEl = document.getElementById('priceDisplay');
-  if (this.value) priceEl.textContent = `Cena: ${prices[this.value]} zł`;
-});
-
-// Podgląd reklamy
-document.querySelectorAll('#adForm input, #adForm textarea, #adForm select').forEach(el => {
-  el.addEventListener('input', updateAdPreview);
-});
-
-function updateAdPreview() {
-  const form = document.getElementById('adForm');
-  const preview = document.getElementById('adPreviewContent');
-  const data = new FormData(form);
-  
-  if (!data.get('Nazwa firmy') || !data.get('Opis reklamy')) {
-    document.getElementById('adPreview').classList.add('hidden');
-    return;
-  }
-
-  preview.innerHTML = `
-    <div class="p-4 bg-[#1a1a1a] text-white rounded">
-      <h4 class="text-[#d4af37] font-bold">${data.get('Nazwa firmy')}</h4>
-      <p class="my-2">${data.get('Opis reklamy')}</p>
-      ${data.get('Link') ? `
-        <a href="${data.get('Link')}" target="_blank" 
-           class="text-[#d4af37] hover:underline">Odwiedź stronę →</a>
-      ` : ''}
-    </div>
-  `;
-  document.getElementById('adPreview').classList.remove('hidden');
-}
-
-// ========== Wspólne funkcje ==========
-// Zapisywanie w localStorage
-function saveSubmission(type, formData) {
-  const submissions = JSON.parse(localStorage.getItem(`${type}Submissions`) || '[]');
-  submissions.push(Object.fromEntries(formData));
-  localStorage.setItem(`${type}Submissions`, JSON.stringify(submissions));
-}
-
-// Blokada przycisków po wysłaniu
-function disableButton(btn, seconds = 30) {
-  const originalText = btn.textContent;
-  btn.disabled = true;
-  
-  let remaining = seconds;
-  const interval = setInterval(() => {
-    btn.textContent = `Poczekaj ${remaining}s...`;
-    remaining--;
-    
-    if (remaining < 0) {
-      clearInterval(interval);
-      btn.disabled = false;
-      btn.textContent = originalText;
-    }
-  }, 1000);
-}
-
-// Obsługa formularzy
-document.getElementById('marketplaceForm').addEventListener('submit', function(e) {
-  saveSubmission('marketplace', new FormData(this));
-  disableButton(document.getElementById('submitMarketplace'));
-});
-
-document.getElementById('adForm').addEventListener('submit', function(e) {
-  saveSubmission('ad', new FormData(this));
-  disableButton(document.getElementById('submitAd')));
-});  
 </body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
