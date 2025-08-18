@@ -272,609 +272,347 @@
 }
 .animate-fade-down { animation: fadeDown 1.5s ease forwards; }
 .animate-fade-up { animation: fadeUp 1.5s ease forwards; }
-</style><!-- ====================== SKLEP PREMIUM ====================== -->
-<section id="sklep" class="py-16 bg-[#121212] text-white">
+<!-- ====================== SKLEP PREMIUM ====================== -->
+<section id="sklep" class="py-16 bg-[#0a0a0a] text-white">
   <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-5xl font-bold text-center text-[#d4af37] mb-16">Ekskluzywny Sklep</h2>
+    <!-- Złoty nagłówek z obramowaniem -->
+    <div class="border-b-2 border-[#d4af37] pb-8 mb-12">
+      <h2 class="text-5xl font-bold text-center text-[#d4af37] mb-4">EXCLUSIVE COLLECTION</h2>
+      <p class="text-center text-gray-300 max-w-3xl mx-auto">Odkryj naszą limitowaną kolekcję premium - połączenie luksusu i streetwearu</p>
+    </div>
 
-    <!-- === Kategorie === -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-
-      <!-- === Mężczyźni === -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-lg hover:scale-105 transition-transform">
-        <h3 class="text-2xl font-semibold mb-4 text-center">Mężczyźni</h3>
-        <ul class="space-y-3 text-center">
-          <li><a href="#koszulki-mezczyzni" class="text-lg font-medium hover:text-[#d4af37]">Koszulki - 120 zł</a></li>
-          <li><a href="#bluzy-mezczyzni" class="text-lg font-medium hover:text-[#d4af37]">Bluzy - 200 zł</a></li>
-          <li><a href="#bluzyKaptur-mezczyzni" class="text-lg font-medium hover:text-[#d4af37]">Bluzy z kapturem - 200 zł</a></li>
-          <li><a href="#czapki-mezczyzni" class="text-lg font-medium hover:text-[#d4af37]">Czapki - 99 zł</a></li>
-          <li><a href="#akcesoria-mezczyzni" class="text-lg font-medium hover:text-[#d4af37]">Akcesoria - 70-100 zł</a></li>
-        </ul>
+    <!-- Kategorie w formie kart z efektem hover -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Unisex Collection -->
+      <div class="relative group overflow-hidden rounded-xl border-2 border-[#d4af37] bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+        <div class="p-8 text-center">
+          <h3 class="text-3xl font-bold text-[#d4af37] mb-6">UNISEX</h3>
+          <div class="space-y-4">
+            <a href="#koszulki" class="block text-lg font-medium text-white hover:text-[#d4af37] transition-colors">Koszulki - 120 zł</a>
+            <a href="#bluzy" class="block text-lg font-medium text-white hover:text-[#d4af37] transition-colors">Bluzy - 200 zł</a>
+            <a href="#bluzy-kaptur" class="block text-lg font-medium text-white hover:text-[#d4af37] transition-colors">Bluzy z kapturem - 220 zł</a>
+            <a href="#czapki" class="block text-lg font-medium text-white hover:text-[#d4af37] transition-colors">Czapki - 99 zł</a>
+          </div>
+        </div>
+        <div class="absolute inset-0 bg-[#d4af37] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
       </div>
 
-      <!-- === Kobiety === -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-lg hover:scale-105 transition-transform">
-        <h3 class="text-2xl font-semibold mb-4 text-center">Kobiety</h3>
-        <ul class="space-y-3 text-center">
-          <li><a href="#koszulki-kobiety" class="text-lg font-medium hover:text-[#d4af37]">Koszulki - 120 zł</a></li>
-          <li><a href="#bluzy-kobiety" class="text-lg font-medium hover:text-[#d4af37]">Bluzy - 200 zł</a></li>
-          <li><a href="#bluzyKaptur-kobiety" class="text-lg font-medium hover:text-[#d4af37]">Bluzy z kapturem - 200 zł</a></li>
-          <li><a href="#czapki-kobiety" class="text-lg font-medium hover:text-[#d4af37]">Czapki - 99 zł</a></li>
-          <li><a href="#akcesoria-kobiety" class="text-lg font-medium hover:text-[#d4af37]">Akcesoria - 70-100 zł</a></li>
-        </ul>
+      <!-- Nowości -->
+      <div class="relative group overflow-hidden rounded-xl border-2 border-[#d4af37] bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+        <div class="p-8 text-center">
+          <h3 class="text-3xl font-bold text-[#d4af37] mb-6">NEW ARRIVALS</h3>
+          <p class="text-gray-400 italic">Nadchodzące premiery...</p>
+        </div>
+        <div class="absolute inset-0 bg-[#d4af37] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
       </div>
 
-      <!-- === Nowości === -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-lg hover:scale-105 transition-transform">
-        <h3 class="text-2xl font-semibold mb-4 text-center">Nowości</h3>
-        <p class="text-center text-gray-600">Wkrótce dostępne nowe kolekcje...</p>
+      <!-- Projektuj sam -->
+      <div class="relative group overflow-hidden rounded-xl border-2 border-[#d4af37] bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+        <div class="p-8 text-center">
+          <h3 class="text-3xl font-bold text-[#d4af37] mb-6">CUSTOM DESIGN</h3>
+          <a href="#projektuj" class="block text-lg font-medium text-white hover:text-[#d4af37] transition-colors">Zaprojektuj własny produkt</a>
+        </div>
+        <div class="absolute inset-0 bg-[#d4af37] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== PRODUKTY ==================== -->
-<!-- === Koszulki Mężczyźni === -->
-<section id="koszulki-mezczyzni" class="py-12 bg-black text-white">
-  <div class="max-w-6xl mx-auto px-4">
-    <h3 class="text-3xl font-bold text-[#d4af37] mb-8 text-center">Koszulki Mężczyźni</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Produkt 1 -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/dXSNgRp/Messenger-creation-78-FBFCA7-7344-4-B0-F-BE56-AB8-DD33-C051-C.jpg" alt="Koszulka męska 1" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Koszulka „Rebel”</h4>
-        <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: S</option>
-          <option>M</option>
-          <option>L</option>
-          <option>XL</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Złoty</option>
-        </select>
-        <!-- Działający przycisk dodawania do koszyka -->
-        <button onclick="addToCart('Koszulka Rebel', 120)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-      </div>
-<!-- Produkt 2 -->
-<div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-  <img src="https://i.ibb.co/wNJNHvkn/Screenshot-20250522-191944-Chat-GPT.jpg" alt="Koszulka męska 2" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-  <h4 class="text-xl font-semibold mb-2">Koszulka „Classic”</h4>
-  <p class="text-gray-700 mb-2">120 zł</p>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Rozmiar: S</option>
-    <option>M</option>
-    <option>L</option>
-    <option>XL</option>
-  </select>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Kolor: Czarny</option>
-    <option>Biały</option>
-    <option>Złoty</option>
-  </select>
-  <!-- Działający przycisk dodawania do koszyka -->
-  <button onclick="addToCart('Koszulka Classic', 120)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-</div>
-<!-- Produkt 3 -->
-<div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-  <img src="https://i.ibb.co/Nn9cggcv/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka męska 3" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-  <h4 class="text-xl font-semibold mb-2">Koszulka „Streetwear”</h4>
-  <p class="text-gray-700 mb-2">120 zł</p>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Rozmiar: S</option>
-    <option>M</option>
-    <option>L</option>
-    <option>XL</option>
-  </select>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Kolor: Czarny</option>
-    <option>Biały</option>
-    <option>Złoty</option>
-  </select>
-  <!-- Działający przycisk dodawania do koszyka -->
-  <button onclick="addToCart('Koszulka Streetwear', 120)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-</div>
-<!-- Produkt 4 -->
-<div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-  <img src="https://i.ibb.co/x8HMwmqq/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Koszulka męska 4" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-  <h4 class="text-xl font-semibold mb-2">Koszulka „Minimal”</h4>
-  <p class="text-gray-700 mb-2">120 zł</p>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Rozmiar: S</option>
-    <option>M</option>
-    <option>L</option>
-    <option>XL</option>
-  </select>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Kolor: Czarny</option>
-    <option>Biały</option>
-    <option>Złoty</option>
-  </select>
-  <!-- Działający przycisk dodawania do koszyka -->
-  <button onclick="addToCart('Koszulka Minimal', 120)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-</div>
-<!-- Produkt 5 -->
-<div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-  <img src="https://i.ibb.co/DgpQnjbM/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka męska 5" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-  <h4 class="text-xl font-semibold mb-2">Koszulka „Urban”</h4>
-  <p class="text-gray-700 mb-2">120 zł</p>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Rozmiar: S</option>
-    <option>M</option>
-    <option>L</option>
-    <option>XL</option>
-  </select>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Kolor: Czarny</option>
-    <option>Biały</option>
-    <option>Złoty</option>
-  </select>
-  <!-- Działający przycisk dodawania do koszyka -->
-  <button onclick="addToCart('Koszulka Urban', 120)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-</div>
-     <!-- Bluzy Mężczyźni -->
-<div id="bluzy-mezczyzni" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    <!-- Bluza 1 -->
-    <div class="bg-white rounded-lg shadow-lg p-4">
-        <img src="https://i.ibb.co/HLFd4s3H/Screenshot-20250529-222346-Chat-GPT-3.jpg" alt="Bluza Mężczyzna 1" class="w-full h-64 object-cover rounded-md">
-        <h3 class="mt-4 text-lg font-semibold">Bluza Męska 1</h3>
-        <p class="text-gray-700">Cena: 200 zł</p>
-        <!-- Działający przycisk dodawania do koszyka -->
-        <button onclick="addToCart('Bluza Męska 1', 200)" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Dodaj do koszyka</button>
+<!-- ==================== PRODUKTY UNISEX ==================== -->
+<!-- Koszulki -->
+<section id="koszulki" class="py-16 bg-[#121212] text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="border-b-2 border-[#d4af37] pb-4 mb-12">
+      <h3 class="text-4xl font-bold text-[#d4af37]">KOSZULKI</h3>
+      <p class="text-gray-400">Limitowana kolekcja premium - 120 zł</p>
     </div>
-    <!-- Bluza 2 -->
-    <div class="bg-white rounded-lg shadow-lg p-4">
-        <img src="https://i.ibb.co/s9j09SB5/Screenshot-20250608-145348-Chat-GPT-3.jpg" alt="Bluza Mężczyzna 2" class="w-full h-64 object-cover rounded-md">
-        <h3 class="mt-4 text-lg font-semibold">Bluza Męska 2</h3>
-        <p class="text-gray-700">Cena: 200 zł</p>
-        <!-- Działający przycisk dodawania do koszyka -->
-        <button onclick="addToCart('Bluza Męska 2', 200)" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Dodaj do koszyka</button>
-    </div>
-</div>
-    <!-- Bluza 3 -->
-<div class="bg-white rounded-lg shadow-lg p-4">
-    <img src="https://i.ibb.co/mCZQ5L5G/Screenshot-20250529-222230-Chat-GPT-3.jpg" alt="Bluza Mężczyzna 3" class="w-full h-64 object-cover rounded-md">
-    <h3 class="mt-4 text-lg font-semibold">Bluza Męska 3</h3>
-    <p class="text-gray-700">Cena: 200 zł</p>
-    <!-- Działający przycisk dodawania do koszyka -->
-    <button onclick="addToCart('Bluza Męska 3', 200)" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Dodaj do koszyka</button>
-</div>
-   <!-- Bluza 4 -->
-<div class="bg-white rounded-lg shadow-lg p-4">
-    <img src="https://i.ibb.co/qFxhhTCD/Screenshot-20250525-154446-Chat-GPT-2.jpg" alt="Bluza Mężczyzna 4" class="w-full h-64 object-cover rounded-md">
-    <h3 class="mt-4 text-lg font-semibold">Bluza Męska 4</h3>
-    <p class="text-gray-700">Cena: 200 zł</p>
-    <!-- Działający przycisk dodawania do koszyka -->
-    <button onclick="addToCart('Bluza Męska 4', 200)" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Dodaj do koszyka</button>
-</div>
-<!-- Bluza 5 -->
-<div class="bg-white rounded-lg shadow-lg p-4">
-    <img src="https://i.ibb.co/cK35zpCt/Screenshot-20250525-154504-Chat-GPT-2.jpg" alt="Bluza Mężczyzna 5" class="w-full h-64 object-cover rounded-md">
-    <h3 class="mt-4 text-lg font-semibold">Bluza Męska 5</h3>
-    <p class="text-gray-700">Cena: 200 zł</p>
-    <!-- Działający przycisk dodawania do koszyka -->
-    <button onclick="addToCart('Bluza Męska 5', 200)" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Dodaj do koszyka</button>
-</div>
-<!-- Bluzy z kapturem Mężczyźni -->
-<section id="bluzy-z-kapturem-mezczyzni" class="py-12 bg-gray-900 text-white">
-  <div class="max-w-6xl mx-auto px-4">
-    <h3 class="text-3xl font-bold text-[#d4af37] mb-8 text-center">Bluzy z kapturem Mężczyźni</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-      <!-- Produkt 1 -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/j9c28nvH/Screenshot-20250525-181322-Chat-GPT-3.jpg" alt="Bluza z kapturem 1" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Bluza z kapturem „Street Rebel”</h4>
-        <p class="text-gray-700 mb-2">200 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-          <option>XL</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Szary</option>
-        </select>
-        <button onclick="addToCart('Bluza Street Rebel', 200)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-      </div>
-
-      <!-- Produkt 2 -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/zW077Cbm/Screenshot-20250525-154354-Chat-GPT-2.jpg" alt="Bluza z kapturem 2" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Bluza z kapturem „Urban King”</h4>
-        <p class="text-gray-700 mb-2">200 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-          <option>XL</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Szary</option>
-        </select>
-        <button onclick="addToCart('Bluza Urban King', 200)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-      </div>
-
-      <!-- Produkt 3 -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/hJ3sYFHY/Screenshot-20250525-154245-Chat-GPT-2.jpg" alt="Bluza z kapturem 3" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Bluza z kapturem „Night Rider”</h4>
-        <p class="text-gray-700 mb-2">200 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-          <option>XL</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Szary</option>
-        </select>
-        <button onclick="addToCart('Bluza Night Rider', 200)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-      </div>
-
-      <!-- Produkt 4 -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/jPw768Wp/Resizer-175015904589537.jpg" alt="Bluza z kapturem 4" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Bluza z kapturem „Bold Statement”</h4>
-        <p class="text-gray-700 mb-2">200 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-          <option>XL</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Szary</option>
-        </select>
-        <button onclick="addToCart('Bluza Bold Statement', 200)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-      </div>
-
-      <!-- Produkt 5 -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/XZdhqmJs/Resizer-175015897947529.jpg" alt="Bluza z kapturem 5" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Bluza z kapturem „Freedom Rider”</h4>
-        <p class="text-gray-700 mb-2">200 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-          <option>XL</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Szary</option>
-        </select>
-        <button onclick="addToCart('Bluza Freedom Rider', 200)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-      </div>
-
-    </div>
-  </div>
-</section>
-<!-- Czapka 1 -->
-<div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-  <img src="https://i.ibb.co/VWSvFqNm/Screenshot-20250608-145333-Chat-GPT-3.jpg" alt="Czapka Męska 1" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-  <h4 class="text-xl font-semibold mb-2">Czapka „Street King”</h4>
-  <p class="text-gray-700 mb-2">99 zł</p>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Rozmiar: Standard</option>
-  </select>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Kolor: Czarny</option>
-    <option>Biały</option>
-    <option>Szary</option>
-  </select>
-  <button onclick="addToCart('Czapka Street King', 99)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-</div>
-
-<!-- Czapka 2 -->
-<div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-  <img src="https://i.ibb.co/pvyMbgn1/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Czapka Męska 2" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-  <h4 class="text-xl font-semibold mb-2">Czapka „Urban Legend”</h4>
-  <p class="text-gray-700 mb-2">99 zł</p>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Rozmiar: Standard</option>
-  </select>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Kolor: Czarny</option>
-    <option>Biały</option>
-    <option>Szary</option>
-  </select>
-  <button onclick="addToCart('Czapka Urban Legend', 99)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-</div>
-
-<!-- Czapka 3 -->
-<div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-  <img src="https://i.ibb.co/xK7xyPCJ/Messenger-creation-5119-F294-33-C4-45-A9-96-F3-AF34-CFDFA22-A.jpg" alt="Czapka Męska 3" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-  <h4 class="text-xl font-semibold mb-2">Czapka „Night Runner”</h4>
-  <p class="text-gray-700 mb-2">99 zł</p>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Rozmiar: Standard</option>
-  </select>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Kolor: Czarny</option>
-    <option>Biały</option>
-    <option>Szary</option>
-  </select>
-  <button onclick="addToCart('Czapka Night Runner', 99)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-</div>
-
-<!-- Czapka 4 -->
-<div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-  <img src="https://i.ibb.co/WvYjNpMd/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Męska 4" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-  <h4 class="text-xl font-semibold mb-2">Czapka „Shadow”</h4>
-  <p class="text-gray-700 mb-2">99 zł</p>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Rozmiar: Standard</option>
-  </select>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Kolor: Czarny</option>
-    <option>Biały</option>
-    <option>Szary</option>
-  </select>
-  <button onclick="addToCart('Czapka Shadow', 99)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-</div>
-
-<!-- Czapka 5 -->
-<div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-  <img src="https://i.ibb.co/209c8sXY/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg" alt="Czapka Męska 5" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-  <h4 class="text-xl font-semibold mb-2">Czapka „Vibe”</h4>
-  <p class="text-gray-700 mb-2">99 zł</p>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Rozmiar: Standard</option>
-  </select>
-  <select class="border p-2 rounded mb-3 w-full">
-    <option>Kolor: Czarny</option>
-    <option>Biały</option>
-    <option>Szary</option>
-  </select>
-  <button onclick="addToCart('Czapka Vibe', 99)" class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-</div>
-<!-- === Koszulki Kobiety === -->
-<section id="koszulki-kobiety" class="py-12 bg-black text-white">
-  <div class="max-w-6xl mx-auto px-4">
-    <h3 class="text-3xl font-bold text-[#d4af37] mb-8 text-center">Koszulki Kobiety</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
       <!-- Koszulka 1 -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/CsvXf3qh/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka damska Urban Muse" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Koszulka „Urban Muse”</h4>
-        <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Złoty</option>
-        </select>
-        <button data-product="Koszulka Urban Muse" data-price="120" class="dodaj-do-koszyka bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+      <div class="group relative bg-[#1e1e1e] rounded-xl overflow-hidden border border-[#333] hover:border-[#d4af37] transition-all duration-300">
+        <div class="relative overflow-hidden">
+          <img src="https://i.ibb.co/dXSNgRp/Messenger-creation-78-FBFCA7-7344-4-B0-F-BE56-AB8-DD33-C051-C.jpg" 
+               alt="Koszulka Rebel" 
+               class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+            <button class="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-[#d4af37] text-black font-bold px-6 py-3 rounded-full">
+              Szybki podgląd
+            </button>
+          </div>
+        </div>
+        <div class="p-6">
+          <h4 class="text-xl font-bold mb-2">Koszulka "Rebel"</h4>
+          <p class="text-[#d4af37] font-medium mb-4">120 zł</p>
+          
+          <div class="mb-4">
+            <label class="block text-gray-400 mb-2">Rozmiar:</label>
+            <select class="w-full bg-[#2a2a2a] border border-[#444] text-white rounded px-4 py-2">
+              <option>S</option>
+              <option>M</option>
+              <option>L</option>
+              <option>XL</option>
+            </select>
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-gray-400 mb-2">Kolor:</label>
+            <select class="w-full bg-[#2a2a2a] border border-[#444] text-white rounded px-4 py-2">
+              <option>Czarny</option>
+              <option>Biały</option>
+              <option>Złoty</option>
+            </select>
+          </div>
+          
+          <button onclick="addToCartUnisex('Koszulka Rebel', 120)" 
+                  class="w-full bg-[#d4af37] hover:bg-[#c9a227] text-black font-bold py-3 rounded transition-colors duration-300">
+            Dodaj do koszyka
+          </button>
+        </div>
       </div>
 
       <!-- Koszulka 2 -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/KpJkrBFN/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka damska City Glow" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Koszulka „City Glow”</h4>
-        <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Złoty</option>
-        </select>
-        <button data-product="Koszulka City Glow" data-price="120" class="dodaj-do-koszyka bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
+      <div class="group relative bg-[#1e1e1e] rounded-xl overflow-hidden border border-[#333] hover:border-[#d4af37] transition-all duration-300">
+        <div class="relative overflow-hidden">
+          <img src="https://i.ibb.co/wNJNHvkn/Screenshot-20250522-191944-Chat-GPT.jpg" 
+               alt="Koszulka Classic" 
+               class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+            <button class="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-[#d4af37] text-black font-bold px-6 py-3 rounded-full">
+              Szybki podgląd
+            </button>
+          </div>
+        </div>
+        <div class="p-6">
+          <h4 class="text-xl font-bold mb-2">Koszulka "Classic"</h4>
+          <p class="text-[#d4af37] font-medium mb-4">120 zł</p>
+          
+          <div class="mb-4">
+            <label class="block text-gray-400 mb-2">Rozmiar:</label>
+            <select class="w-full bg-[#2a2a2a] border border-[#444] text-white rounded px-4 py-2">
+              <option>S</option>
+              <option>M</option>
+              <option>L</option>
+              <option>XL</option>
+            </select>
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-gray-400 mb-2">Kolor:</label>
+            <select class="w-full bg-[#2a2a2a] border border-[#444] text-white rounded px-4 py-2">
+              <option>Czarny</option>
+              <option>Biały</option>
+              <option>Złoty</option>
+            </select>
+          </div>
+          
+          <button onclick="addToCartUnisex('Koszulka Classic', 120)" 
+                  class="w-full bg-[#d4af37] hover:bg-[#c9a227] text-black font-bold py-3 rounded transition-colors duration-300">
+            Dodaj do koszyka
+          </button>
+        </div>
       </div>
 
-      <!-- Koszulka 3 -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/TxckTpGb/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka damska Neon Dreams" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Koszulka „Neon Dreams”</h4>
-        <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Złoty</option>
-        </select>
-        <button data-product="Koszulka Neon Dreams" data-price="120" class="dodaj-do-koszyka bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-      </div>
-
-      <!-- Koszulka 4 -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/cSTT3dK7/file-000000007e84620a86b41cfadc98dc4a.png" alt="Koszulka damska Street Bloom" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Koszulka „Street Bloom”</h4>
-        <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Złoty</option>
-        </select>
-        <button data-product="Koszulka Street Bloom" data-price="120" class="dodaj-do-koszyka bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-      </div>
-
-      <!-- Koszulka 5 -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/QschK18/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Koszulka damska Rebel Soul" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Koszulka „Rebel Soul”</h4>
-        <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Złoty</option>
-        </select>
-        <button data-product="Koszulka Rebel Soul" data-price="120" class="dodaj-do-koszyka bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-      </div>
-
-      <!-- Koszulka 6 -->
-      <div class="bg-white text-black p-6 rounded-xl shadow-md text-center">
-        <img src="https://i.ibb.co/V1F3LMH/5.jpg" alt="Koszulka damska Minimalistka" class="mx-auto mb-4 w-48 h-48 object-cover rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Koszulka „Minimalistka”</h4>
-        <p class="text-gray-700 mb-2">120 zł</p>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Rozmiar: XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-        </select>
-        <select class="border p-2 rounded mb-3 w-full">
-          <option>Kolor: Czarny</option>
-          <option>Biały</option>
-          <option>Złoty</option>
-        </select>
-        <button data-product="Koszulka Minimalistka" data-price="120" class="dodaj-do-koszyka bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800">Dodaj do koszyka</button>
-      </div>
-
+      <!-- Dodaj więcej produktów w podobnym stylu -->
     </div>
   </div>
 </section>
 
-<!-- === Funkcja dodajDoKoszyka === -->
+<!-- Bluzy -->
+<section id="bluzy" class="py-16 bg-[#0a0a0a] text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="border-b-2 border-[#d4af37] pb-4 mb-12">
+      <h3 class="text-4xl font-bold text-[#d4af37]">BLUZY</h3>
+      <p class="text-gray-400">Limitowana kolekcja premium - 200 zł</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <!-- Bluza 1 -->
+      <div class="group relative bg-[#1e1e1e] rounded-xl overflow-hidden border border-[#333] hover:border-[#d4af37] transition-all duration-300">
+        <div class="relative overflow-hidden">
+          <img src="https://i.ibb.co/HLFd4s3H/Screenshot-20250529-222346-Chat-GPT-3.jpg" 
+               alt="Bluza Premium" 
+               class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+            <button class="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-[#d4af37] text-black font-bold px-6 py-3 rounded-full">
+              Szybki podgląd
+            </button>
+          </div>
+        </div>
+        <div class="p-6">
+          <h4 class="text-xl font-bold mb-2">Bluza "Premium"</h4>
+          <p class="text-[#d4af37] font-medium mb-4">200 zł</p>
+          
+          <div class="mb-4">
+            <label class="block text-gray-400 mb-2">Rozmiar:</label>
+            <select class="w-full bg-[#2a2a2a] border border-[#444] text-white rounded px-4 py-2">
+              <option>S</option>
+              <option>M</option>
+              <option>L</option>
+              <option>XL</option>
+            </select>
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-gray-400 mb-2">Kolor:</label>
+            <select class="w-full bg-[#2a2a2a] border border-[#444] text-white rounded px-4 py-2">
+              <option>Czarny</option>
+              <option>Biały</option>
+              <option>Szary</option>
+            </select>
+          </div>
+          
+          <button onclick="addToCartUnisex('Bluza Premium', 200)" 
+                  class="w-full bg-[#d4af37] hover:bg-[#c9a227] text-black font-bold py-3 rounded transition-colors duration-300">
+            Dodaj do koszyka
+          </button>
+        </div>
+      </div>
+
+      <!-- Dodaj więcej bluz w podobnym stylu -->
+    </div>
+  </div>
+</section>
+
+<!-- Sekcja projektowania -->
+<section id="projektuj" class="py-16 bg-[#121212] text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="border-b-2 border-[#d4af37] pb-4 mb-12">
+      <h3 class="text-4xl font-bold text-[#d4af37]">PROJEKTUJ SWÓJ PRODUKT</h3>
+      <p class="text-gray-400">Stwórz unikalny design</p>
+    </div>
+
+    <div class="bg-[#1e1e1e] rounded-xl border border-[#333] p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <h4 class="text-2xl font-bold mb-6">Wybierz produkt:</h4>
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <button class="product-type-btn bg-[#2a2a2a] hover:bg-[#d4af37] hover:text-black text-white py-4 rounded-lg transition-all" data-type="koszulka">
+              Koszulka
+            </button>
+            <button class="product-type-btn bg-[#2a2a2a] hover:bg-[#d4af37] hover:text-black text-white py-4 rounded-lg transition-all" data-type="bluza">
+              Bluza
+            </button>
+            <button class="product-type-btn bg-[#2a2a2a] hover:bg-[#d4af37] hover:text-black text-white py-4 rounded-lg transition-all" data-type="bluza-kaptur">
+              Bluza z kapturem
+            </button>
+            <button class="product-type-btn bg-[#2a2a2a] hover:bg-[#d4af37] hover:text-black text-white py-4 rounded-lg transition-all" data-type="czapka">
+              Czapka
+            </button>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-gray-400 mb-2">Rozmiar:</label>
+            <select class="w-full bg-[#2a2a2a] border border-[#444] text-white rounded px-4 py-3">
+              <option>XS</option>
+              <option>S</option>
+              <option>M</option>
+              <option>L</option>
+              <option>XL</option>
+            </select>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-gray-400 mb-2">Kolor produktu:</label>
+            <input type="color" value="#ffffff" class="w-full h-12 cursor-pointer">
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-2xl font-bold mb-6">Podgląd projektu:</h4>
+          <div class="bg-white rounded-lg p-4 mb-6 flex justify-center items-center" style="min-height: 300px;">
+            <p class="text-gray-500">Wybierz produkt, aby zobaczyć podgląd</p>
+          </div>
+          
+          <button class="w-full bg-[#d4af37] hover:bg-[#c9a227] text-black font-bold py-4 rounded-lg transition-colors duration-300">
+            Dodaj do koszyka - <span id="custom-product-price">120</span> zł
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
+// Funkcje dla koszyka
+function addToCartUnisex(name, price) {
+  const productContainer = event.target.closest('.bg-\\[#1e1e1e\\]');
+  const size = productContainer.querySelector('select:nth-of-type(1)').value;
+  const color = productContainer.querySelector('select:nth-of-type(2)').value;
+  
+  const product = {
+    id: `${name}-${size}-${color}`.replace(/\s+/g, '-'),
+    name: `${name} (${size}, ${color})`,
+    price: price,
+    size: size,
+    color: color,
+    quantity: 1
+  };
+  
+  addToCart(product);
+}
+
+function addToCart(product) {
+  let cart = JSON.parse(localStorage.getItem('koszyk')) || [];
+  
+  // Sprawdź czy produkt już istnieje
+  const existingItem = cart.find(item => item.id === product.id);
+  
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push(product);
+  }
+  
+  localStorage.setItem('koszyk', JSON.stringify(cart));
+  showNotification(`${product.name} dodany do koszyka`);
+  updateCartCounter(cart.reduce((total, item) => total + item.quantity, 0));
+}
+
+function showNotification(message) {
+  const notification = document.createElement('div');
+  notification.className = 'fixed bottom-4 right-4 bg-[#d4af37] text-black font-bold px-6 py-3 rounded-lg shadow-lg z-50 animate-bounce';
+  notification.textContent = message;
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.remove();
+  }, 3000);
+}
+
+function updateCartCounter(count) {
+  const counter = document.getElementById('cart-counter') || createCartCounter();
+  counter.textContent = count;
+}
+
+function createCartCounter() {
+  const counter = document.createElement('span');
+  counter.id = 'cart-counter';
+  counter.className = 'absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs';
+  document.getElementById('cartIcon').appendChild(counter);
+  return counter;
+}
+
+// Inicjalizacja koszyka
 document.addEventListener('DOMContentLoaded', function() {
-  // Nasłuchiwanie na wszystkie przyciski
-  document.querySelectorAll('.dodaj-do-koszyka').forEach(button => {
-    button.addEventListener('click', function() {
-      const productName = this.getAttribute('data-product');
-      const price = parseFloat(this.getAttribute('data-price'));
+  const cart = JSON.parse(localStorage.getItem('koszyk')) || [];
+  updateCartCounter(cart.reduce((total, item) => total + item.quantity, 0));
+  
+  // Obsługa przycisków typu produktu w sekcji projektowania
+  document.querySelectorAll('.product-type-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const type = this.dataset.type;
+      let price = 120;
       
-      // Znajdź kontener produktu
-      const productContainer = this.closest('.bg-white');
+      if (type === 'bluza') price = 200;
+      if (type === 'bluza-kaptur') price = 220;
+      if (type === 'czapka') price = 99;
       
-      // Pobierz wybrane wartości
-      const sizeSelect = productContainer.querySelector('select:nth-of-type(1)');
-      const colorSelect = productContainer.querySelector('select:nth-of-type(2)');
-      const size = sizeSelect ? sizeSelect.options[sizeSelect.selectedIndex].text : '';
-      const color = colorSelect ? colorSelect.options[colorSelect.selectedIndex].text : '';
-      
-      // Pobierz URL obrazka
-      const img = productContainer.querySelector('img');
-      const imageUrl = img ? img.src : '';
-      
-      // Dodaj do koszyka
-      addToCart(productName, price, size, color, imageUrl);
+      document.getElementById('custom-product-price').textContent = price;
     });
   });
-  
-  // Funkcja dodająca do koszyka
-  function addToCart(name, price, size, color, imageUrl) {
-    let cart = JSON.parse(localStorage.getItem('koszyk')) || [];
-    
-    // Stwórz unikalny ID
-    const uniqueId = `${name}-${size}-${color}`.replace(/\s+/g, '-');
-    
-    // Sprawdź czy produkt już istnieje
-    const existingItem = cart.find(item => item.id === uniqueId);
-    
-    if (existingItem) {
-      alert('Ten produkt jest już w Twoim koszyku!');
-      return;
-    }
-    
-    // Dodaj nowy produkt
-    const product = {
-      id: uniqueId,
-      name: name,
-      price: price,
-      size: size,
-      color: color,
-      image: imageUrl,
-      quantity: 1
-    };
-    
-    cart.push(product);
-    localStorage.setItem('koszyk', JSON.stringify(cart));
-    
-    // Pokaż powiadomienie
-    showNotification(`${name} dodana do koszyka!`);
-    
-    // Aktualizuj licznik koszyka
-    updateCartCounter(cart.length);
-  }
-  
-  // Funkcja pokazująca powiadomienie
-  function showNotification(message) {
-    // Usuń istniejące powiadomienia
-    const existing = document.querySelector('.cart-notification');
-    if (existing) existing.remove();
-    
-    // Stwórz nowe powiadomienie
-    const notification = document.createElement('div');
-    notification.className = 'cart-notification fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
-    notification.textContent = message;
-    document.body.appendChild(notification);
-    
-    // Automatyczne ukrycie po 3 sekundach
-    setTimeout(() => {
-      notification.remove();
-    }, 3000);
-  }
-  
-  // Funkcja aktualizująca licznik koszyka
-  function updateCartCounter(count) {
-    let counter = document.getElementById('cart-counter');
-    
-    if (!counter) {
-      // Stwórz licznik jeśli nie istnieje
-      counter = document.createElement('span');
-      counter.id = 'cart-counter';
-      counter.className = 'absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs';
-      
-      const cartIcon = document.getElementById('cart-icon');
-      if (cartIcon) {
-        cartIcon.appendChild(counter);
-      }
-    }
-    
-    counter.textContent = count;
-  }
-  
-  // Inicjalizacja licznika przy ładowaniu strony
-  const cart = JSON.parse(localStorage.getItem('koszyk')) || [];
-  updateCartCounter(cart.length);
 });
 </script>
-<!-- ====== Sekcja: Zaprojektuj Swój Produkt ====== -->
+    <!-- ====== Sekcja: Zaprojektuj Swój Produkt ====== -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
   <div class="max-w-6xl mx-auto px-6 py-10">
     <h2 class="text-4xl font-bold mb-6 text-yellow-400 drop-shadow-lg text-center">Zaprojektuj Swój Produkt</h2>
@@ -1895,6 +1633,7 @@ if (adForm) {
 </body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
