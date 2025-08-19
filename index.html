@@ -227,6 +227,7 @@
 
 </body>
 </html>
+
 🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
@@ -416,160 +417,66 @@
   </div>
 </section>
   <script>
-  <!-- ====== Sekcja: Zaprojektuj Swój Produkt ====== -->
-<section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
-  <div class="max-w-6xl mx-auto px-6 py-10">
-    <h2 class="text-4xl font-bold mb-6 text-yellow-400 drop-shadow-lg text-center">Zaprojektuj Swój Produkt</h2>
-    <p class="mb-8 text-gray-300 text-center">Koszulki, bluzy i czapki z Twoim stylem – edytuj przód i tył osobno.</p>
-
-    <!-- Wybór produktu -->
-    <div class="mb-6 flex justify-center gap-4 flex-wrap">
-      <button class="produktBtn bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded shadow" data-typ="koszulka">Koszulka</button>
-      <button class="produktBtn bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded shadow" data-typ="bluza">Bluza</button>
-      <button class="produktBtn bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded shadow" data-typ="czapka">Czapka</button>
-    </div>
-
-    <!-- Widok toggle (przód/tył) -->
-    <div class="mb-4 flex justify-center gap-4">
-      <button id="przodBtn" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded ring-2">Edytuj: PRZÓD</button>
-      <button id="tylBtn" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded">Edytuj: TYŁ</button>
-    </div>
-
-    <!-- Layout: canvas + controls -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-      <!-- PODGLĄD -->
-      <div class="md:col-span-2">
-        <canvas id="podgladProdukt" width="560" height="560" class="mx-auto mb-4 border-4 border-yellow-500 rounded-lg bg-white shadow-lg touch-none"></canvas>
-        <div class="flex justify-center gap-4 flex-wrap">
-          <button id="pobierzProjekt" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz bieżący widok</button>
-          <button id="pobierzOba" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Pobierz przód + tył</button>
-          <button id="wyslijEmail" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Wyślij na e-mail</button>
-        </div>
-      </div>
-
-      <!-- KONTROLS -->
-      <div>
-        <div class="mb-4">
-          <label class="block mb-2 font-semibold">Tekst (dla aktualnego widoku):</label>
-          <input type="text" id="projektTekst" placeholder="Twój tekst" class="w-full p-2 rounded text-black mb-2">
-        </div>
-
-        <div class="mb-3">
-          <label class="block mb-2 font-semibold">Czcionka:</label>
-          <select id="czcionka" class="w-full p-2 rounded text-black mb-2">
-            <option value="Arial">Arial</option>
-            <option value="Courier New">Courier New</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Impact">Impact</option>
-            <option value="Comic Sans MS">Comic Sans</option>
-            <option value="'Press Start 2P'">Retro (Press Start 2P)</option>
-            <option value="'Dancing Script'">Dancing Script</option>
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="block mb-2 font-semibold">Rozmiar tekstu:</label>
-          <input type="range" id="rozmiarTekstu" min="10" max="120" value="36" class="w-full mb-3">
-          <div class="flex justify-between text-xs text-gray-400">
-            <span>Mały</span>
-            <span>Średni</span>
-            <span>Duży</span>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="block mb-2 font-semibold">Kolor tekstu:</label>
-          <div class="flex gap-2">
-            <input type="color" id="kolorTekstu" value="#000000" class="flex-1 h-12 mb-3">
-            <button class="bg-gray-700 px-3 rounded" onclick="document.getElementById('kolorTekstu').value='#000000'">Reset</button>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="block mb-2 font-semibold">Kolor produktu (tło):</label>
-          <div class="flex gap-2 mb-2">
-            <input type="color" id="kolorProduktu" value="#ffffff" class="flex-1 h-12">
-            <button class="bg-gray-700 px-3 rounded" onclick="document.getElementById('kolorProduktu').value='#ffffff'">Reset</button>
-          </div>
-          <div class="grid grid-cols-5 gap-1">
-            <button class="h-6 bg-white border border-gray-300" onclick="document.getElementById('kolorProduktu').value='#ffffff'"></button>
-            <button class="h-6 bg-black border border-gray-300" onclick="document.getElementById('kolorProduktu').value='#000000'"></button>
-            <button class="h-6 bg-red-600 border border-gray-300" onclick="document.getElementById('kolorProduktu').value='#dc2626'"></button>
-            <button class="h-6 bg-blue-600 border border-gray-300" onclick="document.getElementById('kolorProduktu').value='#2563eb'"></button>
-            <button class="h-6 bg-green-600 border border-gray-300" onclick="document.getElementById('kolorProduktu').value='#16a34a'"></button>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="block mb-2 font-semibold">Dodaj grafikę (dla aktualnego widoku):</label>
-          <input type="file" id="projektGrafika" accept="image/*" class="w-full mb-3">
-          <div class="grid grid-cols-3 gap-2 mb-2">
-            <button class="bg-gray-700 py-1 rounded text-xs" onclick="addSampleImage('https://via.placeholder.com/200x200/ff0000/ffffff?text=LOGO')">Przykład 1</button>
-            <button class="bg-gray-700 py-1 rounded text-xs" onclick="addSampleImage('https://via.placeholder.com/200x200/00ff00/000000?text=SAMPLE')">Przykład 2</button>
-            <button class="bg-gray-700 py-1 rounded text-xs" onclick="addSampleImage('https://via.placeholder.com/200x200/0000ff/ffffff?text=IMAGE')">Przykład 3</button>
-          </div>
-        </div>  <div class="mb-3">
-          <label class="block mb-2 font-semibold">Umiejscowienie startowe nadruku:</label>
-          <select id="umiejscowienie" class="w-full p-2 rounded text-black mb-3">
-            <option value="front">Przód (środek)</option>
-            <option value="top">Góra</option>
-            <option value="bottom">Dół</option>
-            <option value="left">Lewo</option>
-            <option value="right">Prawo</option>
-            <option value="sleeveLeft">Rękaw lewy</option>
-            <option value="sleeveRight">Rękaw prawy</option>
-          </select>
-          <p class="text-xs text-gray-400">Po ustawieniu – przytrzymaj na podglądzie i przeciągnij, aby przesunąć napis.</p>
-        </div>
-
-        <div class="mb-4">
-          <label class="block mb-2 font-semibold">Rozmiar produktu:</label>
-          <select id="projektRozmiar" class="w-full p-2 rounded text-black mb-3">
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M" selected>M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
-          </select>
-        </div>
-
-        <div class="flex gap-2">
-          <button id="dodajDoKoszyka" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded-lg shadow-lg transition">Dodaj do koszyka</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Koszyk (prosty widżet) -->
-    <div id="koszyk" class="mt-8 max-w-4xl mx-auto bg-gray-900 p-4 rounded-xl border border-yellow-600">
-      <h3 class="text-yellow-400 font-bold mb-3">Koszyk projektów</h3>
-      <ul id="listaKoszyka" class="text-gray-300 list-disc list-inside mb-3"></ul>
-      <p id="sumaKoszyka" class="text-yellow-300 font-bold">Suma: 0 zł</p>
-      <div class="mt-3 flex gap-2">
-        <button id="zamowienieBtn" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Przejdź do zamówienia</button>
-        <button id="wyczyscKoszyk" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded">Wyczyść koszyk</button>
-      </div>
-    </div>
+<section id="zaprojketuj" style="padding:20px; max-width:900px; margin:0 auto; font-family:'Arial',sans-serif; background:#f9f9f9; border-radius:10px; box-shadow:0 0 20px #aaa;">
+  <h2>Zaprojketuj swój produkt</h2>
+  <canvas id="podgladProdukt" width="500" height="500" style="border:1px solid #ccc; display:block; margin:20px auto;"></canvas>
+  
+  <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
+    <input id="projektTekst" type="text" placeholder="Twój tekst" />
+    <select id="czcionka">
+      <option value="Arial">Arial</option>
+      <option value="Verdana">Verdana</option>
+      <option value="Times New Roman">Times New Roman</option>
+    </select>
+    <input id="rozmiarTekstu" type="number" value="36" min="10" max="100" />
+    <input id="kolorTekstu" type="color" value="#000000" />
+    <input id="kolorProduktu" type="color" value="#ffffff" />
+    <input id="projektGrafika" type="file" accept="image/*" />
+    <select id="umiejscowienie">
+      <option value="front">Przód</option>
+      <option value="back">Tył</option>
+      <option value="top">Góra</option>
+      <option value="bottom">Dół</option>
+    </select>
+    <select id="projektRozmiar">
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M" selected>M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+    </select>
   </div>
+
+  <div style="display:flex; justify-content:center; gap:10px; margin-top:20px;">
+    <button id="przodBtn">Przód</button>
+    <button id="tylBtn">Tył</button>
+    <button id="pobierzProjekt">Pobierz obraz</button>
+    <button id="pobierzOba">Pobierz PDF</button>
+    <button id="wyslijEmail">Wyślij E-mail</button>
+    <button id="dodajDoKoszyka">Dodaj do koszyka</button>
+    <button id="wyczyscKoszyk">Wyczyść koszyk</button>
+    <button id="zamowienieBtn">Zamówienie</button>
+  </div>
+
+  <ul id="listaKoszyka" style="margin-top:20px; list-style:none; padding:0;"></ul>
+  <div id="sumaKoszyka" style="margin-top:10px; font-weight:bold;">0 zł</div>
 </section>
 
-<style>
-#podgladProdukt { touch-action: none; }
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Press+Start+2P&display=swap');
-</style>/* ===== Wspólny koszyk + zgodność nazw funkcji ===== */
+<script>
 window.__CART__ = window.__CART__ || [];
+
 function addToCart(name, price, imageUrl = null, payload = null) {
-  window.__CART__.push({ 
-    name, 
-    price, 
-    imageUrl, 
-    payload, 
-    qty: 1, 
+  window.__CART__.push({
+    name,
+    price,
+    imageUrl,
+    payload,
+    qty: 1,
     id: Date.now() + Math.random().toString(16).slice(2),
     size: document.getElementById('projektRozmiar').value
   });
   if (typeof updateCartUI === 'function') updateCartUI();
-  
   const notification = document.createElement('div');
   notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg animate-bounce';
   notification.textContent = 'Dodano do koszyka!';
@@ -577,16 +484,16 @@ function addToCart(name, price, imageUrl = null, payload = null) {
   setTimeout(() => notification.remove(), 3000);
 }
 
-/* ===== Sekcja: Projektor (front/back + drag & drop tekstu) ===== */
+// Inicjalizacja projektu i reszta funkcji (rysowanie, drag&drop, pobieranie, email) będzie w kolejnej części
+</script><script>
+// Projektor (front/back + drag & drop tekstu)
 (() => {
   const EMAIL_KEY = '26es87U-rjUzsUtV7';
-
   const canvas = document.getElementById('podgladProdukt');
   const ctx = canvas.getContext('2d');
 
   const btnPrzod = document.getElementById('przodBtn');
   const btnTyl = document.getElementById('tylBtn');
-
   const inputTekst = document.getElementById('projektTekst');
   const selectCzcionka = document.getElementById('czcionka');
   const rangeRozmiar = document.getElementById('rozmiarTekstu');
@@ -595,21 +502,18 @@ function addToCart(name, price, imageUrl = null, payload = null) {
   const fileGrafika = document.getElementById('projektGrafika');
   const selectUmiejscowienie = document.getElementById('umiejscowienie');
   const selectRozmiar = document.getElementById('projektRozmiar');
-
   const btnPobierz = document.getElementById('pobierzProjekt');
   const btnPobierzOba = document.getElementById('pobierzOba');
   const btnEmail = document.getElementById('wyslijEmail');
   const btnDodaj = document.getElementById('dodajDoKoszyka');
   const btnZamowienie = document.getElementById('zamowienieBtn');
   const btnWyczysc = document.getElementById('wyczyscKoszyk');
-
   const listaKoszykaEl = document.getElementById('listaKoszyka');
   const sumaKoszykaEl = document.getElementById('sumaKoszyka');
 
   let productType = 'koszulka';
   let currentView = 'front';
   const canvasSize = { w: canvas.width, h: canvas.height };
-
   const PRICES = {
     koszulka: { base: 49.99, sizes: { XS: 0, S: 0, M: 0, L: 2, XL: 4, XXL: 6 } },
     bluza: { base: 99.99, sizes: { XS: 0, S: 0, M: 0, L: 5, XL: 10, XXL: 15 } },
@@ -634,7 +538,6 @@ function addToCart(name, price, imageUrl = null, payload = null) {
 
   const projektPrzod = makeProject();
   const projektTyl = makeProject();
-
   let drag = { active: false, offsetX: 0, offsetY: 0 };
 
   if (!CanvasRenderingContext2D.prototype.roundRect) {
@@ -675,7 +578,8 @@ function addToCart(name, price, imageUrl = null, payload = null) {
     p.kolorProduktu = inputKolorProduktu.value;
     if (p.umiejscowienie !== selectUmiejscowienie.value) {
       const pos = computePositionFor(selectUmiejscowienie.value, productType, true);
-      p.textX = pos.x; p.textY = pos.y;
+      p.textX = pos.x;
+      p.textY = pos.y;
     }
     p.umiejscowienie = selectUmiejscowienie.value;
     p.rozmiarProdukt = selectRozmiar.value;
@@ -697,222 +601,235 @@ function addToCart(name, price, imageUrl = null, payload = null) {
       ['front','back'].forEach(v => {
         const p = v==='front'?projektPrzod:projektTyl;
         const pos = computePositionFor(p.umiejscowienie||'front', productType, true);
-        p.textX = pos.x; p.textY = pos.y;
+        p.textX = pos.x;
+        p.textY = pos.y;
       });
       rysujProdukt();
     });
   });
 
   fileGrafika.addEventListener('change', e => {
-    const f = e.target.files[0]; if (!f) return;
+    const f = e.target.files[0];
+    if (!f) return;
     const reader = new FileReader();
     reader.onload = ev => { getActiveProject().grafikaDataUrl = ev.target.result; rysujProdukt(); };
     reader.readAsDataURL(f);
   });
 
   [inputTekst, selectCzcionka, rangeRozmiar, inputKolorTekstu, inputKolorProduktu, selectUmiejscowienie, selectRozmiar]
-    .forEach(el => el.addEventListener('input', () => { saveControlsToProject(); rysujProdukt(); }));
+  .forEach(el => el.addEventListener('input', () => { saveControlsToProject(); rysujProdukt(); }));
 
   btnPrzod.addEventListener('click', () => switchView('front'));
   btnTyl.addEventListener('click', () => switchView('back'));
 
-  function rysujProdukt() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const p = getActiveProject();
-    ctx.save();
-    ctx.fillStyle = p.kolorProduktu || '#fff';
-    ctx.strokeStyle = '#333';
-    ctx.lineWidth = 3;
-    const cx = canvas.width/2, cy = canvas.height/2;
+  // Tutaj będą funkcje rysowania i drag&drop w kolejnej części
+})();
+</script><script>
+// Rysowanie produktu i tekstu
+function rysujProdukt() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const p = getActiveProject();
+  ctx.save();
 
-    if(productType==='koszulka'){ctx.fillRect(cx-140,cy-180,280,360);ctx.strokeRect(cx-140,cy-180,280,360);}
-    else if(productType==='bluza'){ctx.beginPath();ctx.roundRect(cx-150,cy-180,300,360,30);ctx.fill();ctx.stroke();}
-    else if(productType==='czapka'){ctx.beginPath();ctx.ellipse(cx,cy+40,220,120,0,0,Math.PI*2);ctx.fill();ctx.stroke();}
-    else{ctx.fillRect(80,80,400,400);ctx.strokeRect(80,80,400,400);}
-    ctx.restore();
+  // Kolor produktu
+  ctx.fillStyle = p.kolorProduktu || '#fff';
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 3;
+  const cx = canvas.width / 2, cy = canvas.height / 2;
 
-    if(currentView==='back'){ctx.fillStyle='rgba(0,0,0,0.06)';ctx.fillRect(0,0,canvas.width,canvas.height);}
+  if(productType==='koszulka'){
+    ctx.fillRect(cx-140, cy-180, 280, 360);
+    ctx.strokeRect(cx-140, cy-180, 280, 360);
+  } else if(productType==='bluza'){
+    ctx.beginPath();
+    ctx.roundRect(cx-150, cy-180, 300, 360, 30);
+    ctx.fill();
+    ctx.stroke();
+  } else if(productType==='czapka'){
+    ctx.beginPath();
+    ctx.ellipse(cx, cy+40, 220, 120, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.stroke();
+  } else{
+    ctx.fillRect(80,80,400,400);
+    ctx.strokeRect(80,80,400,400);
+  }
+  ctx.restore();
 
-    if(p.grafikaDataUrl){
-      const img = new Image();
-      img.onload = () => { const pos=computePositionFor(p.umiejscowienie,productType); const maxDim=220; const scale=Math.min(maxDim/img.width,maxDim/img.height,1); const drawW=img.width*scale; const drawH=img.height*scale; ctx.drawImage(img,pos.x-drawW/2,pos.y-drawH/2,drawW,drawH); drawTextOver(p);};
-      img.src = p.grafikaDataUrl;
-    } else drawTextOver(p);
-
-    ctx.fillStyle='#111'; ctx.font='14px Arial'; ctx.textAlign='left';
-    ctx.fillText(`Widok: ${currentView==='front'?'PRZÓD':'TYŁ'}  •  Produkt: ${productType}`,10,canvas.height-12);
+  // Lekki cień jeśli widok tylni
+  if(currentView==='back'){
+    ctx.fillStyle='rgba(0,0,0,0.06)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
   }
 
-  function drawTextOver(p){
-    if(!p.tekst)return;
-    ctx.font = `${p.rozmiar||36}px ${p.czcionka||'Arial'}`;
-    const maxWidth=380; const lines=breakLines(ctx,p.tekst,maxWidth);
-    const lineHeight=(p.rozmiar||36)*0.95;
-    const textW=Math.max(...lines.map(l=>ctx.measureText(l).width));
-    const textH=lines.length*lineHeight;
-    const bx=p.textX-textW/2; const by=p.textY-textH/2;
-    ctx.save(); ctx.fillStyle='rgba(255,255,255,0.0)'; ctx.fillRect(bx-6,by-6,textW+12,textH+12); ctx.restore();
-    ctx.fillStyle=p.kolorTekstu||'#000'; ctx.textAlign='center'; ctx.textBaseline='middle';
-    lines.forEach((line,i)=>{ctx.fillText(line,p.textX,p.textY-(textH-lineHeight)/2+i*lineHeight);});
-    p.__hitbox={x:bx-6,y:by-6,w:textW+12,h:textH+12};
-  }
+  // Grafika
+  if(p.grafikaDataUrl){
+    const img = new Image();
+    img.onload = () => {
+      const pos = computePositionFor(p.umiejscowienie, productType);
+      const maxDim = 220;
+      const scale = Math.min(maxDim/img.width, maxDim/img.height,1);
+      const drawW = img.width*scale;
+      const drawH = img.height*scale;
+      ctx.drawImage(img,pos.x-drawW/2,pos.y-drawH/2,drawW,drawH);
+      drawTextOver(p);
+    };
+    img.src = p.grafikaDataUrl;
+  } else drawTextOver(p);
 
-  function breakLines(ctx,text,maxWidth){
-    const words=text.split(' '); const lines=[]; let line='';
-    for(let n=0;n<words.length;n++){const test=(line?line+' ':'')+words[n];if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=words[n];}else{line=test;}}
-    if(line)lines.push(line); return lines;
-  }
-
-  function computePositionFor(um,type){const cx=canvas.width/2,cy=canvas.height/2; switch(um){case'front':return {x:cx,y:cy-(type==='czapka'?20:40)};case'top':return{x:cx,y:cy-160};case'bottom':return{x:cx,y:cy+160};case'left':return{x:cx-120,y:cy};case'right':return{x:cx+120,y:cy};case'sleeveLeft':return{x:cx-180,y:cy};case'sleeveRight':return{x:cx+180,y:cy};default:return{x:cx,y:cy};}}
-
-  // Drag & Drop (mouse + touch)
-  canvas.addEventListener('mousedown', e => {
-    const p = getActiveProject(); if(!p.__hitbox) return;
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-    if(x >= p.__hitbox.x && x <= p.__hitbox.x + p.__hitbox.w && y >= p.__hitbox.y && y <= p.__hitbox.y + p.__hitbox.h){
-      drag.active = true; drag.offsetX = x - p.textX; drag.offsetY = y - p.textY; canvas.style.cursor = 'grabbing';
-    }
-  });
-  canvas.addEventListener('mousemove', e => { if(!drag.active) return; const p=getActiveProject(); const rect=canvas.getBoundingClientRect(); p.textX=e.clientX-rect.left-drag.offsetX; p.textY=e.clientY-rect.top-drag.offsetY; rysujProdukt(); });
-  canvas.addEventListener('mouseup', () => { drag.active=false; canvas.style.cursor=''; });
-  canvas.addEventListener('mouseleave', () => { drag.active=false; canvas.style.cursor=''; });
-  canvas.addEventListener('touchstart', e => { e.preventDefault(); const p=getActiveProject(); if(!p.__hitbox) return; const rect=canvas.getBoundingClientRect(); const x=e.touches[0].clientX-rect.left; const y=e.touches[0].clientY-rect.top; if(x>=p.__hitbox.x && x<=p.__hitbox.x+p.__hitbox.w && y>=p.__hitbox.y && y<=p.__hitbox.y+p.__hitbox.h){drag.active=true; drag.offsetX=x-p.textX; drag.offsetY=y-p.textY;} });
-  canvas.addEventListener('touchmove', e => { e.preventDefault(); if(!drag.active) return; const p=getActiveProject(); const rect=canvas.getBoundingClientRect(); p.textX=e.touches[0].clientX-rect.left-drag.offsetX; p.textY=e.touches[0].clientY-rect.top-drag.offsetY; rysujProdukt(); });
-  canvas.addEventListener('touchend', () => { drag.active=false; });
-
-  // Pobieranie
-  btnPobierz.addEventListener('click', () => {
-    const link=document.createElement('a'); link.download=`projekt-${productType}-${currentView}.png`; link.href=canvas.toDataURL('image/png'); link.click();
-  });
-
-  btnPobierzOba.addEventListener('click', () => {
-    saveControlsToProject();
-    const current=currentView;
-    switchView('front'); setTimeout(() => { const frontData=canvas.toDataURL('image/png'); switchView('back'); setTimeout(() => { const backData=canvas.toDataURL('image/png'); switchView(current); const { jsPDF }=window.jspdf; const pdf=new jsPDF({orientation:'portrait',unit:'mm'}); pdf.addImage(frontData,'PNG',15,20,180,180*canvas.height/canvas.width); pdf.addPage(); pdf.addImage(backData,'PNG',15,20,180,180*canvas.height/canvas.width); pdf.save(`projekt-${productType}-przod-tyl.pdf`); },100); },100);
-  });
-
-  // Wysyłka email
-  btnEmail.addEventListener('click', () => {
-    saveControlsToProject();
-    const current=currentView;
-    switchView('front'); const frontData=canvas.toDataURL('image/png').split(',')[1];
-    switchView('back'); const backData=canvas.toDataURL('image/png').split(',')[1];
-    switchView(current);
-    const data={emailKey:EMAIL_KEY,produkt:productType,rozmiar:selectRozmiar.value,przod:frontData,tyl:backData,tekstPrzod:projektPrzod.tekst,tekstTyl:projektTyl.tekst,czcionkaPrzod:projektPrzod.czcionka,czcionkaTyl:projektTyl.czcionka,kolorPrzod:projektPrzod.kolorTekstu,kolorTyl:projektTyl.kolorTekstu,kolorProduktu:projektPrzod.kolorProduktu};
-    fetch('https://your-api-endpoint.com/send-email',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-      .then(r=>r.json()).then(()=>{alert('Projekt został wysłany na e-mail!');})
-      .catch(err=>{console.error('Error:',err);alert('Wystąpił błąd podczas wysyłania projektu.');});
-  });
-
-  // Koszyk
-  btnDodaj.addEventListener('click', () => {
-    saveControlsToProject();
-    const priceInfo=PRICES[productType]; const basePrice=priceInfo.base; const sizeExtra=priceInfo.sizes[selectRozmiar.value]||0; const totalPrice=basePrice+sizeExtra;
-    const current=currentView; switchView('front'); const thumbnail=canvas.toDataURL('image/png'); switchView(current);
-    addToCart(`${productType.charAt(0).toUpperCase()+productType.slice(1)} (${selectRozmiar.value})`,totalPrice,thumbnail,{produkt:productType,rozmiar:selectRozmiar.value,przod:{...projektPrzod},tyl:{...projektTyl},cena:totalPrice});
-  });
-
-  btnWyczysc.addEventListener('click', () => { window.__CART__=[]; updateCartUI(); });
-  btnZamowienie.addEventListener('click', () => { if(window.__CART__.length===0){alert('Koszyk jest pusty!');return;} alert('Przechodzimy do zamówienia! (tutaj można  // ...ciąg dalszy btnZamowienie
-alert('Przechodzimy do zamówienia! (tutaj można przekierować do strony płatności lub podsumowania)
-
-/* ===== Aktualizacja koszyka w UI ===== */
-function updateCartUI() {
-  if (!listaKoszykaEl) return;
-  listaKoszykaEl.innerHTML = '';
-  let suma = 0;
-  window.__CART__.forEach((item, idx) => {
-    const li = document.createElement('li');
-    li.className = 'flex justify-between items-center py-2 border-b';
-    li.innerHTML = `
-      <div class="flex items-center gap-2">
-        ${item.imageUrl ? `<img src="${item.imageUrl}" class="w-12 h-12 object-cover border rounded"/>` : ''}
-        <span>${item.name}</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span>${item.price.toFixed(2)} zł</span>
-        <button data-idx="${idx}" class="removeBtn bg-red-500 text-white px-2 rounded">X</button>
-      </div>
-    `;
-    listaKoszykaEl.appendChild(li);
-    suma += item.price * item.qty;
-  });
-  sumaKoszykaEl.textContent = suma.toFixed(2) + ' zł';
-
-  document.querySelectorAll('.removeBtn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      const i = parseInt(e.target.dataset.idx, 10);
-      window.__CART__.splice(i, 1);
-      updateCartUI();
-    });
-  });
+  // Info widoku
+  ctx.fillStyle='#111';
+  ctx.font='14px Arial';
+  ctx.textAlign='left';
+  ctx.fillText(`Widok: ${currentView==='front'?'PRZÓD':'TYŁ'} • Produkt: ${productType}`,10,canvas.height-12);
 }
 
-/* ===== Inicjalizacja ===== */
+// Rysowanie tekstu
+function drawTextOver(p){
+  if(!p.tekst)return;
+  ctx.font = `${p.rozmiar||36}px ${p.czcionka||'Arial'}`;
+  const maxWidth=380;
+  const lines=breakLines(ctx,p.tekst,maxWidth);
+  const lineHeight=(p.rozmiar||36)*0.95;
+  const textW=Math.max(...lines.map(l=>ctx.measureText(l).width));
+  const textH=lines.length*lineHeight;
+  const bx=p.textX-textW/2;
+  const by=p.textY-textH/2;
+
+  ctx.save();
+  ctx.fillStyle='rgba(255,255,255,0.0)';
+  ctx.fillRect(bx-6,by-6,textW+12,textH+12);
+  ctx.restore();
+
+  ctx.fillStyle=p.kolorTekstu||'#000';
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
+  lines.forEach((line,i)=>{
+    ctx.fillText(line,p.textX,p.textY-(textH-lineHeight)/2+i*lineHeight);
+  });
+  p.__hitbox={x:bx-6,y:by-6,w:textW+12,h:textH+12};
+}
+
+// Łamanie linii
+function breakLines(ctx,text,maxWidth){
+  const words=text.split(' ');
+  const lines=[];
+  let line='';
+  for(let n=0;n<words.length;n++){
+    const test=line+' '+words[n];
+    const metrics=ctx.measureText(test);
+    const testWidth=metrics.width;
+    if(testWidth>maxWidth && line){lines.push(line);line=words[n];}else{line=test;}
+  }
+  if(line) lines.push(line);
+  return lines;
+}
+
+// Pozycje tekstu
+function computePositionFor(um,type){
+  const cx=canvas.width/2,cy=canvas.height/2;
+  switch(um){
+    case'front':return {x:cx,y:cy-(type==='czapka'?20:40)};
+    case'top':return{x:cx,y:cy-160};
+    case'bottom':return{x:cx,y:cy+160};
+    case'left':return{x:cx-120,y:cy};
+    case'right':return{x:cx+120,y:cy};
+    case'sleeveLeft':return{x:cx-180,y:cy};
+    case'sleeveRight':return{x:cx+180,y:cy};
+    default:return{x:cx,y:cy};
+  }
+}
+
+// Drag & Drop
+canvas.addEventListener('mousedown', e => {
+  const p = getActiveProject();
+  if(!p.__hitbox) return;
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  if(x>=p.__hitbox.x && x<=p.__hitbox.x+p.__hitbox.w && y>=p.__hitbox.y && y<=p.__hitbox.y+p.__hitbox.h){
+    drag.active=true; drag.offsetX=x-p.textX; drag.offsetY=y-p.textY; canvas.style.cursor='grabbing';
+  }
+});
+canvas.addEventListener('mousemove', e => {
+  if(!drag.active) return;
+  const p=getActiveProject();
+  const rect=canvas.getBoundingClientRect();
+  p.textX=e.clientX-rect.left-drag.offsetX;
+  p.textY=e.clientY-rect.top-drag.offsetY;
+  rysujProdukt();
+});
+canvas.addEventListener('mouseup', () => { drag.active=false; canvas.style.cursor=''; });
+canvas.addEventListener('mouseleave', () => { drag.active=false; canvas.style.cursor=''; });
+canvas.addEventListener('touchstart', e => {
+  e.preventDefault();
+  const p=getActiveProject();
+  if(!p.__hitbox) return;
+  const rect=canvas.getBoundingClientRect();
+  const x=e.touches[0].clientX-rect.left;
+  const y=e.touches[0].clientY-rect.top;
+  if(x>=p.__hitbox.x && x<=p.__hitbox.x+p.__hitbox.w && y>=p.__hitbox.y && y<=p.__hitbox.y+p.__hitbox.h){
+    drag.active=true; drag.offsetX=x-p.textX; drag.offsetY=y-p.textY;
+  }
+});
+canvas.addEventListener('touchmove', e => {
+  e.preventDefault();
+  if(!drag.active) return;
+  const p=getActiveProject();
+  const rect=canvas.getBoundingClientRect();
+  p.textX=e.touches[0].clientX-rect.left-drag.offsetX;
+  p.textY=e.touches[0].clientY-rect.top-drag.offsetY;
+  rysujProdukt();
+});
+canvas.addEventListener('touchend', () => { drag.active=false; });
+
+// Pobieranie obrazów i PDF
+btnPobierz.addEventListener('click', ()=>{
+  const link=document.createElement('a');
+  link.download=`projekt-${productType}-${currentView}.png`;
+  link.href=canvas.toDataURL('image/png');
+  link.click();
+});
+btnPobierzOba.addEventListener('click', ()=>{
+  saveControlsToProject();
+  const current=currentView;
+  switchView('front');
+  setTimeout(()=>{
+    const frontData=canvas.toDataURL('image/png');
+    switchView('back');
+    setTimeout(()=>{
+      const backData=canvas.toDataURL('image/png');
+      switchView(current);
+      const { jsPDF }=window.jspdf;
+      const pdf=new jsPDF({orientation:'portrait',unit:'mm'});
+      pdf.addImage(frontData,'PNG',15,20,180,180*canvas.height/canvas.width);
+      pdf.addPage();
+      pdf.addImage(backData,'PNG',15,20,180,180*canvas.height/canvas.width);
+      pdf.save(`projekt-${productType}-przod-tyl.pdf`);
+    },100);
+  },100);
+});
+
+// Koszyk
+function updateCartUI() {
+  if(!listaKoszykaEl) return;
+  listaKoszykaEl.innerHTML='';
+  let suma=0;
+  window.__CART__.forEach((item,idx)=>{
+    const li=document.createElement('li');
+    li.className='flex justify-between items-center py-2 border-b';
+    li.innerHTML=`${item.imageUrl?`<img src="${item.imageUrl}" width="40">` : ''} ${item.name} ${item.price.toFixed(2)} zł X `;
+    listaKoszykaEl.appendChild(li);
+    suma+=item.price*item.qty;
+  });
+  sumaKoszykaEl.textContent=suma.toFixed(2)+' zł';
+}
+
 loadProjectToControls();
 rysujProdukt();
 updateCartUI();
-})();
-</script>            
-     id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
-  <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
-
-  <div id="opinie" style="margin:30px 0; min-height:150px; font-style:italic; font-size:1.1rem; text-align:center; line-height:1.5; color:#ffd97d; text-shadow: 1px 1px 3px #552f00;"></div>
-
-  <form id="wiadomoscForm" style="display:flex; flex-direction: column; gap:15px; background:#3c2e15; padding:20px; border-radius:12px; box-shadow: 0 0 20px #aa8844cc;">
-    <h3 style="color:#ffdd99; margin:0;">Napisz do nas</h3>
-    <textarea id="wiadomosc" placeholder="Twoja wiadomość..." required style="resize:none; height:100px; padding:10px; border-radius:10px; border:none; font-size:1rem; font-family:'Georgia', serif;"></textarea>
-    <input type="text" id="autor" placeholder="Twoje imię" required style="padding:10px; border-radius:10px; border:none; font-size:1rem; font-family:'Georgia', serif;">
-    <button type="submit" style="background:#aa8844; color:#fff8dc; font-weight:700; border:none; padding:12px; border-radius:10px; cursor:pointer; box-shadow:0 0 15px #aa8844cc; transition: background-color 0.3s;">
-      Wyślij
-    </button>
-  </form>
-
-  <div style="margin-top:40px;">
-    <h3 style="color:#ffdd99; font-size:1.8rem; text-align:center;">🎤 Strefa VIP – Wasze Głosy</h3>
-    <ul style="list-style:none; padding-left:0; color:#fcebbf;">
-      <li style="margin:10px 0;">💬 "To nie tylko sklep. To przestrzeń dla wolnych dusz." — Zenon, VIP</li>
-      <li style="margin:10px 0;">💬 "Szacunek, sztuka, ekspresja – tu można mówić od serca." — Weronika, VIP</li>
-      <li style="margin:10px 0;">💬 "Niech ten głos rozbrzmiewa dalej!" — Dominik, VIP</li>
-      <li style="margin:10px 0;">💬 "Dzięki za przestrzeń, której nie było nigdzie indziej." — Anka, VIP</li>
-    </ul>
-  </div>
-</section>
-
-<script>
-  const opinie = [
-    { tekst: "Absolutnie fenomenalne miejsce! Produkty najwyższej jakości. ⭐⭐⭐⭐⭐", autor: "Marta K." },
-    { tekst: "Uwielbiam AdelbertusShop! Szybka wysyłka i super kontakt. ⭐⭐⭐⭐", autor: "Paweł S." },
-    { tekst: "Nie spodziewałem się tak wyjątkowej obsługi. Polecam! ⭐⭐⭐⭐⭐", autor: "Kasia W." },
-    { tekst: "Świetna jakość koszulek, idealne na prezent. ⭐⭐⭐⭐", autor: "Tomek R." },
-    { tekst: "Atmosfera i produkty jak z innego świata. Must-have! ⭐⭐⭐⭐⭐", autor: "Ola M." }
-  ];
-
-  const opinieDiv = document.getElementById('opinie');
-
-  function pokazOpinie() {
-    const dzien = Math.floor(Date.now() / (1000*60*60*24));
-    const index = dzien % opinie.length;
-    const opinia = opinie[index];
-    opinieDiv.innerHTML = `<p>"${opinia.tekst}"</p><p style="font-weight:bold; margin-top:8px;">— ${opinia.autor}</p>`;
-  }
-
-  pokazOpinie();
-  setInterval(pokazOpinie, 1000*60*60*24*2); // co 2 dni zmiana opinii
-
-  document.getElementById('wiadomoscForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const wiadomosc = document.getElementById('wiadomosc').value.trim();
-    const autor = document.getElementById('autor').value.trim();
-    if(!wiadomosc || !autor) return alert("Wypełnij wszystkie pola!");
-
-    alert(`Dziękujemy, ${autor}! Twoja wiadomość została wysłana.`);
-    this.reset();
-  });
-</script>
-
- id="zbiorka" class="py-16 bg-gradient-to-br from-yellow-50 to-yellow-100">
+</script> 
+    id="zbiorka" class="py-16 bg-gradient-to-br from-yellow-50 to-yellow-100">
   <div class="max-w-5xl mx-auto px-6 relative bg-white p-8 rounded-3xl border-8 border-yellow-400 shadow-2xl
               ring-4 ring-yellow-300 ring-opacity-70 hover:ring-opacity-100 transition duration-500">
     
@@ -1140,6 +1057,7 @@ updateCartUI();
 </body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
