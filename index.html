@@ -9,26 +9,28 @@
 <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 
 <style>
-  body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+  body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; margin:0;}
   .koszyk { max-width: 600px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2);}
   .paypal-btn { margin-top: 20px; }
+
   /* Ikona koszyka */
   #cartIcon {
     position: fixed; right: 20px; top: 20px;
     background:#ffcc00; color:#000; border-radius:50%;
     width:48px; height:48px; display:flex; align-items:center; justify-content:center;
     font-size:22px; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,.25);
-    z-index: 999; /* zmniejszony z 1000, żeby sekcje były widoczne */
+    z-index: 1000;
   }
   #cartIcon .count {
     position:absolute; bottom:-6px; right:-6px; background:#e53935; color:#fff;
     width:22px; height:22px; border-radius:50%; font-size:12px; display:flex; align-items:center; justify-content:center;
     box-shadow:0 2px 8px rgba(0,0,0,.25);
   }
+
   /* Panel koszyka */
   #cartPanel {
     position: fixed; top: 0; right: 0; width: 360px; height: 100vh; background:#111; color:#fff;
-    transform: translateX(100%); transition: transform .25s ease; z-index: 1000; /* zmniejszony z 1100 */
+    transform: translateX(100%); transition: transform .25s ease; z-index: 1100;
     box-shadow: -10px 0 30px rgba(0,0,0,.35);
     display: flex; flex-direction: column;
   }
@@ -39,35 +41,28 @@
   .btn { border:none; border-radius:8px; padding:10px 14px; cursor:pointer; font-weight:700; }
   .btn-primary { background:#2e7d32; color:#fff; }
   .btn-light { background:#eee; color:#111; }
-  
+
   /* Dodatkowe style */
-  #imagePreview img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
+  #imagePreview img { max-width: 100%; height: auto; border-radius: 8px; }
+  #adPreviewContent a { transition: opacity 0.3s; }
+  #adPreviewContent a:hover { opacity: 0.8; }
 
-  #adPreviewContent a {
-    transition: opacity 0.3s;
-  }
-
-  #adPreviewContent a:hover {
-    opacity: 0.8;
-  }
-
-  .hidden {
-    display: none !important;
-  }
+  /* Poprawka: sekcje zawsze widoczne */
+  .hidden { display: block !important; }
 
   /* Animacja przycisku */
-  button[disabled] {
-    opacity: 0.7;
-    cursor: not-allowed;
+  button[disabled] { opacity: 0.7; cursor: not-allowed; }
+
+  /* Responsywność dla mniejszych ekranów */
+  @media (max-width: 480px) {
+    #cartPanel { width: 90%; }
+    .koszyk { padding: 10px; }
   }
 </style>
 </head>
 <body>
-<!-- Ikona koszyka (bez produktów przykładowych) -->
+
+<!-- Ikona koszyka -->
 <div id="cartIcon" title="Otwórz koszyk">🛒<span class="count" id="cartCount">0</span></div>
 
 <!-- Panel koszyka -->
@@ -91,10 +86,8 @@
 </div>
 
 <script>
-  // ======== Minimalny, dynamiczny koszyk (bez żadnych przykładowych produktów) ========
-  let cart = JSON.parse(localStorage.getItem('koszyk')) || []; // Ładowanie koszyka z localStorage
+  let cart = JSON.parse(localStorage.getItem('koszyk')) || [];
 
-  // UI refs
   const cartIcon = document.getElementById('cartIcon');
   const cartPanel = document.getElementById('cartPanel');
   const closeCartBtn = document.getElementById('closeCart');
@@ -122,7 +115,7 @@
     totalEl.textContent = total.toFixed(2);
     cartCountEl.textContent = cart.reduce((s,i) => s + i.qty, 0);
     cartEmptyEl.style.display = cart.length ? 'none' : 'block';
-    localStorage.setItem('koszyk', JSON.stringify(cart)); // Zapis do localStorage
+    localStorage.setItem('koszyk', JSON.stringify(cart));
     return total;
   }
 
@@ -162,35 +155,13 @@
     renderCart();
   });
 
-  // ====== PUBLICZNA FUNKCJA: wywołuj z dowolnego miejsca/produktu ======
   window.addToCart = function(name, price, size = '', color = '') {
     const p = Number(price);
     if (!name || !Number.isFinite(p)) return;
-    
-    // Sprawdzanie czy produkt już istnieje (z tym samym rozmiarem i kolorem)
-    const productId = `${name}-${size}-${color}`;
-    const found = cart.find(i => 
-      i.name === name && 
-      i.price === p && 
-      i.size === size && 
-      i.color === color
-    );
-    
-    if (found) {
-      found.qty++;
-    } else {
-      cart.push({ 
-        name, 
-        price: p, 
-        qty: 1,
-        size,
-        color
-      });
-    }
-    
+    const found = cart.find(i => i.name === name && i.price === p && i.size === size && i.color === color);
+    if (found) { found.qty++; } 
+    else { cart.push({ name, price: p, qty: 1, size, color }); }
     renderCart();
-    
-    // Pokazanie powiadomienia
     const notification = document.createElement('div');
     notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg animate-bounce';
     notification.textContent = `${name} dodano do koszyka!`;
@@ -198,7 +169,6 @@
     setTimeout(() => notification.remove(), 3000);
   };
 
-  // ====== Mail ======
   function sendMail() {
     const lines = cart.length
       ? cart.map(i => `
@@ -210,24 +180,18 @@
       : 'Koszyk pusty.';
     const total = updateTotals().toFixed(2);
     const body = `Zamówienie:\n\n${lines}\n\nSuma: ${total} zł`;
-    // Podmień na swój adres:
     const mail = 'twójemail@domena.com';
     window.location.href = `mailto:${mail}?subject=Zamówienie&body=${encodeURIComponent(body)}`;
   }
   document.getElementById('sendMail').addEventListener('click', sendMail);
 
-  // ====== PayPal Hosted Button (stały) ======
-  paypal.HostedButtons({
-    hostedButtonId: "L4639S4363CZE",
-  }).render("#paypal-container-L4639S4363CZE");
+  paypal.HostedButtons({ hostedButtonId: "L4639S4363CZE" }).render("#paypal-container-L4639S4363CZE");
 
-  // Start
   renderCart();
 </script>
 
 </body>
-</html>
-🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+</html>🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -1056,6 +1020,7 @@ updateCartUI();
 </body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
