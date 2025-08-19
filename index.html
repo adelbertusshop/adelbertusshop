@@ -415,7 +415,8 @@
     </div>
   </div>
 </section>
-    <!-- ====== Sekcja: Zaprojektuj Swój Produkt ====== -->
+  <script>
+  <!-- ====== Sekcja: Zaprojektuj Swój Produkt ====== -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
   <div class="max-w-6xl mx-auto px-6 py-10">
     <h2 class="text-4xl font-bold mb-6 text-yellow-400 drop-shadow-lg text-center">Zaprojektuj Swój Produkt</h2>
@@ -461,7 +462,6 @@
             <option value="Georgia">Georgia</option>
             <option value="Impact">Impact</option>
             <option value="Comic Sans MS">Comic Sans</option>
-            <!-- Dodane nowe czcionki -->
             <option value="'Press Start 2P'">Retro (Press Start 2P)</option>
             <option value="'Dancing Script'">Dancing Script</option>
           </select>
@@ -508,9 +508,7 @@
             <button class="bg-gray-700 py-1 rounded text-xs" onclick="addSampleImage('https://via.placeholder.com/200x200/00ff00/000000?text=SAMPLE')">Przykład 2</button>
             <button class="bg-gray-700 py-1 rounded text-xs" onclick="addSampleImage('https://via.placeholder.com/200x200/0000ff/ffffff?text=IMAGE')">Przykład 3</button>
           </div>
-        </div>
-
-        <div class="mb-3">
+        </div>  <div class="mb-3">
           <label class="block mb-2 font-semibold">Umiejscowienie startowe nadruku:</label>
           <select id="umiejscowienie" class="w-full p-2 rounded text-black mb-3">
             <option value="front">Przód (środek)</option>
@@ -532,7 +530,7 @@
             <option value="M" selected>M</option>
             <option value="L">L</option>
             <option value="XL">XL</option>
-            <option value="XXL">XXL</option> <!-- Dodany rozmiar XXL -->
+            <option value="XXL">XXL</option>
           </select>
         </div>
 
@@ -556,15 +554,9 @@
 </section>
 
 <style>
-/* Drobne UX dla drag na mobile (wyłączenie scrolla w canvas podczas przesuwania) */
 #podgladProdukt { touch-action: none; }
-
-/* Dodane style dla nowych czcionek */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Press+Start+2P&display=swap');
-</style>
-
-<script>
-/* ===== Wspólny koszyk + zgodność nazw funkcji ===== */
+</style>/* ===== Wspólny koszyk + zgodność nazw funkcji ===== */
 window.__CART__ = window.__CART__ || [];
 function addToCart(name, price, imageUrl = null, payload = null) {
   window.__CART__.push({ 
@@ -574,11 +566,10 @@ function addToCart(name, price, imageUrl = null, payload = null) {
     payload, 
     qty: 1, 
     id: Date.now() + Math.random().toString(16).slice(2),
-    size: document.getElementById('projektRozmiar').value // Dodany rozmiar do koszyka
+    size: document.getElementById('projektRozmiar').value
   });
   if (typeof updateCartUI === 'function') updateCartUI();
   
-  // Powiadomienie o dodaniu do koszyka
   const notification = document.createElement('div');
   notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg animate-bounce';
   notification.textContent = 'Dodano do koszyka!';
@@ -590,7 +581,6 @@ function addToCart(name, price, imageUrl = null, payload = null) {
 (() => {
   const EMAIL_KEY = '26es87U-rjUzsUtV7';
 
-  // elements
   const canvas = document.getElementById('podgladProdukt');
   const ctx = canvas.getContext('2d');
 
@@ -616,19 +606,16 @@ function addToCart(name, price, imageUrl = null, payload = null) {
   const listaKoszykaEl = document.getElementById('listaKoszyka');
   const sumaKoszykaEl = document.getElementById('sumaKoszyka');
 
-  // state
   let productType = 'koszulka';
-  let currentView = 'front'; // 'front' or 'back'
+  let currentView = 'front';
   const canvasSize = { w: canvas.width, h: canvas.height };
 
-  // Cennik produktów
   const PRICES = {
     koszulka: { base: 49.99, sizes: { XS: 0, S: 0, M: 0, L: 2, XL: 4, XXL: 6 } },
     bluza: { base: 99.99, sizes: { XS: 0, S: 0, M: 0, L: 5, XL: 10, XXL: 15 } },
     czapka: { base: 29.99, sizes: { XS: -5, S: 0, M: 0, L: 0, XL: 0, XXL: 0 } }
   };
 
-  // projekt bazowy (z pozycją napisu do drag & drop)
   function makeProject() {
     const start = computePositionFor('front', productType);
     return {
@@ -648,10 +635,8 @@ function addToCart(name, price, imageUrl = null, payload = null) {
   const projektPrzod = makeProject();
   const projektTyl = makeProject();
 
-  // drag state
   let drag = { active: false, offsetX: 0, offsetY: 0 };
 
-  // polyfill roundRect (JS – nie w CSS)
   if (!CanvasRenderingContext2D.prototype.roundRect) {
     CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
       if (w < 2 * r) r = w / 2;
@@ -731,7 +716,6 @@ function addToCart(name, price, imageUrl = null, payload = null) {
   btnPrzod.addEventListener('click', () => switchView('front'));
   btnTyl.addEventListener('click', () => switchView('back'));
 
-  // ====== Rysowanie ======
   function rysujProdukt() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const p = getActiveProject();
@@ -781,231 +765,96 @@ function addToCart(name, price, imageUrl = null, payload = null) {
 
   function computePositionFor(um,type){const cx=canvas.width/2,cy=canvas.height/2; switch(um){case'front':return {x:cx,y:cy-(type==='czapka'?20:40)};case'top':return{x:cx,y:cy-160};case'bottom':return{x:cx,y:cy+160};case'left':return{x:cx-120,y:cy};case'right':return{x:cx+120,y:cy};case'sleeveLeft':return{x:cx-180,y:cy};case'sleeveRight':return{x:cx+180,y:cy};default:return{x:cx,y:cy};}}
 
-  // ====== Drag & Drop ======
+  // Drag & Drop (mouse + touch)
   canvas.addEventListener('mousedown', e => {
-    const p = getActiveProject();
-    if(!p.__hitbox) return;
+    const p = getActiveProject(); if(!p.__hitbox) return;
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const x = e.clientX - rect.left; const y = e.clientY - rect.top;
     if(x >= p.__hitbox.x && x <= p.__hitbox.x + p.__hitbox.w && y >= p.__hitbox.y && y <= p.__hitbox.y + p.__hitbox.h){
-      drag.active = true;
-      drag.offsetX = x - p.textX;
-      drag.offsetY = y - p.textY;
-      canvas.style.cursor = 'grabbing';
+      drag.active = true; drag.offsetX = x - p.textX; drag.offsetY = y - p.textY; canvas.style.cursor = 'grabbing';
     }
   });
+  canvas.addEventListener('mousemove', e => { if(!drag.active) return; const p=getActiveProject(); const rect=canvas.getBoundingClientRect(); p.textX=e.clientX-rect.left-drag.offsetX; p.textY=e.clientY-rect.top-drag.offsetY; rysujProdukt(); });
+  canvas.addEventListener('mouseup', () => { drag.active=false; canvas.style.cursor=''; });
+  canvas.addEventListener('mouseleave', () => { drag.active=false; canvas.style.cursor=''; });
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); const p=getActiveProject(); if(!p.__hitbox) return; const rect=canvas.getBoundingClientRect(); const x=e.touches[0].clientX-rect.left; const y=e.touches[0].clientY-rect.top; if(x>=p.__hitbox.x && x<=p.__hitbox.x+p.__hitbox.w && y>=p.__hitbox.y && y<=p.__hitbox.y+p.__hitbox.h){drag.active=true; drag.offsetX=x-p.textX; drag.offsetY=y-p.textY;} });
+  canvas.addEventListener('touchmove', e => { e.preventDefault(); if(!drag.active) return; const p=getActiveProject(); const rect=canvas.getBoundingClientRect(); p.textX=e.touches[0].clientX-rect.left-drag.offsetX; p.textY=e.touches[0].clientY-rect.top-drag.offsetY; rysujProdukt(); });
+  canvas.addEventListener('touchend', () => { drag.active=false; });
 
-  canvas.addEventListener('mousemove', e => {
-    if(!drag.active) return;
-    const p = getActiveProject();
-    const rect = canvas.getBoundingClientRect();
-    p.textX = e.clientX - rect.left - drag.offsetX;
-    p.textY = e.clientY - rect.top - drag.offsetY;
-    rysujProdukt();
-  });
-
-  canvas.addEventListener('mouseup', () => { drag.active = false; canvas.style.cursor = ''; });
-  canvas.addEventListener('mouseleave', () => { drag.active = false; canvas.style.cursor = ''; });
-
-  // Touch events
-  canvas.addEventListener('touchstart', e => {
-    e.preventDefault();
-    const p = getActiveProject();
-    if(!p.__hitbox) return;
-    const rect = canvas.getBoundingClientRect();
-    const x = e.touches[0].clientX - rect.left;
-    const y = e.touches[0].clientY - rect.top;
-    if(x >= p.__hitbox.x && x <= p.__hitbox.x + p.__hitbox.w && y >= p.__hitbox.y && y <= p.__hitbox.y + p.__hitbox.h){
-      drag.active = true;
-      drag.offsetX = x - p.textX;
-      drag.offsetY = y - p.textY;
-    }
-  });
-
-  canvas.addEventListener('touchmove', e => {
-    e.preventDefault();
-    if(!drag.active) return;
-    const p = getActiveProject();
-    const rect = canvas.getBoundingClientRect();
-    p.textX = e.touches[0].clientX - rect.left - drag.offsetX;
-    p.textY = e.touches[0].clientY - rect.top - drag.offsetY;
-    rysujProdukt();
-  });
-
-  canvas.addEventListener('touchend', () => { drag.active = false; });
-
-  // ====== Pobieranie ======
+  // Pobieranie
   btnPobierz.addEventListener('click', () => {
-    const link = document.createElement('a');
-    link.download = `projekt-${productType}-${currentView}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+    const link=document.createElement('a'); link.download=`projekt-${productType}-${currentView}.png`; link.href=canvas.toDataURL('image/png'); link.click();
   });
 
   btnPobierzOba.addEventListener('click', () => {
-    // Zapisz aktualny widok
     saveControlsToProject();
-    const current = currentView;
-    
-    // Pobierz przód
-    switchView('front');
-    setTimeout(() => {
-      const frontData = canvas.toDataURL('image/png');
-      
-      // Pobierz tył
-      switchView('back');
-      setTimeout(() => {
-        const backData = canvas.toDataURL('image/png');
-        
-        // Przywróć widok
-        switchView(current);
-        
-        // Stwórz PDF z oboma obrazami
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({
-          orientation: 'portrait',
-          unit: 'mm'
-        });
-        
-        pdf.addImage(frontData, 'PNG', 15, 20, 180, 180 * canvas.height/canvas.width);
-        pdf.addPage();
-        pdf.addImage(backData, 'PNG', 15, 20, 180, 180 * canvas.height/canvas.width);
-        pdf.save(`projekt-${productType}-przod-tyl.pdf`);
-      }, 100);
-    }, 100);
+    const current=currentView;
+    switchView('front'); setTimeout(() => { const frontData=canvas.toDataURL('image/png'); switchView('back'); setTimeout(() => { const backData=canvas.toDataURL('image/png'); switchView(current); const { jsPDF }=window.jspdf; const pdf=new jsPDF({orientation:'portrait',unit:'mm'}); pdf.addImage(frontData,'PNG',15,20,180,180*canvas.height/canvas.width); pdf.addPage(); pdf.addImage(backData,'PNG',15,20,180,180*canvas.height/canvas.width); pdf.save(`projekt-${productType}-przod-tyl.pdf`); },100); },100);
   });
 
-  // ====== Email ======
+  // Wysyłka email
   btnEmail.addEventListener('click', () => {
     saveControlsToProject();
-    
-    // Pobierz oba widoki
-    const current = currentView;
-    switchView('front');
-    const frontData = canvas.toDataURL('image/png').split(',')[1];
-    switchView('back');
-    const backData = canvas.toDataURL('image/png').split(',')[1];
+    const current=currentView;
+    switchView('front'); const frontData=canvas.toDataURL('image/png').split(',')[1];
+    switchView('back'); const backData=canvas.toDataURL('image/png').split(',')[1];
     switchView(current);
-    
-    // Dane do wysłania
-    const data = {
-      emailKey: EMAIL_KEY,
-      produkt: productType,
-      rozmiar: selectRozmiar.value,
-      przod: frontData,
-      tyl: backData,
-      tekstPrzod: projektPrzod.tekst,
-      tekstTyl: projektTyl.tekst,
-      czcionkaPrzod: projektPrzod.czcionka,
-      czcionkaTyl: projektTyl.czcionka,
-      kolorPrzod: projektPrzod.kolorTekstu,
-      kolorTyl: projektTyl.kolorTekstu,
-      kolorProduktu: projektPrzod.kolorProduktu
-    };
-    
-    // Tutaj dodaj kod wysyłający dane na serwer/API
-    fetch('https://your-api-endpoint.com/send-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      alert('Projekt został wysłany na e-mail!');
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Wystąpił błąd podczas wysyłania projektu.');
-    });
+    const data={emailKey:EMAIL_KEY,produkt:productType,rozmiar:selectRozmiar.value,przod:frontData,tyl:backData,tekstPrzod:projektPrzod.tekst,tekstTyl:projektTyl.tekst,czcionkaPrzod:projektPrzod.czcionka,czcionkaTyl:projektTyl.czcionka,kolorPrzod:projektPrzod.kolorTekstu,kolorTyl:projektTyl.kolorTekstu,kolorProduktu:projektPrzod.kolorProduktu};
+    fetch('https://your-api-endpoint.com/send-email',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+      .then(r=>r.json()).then(()=>{alert('Projekt został wysłany na e-mail!');})
+      .catch(err=>{console.error('Error:',err);alert('Wystąpił błąd podczas wysyłania projektu.');});
   });
 
-  // ====== Koszyk ======
+  // Koszyk
   btnDodaj.addEventListener('click', () => {
     saveControlsToProject();
-    
-    const priceInfo = PRICES[productType];
-    const basePrice = priceInfo.base;
-    const sizeExtra = priceInfo.sizes[selectRozmiar.value] || 0;
-    const totalPrice = basePrice + sizeExtra;
-    
-    // Generuj miniaturkę
-    const current = currentView;
-    switchView('front');
-    const thumbnail = canvas.toDataURL('image/png');
-    switchView(current);
-    
-    addToCart(
-      `${productType.charAt(0).toUpperCase() + productType.slice(1)} (${selectRozmiar.value})`,
-      totalPrice,
-      thumbnail,
-      {
-        produkt: productType,
-        rozmiar: selectRozmiar.value,
-        przod: {...projektPrzod},
-        tyl: {...projektTyl},
-        cena: totalPrice
-      }
-    );
+    const priceInfo=PRICES[productType]; const basePrice=priceInfo.base; const sizeExtra=priceInfo.sizes[selectRozmiar.value]||0; const totalPrice=basePrice+sizeExtra;
+    const current=currentView; switchView('front'); const thumbnail=canvas.toDataURL('image/png'); switchView(current);
+    addToCart(`${productType.charAt(0).toUpperCase()+productType.slice(1)} (${selectRozmiar.value})`,totalPrice,thumbnail,{produkt:productType,rozmiar:selectRozmiar.value,przod:{...projektPrzod},tyl:{...projektTyl},cena:totalPrice});
   });
 
-  btnWyczysc.addEventListener('click', () => {
-    window.__CART__ = [];
-    updateCartUI();
-  });
+  btnWyczysc.addEventListener('click', () => { window.__CART__=[]; updateCartUI(); });
+  btnZamowienie.addEventListener('click', () => { if(window.__CART__.length===0){alert('Koszyk jest pusty!');return;} alert('Przechodzimy do zamówienia! (tutaj można  // ...ciąg dalszy btnZamowienie
+alert('Przechodzimy do zamówienia! (tutaj można przekierować do strony płatności lub podsumowania)
 
-  btnZamowienie.addEventListener('click', () => {
-    if(window.__CART__.length === 0) {
-      alert('Koszyk jest pusty!');
-      return;
-    }
-    // Tutaj przekierowanie do strony zamówień lub otwarcie formularza
-    alert('Przechodzimy do zamówienia! (tutaj można dodać przekierowanie)');
+/* ===== Aktualizacja koszyka w UI ===== */
+function updateCartUI() {
+  if (!listaKoszykaEl) return;
+  listaKoszykaEl.innerHTML = '';
+  let suma = 0;
+  window.__CART__.forEach((item, idx) => {
+    const li = document.createElement('li');
+    li.className = 'flex justify-between items-center py-2 border-b';
+    li.innerHTML = `
+      <div class="flex items-center gap-2">
+        ${item.imageUrl ? `<img src="${item.imageUrl}" class="w-12 h-12 object-cover border rounded"/>` : ''}
+        <span>${item.name}</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span>${item.price.toFixed(2)} zł</span>
+        <button data-idx="${idx}" class="removeBtn bg-red-500 text-white px-2 rounded">X</button>
+      </div>
+    `;
+    listaKoszykaEl.appendChild(li);
+    suma += item.price * item.qty;
   });
+  sumaKoszykaEl.textContent = suma.toFixed(2) + ' zł';
 
-  function updateCartUI() {
-    listaKoszykaEl.innerHTML = '';
-    let total = 0;
-    
-    window.__CART__.forEach(item => {
-      const li = document.createElement('li');
-      li.className = 'flex justify-between items-center py-1 border-b border-gray-800';
-      li.innerHTML = `
-        <div class="flex items-center">
-          <img src="${item.imageUrl || 'https://via.placeholder.com/50'}" class="w-10 h-10 mr-2 rounded" alt="">
-          <span>${item.name}</span>
-        </div>
-        <span class="font-semibold">${item.price.toFixed(2)} zł</span>
-      `;
-      listaKoszykaEl.appendChild(li);
-      total += item.price;
+  document.querySelectorAll('.removeBtn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const i = parseInt(e.target.dataset.idx, 10);
+      window.__CART__.splice(i, 1);
+      updateCartUI();
     });
-    
-    sumaKoszykaEl.textContent = `Suma: ${total.toFixed(2)} zł`;
-  }
+  });
+}
 
-  // ====== Inne funkcje ======
-  function addSampleImage(url) {
-    const img = new Image();
-    img.crossOrigin = 'Anonymous';
-    img.onload = function() {
-      const tempCanvas = document.createElement('canvas');
-      tempCanvas.width = img.width;
-      tempCanvas.height = img.height;
-      const tempCtx = tempCanvas.getContext('2d');
-      tempCtx.drawImage(img, 0, 0);
-      getActiveProject().grafikaDataUrl = tempCanvas.toDataURL();
-      rysujProdukt();
-    };
-    img.src = url;
-  }
-
-  // Inicjalizacja
-  loadProjectToControls();
-  rysujProdukt();
+/* ===== Inicjalizacja ===== */
+loadProjectToControls();
+rysujProdukt();
+updateCartUI();
 })();
-</script>
-            
+</script>            
      id="blog" style="padding:40px 20px; max-width:800px; margin:0 auto; font-family:'Georgia', serif; color:#f5f0e6; background:rgba(46,30,15,0.9); border-radius:15px; box-shadow:0 0 30px #aa8844cc;">
   <h2 style="text-align:center; font-size:2.8rem; color:#ffdd99; text-shadow: 0 0 8px #aa8844;">Blog & Opinie</h2>
 
@@ -1291,6 +1140,7 @@ function addToCart(name, price, imageUrl = null, payload = null) {
 </body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
