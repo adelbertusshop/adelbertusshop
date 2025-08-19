@@ -329,7 +329,7 @@
     </div>
 
     <!-- ==================== KOSZULKI ==================== -->
-    <section id="koszulki" class="py-10">
+    <div id="koszulki" class="py-10">
       <div class="border-b-2 border-[#d4af37] pb-4 mb-10">
         <h3 class="text-4xl font-bold text-[#d4af37]">KOSZULKI</h3>
         <p class="text-gray-400">Limitowana kolekcja premium - 120 zł</p>
@@ -412,89 +412,9 @@
         
         <!-- Dodaj więcej produktów w podobnym stylu -->
       </div>
-    </section>
+    </div>
   </div>
 </section>
-
-<!-- ==================== KOSZYK ==================== -->
-<div id="cartIcon" class="fixed right-6 top-6 z-50">
-  <div class="relative cursor-pointer">
-    <div class="w-12 h-12 bg-[#d4af37] rounded-full flex items-center justify-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-      </svg>
-    </div>
-    <span id="cartCounter" class="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">0</span>
-  </div>
-</div>
-
-<script>
-// Funkcje koszyka
-let cart = JSON.parse(localStorage.getItem('koszyk')) || [];
-
-function addToCart(name, price) {
-  const product = {
-    id: `${name}-${Date.now()}`,
-    name,
-    price,
-    quantity: 1,
-    size: "M",
-    color: "Czarny"
-  };
-  
-  // Sprawdź czy produkt już istnieje
-  const existing = cart.find(item => item.name === name);
-  if (existing) {
-    existing.quantity++;
-  } else {
-    cart.push(product);
-  }
-  
-  // Zapisz i zaktualizuj UI
-  localStorage.setItem('koszyk', JSON.stringify(cart));
-  updateCartCounter();
-  
-  // Pokaż powiadomienie
-  showNotification(`${name} dodano do koszyka`);
-}
-
-function updateCartCounter() {
-  const counter = document.getElementById('cartCounter');
-  if (counter) {
-    const count = cart.reduce((total, item) => total + item.quantity, 0);
-    counter.textContent = count;
-  }
-}
-
-function showNotification(message) {
-  // Usuń istniejące powiadomienia
-  const existing = document.querySelector('.cart-notification');
-  if (existing) existing.remove();
-  
-  // Stwórz nowe powiadomienie
-  const notification = document.createElement('div');
-  notification.className = 'cart-notification fixed bottom-4 right-4 bg-[#d4af37] text-black font-bold px-6 py-3 rounded-lg shadow-lg z-50 animate-bounce';
-  notification.textContent = message;
-  document.body.appendChild(notification);
-  
-  // Automatyczne ukrycie po 3 sekundach
-  setTimeout(() => {
-    notification.remove();
-  }, 3000);
-}
-
-// Inicjalizacja
-document.addEventListener('DOMContentLoaded', () => {
-  updateCartCounter();
-  
-  // Obsługa kliknięcia ikony koszyka
-  document.getElementById('cartIcon').addEventListener('click', () => {
-    alert('Koszyk: ' + cart.length + ' produktów');
-    // Tutaj można otworzyć panel koszyka
-  });
-});
-</script>  
-
     <!-- ====== Sekcja: Zaprojektuj Swój Produkt ====== -->
 <section id="projektuj" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white border-4 border-yellow-500 rounded-2xl shadow-[0_0_25px_#FFD700]">
   <div class="max-w-6xl mx-auto px-6 py-10">
@@ -1371,6 +1291,7 @@ function addToCart(name, price, imageUrl = null, payload = null) {
 </body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
