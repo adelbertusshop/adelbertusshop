@@ -9,10 +9,9 @@
 <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
 
 <style>
-  body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; margin:0;}
+  body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
   .koszyk { max-width: 600px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2);}
   .paypal-btn { margin-top: 20px; }
-
   /* Ikona koszyka */
   #cartIcon {
     position: fixed; right: 20px; top: 20px;
@@ -26,7 +25,6 @@
     width:22px; height:22px; border-radius:50%; font-size:12px; display:flex; align-items:center; justify-content:center;
     box-shadow:0 2px 8px rgba(0,0,0,.25);
   }
-
   /* Panel koszyka */
   #cartPanel {
     position: fixed; top: 0; right: 0; width: 360px; height: 100vh; background:#111; color:#fff;
@@ -41,28 +39,11 @@
   .btn { border:none; border-radius:8px; padding:10px 14px; cursor:pointer; font-weight:700; }
   .btn-primary { background:#2e7d32; color:#fff; }
   .btn-light { background:#eee; color:#111; }
-
-  /* Dodatkowe style */
-  #imagePreview img { max-width: 100%; height: auto; border-radius: 8px; }
-  #adPreviewContent a { transition: opacity 0.3s; }
-  #adPreviewContent a:hover { opacity: 0.8; }
-
-  /* Poprawka: sekcje zawsze widoczne */
-  .hidden { display: block !important; }
-
-  /* Animacja przycisku */
-  button[disabled] { opacity: 0.7; cursor: not-allowed; }
-
-  /* Responsywność dla mniejszych ekranów */
-  @media (max-width: 480px) {
-    #cartPanel { width: 90%; }
-    .koszyk { padding: 10px; }
-  }
 </style>
 </head>
 <body>
 
-<!-- Ikona koszyka -->
+<!-- Ikona koszyka (bez produktów przykładowych) -->
 <div id="cartIcon" title="Otwórz koszyk">🛒<span class="count" id="cartCount">0</span></div>
 
 <!-- Panel koszyka -->
@@ -85,9 +66,18 @@
   </div>
 </div>
 
-<script>
-  let cart = JSON.parse(localStorage.getItem('koszyk')) || [];
+<!-- Główna karta "Koszyk" (zgodnie z Twoim szkieletem) -->
+<div class="koszyk">
+  <h2>Twój Koszyk</h2>
+  <p><strong>Łącznie: <span id="totalMirror">0</span> zł</strong></p>
+  <button id="sendMailMirror">Wyślij zamówienie mailem</button>
+</div>
 
+<script>
+  // ======== Minimalny, dynamiczny koszyk (bez żadnych przykładowych produktów) ========
+  let cart = []; // {name, price, qty}
+
+  // UI refs
   const cartIcon = document.getElementById('cartIcon');
   const cartPanel = document.getElementById('cartPanel');
   const closeCartBtn = document.getElementById('closeCart');
@@ -95,6 +85,7 @@
   const cartEmptyEl = document.getElementById('cartEmpty');
   const cartCountEl = document.getElementById('cartCount');
   const totalEl = document.getElementById('total');
+  const totalMirrorEl = document.getElementById('totalMirror');
 
   function toggleCart(show) {
     if (typeof show === 'boolean') {
@@ -111,11 +102,11 @@
   closeCartBtn.addEventListener('click', () => toggleCart(false));
 
   function updateTotals() {
-    const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+    const total = cart.reduce((s,i)=> s + i.price * i.qty, 0);
     totalEl.textContent = total.toFixed(2);
-    cartCountEl.textContent = cart.reduce((s,i) => s + i.qty, 0);
+    totalMirrorEl.textContent = total.toFixed(2);
+    cartCountEl.textContent = cart.reduce((s,i)=> s + i.qty, 0);
     cartEmptyEl.style.display = cart.length ? 'none' : 'block';
-    localStorage.setItem('koszyk', JSON.stringify(cart));
     return total;
   }
 
@@ -128,8 +119,6 @@
         <div>
           <div style="font-weight:700">${item.name}</div>
           <div style="color:#bbb;font-size:13px">${item.price.toFixed(2)} zł × ${item.qty}</div>
-          ${item.size ? `<div style="color:#bbb;font-size:13px">Rozmiar: ${item.size}</div>` : ''}
-          ${item.color ? `<div style="color:#bbb;font-size:13px">Kolor: ${item.color}</div>` : ''}
         </div>
         <div>
           <button class="btn btn-light" data-act="dec" data-idx="${idx}">-</button>
@@ -155,43 +144,53 @@
     renderCart();
   });
 
-  window.addToCart = function(name, price, size = '', color = '') {
+  // ====== PUBLICZNA FUNKCJA: wywołuj z dowolnego miejsca/produktu ======
+  // window.addToCart("Nazwa produktu", 123.45)
+  window.addToCart = function(name, price) {
     const p = Number(price);
     if (!name || !Number.isFinite(p)) return;
-    const found = cart.find(i => i.name === name && i.price === p && i.size === size && i.color === color);
-    if (found) { found.qty++; } 
-    else { cart.push({ name, price: p, qty: 1, size, color }); }
+    const found = cart.find(i => i.name === name && i.price === p);
+    if (found) found.qty++;
+    else cart.push({ name, price: p, qty: 1 });
     renderCart();
-    const notification = document.createElement('div');
-    notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg animate-bounce';
-    notification.textContent = `${name} dodano do koszyka!`;
-    document.body.appendChild(notification);
-    setTimeout(() => notification.remove(), 3000);
   };
 
+  // ====== Delegacja: przycisk .add-to-cart (data-name, data-price) – bez dodawania przykładów ======
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.add-to-cart');
+    if (!btn) return;
+    const name = btn.getAttribute('data-name') || 'Produkt';
+    const price = parseFloat(btn.getAttribute('data-price') || '0');
+    if (!Number.isFinite(price)) return;
+    window.addToCart(name, price);
+    toggleCart(true);
+  });
+
+  // ====== Mail (oba przyciski: w panelu i w sekcji głównej) ======
   function sendMail() {
     const lines = cart.length
-      ? cart.map(i => `
-          ${i.name} 
-          ${i.size ? `(Rozmiar: ${i.size})` : ''}
-          ${i.color ? `(Kolor: ${i.color})` : ''}
-          × ${i.qty} = ${(i.price*i.qty).toFixed(2)} zł
-        `.trim()).join('\n')
+      ? cart.map(i => `${i.name} × ${i.qty} = ${(i.price*i.qty).toFixed(2)} zł`).join('\n')
       : 'Koszyk pusty.';
     const total = updateTotals().toFixed(2);
     const body = `Zamówienie:\n\n${lines}\n\nSuma: ${total} zł`;
+    // Podmień na swój adres:
     const mail = 'twójemail@domena.com';
     window.location.href = `mailto:${mail}?subject=Zamówienie&body=${encodeURIComponent(body)}`;
   }
   document.getElementById('sendMail').addEventListener('click', sendMail);
+  document.getElementById('sendMailMirror').addEventListener('click', sendMail);
 
-  paypal.HostedButtons({ hostedButtonId: "L4639S4363CZE" }).render("#paypal-container-L4639S4363CZE");
+  // ====== PayPal Hosted Button (stały) ======
+  paypal.HostedButtons({
+    hostedButtonId: "L4639S4363CZE",
+  }).render("#paypal-container-L4639S4363CZE");
 
+  // Start
   renderCart();
 </script>
 
 </body>
-</html>🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
+</html></html>🎯 GŁÓWNY BANER Z ANIMACJĄ I ZŁOTYMI DETALAMI -->
 <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
   <!-- Napis nad banerem -->
   <div class="z-20 text-center pt-6 px-4 animate-fade-down">
@@ -1020,6 +1019,7 @@ updateCartUI();
 </body>
 </html>
 <!-- 🔺 KONIEC KODU 🔺 -->
+
 
 
 
