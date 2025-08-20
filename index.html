@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AdelbertusShop - Sklep Premium</title>
+    <title>AdelbertusShop - Premium Streetwear</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,7 +12,9 @@
             theme: {
                 extend: {
                     colors: {
-                        gold: '#d4af37',
+                        primary: '#d4af37',
+                        secondary: '#1a1a1a',
+                        accent: '#caa84f',
                         dark: '#0a0a0a',
                     }
                 }
@@ -20,761 +22,656 @@
         }
     </script>
     
-    <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
-    
     <style>
-        /* Podstawowe style */
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #f4f4f4; 
-            padding: 0;
+        /* ===== BASE STYLES ===== */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        /* Sekcje - początkowo ukryte */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        /* ===== SECTIONS ===== */
         section {
             display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+            min-height: 100vh;
+            padding: 2rem 0;
         }
         
-        /* Aktywna sekcja */
         section.active {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
         
-        /* Style koszyka */
-        #cartIcon {
-            position: fixed; 
-            right: 20px; 
-            top: 20px;
-            background: #ffcc00; 
-            color: #000; 
+        /* ===== CART SYSTEM ===== */
+        .cart-icon {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: #d4af37;
+            color: #000;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            width: 48px; 
-            height: 48px; 
-            display: flex; 
-            align-items: center; 
+            display: flex;
+            align-items: center;
             justify-content: center;
-            font-size: 22px; 
-            cursor: pointer; 
-            box-shadow: 0 6px 18px rgba(0,0,0,.25);
-            z-index: 1000;
+            cursor: pointer;
+            z-index: 1001;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
         
-        #cartIcon .count {
-            position: absolute; 
-            bottom: -6px; 
-            right: -6px; 
-            background: #e53935; 
-            color: #fff;
-            width: 22px; 
-            height: 22px; 
-            border-radius: 50%; 
-            font-size: 12px; 
-            display: flex; 
-            align-items: center; 
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e74c3c;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,.25);
         }
         
-        #cartPanel {
-            position: fixed; 
-            top: 0; 
-            right: 0; 
-            width: 360px; 
-            height: 100vh; 
-            background: #111; 
-            color: #fff;
-            transform: translateX(100%); 
-            transition: transform .25s ease; 
-            z-index: 1100;
-            box-shadow: -10px 0 30px rgba(0,0,0,.35);
-            display: flex; 
+        .cart-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: #1a1a1a;
+            z-index: 1002;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+            display: flex;
             flex-direction: column;
         }
         
-        #cartPanel.show { 
-            transform: translateX(0); 
+        .cart-panel.open {
+            right: 0;
         }
         
-        .cartHeader { 
-            padding: 14px 16px; 
-            background: #222; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
+        .cart-header {
+            padding: 1.5rem;
+            background: #2a2a2a;
+            border-bottom: 2px solid #d4af37;
         }
         
-        .cartBody { 
-            padding: 14px 16px; 
-            overflow: auto; 
-            flex: 1; 
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
         }
         
-        .cartFooter { 
-            padding: 14px 16px; 
-            border-top: 1px solid #333; 
-            background: #181818; 
+        .cart-footer {
+            padding: 1.5rem;
+            background: #2a2a2a;
+            border-top: 2px solid #d4af37;
         }
         
-        .btn { 
-            border: none; 
-            border-radius: 8px; 
-            padding: 10px 14px; 
-            cursor: pointer; 
-            font-weight: 700; 
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #333;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
         }
         
-        .btn-primary { 
-            background: #2e7d32; 
-            color: #fff; 
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 1rem;
         }
         
-        .btn-light { 
-            background: #eee; 
-            color: #111; 
+        /* ===== DESIGN STUDIO ENHANCEMENTS ===== */
+        .design-preview {
+            border: 3px solid #d4af37;
+            border-radius: 15px;
+            margin: 1rem 0;
+            overflow: hidden;
         }
         
-        /* Animacje */
-        @keyframes fadeDown { 
-            0% { opacity: 0; transform: translateY(-30px); } 
-            100% { opacity: 1; transform: translateY(0); }
+        .tool-group {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #333;
         }
         
-        @keyframes fadeUp { 
-            0% { opacity: 0; transform: translateY(30px); } 
-            100% { opacity: 1; transform: translateY(0); }
+        /* ===== BUTTONS ===== */
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
         
-        .animate-fade-down { 
-            animation: fadeDown 1.5s ease forwards; 
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #000;
         }
         
-        .animate-fade-up { 
-            animation: fadeUp 1.5s ease forwards; 
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+        }
+        
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1003;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            border: 2px solid #d4af37;
+        }
+        
+        /* ===== ANIMATIONS ===== */
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animate-slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
         }
     </style>
 </head>
 <body>
-    <!-- Nawigacja -->
-    <nav class="bg-gold py-4 px-6 sticky top-0 z-50 shadow-md">
-        <div class="container mx-auto flex flex-wrap justify-center gap-4">
-            <button data-section="banner" class="nav-btn bg-dark text-white px-4 py-2 rounded">Strona Główna</button>
-            <button data-section="sklep" class="nav-btn bg-dark text-white px-4 py-2 rounded">Sklep</button>
-            <button data-section="projektuj" class="nav-btn bg-dark text-white px-4 py-2 rounded">Zaprojektuj</button>
-            <button data-section="zbiorka" class="nav-btn bg-dark text-white px-4 py-2 rounded">Zbiórka</button>
-            <button data-section="artysta" class="nav-btn bg-dark text-white px-4 py-2 rounded">Artysta</button>
-            <button data-section="regulamin" class="nav-btn bg-dark text-white px-4 py-2 rounded">Regulamin</button>
+    <!-- Navigation -->
+    <nav class="bg-primary py-4">
+        <div class="container mx-auto flex justify-center space-x-4">
+            <button class="nav-btn bg-dark text-white px-4 py-2 rounded" data-section="home">Home</button>
+            <button class="nav-btn bg-dark text-white px-4 py-2 rounded" data-section="shop">Sklep</button>
+            <button class="nav-btn bg-dark text-white px-4 py-2 rounded" data-section="design">Projektuj</button>
+            <button class="nav-btn bg-dark text-white px-4 py-2 rounded" data-section="charity">Zbiórka</button>
         </div>
     </nav>
 
-    <!-- Sekcja banner -->
-    <section id="banner" class="active">
-        <div class="relative h-screen w-full overflow-hidden flex flex-col justify-between font-[Georgia]">
-            <!-- Napis nad banerem -->
-            <div class="z-20 text-center pt-6 px-4 animate-fade-down">
-                <h2 class="text-xl md:text-3xl font-bold text-yellow-400 drop-shadow-[0_0_10px_#d4af37] border border-yellow-400 rounded-lg inline-block px-4 py-2 bg-black bg-opacity-50">
-                    To nie produkt, To lustro. Gotowy zobaczyć, co w nim jest
-                </h2>
-            </div>
+    <!-- Cart Icon -->
+    <div class="cart-icon" id="cartIcon">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
 
-            <!-- Obraz banera -->
-            <div class="relative flex-1">
-                <img src="https://i.ibb.co/Z1VjqzN8/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg"
-                     alt="Baner główny"
-                     class="absolute inset-0 w-full h-full object-cover object-center opacity-90 transition-transform duration-1000 ease-out hover:scale-105 md:hover:scale-110">
-                <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-                <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-6 animate-fade-up">
-                    <h1 class="text-4xl md:text-6xl font-extrabold text-yellow-300 drop-shadow-[0_0_15px_#d4af37] border-b-2 border-yellow-500 pb-2">
-                        Adelbertus Shop
-                    </h1>
-                    <p class="mt-4 text-xl md:text-2xl text-gray-200 font-medium max-w-2xl drop-shadow-md">
-                        
-                    </p>
-                </div>
-            </div>
-
-            <!-- Napis pod banerem -->
-            <div class="z-20 text-center pb-6 px-4 animate-fade-up">
-                <h3 class="text-lg md:text-2xl font-semibold text-yellow-200 drop-shadow-[0_0_10px_#d4af37] border border-yellow-400 rounded-lg inline-block px-4 py-2 bg-black bg-opacity-50">
-                    Każdy może kupić, ale nie każdy zrozumie.
-                </h3>
-            </div>
+    <!-- Cart Panel -->
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h2 class="text-xl font-bold">Twój koszyk</h2>
+            <button class="absolute top-4 right-4 text-2xl" onclick="toggleCart()">×</button>
         </div>
-    </section>
-
-    <!-- Sekcja sklep -->
-    <section id="sklep" class="py-16 bg-[#0a0a0a] text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <!-- Złoty nagłówek -->
-            <div class="text-center mb-16">
-                <div class="inline-block relative">
-                    <h2 class="text-5xl font-bold text-[#d4af37] mb-4 relative z-10">EXCLUSIVE COLLECTION</h2>
-                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
-                </div>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto mt-6">
-                    Odkryj naszą limitowaną kolekcję premium - połączenie luksusu i streetwearu
-                </p>
-            </div>
-
-            <!-- Kategorie -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-                <!-- Unisex Collection -->
-                <div class="relative group overflow-hidden rounded-xl border-2 border-[#d4af37] bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]">
-                    <div class="p-8 text-center">
-                        <h3 class="text-3xl font-bold text-[#d4af37] mb-6">UNISEX</h3>
-                        <div class="space-y-4">
-                            <a href="#koszulki" class="block text-lg font-medium text-white hover:text-[#d4af37] transition-colors">Koszulki - 120 zł</a>
-                            <a href="#bluzy" class="block text-lg font-medium text-white hover:text-[#d4af37] transition-colors">Bluzy - 200 zł</a>
-                            <a href="#bluzy-kaptur" class="block text-lg font-medium text-white hover:text-[#d4af37] transition-colors">Bluzy z kapturem - 220 zł</a>
-                            <a href="#czapki" class="block text-lg font-medium text-white hover:text-[#d4af37] transition-colors">Czapki - 99 zł</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Nowości -->
-                <div class="relative group overflow-hidden rounded-xl border-2 border-[#d4af37] bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]">
-                    <div class="p-8 text-center">
-                        <h3 class="text-3xl font-bold text-[#d4af37] mb-6">NEW ARRIVALS</h3>
-                        <p class="text-gray-400 italic">Nadchodzące premiery...</p>
-                        <div class="mt-6">
-                            <div class="bg-gray-700 h-48 rounded-lg flex items-center justify-center">
-                                <span class="text-gray-500">Coming Soon</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Projektuj sam -->
-                <div class="relative group overflow-hidden rounded-xl border-2 border-[#d4af37] bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]">
-                    <div class="p-8 text-center">
-                        <h3 class="text-3xl font-bold text-[#d4af37] mb-6">CUSTOM DESIGN</h3>
-                        <a href="#projektuj" class="block text-lg font-medium text-white hover:text-[#d4af37] transition-colors mb-6">
-                            Zaprojektuj własny produkt
-                        </a>
-                        <div class="bg-gray-700 h-48 rounded-lg flex items-center justify-center">
-                            <span class="text-gray-500">Design Studio</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ==================== KOSZULKI ==================== -->
-            <div id="koszulki" class="py-10">
-                <div class="border-b-2 border-[#d4af37] pb-4 mb-10">
-                    <h3 class="text-4xl font-bold text-[#d4af37]">KOSZULKI</h3>
-                    <p class="text-gray-400">Limitowana kolekcja premium - 120 zł</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    <!-- Produkt 1 -->
-                    <div class="group relative bg-[#1e1e1e] rounded-xl overflow-hidden border border-[#333] hover:border-[#d4af37] transition-all duration-300">
-                        <div class="relative overflow-hidden">
-                            <img src="https://i.ibb.co/dXSNgRp/Messenger-creation-78-FBFCA7-7344-4-B0-F-BE56-AB8-DD33-C051-C.jpg" 
-                                 alt="Koszulka Rebel" 
-                                 class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold mb-2">Koszulka "Rebel"</h4>
-                            <p class="text-[#d4af37] font-medium mb-4">120 zł</p>
-                            
-                            <div class="mb-4">
-                                <label class="block text-gray-400 mb-2">Rozmiar:</label>
-                                <select class="w-full bg-[#2a2a2a] border border-[#444] text-white rounded px-4 py-2">
-                                    <option>S</option>
-                                    <option>M</option>
-                                    <option>L</option>
-                                    <option>XL</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label class="block text-gray-400 mb-2">Kolor:</label>
-                                <select class="w-full bg-[#2a2a2a] border border-[#444] text-white rounded px-4 py-2">
-                                    <option>Czarny</option>
-                                    <option>Biały</option>
-                                    <option>Złoty</option>
-                                </select>
-                            </div>
-                            
-                            <button onclick="addToCart('Koszulka Rebel', 120)" 
-                                    class="w-full bg-[#d4af37] hover:bg-[#c9a227] text-black font-bold py-3 rounded transition-colors duration-300">
-                                Dodaj do koszyka
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Produkt 2 -->
-                    <div class="group relative bg-[#1e1e1e] rounded-xl overflow-hidden border border-[#333] hover:border-[#d4af37] transition-all duration-300">
-                        <div class="relative overflow-hidden">
-                            <img src="https://i.ibb.co/wNJNHvkn/Screenshot-20250522-191944-Chat-GPT.jpg" 
-                                 alt="Koszulka Classic" 
-                                 class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold mb-2">Koszulka "Classic"</h4>
-                            <p class="text-[#d4af37] font-medium mb-4">120 zł</p>
-                            
-                            <div class="mb-4">
-                                <label class="block text-gray-400 mb-2">Rozmiar:</label>
-                                <select class="w-full bg-[#2a2a2a] border border-[#444] text-white rounded px-4 py-2">
-                                    <option>S</option>
-                                    <option>M</option>
-                                    <option>L</option>
-                                    <option>XL</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label class="block text-gray-400 mb-2">Kolor:</label>
-                                <select class="w-full bg-[#2a2a2a] border border-[#444] text-white rounded px-4 py-2">
-                                    <option>Czarny</option>
-                                    <option>Biały</option>
-                                    <option>Złoty</option>
-                                </select>
-                            </div>
-                            
-                            <button onclick="addToCart('Koszulka Classic', 120)" 
-                                    class="w-full bg-[#d4af37] hover:bg-[#c9a227] text-black font-bold py-3 rounded transition-colors duration-300">
-                                Dodaj do koszyka
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically inserted here -->
         </div>
-    </section>
-
-    <!-- Sekcja projektuj -->
-    <section id="projektuj" class="py-16 bg-[#0a0a0a] text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <div class="inline-block relative">
-                    <h2 class="text-5xl font-bold text-[#d4af37] mb-4 relative z-10">CUSTOM DESIGN</h2>
-                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
-                </div>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto mt-6">
-                    Zaprojektuj własny produkt i dodaj go do koszyka
-                </p>
+        
+        <div class="cart-footer">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-lg font-bold">Suma:</span>
+                <span class="text-lg font-bold text-primary" id="cartTotal">0 zł</span>
             </div>
-
-            <canvas id="podgladProdukt" width="500" height="500" class="mx-auto block border border-gray-600 rounded-lg mb-6"></canvas>
-
-            <div class="flex flex-wrap justify-center gap-4 mb-6">
-                <input id="projektTekst" type="text" placeholder="Twój tekst" class="px-4 py-2 rounded bg-[#1a1a1a] text-white">
-                <select id="czcionka" class="px-4 py-2 rounded bg-[#1a1a1a] text-white">
-                    <option value="Arial">Arial</option>
-                    <option value="Verdana">Verdana</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                </select>
-                <input id="rozmiarTekstu" type="number" value="36" min="10" max="100" class="px-4 py-2 rounded bg-[#1a1a1a] text-white">
-                <input id="kolorTekstu" type="color" value="#000000" class="w-12 h-12 p-0 border-0">
-                <input id="kolorProduktu" type="color" value="#ffffff" class="w-12 h-12 p-0 border-0">
-                <input id="projektGrafika" type="file" accept="image/*" class="px-4 py-2 rounded bg-[#1a1a1a] text-white">
-                <select id="umiejscowienie" class="px-4 py-2 rounded bg-[#1a1a1a] text-white">
-                    <option value="front">Przód</option>
-                    <option value="back">Tył</option>
-                    <option value="top">Góra</option>
-                    <option value="bottom">Dół</option>
-                </select>
-                <select id="projektRozmiar" class="px-4 py-2 rounded bg-[#1a1a1a] text-white">
-                    <option value="XS">XS</option>
-                    <option value="S">S</option>
-                    <option value="M" selected>M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                </select>
-            </div>
-
-            <div class="flex flex-wrap justify-center gap-4 mb-6">
-                <button id="przodBtn" class="px-4 py-2 bg-[#d4af37] text-black rounded font-bold">Przód</button>
-                <button id="tylBtn" class="px-4 py-2 bg-[#d4af37] text-black rounded font-bold">Tył</button>
-            </div>
-
-            <div class="flex justify-center gap-4 mt-4">
-                <button id="dodajProjektDoKoszyka" 
-                        class="bg-[#d4af37] hover:bg-[#c9a227] text-black font-bold py-3 px-6 rounded transition-colors duration-300">
-                    Dodaj do koszyka
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sekcja zbiórka -->
-    <section id="zbiorka" class="py-16 bg-gradient-to-br from-yellow-50 to-yellow-100">
-        <div class="max-w-5xl mx-auto px-6 relative bg-white p-8 rounded-3xl border-8 border-yellow-400 shadow-2xl ring-4 ring-yellow-300 ring-opacity-70 hover:ring-opacity-100 transition duration-500">
             
-            <!-- Ramka dekoracyjna -->
-            <div class="absolute inset-0 rounded-3xl border-4 border-double border-yellow-500 pointer-events-none z-10"></div>
-            <div class="absolute -inset-3 rounded-4xl border-8 border-yellow-300 opacity-40 blur-lg pointer-events-none z-0"></div>
-
-            <!-- Nagłówek -->
-            <h2 class="relative text-4xl font-extrabold text-gray-900 mb-4 text-center z-20">📦 Zbiórka na Dom Dziecka</h2>
-            <p class="relative text-lg text-gray-700 text-center mb-6 z-20">
-                Pomóżmy razem dzieciom, które czekają na odrobinę ciepła, radości i poczucia, że są ważne.  
-                Twoja pomoc może odmienić ich dzień, a nawet całe życie.
-            </p>
-
-            <!-- Dane kontaktowe -->
-            <div class="relative bg-yellow-50 p-4 rounded-xl shadow-md mb-6 text-center border border-yellow-300 z-20">
-                <p class="font-bold text-lg text-gray-800">📱 Przelew BLIK: <span class="text-yellow-700">573-939-925</span></p>
-                <p class="text-gray-800">📧 E-mail: <a href="mailto:mielniczukgrzegosz74@gmail.com" class="text-blue-600 underline">mielniczukgrzegosz74@gmail.com</a></p>
-                <p class="text-gray-800">📞 Kontakt: 604-296-360</p>
-                <p class="text-sm italic text-gray-600">Po przelewie lub chęci wysyłki darów — skontaktuj się z nami, podamy adres.</p>
-            </div>
-
-            <!-- Lista darczyńców -->
-            <div class="relative mb-6 z-20">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">❤️ Ostatni darczyńcy</h3>
-                <ul class="space-y-2 text-gray-700">
-                    <li>🎁 <strong>Anna K.</strong> — paczka z książkami i pluszakami</li>
-                    <li>🎁 <strong>Jan M.</strong> — 10 ciepłych kurtek zimowych</li>
-                    <li>🎁 <strong>Magdalena S.</strong> — karton słodyczy i gier planszowych</li>
-                    <li>🎁 <strong>Piotr L.</strong> — 5 plecaków szkolnych</li>
-                </ul>
-            </div>
-
-            <!-- Licznik do wysyłki -->
-            <div class="relative mb-8 text-center z-20">
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">⏳ Następna wysyłka paczek za:</h3>
-                <p id="countdown" class="text-3xl font-bold text-yellow-700"></p>
-            </div>
-
-            <!-- List od dzieci -->
-            <div class="relative bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-lg shadow-md mb-8 z-20">
-                <p class="italic text-gray-800">
-                    „Dziękujemy z całego serca za paczki, które od Was dostajemy.  
-                    Każdy koc, zabawka, książka czy słodycz jest dla nas jak prezent od losu.  
-                    Kiedy widzimy, że ktoś o nas pamięta, czujemy się potrzebni i kochani.  
-                    Może nie możemy się Wam odwdzięczyć tym samym, ale obiecujemy, że dobro, które nam dajecie, będziemy przekazywać dalej w życiu.  
-                    Dziękujemy, że jesteście naszymi Aniołami.”
-                </p>
-                <p class="mt-3 text-right font-bold text-gray-900">— Dzieci z Domu Dziecka</p>
-            </div>
-
-            <!-- Twoje przesłanie -->
-            <p class="relative text-center text-gray-700 italic z-20">
-                Jako były wychowanek domu dziecka wiem, jak wiele znaczy taka pomoc.  
-                Dlatego każde wsparcie jest dla mnie osobistą misją. — <strong>Wojciech</strong>
-            </p>
-        </div>
-    </section>
-
-    <!-- Sekcja artysta -->
-    <section id="artysta" class="py-12 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div class="max-w-4xl mx-auto relative p-8 bg-white rounded-2xl border-8 border-yellow-500 shadow-lg">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-4 text-center">Artysta</h2>
-            <p class="mb-4 text-gray-800 leading-relaxed">
-                Mam na imię <strong>Wojciech</strong> i całe życie jestem związany ze sztuką. Kocham ją od najmłodszych lat, choć jestem samoukiem. Tworzę portrety realistyczne, pełne detali, maluję obrazy, wykonuję tatuaże oraz zajmuję się grafiką.
-            </p>
-            <p class="mb-4 text-gray-800 leading-relaxed">
-                Dzielę się sztuką z ludźmi, bo widzę, jak ich serce rozświetla moment, gdy otrzymują portret, koszulkę czy cokolwiek z obrazem. Wtedy na ich twarzach pojawia się uśmiech — a to właśnie sztuka daje radość.
-            </p>
-            <p class="mb-4 text-gray-800 leading-relaxed">
-                Dla mnie najpiękniejszą częścią pracy artysty jest to, że mogę wywołać ten uśmiech na czyjejś twarzy.
-            </p>
-            <p class="text-gray-800 leading-relaxed italic text-center">
-                Pozdrawiam serdecznie — w swoim imieniu oraz całego zespołu <strong>AdelbertusShop</strong>.
-            </p>
-        </div>
-    </section>
-
-    <!-- Sekcja regulamin -->
-    <section id="regulamin" class="py-16 px-6 bg-gradient-to-br from-[#faf5ee] to-[#fdf8f0] font-serif text-[#2e1e0f]">
-        <div class="max-w-5xl mx-auto relative bg-white shadow-2xl rounded-3xl p-10 border-4 border-yellow-500">
-
-            <!-- Zdobiona ramka -->
-            <div class="absolute inset-0 rounded-3xl border-8 border-double border-yellow-400 pointer-events-none z-10"></div>
-            <div class="absolute -inset-2 rounded-[2rem] border-4 border-yellow-300 blur-md opacity-50 z-0"></div>
-
-            <!-- Etykieta -->
-            <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-[#fdf8f0] px-6 py-1 text-[#caa25b] font-bold text-lg tracking-widest shadow-md rounded-md border border-[#caa25b] uppercase z-20">
-                ✧ REGULAMIN ✧
-            </div>
-
-            <!-- Nagłówek -->
-            <div class="relative z-20">
-                <h2 class="text-4xl font-bold mb-12 text-center text-[#2e1e0f] underline decoration-[#caa25b]/50">Regulamin sklepu AdelbertusShop</h2>
-
-                <div class="space-y-10 text-[17px] leading-relaxed">
-                    
-                    <!-- §1 -->
-                    <div>
-                        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-                            <span>📜</span> §1 Postanowienia ogólne
-                        </h3>
-                        <p>Sklep internetowy <strong>AdelbertusShop</strong> działa pod adresem [tu wstaw adres] i prowadzony jest przez osobę fizyczną wykonującą działalność nierejestrowaną na podstawie art. 5 ust. 1 ustawy Prawo przedsiębiorców.</p>
-                        <p>Kontakt: [adres e-mail], [numer telefonu – opcjonalnie]</p>
-                        <p>Podstawy prawne: Kodeks cywilny, Ustawa o prawach konsumenta, Prawo przedsiębiorców.</p>
-                    </div>
-
-                    <!-- §2 -->
-                    <div>
-                        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-                            <span>📖</span> §2 Definicje
-                        </h3>
-                        <ul class="list-disc pl-6 space-y-1">
-                            <li><strong>Sprzedawca</strong> – osoba fizyczna prowadząca działalność nierejestrowaną.</li>
-                            <li><strong>Klient</strong> – osoba fizyczna dokonująca zakupu.</li>
-                            <li><strong>Konsument</strong> – klient, który nie działa w ramach działalności gospodarczej.</li>
-                            <li><strong>Towar</strong> – produkt oferowany w sklepu.</li>
-                            <li><strong>Umowa zawarta na odległość</strong> – umowa zawarta przez internet.</li>
-                        </ul>
-                    </div>
-
-                    <!-- §3 -->
-                    <div>
-                        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-                            <span>🛒</span> §3 Warunki sprzedaży
-                        </h3>
-                        <p>Ceny towarów podawane są w złotych polskich i są cenami brutto. Koszt dostawy jest wskazywany przy zamówieniu. Zamówienia są przyjmowane poprzez stronę sklepu. Umowa zostaje zawarta z chwilą kliknięcia „Zamawiam”.</p>
-                    </div>
-
-                    <!-- §4 -->
-                    <div>
-                        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-                            <span>💳</span> §4 Płatność i dostawa
-                        </h3>
-                        <ul class="list-disc pl-6 space-y-1">
-                            <li>Płatność: przelew, BLIK, inne – ustalane indywidualnie.</li>
-                            <li>Zamówienia realizowane są po zaksięgowaniu wpłaty.</li>
-                            <li>Dostawa na terenie Polski – kurier, paczkomat.</li>
-                            <li>Czas realizacji: do 7 dni roboczych (chyba że ustalono inaczej).</li>
-                        </ul>
-                    </div>
-
-                    <!-- §5 -->
-                    <div>
-                        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-                            <span>↩️</span> §5 Odstąpienie od umowy
-                        </h3>
-                        <ul class="list-disc pl-6 space-y-1">
-                            <li>Konsument ma prawo odstąpić od umowy w ciągu 14 dni.</li>
-                            <li>Zwrot kosztów następuje do 14 dni po zwrocie towaru.</li>
-                            <li>Produkty personalizowane nie podlegają zwrotowi.</li>
-                        </ul>
-                    </div>
-
-                    <!-- §6 -->
-                    <div>
-                        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-                            <span>🛠️</span> §6 Reklamacje
-                        </h3>
-                        <p>Reklamacje przyjmowane są drogą mailową. Klient powinien dołączyć opis problemu i zdjęcie. Sprzedawca odpowiada w ciągu 14 dni. W przypadku uznania reklamacji – produkt jest wymieniany, naprawiany lub zwracane są pieniądze.</p>
-                    </div>
-
-                    <!-- §7 -->
-                    <div>
-                        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-                            <span>🔐</span> §7 Dane osobowe
-                        </h3>
-                        <p>Dane osobowe przetwarzane są zgodnie z RODO wyłącznie w celu realizacji zamówienia. Klient ma prawo wglądu, poprawienia lub usunięcia swoich danych.</p>
-                    </div>
-
-                    <!-- §8 -->
-                    <div>
-                        <h3 class="font-semibold text-2xl mb-3 text-[#5c3d15] flex items-center gap-2">
-                            <span>📌</span> §8 Postanowienia końcowe
-                        </h3>
-                        <p>Regulamin obowiązuje od momentu opublikowania na stronie. Sprzedawca zastrzega sobie prawo do zmian. W sprawach nieuregulowanych zastosowanie mają przepisy prawa polskiego.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stopka -->
-    <section class="bg-black text-white py-4 px-6 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-gray-700">
-        <div class="text-center md:text-left">
-            <p class="text-lg font-semibold">🔥 Zaprojektuj coś swojego. Wyróżnij się!</p>
-            <p class="text-sm text-gray-300">Kliknij u góry w sekcję „Zaprojektuj” i stwórz coś niepowtarzalnego.</p>
-        </div>
-        <button onclick="scrollToTop()" class="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-200 transition">
-            ⬆️ Do góry
-        </button>
-    </section>
-
-    <!-- Ikona koszyka -->
-    <div id="cartIcon" title="Otwórz koszyk">🛒<span class="count" id="cartCount">0</span></div>
-
-    <!-- Panel koszyka -->
-    <div id="cartPanel" aria-hidden="true">
-        <div class="cartHeader">
-            <strong>Twój koszyk</strong>
-            <button class="btn btn-light" id="closeCart">Zamknij</button>
-        </div>
-        <div class="cartBody">
-            <div id="cartEmpty" style="color:#bbb">Koszyk jest pusty.</div>
-            <div id="cartItems"></div>
-        </div>
-        <div class="cartFooter">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-                <strong>Suma:</strong>
-                <strong><span id="total">0</span> zł</strong>
-            </div>
-            <div id="paypal-container-L4639S4363CZE" class="paypal-btn"></div>
-            <button id="sendMail" class="btn btn-primary" style="width:100%;margin-top:10px">Wyślij zamówienie mailem</button>
+            <button class="btn btn-success w-full mb-3" onclick="sendOrderEmail()">
+                📧 Wyślij zamówienie mailem
+            </button>
+            
+            <button class="btn btn-primary w-full">
+                💳 Przejdź do płatności
+            </button>
         </div>
     </div>
 
-    <!-- Skrypty JavaScript -->
+    <!-- Email Modal -->
+    <div class="modal" id="emailModal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-primary">Wyślij zamówienie</h2>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-2">Twój email:</label>
+                <input type="email" id="customerEmail" 
+                       class="w-full p-3 bg-dark border border-gray-600 rounded text-white" 
+                       placeholder="twój@email.com" required>
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-2">Dodatkowe uwagi:</label>
+                <textarea id="orderNotes" 
+                         class="w-full p-3 bg-dark border border-gray-600 rounded text-white" 
+                         rows="3" 
+                         placeholder="Dodatkowe informacje do zamówienia..."></textarea>
+            </div>
+            
+            <div class="flex space-x-3">
+                <button class="btn btn-primary flex-1" onclick="confirmSendEmail()">
+                    Wyślij
+                </button>
+                <button class="btn bg-gray-600 text-white flex-1" onclick="closeModal()">
+                    Anuluj
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Sections -->
+    <main>
+        <!-- Design Section -->
+        <section id="design" class="active">
+            <div class="container mx-auto px-4 py-8">
+                <h2 class="text-4xl font-bold text-center mb-8 text-primary">STUDIO PROJEKTOWE</h2>
+                
+                <div class="max-w-4xl mx-auto bg-dark p-6 rounded-xl border-2 border-primary">
+                    <!-- Canvas Preview -->
+                    <div class="design-preview mb-6">
+                        <canvas id="designCanvas" width="500" height="400" 
+                                class="w-full bg-white rounded-lg"></canvas>
+                    </div>
+                    
+                    <!-- Design Tools -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <!-- Text Tools -->
+                        <div class="tool-group">
+                            <h3 class="text-lg font-bold mb-3 text-primary">📝 Tekst</h3>
+                            <input type="text" id="designText" placeholder="Wpisz swój tekst" 
+                                   class="w-full p-3 bg-secondary border border-gray-600 rounded text-white mb-3">
+                            
+                            <div class="grid grid-cols-2 gap-3 mb-3">
+                                <select id="fontFamily" class="p-2 bg-secondary border border-gray-600 rounded text-white">
+                                    <option>Arial</option>
+                                    <option>Verdana</option>
+                                    <option>Times New Roman</option>
+                                    <option>Impact</option>
+                                </select>
+                                <input type="number" id="fontSize" value="36" min="10" max="100" 
+                                       class="p-2 bg-secondary border border-gray-600 rounded text-white">
+                            </div>
+                            
+                            <input type="color" id="textColor" value="#000000" class="w-full h-12 mb-3">
+                        </div>
+                        
+                        <!-- Design Options -->
+                        <div class="tool-group">
+                            <h3 class="text-lg font-bold mb-3 text-primary">🎨 Opcje</h3>
+                            
+                            <select id="productType" class="w-full p-3 bg-secondary border border-gray-600 rounded text-white mb-3">
+                                <option value="tshirt">Koszulka (120 zł)</option>
+                                <option value="hoodie">Bluza (200 zł)</option>
+                                <option value="cap">Czapka (99 zł)</option>
+                            </select>
+                            
+                            <select id="productSize" class="w-full p-3 bg-secondary border border-gray-600 rounded text-white mb-3">
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                                <option>XXL</option>
+                            </select>
+                            
+                            <input type="file" id="designImage" accept="image/*" 
+                                   class="w-full p-2 bg-secondary border border-gray-600 rounded text-white mb-3">
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <button class="btn btn-primary px-6" onclick="renderDesign()">
+                            🔄 Podgląd
+                        </button>
+                        <button class="btn btn-primary px-6" onclick="addToCartFromDesign()">
+                            🛒 Dodaj do koszyka
+                        </button>
+                        <button class="btn btn-success px-6" onclick="sendDesignToEmail()">
+                            📧 Wyślij projekt
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Other sections... -->
+    </main>
+
+    <!-- JavaScript -->
     <script>
-        // ====== OBSŁUGA NAWIGACJI ======
-        document.addEventListener('DOMContentLoaded', function() {
-            // Pobierz wszystkie przyciski nawigacyjne i sekcje
-            const navButtons = document.querySelectorAll('.nav-btn');
-            const sections = document.querySelectorAll('section');
-            
-            // Dodaj obsługę kliknięcia do każdego przycisku
-            navButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const targetSection = this.getAttribute('data-section');
-                    
-                    // Ukryj wszystkie sekcje
-                    sections.forEach(section => {
-                        section.classList.remove('active');
-                    });
-                    
-                    // Pokaż docelową sekcję
-                    document.getElementById(targetSection).classList.add('active');
-                    
-                    // Przewiń do góry strony
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            });
-            
-            // Ustaw aktywną sekcję na start
-            document.getElementById('banner').classList.add('active');
-        });
-
-        // ====== OBSŁUGA KOSZYKA ======
-        let cart = [];
-
-        const cartIcon = document.getElementById('cartIcon');
-        const cartPanel = document.getElementById('cartPanel');
-        const closeCartBtn = document.getElementById('closeCart');
-        const cartItemsEl = document.getElementById('cartItems');
-        const cartEmptyEl = document.getElementById('cartEmpty');
-        const cartCountEl = document.getElementById('cartCount');
-        const totalEl = document.getElementById('total');
-
-        function toggleCart(show) {
-            if (typeof show === 'boolean') {
-                cartPanel.classList.toggle('show', show);
-                cartPanel.setAttribute('aria-hidden', show ? 'false' : 'true');
-            } else {
-                const isOpen = cartPanel.classList.contains('show');
-                cartPanel.classList.toggle('show', !isOpen);
-                cartPanel.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+        // ===== GLOBAL STATE =====
+        const state = {
+            cart: JSON.parse(localStorage.getItem('adelbertus_cart')) || [],
+            currentDesign: {
+                text: '',
+                fontSize: 36,
+                fontFamily: 'Arial',
+                color: '#000000',
+                productType: 'tshirt',
+                productSize: 'M',
+                image: null
             }
-        }
-
-        cartIcon.addEventListener('click', () => toggleCart(true));
-        closeCartBtn.addEventListener('click', () => toggleCart(false));
-
-        function updateTotals() {
-            const total = cart.reduce((s,i)=> s + i.price * i.qty, 0);
-            totalEl.textContent = total.toFixed(2);
-            cartCountEl.textContent = cart.reduce((s,i)=> s + i.qty, 0);
-            cartEmptyEl.style.display = cart.length ? 'none' : 'block';
-            return total;
-        }
-
-        function renderCart() {
-            cartItemsEl.innerHTML = '';
-            cart.forEach((item, idx) => {
-                const row = document.createElement('div');
-                row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;background:#222;padding:8px;border-radius:8px;margin-bottom:8px;';
-                row.innerHTML = `
-                    <div>
-                        <div style="font-weight:700">${item.name}</div>
-                        <div style="color:#bbb;font-size:13px">${item.price.toFixed(2)} zł × ${item.qty}</div>
-                    </div>
-                    <div>
-                        <button class="btn btn-light" data-act="dec" data-idx="${idx}">-</button>
-                        <button class="btn btn-light" data-act="inc" data-idx="${idx}">+</button>
-                        <button class="btn btn-light" data-act="del" data-idx="${idx}">Usuń</button>
-                    </div>
-                `;
-                cartItemsEl.appendChild(row);
-            });
-            updateTotals();
-        }
-
-        cartItemsEl.addEventListener('click', (e) => {
-            const btn = e.target.closest('button[data-act]');
-            if (!btn) return;
-            const act = btn.dataset.act;
-            const idx = Number(btn.dataset.idx);
-            if (Number.isNaN(idx) || !cart[idx]) return;
-
-            if (act === 'inc') cart[idx].qty++;
-            if (act === 'dec') cart[idx].qty = Math.max(1, cart[idx].qty - 1);
-            if (act === 'del') cart.splice(idx, 1);
-            renderCart();
-        });
-
-        // Funkcja dodająca produkt do koszyka
-        window.addToCart = function(name, price) {
-            const p = Number(price);
-            if (!name || !Number.isFinite(p)) return;
-            const found = cart.find(i => i.name === name && i.price === p);
-            if (found) found.qty++;
-            else cart.push({ name, price: p, qty: 1 });
-            renderCart();
-            toggleCart(true);
         };
 
-        // Obsługa przycisku wyślij email
-        function sendMail() {
-            const lines = cart.length
-                ? cart.map(i => `${i.name} × ${i.qty} = ${(i.price*i.qty).toFixed(2)} zł`).join('\n')
-                : 'Koszyk pusty.';
-            const total = updateTotals().toFixed(2);
-            const body = `Zamówienie:\n\n${lines}\n\nSuma: ${total} zł`;
-            const mail = 'mielniczukgrzegosz74@gmail.com';
-            window.location.href = `mailto:${mail}?subject=Zamówienie&body=${encodeURIComponent(body)}`;
+        // ===== CART MANAGEMENT =====
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            // Update count
+            const totalItems = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update total
+            const total = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = total.toFixed(2) + ' zł';
+            
+            // Update items
+            cartItems.innerHTML = state.cart.length ? '' : '<p class="text-gray-400 text-center">Koszyk jest pusty</p>';
+            
+            state.cart.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    ${item.image ? `<img src="${item.image}" class="cart-item-image">` : ''}
+                    <div class="flex-1">
+                        <h4 class="font-bold">${item.name}</h4>
+                        <p class="text-primary">${item.price} zł × ${item.quantity}</p>
+                        ${item.size ? `<p class="text-sm text-gray-400">Rozmiar: ${item.size}</p>` : ''}
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <button onclick="changeQuantity(${index}, ${item.quantity + 1})" class="text-lg">+</button>
+                        <button onclick="changeQuantity(${index}, ${item.quantity - 1})" class="text-lg">-</button>
+                    </div>
+                `;
+                cartItems.appendChild(itemElement);
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('adelbertus_cart', JSON.stringify(state.cart));
         }
-        document.getElementById('sendMail').addEventListener('click', sendMail);
 
-        // PayPal
-        paypal.HostedButtons({
-            hostedButtonId: "L4639S4363CZE",
-        }).render("#paypal-container-L4639S4363CZE");
-
-        // Inicjalizacja koszyka
-        renderCart();
-
-        // Funkcja przewijania do góry
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Licznik dla zbiórki
-        function startCountdown() {
-            const targetDate = new Date();
-            targetDate.setDate(targetDate.getDate() + 7);
-            function updateCountdown() {
-                const now = new Date();
-                const diff = targetDate - now;
-                if (diff <= 0) {
-                    document.getElementById('countdown').innerText = "Dziś wysyłamy paczki! ❤️";
-                    return;
-                }
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                const minutes = Math.floor((diff / (1000 * 60)) % 60);
-                document.getElementById('countdown').innerText = `${days} dni, ${hours} godz., ${minutes} min.`;
+        function addToCart(product) {
+            const existingItem = state.cart.find(item => 
+                item.name === product.name && item.size === product.size
+            );
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                state.cart.push({
+                    ...product,
+                    quantity: 1,
+                    id: Date.now() + Math.random()
+                });
             }
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+            
+            updateCart();
+            showNotification('✅ Dodano do koszyka!');
         }
-        startCountdown();
+
+        function changeQuantity(index, newQuantity) {
+            if (newQuantity <= 0) {
+                state.cart.splice(index, 1);
+            } else {
+                state.cart[index].quantity = newQuantity;
+            }
+            updateCart();
+        }
+
+        function toggleCart() {
+            document.getElementById('cartPanel').classList.toggle('open');
+        }
+
+        // ===== DESIGN STUDIO =====
+        function initDesignStudio() {
+            const canvas = document.getElementById('designCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set up event listeners
+            document.getElementById('designText').addEventListener('input', (e) => {
+                state.currentDesign.text = e.target.value;
+                renderDesign();
+            });
+            
+            document.getElementById('fontFamily').addEventListener('change', (e) => {
+                state.currentDesign.fontFamily = e.target.value;
+                renderDesign();
+            });
+            
+            document.getElementById('fontSize').addEventListener('input', (e) => {
+                state.currentDesign.fontSize = parseInt(e.target.value);
+                renderDesign();
+            });
+            
+            document.getElementById('textColor').addEventListener('input', (e) => {
+                state.currentDesign.color = e.target.value;
+                renderDesign();
+            });
+            
+            document.getElementById('productType').addEventListener('change', (e) => {
+                state.currentDesign.productType = e.target.value;
+            });
+            
+            document.getElementById('productSize').addEventListener('change', (e) => {
+                state.currentDesign.productSize = e.target.value;
+            });
+            
+            document.getElementById('designImage').addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        state.currentDesign.image = new Image();
+                        state.currentDesign.image.src = e.target.result;
+                        state.currentDesign.image.onload = renderDesign;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Initial render
+            renderDesign();
+        }
+
+        function renderDesign() {
+            const canvas = document.getElementById('designCanvas');
+            const ctx = canvas.getContext('2d');
+            const { text, fontSize, fontFamily, color, image } = state.currentDesign;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw product background
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(50, 50, 400, 300);
+            
+            // Draw text
+            if (text) {
+                ctx.font = `${fontSize}px ${fontFamily}`;
+                ctx.fillStyle = color;
+                ctx.textAlign = 'center';
+                ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+            }
+            
+            // Draw image
+            if (image) {
+                const size = Math.min(image.width, image.height, 200);
+                ctx.drawImage(image, (canvas.width - size) / 2, 150, size, size);
+            }
+        }
+
+        function addToCartFromDesign() {
+            const productType = document.getElementById('productType');
+            const productSize = document.getElementById('productSize');
+            const price = getPriceByType(state.currentDesign.productType);
+            
+            const product = {
+                name: `Projekt: ${state.currentDesign.text || 'Niestandardowy'}`,
+                price: price,
+                size: state.currentDesign.productSize,
+                image: document.getElementById('designCanvas').toDataURL(),
+                type: 'custom'
+            };
+            
+            addToCart(product);
+        }
+
+        function getPriceByType(type) {
+            const prices = {
+                'tshirt': 120,
+                'hoodie': 200,
+                'cap': 99
+            };
+            return prices[type] || 120;
+        }
+
+        // ===== EMAIL FUNCTIONALITY =====
+        function sendDesignToEmail() {
+            document.getElementById('emailModal').classList.add('active');
+        }
+
+        function sendOrderEmail() {
+            document.getElementById('emailModal').classList.add('active');
+        }
+
+        function confirmSendEmail() {
+            const email = document.getElementById('customerEmail').value;
+            const notes = document.getElementById('orderNotes').value;
+            
+            if (!email) {
+                showNotification('❌ Proszę podać adres email');
+                return;
+            }
+            
+            const subject = 'Zamówienie z AdelbertusShop';
+            let body = `Zamówienie:\n\n`;
+            
+            // Add cart items
+            state.cart.forEach((item, index) => {
+                body += `${index + 1}. ${item.name} - ${item.price} zł × ${item.quantity}`;
+                if (item.size) body += ` (Rozmiar: ${item.size})`;
+                body += '\n';
+            });
+            
+            // Add total
+            const total = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            body += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
+            
+            // Add notes
+            if (notes) {
+                body += `Uwagi: ${notes}\n\n`;
+            }
+            
+            // Add contact info
+            body += `Email klienta: ${email}\n`;
+            body += `Data: ${new Date().toLocaleString()}`;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Close modal
+            closeModal();
+            
+            showNotification('📧 Otwieram klienta email...');
+        }
+
+        function closeModal() {
+            document.getElementById('emailModal').classList.remove('active');
+        }
+
+        // ===== UTILITIES =====
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-primary text-black px-4 py-2 rounded-lg shadow-lg animate-fade-in';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize cart
+            updateCart();
+            
+            // Initialize design studio if on design page
+            if (document.getElementById('designCanvas')) {
+                initDesignStudio();
+            }
+            
+            // Set up cart icon click
+            document.getElementById('cartIcon').addEventListener('click', toggleCart);
+            
+            // Set up navigation
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+                    document.getElementById(section).classList.add('active');
+                });
+            });
+        });
+
+        // Global function for adding products from anywhere
+        window.addToCart = addToCart;
     </script>
 </body>
 </html>
-
 
 
 
