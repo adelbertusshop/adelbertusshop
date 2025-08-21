@@ -268,6 +268,40 @@
             padding: 1.5rem;
         }
         
+        /* Opinie */
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .review {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+        
+        .review-stars {
+            color: var(--color-gold);
+            margin-bottom: 0.5rem;
+        }
+        
         /* Stopka */
         footer {
             background: var(--color-dark);
@@ -279,6 +313,31 @@
         
         .contact-info {
             margin: 1.5rem 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--color-gold);
+            color: black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
         
         /* Koszyk */
@@ -361,7 +420,7 @@
         
         /* Responsywność */
         @media (max-width: 768px) {
-            .products-grid, .blog-posts {
+            .products-grid, .blog-posts, .reviews {
                 grid-template-columns: 1fr;
             }
             
@@ -461,6 +520,7 @@
                 <p>Odkryj naszą ekskluzywną kolekcję</p>
             </div>
             
+            <h3 class="text-2xl font-bold mb-6 text-center gold-text">Koszulki</h3>
             <div class="products-grid">
                 <!-- Koszulki -->
                 <div class="product-card fade-in">
@@ -508,6 +568,36 @@
                     </div>
                 </div>
                 
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Premium" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Premium"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Premium', 120, 'https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg" alt="Koszulka Urban" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Urban"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Urban', 120, 'https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka Art" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Art"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Art', 120, 'https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
+            <div class="products-grid">
                 <!-- Bluzy -->
                 <div class="product-card fade-in">
                     <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
@@ -536,6 +626,36 @@
                     </div>
                 </div>
                 
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg" alt="Bluza Comfort" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Comfort"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Bluza Comfort', 200, 'https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png" alt="Bluza Style" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Style"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Bluza Style', 200, 'https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg" alt="Bluza Fashion" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Fashion"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Bluza Fashion', 200, 'https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-bold my-6 text-center gold-text">Czapki</h3>
+            <div class="products-grid">
                 <!-- Czapki -->
                 <div class="product-card fade-in">
                     <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Classic" class="product-image">
@@ -552,6 +672,33 @@
                         <div class="product-title">Czapka "Sport"</div>
                         <div class="product-price">99 zł</div>
                         <button class="nav-btn" onclick="addToCart('Czapka Sport', 99, 'https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg" alt="Czapka Street" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Street"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Czapka Street', 99, 'https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Premium"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Czapka Premium', 99, 'https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/3mvzv2Ny/Screenshot-20250611-212640-Chat-GPT.jpg" alt="Czapka Urban" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Urban"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Czapka Urban', 99, 'https://i.ibb.co/3mvzv2Ny/Screenshot-20250611-212640-Chat-GPT.jpg')">Dodaj do koszyka</button>
                     </div>
                 </div>
             </div>
@@ -572,20 +719,21 @@
                 <div class="design-tools">
                     <div class="tool-group">
                         <div class="tool-title"><i class="fas fa-font"></i> Tekst</div>
-                        <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3">
+                        <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3" oninput="updateDesign()">
                         
                         <div class="flex gap-3 mb-3">
-                            <select id="fontFamily" class="flex-1 p-2 border rounded">
+                            <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
                                 <option value="Arial">Arial</option>
                                 <option value="Times New Roman">Times New Roman</option>
                                 <option value="Courier New">Courier New</option>
                                 <option value="Impact">Impact</option>
+                                <option value="Comic Sans MS">Comic Sans</option>
                             </select>
                             
-                            <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded">
+                            <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
                         </div>
                         
-                        <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3">
+                        <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3" oninput="updateDesign()">
                     </div>
                     
                     <div class="tool-group">
@@ -605,7 +753,8 @@
                             <option value="XXL">XXL</option>
                         </select>
                         
-                        <input type="file" id="designImage" accept="image/*" class="w-full mb-3">
+                        <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
+                        <button class="nav-btn gold-bg w-full" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
                     </div>
                 </div>
                 
@@ -681,7 +830,7 @@
             
             <div class="blog-posts">
                 <div class="blog-post">
-                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Programowanie" class="w-full h-48 object-cover">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sztuka" class="w-full h-48 object-cover">
                     <div class="blog-content">
                         <h3 class="text-xl font-bold mb-2">Sztuka jako forma ekspresji</h3>
                         <p class="text-sm text-gray-600">Opublikowano: 12 czerwca 2023</p>
@@ -701,7 +850,7 @@
                 </div>
                 
                 <div class="blog-post">
-                    <img src="https://images.unsplash.com/photo-1588200908342-23b585c03e26?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sztuka" class="w-full h-48 object-cover">
+                    <img src="https://images.unsplash.com/photo-1588200908342-23b585c03e26?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="w-full h-48 object-cover">
                     <div class="blog-content">
                         <h3 class="text-xl font-bold mb-2">Wpływ sztuki na codzienność</h3>
                         <p class="text-sm text-gray-600">Opublikowano: 28 maja 2023</p>
@@ -709,12 +858,82 @@
                         <button class="nav-btn mt-4">Czytaj więcej</button>
                     </div>
                 </div>
+
+                <div class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="w-full h-48 object-cover">
+                    <div class="blog-content">
+                        <h3 class="text-xl font-bold mb-2">Jak założyć własną markę odzieżową</h3>
+                        <p class="text-sm text-gray-600">Opublikowano: 15 lipca 2023</p>
+                        <p class="mt-3">Praktyczny przewodnik po tworzeniu własnej marki odzieżowej od zera...</p>
+                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                    </div>
+                </div>
+
+                <div class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1566206091558-7f218b696731?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Design" class="w-full h-48 object-cover">
+                    <div class="blog-content">
+                        <h3 class="text-xl font-bold mb-2">Historia streetwearu w Polsce</h3>
+                        <p class="text-sm text-gray-600">Opublikowano: 3 lipca 2023</p>
+                        <p class="mt-3">Jak rozwijała się moda uliczna w Polsce na przestrzeni ostatnich dekad...</p>
+                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                    </div>
+                </div>
+
+                <div class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="w-full h-48 object-cover">
+                    <div class="blog-content">
+                        <h3 class="text-xl font-bold mb-2">Ekologiczne materiały w modzie</h3>
+                        <p class="text-sm text-gray-600">Opublikowano: 25 czerwca 2023</p>
+                        <p class="mt-3">Dlaczego warto wybierać ekologiczne tkaniny i jak wpływają na środowisko...</p>
+                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+                <h3 class="text-2xl font-bold mb-4">Opinie naszych klientów</h3>
+                
+                <div class="reviews">
+                    <div class="review">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Anna" class="review-avatar">
+                            <div>
+                                <div class="font-bold">Anna Nowak</div>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p>"Zamówiłam bluzę z własnym projektem i jestem zachwycona! Jakość wykonania jest rewelacyjna, a obsługa klienta na najwyższym poziomie. Na pewno wrócę po więcej!"</p>
+                    </div>
+                    
+                    <div class="review">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Tomasz" class="review-avatar">
+                            <div>
+                                <div class="font-bold">Tomasz Kowalski</div>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p>"Kupiłem kilka koszulek i czapkę. Wszystko idealnie pasuje, materiały są wysokiej jakości, a wzory nie blakną po praniu. Polecam z czystym sumieniem!"</p>
+                    </div>
+                    
+                    <div class="review">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Katarzyna" class="review-avatar">
+                            <div>
+                                <div class="font-bold">Katarzyna Wiśniewska</div>
+                                <div class="review-stars">★★★★☆</div>
+                            </div>
+                        </div>
+                        <p>"Świetny sklep z unikalnymi projektami. Zamówienie dotarło szybko, a produkt wyglądał dokładnie tak jak na zdjęciu. Jedyna uwaga - trochę długi czas realizacji."</p>
+                    </div>
+                </div>
             </div>
             
             <div class="mt-8 text-center">
                 <h3 class="text-2xl font-bold mb-4">Podziel się swoją historią</h3>
-                <p>Masz ciekawą historię związaną z modą, sztuką lub projektowaniem? Podziel się nią na naszym blogu!</p>
-                <p class="mt-2">Kontakt: mielniczukgrzegosz74@gmail.com | Tel: 604 296 360</p>
+                <p>Masz ciekawą historię związaną z modą, sztuką lub projektowaniem? Chcesz podzielić się opinią?</p>
+                <p class="mt-2">Napisz do nas: mielniczukgrzegosz74@gmail.com | Tel: 604 296 360</p>
+                <button class="nav-btn gold-bg mt-4"><i class="fas fa-pencil-alt"></i> Napisz artykuł gościnny</button>
             </div>
         </section>
 
@@ -780,11 +999,24 @@
                         <p><i class="fas fa-check gold-text"></i> Projektowanie personalizowanych produktów</p>
                         <p><i class="fas fa-check gold-text"></i> Zamówienia indywidualne i hurtowe</p>
                         <p><i class="fas fa-check gold-text"></i> Współpraca z firmami i organizacjami</p>
+
+                        <h3 class="text-xl font-bold mt-6 mb-4">Social Media</h3>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link" target="_blank">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
                     </div>
                     
                     <div>
                         <h3 class="text-xl font-bold mb-4">Wyślij wiadomość</h3>
-                        <form>
+                        <form id="contactForm">
                             <div class="mb-4">
                                 <label class="block text-gray-700 mb-2">Imię i nazwisko</label>
                                 <input type="text" class="w-full p-3 border rounded" required>
@@ -854,6 +1086,18 @@
             <p><i class="fas fa-envelope"></i> mielniczukgrzegosz74@gmail.com</p>
             <p><i class="fas fa-phone"></i> 604 296 360</p>
         </div>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
         
         <div class="mt-6">
             <p>© 2023 AdelbertusShop. Wszystkie prawa zastrzeżone.</p>
@@ -880,7 +1124,7 @@
             initDesignStudio();
             updateCart();
             renderPayPalButton();
-            renderDesignPayPalButton();
+            initContactForm();
         });
 
         // ===== NAWIGACJA =====
@@ -1002,14 +1246,6 @@
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Nasłuchiwanie zdarzeń
-            document.getElementById('designText').addEventListener('input', updateDesign);
-            document.getElementById('fontFamily').addEventListener('change', updateDesign);
-            document.getElementById('fontSize').addEventListener('input', updateDesign);
-            document.getElementById('textColor').addEventListener('input', updateDesign);
-            document.getElementById('productType').addEventListener('change', updateDesignPrice);
-            document.getElementById('designImage').addEventListener('change', handleImageUpload);
-            
             // Inicjalny render
             updateDesign();
         }
@@ -1066,8 +1302,9 @@
             }
         }
 
-        function updateDesignPrice() {
-            currentDesign.productType = document.getElementById('productType').value;
+        function renderDesign() {
+            updateDesign();
+            showNotification('🔄 Projekt zaktualizowany');
         }
 
         function addToCartFromDesign() {
@@ -1103,46 +1340,9 @@
             }).render("#paypal-container-L4639S4363CZE");
         }
 
-        function renderDesignPayPalButton() {
-            const container = document.getElementById('paypal-design-container');
-            container.innerHTML = '';
-            
-            const prices = {
-                'tshirt': 120,
-                'hoodie': 200,
-                'cap': 99
-            };
-            
-            const price = prices[currentDesign.productType] || 120;
-            
-            paypal.Buttons({
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: price.toFixed(2),
-                                currency_code: 'PLN'
-                            }
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        showNotification('✅ Płatność zakończona sukcesem! Twój projekt został zakupiony.');
-                        addToCartFromDesign();
-                    });
-                },
-                onError: function(err) {
-                    showNotification('❌ Wystąpił błąd podczas płatności. Spróbuj ponownie.');
-                    console.error('PayPal error:', err);
-                }
-            }).render('#paypal-design-container');
-        }
-
         // ===== EMAIL =====
         function sendDesignToEmail() {
             const canvas = document.getElementById('designCanvas');
-            const imageData = canvas.toDataURL();
             
             const subject = 'Mój projekt z AdelbertusShop';
             const body = `
@@ -1152,7 +1352,7 @@
                 Kolor: ${currentDesign.color}\n
                 Typ produktu: ${document.getElementById('productType').options[document.getElementById('productType').selectedIndex].text}\n
                 Rozmiar: ${document.getElementById('productSize').value}\n\n
-                Oto podgląd:\n${imageData}
+                Proszę o kontakt w sprawie realizacji zamówienia.
             `;
             
             window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -1169,9 +1369,22 @@
             
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
-            emailBody += `Data: ${new Date().toLocaleString('pl-PL')}`;
+            emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
+            emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
             
             window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`;
+        }
+
+        // ===== FORMULARZ KONTAKTOWY =====
+        function initContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    showNotification('📩 Wiadomość wysłana! Odpowiemy najszybciej jak to możliwe.');
+                    contactForm.reset();
+                });
+            }
         }
 
         // ===== POMOCNICZE =====
@@ -1204,7 +1417,6 @@
     </script>
 </body>
 </html>
-
 
 
 
