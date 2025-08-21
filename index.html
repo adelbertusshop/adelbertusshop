@@ -6,7 +6,7 @@
     <title>AdelbertusShop | Ekskluzywne Projekty</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&currency=PLN"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
         
@@ -50,7 +50,7 @@
         
         /* Nagłówek i nawigacja */
         header {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1603400521630-9f2de124b33b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1840&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -426,29 +426,29 @@
             
             <div class="products-grid">
                 <div class="product-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Koszulka Premium" class="product-image">
+                    <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
                     <div class="product-info">
-                        <div class="product-title">Koszulka Premium "Wolność"</div>
+                        <div class="product-title">Koszulka "Rebel"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Koszulka Premium Wolność', 120)">Dodaj do koszyka</button>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Rebel', 120, 'https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Bluza z kapturem" class="product-image">
+                    <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
                     <div class="product-info">
-                        <div class="product-title">Bluza "Comfort Zone"</div>
+                        <div class="product-title">Koszulka "Vintage"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Vintage', 120, 'https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Urban"</div>
                         <div class="product-price">200 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Bluza Comfort Zone', 200)">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1588850561407-5d35a4dabcf0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Czapka" class="product-image">
-                    <div class="product-info">
-                        <div class="product-title">Czapka "Urban Style"</div>
-                        <div class="product-price">99 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Czapka Urban Style', 99)">Dodaj do koszyka</button>
+                        <button class="nav-btn" onclick="addToCart('Bluza Urban', 200, 'https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
                     </div>
                 </div>
             </div>
@@ -462,7 +462,98 @@
             </div>
             
             <div class="products-grid">
-                <!-- Produkty będą dodawane dynamicznie -->
+                <!-- Koszulki -->
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Rebel"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Rebel', 120, 'https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Vintage"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Vintage', 120, 'https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Abstract" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Abstract"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Abstract', 120, 'https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Geometry"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Geometry', 120, 'https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg" alt="Koszulka Modern" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Modern"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Modern', 120, 'https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <!-- Bluzy -->
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Urban"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Bluza Urban', 200, 'https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg" alt="Bluza Street" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Street"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Bluza Street', 200, 'https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Bluza Premium" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Premium"</div>
+                        <div class="product-price">220 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Bluza Premium', 220, 'https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <!-- Czapki -->
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Classic" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Classic"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Czapka Classic', 99, 'https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Czapka Sport" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Sport"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Czapka Sport', 99, 'https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -749,7 +840,7 @@
             <i class="fas fa-envelope"></i> Wyślij zamówienie mailem
         </button>
         
-        <div id="paypal-button-container" class="mb-3"></div>
+        <div id="paypal-container-L4639S4363CZE" class="mb-3"></div>
         
         <p class="text-sm text-gray-600 text-center">Akceptujemy również przelewy bankowe i BLIK</p>
     </div>
@@ -788,7 +879,6 @@
             initNavigation();
             initDesignStudio();
             updateCart();
-            loadProducts();
             renderPayPalButton();
             renderDesignPayPalButton();
         });
@@ -869,9 +959,6 @@
             
             // Zapisz do localStorage
             localStorage.setItem('adelbertus_cart', JSON.stringify(cart));
-            
-            // Aktualizuj przycisk PayPal
-            renderPayPalButton();
         }
 
         function addToCart(name, price, image = null, size = null) {
@@ -904,66 +991,6 @@
 
         function toggleCart() {
             document.getElementById('cartPanel').classList.toggle('open');
-        }
-
-        // ===== PRODUKTY =====
-        function loadProducts() {
-            const products = [
-                {
-                    name: 'Koszulka Premium "Wolność"',
-                    price: 120,
-                    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    category: 'tshirt'
-                },
-                {
-                    name: 'Bluza "Comfort Zone"',
-                    price: 200,
-                    image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    category: 'hoodie'
-                },
-                {
-                    name: 'Czapka "Urban Style"',
-                    price: 99,
-                    image: 'https://images.unsplash.com/photo-1588850561407-5d35a4dabcf0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    category: 'cap'
-                },
-                {
-                    name: 'Koszulka "Minimal"',
-                    price: 110,
-                    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    category: 'tshirt'
-                },
-                {
-                    name: 'Bluza z kapturem "Street"',
-                    price: 220,
-                    image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    category: 'hoodie'
-                },
-                {
-                    name: 'Czapka "Baseball"',
-                    price: 89,
-                    image: 'https://images.unsplash.com/photo-1588850561407-5d35a4dabcf0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    category: 'cap'
-                }
-            ];
-            
-            const productsGrid = document.querySelector('#shop .products-grid');
-            productsGrid.innerHTML = '';
-            
-            products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card fade-in';
-                productCard.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}" class="product-image">
-                    <div class="product-info">
-                        <div class="product-title">${product.name}</div>
-                        <div class="product-price">${product.price} zł</div>
-                        <button class="nav-btn" onclick="addToCart('${product.name}', ${product.price})">Dodaj do koszyka</button>
-                    </div>
-                `;
-                
-                productsGrid.appendChild(productCard);
-            });
         }
 
         // ===== STUDIO PROJEKTOWE =====
@@ -1066,37 +1093,14 @@
 
         // ===== PAYPAL =====
         function renderPayPalButton() {
-            const container = document.getElementById('paypal-button-container');
+            const container = document.getElementById('paypal-container-L4639S4363CZE');
             container.innerHTML = '';
             
             if (cart.length === 0) return;
             
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            paypal.Buttons({
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: total.toFixed(2),
-                                currency_code: 'PLN'
-                            }
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        showNotification('✅ Płatność zakończona sukcesem! Dziękujemy za zakupy.');
-                        cart = [];
-                        updateCart();
-                        toggleCart();
-                    });
-                },
-                onError: function(err) {
-                    showNotification('❌ Wystąpił błąd podczas płatności. Spróbuj ponownie.');
-                    console.error('PayPal error:', err);
-                }
-            }).render('#paypal-button-container');
+            paypal.HostedButtons({
+                hostedButtonId: "L4639S4363CZE",
+            }).render("#paypal-container-L4639S4363CZE");
         }
 
         function renderDesignPayPalButton() {
@@ -1200,7 +1204,6 @@
     </script>
 </body>
 </html>
-
 
 
 
