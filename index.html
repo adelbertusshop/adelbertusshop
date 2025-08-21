@@ -704,70 +704,174 @@
             </div>
         </section>
 
-        <!-- Studio projektowe -->
-        <section id="design">
-            <div class="section-title">
-                <h2>Studio Projektowe</h2>
-                <p>Stwórz swój unikalny produkt</p>
-            </div>
-            
-            <div class="design-studio">
-                <div class="canvas-container">
-                    <canvas id="designCanvas" width="500" height="400"></canvas>
-                </div>
-                
-                <div class="design-tools">
-                    <div class="tool-group">
-                        <div class="tool-title"><i class="fas fa-font"></i> Tekst</div>
-                        <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3" oninput="updateDesign()">
-                        
-                        <div class="flex gap-3 mb-3">
-                            <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
-                                <option value="Arial">Arial</option>
-                                <option value="Times New Roman">Times New Roman</option>
-                                <option value="Courier New">Courier New</option>
-                                <option value="Impact">Impact</option>
-                                <option value="Comic Sans MS">Comic Sans</option>
-                            </select>
-                            
-                            <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
-                        </div>
-                        
-                        <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3" oninput="updateDesign()">
-                    </div>
-                    
-                    <div class="tool-group">
-                        <div class="tool-title"><i class="fas fa-palette"></i> Opcje produktu</div>
-                        
-                        <select id="productType" class="w-full p-3 border rounded mb-3">
-                            <option value="tshirt">Koszulka (120 zł)</option>
-                            <option value="hoodie">Bluza (200 zł)</option>
-                            <option value="cap">Czapka (99 zł)</option>
-                        </select>
-                        
-                        <select id="productSize" class="w-full p-3 border rounded mb-3">
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
-                        </select>
-                        
-                        <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
-                        <button class="nav-btn gold-bg w-full" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
-                    </div>
-                </div>
-                
-                <div class="flex justify-center gap-4 mt-6">
-                    <button class="nav-btn gold-bg" onclick="renderDesign()"><i class="fas fa-sync"></i> Podgląd</button>
-                    <button class="nav-btn gold-bg" onclick="addToCartFromDesign()"><i class="fas fa-cart-plus"></i> Dodaj do koszyka</button>
-                    <button class="nav-btn gold-bg" onclick="sendDesignToEmail()"><i class="fas fa-envelope"></i> Wyślij projekt</button>
-                </div>
-                
-                <div id="paypal-design-container" class="mt-6"></div>
-            </div>
-        </section>
+     <!-- Studio projektowe -->
+<section id="design">
+    <div class="section-title">
+        <h2>Studio Projektowe</h2>
+        <p>Stwórz swój unikalny produkt</p>
+    </div>
 
+    <div class="design-studio">
+        <div class="canvas-container relative border p-2">
+            <canvas id="designCanvas" width="500" height="400" class="border"></canvas>
+        </div>
+
+        <div class="design-tools mt-4">
+            <!-- Tekst -->
+            <div class="tool-group mb-4">
+                <div class="tool-title"><i class="fas fa-font"></i> Tekst</div>
+                <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3" oninput="updateDesign()">
+
+                <div class="flex gap-3 mb-3">
+                    <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
+                        <option value="Arial">Arial</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Comic Sans MS">Comic Sans</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Georgia">Georgia</option>
+                    </select>
+
+                    <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
+                </div>
+
+                <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3" oninput="updateDesign()">
+
+                <div class="flex gap-2 mb-3">
+                    <button class="nav-btn gold-bg flex-1" onclick="rotateSelectedText(-10)">⟲ Obrót w lewo</button>
+                    <button class="nav-btn gold-bg flex-1" onclick="rotateSelectedText(10)">⟳ Obrót w prawo</button>
+                </div>
+            </div>
+
+            <!-- Opcje produktu -->
+            <div class="tool-group mb-4">
+                <div class="tool-title"><i class="fas fa-palette"></i> Opcje produktu</div>
+
+                <select id="productType" class="w-full p-3 border rounded mb-3">
+                    <option value="tshirt">Koszulka (120 zł)</option>
+                    <option value="hoodie">Bluza (200 zł)</option>
+                    <option value="cap">Czapka (99 zł)</option>
+                </select>
+
+                <select id="productSize" class="w-full p-3 border rounded mb-3">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+
+                <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
+                <button class="nav-btn gold-bg w-full mb-3" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
+
+                <div class="flex gap-2">
+                    <button class="nav-btn gold-bg flex-1" onclick="scaleSelected(1.1)">➕ Powiększ</button>
+                    <button class="nav-btn gold-bg flex-1" onclick="scaleSelected(0.9)">➖ Pomniejsz</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Akcje -->
+        <div class="flex justify-center gap-4 mt-6">
+            <button class="nav-btn gold-bg" onclick="renderDesign()"><i class="fas fa-sync"></i> Podgląd</button>
+            <button class="nav-btn gold-bg" onclick="addToCartFromDesign()"><i class="fas fa-cart-plus"></i> Dodaj do koszyka</button>
+            <button class="nav-btn gold-bg" onclick="sendDesignToEmail()"><i class="fas fa-envelope"></i> Wyślij projekt</button>
+            <button class="nav-btn gold-bg" onclick="exportDesign()"><i class="fas fa-download"></i> Eksportuj PNG</button>
+        </div>
+
+        <div id="paypal-design-container" class="mt-6"></div>
+    </div>
+</section>
+
+<script>
+const canvas = document.getElementById('designCanvas');
+const ctx = canvas.getContext('2d');
+
+let elements = [];
+let selectedIndex = -1;
+
+function updateDesign() {
+    const text = document.getElementById('designText').value;
+    const font = document.getElementById('fontFamily').value;
+    const size = parseInt(document.getElementById('fontSize').value);
+    const color = document.getElementById('textColor').value;
+
+    if(selectedIndex >= 0 && elements[selectedIndex].type === 'text') {
+        elements[selectedIndex].text = text;
+        elements[selectedIndex].font = font;
+        elements[selectedIndex].size = size;
+        elements[selectedIndex].color = color;
+    }
+    renderDesign();
+}
+
+function handleImageUpload() {
+    const file = document.getElementById('designImage').files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        elements.push({type:'image', src:e.target.result, x:100, y:100, scale:1, rotation:0});
+        renderDesign();
+    };
+    reader.readAsDataURL(file);
+}
+
+function renderDesign() {
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    elements.forEach(el => {
+        ctx.save();
+        ctx.translate(el.x + (el.width||0)/2, el.y + (el.height||0)/2);
+        ctx.rotate((el.rotation||0)*Math.PI/180);
+        ctx.scale(el.scale||1, el.scale||1);
+        if(el.type==='text') {
+            ctx.font = `${el.size}px ${el.font}`;
+            ctx.fillStyle = el.color;
+            ctx.textAlign = 'center';
+            ctx.fillText(el.text, 0, 0);
+            el.width = ctx.measureText(el.text).width;
+            el.height = el.size;
+        } else if(el.type==='image') {
+            const img = new Image();
+            img.src = el.src;
+            ctx.drawImage(img, -img.width/2, -img.height/2);
+            el.width = img.width;
+            el.height = img.height;
+        }
+        ctx.restore();
+    });
+}
+
+function rotateSelected(angle) {
+    if(selectedIndex>=0) {
+        elements[selectedIndex].rotation = (elements[selectedIndex].rotation||0)+angle;
+        renderDesign();
+    }
+}
+
+function scaleSelected(factor) {
+    if(selectedIndex>=0) {
+        elements[selectedIndex].scale = (elements[selectedIndex].scale||1)*factor;
+        renderDesign();
+    }
+}
+
+function exportDesign() {
+    const link = document.createElement('a');
+    link.download = 'projekt.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+}
+
+// Placeholder funkcje, które już masz
+function addToCartFromDesign() {
+    // Twój oryginalny kod dodawania do koszyka
+}
+
+function sendDesignToEmail() {
+    // Twój oryginalny kod wysyłania maila
+}
+</script>
+        
         <!-- Zbiórka -->
         <section id="charity">
             <div class="section-title">
@@ -1201,7 +1305,7 @@
                 cartTotal.textContent = `${total.toFixed(2)} zł`;
             }
             
-            // Zapisz do localStorage
+   // Zapisz do localStorage
             localStorage.setItem('adelbertus_cart', JSON.stringify(cart));
         }
 
@@ -1414,6 +1518,49 @@
 
         // Globalna funkcja do dodawania produktów
         window.addToCart = addToCart;
+
+        // ===== PRZECIĄGANIE ELEMENTÓW W STUDIO =====
+        let elements = [];
+        let selectedElement = null;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        const canvas = document.getElementById('designCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.addEventListener('mousedown', function(e) {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            selectedElement = elements.find(el => 
+                x >= el.x && x <= el.x + el.width &&
+                y >= el.y && y <= el.y + el.height
+            );
+            
+            if (selectedElement) {
+                offsetX = x - selectedElement.x;
+                offsetY = y - selectedElement.y;
+            }
+        });
+
+        canvas.addEventListener('mousemove', function(e) {
+            if (!selectedElement) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            selectedElement.x = e.clientX - rect.left - offsetX;
+            selectedElement.y = e.clientY - rect.top - offsetY;
+            
+            updateDesign();
+        });
+
+        canvas.addEventListener('mouseup', function() {
+            selectedElement = null;
+        });
+
+        canvas.addEventListener('mouseleave', function() {
+            selectedElement = null;
+        });
     </script>
 </body>
 </html>
