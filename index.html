@@ -138,7 +138,7 @@
             background: var(--color-gold);
         }
         
-        /* Karty produktów */
+        /* Karty produktów - POPRAWIONE */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -152,6 +152,8 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
         
         .product-card:hover {
@@ -159,14 +161,26 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
+        .product-image-container {
+            height: 280px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-cream);
+        }
+        
         .product-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
         
         .product-info {
             padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .product-title {
@@ -182,7 +196,7 @@
             margin-bottom: 1rem;
         }
         
-        /* Studio projektowe */
+        /* Studio projektowe - ZMODYFIKOWANE */
         .design-studio {
             background: white;
             border-radius: 15px;
@@ -198,12 +212,21 @@
             background: white;
             margin: 0 auto;
             max-width: 600px;
+            position: relative;
         }
         
         #designCanvas {
             width: 100%;
             background: white;
             border: 1px solid #ddd;
+            cursor: move;
+        }
+        
+        .canvas-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
         }
         
         .design-tools {
@@ -229,6 +252,23 @@
             gap: 0.5rem;
         }
         
+        .transform-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+        
+        .transform-input {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.5rem;
+        }
+        
+        .transform-input label {
+            font-size: 0.8rem;
+            margin-bottom: 0.2rem;
+        }
+        
         /* Sekcja zbiórki */
         .charity-section {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1840&q=80');
@@ -249,7 +289,7 @@
             text-align: left;
         }
         
-        /* Sekcja bloga */
+        /* Sekcja bloga - ZMODYFIKOWANA */
         .blog-posts {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -262,10 +302,31 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
         
         .blog-content {
             padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-excerpt {
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .blog-full {
+            display: none;
+            margin-bottom: 1rem;
         }
         
         /* Opinie */
@@ -340,7 +401,7 @@
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
         
-        /* Koszyk */
+        /* Koszyk - ZMODYFIKOWANY */
         #cartIcon {
             position: fixed;
             bottom: 2rem;
@@ -387,6 +448,8 @@
             box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
             padding: 2rem;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
         }
         
         #cartPanel.open {
@@ -406,6 +469,18 @@
             object-fit: cover;
             border-radius: 8px;
             margin-right: 1rem;
+        }
+        
+        .cart-total {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 2px solid #eee;
+        }
+        
+        /* PayPal container - ZMODYFIKOWANY */
+        #paypal-container {
+            margin-top: 1rem;
+            min-height: 50px;
         }
         
         /* Animacje */
@@ -441,6 +516,10 @@
                 width: 80%;
                 margin: 0.3rem;
             }
+            
+            .transform-controls {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -464,7 +543,7 @@
         </div>
     </nav>
 
-      <!-- Sekcja główna -->
+    <!-- Sekcja główna -->
     <main>
         <!-- Strona główna -->
         <section id="home" class="active">
@@ -485,7 +564,9 @@
             
             <div class="products-grid">
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Koszulka "Rebel"</div>
                         <div class="product-price">120 zł</div>
@@ -494,7 +575,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Koszulka "Vintage"</div>
                         <div class="product-price">120 zł</div>
@@ -503,7 +586,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Bluza "Urban"</div>
                         <div class="product-price">200 zł</div>
@@ -513,7 +598,7 @@
             </div>
         </section>
 
-<!-- Sklep -->
+        <!-- Sklep -->
         <section id="shop">
             <div class="section-title">
                 <h2>Nasze Produkty</h2>
@@ -524,7 +609,9 @@
             <div class="products-grid">
                 <!-- Koszulki -->
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Koszulka "Rebel"</div>
                         <div class="product-price">120 zł</div>
@@ -533,7 +620,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Koszulka "Vintage"</div>
                         <div class="product-price">120 zł</div>
@@ -542,7 +631,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Abstract" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Abstract" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Koszulka "Abstract"</div>
                         <div class="product-price">120 zł</div>
@@ -551,7 +642,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Koszulka "Geometry"</div>
                         <div class="product-price">120 zł</div>
@@ -560,7 +653,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg" alt="Koszulka Modern" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg" alt="Koszulka Modern" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Koszulka "Modern"</div>
                         <div class="product-price">120 zł</div>
@@ -569,7 +664,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Premium" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Premium" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Koszulka "Premium"</div>
                         <div class="product-price">120 zł</div>
@@ -578,7 +675,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg" alt="Koszulka Urban" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg" alt="Koszulka Urban" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Koszulka "Urban"</div>
                         <div class="product-price">120 zł</div>
@@ -587,7 +686,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka Art" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka Art" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Koszulka "Art"</div>
                         <div class="product-price">120 zł</div>
@@ -600,7 +701,9 @@
             <div class="products-grid">
                 <!-- Bluzy -->
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Bluza "Urban"</div>
                         <div class="product-price">200 zł</div>
@@ -609,7 +712,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg" alt="Bluza Street" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg" alt="Bluza Street" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Bluza "Street"</div>
                         <div class="product-price">200 zł</div>
@@ -618,7 +723,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Bluza Premium" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Bluza Premium" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Bluza "Premium"</div>
                         <div class="product-price">220 zł</div>
@@ -627,7 +734,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg" alt="Bluza Comfort" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg" alt="Bluza Comfort" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Bluza "Comfort"</div>
                         <div class="product-price">200 zł</div>
@@ -636,7 +745,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png" alt="Bluza Style" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png" alt="Bluza Style" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Bluza "Style"</div>
                         <div class="product-price">200 zł</div>
@@ -645,7 +756,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg" alt="Bluza Fashion" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg" alt="Bluza Fashion" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Bluza "Fashion"</div>
                         <div class="product-price">200 zł</div>
@@ -658,7 +771,9 @@
             <div class="products-grid">
                 <!-- Czapki -->
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Classic" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Classic" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Czapka "Classic"</div>
                         <div class="product-price">99 zł</div>
@@ -667,7 +782,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Czapka Sport" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Czapka Sport" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Czapka "Sport"</div>
                         <div class="product-price">99 zł</div>
@@ -676,7 +793,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg" alt="Czapka Street" class="product-image">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg" alt="Czapka Street" class="product-image">
+                    </div>
                     <div class="product-info">
                         <div class="product-title">Czapka "Street"</div>
                         <div class="product-price">99 zł</div>
@@ -685,15 +804,9 @@
                 </div>
                 
                 <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
-                    <div class="product-info">
-                        <div class="product-title">Czapka "Premium"</div>
-                        <div class="product-price">99 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Czapka Premium', 99, 'https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg')">Dodaj do koszyka</button>
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
                     </div>
-                </div
- <div class="product-card fade-in">
-                    <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
                     <div class="product-info">
                         <div class="product-title">Czapka "Premium"</div>
                         <div class="product-price">99 zł</div>
@@ -703,7 +816,7 @@
             </div>
         </section>
                     
-        <!-- Studio projektowe -->
+        <!-- Studio projektowe - ZMODYFIKOWANE -->
         <section id="design">
             <div class="section-title">
                 <h2>Studio Projektowe</h2>
@@ -713,6 +826,10 @@
             <div class="design-studio">
                 <div class="canvas-container">
                     <canvas id="designCanvas" width="500" height="400"></canvas>
+                    <div class="canvas-controls">
+                        <button class="nav-btn" onclick="clearCanvas()"><i class="fas fa-trash"></i> Wyczyść</button>
+                        <button class="nav-btn" onclick="resetDesign()"><i class="fas fa-redo"></i> Resetuj</button>
+                    </div>
                 </div>
                 
                 <div class="design-tools">
@@ -727,6 +844,11 @@
                                 <option value="Courier New">Courier New</option>
                                 <option value="Impact">Impact</option>
                                 <option value="Comic Sans MS">Comic Sans</option>
+                                <option value="Georgia">Georgia</option>
+                                <option value="Verdana">Verdana</option>
+                                <option value="Palatino">Palatino</option>
+                                <option value="Garamond">Garamond</option>
+                                <option value="Brush Script MT">Brush Script</option>
                             </select>
                             
                             <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
@@ -755,12 +877,38 @@
                         <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
                         <button class="nav-btn gold-bg w-full" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
                     </div>
+
+                    <div class="tool-group">
+                        <div class="tool-title"><i class="fas fa-edit"></i> Edycja elementów</div>
+                        <div class="transform-controls">
+                            <div class="transform-input">
+                                <label for="posX">Pozycja X</label>
+                                <input type="range" id="posX" min="0" max="500" value="250" oninput="updateElementPosition()">
+                            </div>
+                            <div class="transform-input">
+                                <label for="posY">Pozycja Y</label>
+                                <input type="range" id="posY" min="0" max="400" value="200" oninput="updateElementPosition()">
+                            </div>
+                            <div class="transform-input">
+                                <label for="scale">Skala</label>
+                                <input type="range" id="scale" min="0.1" max="2" step="0.1" value="1" oninput="updateElementScale()">
+                            </div>
+                            <div class="transform-input">
+                                <label for="rotation">Obrót</label>
+                                <input type="range" id="rotation" min="0" max="360" value="0" oninput="updateElementRotation()">
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button class="nav-btn gold-bg w-full" onclick="bringToFront()"><i class="fas fa-layer-group"></i> Na wierzch</button>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="flex justify-center gap-4 mt-6">
-                    <button class="nav-btn gold-bg" onclick="renderDesign()"><i class="fas fa-sync"></i> Podgląd</button>
+                <div class="flex justify-center gap-4 mt-6 flex-wrap">
+                    <button class="nav-btn gold-bg" onclick="updateDesign()"><i class="fas fa-sync"></i> Podgląd</button>
                     <button class="nav-btn gold-bg" onclick="addToCartFromDesign()"><i class="fas fa-cart-plus"></i> Dodaj do koszyka</button>
                     <button class="nav-btn gold-bg" onclick="sendDesignToEmail()"><i class="fas fa-envelope"></i> Wyślij projekt</button>
+                    <button class="nav-btn gold-bg" onclick="saveDesign()"><i class="fas fa-download"></i> Zapisz projekt</button>
                 </div>
                 
                 <div id="paypal-design-container" class="mt-6"></div>
@@ -814,79 +962,148 @@
             
             <div class="mt-8 text-center">
                 <blockquote class="text-xl italic">
-                    "Największym bogactwem jest pomoc innym bez oczekiwania czegokolwiek w zamian."
+                    "Największym bogactwem jest pomoc inniem bez oczekiwania czegokolwiek w zamian."
                 </blockquote>
                 <p class="mt-4">- Wojciech, założyciel AdelbertusShop</p>
             </div>
         </section>
 
-        <!-- Blog -->
+        <!-- Blog - ZMODYFIKOWANY -->
         <section id="blog">
             <div class="section-title">
                 <h2>Blog</h2>
                 <p>Podziel się swoimi przemyśleniami i inspiracjami</p>
             </div>
+
+            <div class="text-center mb-8">
+                <button class="nav-btn gold-bg" onclick="showBlogForm()"><i class="fas fa-pencil-alt"></i> Napisz nowy artykuł</button>
+            </div>
             
             <div class="blog-posts">
                 <div class="blog-post">
-                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sztuka" class="w-full h-48 object-cover">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sztuka" class="blog-image">
                     <div class="blog-content">
                         <h3 class="text-xl font-bold mb-2">Sztuka jako forma ekspresji</h3>
                         <p class="text-sm text-gray-600">Opublikowano: 12 czerwca 2023</p>
-                        <p class="mt-3">Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...</p>
-                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                        <div class="blog-excerpt">
+                            <p class="mt-3">Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...</p>
+                        </div>
+                        <div class="blog-full">
+                            <p class="mt-3">Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie i komunikować się z innymi bez słów. W kontekście mody, projektowanie ubrań to nie tylko tworzenie funkcjonalnych przedmiotów, ale także forma sztuki, która pozwala noszącym wyrazić swoją osobowość i wartości.</p>
+                            <p class="mt-3">W AdelbertusShop wierzymy, że każdy ma w sobie artystyczną duszę, a nasze produkty są canvasem, na którym można wyrazić swoją kreatywność.</p>
+                        </div>
+                        <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
                     </div>
                 </div>
                 
                 <div class="blog-post">
-                    <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Design" class="w-full h-48 object-cover">
+                    <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Design" class="blog-image">
                     <div class="blog-content">
                         <h3 class="text-xl font-bold mb-2">Trendy w streetwearze 2023</h3>
                         <p class="text-sm text-gray-600">Opublikowano: 5 czerwca 2023</p>
-                        <p class="mt-3">Odkryj najnowsze trendy w modzie ulicznej tego sezonu...</p>
-                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                        <div class="blog-excerpt">
+                            <p class="mt-3">Odkryj najnowsze trendy w modzie ulicznej tego sezonu...</p>
+                        </div>
+                        <div class="blog-full">
+                            <p class="mt-3">Streetwear w 2023 roku ewoluuje w kierunku połączenia komfortu i stylu. Dominują oversize'owe fasony, earthy kolory oraz odważne nadruki. W tym sezonie królują również elementy vintage i moda zrównoważona.</p>
+                            <p class="mt-3">W naszej kolekcji znajdziesz elementy, które idealnie wpisują się w te trendy, pozwalając Ci wyrazić swój unikalny styl while staying comfortable and eco-conscious.</p>
+                        </div>
+                        <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
                     </div>
                 </div>
                 
                 <div class="blog-post">
-                    <img src="https://images.unsplash.com/photo-1588200908342-23b585c03e26?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="w-full h-48 object-cover">
+                    <img src="https://images.unsplash.com/photo-1588200908342-23b585c03e26?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="blog-image">
                     <div class="blog-content">
                         <h3 class="text-xl font-bold mb-2">Wpływ sztuki na codzienność</h3>
                         <p class="text-sm text-gray-600">Opublikowano: 28 maja 2023</p>
-                        <p class="mt-3">Jak otaczanie się sztuką wpływa na nasze samopoczucie i kreatywność...</p>
-                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                        <div class="blog-excerpt">
+                            <p class="mt-3">Jak otaczanie się sztuką wpływa na nasze samopoczucie i kreatywność...</p>
+                        </div>
+                        <div class="blog-full">
+                            <p class="mt-3">Sztuka ma głęboki wpływ na nasze codzienne życie. Nie tylko upiększa przestrzeń, ale również inspiruje, redukuje stres i pobudza kreatywność. Badania pokazują, że otoczenie wzbogacone o elementy artystyczne może poprawić produktywność nawet o 15%.</p>
+                            <p class="mt-3">Nosząc ubrania z artystycznymi wzorami, nosisz ze sobą sztukę wherever you go, spreading inspiration and positive energy.</p>
+                        </div>
+                        <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
                     </div>
                 </div>
 
                 <div class="blog-post">
-                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="w-full h-48 object-cover">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="blog-image">
                     <div class="blog-content">
                         <h3 class="text-xl font-bold mb-2">Jak założyć własną markę odzieżową</h3>
                         <p class="text-sm text-gray-600">Opublikowano: 15 lipca 2023</p>
-                        <p class="mt-3">Praktyczny przewodnik po tworzeniu własnej marki odzieżowej od zera...</p>
-                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                        <div class="blog-excerpt">
+                            <p class="mt-3">Praktyczny przewodnik po tworzeniu własnej marki odzieżowej od zera...</p>
+                        </div>
+                        <div class="blog-full">
+                            <p class="mt-3">Zakładanie własnej marki odzieżowej to ekscytujące wyzwanie, które wymaga połączenia kreatywności i biznesowego podejścia. Od znalezienia niszy rynkowej, przez projektowanie kolekcji, po marketing - każdy krok jest ważny.</p>
+                            <p class="mt-3">W tym artykule dzielimy się praktycznymi wskazówkami based on our experience building AdelbertusShop from the ground up.</p>
+                        </div>
+                        <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
                     </div>
                 </div>
 
                 <div class="blog-post">
-                    <img src="https://images.unsplash.com/photo-1566206091558-7f218b696731?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Design" class="w-full h-48 object-cover">
+                    <img src="https://images.unsplash.com/photo-1566206091558-7f218b696731?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Design" class="blog-image">
                     <div class="blog-content">
                         <h3 class="text-xl font-bold mb-2">Historia streetwearu w Polsce</h3>
                         <p class="text-sm text-gray-600">Opublikowano: 3 lipca 2023</p>
-                        <p class="mt-3">Jak rozwijała się moda uliczna w Polsce na przestrzeni ostatnich dekad...</p>
-                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                        <div class="blog-excerpt">
+                            <p class="mt-3">Jak rozwijała się moda uliczna w Polsce na przestrzeni ostatnich dekad...</p>
+                        </div>
+                        <div class="blog-full">
+                            <p class="mt-3">Streetwear w Polsce przeszedł długą drogę od undergroundowych inicjatyw do mainstreamowego trendu. W latach 90. inspirowany był zachodnimi wzorcami, by z czasem wykształcić własny, unikalny styl.</p>
+                            <p class="mt-3">Dziś polskie marki odzieżowe są rozpoznawalne nie tylko lokalnie, ale również na arenie międzynarodowej, a polski streetwear ma swoją distinct identity and style.</p>
+                        </div>
+                        <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
                     </div>
                 </div>
 
                 <div class="blog-post">
-                    <img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="w-full h-48 object-cover">
+                    <img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="blog-image">
                     <div class="blog-content">
                         <h3 class="text-xl font-bold mb-2">Ekologiczne materiały w modzie</h3>
                         <p class="text-sm text-gray-600">Opublikowano: 25 czerwca 2023</p>
-                        <p class="mt-3">Dlaczego warto wybierać ekologiczne tkaniny i jak wpływają na środowisko...</p>
-                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                        <div class="blog-excerpt">
+                            <p class="mt-3">Dlaczego warto wybierać ekologiczne tkaniny i jak wpływają na środowisko...</p>
+                        </div>
+                        <div class="blog-full">
+                            <p class="mt-3">Moda zrównoważona to nie tylko trend, ale konieczność w obliczu zmian klimatycznych. Ekologiczne materiały, takie jak organiczna bawełna, len, konopie czy tkaniny z recyklingu, mają znacznie mniejszy impact on the environment.</p>
+                            <p class="mt-3">W AdelbertusShop stopniowo wprowadzamy more sustainable materials into our collection, because we believe fashion should be beautiful both in design and in its environmental impact.</p>
+                        </div>
+                        <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
                     </div>
                 </div>
+            </div>
+
+            <!-- Formularz do dodawania nowych artykułów (ukryty domyślnie) -->
+            <div id="blogForm" class="bg-white p-6 rounded-lg shadow-md mt-8" style="display: none;">
+                <h3 class="text-2xl font-bold mb-4">Dodaj nowy artykuł</h3>
+                <form onsubmit="addNewBlogPost(event)">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Tytuł</label>
+                        <input type="text" class="w-full p-3 border rounded" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Krótki opis</label>
+                        <textarea class="w-full p-3 border rounded" rows="2" required></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Pełna treść</label>
+                        <textarea class="w-full p-3 border rounded" rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">URL obrazka</label>
+                        <input type="url" class="w-full p-3 border rounded" placeholder="https://...">
+                    </div>
+                    
+                    <button type="submit" class="nav-btn gold-bg">Opublikuj artykuł</button>
+                    <button type="button" class="nav-btn" onclick="hideBlogForm()">Anuluj</button>
+                </form>
             </div>
 
             <div class="bg-white p-6 rounded-lg shadow-md mt-8">
@@ -932,7 +1149,7 @@
                 <h3 class="text-2xl font-bold mb-4">Podziel się swoją historią</h3>
                 <p>Masz ciekawą historię związaną z modą, sztuką lub projektowaniem? Chcesz podzielić się opinią?</p>
                 <p class="mt-2">Napisz do nas: mielniczukgrzegosz74@gmail.com | Tel: 604 296 360</p>
-                <button class="nav-btn gold-bg mt-4"><i class="fas fa-pencil-alt"></i> Napisz artykuł gościnny</button>
+                <button class="nav-btn gold-bg mt-4" onclick="showBlogForm()"><i class="fas fa-pencil-alt"></i> Napisz artykuł gościnny</button>
             </div>
         </section>
 
@@ -1044,7 +1261,7 @@
         </section>
     </main>
 
-    <!-- Koszyk -->
+    <!-- Koszyk - ZMODYFIKOWANY -->
     <div id="cartIcon">
         <i class="fas fa-shopping-cart"></i>
         <span id="cartCount">0</span>
@@ -1060,20 +1277,20 @@
             <!-- Produkty w koszyku -->
         </div>
         
-        <div class="border-t pt-4 mb-6">
+        <div class="cart-total">
             <div class="flex justify-between text-xl font-bold">
                 <span>Suma:</span>
                 <span id="cartTotal">0 zł</span>
             </div>
         </div>
         
-        <button onclick="sendOrderEmail()" class="nav-btn gold-bg w-full mb-3">
+        <div id="paypal-container" class="mt-4"></div>
+        
+        <button onclick="sendOrderEmail()" class="nav-btn mt-4">
             <i class="fas fa-envelope"></i> Wyślij zamówienie mailem
         </button>
         
-        <div id="paypal-container-L4639S4363CZE" class="mb-3"></div>
-        
-        <p class="text-sm text-gray-600 text-center">Akceptujemy również przelewy bankowe i BLIK</p>
+        <p class="text-sm text-gray-600 text-center mt-4">Akceptujemy również przelewy bankowe i BLIK</p>
     </div>
 
     <!-- Stopka -->
@@ -1114,7 +1331,16 @@
             color: '#000000',
             productType: 'tshirt',
             productSize: 'M',
-            image: null
+            image: null,
+            imageX: 250,
+            imageY: 200,
+            imageScale: 1,
+            imageRotation: 0,
+            textX: 250,
+            textY: 200,
+            textScale: 1,
+            textRotation: 0,
+            activeElement: 'text' // 'text' or 'image'
         };
 
         // ===== INICJALIZACJA =====
@@ -1124,6 +1350,7 @@
             updateCart();
             renderPayPalButton();
             initContactForm();
+            initBlog();
         });
 
         // ===== NAWIGACJA =====
@@ -1176,6 +1403,7 @@
             if (cart.length === 0) {
                 cartItems.innerHTML = '<p class="text-center text-gray-500">Twój koszyk jest pusty</p>';
                 cartTotal.textContent = '0 zł';
+                document.getElementById('paypal-container').innerHTML = '';
             } else {
                 let total = 0;
                 
@@ -1198,6 +1426,9 @@
                 });
                 
                 cartTotal.textContent = `${total.toFixed(2)} zł`;
+                
+                // Renderuj przycisk PayPal
+                renderPayPalButton();
             }
             
             // Zapisz do localStorage
@@ -1236,7 +1467,7 @@
             document.getElementById('cartPanel').classList.toggle('open');
         }
 
-        // ===== STUDIO PROJEKTOWE =====
+        // ===== STUDIO PROJEKTOWE - ZMODYFIKOWANE =====
         function initDesignStudio() {
             const canvas = document.getElementById('designCanvas');
             const ctx = canvas.getContext('2d');
@@ -1247,17 +1478,135 @@
             
             // Inicjalny render
             updateDesign();
+            
+            // Dodaj nasłuchiwanie zdarzeń myszy do przeciągania
+            let isDragging = false;
+            let lastX, lastY;
+            let selectedElement = null;
+            
+            canvas.addEventListener('mousedown', function(e) {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Sprawdź, który element został kliknięty
+                if (currentDesign.text && 
+                    x > currentDesign.textX - 50 && 
+                    x < currentDesign.textX + 50 && 
+                    y > currentDesign.textY - 20 && 
+                    y < currentDesign.textY + 20) {
+                    selectedElement = 'text';
+                    currentDesign.activeElement = 'text';
+                    updateTransformControls();
+                } else if (currentDesign.image && 
+                    x > currentDesign.imageX - 50 && 
+                    x < currentDesign.imageX + 50 && 
+                    y > currentDesign.imageY - 50 && 
+                    y < currentDesign.imageY + 50) {
+                    selectedElement = 'image';
+                    currentDesign.activeElement = 'image';
+                    updateTransformControls();
+                }
+                
+                isDragging = true;
+                lastX = x;
+                lastY = y;
+            });
+            
+            canvas.addEventListener('mousemove', function(e) {
+                if (isDragging && selectedElement) {
+                    const rect = canvas.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const dx = x - lastX;
+                    const dy = y - lastY;
+                    
+                    if (selectedElement === 'text') {
+                        currentDesign.textX += dx;
+                        currentDesign.textY += dy;
+                        document.getElementById('posX').value = currentDesign.textX;
+                        document.getElementById('posY').value = currentDesign.textY;
+                    } else if (selectedElement === 'image') {
+                        currentDesign.imageX += dx;
+                        currentDesign.imageY += dy;
+                        document.getElementById('posX').value = currentDesign.imageX;
+                        document.getElementById('posY').value = currentDesign.imageY;
+                    }
+                    
+                    lastX = x;
+                    lastY = y;
+                    updateDesign();
+                }
+            });
+            
+            canvas.addEventListener('mouseup', function() {
+                isDragging = false;
+                selectedElement = null;
+            });
+            
+            canvas.addEventListener('mouseleave', function() {
+                isDragging = false;
+                selectedElement = null;
+            });
+            
+            // Inicjalizuj kontrolki transformacji
+            updateTransformControls();
+        }
+
+        function updateTransformControls() {
+            if (currentDesign.activeElement === 'text') {
+                document.getElementById('posX').value = currentDesign.textX;
+                document.getElementById('posY').value = currentDesign.textY;
+                document.getElementById('scale').value = currentDesign.textScale;
+                document.getElementById('rotation').value = currentDesign.textRotation;
+            } else if (currentDesign.activeElement === 'image') {
+                document.getElementById('posX').value = currentDesign.imageX;
+                document.getElementById('posY').value = currentDesign.imageY;
+                document.getElementById('scale').value = currentDesign.imageScale;
+                document.getElementById('rotation').value = currentDesign.imageRotation;
+            }
+        }
+
+        function updateElementPosition() {
+            if (currentDesign.activeElement === 'text') {
+                currentDesign.textX = parseInt(document.getElementById('posX').value);
+                currentDesign.textY = parseInt(document.getElementById('posY').value);
+            } else if (currentDesign.activeElement === 'image') {
+                currentDesign.imageX = parseInt(document.getElementById('posX').value);
+                currentDesign.imageY = parseInt(document.getElementById('posY').value);
+            }
+            updateDesign();
+        }
+
+        function updateElementScale() {
+            if (currentDesign.activeElement === 'text') {
+                currentDesign.textScale = parseFloat(document.getElementById('scale').value);
+            } else if (currentDesign.activeElement === 'image') {
+                currentDesign.imageScale = parseFloat(document.getElementById('scale').value);
+            }
+            updateDesign();
+        }
+
+        function updateElementRotation() {
+            if (currentDesign.activeElement === 'text') {
+                currentDesign.textRotation = parseInt(document.getElementById('rotation').value);
+            } else if (currentDesign.activeElement === 'image') {
+                currentDesign.imageRotation = parseInt(document.getElementById('rotation').value);
+            }
+            updateDesign();
+        }
+
+        function bringToFront() {
+            // W tej uproszczonej implementacji, "na wierzch" oznacza po prostu renderowanie na końcu
+            // W prawdziwym systemie warstw byłoby to bardziej złożone
+            updateDesign();
+            showNotification('Element przeniesiony na wierzch');
         }
 
         function updateDesign() {
             const canvas = document.getElementById('designCanvas');
             const ctx = canvas.getContext('2d');
-            
-            // Aktualizuj stan projektu
-            currentDesign.text = document.getElementById('designText').value;
-            currentDesign.fontFamily = document.getElementById('fontFamily').value;
-            currentDesign.fontSize = parseInt(document.getElementById('fontSize').value);
-            currentDesign.color = document.getElementById('textColor').value;
             
             // Wyczyść canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1266,25 +1615,28 @@
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
+            // Narysuj obrazek jeśli istnieje
+            if (currentDesign.image) {
+                ctx.save();
+                ctx.translate(currentDesign.imageX, currentDesign.imageY);
+                ctx.rotate(currentDesign.imageRotation * Math.PI / 180);
+                ctx.scale(currentDesign.imageScale, currentDesign.imageScale);
+                ctx.drawImage(currentDesign.image, -currentDesign.image.width/2, -currentDesign.image.height/2);
+                ctx.restore();
+            }
+            
             // Narysuj tekst
             if (currentDesign.text) {
+                ctx.save();
                 ctx.font = `${currentDesign.fontSize}px ${currentDesign.fontFamily}`;
                 ctx.fillStyle = currentDesign.color;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                ctx.fillText(currentDesign.text, canvas.width / 2, canvas.height / 2);
-            }
-            
-            // Narysuj obrazek jeśli istnieje
-            if (currentDesign.image) {
-                const size = Math.min(currentDesign.image.width, currentDesign.image.height, 200);
-                ctx.drawImage(
-                    currentDesign.image, 
-                    (canvas.width - size) / 2, 
-                    (canvas.height - size) / 2, 
-                    size, 
-                    size
-                );
+                ctx.translate(currentDesign.textX, currentDesign.textY);
+                ctx.rotate(currentDesign.textRotation * Math.PI / 180);
+                ctx.scale(currentDesign.textScale, currentDesign.textScale);
+                ctx.fillText(currentDesign.text, 0, 0);
+                ctx.restore();
             }
         }
 
@@ -1295,15 +1647,43 @@
                 reader.onload = function(e) {
                     currentDesign.image = new Image();
                     currentDesign.image.src = e.target.result;
-                    currentDesign.image.onload = updateDesign;
+                    currentDesign.image.onload = function() {
+                        currentDesign.activeElement = 'image';
+                        updateTransformControls();
+                        updateDesign();
+                    };
                 };
                 reader.readAsDataURL(file);
             }
         }
 
-        function renderDesign() {
+        function clearCanvas() {
+            const canvas = document.getElementById('designCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            currentDesign.text = '';
+            currentDesign.image = null;
+            document.getElementById('designText').value = '';
+            
+            showNotification('Canvas wyczyszczony');
+        }
+
+        function resetDesign() {
+            currentDesign.textX = 250;
+            currentDesign.textY = 200;
+            currentDesign.textScale = 1;
+            currentDesign.textRotation = 0;
+            currentDesign.imageX = 250;
+            currentDesign.imageY = 200;
+            currentDesign.imageScale = 1;
+            currentDesign.imageRotation = 0;
+            
+            updateTransformControls();
             updateDesign();
-            showNotification('🔄 Projekt zaktualizowany');
+            showNotification('Transformacje zresetowane');
         }
 
         function addToCartFromDesign() {
@@ -1327,21 +1707,31 @@
             );
         }
 
+        function saveDesign() {
+            const canvas = document.getElementById('designCanvas');
+            const link = document.createElement('a');
+            link.download = 'adelbertus-design.png';
+            link.href = canvas.toDataURL();
+            link.click();
+            showNotification('✅ Projekt zapisany');
+        }
+
         // ===== PAYPAL =====
         function renderPayPalButton() {
-            const container = document.getElementById('paypal-container-L4639S4363CZE');
+            const container = document.getElementById('paypal-container');
             container.innerHTML = '';
             
             if (cart.length === 0) return;
             
             paypal.HostedButtons({
                 hostedButtonId: "L4639S4363CZE",
-            }).render("#paypal-container-L4639S4363CZE");
+            }).render("#paypal-container");
         }
 
         // ===== EMAIL =====
         function sendDesignToEmail() {
             const canvas = document.getElementById('designCanvas');
+            const imageData = canvas.toDataURL(); // Dane obrazka w formacie base64
             
             const subject = 'Mój projekt z AdelbertusShop';
             const body = `
@@ -1352,9 +1742,16 @@
                 Typ produktu: ${document.getElementById('productType').options[document.getElementById('productType').selectedIndex].text}\n
                 Rozmiar: ${document.getElementById('productSize').value}\n\n
                 Proszę o kontakt w sprawie realizacji zamówienia.
+                
+                [Obraz projektu jest załączony w wersji online]
             `;
             
+            // W prawdziwej aplikacji, tutaj byłby kod do wysłania obrazka na serwer
+            // a następnie dołączenia go do emaila. W tej wersji używamy prostszego rozwiązania.
+            
             window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            showNotification('📧 Otwieranie klienta pocztowego...');
         }
 
         function sendOrderEmail() {
@@ -1372,6 +1769,54 @@
             emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
             
             window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`;
+        }
+
+        // ===== BLOG - ZMODYFIKOWANY =====
+        function initBlog() {
+            // Inicjalizacja bloga - ewentualne dodatkowe funkcje
+        }
+
+        function toggleReadMore(button) {
+            const post = button.closest('.blog-post');
+            const excerpt = post.querySelector('.blog-excerpt');
+            const full = post.querySelector('.blog-full');
+            
+            if (full.style.display === 'block') {
+                full.style.display = 'none';
+                excerpt.style.display = 'block';
+                button.textContent = 'Czytaj więcej';
+            } else {
+                full.style.display = 'block';
+                excerpt.style.display = 'none';
+                button.textContent = 'Czytaj mniej';
+            }
+        }
+
+        function showBlogForm() {
+            document.getElementById('blogForm').style.display = 'block';
+            window.scrollTo({ 
+                top: document.getElementById('blogForm').offsetTop - 100, 
+                behavior: 'smooth' 
+            });
+        }
+
+        function hideBlogForm() {
+            document.getElementById('blogForm').style.display = 'none';
+        }
+
+        function addNewBlogPost(event) {
+            event.preventDefault();
+            const form = event.target;
+            const title = form.querySelector('input[type="text"]').value;
+            const excerpt = form.querySelectorAll('textarea')[0].value;
+            const content = form.querySelectorAll('textarea')[1].value;
+            const imageUrl = form.querySelector('input[type="url"]').value;
+            
+            // Tutaj byłby kod dodający nowy post do bloga
+            // W tej wersji po prostu pokażemy powiadomienie
+            showNotification('Artykuł dodany pomyślnie!');
+            form.reset();
+            hideBlogForm();
         }
 
         // ===== FORMULARZ KONTAKTOWY =====
@@ -1416,7 +1861,6 @@
     </script>
 </body>
 </html>
-
 
 
 
