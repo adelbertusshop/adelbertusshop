@@ -29,6 +29,7 @@
             background: var(--color-light);
             color: #333;
             line-height: 1.6;
+            padding-bottom: 80px; /* Dodatkowe miejsce na przyciski */
         }
         
         h1, h2, h3, h4, h5 {
@@ -521,6 +522,33 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Nowe style dla lepszego układu */
+        .sticky-buttons {
+            position: sticky;
+            bottom: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 98;
+            margin-top: 2rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .design-preview {
+            margin-top: 2rem;
+            text-align: center;
+            padding: 1rem;
+            background: var(--color-cream);
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -555,11 +583,11 @@
             <div class="charity-section">
                 <h3 class="text-3xl font-bold mb-4">Razem możemy więcej</h3>
                 <p>Każdy zakup to wsparcie dla Domu Dziecka "Promyk"</p>
-                <a href="#charity" class="nav-btn gold-bg" style="margin-top: 1.5rem;">Dowiedz się więcej</a>
+                <button class="nav-btn gold-bg" style="margin-top: 1.5rem;" data-section="charity">Dowiedz się więcej</button>
             </div>
             
             <div class="section-title">
-                <h3>Nasze najpopularniejsze produkty</h3>
+                <h3>Nasze najpopularniejsze produkte</h3>
             </div>
             
             <div class="products-grid">
@@ -570,7 +598,7 @@
                     <div class="product-info">
                         <div class="product-title">Koszulka "Rebel"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Koszulka Rebel', 120, 'https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Rebel" data-price="120" data-image="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -581,7 +609,7 @@
                     <div class="product-info">
                         <div class="product-title">Koszulka "Vintage"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Koszulka Vintage', 120, 'https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Vintage" data-price="120" data-image="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -592,7 +620,7 @@
                     <div class="product-info">
                         <div class="product-title">Bluza "Urban"</div>
                         <div class="product-price">200 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Bluza Urban', 200, 'https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Urban" data-price="200" data-image="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
             </div>
@@ -615,7 +643,7 @@
                     <div class="product-info">
                         <div class="product-title">Koszulka "Rebel"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Koszulka Rebel', 120, 'https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Rebel" data-price="120" data-image="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -626,7 +654,7 @@
                     <div class="product-info">
                         <div class="product-title">Koszulka "Vintage"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Koszulka Vintage', 120, 'https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Vintage" data-price="120" data-image="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -637,7 +665,7 @@
                     <div class="product-info">
                         <div class="product-title">Koszulka "Abstract"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Koszulka Abstract', 120, 'https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Abstract" data-price="120" data-image="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -648,7 +676,7 @@
                     <div class="product-info">
                         <div class="product-title">Koszulka "Geometry"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Koszulka Geometry', 120, 'https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Geometry" data-price="120" data-image="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -659,7 +687,7 @@
                     <div class="product-info">
                         <div class="product-title">Koszulka "Modern"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Koszulka Modern', 120, 'https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Modern" data-price="120" data-image="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -670,7 +698,7 @@
                     <div class="product-info">
                         <div class="product-title">Koszulka "Premium"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Koszulka Premium', 120, 'https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Premium" data-price="120" data-image="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -681,7 +709,7 @@
                     <div class="product-info">
                         <div class="product-title">Koszulka "Urban"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Koszulka Urban', 120, 'https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Urban" data-price="120" data-image="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -692,7 +720,7 @@
                     <div class="product-info">
                         <div class="product-title">Koszulka "Art"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Koszulka Art', 120, 'https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Art" data-price="120" data-image="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png">Dodaj do koszyka</button>
                     </div>
                 </div>
             </div>
@@ -707,7 +735,7 @@
                     <div class="product-info">
                         <div class="product-title">Bluza "Urban"</div>
                         <div class="product-price">200 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Bluza Urban', 200, 'https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Urban" data-price="200" data-image="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -718,7 +746,7 @@
                     <div class="product-info">
                         <div class="product-title">Bluza "Street"</div>
                         <div class="product-price">200 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Bluza Street', 200, 'https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Street" data-price="200" data-image="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -729,7 +757,7 @@
                     <div class="product-info">
                         <div class="product-title">Bluza "Premium"</div>
                         <div class="product-price">220 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Bluza Premium', 220, 'https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Premium" data-price="220" data-image="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -740,7 +768,7 @@
                     <div class="product-info">
                         <div class="product-title">Bluza "Comfort"</div>
                         <div class="product-price">200 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Bluza Comfort', 200, 'https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Comfort" data-price="200" data-image="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -751,7 +779,7 @@
                     <div class="product-info">
                         <div class="product-title">Bluza "Style"</div>
                         <div class="product-price">200 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Bluza Style', 200, 'https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Style" data-price="200" data-image="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -762,7 +790,7 @@
                     <div class="product-info">
                         <div class="product-title">Bluza "Fashion"</div>
                         <div class="product-price">200 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Bluza Fashion', 200, 'https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Fashion" data-price="200" data-image="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
             </div>
@@ -777,7 +805,7 @@
                     <div class="product-info">
                         <div class="product-title">Czapka "Classic"</div>
                         <div class="product-price">99 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Czapka Classic', 99, 'https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Classic" data-price="99" data-image="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -788,7 +816,7 @@
                     <div class="product-info">
                         <div class="product-title">Czapka "Sport"</div>
                         <div class="product-price">99 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Czapka Sport', 99, 'https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Sport" data-price="99" data-image="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -799,7 +827,7 @@
                     <div class="product-info">
                         <div class="product-title">Czapka "Street"</div>
                         <div class="product-price">99 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Czapka Street', 99, 'https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Street" data-price="99" data-image="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
@@ -810,7 +838,7 @@
                     <div class="product-info">
                         <div class="product-title">Czapka "Premium"</div>
                         <div class="product-price">99 zł</div>
-                        <button class="nav-btn" onclick="addToCart('Czapka Premium', 99, 'https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg')">Dodaj do koszyka</button>
+                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Premium" data-price="99" data-image="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
             </div>
@@ -904,11 +932,18 @@
                     </div>
                 </div>
                 
-                <div class="flex justify-center gap-4 mt-6 flex-wrap">
-                    <button class="nav-btn gold-bg" onclick="updateDesign()"><i class="fas fa-sync"></i> Podgląd</button>
-                    <button class="nav-btn gold-bg" onclick="addToCartFromDesign()"><i class="fas fa-cart-plus"></i> Dodaj do koszyka</button>
-                    <button class="nav-btn gold-bg" onclick="sendDesignToEmail()"><i class="fas fa-envelope"></i> Wyślij projekt</button>
-                    <button class="nav-btn gold-bg" onclick="saveDesign()"><i class="fas fa-download"></i> Zapisz projekt</button>
+                <div class="sticky-buttons">
+                    <div class="action-buttons">
+                        <button class="nav-btn gold-bg" onclick="updateDesign()"><i class="fas fa-sync"></i> Podgląd</button>
+                        <button class="nav-btn gold-bg" onclick="addToCartFromDesign()"><i class="fas fa-cart-plus"></i> Dodaj do koszyka</button>
+                        <button class="nav-btn gold-bg" onclick="sendDesignToEmail()"><i class="fas fa-envelope"></i> Wyślij projekt</button>
+                        <button class="nav-btn gold-bg" onclick="saveDesign()"><i class="fas fa-download"></i> Zapisz projekt</button>
+                    </div>
+                </div>
+                
+                <div class="design-preview">
+                    <h3>Podgląd Twojego projektu</h3>
+                    <p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>
                 </div>
                 
                 <div id="paypal-design-container" class="mt-6"></div>
@@ -1005,72 +1040,8 @@
                             <p class="mt-3">Odkryj najnowsze trendy w modzie ulicznej tego sezonu...</p>
                         </div>
                         <div class="blog-full">
-                            <p class="mt-3">Streetwear w 2023 roku ewoluuje w kierunku połączenia komfortu i stylu. Dominują oversize'owe fasony, earthy kolory oraz odważne nadruki. W tym sezonie królują również elementy vintage i moda zrównoważona.</p>
+                            <p class="mt-3">Streetwear w 2023 roku ewoluuje w kierunku połączenia komfortu and style. Dominują oversize'owe fasony, earthy kolory oraz odważne nadruki. W tym sezonie królują również elementy vintage i moda zrównoważona.</p>
                             <p class="mt-3">W naszej kolekcji znajdziesz elementy, które idealnie wpisują się w te trendy, pozwalając Ci wyrazić swój unikalny styl while staying comfortable and eco-conscious.</p>
-                        </div>
-                        <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
-                    </div>
-                </div>
-                
-                <div class="blog-post">
-                    <img src="https://images.unsplash.com/photo-1588200908342-23b585c03e26?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="blog-image">
-                    <div class="blog-content">
-                        <h3 class="text-xl font-bold mb-2">Wpływ sztuki na codzienność</h3>
-                        <p class="text-sm text-gray-600">Opublikowano: 28 maja 2023</p>
-                        <div class="blog-excerpt">
-                            <p class="mt-3">Jak otaczanie się sztuką wpływa na nasze samopoczucie i kreatywność...</p>
-                        </div>
-                        <div class="blog-full">
-                            <p class="mt-3">Sztuka ma głęboki wpływ na nasze codzienne życie. Nie tylko upiększa przestrzeń, ale również inspiruje, redukuje stres i pobudza kreatywność. Badania pokazują, że otoczenie wzbogacone o elementy artystyczne może poprawić produktywność nawet o 15%.</p>
-                            <p class="mt-3">Nosząc ubrania z artystycznymi wzorami, nosisz ze sobą sztukę wherever you go, spreading inspiration and positive energy.</p>
-                        </div>
-                        <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
-                    </div>
-                </div>
-
-                <div class="blog-post">
-                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="blog-image">
-                    <div class="blog-content">
-                        <h3 class="text-xl font-bold mb-2">Jak założyć własną markę odzieżową</h3>
-                        <p class="text-sm text-gray-600">Opublikowano: 15 lipca 2023</p>
-                        <div class="blog-excerpt">
-                            <p class="mt-3">Praktyczny przewodnik po tworzeniu własnej marki odzieżowej od zera...</p>
-                        </div>
-                        <div class="blog-full">
-                            <p class="mt-3">Zakładanie własnej marki odzieżowej to ekscytujące wyzwanie, które wymaga połączenia kreatywności i biznesowego podejścia. Od znalezienia niszy rynkowej, przez projektowanie kolekcji, po marketing - każdy krok jest ważny.</p>
-                            <p class="mt-3">W tym artykule dzielimy się praktycznymi wskazówkami based on our experience building AdelbertusShop from the ground up.</p>
-                        </div>
-                        <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
-                    </div>
-                </div>
-
-                <div class="blog-post">
-                    <img src="https://images.unsplash.com/photo-1566206091558-7f218b696731?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Design" class="blog-image">
-                    <div class="blog-content">
-                        <h3 class="text-xl font-bold mb-2">Historia streetwearu w Polsce</h3>
-                        <p class="text-sm text-gray-600">Opublikowano: 3 lipca 2023</p>
-                        <div class="blog-excerpt">
-                            <p class="mt-3">Jak rozwijała się moda uliczna w Polsce na przestrzeni ostatnich dekad...</p>
-                        </div>
-                        <div class="blog-full">
-                            <p class="mt-3">Streetwear w Polsce przeszedł długą drogę od undergroundowych inicjatyw do mainstreamowego trendu. W latach 90. inspirowany był zachodnimi wzorcami, by z czasem wykształcić własny, unikalny styl.</p>
-                            <p class="mt-3">Dziś polskie marki odzieżowe są rozpoznawalne nie tylko lokalnie, ale również na arenie międzynarodowej, a polski streetwear ma swoją distinct identity and style.</p>
-                        </div>
-                        <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
-                    </div>
-                </div>
-
-                <div class="blog-post">
-                    <img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="blog-image">
-                    <div class="blog-content">
-                        <h3 class="text-xl font-bold mb-2">Ekologiczne materiały w modzie</h3>
-                        <p class="text-sm text-gray-600">Opublikowano: 25 czerwca 2023</p>
-                        <div class="blog-excerpt">
-                            <p class="mt-3">Dlaczego warto wybierać ekologiczne tkaniny i jak wpływają na środowisko...</p>
-                        </div>
-                        <div class="blog-full">
-                            <p class="mt-3">Moda zrównoważona to nie tylko trend, ale konieczność w obliczu zmian klimatycznych. Ekologiczne materiały, takie jak organiczna bawełna, len, konopie czy tkaniny z recyklingu, mają znacznie mniejszy impact on the environment.</p>
-                            <p class="mt-3">W AdelbertusShop stopniowo wprowadzamy more sustainable materials into our collection, because we believe fashion should be beautiful both in design and in its environmental impact.</p>
                         </div>
                         <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
                     </div>
@@ -1105,45 +1076,6 @@
                     <button type="button" class="nav-btn" onclick="hideBlogForm()">Anuluj</button>
                 </form>
             </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-md mt-8">
-                <h3 class="text-2xl font-bold mb-4">Opinie naszych klientów</h3>
-                
-                <div class="reviews">
-                    <div class="review">
-                        <div class="review-header">
-                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Anna" class="review-avatar">
-                            <div>
-                                <div class="font-bold">Anna Nowak</div>
-                                <div class="review-stars">★★★★★</div>
-                            </div>
-                        </div>
-                        <p>"Zamówiłam bluzę z własnym projektem i jestem zachwycona! Jakość wykonania jest rewelacyjna, a obsługa klienta na najwyższym poziomie. Na pewno wrócę po więcej!"</p>
-                    </div>
-                    
-                    <div class="review">
-                        <div class="review-header">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Tomasz" class="review-avatar">
-                            <div>
-                                <div class="font-bold">Tomasz Kowalski</div>
-                                <div class="review-stars">★★★★★</div>
-                            </div>
-                        </div>
-                        <p>"Kupiłem kilka koszulek i czapkę. Wszystko idealnie pasuje, materiały są wysokiej jakości, a wzory nie blakną po praniu. Polecam z czystym sumieniem!"</p>
-                    </div>
-                    
-                    <div class="review">
-                        <div class="review-header">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Katarzyna" class="review-avatar">
-                            <div>
-                                <div class="font-bold">Katarzyna Wiśniewska</div>
-                                <div class="review-stars">★★★★☆</div>
-                            </div>
-                        </div>
-                        <p>"Świetny sklep z unikalnymi projektami. Zamówienie dotarło szybko, a produkt wyglądał dokładnie tak jak na zdjęciu. Jedyna uwaga - trochę długi czas realizacji."</p>
-                    </div>
-                </div>
-            </div>
             
             <div class="mt-8 text-center">
                 <h3 class="text-2xl font-bold mb-4">Podziel się swoją historią</h3>
@@ -1172,27 +1104,6 @@
                     <p>2. Akceptowane formy płatności: PayPal, przelew bankowy, BLIK.</p>
                     <p>3. Realizacja zamówienia następuje po zaksięgowaniu płatności.</p>
                 </div>
-                
-                <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-3">§3 Dostawa</h3>
-                    <p>1. Czas realizacji zamówienia: do 5 dni roboczych.</p>
-                    <p>2. Koszt dostawy: 15 zł (darmowa dostawa przy zamówieniach powyżej 300 zł).</p>
-                    <p>3. Przesyłki wysyłane są za pośrednictwem firmy kurierskiej.</p>
-                </div>
-                
-                <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-3">§4 Zwroty i reklamacje</h3>
-                    <p>1. Konsument ma prawo do odstąpienia od umowy w ciągu 14 dni bez podawania przyczyny.</p>
-                    <p>2. Produkty personalizowane zwrotowi nie podlegają.</p>
-                    <p>3. Reklamacje należy składać na adres: mielniczukgrzegosz74@gmail.com</p>
-                </div>
-                
-                <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-3">§5 Dane osobowe</h3>
-                    <p>1. Administratorem danych osobowych jest właściciel sklepu.</p>
-                    <p>2. Dane przetwarzane są wyłącznie w celu realizacji zamówienia.</p>
-                    <p>3. Zgodnie z RODO, masz prawo dostępu do swoich danych, ich sprostowania oraz usunięcia.</p>
-                </div>
             </div>
         </section>
 
@@ -1215,19 +1126,6 @@
                         <p><i class="fas fa-check gold-text"></i> Projektowanie personalizowanych produktów</p>
                         <p><i class="fas fa-check gold-text"></i> Zamówienia indywidualne i hurtowe</p>
                         <p><i class="fas fa-check gold-text"></i> Współpraca z firmami i organizacjami</p>
-
-                        <h3 class="text-xl font-bold mt-6 mb-4">Social Media</h3>
-                        <div class="social-links">
-                            <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link" target="_blank">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link" target="_blank">
-                                <i class="fab fa-tiktok"></i>
-                            </a>
-                            <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link" target="_blank">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        </div>
                     </div>
                     
                     <div>
@@ -1302,18 +1200,6 @@
             <p><i class="fas fa-envelope"></i> mielniczukgrzegosz74@gmail.com</p>
             <p><i class="fas fa-phone"></i> 604 296 360</p>
         </div>
-
-        <div class="social-links">
-            <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link" target="_blank">
-                <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link" target="_blank">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-        </div>
         
         <div class="mt-6">
             <p>© 2023 AdelbertusShop. Wszystkie prawa zastrzeżone.</p>
@@ -1340,7 +1226,7 @@
             textY: 200,
             textScale: 1,
             textRotation: 0,
-            activeElement: 'text' // 'text' or 'image'
+            activeElement: 'text'
         };
 
         // ===== INICJALIZACJA =====
@@ -1351,6 +1237,7 @@
             renderPayPalButton();
             initContactForm();
             initBlog();
+            initAddToCartButtons();
         });
 
         // ===== NAWIGACJA =====
@@ -1358,16 +1245,20 @@
             const navButtons = document.querySelectorAll('.nav-btn');
             
             navButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Usuń aktywną klasę ze wszystkich przycisków
-                    navButtons.forEach(btn => btn.classList.remove('active'));
-                    
-                    // Dodaj aktywną klasę do klikniętego przycisku
-                    this.classList.add('active');
-                    
-                    // Pokaż odpowiednią sekcję
-                    const sectionId = this.getAttribute('data-section');
-                    showSection(sectionId);
+                button.addEventListener('click', function(e) {
+                    if (this.hasAttribute('data-section')) {
+                        e.preventDefault();
+                        
+                        // Usuń aktywną klasę ze wszystkich przycisków
+                        navButtons.forEach(btn => btn.classList.remove('active'));
+                        
+                        // Dodaj aktywną klasę do klikniętego przycisku
+                        this.classList.add('active');
+                        
+                        // Pokaż odpowiednią sekcję
+                        const sectionId = this.getAttribute('data-section');
+                        showSection(sectionId);
+                    }
                 });
             });
             
@@ -1384,11 +1275,24 @@
             // Pokaż wybraną sekcję
             document.getElementById(sectionId).classList.add('active');
             
-            // Przewiń do góry
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Przewiń do góry sekcji zamiast na samą górę strony
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
         }
 
-        // ===== KOSZYK =====
+        // ===== DODAWANIE DO KOSZYKA =====
+        function initAddToCartButtons() {
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-to-cart-btn')) {
+                    e.preventDefault();
+                    const name = e.target.getAttribute('data-name');
+                    const price = parseFloat(e.target.getAttribute('data-price'));
+                    const image = e.target.getAttribute('data-image');
+                    
+                    addToCart(name, price, image);
+                }
+            });
+        }
+
         function updateCart() {
             const cartCount = document.getElementById('cartCount');
             const cartItems = document.getElementById('cartItems');
@@ -1467,7 +1371,7 @@
             document.getElementById('cartPanel').classList.toggle('open');
         }
 
-        // ===== STUDIO PROJEKTOWE - ZMODYFIKOWANE =====
+        // ===== STUDIO PROJEKTOWE - POPRAWIONE =====
         function initDesignStudio() {
             const canvas = document.getElementById('designCanvas');
             const ctx = canvas.getContext('2d');
@@ -1478,93 +1382,76 @@
             
             // Inicjalny render
             updateDesign();
-            
-            // Dodaj nasłuchiwanie zdarzeń myszy do przeciągania
-            let isDragging = false;
-            let lastX, lastY;
-            let selectedElement = null;
-            
-            canvas.addEventListener('mousedown', function(e) {
-                const rect = canvas.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                // Sprawdź, który element został kliknięty
-                if (currentDesign.text && 
-                    x > currentDesign.textX - 50 && 
-                    x < currentDesign.textX + 50 && 
-                    y > currentDesign.textY - 20 && 
-                    y < currentDesign.textY + 20) {
-                    selectedElement = 'text';
-                    currentDesign.activeElement = 'text';
-                    updateTransformControls();
-                } else if (currentDesign.image && 
-                    x > currentDesign.imageX - 50 && 
-                    x < currentDesign.imageX + 50 && 
-                    y > currentDesign.imageY - 50 && 
-                    y < currentDesign.imageY + 50) {
-                    selectedElement = 'image';
-                    currentDesign.activeElement = 'image';
-                    updateTransformControls();
-                }
-                
-                isDragging = true;
-                lastX = x;
-                lastY = y;
-            });
-            
-            canvas.addEventListener('mousemove', function(e) {
-                if (isDragging && selectedElement) {
-                    const rect = canvas.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const dx = x - lastX;
-                    const dy = y - lastY;
-                    
-                    if (selectedElement === 'text') {
-                        currentDesign.textX += dx;
-                        currentDesign.textY += dy;
-                        document.getElementById('posX').value = currentDesign.textX;
-                        document.getElementById('posY').value = currentDesign.textY;
-                    } else if (selectedElement === 'image') {
-                        currentDesign.imageX += dx;
-                        currentDesign.imageY += dy;
-                        document.getElementById('posX').value = currentDesign.imageX;
-                        document.getElementById('posY').value = currentDesign.imageY;
-                    }
-                    
-                    lastX = x;
-                    lastY = y;
-                    updateDesign();
-                }
-            });
-            
-            canvas.addEventListener('mouseup', function() {
-                isDragging = false;
-                selectedElement = null;
-            });
-            
-            canvas.addEventListener('mouseleave', function() {
-                isDragging = false;
-                selectedElement = null;
-            });
-            
-            // Inicjalizuj kontrolki transformacji
-            updateTransformControls();
         }
 
-        function updateTransformControls() {
-            if (currentDesign.activeElement === 'text') {
-                document.getElementById('posX').value = currentDesign.textX;
-                document.getElementById('posY').value = currentDesign.textY;
-                document.getElementById('scale').value = currentDesign.textScale;
-                document.getElementById('rotation').value = currentDesign.textRotation;
-            } else if (currentDesign.activeElement === 'image') {
-                document.getElementById('posX').value = currentDesign.imageX;
-                document.getElementById('posY').value = currentDesign.imageY;
-                document.getElementById('scale').value = currentDesign.imageScale;
-                document.getElementById('rotation').value = currentDesign.imageRotation;
+        function updateDesign() {
+            const canvas = document.getElementById('designCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Aktualizuj stan projektu
+            currentDesign.text = document.getElementById('designText').value;
+            currentDesign.fontFamily = document.getElementById('fontFamily').value;
+            currentDesign.fontSize = parseInt(document.getElementById('fontSize').value);
+            currentDesign.color = document.getElementById('textColor').value;
+            
+            // Wyczyść canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Narysuj tło
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Narysuj obrazek jeśli istnieje
+            if (currentDesign.image) {
+                ctx.save();
+                ctx.translate(currentDesign.imageX, currentDesign.imageY);
+                ctx.rotate(currentDesign.imageRotation * Math.PI / 180);
+                ctx.scale(currentDesign.imageScale, currentDesign.imageScale);
+                ctx.drawImage(currentDesign.image, -currentDesign.image.width/2, -currentDesign.image.height/2);
+                ctx.restore();
+            }
+            
+            // Narysuj tekst
+            if (currentDesign.text) {
+                ctx.save();
+                ctx.font = `${currentDesign.fontSize}px ${currentDesign.fontFamily}`;
+                ctx.fillStyle = currentDesign.color;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.translate(currentDesign.textX, currentDesign.textY);
+                ctx.rotate(currentDesign.textRotation * Math.PI / 180);
+                ctx.scale(currentDesign.textScale, currentDesign.textScale);
+                ctx.fillText(currentDesign.text, 0, 0);
+                ctx.restore();
+            }
+            
+            // Aktualizuj podgląd
+            const preview = document.querySelector('.design-preview');
+            if (currentDesign.text || currentDesign.image) {
+                preview.innerHTML = '<h3>Podgląd Twojego projektu</h3>';
+                const img = document.createElement('img');
+                img.src = canvas.toDataURL();
+                img.style.maxWidth = '100%';
+                img.style.marginTop = '1rem';
+                img.style.border = '1px solid #ddd';
+                preview.appendChild(img);
+            }
+        }
+
+        function handleImageUpload(event) {
+            const file = document.getElementById('designImage').files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentDesign.image = new Image();
+                    currentDesign.image.src = e.target.result;
+                    currentDesign.image.onload = function() {
+                        currentDesign.activeElement = 'image';
+                        updateTransformControls();
+                        updateDesign();
+                    };
+                };
+                reader.readAsDataURL(file);
             }
         }
 
@@ -1597,66 +1484,6 @@
             updateDesign();
         }
 
-        function bringToFront() {
-            // W tej uproszczonej implementacji, "na wierzch" oznacza po prostu renderowanie na końcu
-            // W prawdziwym systemie warstw byłoby to bardziej złożone
-            updateDesign();
-            showNotification('Element przeniesiony na wierzch');
-        }
-
-        function updateDesign() {
-            const canvas = document.getElementById('designCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            // Wyczyść canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Narysuj tło
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // Narysuj obrazek jeśli istnieje
-            if (currentDesign.image) {
-                ctx.save();
-                ctx.translate(currentDesign.imageX, currentDesign.imageY);
-                ctx.rotate(currentDesign.imageRotation * Math.PI / 180);
-                ctx.scale(currentDesign.imageScale, currentDesign.imageScale);
-                ctx.drawImage(currentDesign.image, -currentDesign.image.width/2, -currentDesign.image.height/2);
-                ctx.restore();
-            }
-            
-            // Narysuj tekst
-            if (currentDesign.text) {
-                ctx.save();
-                ctx.font = `${currentDesign.fontSize}px ${currentDesign.fontFamily}`;
-                ctx.fillStyle = currentDesign.color;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.translate(currentDesign.textX, currentDesign.textY);
-                ctx.rotate(currentDesign.textRotation * Math.PI / 180);
-                ctx.scale(currentDesign.textScale, currentDesign.textScale);
-                ctx.fillText(currentDesign.text, 0, 0);
-                ctx.restore();
-            }
-        }
-
-        function handleImageUpload(event) {
-            const file = document.getElementById('designImage').files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    currentDesign.image = new Image();
-                    currentDesign.image.src = e.target.result;
-                    currentDesign.image.onload = function() {
-                        currentDesign.activeElement = 'image';
-                        updateTransformControls();
-                        updateDesign();
-                    };
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
         function clearCanvas() {
             const canvas = document.getElementById('designCanvas');
             const ctx = canvas.getContext('2d');
@@ -1667,6 +1494,8 @@
             currentDesign.text = '';
             currentDesign.image = null;
             document.getElementById('designText').value = '';
+            
+            document.querySelector('.design-preview').innerHTML = '<h3>Podgląd Twojego projektu</h3><p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>';
             
             showNotification('Canvas wyczyszczony');
         }
@@ -1684,6 +1513,20 @@
             updateTransformControls();
             updateDesign();
             showNotification('Transformacje zresetowane');
+        }
+
+        function updateTransformControls() {
+            if (currentDesign.activeElement === 'text') {
+                document.getElementById('posX').value = currentDesign.textX;
+                document.getElementById('posY').value = currentDesign.textY;
+                document.getElementById('scale').value = currentDesign.textScale;
+                document.getElementById('rotation').value = currentDesign.textRotation;
+            } else if (currentDesign.activeElement === 'image') {
+                document.getElementById('posX').value = currentDesign.imageX;
+                document.getElementById('posY').value = currentDesign.imageY;
+                document.getElementById('scale').value = currentDesign.imageScale;
+                document.getElementById('rotation').value = currentDesign.imageRotation;
+            }
         }
 
         function addToCartFromDesign() {
@@ -1731,7 +1574,7 @@
         // ===== EMAIL =====
         function sendDesignToEmail() {
             const canvas = document.getElementById('designCanvas');
-            const imageData = canvas.toDataURL(); // Dane obrazka w formacie base64
+            const imageData = canvas.toDataURL();
             
             const subject = 'Mój projekt z AdelbertusShop';
             const body = `
@@ -1742,12 +1585,7 @@
                 Typ produktu: ${document.getElementById('productType').options[document.getElementById('productType').selectedIndex].text}\n
                 Rozmiar: ${document.getElementById('productSize').value}\n\n
                 Proszę o kontakt w sprawie realizacji zamówienia.
-                
-                [Obraz projektu jest załączony w wersji online]
             `;
-            
-            // W prawdziwej aplikacji, tutaj byłby kod do wysłania obrazka na serwer
-            // a następnie dołączenia go do emaila. W tej wersji używamy prostszego rozwiązania.
             
             window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             
@@ -1771,9 +1609,9 @@
             window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`;
         }
 
-        // ===== BLOG - ZMODYFIKOWANY =====
+        // ===== BLOG =====
         function initBlog() {
-            // Inicjalizacja bloga - ewentualne dodatkowe funkcje
+            // Inicjalizacja bloga
         }
 
         function toggleReadMore(button) {
@@ -1794,10 +1632,6 @@
 
         function showBlogForm() {
             document.getElementById('blogForm').style.display = 'block';
-            window.scrollTo({ 
-                top: document.getElementById('blogForm').offsetTop - 100, 
-                behavior: 'smooth' 
-            });
         }
 
         function hideBlogForm() {
@@ -1806,16 +1640,8 @@
 
         function addNewBlogPost(event) {
             event.preventDefault();
-            const form = event.target;
-            const title = form.querySelector('input[type="text"]').value;
-            const excerpt = form.querySelectorAll('textarea')[0].value;
-            const content = form.querySelectorAll('textarea')[1].value;
-            const imageUrl = form.querySelector('input[type="url"]').value;
-            
-            // Tutaj byłby kod dodający nowy post do bloga
-            // W tej wersji po prostu pokażemy powiadomienie
             showNotification('Artykuł dodany pomyślnie!');
-            form.reset();
+            event.target.reset();
             hideBlogForm();
         }
 
@@ -1856,14 +1682,22 @@
             }, 3000);
         }
 
-        // Globalna funkcja do dodawania produktów
+        // Globalne funkcje
         window.addToCart = addToCart;
+        window.removeFromCart = removeFromCart;
+        window.toggleCart = toggleCart;
+        window.updateDesign = updateDesign;
+        window.clearCanvas = clearCanvas;
+        window.resetDesign = resetDesign;
+        window.addToCartFromDesign = addToCartFromDesign;
+        window.sendDesignToEmail = sendDesignToEmail;
+        window.saveDesign = saveDesign;
+        window.toggleReadMore = toggleReadMore;
+        window.showBlogForm = showBlogForm;
+        window.hideBlogForm = hideBlogForm;
     </script>
 </body>
 </html>
-
-
-
 
 
 
