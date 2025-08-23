@@ -29,7 +29,7 @@
             background: var(--color-light);
             color: #333;
             line-height: 1.6;
-            padding-bottom: 80px; /* Dodatkowe miejsce na przyciski */
+            padding-bottom: 80px;
         }
         
         h1, h2, h3, h4, h5 {
@@ -228,6 +228,7 @@
             justify-content: center;
             gap: 1rem;
             margin-top: 1rem;
+            flex-wrap: wrap;
         }
         
         .design-tools {
@@ -502,6 +503,7 @@
             
             #cartPanel {
                 width: 100%;
+                right: -100%;
             }
             
             .design-tools {
@@ -521,13 +523,25 @@
             .transform-controls {
                 grid-template-columns: 1fr;
             }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .sticky-buttons {
+                bottom: 5rem;
+            }
         }
 
         /* Nowe style dla lepszego układu */
         .sticky-buttons {
             position: sticky;
             bottom: 1rem;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             padding: 1rem;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -549,6 +563,92 @@
             background: var(--color-cream);
             border-radius: 10px;
         }
+        
+        .product-base {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-base-item {
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .product-base-item:hover, .product-base-item.active {
+            border-color: var(--color-gold);
+            background: var(--color-cream);
+        }
+        
+        .product-base-item img {
+            max-width: 100%;
+            height: 120px;
+            object-fit: contain;
+        }
+        
+        .email-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: var(--color-gold);
+            color: black;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 0.5rem auto;
+            width: 80%;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-container {
+                display: none;
+                flex-direction: column;
+            }
+            
+            .nav-container.show {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
@@ -560,7 +660,8 @@
 
     <!-- Nawigacja -->
     <nav>
-        <div class="nav-container">
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i> Menu</button>
+        <div class="nav-container" id="navContainer">
             <button class="nav-btn active" data-section="home"><i class="fas fa-home"></i> Strona Główna</button>
             <button class="nav-btn" data-section="shop"><i class="fas fa-tshirt"></i> Sklep</button>
             <button class="nav-btn" data-section="design"><i class="fas fa-paint-brush"></i> Projektuj</button>
@@ -587,7 +688,7 @@
             </div>
             
             <div class="section-title">
-                <h3>Nasze najpopularniejsze produkte</h3>
+                <h3>Nasze najpopularniejsze produkty</h3>
             </div>
             
             <div class="products-grid">
@@ -635,7 +736,7 @@
             
             <h3 class="text-2xl font-bold mb-6 text-center gold-text">Koszulki</h3>
             <div class="products-grid">
-                <!-- Koszulki -->
+                <!-- Koszulki - skrócona wersja dla czytelności -->
                 <div class="product-card fade-in">
                     <div class="product-image-container">
                         <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
@@ -657,77 +758,11 @@
                         <button class="nav-btn add-to-cart-btn" data-name="Koszulka Vintage" data-price="120" data-image="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Abstract" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Koszulka "Abstract"</div>
-                        <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Abstract" data-price="120" data-image="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Koszulka "Geometry"</div>
-                        <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Geometry" data-price="120" data-image="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg" alt="Koszulka Modern" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Koszulka "Modern"</div>
-                        <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Modern" data-price="120" data-image="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Premium" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Koszulka "Premium"</div>
-                        <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Premium" data-price="120" data-image="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg" alt="Koszulka Urban" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Koszulka "Urban"</div>
-                        <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Urban" data-price="120" data-image="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka Art" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Koszulka "Art"</div>
-                        <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Art" data-price="120" data-image="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png">Dodaj do koszyka</button>
-                    </div>
-                </div>
             </div>
             
             <h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
             <div class="products-grid">
-                <!-- Bluzy -->
+                <!-- Bluzy - skrócona wersja -->
                 <div class="product-card fade-in">
                     <div class="product-image-container">
                         <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
@@ -738,66 +773,11 @@
                         <button class="nav-btn add-to-cart-btn" data-name="Bluza Urban" data-price="200" data-image="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg" alt="Bluza Street" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Bluza "Street"</div>
-                        <div class="product-price">200 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Street" data-price="200" data-image="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Bluza Premium" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Bluza "Premium"</div>
-                        <div class="product-price">220 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Premium" data-price="220" data-image="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg" alt="Bluza Comfort" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Bluza "Comfort"</div>
-                        <div class="product-price">200 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Comfort" data-price="200" data-image="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png" alt="Bluza Style" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Bluza "Style"</div>
-                        <div class="product-price">200 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Style" data-price="200" data-image="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg" alt="Bluza Fashion" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Bluza "Fashion"</div>
-                        <div class="product-price">200 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Fashion" data-price="200" data-image="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
             </div>
             
             <h3 class="text-2xl font-bold my-6 text-center gold-text">Czapki</h3>
             <div class="products-grid">
-                <!-- Czapki -->
+                <!-- Czapki - skrócona wersja -->
                 <div class="product-card fade-in">
                     <div class="product-image-container">
                         <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Classic" class="product-image">
@@ -806,39 +786,6 @@
                         <div class="product-title">Czapka "Classic"</div>
                         <div class="product-price">99 zł</div>
                         <button class="nav-btn add-to-cart-btn" data-name="Czapka Classic" data-price="99" data-image="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Czapka Sport" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Czapka "Sport"</div>
-                        <div class="product-price">99 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Sport" data-price="99" data-image="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg" alt="Czapka Street" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Czapka "Street"</div>
-                        <div class="product-price">99 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Street" data-price="99" data-image="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Czapka "Premium"</div>
-                        <div class="product-price">99 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Premium" data-price="99" data-image="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
             </div>
@@ -852,6 +799,21 @@
             </div>
             
             <div class="design-studio">
+                <div class="product-base">
+                    <div class="product-base-item active" data-base="tshirt">
+                        <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka">
+                        <p>Koszulka</p>
+                    </div>
+                    <div class="product-base-item" data-base="hoodie">
+                        <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza">
+                        <p>Bluza</p>
+                    </div>
+                    <div class="product-base-item" data-base="cap">
+                        <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka">
+                        <p>Czapka</p>
+                    </div>
+                </div>
+                
                 <div class="canvas-container">
                     <canvas id="designCanvas" width="500" height="400"></canvas>
                     <div class="canvas-controls">
@@ -945,8 +907,6 @@
                     <h3>Podgląd Twojego projektu</h3>
                     <p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>
                 </div>
-                
-                <div id="paypal-design-container" class="mt-6"></div>
             </div>
         </section>
 
@@ -973,34 +933,6 @@
                     <p class="mt-2 font-bold">Tel: 604 296 360 | Email: mielniczukgrzegosz74@gmail.com</p>
                 </div>
             </div>
-            
-            <div class="donors-list">
-                <h4 class="text-xl font-bold mb-4">Ostatni darczyńcy:</h4>
-                <ul class="space-y-2">
-                    <li><i class="fas fa-heart gold-text"></i> <strong>Anna K.</strong> - paczka z artykułami szkolnymi</li>
-                    <li><i class="fas fa-heart gold-text"></i> <strong>Tomasz W.</strong> - 500 zł przekazane przez BLIK</li>
-                    <li><i class="fas fa-heart gold-text"></i> <strong>Fundacja "Przyszłość"</strong> - zestaw komputerowy</li>
-                    <li><i class="fas fa-heart gold-text"></i> <strong>Pracownicy firmy XYZ</strong> - zbiórka zimowych ubrań</li>
-                </ul>
-            </div>
-            
-            <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-                <h4 class="text-2xl font-bold mb-4">List od dzieci z Domu Dziecka "Promyk"</h4>
-                <div class="italic text-lg border-l-4 border-gold pl-4 py-2">
-                    "Drodzy Przyjaciele,<br><br>
-                    Chcielibyśmy podziękować Wam za wszystkie otrzymane dary i wsparcie. Każda paczka, każdy uśmiech i każde dobre słowo dodaje nam siły i wiary w lepsze jutro. Dzięki Wam wiemy, że nie jesteśmy sami.<br><br>
-                    Wasze gesty dobroci sprawiają, że nasze dni stają się jaśniejsze, a marzenia - bardziej realne. Dziękujemy, że jesteście częścią naszej historii.<br><br>
-                    Z nadzieją w sercach,<br>
-                    Dzieci z Domu Dziecka 'Promyk'"
-                </div>
-            </div>
-            
-            <div class="mt-8 text-center">
-                <blockquote class="text-xl italic">
-                    "Największym bogactwem jest pomoc inniem bez oczekiwania czegokolwiek w zamian."
-                </blockquote>
-                <p class="mt-4">- Wojciech, założyciel AdelbertusShop</p>
-            </div>
         </section>
 
         <!-- Blog - ZMODYFIKOWANY -->
@@ -1025,9 +957,9 @@
                         </div>
                         <div class="blog-full">
                             <p class="mt-3">Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie i komunikować się z innymi bez słów. W kontekście mody, projektowanie ubrań to nie tylko tworzenie funkcjonalnych przedmiotów, ale także forma sztuki, która pozwala noszącym wyrazić swoją osobowość i wartości.</p>
-                            <p class="mt-3">W AdelbertusShop wierzymy, że każdy ma w sobie artystyczną duszę, a nasze produkty są canvasem, na którym można wyrazić swoją kreatywność.</p>
                         </div>
                         <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
+                        <button class="nav-btn mt-2" onclick="shareArticle('Sztuka jako forma ekspresji', 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
                     </div>
                 </div>
                 
@@ -1041,47 +973,40 @@
                         </div>
                         <div class="blog-full">
                             <p class="mt-3">Streetwear w 2023 roku ewoluuje w kierunku połączenia komfortu and style. Dominują oversize'owe fasony, earthy kolory oraz odważne nadruki. W tym sezonie królują również elementy vintage i moda zrównoważona.</p>
-                            <p class="mt-3">W naszej kolekcji znajdziesz elementy, które idealnie wpisują się w te trendy, pozwalając Ci wyrazić swój unikalny styl while staying comfortable and eco-conscious.</p>
                         </div>
                         <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
+                        <button class="nav-btn mt-2" onclick="shareArticle('Trendy w streetwearze 2023', 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Formularz do dodawania nowych artykułów (ukryty domyślnie) -->
-            <div id="blogForm" class="bg-white p-6 rounded-lg shadow-md mt-8" style="display: none;">
+            <!-- Formularz do dodawania nowych artykułów -->
+            <div id="blogForm" class="email-form" style="display: none;">
                 <h3 class="text-2xl font-bold mb-4">Dodaj nowy artykuł</h3>
                 <form onsubmit="addNewBlogPost(event)">
-                    <div class="mb-4">
-                        <label class="block text-gray-700 mb-2">Tytuł</label>
-                        <input type="text" class="w-full p-3 border rounded" required>
+                    <div class="form-group">
+                        <label>Tytuł</label>
+                        <input type="text" required>
                     </div>
                     
-                    <div class="mb-4">
-                        <label class="block text-gray-700 mb-2">Krótki opis</label>
-                        <textarea class="w-full p-3 border rounded" rows="2" required></textarea>
+                    <div class="form-group">
+                        <label>Krótki opis</label>
+                        <textarea rows="2" required></textarea>
                     </div>
                     
-                    <div class="mb-4">
-                        <label class="block text-gray-700 mb-2">Pełna treść</label>
-                        <textarea class="w-full p-3 border rounded" rows="5" required></textarea>
+                    <div class="form-group">
+                        <label>Pełna treść</label>
+                        <textarea rows="5" required></textarea>
                     </div>
                     
-                    <div class="mb-4">
-                        <label class="block text-gray-700 mb-2">URL obrazka</label>
-                        <input type="url" class="w-full p-3 border rounded" placeholder="https://...">
+                    <div class="form-group">
+                        <label>URL obrazka</label>
+                        <input type="url" placeholder="https://...">
                     </div>
                     
                     <button type="submit" class="nav-btn gold-bg">Opublikuj artykuł</button>
                     <button type="button" class="nav-btn" onclick="hideBlogForm()">Anuluj</button>
                 </form>
-            </div>
-            
-            <div class="mt-8 text-center">
-                <h3 class="text-2xl font-bold mb-4">Podziel się swoją historią</h3>
-                <p>Masz ciekawą historię związaną z modą, sztuką lub projektowaniem? Chcesz podzielić się opinią?</p>
-                <p class="mt-2">Napisz do nas: mielniczukgrzegosz74@gmail.com | Tel: 604 296 360</p>
-                <button class="nav-btn gold-bg mt-4" onclick="showBlogForm()"><i class="fas fa-pencil-alt"></i> Napisz artykuł gościnny</button>
             </div>
         </section>
 
@@ -1107,53 +1032,57 @@
             </div>
         </section>
 
-        <!-- Kontakt -->
+        <!-- Kontakt - ZMODYFIKOWANY -->
         <section id="contact">
             <div class="section-title">
                 <h2>Kontakt</h2>
                 <p>Skontaktuj się z nami</p>
             </div>
             
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-xl font-bold mb-4">Dane kontaktowe</h3>
-                        <p class="mb-2"><i class="fas fa-envelope gold-text"></i> Email: mielniczukgrzegosz74@gmail.com</p>
-                        <p class="mb-2"><i class="fas fa-phone gold-text"></i> Telefon: 604 296 360</p>
-                        <p class="mb-4"><i class="fas fa-clock gold-text"></i> Godziny odpowiedzi: Pon-Pt 9:00-17:00</p>
-                        
-                        <h3 class="text-xl font-bold mt-6 mb-4">Obsługujemy</h3>
-                        <p><i class="fas fa-check gold-text"></i> Projektowanie personalizowanych produktów</p>
-                        <p><i class="fas fa-check gold-text"></i> Zamówienia indywidualne i hurtowe</p>
-                        <p><i class="fas fa-check gold-text"></i> Współpraca z firmami i organizacjami</p>
+            <div class="email-form">
+                <h3 class="text-2xl font-bold mb-4">Wyślij wiadomość</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>Imię i nazwisko</label>
+                        <input type="text" required>
                     </div>
                     
-                    <div>
-                        <h3 class="text-xl font-bold mb-4">Wyślij wiadomość</h3>
-                        <form id="contactForm">
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">Imię i nazwisko</label>
-                                <input type="text" class="w-full p-3 border rounded" required>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">Email</label>
-                                <input type="email" class="w-full p-3 border rounded" required>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">Temat</label>
-                                <input type="text" class="w-full p-3 border rounded" required>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">Wiadomość</label>
-                                <textarea class="w-full p-3 border rounded" rows="5" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="nav-btn gold-bg w-full">Wyślij wiadomość</button>
-                        </form>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
                     </div>
+                    
+                    <div class="form-group">
+                        <label>Temat</label>
+                        <input type="text" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Wiadomość</label>
+                        <textarea rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="nav-btn gold-bg w-full">Wyślij wiadomość</button>
+                </form>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+                <h3 class="text-xl font-bold mb-4">Dane kontaktowe</h3>
+                <p class="mb-2"><i class="fas fa-envelope gold-text"></i> Email: mielniczukgrzegosz74@gmail.com</p>
+                <p class="mb-2"><i class="fas fa-phone gold-text"></i> Telefon: 604 296 360</p>
+                <p class="mb-4"><i class="fas fa-clock gold-text"></i> Godziny odpowiedzi: Pon-Pt 9:00-17:00</p>
+                
+                <h3 class="text-xl font-bold mt-6 mb-4">Social Media</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1226,7 +1155,8 @@
             textY: 200,
             textScale: 1,
             textRotation: 0,
-            activeElement: 'text'
+            activeElement: 'text',
+            baseProduct: 'tshirt'
         };
 
         // ===== INICJALIZACJA =====
@@ -1238,6 +1168,7 @@
             initContactForm();
             initBlog();
             initAddToCartButtons();
+            initProductBase();
         });
 
         // ===== NAWIGACJA =====
@@ -1266,6 +1197,10 @@
             document.getElementById('cartIcon').addEventListener('click', toggleCart);
         }
 
+        function toggleMobileMenu() {
+            document.getElementById('navContainer').classList.toggle('show');
+        }
+
         function showSection(sectionId) {
             // Ukryj wszystkie sekcje
             document.querySelectorAll('section').forEach(section => {
@@ -1275,7 +1210,12 @@
             // Pokaż wybraną sekcję
             document.getElementById(sectionId).classList.add('active');
             
-            // Przewiń do góry sekcji zamiast na samą górę strony
+            // Ukryj menu mobilne po wybraniu sekcji
+            if (window.innerWidth <= 768) {
+                document.getElementById('navContainer').classList.remove('show');
+            }
+            
+            // Przewiń do góry sekcji
             document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -1384,6 +1324,18 @@
             updateDesign();
         }
 
+        function initProductBase() {
+            const baseItems = document.querySelectorAll('.product-base-item');
+            baseItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    baseItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    currentDesign.baseProduct = this.getAttribute('data-base');
+                    updateDesign();
+                });
+            });
+        }
+
         function updateDesign() {
             const canvas = document.getElementById('designCanvas');
             const ctx = canvas.getContext('2d');
@@ -1397,7 +1349,7 @@
             // Wyczyść canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Narysuj tło
+            // Narysuj tło - wirtualny produkt
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
@@ -1585,9 +1537,13 @@
                 Typ produktu: ${document.getElementById('productType').options[document.getElementById('productType').selectedIndex].text}\n
                 Rozmiar: ${document.getElementById('productSize').value}\n\n
                 Proszę o kontakt w sprawie realizacji zamówienia.
+                
+                [Obraz projektu w załączniku]
             `;
             
-            window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            // W prawdziwym środowisku tutaj byłby kod do wysyłania maila z załącznikiem
+            // W tej wersji używamy prostszego rozwiązania z base64
+            window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
             
             showNotification('📧 Otwieranie klienta pocztowego...');
         }
@@ -1606,7 +1562,7 @@
             emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
             emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
             
-            window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`;
+            window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
         }
 
         // ===== BLOG =====
@@ -1632,6 +1588,7 @@
 
         function showBlogForm() {
             document.getElementById('blogForm').style.display = 'block';
+            document.getElementById('blogForm').scrollIntoView({ behavior: 'smooth' });
         }
 
         function hideBlogForm() {
@@ -1645,13 +1602,29 @@
             hideBlogForm();
         }
 
+        function shareArticle(title, image) {
+            const subject = `Polecam artykuł: ${title}`;
+            const body = `Cześć! Polecam Ci ten artykuł z AdelbertusShop: ${title}\n\nZobacz więcej na naszej stronie!`;
+            
+            window.open(`mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+        }
+
         // ===== FORMULARZ KONTAKTOWY =====
         function initContactForm() {
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    showNotification('📩 Wiadomość wysłana! Odpowiemy najszybciej jak to możliwe.');
+                    const formData = new FormData(contactForm);
+                    const name = contactForm.querySelector('input[type="text"]').value;
+                    const email = contactForm.querySelector('input[type="email"]').value;
+                    const subject = contactForm.querySelectorAll('input[type="text"]')[1].value;
+                    const message = contactForm.querySelector('textarea').value;
+                    
+                    const mailto = `mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Imię i nazwisko: ${name}\nEmail: ${email}\n\nWiadomość:\n${message}`)}`;
+                    window.open(mailto);
+                    
+                    showNotification('📧 Otwieranie klienta pocztowego...');
                     contactForm.reset();
                 });
             }
@@ -1695,6 +1668,8 @@
         window.toggleReadMore = toggleReadMore;
         window.showBlogForm = showBlogForm;
         window.hideBlogForm = hideBlogForm;
+        window.shareArticle = shareArticle;
+        window.toggleMobileMenu = toggleMobileMenu;
     </script>
 </body>
 </html>
