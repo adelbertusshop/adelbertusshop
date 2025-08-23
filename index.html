@@ -635,6 +635,31 @@
             width: 80%;
         }
         
+        .design-area {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        .design-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .design-option {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--color-gold);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-option.active {
+            background: var(--color-gold);
+            color: black;
+        }
+        
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: block;
@@ -648,6 +673,57 @@
             .nav-container.show {
                 display: flex;
             }
+            
+            .design-options {
+                flex-direction: column;
+            }
+        }
+
+        /* Style dla wirtualnych produktów */
+        .virtual-product {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .product-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .design-area-front, .design-area-back, .design-area-sleeve {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+            background: white;
+        }
+        
+        .design-area-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--color-dark-gold);
+        }
+        
+        /* PayPal darowizny */
+        .donate-button {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+            background: #0070ba;
+            color: white;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .donate-button:hover {
+            background: #005ea6;
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -727,224 +803,224 @@
             </div>
         </section>
 
-    <!-- Sklep -->
-<section id="shop">
-    <div class="section-title">
-        <h2>Nasze Produkty</h2>
-        <p>Odkryj naszą ekskluzywną kolekcję</p>
-    </div>
-    
-    <h3 class="text-2xl font-bold mb-6 text-center gold-text">Koszulki</h3>
-    <div class="products-grid">
-        <!-- Koszulki -->
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
+        <!-- Sklep - PRZYWRÓCONE WSZYSTKIE PRODUKTY -->
+        <section id="shop">
+            <div class="section-title">
+                <h2>Nasze Produkty</h2>
+                <p>Odkryj naszą ekskluzywną kolekcję</p>
             </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Rebel"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Rebel" data-price="120" data-image="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+            
+            <h3 class="text-2xl font-bold mb-6 text-center gold-text">Koszulki</h3>
+            <div class="products-grid">
+                <!-- Koszulki -->
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Rebel"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Rebel" data-price="120" data-image="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Vintage"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Vintage" data-price="120" data-image="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Abstract" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Abstract"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Abstract" data-price="120" data-image="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Geometry"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Geometry" data-price="120" data-image="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg" alt="Koszulka Modern" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Modern"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Modern" data-price="120" data-image="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg">Dodaj to koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Premium" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Premium"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Premium" data-price="120" data-image="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg" alt="Koszulka Urban" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Urban"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Urban" data-price="120" data-image="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka Art" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Art"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Art" data-price="120" data-image="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png">Dodaj do koszyka</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
+            
+            <h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
+            <div class="products-grid">
+                <!-- Bluzy -->
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Urban"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Urban" data-price="200" data-image="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg" alt="Bluza Street" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Street"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Street" data-price="200" data-image="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Bluza Premium" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Premium"</div>
+                        <div class="product-price">220 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Premium" data-price="220" data-image="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg" alt="Bluza Comfort" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Comfort"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Comfort" data-price="200" data-image="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png" alt="Bluza Style" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Style"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Style" data-price="200" data-image="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg" alt="Bluza Fashion" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Fashion"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Fashion" data-price="200" data-image="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
             </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Vintage"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Vintage" data-price="120" data-image="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+            
+            <h3 class="text-2xl font-bold my-6 text-center gold-text">Czapki</h3>
+            <div class="products-grid">
+                <!-- Czapki -->
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Classic" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Classic"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Classic" data-price="99" data-image="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Czapka Sport" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Sport"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Sport" data-price="99" data-image="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg" alt="Czapka Street" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Street"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Street" data-price="99" data-image="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Premium"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Premium" data-price="99" data-image="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Abstract" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Abstract"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Abstract" data-price="120" data-image="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Geometry"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Geometry" data-price="120" data-image="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg" alt="Koszulka Modern" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Modern"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Modern" data-price="120" data-image="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Premium" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Premium"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Premium" data-price="120" data-image="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg" alt="Koszulka Urban" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Urban"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Urban" data-price="120" data-image="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka Art" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Art"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Art" data-price="120" data-image="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-    </div>
-    
-    <h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
-    <div class="products-grid">
-        <!-- Bluzy -->
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Bluza "Urban"</div>
-                <div class="product-price">200 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Bluza Urban" data-price="200" data-image="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg" alt="Bluza Street" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Bluza "Street"</div>
-                <div class="product-price">200 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Bluza Street" data-price="200" data-image="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Bluza Premium" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Bluza "Premium"</div>
-                <div class="product-price">220 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Bluza Premium" data-price="220" data-image="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg" alt="Bluza Comfort" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Bluza "Comfort"</div>
-                <div class="product-price">200 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Bluza Comfort" data-price="200" data-image="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png" alt="Bluza Style" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Bluza "Style"</div>
-                <div class="product-price">200 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Bluza Style" data-price="200" data-image="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg" alt="Bluza Fashion" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Bluza "Fashion"</div>
-                <div class="product-price">200 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Bluza Fashion" data-price="200" data-image="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-    </div>
-    
-    <h3 class="text-2xl font-bold my-6 text-center gold-text">Czapki</h3>
-    <div class="products-grid">
-        <!-- Czapki -->
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Classic" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Czapka "Classic"</div>
-                <div class="product-price">99 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Czapka Classic" data-price="99" data-image="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Czapka Sport" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Czapka "Sport"</div>
-                <div class="product-price">99 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Czapka Sport" data-price="99" data-image="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg" alt="Czapka Street" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Czapka "Street"</div>
-                <div class="product-price">99 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Czapka Street" data-price="99" data-image="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Czapka "Premium"</div>
-                <div class="product-price">99 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Czapka Premium" data-price="99" data-image="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-    </div>
-</section>
-        
+        </section>
+                    
         <!-- Studio projektowe - ZMODYFIKOWANE -->
         <section id="design">
             <div class="section-title">
@@ -966,6 +1042,12 @@
                         <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka">
                         <p>Czapka</p>
                     </div>
+                </div>
+                
+                <div class="design-options">
+                    <div class="design-option active" data-area="front">Przód</div>
+                    <div class="design-option" data-area="back">Tył</div>
+                    <div class="design-option" data-area="sleeves">Rękawy</div>
                 </div>
                 
                 <div class="canvas-container">
@@ -1048,6 +1130,11 @@
                     </div>
                 </div>
                 
+                <div class="design-preview">
+                    <h3>Podgląd Twojego projektu</h3>
+                    <p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>
+                </div>
+                
                 <div class="sticky-buttons">
                     <div class="action-buttons">
                         <button class="nav-btn gold-bg" onclick="updateDesign()"><i class="fas fa-sync"></i> Podgląd</button>
@@ -1056,15 +1143,10 @@
                         <button class="nav-btn gold-bg" onclick="saveDesign()"><i class="fas fa-download"></i> Zapisz projekt</button>
                     </div>
                 </div>
-                
-                <div class="design-preview">
-                    <h3>Podgląd Twojego projektu</h3>
-                    <p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>
-                </div>
             </div>
         </section>
 
-        <!-- Zbiórka -->
+        <!-- Zbiórka - ZMODYFIKOWANA -->
         <section id="charity">
             <div class="section-title">
                 <h2>Wspieramy Dom Dziecka "Promyk"</h2>
@@ -1082,10 +1164,46 @@
                 </div>
                 
                 <div class="mb-6">
+                    <h4 class="text-2xl font-bold mb-3">💳 PayPal</h4>
+                    <p>Wesprzyj nas przez PayPal - bezpieczna i szybka płatność</p>
+                    <a href="https://www.paypal.com/donate/?hosted_button_id=VG9UP4MTHHWYU" target="_blank" class="donate-button">
+                        <i class="fab fa-paypal"></i> Przekaż darowiznę
+                    </a>
+                </div>
+                
+                <div class="mb-6">
                     <h4 class="text-2xl font-bold mb-3">📦 Przekaż dary</h4>
                     <p>Skontaktuj się z nami, aby dowiedzieć się, jak przekazać materialne wsparcie</p>
                     <p class="mt-2 font-bold">Tel: 604 296 360 | Email: mielniczukgrzegosz74@gmail.com</p>
                 </div>
+            </div>
+            
+            <div class="donors-list">
+                <h4 class="text-xl font-bold mb-4">Ostatni darczyńcy:</h4>
+                <ul class="space-y-2">
+                    <li><i class="fas fa-heart gold-text"></i> <strong>Anna K.</strong> - paczka z artykułami szkolnymi</li>
+                    <li><i class="fas fa-heart gold-text"></i> <strong>Tomasz W.</strong> - 500 zł przekazane przez BLIK</li>
+                    <li><i class="fas fa-heart gold-text"></i> <strong>Fundacja "Przyszłość"</strong> - zestaw komputerowy</li>
+                    <li><i class="fas fa-heart gold-text"></i> <strong>Pracownicy firmy XYZ</strong> - zbiórka zimowych ubrań</li>
+                </ul>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md mt-6">
+                <h4 class="text-2xl font-bold mb-4">List od dzieci z Domu Dziecka "Promyk"</h4>
+                <div class="italic text-lg border-l-4 border-gold pl-4 py-2">
+                    "Drodzy Przyjaciele,<br><br>
+                    Chcielibyśmy podziękować Wam za wszystkie otrzymane dary i wsparcie. Każda paczka, każdy uśmiech i każde dobre słowo dodaje nam siły i wiary w lepsze jutro. Dzięki Wam wiemy, że nie jesteśmy sami.<br><br>
+                    Wasze gesty dobroci sprawiają, że nasze dni stają się jaśniejsze, a marzenia - bardziej realne. Dziękujemy, że jesteście częścią naszej historii.<br><br>
+                    Z nadzieją w sercach,<br>
+                    Dzieci z Domu Dziecka 'Promyk'"
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <blockquote class="text-xl italic">
+                    "Największym bogactwem jest pomoc innym bez oczekiwania czegokolwiek w zamian."
+                </blockquote>
+                <p class="mt-4">- Wojciech, założyciel AdelbertusShop</p>
             </div>
         </section>
 
@@ -1310,7 +1428,8 @@
             textScale: 1,
             textRotation: 0,
             activeElement: 'text',
-            baseProduct: 'tshirt'
+            baseProduct: 'tshirt',
+            designArea: 'front' // front, back, sleeves
         };
 
         // ===== INICJALIZACJA =====
@@ -1323,6 +1442,7 @@
             initBlog();
             initAddToCartButtons();
             initProductBase();
+            initDesignOptions();
         });
 
         // ===== NAWIGACJA =====
@@ -1485,6 +1605,18 @@
                     baseItems.forEach(i => i.classList.remove('active'));
                     this.classList.add('active');
                     currentDesign.baseProduct = this.getAttribute('data-base');
+                    updateDesign();
+                });
+            });
+        }
+
+        function initDesignOptions() {
+            const designOptions = document.querySelectorAll('.design-option');
+            designOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    designOptions.forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    currentDesign.designArea = this.getAttribute('data-area');
                     updateDesign();
                 });
             });
@@ -1689,10 +1821,11 @@
                 Rozmiar czcionki: ${currentDesign.fontSize}\n
                 Kolor: ${currentDesign.color}\n
                 Typ produktu: ${document.getElementById('productType').options[document.getElementById('productType').selectedIndex].text}\n
-                Rozmiar: ${document.getElementById('productSize').value}\n\n
-                Proszę o kontakt w sprawie realizacji zamówienia.
+                Rozmiar: ${document.getElementById('productSize').value}\n
+                Obszar: ${currentDesign.designArea}\n\n
                 
-                [Obraz projektu w załączniku]
+                Obraz projektu (w załączniku):\n
+                Proszę o kontakt w sprawie realizacji zamówienia.
             `;
             
             // W prawdziwym środowisku tutaj byłby kod do wysyłania maila z załącznikiem
