@@ -7,13 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
-    
-    <!-- React i potrzebne biblioteki -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
         
@@ -36,7 +29,6 @@
             background: var(--color-light);
             color: #333;
             line-height: 1.6;
-            padding-bottom: 80px;
         }
         
         h1, h2, h3, h4, h5 {
@@ -146,7 +138,7 @@
             background: var(--color-gold);
         }
         
-        /* Karty produktów - POPRAWIONE */
+        /* Karty produktów */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -160,8 +152,6 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
         }
         
         .product-card:hover {
@@ -169,26 +159,14 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
-        .product-image-container {
-            height: 280px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--color-cream);
-        }
-        
         .product-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
         }
         
         .product-info {
             padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
         }
         
         .product-title {
@@ -202,6 +180,53 @@
             font-weight: 700;
             font-size: 1.3rem;
             margin-bottom: 1rem;
+        }
+        
+        /* Studio projektowe */
+        .design-studio {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+        
+        .canvas-container {
+            border: 3px solid var(--color-gold);
+            border-radius: 10px;
+            padding: 1rem;
+            background: white;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        
+        #designCanvas {
+            width: 100%;
+            background: white;
+            border: 1px solid #ddd;
+        }
+        
+        .design-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .tool-group {
+            background: var(--color-cream);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+        
+        .tool-title {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-dark-gold);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         /* Sekcja zbiórki */
@@ -224,7 +249,7 @@
             text-align: left;
         }
         
-        /* Sekcja bloga - ZMODYFIKOWANA */
+        /* Sekcja bloga */
         .blog-posts {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -237,31 +262,10 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .blog-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
         }
         
         .blog-content {
             padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .blog-excerpt {
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-        
-        .blog-full {
-            display: none;
-            margin-bottom: 1rem;
         }
         
         /* Opinie */
@@ -336,7 +340,7 @@
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
         
-        /* Koszyk - ZMODYFIKOWANY */
+        /* Koszyk */
         #cartIcon {
             position: fixed;
             bottom: 2rem;
@@ -383,8 +387,6 @@
             box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
             padding: 2rem;
             overflow-y: auto;
-            display: flex;
-            flex-direction: column;
         }
         
         #cartPanel.open {
@@ -406,18 +408,6 @@
             margin-right: 1rem;
         }
         
-        .cart-total {
-            margin-top: auto;
-            padding-top: 1rem;
-            border-top: 2px solid #eee;
-        }
-        
-        /* PayPal container - ZMODYFIKOWANY */
-        #paypal-container {
-            margin-top: 1rem;
-            min-height: 50px;
-        }
-        
         /* Animacje */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -436,7 +426,10 @@
             
             #cartPanel {
                 width: 100%;
-                right: -100%;
+            }
+            
+            .design-tools {
+                grid-template-columns: 1fr;
             }
             
             .nav-container {
@@ -448,352 +441,6 @@
                 width: 80%;
                 margin: 0.3rem;
             }
-            
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-            }
-            
-            .sticky-buttons {
-                bottom: 5rem;
-            }
-        }
-
-        /* Nowe style dla lepszego układu */
-        .sticky-buttons {
-            position: sticky;
-            bottom: 1rem;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            z-index: 98;
-            margin-top: 2rem;
-        }
-
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .product-base {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .email-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-top: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-        }
-        
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: var(--color-gold);
-            color: black;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            margin: 0.5rem auto;
-            width: 80%;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-container {
-                display: none;
-                flex-direction: column;
-            }
-            
-            .nav-container.show {
-                display: flex;
-            }
-        }
-
-        /* Style dla kreatora projektowania */
-        .designer-container {
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .designer-card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-        }
-        
-        .designer-card-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid #eee;
-            background: var(--color-cream);
-        }
-        
-        .designer-card-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .designer-card-content {
-            padding: 1.5rem;
-        }
-        
-        .designer-button {
-            background: var(--color-gold);
-            color: black;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .designer-button:hover {
-            background: var(--color-dark-gold);
-        }
-        
-        .designer-button.secondary {
-            background: #e5e7eb;
-            color: #374151;
-        }
-        
-        .designer-button.secondary:hover {
-            background: #d1d5db;
-        }
-        
-        .designer-button.destructive {
-            background: #ef4444;
-            color: white;
-        }
-        
-        .designer-button.destructive:hover {
-            background: #dc2626;
-        }
-        
-        .designer-input {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-family: inherit;
-        }
-        
-        .designer-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .designer-select-trigger {
-            display: flex;
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            background: white;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .designer-select-content {
-            position: absolute;
-            background: white;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            padding: 0.5rem;
-            z-index: 50;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            margin-top: 0.25rem;
-        }
-        
-        .designer-select-item {
-            padding: 0.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        .designer-select-item:hover {
-            background: #f3f4f6;
-        }
-        
-        .designer-slider {
-            width: 100%;
-            height: 6px;
-            background: #e5e7eb;
-            border-radius: 3px;
-            outline: none;
-            -webkit-appearance: none;
-        }
-        
-        .designer-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--color-gold);
-            cursor: pointer;
-        }
-        
-        .designer-tabs-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .designer-tabs-trigger {
-            padding: 0.8rem;
-            background: #f3f4f6;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        
-        .designer-tabs-trigger.active {
-            background: var(--color-gold);
-            color: black;
-        }
-        
-        .designer-dialog-content {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            z-index: 100;
-            max-width: 90vw;
-            width: 400px;
-        }
-        
-        .designer-dialog-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 90;
-        }
-        
-        .color-swatch {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 8px;
-            border: 2px solid transparent;
-            cursor: pointer;
-        }
-        
-        .color-swatch.active {
-            border-color: var(--color-gold);
-            box-shadow: 0 0 0 2px white, 0 0 0 4px var(--color-gold);
-        }
-        
-        .designer-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        
-        @media (min-width: 1024px) {
-            .designer-grid {
-                grid-template-columns: repeat(12, 1fr);
-            }
-            
-            .designer-grid-left {
-                grid-column: span 4;
-            }
-            
-            .designer-grid-right {
-                grid-column: span 8;
-            }
-        }
-        
-        .product-silhouette {
-            width: 100%;
-            aspect-ratio: 1/1;
-            background: #f3f4f6;
-            border-radius: 16px;
-            position: relative;
-        }
-        
-        .product-silhouette.hoodie {
-            border-radius: 28px;
-        }
-        
-        .product-silhouette.cap {
-            border-radius: 50%;
-        }
-        
-        .designer-canvas-container {
-            position: relative;
-            width: 100%;
-            margin: 0 auto;
-        }
-        
-        .designer-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
         }
     </style>
 </head>
@@ -806,8 +453,7 @@
 
     <!-- Nawigacja -->
     <nav>
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i> Menu</button>
-        <div class="nav-container" id="navContainer">
+        <div class="nav-container">
             <button class="nav-btn active" data-section="home"><i class="fas fa-home"></i> Strona Główna</button>
             <button class="nav-btn" data-section="shop"><i class="fas fa-tshirt"></i> Sklep</button>
             <button class="nav-btn" data-section="design"><i class="fas fa-paint-brush"></i> Projektuj</button>
@@ -818,7 +464,7 @@
         </div>
     </nav>
 
-    <!-- Sekcja główna -->
+      <!-- Sekcja główna -->
     <main>
         <!-- Strona główna -->
         <section id="home" class="active">
@@ -830,7 +476,7 @@
             <div class="charity-section">
                 <h3 class="text-3xl font-bold mb-4">Razem możemy więcej</h3>
                 <p>Każdy zakup to wsparcie dla Domu Dziecka "Promyk"</p>
-                <button class="nav-btn gold-bg" style="margin-top: 1.5rem;" data-section="charity">Dowiedz się więcej</button>
+                <a href="#charity" class="nav-btn gold-bg" style="margin-top: 1.5rem;">Dowiedz się więcej</a>
             </div>
             
             <div class="section-title">
@@ -839,41 +485,35 @@
             
             <div class="products-grid">
                 <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
-                    </div>
+                    <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
                     <div class="product-info">
                         <div class="product-title">Koszulka "Rebel"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Rebel" data-price="120" data-image="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Rebel', 120, 'https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
                 <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
-                    </div>
+                    <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
                     <div class="product-info">
                         <div class="product-title">Koszulka "Vintage"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Vintage" data-price="120" data-image="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Vintage', 120, 'https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
                 <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
-                    </div>
+                    <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
                     <div class="product-info">
                         <div class="product-title">Bluza "Urban"</div>
                         <div class="product-price">200 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Urban" data-price="200" data-image="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+                        <button class="nav-btn" onclick="addToCart('Bluza Urban', 200, 'https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sklep -->
+<!-- Sklep -->
         <section id="shop">
             <div class="section-title">
                 <h2>Nasze Produkty</h2>
@@ -882,35 +522,526 @@
             
             <h3 class="text-2xl font-bold mb-6 text-center gold-text">Koszulki</h3>
             <div class="products-grid">
-                <!-- Koszulki - skrócona wersja dla czytelności -->
+                <!-- Koszulki -->
                 <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
-                    </div>
+                    <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
                     <div class="product-info">
                         <div class="product-title">Koszulka "Rebel"</div>
                         <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Rebel" data-price="120" data-image="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Rebel', 120, 'https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
                     </div>
                 </div>
                 
-                <!-- Pozostałe produkty - skrócone dla czytelności -->
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Vintage"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Vintage', 120, 'https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Abstract" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Abstract"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Abstract', 120, 'https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Geometry"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Geometry', 120, 'https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg" alt="Koszulka Modern" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Modern"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Modern', 120, 'https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Premium" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Premium"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Premium', 120, 'https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg" alt="Koszulka Urban" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Urban"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Urban', 120, 'https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka Art" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Art"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Koszulka Art', 120, 'https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
+            <div class="products-grid">
+                <!-- Bluzy -->
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Urban"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Bluza Urban', 200, 'https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg" alt="Bluza Street" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Street"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Bluza Street', 200, 'https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Bluza Premium" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Premium"</div>
+                        <div class="product-price">220 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Bluza Premium', 220, 'https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg" alt="Bluza Comfort" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Comfort"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Bluza Comfort', 200, 'https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png" alt="Bluza Style" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Style"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Bluza Style', 200, 'https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg" alt="Bluza Fashion" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Bluza "Fashion"</div>
+                        <div class="product-price">200 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Bluza Fashion', 200, 'https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-bold my-6 text-center gold-text">Czapki</h3>
+            <div class="products-grid">
+                <!-- Czapki -->
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Classic" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Classic"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Czapka Classic', 99, 'https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Czapka Sport" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Sport"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Czapka Sport', 99, 'https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg" alt="Czapka Street" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Street"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Czapka Street', 99, 'https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Premium"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Czapka Premium', 99, 'https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div
+ <div class="product-card fade-in">
+                    <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
+                    <div class="product-info">
+                        <div class="product-title">Czapka "Premium"</div>
+                        <div class="product-price">99 zł</div>
+                        <button class="nav-btn" onclick="addToCart('Czapka Premium', 99, 'https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg')">Dodaj do koszyka</button>
+                    </div>
+                </div>
             </div>
         </section>
                     
-        <!-- Studio projektowe - ZASTĄPIONE REACT DESIGNER -->
+        <!-- Studio projektowe -->
         <section id="design">
             <div class="section-title">
                 <h2>Studio Projektowe</h2>
                 <p>Stwórz swój unikalny produkt</p>
             </div>
             
-            <div id="designer-root"></div>
+            <div class="design-studio">
+                <div class="canvas-container">
+                    <canvas id="designCanvas" width="500" height="400"></canvas>
+                </div>
+                
+                <div class="design-tools">
+                    <div class="tool-group">
+                        <div class="tool-title"><i class="fas fa-font"></i> Tekst</div>
+                        <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3" oninput="updateDesign()">
+                        
+                        <div class="flex gap-3 mb-3">
+                            <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
+                                <option value="Arial">Arial</option>
+                                <option value="Times New Roman">Times New Roman</option>
+                                <option value="Courier New">Courier New</option>
+                                <option value="Impact">Impact</option>
+                                <option value="Comic Sans MS">Comic Sans</option>
+                            </select>
+                            
+                            <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
+                        </div>
+                        
+                        <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3" oninput="updateDesign()">
+                    </div>
+                    
+                    <div class="tool-group">
+                        <div class="tool-title"><i class="fas fa-palette"></i> Opcje produktu</div>
+                        
+                        <select id="productType" class="w-full p-3 border rounded mb-3">
+                            <option value="tshirt">Koszulka (120 zł)</option>
+                            <option value="hoodie">Bluza (200 zł)</option>
+                            <option value="cap">Czapka (99 zł)</option>
+                        </select>
+                        
+                        <select id="productSize" class="w-full p-3 border rounded mb-3">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                        
+                        <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
+                        <button class="nav-btn gold-bg w-full" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center gap-4 mt-6">
+                    <button class="nav-btn gold-bg" onclick="renderDesign()"><i class="fas fa-sync"></i> Podgląd</button>
+                    <button class="nav-btn gold-bg" onclick="addToCartFromDesign()"><i class="fas fa-cart-plus"></i> Dodaj do koszyka</button>
+                    <button class="nav-btn gold-bg" onclick="sendDesignToEmail()"><i class="fas fa-envelope"></i> Wyślij projekt</button>
+                </div>
+                
+                <div id="paypal-design-container" class="mt-6"></div>
+            </div>
         </section>
 
-        <!-- Pozostałe sekcje (zbiórka, blog, regulamin, kontakt) -->
-        <!-- ... -->
+        <!-- Zbiórka -->
+        <section id="charity">
+            <div class="section-title">
+                <h2>Wspieramy Dom Dziecka "Promyk"</h2>
+                <p>Razem możemy zmienić świat na lepsze</p>
+            </div>
+            
+            <div class="charity-section">
+                <h3 class="text-3xl font-bold mb-4">Twoja pomoc ma znaczenie</h3>
+                <p class="text-xl mb-6">Wesprzyj podopiecznych Domu Dziecka "Promyk"</p>
+                
+                <div class="mb-6">
+                    <h4 class="text-2xl font-bold mb-3">📱 Przelew BLIK</h4>
+                    <div class="text-3xl font-mono font-bold">573-939-925</div>
+                    <p class="mt-2">z dopiskiem "POMOC"</p>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="text-2xl font-bold mb-3">📦 Przekaż dary</h4>
+                    <p>Skontaktuj się z nami, aby dowiedzieć się, jak przekazać materialne wsparcie</p>
+                    <p class="mt-2 font-bold">Tel: 604 296 360 | Email: mielniczukgrzegosz74@gmail.com</p>
+                </div>
+            </div>
+            
+            <div class="donors-list">
+                <h4 class="text-xl font-bold mb-4">Ostatni darczyńcy:</h4>
+                <ul class="space-y-2">
+                    <li><i class="fas fa-heart gold-text"></i> <strong>Anna K.</strong> - paczka z artykułami szkolnymi</li>
+                    <li><i class="fas fa-heart gold-text"></i> <strong>Tomasz W.</strong> - 500 zł przekazane przez BLIK</li>
+                    <li><i class="fas fa-heart gold-text"></i> <strong>Fundacja "Przyszłość"</strong> - zestaw komputerowy</li>
+                    <li><i class="fas fa-heart gold-text"></i> <strong>Pracownicy firmy XYZ</strong> - zbiórka zimowych ubrań</li>
+                </ul>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md mt-6">
+                <h4 class="text-2xl font-bold mb-4">List od dzieci z Domu Dziecka "Promyk"</h4>
+                <div class="italic text-lg border-l-4 border-gold pl-4 py-2">
+                    "Drodzy Przyjaciele,<br><br>
+                    Chcielibyśmy podziękować Wam za wszystkie otrzymane dary i wsparcie. Każda paczka, każdy uśmiech i każde dobre słowo dodaje nam siły i wiary w lepsze jutro. Dzięki Wam wiemy, że nie jesteśmy sami.<br><br>
+                    Wasze gesty dobroci sprawiają, że nasze dni stają się jaśniejsze, a marzenia - bardziej realne. Dziękujemy, że jesteście częścią naszej historii.<br><br>
+                    Z nadzieją w sercach,<br>
+                    Dzieci z Domu Dziecka 'Promyk'"
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <blockquote class="text-xl italic">
+                    "Największym bogactwem jest pomoc innym bez oczekiwania czegokolwiek w zamian."
+                </blockquote>
+                <p class="mt-4">- Wojciech, założyciel AdelbertusShop</p>
+            </div>
+        </section>
 
+        <!-- Blog -->
+        <section id="blog">
+            <div class="section-title">
+                <h2>Blog</h2>
+                <p>Podziel się swoimi przemyśleniami i inspiracjami</p>
+            </div>
+            
+            <div class="blog-posts">
+                <div class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sztuka" class="w-full h-48 object-cover">
+                    <div class="blog-content">
+                        <h3 class="text-xl font-bold mb-2">Sztuka jako forma ekspresji</h3>
+                        <p class="text-sm text-gray-600">Opublikowano: 12 czerwca 2023</p>
+                        <p class="mt-3">Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...</p>
+                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                    </div>
+                </div>
+                
+                <div class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Design" class="w-full h-48 object-cover">
+                    <div class="blog-content">
+                        <h3 class="text-xl font-bold mb-2">Trendy w streetwearze 2023</h3>
+                        <p class="text-sm text-gray-600">Opublikowano: 5 czerwca 2023</p>
+                        <p class="mt-3">Odkryj najnowsze trendy w modzie ulicznej tego sezonu...</p>
+                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                    </div>
+                </div>
+                
+                <div class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1588200908342-23b585c03e26?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="w-full h-48 object-cover">
+                    <div class="blog-content">
+                        <h3 class="text-xl font-bold mb-2">Wpływ sztuki na codzienność</h3>
+                        <p class="text-sm text-gray-600">Opublikowano: 28 maja 2023</p>
+                        <p class="mt-3">Jak otaczanie się sztuką wpływa na nasze samopoczucie i kreatywność...</p>
+                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                    </div>
+                </div>
+
+                <div class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="w-full h-48 object-cover">
+                    <div class="blog-content">
+                        <h3 class="text-xl font-bold mb-2">Jak założyć własną markę odzieżową</h3>
+                        <p class="text-sm text-gray-600">Opublikowano: 15 lipca 2023</p>
+                        <p class="mt-3">Praktyczny przewodnik po tworzeniu własnej marki odzieżowej od zera...</p>
+                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                    </div>
+                </div>
+
+                <div class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1566206091558-7f218b696731?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Design" class="w-full h-48 object-cover">
+                    <div class="blog-content">
+                        <h3 class="text-xl font-bold mb-2">Historia streetwearu w Polsce</h3>
+                        <p class="text-sm text-gray-600">Opublikowano: 3 lipca 2023</p>
+                        <p class="mt-3">Jak rozwijała się moda uliczna w Polsce na przestrzeni ostatnich dekad...</p>
+                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                    </div>
+                </div>
+
+                <div class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Moda" class="w-full h-48 object-cover">
+                    <div class="blog-content">
+                        <h3 class="text-xl font-bold mb-2">Ekologiczne materiały w modzie</h3>
+                        <p class="text-sm text-gray-600">Opublikowano: 25 czerwca 2023</p>
+                        <p class="mt-3">Dlaczego warto wybierać ekologiczne tkaniny i jak wpływają na środowisko...</p>
+                        <button class="nav-btn mt-4">Czytaj więcej</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+                <h3 class="text-2xl font-bold mb-4">Opinie naszych klientów</h3>
+                
+                <div class="reviews">
+                    <div class="review">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Anna" class="review-avatar">
+                            <div>
+                                <div class="font-bold">Anna Nowak</div>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p>"Zamówiłam bluzę z własnym projektem i jestem zachwycona! Jakość wykonania jest rewelacyjna, a obsługa klienta na najwyższym poziomie. Na pewno wrócę po więcej!"</p>
+                    </div>
+                    
+                    <div class="review">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Tomasz" class="review-avatar">
+                            <div>
+                                <div class="font-bold">Tomasz Kowalski</div>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p>"Kupiłem kilka koszulek i czapkę. Wszystko idealnie pasuje, materiały są wysokiej jakości, a wzory nie blakną po praniu. Polecam z czystym sumieniem!"</p>
+                    </div>
+                    
+                    <div class="review">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Katarzyna" class="review-avatar">
+                            <div>
+                                <div class="font-bold">Katarzyna Wiśniewska</div>
+                                <div class="review-stars">★★★★☆</div>
+                            </div>
+                        </div>
+                        <p>"Świetny sklep z unikalnymi projektami. Zamówienie dotarło szybko, a produkt wyglądał dokładnie tak jak na zdjęciu. Jedyna uwaga - trochę długi czas realizacji."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <h3 class="text-2xl font-bold mb-4">Podziel się swoją historią</h3>
+                <p>Masz ciekawą historię związaną z modą, sztuką lub projektowaniem? Chcesz podzielić się opinią?</p>
+                <p class="mt-2">Napisz do nas: mielniczukgrzegosz74@gmail.com | Tel: 604 296 360</p>
+                <button class="nav-btn gold-bg mt-4"><i class="fas fa-pencil-alt"></i> Napisz artykuł gościnny</button>
+            </div>
+        </section>
+
+        <!-- Regulamin -->
+        <section id="regulations">
+            <div class="section-title">
+                <h2>Regulamin</h2>
+                <p>Zasady korzystania z naszego sklepu</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold mb-3">§1 Postanowienia ogólne</h3>
+                    <p>Sklep internetowy AdelbertusShop prowadzony jest przez osobę fizyczną w ramach działalności nierejestrowanej na podstawie art. 5 ustawy o swobodzie działalności gospodarczej.</p>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold mb-3">§2 Zamówienia i płatności</h3>
+                    <p>1. Zamówienia można składać przez stronę internetową 24 godziny na dobę.</p>
+                    <p>2. Akceptowane formy płatności: PayPal, przelew bankowy, BLIK.</p>
+                    <p>3. Realizacja zamówienia następuje po zaksięgowaniu płatności.</p>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold mb-3">§3 Dostawa</h3>
+                    <p>1. Czas realizacji zamówienia: do 5 dni roboczych.</p>
+                    <p>2. Koszt dostawy: 15 zł (darmowa dostawa przy zamówieniach powyżej 300 zł).</p>
+                    <p>3. Przesyłki wysyłane są za pośrednictwem firmy kurierskiej.</p>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold mb-3">§4 Zwroty i reklamacje</h3>
+                    <p>1. Konsument ma prawo do odstąpienia od umowy w ciągu 14 dni bez podawania przyczyny.</p>
+                    <p>2. Produkty personalizowane zwrotowi nie podlegają.</p>
+                    <p>3. Reklamacje należy składać na adres: mielniczukgrzegosz74@gmail.com</p>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold mb-3">§5 Dane osobowe</h3>
+                    <p>1. Administratorem danych osobowych jest właściciel sklepu.</p>
+                    <p>2. Dane przetwarzane są wyłącznie w celu realizacji zamówienia.</p>
+                    <p>3. Zgodnie z RODO, masz prawo dostępu do swoich danych, ich sprostowania oraz usunięcia.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kontakt -->
+        <section id="contact">
+            <div class="section-title">
+                <h2>Kontakt</h2>
+                <p>Skontaktuj się z nami</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Dane kontaktowe</h3>
+                        <p class="mb-2"><i class="fas fa-envelope gold-text"></i> Email: mielniczukgrzegosz74@gmail.com</p>
+                        <p class="mb-2"><i class="fas fa-phone gold-text"></i> Telefon: 604 296 360</p>
+                        <p class="mb-4"><i class="fas fa-clock gold-text"></i> Godziny odpowiedzi: Pon-Pt 9:00-17:00</p>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-4">Obsługujemy</h3>
+                        <p><i class="fas fa-check gold-text"></i> Projektowanie personalizowanych produktów</p>
+                        <p><i class="fas fa-check gold-text"></i> Zamówienia indywidualne i hurtowe</p>
+                        <p><i class="fas fa-check gold-text"></i> Współpraca z firmami i organizacjami</p>
+
+                        <h3 class="text-xl font-bold mt-6 mb-4">Social Media</h3>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link" target="_blank">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Wyślij wiadomość</h3>
+                        <form id="contactForm">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Imię i nazwisko</label>
+                                <input type="text" class="w-full p-3 border rounded" required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" class="w-full p-3 border rounded" required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Temat</label>
+                                <input type="text" class="w-full p-3 border rounded" required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Wiadomość</label>
+                                <textarea class="w-full p-3 border rounded" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="nav-btn gold-bg w-full">Wyślij wiadomość</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Koszyk -->
@@ -929,20 +1060,20 @@
             <!-- Produkty w koszyku -->
         </div>
         
-        <div class="cart-total">
+        <div class="border-t pt-4 mb-6">
             <div class="flex justify-between text-xl font-bold">
                 <span>Suma:</span>
                 <span id="cartTotal">0 zł</span>
             </div>
         </div>
         
-        <div id="paypal-container" class="mt-4"></div>
-        
-        <button onclick="sendOrderEmail()" class="nav-btn mt-4">
+        <button onclick="sendOrderEmail()" class="nav-btn gold-bg w-full mb-3">
             <i class="fas fa-envelope"></i> Wyślij zamówienie mailem
         </button>
         
-        <p class="text-sm text-gray-600 text-center mt-4">Akceptujemy również przelewy bankowe i BLIK</p>
+        <div id="paypal-container-L4639S4363CZE" class="mb-3"></div>
+        
+        <p class="text-sm text-gray-600 text-center">Akceptujemy również przelewy bankowe i BLIK</p>
     </div>
 
     <!-- Stopka -->
@@ -954,6 +1085,18 @@
             <p><i class="fas fa-envelope"></i> mielniczukgrzegosz74@gmail.com</p>
             <p><i class="fas fa-phone"></i> 604 296 360</p>
         </div>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
         
         <div class="mt-6">
             <p>© 2023 AdelbertusShop. Wszystkie prawa zastrzeżone.</p>
@@ -961,19 +1104,26 @@
         </div>
     </footer>
 
-    <!-- Skrypty -->
     <script>
         // ===== GLOBALNE ZMIENNE =====
         let cart = JSON.parse(localStorage.getItem('adelbertus_cart')) || [];
+        let currentDesign = {
+            text: '',
+            fontSize: 36,
+            fontFamily: 'Arial',
+            color: '#000000',
+            productType: 'tshirt',
+            productSize: 'M',
+            image: null
+        };
 
         // ===== INICJALIZACJA =====
         document.addEventListener('DOMContentLoaded', function() {
             initNavigation();
+            initDesignStudio();
             updateCart();
             renderPayPalButton();
             initContactForm();
-            initBlog();
-            initAddToCartButtons();
         });
 
         // ===== NAWIGACJA =====
@@ -981,29 +1131,21 @@
             const navButtons = document.querySelectorAll('.nav-btn');
             
             navButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    if (this.hasAttribute('data-section')) {
-                        e.preventDefault();
-                        
-                        // Usuń aktywną klasę ze wszystkich przycisków
-                        navButtons.forEach(btn => btn.classList.remove('active'));
-                        
-                        // Dodaj aktywną klasę do klikniętego przycisku
-                        this.classList.add('active');
-                        
-                        // Pokaż odpowiednią sekcję
-                        const sectionId = this.getAttribute('data-section');
-                        showSection(sectionId);
-                    }
+                button.addEventListener('click', function() {
+                    // Usuń aktywną klasę ze wszystkich przycisków
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Dodaj aktywną klasę do klikniętego przycisku
+                    this.classList.add('active');
+                    
+                    // Pokaż odpowiednią sekcję
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
                 });
             });
             
             // Obsługa ikony koszyka
             document.getElementById('cartIcon').addEventListener('click', toggleCart);
-        }
-
-        function toggleMobileMenu() {
-            document.getElementById('navContainer').classList.toggle('show');
         }
 
         function showSection(sectionId) {
@@ -1015,29 +1157,11 @@
             // Pokaż wybraną sekcję
             document.getElementById(sectionId).classList.add('active');
             
-            // Ukryj menu mobilne po wybraniu sekcji
-            if (window.innerWidth <= 768) {
-                document.getElementById('navContainer').classList.remove('show');
-            }
-            
-            // Przewiń do góry sekcji
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            // Przewiń do góry
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ===== DODAWANIE DO KOSZYKA =====
-        function initAddToCartButtons() {
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('add-to-cart-btn')) {
-                    e.preventDefault();
-                    const name = e.target.getAttribute('data-name');
-                    const price = parseFloat(e.target.getAttribute('data-price'));
-                    const image = e.target.getAttribute('data-image');
-                    
-                    addToCart(name, price, image);
-                }
-            });
-        }
-
+        // ===== KOSZYK =====
         function updateCart() {
             const cartCount = document.getElementById('cartCount');
             const cartItems = document.getElementById('cartItems');
@@ -1052,7 +1176,6 @@
             if (cart.length === 0) {
                 cartItems.innerHTML = '<p class="text-center text-gray-500">Twój koszyk jest pusty</p>';
                 cartTotal.textContent = '0 zł';
-                document.getElementById('paypal-container').innerHTML = '';
             } else {
                 let total = 0;
                 
@@ -1075,9 +1198,6 @@
                 });
                 
                 cartTotal.textContent = `${total.toFixed(2)} zł`;
-                
-                // Renderuj przycisk PayPal
-                renderPayPalButton();
             }
             
             // Zapisz do localStorage
@@ -1116,19 +1236,127 @@
             document.getElementById('cartPanel').classList.toggle('open');
         }
 
+        // ===== STUDIO PROJEKTOWE =====
+        function initDesignStudio() {
+            const canvas = document.getElementById('designCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Ustawienia canvas
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Inicjalny render
+            updateDesign();
+        }
+
+        function updateDesign() {
+            const canvas = document.getElementById('designCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Aktualizuj stan projektu
+            currentDesign.text = document.getElementById('designText').value;
+            currentDesign.fontFamily = document.getElementById('fontFamily').value;
+            currentDesign.fontSize = parseInt(document.getElementById('fontSize').value);
+            currentDesign.color = document.getElementById('textColor').value;
+            
+            // Wyczyść canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Narysuj tło
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Narysuj tekst
+            if (currentDesign.text) {
+                ctx.font = `${currentDesign.fontSize}px ${currentDesign.fontFamily}`;
+                ctx.fillStyle = currentDesign.color;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(currentDesign.text, canvas.width / 2, canvas.height / 2);
+            }
+            
+            // Narysuj obrazek jeśli istnieje
+            if (currentDesign.image) {
+                const size = Math.min(currentDesign.image.width, currentDesign.image.height, 200);
+                ctx.drawImage(
+                    currentDesign.image, 
+                    (canvas.width - size) / 2, 
+                    (canvas.height - size) / 2, 
+                    size, 
+                    size
+                );
+            }
+        }
+
+        function handleImageUpload(event) {
+            const file = document.getElementById('designImage').files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentDesign.image = new Image();
+                    currentDesign.image.src = e.target.result;
+                    currentDesign.image.onload = updateDesign;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function renderDesign() {
+            updateDesign();
+            showNotification('🔄 Projekt zaktualizowany');
+        }
+
+        function addToCartFromDesign() {
+            const productType = document.getElementById('productType');
+            const productSize = document.getElementById('productSize');
+            
+            const prices = {
+                'tshirt': 120,
+                'hoodie': 200,
+                'cap': 99
+            };
+            
+            const price = prices[productType.value] || 120;
+            const canvas = document.getElementById('designCanvas');
+            
+            addToCart(
+                `Projekt: ${currentDesign.text || 'Niestandardowy'} (${productSize.value})`,
+                price,
+                canvas.toDataURL(),
+                productSize.value
+            );
+        }
+
         // ===== PAYPAL =====
         function renderPayPalButton() {
-            const container = document.getElementById('paypal-container');
+            const container = document.getElementById('paypal-container-L4639S4363CZE');
             container.innerHTML = '';
             
             if (cart.length === 0) return;
             
             paypal.HostedButtons({
                 hostedButtonId: "L4639S4363CZE",
-            }).render("#paypal-container");
+            }).render("#paypal-container-L4639S4363CZE");
         }
 
         // ===== EMAIL =====
+        function sendDesignToEmail() {
+            const canvas = document.getElementById('designCanvas');
+            
+            const subject = 'Mój projekt z AdelbertusShop';
+            const body = `
+                Cześć! Oto mój projekt:\n
+                Tekst: ${currentDesign.text}\n
+                Rozmiar czcionki: ${currentDesign.fontSize}\n
+                Kolor: ${currentDesign.color}\n
+                Typ produktu: ${document.getElementById('productType').options[document.getElementById('productType').selectedIndex].text}\n
+                Rozmiar: ${document.getElementById('productSize').value}\n\n
+                Proszę o kontakt w sprawie realizacji zamówienia.
+            `;
+            
+            window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
         function sendOrderEmail() {
             let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
             
@@ -1143,51 +1371,7 @@
             emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
             emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
             
-            window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
-        }
-
-        // ===== BLOG =====
-        function initBlog() {
-            // Inicjalizacja bloga
-        }
-
-        function toggleReadMore(button) {
-            const post = button.closest('.blog-post');
-            const excerpt = post.querySelector('.blog-excerpt');
-            const full = post.querySelector('.blog-full');
-            
-            if (full.style.display === 'block') {
-                full.style.display = 'none';
-                excerpt.style.display = 'block';
-                button.textContent = 'Czytaj więcej';
-            } else {
-                full.style.display = 'block';
-                excerpt.style.display = 'none';
-                button.textContent = 'Czytaj mniej';
-            }
-        }
-
-        function showBlogForm() {
-            document.getElementById('blogForm').style.display = 'block';
-            document.getElementById('blogForm').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function hideBlogForm() {
-            document.getElementById('blogForm').style.display = 'none';
-        }
-
-        function addNewBlogPost(event) {
-            event.preventDefault();
-            showNotification('Artykuł dodany pomyślnie!');
-            event.target.reset();
-            hideBlogForm();
-        }
-
-        function shareArticle(title, image) {
-            const subject = `Polecam artykuł: ${title}`;
-            const body = `Cześć! Polecam Ci ten artykuł z AdelbertusShop: ${title}\n\nZobacz więcej na naszej stronie!`;
-            
-            window.open(`mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+            window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`;
         }
 
         // ===== FORMULARZ KONTAKTOWY =====
@@ -1196,16 +1380,7 @@
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    const formData = new FormData(contactForm);
-                    const name = contactForm.querySelector('input[type="text"]').value;
-                    const email = contactForm.querySelector('input[type="email"]').value;
-                    const subject = contactForm.querySelectorAll('input[type="text"]')[1].value;
-                    const message = contactForm.querySelector('textarea').value;
-                    
-                    const mailto = `mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Imię i nazwisko: ${name}\nEmail: ${email}\n\nWiadomość:\n${message}`)}`;
-                    window.open(mailto);
-                    
-                    showNotification('📧 Otwieranie klienta pocztowego...');
+                    showNotification('📩 Wiadomość wysłana! Odpowiemy najszybciej jak to możliwe.');
                     contactForm.reset();
                 });
             }
@@ -1236,659 +1411,8 @@
             }, 3000);
         }
 
-        // Globalne funkcje
+        // Globalna funkcja do dodawania produktów
         window.addToCart = addToCart;
-        window.removeFromCart = removeFromCart;
-        window.toggleCart = toggleCart;
-        window.toggleReadMore = toggleReadMore;
-        window.showBlogForm = showBlogForm;
-        window.hideBlogForm = hideBlogForm;
-        window.shareArticle = shareArticle;
-        window.toggleMobileMenu = toggleMobileMenu;
-
-        // Obsługa zdarzenia dodania projektu do koszyka
-        window.addEventListener('designer:add-to-cart', function(e) {
-            addToCart(
-                e.detail.name,
-                e.detail.unitPrice,
-                e.detail.preview,
-                e.detail.size
-            );
-        });
-    </script>
-
-    <!-- React Designer Component -->
-    <script type="text/babel">
-        const { useState, useEffect, useRef, useMemo } = React;
-
-        const PRODUCT_BASE = {
-            tshirt: 99,
-            hoodie: 150,
-            cap: 79,
-        };
-
-        const SIZE_LIST = ["XS", "S", "M", "L", "XL", "XXL"];
-        const COLOR_SWATCHES = [
-            "#ffffff",
-            "#000000",
-            "#f3f4f6",
-            "#e5e7eb",
-            "#111827",
-            "#dc2626",
-            "#f59e0b",
-            "#10b981",
-            "#3b82f6",
-            "#8b5cf6",
-            "#f472b6",
-        ];
-
-        function usePrice(product, layersCount, qty) {
-            return useMemo(() => {
-                const base = PRODUCT_BASE[product] ?? 99;
-                const extras = Math.max(0, layersCount - 1) * 10;
-                const unit = base + extras;
-                return {
-                    unit,
-                    total: unit * qty,
-                };
-            }, [product, layersCount, qty]);
-        }
-
-        function ProductSilhouette({ product, color }) {
-            const shape = useMemo(() => {
-                switch (product) {
-                    case "hoodie":
-                        return "hoodie";
-                    case "cap":
-                        return "cap";
-                    default:
-                        return "";
-                }
-            }, [product]);
-            
-            return (
-                React.createElement('div', {
-                    className: `product-silhouette ${shape}`,
-                    style: { backgroundColor: color }
-                })
-            );
-        }
-
-        function Designer() {
-            const canvasRef = useRef(null);
-            const fabricRef = useRef(null);
-            const [product, setProduct] = useState("tshirt");
-            const [color, setColor] = useState("#ffffff");
-            const [size, setSize] = useState("M");
-            const [qty, setQty] = useState(1);
-            const [textValue, setTextValue] = useState("");
-            const [textColor, setTextColor] = useState("#111827");
-            const [fontFamily, setFontFamily] = useState("Inter");
-            const [fontSize, setFontSize] = useState(42);
-            const [isBold, setIsBold] = useState(false);
-            const [isItalic, setIsItalic] = useState(false);
-            const [exportOpen, setExportOpen] = useState(false);
-            const [blikOpen, setBlikOpen] = useState(false);
-
-            // Inicjalizacja Fabric.js
-            useEffect(() => {
-                const canvas = new fabric.Canvas(canvasRef.current, {
-                    width: 520,
-                    height: 520,
-                    backgroundColor: "transparent",
-                    preserveObjectStacking: true,
-                    selection: true,
-                });
-
-                // Strefa druku (bezpieczny obszar)
-                const printArea = new fabric.Rect({
-                    left: 60,
-                    top: 60,
-                    width: 400,
-                    height: 400,
-                    rx: 18,
-                    ry: 18,
-                    fill: "rgba(0,0,0,0)",
-                    stroke: "#d1d5db",
-                    strokeDashArray: [8, 8],
-                    selectable: false,
-                    evented: false,
-                    name: "PRINT_AREA",
-                });
-                canvas.add(printArea);
-                canvas.sendToBack(printArea);
-
-                // Usprawnienia kontroli
-                fabric.Object.prototype.set({
-                    cornerStyle: "circle",
-                    transparentCorners: false,
-                    borderColor: "#3b82f6",
-                    cornerColor: "#3b82f6",
-                    cornerSize: 10,
-                    borderDashArray: [4, 2],
-                });
-
-                fabricRef.current = canvas;
-                return () => canvas.dispose();
-            }, []);
-
-            const layersCount = useMemo(() => {
-                if (!fabricRef.current) return 1;
-                return fabricRef.current.getObjects().filter(o => o.name !== "PRINT_AREA").length || 1;
-            }, [fabricRef.current?.getObjects?.().length]);
-
-            const { unit, total } = usePrice(product, layersCount, qty);
-
-            // Akcje warstw
-            const removeSelected = () => {
-                const c = fabricRef.current; if (!c) return;
-                c.getActiveObjects().forEach(o => c.remove(o));
-                c.discardActiveObject();
-                c.requestRenderAll();
-            };
-
-            const bringForward = () => {
-                const c = fabricRef.current; if (!c) return;
-                const a = c.getActiveObject(); if (!a) return;
-                c.bringForward(a); c.requestRenderAll();
-            };
-            
-            const sendBackward = () => {
-                const c = fabricRef.current; if (!c) return;
-                const a = c.getActiveObject(); if (!a) return;
-                c.sendBackwards(a); c.requestRenderAll();
-            };
-
-            const toggleLock = () => {
-                const c = fabricRef.current; if (!c) return;
-                const a = c.getActiveObject(); if (!a) return;
-                const locked = a.selectable === false || a.evented === false;
-                a.set({ selectable: locked, evented: locked });
-                a.hasControls = locked;
-                c.discardActiveObject();
-                c.requestRenderAll();
-            };
-
-            // Dodawanie tekstu
-            const addText = () => {
-                const c = fabricRef.current; if (!c || !textValue.trim()) return;
-                const text = new fabric.IText(textValue, {
-                    left: 100,
-                    top: 100,
-                    fill: textColor,
-                    fontFamily,
-                    fontSize,
-                    fontWeight: isBold ? "700" : "400",
-                    fontStyle: isItalic ? "italic" : "normal",
-                    editable: true,
-                    name: "TEXT_LAYER",
-                });
-                c.add(text).setActiveObject(text);
-                c.requestRenderAll();
-            };
-
-            // Dodawanie obrazu
-            const onUpload = (e) => {
-                const file = e.target.files?.[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = () => {
-                    fabric.Image.fromURL(reader.result, (img) => {
-                        const scale = Math.min(300 / img.width, 300 / img.height);
-                        img.set({ left: 140, top: 140, scaleX: scale, scaleY: scale, name: "IMAGE_LAYER" });
-                        fabricRef.current.add(img).setActiveObject(img);
-                        fabricRef.current.requestRenderAll();
-                    }, { crossOrigin: "anonymous" });
-                };
-                reader.readAsDataURL(file);
-                e.target.value = ""; // reset
-            };
-
-            // Eksport PNG
-            const exportPNG = () => {
-                const c = fabricRef.current; if (!c) return;
-                const dataUrl = c.toDataURL({ format: "png", multiplier: 2, enableRetinaScaling: true });
-                const a = document.createElement("a");
-                a.href = dataUrl;
-                a.download = `projekt-${product}-${Date.now()}.png`;
-                a.click();
-            };
-
-            // Dodanie do koszyka (CustomEvent dla otaczającej aplikacji)
-            const addToCart = () => {
-                const c = fabricRef.current; if (!c) return;
-                const preview = c.toDataURL({ format: "png", multiplier: 1.5 });
-                const detail = {
-                    name: `Projekt własny — ${labelFor(product)} (${size})`,
-                    product,
-                    size,
-                    color,
-                    qty,
-                    unitPrice: unit,
-                    totalPrice: total,
-                    preview,
-                    layers: layersCount,
-                    timestamp: new Date().toISOString(),
-                };
-                // Callback dla integracji
-                window.dispatchEvent(new CustomEvent("designer:add-to-cart", { detail }));
-                // Dla prostoty — pokaż potwierdzenie
-                showNotification("Dodano do koszyka!");
-            };
-
-            const labelFor = (p) => (p === "tshirt" ? "Koszulka" : p === "hoodie" ? "Bluza" : "Czapka");
-
-            // Funkcje do renderowania komponentów
-            const renderProductSelection = () => {
-                return React.createElement('div', { className: 'designer-card' },
-                    React.createElement('div', { className: 'designer-card-header' },
-                        React.createElement('h3', { className: 'designer-card-title' },
-                            React.createElement('i', { className: 'fas fa-tshirt' }),
-                            " Projektuj swój produkt"
-                        )
-                    ),
-                    React.createElement('div', { className: 'designer-card-content space-y-4' },
-                        React.createElement('div', { className: 'grid grid-cols-3 gap-2' },
-                            React.createElement('button', {
-                                className: `designer-button ${product === "tshirt" ? "" : "secondary"}`,
-                                onClick: () => setProduct("tshirt")
-                            }, "Koszulka"),
-                            React.createElement('button', {
-                                className: `designer-button ${product === "hoodie" ? "" : "secondary"}`,
-                                onClick: () => setProduct("hoodie")
-                            }, "Bluza"),
-                            React.createElement('button', {
-                                className: `designer-button ${product === "cap" ? "" : "secondary"}`,
-                                onClick: () => setProduct("cap")
-                            }, "Czapka")
-                        ),
-
-                        React.createElement('div', { className: 'space-y-2' },
-                            React.createElement('label', { className: 'designer-label' },
-                                React.createElement('i', { className: 'fas fa-palette' }),
-                                "Kolor produktu"
-                            ),
-                            React.createElement('div', { className: 'flex flex-wrap gap-2' },
-                                COLOR_SWATCHES.map((c) =>
-                                    React.createElement('button', {
-                                        key: c,
-                                        onClick: () => setColor(c),
-                                        className: `color-swatch ${color === c ? "active" : ""}`,
-                                        style: { backgroundColor: c },
-                                        'aria-label': `Kolor ${c}`
-                                    })
-                                ),
-                                React.createElement('input', {
-                                    type: 'color',
-                                    value: color,
-                                    onChange: (e) => setColor(e.target.value),
-                                    className: 'designer-input h-8 w-20 p-1'
-                                })
-                            )
-                        ),
-
-                        React.createElement('div', { className: 'grid grid-cols-2 gap-3' },
-                            React.createElement('div', { className: 'space-y-2' },
-                                React.createElement('label', null, "Rozmiar"),
-                                React.createElement('div', { className: 'relative' },
-                                    React.createElement('select', {
-                                        value: size,
-                                        onChange: (e) => setSize(e.target.value),
-                                        className: 'designer-input'
-                                    },
-                                        SIZE_LIST.map(s =>
-                                            React.createElement('option', { key: s, value: s }, s)
-                                        )
-                                    )
-                                )
-                            ),
-                            React.createElement('div', { className: 'space-y-2' },
-                                React.createElement('label', null, "Ilość"),
-                                React.createElement('input', {
-                                    type: 'number',
-                                    min: 1,
-                                    value: qty,
-                                    onChange: (e) => setQty(Math.max(1, parseInt(e.target.value || "1"))),
-                                    className: 'designer-input'
-                                })
-                            )
-                        ),
-
-                        React.createElement('div', { className: 'rounded-xl bg-gray-100 p-3 text-sm' },
-                            React.createElement('div', { className: 'flex items-center justify-between' },
-                                React.createElement('span', null, "Cena jednostkowa"),
-                                React.createElement('strong', null, `${unit} zł`)
-                            ),
-                            React.createElement('div', { className: 'flex items-center justify-between' },
-                                React.createElement('span', null, "Warstwy"),
-                                React.createElement('span', { className: 'font-medium' }, layersCount)
-                            ),
-                            React.createElement('div', { className: 'flex items-center justify-between text-base mt-1' },
-                                React.createElement('span', null, "Razem"),
-                                React.createElement('strong', null, `${total} zł`)
-                            )
-                        ),
-
-                        React.createElement('div', { className: 'flex gap-2' },
-                            React.createElement('button', {
-                                className: 'designer-button flex-1',
-                                onClick: addToCart
-                            },
-                                React.createElement('i', { className: 'fas fa-shopping-cart' }),
-                                "Dodaj do koszyka"
-                            ),
-                            React.createElement('button', {
-                                className: 'designer-button secondary flex-1',
-                                onClick: () => setBlikOpen(true)
-                            }, "Szybkie zamówienie (BLIK)")
-                        )
-                    )
-                );
-            };
-
-            const renderTextTools = () => {
-                return React.createElement('div', { className: 'designer-card' },
-                    React.createElement('div', { className: 'designer-card-content space-y-3' },
-                        React.createElement('div', { className: 'space-y-2' },
-                            React.createElement('label', null, "Treść"),
-                            React.createElement('input', {
-                                value: textValue,
-                                onChange: (e) => setTextValue(e.target.value),
-                                placeholder: "Wpisz tekst",
-                                className: 'designer-input'
-                            })
-                        ),
-
-                        React.createElement('div', { className: 'grid grid-cols-2 gap-3' },
-                            React.createElement('div', { className: 'space-y-2' },
-                                React.createElement('label', null, "Font"),
-                                React.createElement('select', {
-                                    value: fontFamily,
-                                    onChange: (e) => setFontFamily(e.target.value),
-                                    className: 'designer-input'
-                                },
-                                    ["Inter", "Poppins", "Montserrat", "Oswald", "Lato", "Roboto", "Bebas Neue"].map(f =>
-                                        React.createElement('option', { key: f, value: f }, f)
-                                    )
-                                )
-                            ),
-                            React.createElement('div', { className: 'space-y-2' },
-                                React.createElement('label', null, `Rozmiar: ${fontSize}px`),
-                                React.createElement('input', {
-                                    type: 'range',
-                                    value: fontSize,
-                                    onChange: (e) => setFontSize(parseInt(e.target.value)),
-                                    min: 12,
-                                    max: 140,
-                                    className: 'designer-slider'
-                                })
-                            )
-                        ),
-
-                        React.createElement('div', { className: 'flex items-center gap-2' },
-                            React.createElement('button', {
-                                className: `designer-button ${isBold ? "" : "secondary"}`,
-                                onClick: () => setIsBold(v => !v)
-                            },
-                                React.createElement('i', { className: 'fas fa-bold' })
-                            ),
-                            React.createElement('button', {
-                                className: `designer-button ${isItalic ? "" : "secondary"}`,
-                                onClick: () => setIsItalic(v => !v)
-                            },
-                                React.createElement('i', { className: 'fas fa-italic' })
-                            ),
-                            React.createElement('div', { className: 'ml-auto flex items-center gap-2' },
-                                React.createElement('i', { className: 'fas fa-heading' }),
-                                React.createElement('input', {
-                                    type: 'color',
-                                    value: textColor,
-                                    onChange: (e) => setTextColor(e.target.value),
-                                    className: 'designer-input h-9 w-16 p-1'
-                                })
-                            )
-                        ),
-
-                        React.createElement('button', {
-                            onClick: addText,
-                            className: 'designer-button w-full mt-2'
-                        }, "Dodaj tekst")
-                    )
-                );
-            };
-
-            const renderImageTools = () => {
-                return React.createElement('div', { className: 'designer-card' },
-                    React.createElement('div', { className: 'designer-card-content space-y-3' },
-                        React.createElement('div', { className: 'space-y-2' },
-                            React.createElement('label', null, "Dodaj swoją grafikę (PNG/JPG)"),
-                            React.createElement('input', {
-                                type: 'file',
-                                accept: 'image/png,image/jpeg',
-                                onChange: onUpload,
-                                className: 'designer-input'
-                            })
-                        ),
-                        React.createElement('div', { className: 'text-xs text-gray-500' },
-                            "Wskazówka: użyj przezroczystego PNG, aby uzyskać najlepszy efekt nadruku."
-                        )
-                    )
-                );
-            };
-
-            const renderLayerTools = () => {
-                return React.createElement('div', { className: 'designer-card' },
-                    React.createElement('div', { className: 'designer-card-content space-y-3' },
-                        React.createElement('div', { className: 'grid grid-cols-2 gap-2' },
-                            React.createElement('button', {
-                                className: 'designer-button secondary',
-                                onClick: bringForward
-                            },
-                                React.createElement('i', { className: 'fas fa-layer-group' }),
-                                "Do przodu"
-                            ),
-                            React.createElement('button', {
-                                className: 'designer-button secondary',
-                                onClick: sendBackward
-                            },
-                                React.createElement('i', { className: 'fas fa-layer-group rotate-180' }),
-                                "Do tyłu"
-                            ),
-                            React.createElement('button', {
-                                className: 'designer-button secondary',
-                                onClick: toggleLock
-                            },
-                                React.createElement('i', { className: 'fas fa-lock' }),
-                                "Zablokuj/Odblokuj"
-                            ),
-                            React.createElement('button', {
-                                className: 'designer-button destructive',
-                                onClick: removeSelected
-                            },
-                                React.createElement('i', { className: 'fas fa-trash' }),
-                                "Usuń"
-                            )
-                        )
-                    )
-                );
-            };
-
-            const renderTabs = () => {
-                const [activeTab, setActiveTab] = useState("text");
-                
-                return React.createElement('div', { className: 'designer-card' },
-                    React.createElement('div', { className: 'designer-tabs-list' },
-                        React.createElement('button', {
-                            className: `designer-tabs-trigger ${activeTab === "text" ? "active" : ""}`,
-                            onClick: () => setActiveTab("text")
-                        },
-                            React.createElement('i', { className: 'fas fa-font' }),
-                            "Tekst"
-                        ),
-                        React.createElement('button', {
-                            className: `designer-tabs-trigger ${activeTab === "image" ? "active" : ""}`,
-                            onClick: () => setActiveTab("image")
-                        },
-                            React.createElement('i', { className: 'fas fa-image' }),
-                            "Grafika"
-                        ),
-                        React.createElement('button', {
-                            className: `designer-tabs-trigger ${activeTab === "layers" ? "active" : ""}`,
-                            onClick: () => setActiveTab("layers")
-                        },
-                            React.createElement('i', { className: 'fas fa-layer-group' }),
-                            "Warstwy"
-                        )
-                    ),
-                    
-                    React.createElement('div', { className: 'designer-card-content' },
-                        activeTab === "text" && renderTextTools(),
-                        activeTab === "image" && renderImageTools(),
-                        activeTab === "layers" && renderLayerTools()
-                    )
-                );
-            };
-
-            const renderPreview = () => {
-                return React.createElement('div', { className: 'designer-card' },
-                    React.createElement('div', { className: 'designer-card-header' },
-                        React.createElement('h3', { className: 'designer-card-title' },
-                            React.createElement('i', { className: 'fas fa-image' }),
-                            " Podgląd projektu"
-                        )
-                    ),
-                    React.createElement('div', { className: 'designer-card-content' },
-                        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 gap-4 items-center' },
-                            React.createElement('div', { className: 'relative' },
-                                React.createElement(ProductSilhouette, { product, color }),
-                                React.createElement('canvas', {
-                                    ref: canvasRef,
-                                    className: 'designer-canvas'
-                                })
-                            ),
-                            
-                            React.createElement('div', { className: 'space-y-3' },
-                                React.createElement('div', { className: 'text-sm text-gray-500' },
-                                    "Umieść elementy w przerywanym obszarze — to bezpieczna strefa nadruku."
-                                ),
-                                
-                                React.createElement('div', { className: 'flex gap-2' },
-                                    React.createElement('button', {
-                                        onClick: () => setExportOpen(true),
-                                        className: 'designer-button flex-1'
-                                    },
-                                        React.createElement('i', { className: 'fas fa-download' }),
-                                        "Eksport PNG"
-                                    ),
-                                    React.createElement('button', {
-                                        onClick: removeSelected,
-                                        className: 'designer-button secondary flex-1'
-                                    },
-                                        React.createElement('i', { className: 'fas fa-eraser' }),
-                                        "Usuń zaznaczenie"
-                                    )
-                                ),
-                                
-                                React.createElement('div', { className: 'text-xs text-gray-500' },
-                                    "Uwaga: kolory mogą się różnić w druku. Zalecany format grafiki: PNG 3000×3000 px."
-                                )
-                            )
-                        )
-                    )
-                );
-            };
-
-            const renderExportDialog = () => {
-                if (!exportOpen) return null;
-                
-                return React.createElement(React.Fragment, null,
-                    React.createElement('div', {
-                        className: 'designer-dialog-overlay',
-                        onClick: () => setExportOpen(false)
-                    }),
-                    React.createElement('div', { className: 'designer-dialog-content' },
-                        React.createElement('h3', { className: 'text-xl font-bold mb-2' }, "Eksport projektu do PNG"),
-                        React.createElement('p', { className: 'text-gray-600 mb-4' }, "Eksportuje wyłącznie warstwy w obrębie strefy druku."),
-                        React.createElement('div', { className: 'flex items-center gap-2' },
-                            React.createElement('button', {
-                                onClick: exportPNG,
-                                className: 'designer-button'
-                            },
-                                React.createElement('i', { className: 'fas fa-download' }),
-                                "Pobierz PNG"
-                            ),
-                            React.createElement('button', {
-                                onClick: () => setExportOpen(false),
-                                className: 'designer-button secondary'
-                            }, "Zamknij")
-                        )
-                    )
-                );
-            };
-
-            const renderBlikDialog = () => {
-                if (!blikOpen) return null;
-                
-                return React.createElement(React.Fragment, null,
-                    React.createElement('div', {
-                        className: 'designer-dialog-overlay',
-                        onClick: () => setBlikOpen(false)
-                    }),
-                    React.createElement('div', { className: 'designer-dialog-content' },
-                        React.createElement('h3', { className: 'text-xl font-bold mb-2' }, "Podsumowanie zamówienia BLIK"),
-                        React.createElement('p', { className: 'text-gray-600 mb-4' }, 
-                            "Zapłać BLIK i w tytule wpisz: „projekt własny”. Po płatności prześlij potwierdzenie wraz z plikiem PNG."
-                        ),
-                        React.createElement('div', { className: 'space-y-1 text-sm mb-4' },
-                            React.createElement('div', { className: 'flex justify-between' },
-                                React.createElement('span', null, "Produkt"),
-                                React.createElement('span', null, `${labelFor(product)} (${size})`)
-                            ),
-                            React.createElement('div', { className: 'flex justify-between' },
-                                React.createElement('span', null, "Ilość"),
-                                React.createElement('span', null, qty)
-                            ),
-                            React.createElement('div', { className: 'flex justify-between' },
-                                React.createElement('span', null, "Cena szt."),
-                                React.createElement('span', null, `${unit} zł`)
-                            ),
-                            React.createElement('div', { className: 'flex justify-between font-semibold' },
-                                React.createElement('span', null, "Razem"),
-                                React.createElement('span', null, `${total} zł`)
-                            )
-                        ),
-                        React.createElement('button', {
-                            onClick: () => {
-                                setBlikOpen(false);
-                                showNotification("Instrukcje BLIK wysłane (demo)");
-                            },
-                            className: 'designer-button w-full'
-                        }, "Odbierz instrukcje")
-                    )
-                );
-            };
-
-            return React.createElement('div', { className: 'designer-container w-full max-w-7xl mx-auto p-4 md:p-6' },
-                React.createElement('div', null,
-                    React.createElement('div', { className: 'designer-grid' },
-                        React.createElement('div', { className: 'designer-grid-left space-y-4' },
-                            renderProductSelection(),
-                            renderTabs()
-                        ),
-                        
-                        React.createElement('div', { className: 'designer-grid-right' },
-                            renderPreview()
-                        )
-                    ),
-                    
-                    renderExportDialog(),
-                    renderBlikDialog()
-                )
-            );
-        }
-
-        // Renderowanie komponentu
-        ReactDOM.render(React.createElement(Designer), document.getElementById('designer-root'));
     </script>
 </body>
 </html>
