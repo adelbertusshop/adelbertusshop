@@ -1470,605 +1470,419 @@
             </div>
         </section>
 
-   <!-- Studio projektowe - ZMODYFIKOWANE -->
-<section id="design">
-    <div class="section-title">
-        <h2>Studio Projektowe</h2>
-        <p>Stwórz swój unikalny produkt</p>
-    </div>
-    
-    <div class="design-studio">
-        <div class="product-base">
-            <div class="product-base-item active" data-base="tshirt">
-                <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka">
-                <p>Koszulka</p>
-            </div>
-            <div class="product-base-item" data-base="hoodie">
-                <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza">
-                <p>Bluza</p>
-            </div>
-            <div class="product-base-item" data-base="cap">
-                <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka">
-                <p>Czapka</p>
-            </div>
-        </div>
-        
-        <div class="design-options">
-            <div class="design-option active" data-area="front">Przód</div>
-            <div class="design-option" data-area="back">Tył</div>
-            <div class="design-option" data-area="sleeves">Rękawy</div>
-        </div>
-        
-        <div class="canvas-container">
-            <div class="product-visualization">
-                <img id="productBaseImg" src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Podstawa produktu" class="product-base-visual">
-                <canvas id="designCanvas" width="500" height="400"></canvas>
-            </div>
-            <div class="canvas-controls">
-                <button class="nav-btn" onclick="clearCanvas()"><i class="fas fa-trash"></i> Wyczyść</button>
-                <button class="nav-btn" onclick="resetDesign()"><i class="fas fa-redo"></i> Resetuj</button>
-                <button class="nav-btn" onclick="toggleGrid()"><i class="fas fa-th"></i> Siatka pomocnicza</button>
-            </div>
-        </div>
-        
-        <div class="design-tools">
-            <div class="tool-group">
-                <div class="tool-title"><i class="fas fa-font"></i> Tekst</div>
-                <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3" oninput="updateDesign()">
-                
-                <div class="flex gap-3 mb-3">
-                    <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
-                        <option value="Arial">Arial</option>
-                        <option value="Times New Roman">Times New Roman</option>
-                        <option value="Courier New">Courier New</option>
-                        <option value="Impact">Impact</option>
-                        <option value="Comic Sans MS">Comic Sans</option>
-                        <option value="Georgia">Georgia</option>
-                        <option value="Verdana">Verdana</option>
-                        <option value="Palatino">Palatino</option>
-                        <option value="Garamond">Garamond</option>
-                        <option value="Brush Script MT">Brush Script</option>
-                        <option value="Tahoma">Tahoma</option>
-                        <option value="Trebuchet MS">Trebuchet</option>
-                        <option value="Lucida Sans">Lucida Sans</option>
-                        <option value="Franklin Gothic">Franklin Gothic</option>
-                        <option value="Century Gothic">Century Gothic</option>
-                        <option value="Copperplate">Copperplate</option>
-                        <option value="Papyrus">Papyrus</option>
-                    </select>
-                    
-                    <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
-                </div>
-                
-                <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3" oninput="updateDesign()">
-                
-                <div class="flex gap-3 mb-3">
-                    <button class="nav-btn flex-1" onclick="setTextStyle('bold')"><i class="fas fa-bold"></i></button>
-                    <button class="nav-btn flex-1" onclick="setTextStyle('italic')"><i class="fas fa-italic"></i></button>
-                    <button class="nav-btn flex-1" onclick="setTextStyle('underline')"><i class="fas fa-underline"></i></button>
-                </div>
-                
-                <div class="flex gap-3">
-                    <select id="textAlign" class="flex-1 p-2 border rounded" onchange="updateDesign()">
-                        <option value="left">Do lewej</option>
-                        <option value="center">Wyśrodkuj</option>
-                        <option value="right">Do prawej</option>
-                    </select>
-                    
-                    <input type="number" id="textRotation" value="0" min="0" max="360" class="w-20 p-2 border rounded" placeholder="Obrót" oninput="updateDesign()">
-                </div>
-            </div>
-            
-            <div class="tool-group">
-                <div class="tool-title"><i class="fas fa-palette"></i> Grafika</div>
-                
-                <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
-                <button class="nav-btn gold-bg w-full mb-3" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
-                
-                <div class="flex gap-3 mb-3">
-                    <input type="number" id="imgWidth" value="100" min="10" max="500" class="w-20 p-2 border rounded" placeholder="Szerokość" oninput="updateImageSize()">
-                    <input type="number" id="imgHeight" value="100" min="10" max="500" class="w-20 p-2 border rounded" placeholder="Wysokość" oninput="updateImageSize()">
-                </div>
-                
-                <input type="range" id="imgOpacity" min="0" max="100" value="100" class="w-full mb-3" oninput="updateImageOpacity()">
-            </div>
+ <!-- Studio projektowe - POPRAWIONE -->
+<section id="projektuj" class="designer-wrapper" style="max-width:1200px;margin:40px auto;padding:30px;background:#2a2a2a;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.4);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;color:#fff;">
+  <h2 style="font-size:32px;font-weight:800;margin:0 0 16px;color:#ffd700;text-align:center;">Zaprojektuj swój produkt</h2>
+  <p style="margin:0 0 30px;color:#ccc;text-align:center;">Dodaj tekst, wgraj grafikę, wybierz kolor i rozmiar. Zapisz i wrzuć do koszyka.</p>
 
-            <div class="tool-group">
-                <div class="tool-title"><i class="fas fa-tshirt"></i> Opcje produktu</div>
-                
-                <select id="productType" class="w-full p-3 border rounded mb-3" onchange="changeProductType()">
-                    <option value="tshirt">Koszulka (120 zł)</option>
-                    <option value="hoodie">Bluza (200 zł)</option>
-                    <option value="cap">Czapka (80 zł)</option>
-                </select>
-                
-                <select id="productColor" class="w-full p-3 border rounded mb-3" onchange="changeProductColor()">
-                    <option value="#ffffff">Biały</option>
-                    <option value="#000000">Czarny</option>
-                    <option value="#ff0000">Czerwony</option>
-                    <option value="#0000ff">Niebieski</option>
-                    <option value="#00ff00">Zielony</option>
-                    <option value="#ffff00">Żółty</option>
-                    <option value="#808080">Szary</option>
-                </select>
-                
-                <select id="productSize" class="w-full p-3 border rounded mb-3">
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                </select>
-            </div>
+  <!-- PASEK USTAWIEŃ -->
+  <div class="controls" style="display:grid;grid-template-columns:1.2fr 1fr;gap:30px;">
+    <!-- PODGLĄD + CANVAS -->
+    <div>
+      <!-- Górny pasek: wybór produktu / koloru / widoku -->
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:20px;justify-content:center;">
+        <label style="color:#fff;">Produkt:
+          <select id="productType" style="padding:10px 12px;border:1px solid #555;border-radius:10px;background:#333;color:#fff;">
+            <option value="tshirt">Koszulka — 120 zł</option>
+            <option value="hoodie">Bluza — 200 zł</option>
+            <option value="cap">Czapka — 80 zł</option>
+          </select>
+        </label>
 
-            <div class="tool-group">
-                <div class="tool-title"><i class="fas fa-draw-polygon"></i> Kształty</div>
-                <div class="flex gap-3 mb-3">
-                    <button class="nav-btn flex-1" onclick="addShape('rectangle')"><i class="fas fa-square"></i> Prostokąt</button>
-                    <button class="nav-btn flex-1" onclick="addShape('circle')"><i class="fas fa-circle"></i> Koło</button>
-                </div>
-                <input type="color" id="shapeColor" value="#ff0000" class="w-full h-10 mb-3">
-                <input type="range" id="shapeBorder" min="1" max="10" value="2" class="w-full mb-3">
-            </div>
+        <label style="color:#fff;">Kolor:
+          <select id="productColor" style="padding:10px 12px;border:1px solid #555;border-radius:10px;background:#333;color:#fff;">
+            <option value="#ffffff">Biały</option>
+            <option value="#111827">Czarny</option>
+            <option value="#e5e7eb">Jasny szary</option>
+            <option value="#2563eb">Niebieski</option>
+            <option value="#16a34a">Zielony</option>
+            <option value="#b91c1c">Czerwony</option>
+          </select>
+        </label>
+
+        <label style="color:#fff;">Rozmiar:
+          <select id="sizeSelect" style="padding:10px 12px;border:1px solid #555;border-radius:10px;background:#333;color:#fff;">
+            <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </label>
+
+        <div style="display:flex;gap:8px;">
+          <button id="viewFront" style="padding:10px 16px;border:1px solid #555;background:#ffd700;color:#1a1a1a;border-radius:10px;cursor:pointer;font-weight:600">Przód</button>
+          <button id="viewBack"  style="padding:10px 16px;border:1px solid #555;background:#333;color:#fff;border-radius:10px;cursor:pointer">Tył</button>
         </div>
-        
-        <div class="design-preview">
-            <h3>Podgląd Twojego projektu</h3>
-            <div id="previewContainer" class="preview-container">
-                <p>Twój projekt pojawi się tutaj po wprowadzeniu zmian</p>
-            </div>
-            <div class="preview-controls">
-                <button class="nav-btn" onclick="updatePreview()"><i class="fas fa-sync"></i> Odśwież podgląd</button>
-                <button class="nav-btn" onclick="savePreview()"><i class="fas fa-download"></i> Zapisz obraz</button>
-            </div>
+      </div>
+
+      <!-- Wizualizacja produktu -->
+      <div style="position:relative;aspect-ratio:3/4;border:2px solid #555;border-radius:16px;overflow:hidden;background:#333;display:flex;align-items:center;justify-content:center;">
+        <!-- TŁO PRODUKTU z rzeczywistym wyglądem -->
+        <div id="productVisualization" style="width:80%;height:90%;display:flex;align-items:center;justify-content:center;position:relative;">
+          <img id="productBaseImg" src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Podstawa produktu" style="max-width:100%;max-height:100%;">
+          <canvas id="canvasFront" width="600" height="800" style="position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;"></canvas>
+          <canvas id="canvasBack"  width="600" height="800" style="position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;display:none;"></canvas>
         </div>
-        
-        <div class="sticky-buttons">
-            <div class="action-buttons">
-                <button class="nav-btn gold-bg" onclick="updateDesign()"><i class="fas fa-sync"></i> Podgląd</button>
-                <button class="nav-btn gold-bg" onclick="addToCartFromDesign()"><i class="fas fa-cart-plus"></i> Dodaj do koszyka</button>
-                <button class="nav-btn gold-bg" onclick="sendDesignToEmail()"><i class="fas fa-envelope"></i> Wyślij projekt</button>
-                <button class="nav-btn gold-bg" onclick="saveDesign()"><i class="fas fa-save"></i> Zapisz projekt</button>
-            </div>
-        </div>
+      </div>
+
+      <!-- Akcje eksportowe -->
+      <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;justify-content:center;">
+        <button id="clearCanvas" style="padding:12px 18px;border:1px solid #555;background:#333;color:#fff;border-radius:10px;cursor:pointer">Wyczyść</button>
+        <button id="downloadPNG" style="padding:12px 18px;border:1px solid #555;background:#333;color:#fff;border-radius:10px;cursor:pointer">Pobierz PNG</button>
+        <button id="addToCart" class="nav-btn" style="padding:12px 18px;background:#ffd700;color:#1a1a1a;border:none;border-radius:10px;cursor:pointer;font-weight:700">Dodaj do koszyka</button>
+      </div>
+      <small style="display:block;margin-top:10px;color:#999;text-align:center;">Tip: złap element na podglądzie, aby go przesuwać/skalować/obracać. Dwuklik edytuje tekst.</small>
     </div>
-    
-    <style>
-        .design-studio {
-            display: grid;
-            grid-template-columns: 300px 1fr 300px;
-            grid-template-rows: auto 1fr auto;
-            gap: 20px;
-            max-width: 1600px;
-            margin: 0 auto;
-            background: #2a2a2a;
-            border-radius: 15px;
-            padding: 25px;
-        }
-        
-        .product-base {
-            grid-column: 1;
-            grid-row: 1;
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .product-base-item {
-            text-align: center;
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: #333;
-            border: 2px solid #444;
-        }
-        
-        .product-base-item.active {
-            background: #ffd700;
-            border-color: #ffd700;
-            color: #1a1a1a;
-        }
-        
-        .product-base-item img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            margin-bottom: 5px;
-        }
-        
-        .design-options {
-            grid-column: 2;
-            grid-row: 1;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .design-option {
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: #333;
-            border: 2px solid #444;
-        }
-        
-        .design-option.active {
-            background: #ffd700;
-            border-color: #ffd700;
-            color: #1a1a1a;
-        }
-        
-        .canvas-container {
-            grid-column: 2;
-            grid-row: 2;
-            background: #333;
-            border-radius: 10px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-        
-        .product-visualization {
-            position: relative;
-            width: 500px;
-            height: 400px;
-            margin-bottom: 20px;
-        }
-        
-        .product-base-visual {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            z-index: 1;
-        }
-        
-        #designCanvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 2;
-            background: transparent;
-        }
-        
-        .canvas-controls {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .design-tools {
-            grid-column: 1;
-            grid-row: 2 / span 2;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            overflow-y: auto;
-            max-height: 800px;
-            padding-right: 10px;
-        }
-        
-        .tool-group {
-            background: #333;
-            border-radius: 10px;
-            padding: 15px;
-        }
-        
-        .tool-title {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            color: #ffd700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .design-preview {
-            grid-column: 3;
-            grid-row: 2;
-            background: #333;
-            border-radius: 10px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .preview-container {
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #444;
-            border-radius: 8px;
-            padding: 20px;
-        }
-        
-        .preview-controls {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .sticky-buttons {
-            grid-column: 2 / span 2;
-            grid-row: 3;
-            margin-top: 20px;
-        }
-        
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .nav-btn {
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #444 0%, #333 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .nav-btn:hover {
-            background: linear-gradient(135deg, #555 0%, #444 100%);
-            transform: translateY(-2px);
-        }
-        
-        .gold-bg {
-            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
-            color: #1a1a1a;
-        }
-        
-        .gold-bg:hover {
-            background: linear-gradient(135deg, #ffdf30 0%, #ffc730 100%);
-        }
-        
-        .w-full {
-            width: 100%;
-        }
-        
-        .flex {
-            display: flex;
-        }
-        
-        .gap-3 {
-            gap: 12px;
-        }
-        
-        .mb-3 {
-            margin-bottom: 12px;
-        }
-        
-        .p-3 {
-            padding: 12px;
-        }
-        
-        .border {
-            border: 1px solid #555;
-        }
-        
-        .rounded {
-            border-radius: 6px;
-        }
-        
-        .flex-1 {
-            flex: 1;
-        }
-        
-        .p-2 {
-            padding: 8px;
-        }
-        
-        .h-10 {
-            height: 40px;
-        }
-    </style>
-    
-    <script>
-        // Podstawowe funkcje do obsługi projektowania
-        let currentProduct = 'tshirt';
-        let currentArea = 'front';
-        let uploadedImage = null;
-        
-        function changeProductType() {
-            const productType = document.getElementById('productType').value;
-            currentProduct = productType;
-            
-            // Zmiana obrazu podstawy produktu
-            const baseImg = document.getElementById('productBaseImg');
-            if (productType === 'tshirt') {
-                baseImg.src = 'https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg';
-            } else if (productType === 'hoodie') {
-                baseImg.src = 'https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg';
-            } else if (productType === 'cap') {
-                baseImg.src = 'https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png';
-            }
-            
-            updateDesign();
-        }
-        
-        function changeProductColor() {
-            const color = document.getElementById('productColor').value;
-            // Tutaj można dodać zmianę koloru produktu na canvas
-            updateDesign();
-        }
-        
-        function handleImageUpload() {
-            const fileInput = document.getElementById('designImage');
-            const file = fileInput.files[0];
-            
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    uploadedImage = new Image();
-                    uploadedImage.src = e.target.result;
-                    uploadedImage.onload = function() {
-                        updateDesign();
-                    };
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-        
-        function updateDesign() {
-            const canvas = document.getElementById('designCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            // Wyczyść canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Dodaj tekst jeśli istnieje
-            const text = document.getElementById('designText').value;
-            if (text) {
-                const fontSize = document.getElementById('fontSize').value;
-                const fontFamily = document.getElementById('fontFamily').value;
-                const textColor = document.getElementById('textColor').value;
-                const textAlign = document.getElementById('textAlign').value;
-                const rotation = document.getElementById('textRotation').value;
-                
-                ctx.save();
-                ctx.translate(canvas.width / 2, canvas.height / 2);
-                ctx.rotate(rotation * Math.PI / 180);
-                
-                ctx.font = `${fontSize}px ${fontFamily}`;
-                ctx.fillStyle = textColor;
-                ctx.textAlign = textAlign;
-                ctx.fillText(text, 0, 0);
-                
-                ctx.restore();
-            }
-            
-            // Dodaj obraz jeśli został załadowany
-            if (uploadedImage) {
-                const imgWidth = document.getElementById('imgWidth').value;
-                const imgHeight = document.getElementById('imgHeight').value;
-                const opacity = document.getElementById('imgOpacity').value / 100;
-                
-                ctx.save();
-                ctx.globalAlpha = opacity;
-                ctx.drawImage(uploadedImage, 100, 100, imgWidth, imgHeight);
-                ctx.restore();
-            }
-            
-            updatePreview();
-        }
-        
-        function updatePreview() {
-            const canvas = document.getElementById('designCanvas');
-            const previewContainer = document.getElementById('previewContainer');
-            
-            // Wyczyść kontener podglądu
-            previewContainer.innerHTML = '';
-            
-            // Stwórz obrazek z canvas
-            const img = new Image();
-            img.src = canvas.toDataURL();
-            img.alt = "Podgląd projektu";
-            img.style.maxWidth = '100%';
-            
-            previewContainer.appendChild(img);
-        }
-        
-        function clearCanvas() {
-            const canvas = document.getElementById('designCanvas');
-            const ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            updatePreview();
-        }
-        
-        function resetDesign() {
-            document.getElementById('designText').value = '';
-            document.getElementById('fontSize').value = 36;
-            document.getElementById('fontFamily').value = 'Arial';
-            document.getElementById('textColor').value = '#000000';
-            document.getElementById('textAlign').value = 'left';
-            document.getElementById('textRotation').value = 0;
-            document.getElementById('imgWidth').value = 100;
-            document.getElementById('imgHeight').value = 100;
-            document.getElementById('imgOpacity').value = 100;
-            document.getElementById('designImage').value = '';
-            
-            uploadedImage = null;
-            clearCanvas();
-        }
-        
-        function setTextStyle(style) {
-            // Funkcja do ustawiania stylu tekstu (pogrubienie, kursywa, etc.)
-            alert(`Funkcja ${style} zostanie zaimplementowana w pełnej wersji`);
-        }
-        
-        function addShape(shape) {
-            // Funkcja do dodawania kształtów
-            alert(`Dodawanie ${shape} zostanie zaimplementowane w pełnej wersji`);
-        }
-        
-        function updateImageSize() {
-            updateDesign();
-        }
-        
-        function updateImageOpacity() {
-            updateDesign();
-        }
-        
-        function toggleGrid() {
-            alert("Siatka pomocnicza zostanie zaimplementowana w pełnej wersji");
-        }
-        
-        function addToCartFromDesign() {
-            alert("Dodano projekt do koszyka!");
-        }
-        
-        function sendDesignToEmail() {
-            alert("Projekt został wysłany na email!");
-        }
-        
-        function saveDesign() {
-            alert("Projekt został zapisany!");
-        }
-        
-        function savePreview() {
-            alert("Zapisywanie obrazu zostanie zaimplementowane w pełnej wersji");
-        }
-        
-        // Inicjalizacja
-        document.addEventListener('DOMContentLoaded', function() {
-            // Aktywacja elementów bazy produktów
-            const productBaseItems = document.querySelectorAll('.product-base-item');
-            productBaseItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    productBaseItems.forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                    currentProduct = this.getAttribute('data-base');
-                    changeProductType();
-                });
-            });
-            
-            // Aktywacja opcji projektowania
-            const designOptions = document.querySelectorAll('.design-option');
-            designOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    designOptions.forEach(o => o.classList.remove('active'));
-                    this.classList.add('active');
-                    currentArea = this.getAttribute('data-area');
-                    updateDesign();
-                });
-            });
-        });
-    </script>
+
+    <!-- PANEL NARZĘDZI -->
+    <div style="border:1px solid #555;border-radius:14px;padding:20px;display:grid;gap:16px;align-content:start;background:#333;">
+      <h3 style="margin:0;font-size:18px;font-weight:800;color:#ffd700;">Warstwy i narzędzia</h3>
+
+      <!-- Dodaj tekst -->
+      <div style="display:grid;gap:10px;border:1px solid #555;border-radius:12px;padding:14px;">
+        <label style="font-weight:700;color:#fff;">Tekst</label>
+        <input id="textInput" type="text" placeholder="Wpisz swój napis" style="padding:10px 12px;border:1px solid #555;border-radius:10px;background:#2a2a2a;color:#fff;">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <label style="color:#ccc;">Czcionka:
+            <select id="fontSelect" style="padding:8px 10px;border:1px solid #555;border-radius:10px;background:#2a2a2a;color:#fff;">
+              <option value="Impact">Impact</option>
+              <option value="Arial">Arial</option>
+              <option value="Montserrat">Montserrat</option>
+              <option value="Times New Roman">Times</option>
+              <option value="Comic Sans MS">Comic Sans</option>
+            </select>
+          </label>
+          <label style="color:#ccc;">Kolor:
+            <input id="textColor" type="color" value="#ffffff" style="height:36px;width:46px;border:1px solid #555;border-radius:8px;padding:2px;background:#2a2a2a;">
+          </label>
+          <button id="addText" style="padding:10px 14px;border:1px solid #555;background:#2a2a2a;color:#fff;border-radius:10px;cursor:pointer">Dodaj tekst</button>
+        </div>
+      </div>
+
+      <!-- Dodaj grafikę -->
+      <div style="display:grid;gap:10px;border:1px solid #555;border-radius:12px;padding:14px;">
+        <label style="font-weight:700;color:#fff;">Grafika / zdjęcie</label>
+        <input id="uploadImage" type="file" accept="image/*" style="padding:8px 10px;border:1px solid #555;border-radius:10px;background:#2a2a2a;color:#fff;">
+        <button id="addDemoSticker" style="padding:10px 14px;border:1px solid #555;background:#2a2a2a;color:#fff;border-radius:10px;cursor:pointer">Dodaj przykładową naklejkę</button>
+      </div>
+
+      <!-- Zarządzanie warstwami -->
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button id="bringForward" style="padding:10px 14px;border:1px solid #555;background:#2a2a2a;color:#fff;border-radius:10px;cursor:pointer">Do przodu</button>
+        <button id="sendBack"     style="padding:10px 14px;border:1px solid #555;background:#2a2a2a;color:#fff;border-radius:10px;cursor:pointer">Do tyłu</button>
+        <button id="deleteObj"    style="padding:10px 14px;border:1px solid #555;background:#2a2a2a;color:#fff;border-radius:10px;cursor:pointer">Usuń</button>
+      </div>
+
+      <!-- Info -->
+      <div style="font-size:13px;color:#999;line-height:1.5;margin-top:10px;">
+        • Obszar nadruku to centralny prostokąt.  
+        • Najlepsze efekty: PNG z przezroczystością lub wektor (SVG).  
+        • Do produkcji możesz zapisać PNG (przycisk „Pobierz PNG”).
+      </div>
+    </div>
+  </div>
 </section>
+
+<!-- Fabric.js (silnik edycji) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+
+<script>
+// Funkcja do inicjalizacji projektanta
+function initDesigner() {
+  // Sprawdź, czy Fabric.js jest załadowany
+  if (typeof fabric === 'undefined') {
+    console.error('Fabric.js nie został załadowany!');
+    setTimeout(initDesigner, 100);
+    return;
+  }
+
+  // Canvasy: przód/tył
+  const canvasFront = new fabric.Canvas('canvasFront', { 
+    preserveObjectStacking: true, 
+    backgroundColor: 'transparent',
+    width: 500,
+    height: 600
+  });
+  
+  const canvasBack = new fabric.Canvas('canvasBack', { 
+    preserveObjectStacking: true, 
+    backgroundColor: 'transparent',
+    width: 500,
+    height: 600
+  });
+  
+  let activeCanvas = canvasFront;
+
+  // UI referencje
+  const productType  = document.getElementById('productType');
+  const productColor = document.getElementById('productColor');
+  const sizeSelect   = document.getElementById('sizeSelect');
+  const productBaseImg = document.getElementById('productBaseImg');
+  const viewFrontBtn = document.getElementById('viewFront');
+  const viewBackBtn  = document.getElementById('viewBack');
+
+  const textInput  = document.getElementById('textInput');
+  const fontSelect = document.getElementById('fontSelect');
+  const textColor  = document.getElementById('textColor');
+  const addTextBtn = document.getElementById('addText');
+
+  const uploadImage = document.getElementById('uploadImage');
+  const addDemoSticker = document.getElementById('addDemoSticker');
+
+  const bringForwardBtn = document.getElementById('bringForward');
+  const sendBackBtn     = document.getElementById('sendBack');
+  const deleteObjBtn    = document.getElementById('deleteObj');
+
+  const clearCanvasBtn = document.getElementById('clearCanvas');
+  const downloadPNGBtn = document.getElementById('downloadPNG');
+  const addToCartBtn   = document.getElementById('addToCart');
+
+  // Cennik zgodny z resztą sklepu
+  const PRICES = { tshirt: 120, hoodie: 200, cap: 80 };
+
+  // Przełączanie widoku
+  function setActiveCanvas(which) {
+    if (which === 'front') {
+      activeCanvas = canvasFront;
+      document.getElementById('canvasFront').style.display = '';
+      document.getElementById('canvasBack').style.display  = 'none';
+      viewFrontBtn.style.background = '#ffd700';
+      viewFrontBtn.style.color = '#1a1a1a';
+      viewBackBtn.style.background = '#333';
+      viewBackBtn.style.color = '#fff';
+    } else {
+      activeCanvas = canvasBack;
+      document.getElementById('canvasFront').style.display = 'none';
+      document.getElementById('canvasBack').style.display  = '';
+      viewFrontBtn.style.background = '#333';
+      viewFrontBtn.style.color = '#fff';
+      viewBackBtn.style.background = '#ffd700';
+      viewBackBtn.style.color = '#1a1a1a';
+    }
+    activeCanvas.renderAll();
+  }
+  
+  viewFrontBtn.addEventListener('click', () => setActiveCanvas('front'));
+  viewBackBtn.addEventListener('click', () => setActiveCanvas('back'));
+
+  // Zmiana produktu i koloru
+  function updateProductAppearance() {
+    const type  = productType.value;
+    
+    // Zmiana obrazu podstawy produktu
+    if (type === 'tshirt') {
+      productBaseImg.src = 'https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg';
+    } else if (type === 'hoodie') {
+      productBaseImg.src = 'https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg';
+    } else if (type === 'cap') {
+      productBaseImg.src = 'https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png';
+    }
+  }
+  
+  productType.addEventListener('change', updateProductAppearance);
+  productColor.addEventListener('change', updateProductAppearance);
+  updateProductAppearance();
+
+  // DODAWANIE TEKSTU
+  addTextBtn.addEventListener('click', () => {
+    const value = textInput.value?.trim() || 'Twój napis';
+    const obj = new fabric.Textbox(value, {
+      left: activeCanvas.width * 0.3,
+      top:  activeCanvas.height * 0.4,
+      fontFamily: fontSelect.value,
+      fill: textColor.value,
+      fontSize: 36,
+      editable: true
+    });
+    activeCanvas.add(obj).setActiveObject(obj);
+    activeCanvas.renderAll();
+  });
+
+  // UPLOAD OBRAZU
+  uploadImage.addEventListener('change', (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(r) {
+      fabric.Image.fromURL(r.target.result, function(img) {
+        const scale = Math.min(
+          (activeCanvas.width * 0.5) / img.width,
+          (activeCanvas.height * 0.5) / img.height
+        );
+        img.set({ 
+          left: activeCanvas.width * 0.25, 
+          top: activeCanvas.height * 0.25, 
+          scaleX: scale, 
+          scaleY: scale 
+        });
+        activeCanvas.add(img).setActiveObject(img);
+        activeCanvas.renderAll();
+      });
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  });
+
+  // DEMO naklejka (wektorowa gwiazdka)
+  addDemoSticker.addEventListener('click', () => {
+    const star = new fabric.Polygon([
+      {x:0, y:-60},{x:17, y:-17},{x:60, y:0},{x:17, y:17},{x:0, y:60},
+      {x:-17, y:17},{x:-60, y:0},{x:-17, y:-17}
+    ], {
+      left: activeCanvas.width * 0.5, 
+      top: activeCanvas.height * 0.45,
+      fill: '#ffd700', 
+      stroke: '#000', 
+      strokeWidth: 1
+    });
+    activeCanvas.add(star).setActiveObject(star);
+  });
+
+  // Warstwy + usuwanie
+  bringForwardBtn.addEventListener('click', () => {
+    const obj = activeCanvas.getActiveObject(); 
+    if (!obj) return;
+    activeCanvas.bringForward(obj); 
+    activeCanvas.renderAll();
+  });
+  
+  sendBackBtn.addEventListener('click', () => {
+    const obj = activeCanvas.getActiveObject(); 
+    if (!obj) return;
+    activeCanvas.sendBackwards(obj); 
+    activeCanvas.renderAll();
+  });
+  
+  deleteObjBtn.addEventListener('click', () => {
+    const obj = activeCanvas.getActiveObject(); 
+    if (!obj) return;
+    activeCanvas.remove(obj); 
+    activeCanvas.renderAll();
+  });
+
+  // Czyść
+  clearCanvasBtn.addEventListener('click', () => {
+    const objects = activeCanvas.getObjects();
+    objects.forEach(obj => {
+      if (!obj._guide) {
+        activeCanvas.remove(obj);
+      }
+    });
+    activeCanvas.renderAll();
+  });
+
+  // Export PNG
+  function composePreview(sideCanvas) {
+    const tmp = document.createElement('canvas');
+    tmp.width  = sideCanvas.width;
+    tmp.height = sideCanvas.height;
+    const ctx = tmp.getContext('2d');
+
+    // Rysujemy tło (kolor produktu)
+    ctx.fillStyle = productColor.value;
+    ctx.fillRect(0, 0, tmp.width, tmp.height);
+
+    // Rysunek z fabric (bez guide)
+    const data = sideCanvas.toDataURL('image/png');
+    return data;
+  }
+
+  downloadPNGBtn.addEventListener('click', () => {
+    const frontPNG = composePreview(canvasFront);
+    const a = document.createElement('a');
+    a.href = frontPNG;
+    a.download = `projekt_${productType.value}_${sizeSelect.value}.png`;
+    a.click();
+  });
+
+  // Dodaj do koszyka
+  addToCartBtn.addEventListener('click', () => {
+    const type = productType.value;
+    const price = PRICES[type] || 120;
+    const nameMap = { 
+      tshirt: 'Koszulka – projekt własny', 
+      hoodie: 'Bluza – projekt własny', 
+      cap: 'Czapka – projekt własny' 
+    };
+    const itemName = nameMap[type] || 'Projekt własny';
+
+    // Generujemy podgląd
+    const preview = composePreview(canvasFront);
+
+    // Tworzymy ukryty przycisk zgodny z Twoją stroną
+    const hiddenBtn = document.createElement('button');
+    hiddenBtn.className = 'add-to-cart-btn';
+    hiddenBtn.dataset.name = itemName;
+    hiddenBtn.dataset.price = String(price);
+    hiddenBtn.dataset.image = preview;
+    hiddenBtn.style.display = 'none';
+    document.body.appendChild(hiddenBtn);
+
+    // Wywołujemy kliknięcie
+    if (typeof addToCart === 'function') {
+      addToCart(hiddenBtn);
+    } else {
+      // Fallback do localStorage
+      try {
+        const raw = localStorage.getItem('cart');
+        const cart = raw ? JSON.parse(raw) : [];
+        cart.push({ 
+          name: itemName, 
+          price: price, 
+          image: preview,
+          size: sizeSelect.value,
+          color: productColor.options[productColor.selectedIndex].text
+        });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Powiadomienie dla użytkownika
+        alert('Produkt dodany do koszyka!');
+        
+        // Odśwież koszyk jeśli istnieje
+        if (typeof updateCartDisplay === 'function') {
+          updateCartDisplay();
+        }
+      } catch(e) { 
+        console.error('Błąd zapisu do koszyka:', e);
+        alert('Produkt dodany do koszyka!');
+      }
+    }
+
+    // Usuwamy przycisk
+    document.body.removeChild(hiddenBtn);
+
+    // Feedback
+    const originalText = addToCartBtn.textContent;
+    addToCartBtn.textContent = 'Dodano!';
+    addToCartBtn.style.background = '#4caf50';
+    
+    setTimeout(() => {
+      addToCartBtn.textContent = originalText;
+      addToCartBtn.style.background = '#ffd700';
+    }, 2000);
+  });
+
+  // Usprawnienia UX
+  [canvasFront, canvasBack].forEach(c => {
+    c.on('mouse:dblclick', (e) => {
+      const obj = e.target;
+      if (obj && obj.type === 'textbox') {
+        obj.enterEditing();
+      }
+    });
+  });
+
+  // Inicjalizacja po załadowaniu strony
+  setActiveCanvas('front');
+  console.log('Designer initialized successfully');
+}
+
+// Inicjalizacja po załadowaniu DOM
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initDesigner);
+} else {
+  initDesigner();
+}
+</script>
+    
         <!-- Blog - ZMODYFIKOWANY -->
         <section id="blog">
             <div class="section-title">
@@ -2822,6 +2636,7 @@
     </script>
 </body>
 </html>
+
 
 
 
