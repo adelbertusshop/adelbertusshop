@@ -936,53 +936,67 @@
                 <h2>Witaj w AdelbertusShop</h2>
                 <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
             </div>
-
-            <!-- Sekcja reklamowa -->
+<!-- Baner 1 - okrągły -->
 <div class="ad-container">
-    <div class="ad-banner" id="adBanner1">
+    <div class="ad-circle-banner" id="adBanner1">
         <a href="https://wa.me/message/XNEKG5L6FAAVD1" target="_blank">
-            <img src="https://i.ibb.co/rG1Lx3Hk/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3.jpg" alt="Reklama">
+            <img src="https://i.ibb.co/rG1Lx3Hk/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3.jpg" alt="Baner 1">
         </a>
-        <div class="timer" id="bannerTimer1">30s</div>
+        <div class="timer" id="timer1">30s</div>
     </div>
-    <div class="ad-banner" id="adBanner2">
+
+    <!-- Baner 2 - prostokątny -->
+    <div class="ad-rect-banner" id="adBanner2" style="display:none;">
         <a href="#" target="_blank">
-            <img src="https://i.ibb.co/wN6t0fZC/Messenger-creation-61-DCC1-E2-6717-4-D1-C-BF72-EAE6-B3-CACE96.jpg" alt="Reklama">
+            <img src="https://i.ibb.co/wN6t0fZC/Messenger-creation-61-DCC1-E2-6717-4-D1-C-BF72-EAE6-B3-CACE96.jpg" alt="Baner 2">
         </a>
-        <div class="timer" id="bannerTimer2">30s</div>
+        <div class="timer" id="timer2">30s</div>
     </div>
 </div>
 
 <style>
-/* Kontener ogólny */
 .ad-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin: 20px 0;
-    border-radius: 12px;
+    gap: 15px;
+}
+
+/* Baner okrągły */
+.ad-circle-banner {
+    position: relative;
+    width: 80vw;
+    max-width: 400px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    background: #000;
-    position: relative;
 }
 
-/* Baner */
-.ad-banner {
-    display: none;           /* wszystkie banery początkowo ukryte */
+.ad-circle-banner img {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px;
-    box-sizing: border-box;
-    min-height: 180px;
-    max-height: 50vh;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
-/* Obrazy banerów */
-.ad-banner img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;     /* cały obraz widoczny */
-    object-position: center;
+/* Baner prostokątny */
+.ad-rect-banner {
+    position: relative;
+    width: 80vw;
+    max-width: 600px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.ad-rect-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
@@ -993,83 +1007,48 @@
     right: 10px;
     background: rgba(0,0,0,0.7);
     color: white;
-    padding: 6px 10px;
+    padding: 5px 10px;
     border-radius: 20px;
     font-weight: bold;
-}
-
-/* Responsywność */
-@media (min-width: 768px) {
-    .ad-banner { min-height: 220px; max-height: 45vh; }
-}
-@media (min-width: 1024px) {
-    .ad-banner { min-height: 300px; max-height: 40vh; }
+    font-size: 1rem;
 }
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const banners = [
-        { banner: document.getElementById('adBanner1'), timer: document.getElementById('bannerTimer1') },
-        { banner: document.getElementById('adBanner2'), timer: document.getElementById('bannerTimer2') }
-    ];
+const banners = [
+    { el: document.getElementById('adBanner1'), timer: document.getElementById('timer1') },
+    { el: document.getElementById('adBanner2'), timer: document.getElementById('timer2') }
+];
 
-    let current = 0;
-    let countdown = 30;
-    let intervalId;
+let current = 0;
+let countdown = 30;
+let intervalId;
 
-    function showBanner(index) {
-        // Pokaż tylko jeden baner
-        banners.forEach((b, i) => {
-            b.banner.style.display = i === index ? 'flex' : 'none';
-        });
-        countdown = 30; // reset licznika
-        updateTimer();
-
-        if(intervalId) clearInterval(intervalId);
-
-        intervalId = setInterval(() => {
-            countdown--;
-            updateTimer();
-
-            if(countdown <= 0) {
-                current = (current + 1) % banners.length;
-                showBanner(current);
-            }
-        }, 1000);
-    }
-
-    function updateTimer() {
-        banners[current].timer.textContent = countdown + 's';
-    }
-
-    // Wstępne uruchomienie
-    showBanner(current);
-
-    // Skalowanie obrazów okrągłych/kwadratowych
-    banners.forEach(b => {
-        const img = b.banner.querySelector('img');
-        function scaleImage() {
-            const w = img.naturalWidth;
-            const h = img.naturalHeight;
-            const ratio = w / h;
-            if (Math.abs(ratio - 1) < 0.15) { // prawie kwadrat
-                img.style.maxWidth = '60%';
-                img.style.maxHeight = '60%';
-            } else if (ratio < 0.7) { // pionowy
-                img.style.maxWidth = '70%';
-                img.style.maxHeight = '90%';
-            } else {
-                img.style.maxWidth = '90%';
-                img.style.maxHeight = '90%';
-            }
-        }
-        if(img.complete) scaleImage();
-        else img.addEventListener('load', scaleImage);
-        window.addEventListener('resize', scaleImage);
+function showBanner(index) {
+    banners.forEach((b, i) => {
+        b.el.style.display = i === index ? 'block' : 'none';
     });
+    countdown = 30;
+    updateTimer();
+    if(intervalId) clearInterval(intervalId);
+    intervalId = setInterval(() => {
+        countdown--;
+        updateTimer();
+        if(countdown <= 0) {
+            current = (current + 1) % banners.length;
+            showBanner(current);
+        }
+    }, 1000);
+}
+
+function updateTimer() {
+    banners[current].timer.textContent = countdown + "s";
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    showBanner(current);
 });
-</script>
+</script>           
             
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
@@ -2975,6 +2954,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>                
+
 
 
 
