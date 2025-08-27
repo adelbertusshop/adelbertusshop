@@ -936,7 +936,7 @@
                 <h2>Witaj w AdelbertusShop</h2>
                 <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
             </div>
-           <!-- Sekcja reklamowa - baner 1 -->
+         <!-- Sekcja reklamowa - baner 1 -->
 <div class="ad-container">
     <div class="ad-banner" id="adBanner1">
         <a href="https://wa.me/message/XNEKG5L6FAAVD1" target="_blank">
@@ -963,20 +963,29 @@
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: #000; /* tło w razie pustych przestrzeni */
 }
 
 /* Baner */
 .ad-banner {
     position: relative;
     width: 100%;
-    height: 180px; /* domyślna wysokość dla telefonów */
+    height: auto;
+    max-height: 400px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Obraz */
 .ad-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* pełny obraz */
+    object-position: center;
     display: block;
+    background: #000;
 }
 
 /* Timer */
@@ -994,65 +1003,16 @@
 /* Responsywność */
 @media (min-width: 768px) {
     .ad-banner {
-        height: 250px; /* tablety */
+        max-height: 500px;
     }
 }
 
 @media (min-width: 1024px) {
     .ad-banner {
-        height: 350px; /* laptopy i większe ekrany */
+        max-height: 600px;
     }
 }
-</style>
-
-<script>
-    // Funkcja obsługująca wyświetlanie banerów w pętli
-    function handleBannerLoop() {
-        const banner1 = document.getElementById('adBanner1');
-        const banner2 = document.getElementById('adBanner2');
-        const timer1 = document.getElementById('bannerTimer1');
-        const timer2 = document.getElementById('bannerTimer2');
-
-        let currentBanner = 1;
-        let countdown = 30;
-
-        function updateDisplay() {
-            if (currentBanner === 1) {
-                banner1.style.display = 'block';
-                banner2.style.display = 'none';
-                timer1.textContent = countdown + 's';
-            } else {
-                banner1.style.display = 'none';
-                banner2.style.display = 'block';
-                timer2.textContent = countdown + 's';
-            }
-        }
-
-        // Początkowe ustawienie
-        updateDisplay();
-
-        // Odliczanie czasu
-        setInterval(() => {
-            countdown--;
-
-            if (currentBanner === 1) {
-                timer1.textContent = countdown + 's';
-            } else {
-                timer2.textContent = countdown + 's';
-            }
-
-            if (countdown <= 0) {
-                // Zmiana banera
-                currentBanner = currentBanner === 1 ? 2 : 1;
-                countdown = 30;
-                updateDisplay();
-            }
-        }, 1000);
-    }
-
-    // Rozpoczęcie pętli po załadowaniu strony
-    document.addEventListener('DOMContentLoaded', handleBannerLoop);
-</script>  
+</style>      
             
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
@@ -2958,6 +2918,7 @@
 </script>
 </body>
 </html>                
+
 
 
 
