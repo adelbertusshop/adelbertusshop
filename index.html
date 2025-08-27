@@ -936,30 +936,74 @@
                 <h2>Witaj w AdelbertusShop</h2>
                 <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
             </div>
-            <!-- Sekcja reklamowa - baner -->
            <!-- Sekcja reklamowa - baner 1 -->
-<div class="ad-container" style="margin: 20px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-    <div class="ad-banner large" id="adBanner1" style="position: relative; height: 150px; display: block;">
-        <a href="https://wa.me/message/XNEKG5L6FAAVD1" target="_blank" style="display: block; height: 100%;">
-            <img src="https://i.ibb.co/rG1Lx3Hk/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3.jpg" 
-                 alt="Reklama" 
-                 style="display: block; width: 100%; height: 100%; object-fit: cover;">
+<div class="ad-container">
+    <div class="ad-banner" id="adBanner1">
+        <a href="https://wa.me/message/XNEKG5L6FAAVD1" target="_blank">
+            <img src="https://i.ibb.co/rG1Lx3Hk/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3.jpg" alt="Reklama">
         </a>
-        <div class="timer" id="bannerTimer1" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 20px; font-weight: bold;">30s</div>
+        <div class="timer" id="bannerTimer1">30s</div>
     </div>
 </div>
 
 <!-- Sekcja reklamowa - baner 2 -->
-<div class="ad-container" style="margin: 20px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-    <div class="ad-banner large" id="adBanner2" style="position: relative; height: 150px; display: none;">
-        <a href="#" target="_blank" style="display: block; height: 100%;">
-            <img src="https://i.ibb.co/wN6t0fZC/Messenger-creation-61-DCC1-E2-6717-4-D1-C-BF72-EAE6-B3-CACE96.jpg" 
-                 alt="Reklama" 
-                 style="display: block; width: 100%; height: 100%; object-fit: cover;">
+<div class="ad-container">
+    <div class="ad-banner" id="adBanner2" style="display: none;">
+        <a href="#" target="_blank">
+            <img src="https://i.ibb.co/wN6t0fZC/Messenger-creation-61-DCC1-E2-6717-4-D1-C-BF72-EAE6-B3-CACE96.jpg" alt="Reklama">
         </a>
-        <div class="timer" id="bannerTimer2" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 20px; font-weight: bold;">30s</div>
+        <div class="timer" id="bannerTimer2">30s</div>
     </div>
 </div>
+
+<style>
+/* Kontener */
+.ad-container {
+    margin: 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Baner */
+.ad-banner {
+    position: relative;
+    width: 100%;
+    height: 180px; /* domyślna wysokość dla telefonów */
+}
+
+.ad-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Timer */
+.timer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* Responsywność */
+@media (min-width: 768px) {
+    .ad-banner {
+        height: 250px; /* tablety */
+    }
+}
+
+@media (min-width: 1024px) {
+    .ad-banner {
+        height: 350px; /* laptopy i większe ekrany */
+    }
+}
+</style>
 
 <script>
     // Funkcja obsługująca wyświetlanie banerów w pętli
@@ -968,10 +1012,10 @@
         const banner2 = document.getElementById('adBanner2');
         const timer1 = document.getElementById('bannerTimer1');
         const timer2 = document.getElementById('bannerTimer2');
-        
+
         let currentBanner = 1;
         let countdown = 30;
-        
+
         function updateDisplay() {
             if (currentBanner === 1) {
                 banner1.style.display = 'block';
@@ -983,20 +1027,20 @@
                 timer2.textContent = countdown + 's';
             }
         }
-        
+
         // Początkowe ustawienie
         updateDisplay();
-        
+
         // Odliczanie czasu
-        const countdownInterval = setInterval(() => {
+        setInterval(() => {
             countdown--;
-            
+
             if (currentBanner === 1) {
                 timer1.textContent = countdown + 's';
             } else {
                 timer2.textContent = countdown + 's';
             }
-            
+
             if (countdown <= 0) {
                 // Zmiana banera
                 currentBanner = currentBanner === 1 ? 2 : 1;
@@ -1005,10 +1049,10 @@
             }
         }, 1000);
     }
-    
+
     // Rozpoczęcie pętli po załadowaniu strony
     document.addEventListener('DOMContentLoaded', handleBannerLoop);
-</script>     
+</script>  
             
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
@@ -2914,6 +2958,7 @@
 </script>
 </body>
 </html>                
+
 
 
 
