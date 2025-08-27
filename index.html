@@ -947,29 +947,27 @@
 
 <script>
     <div class="ad-container">
-    <div class="ad-banner large video" id="adBanner">
+    <div class="ad-banner large video" id="adBanner" style="width: 50%; display: none; margin: auto;">
         <img src="https://i.ibb.co/k6QHxTRv/Messenger-creation-9-C2-DF47-C-5660-4-D41-8652-E1-A259-B8-B09-C.jpg" 
-             alt="Baner reklamowy">
+             alt="Baner reklamowy" 
+             style="width: 100%; height: auto; display: block;">
     </div>
 </div>
 
 <script>
     const banner = document.getElementById('adBanner');
 
-    function toggleBanner() {
-        // Pokaż baner
-        banner.style.display = 'block';
-        // Po 30 sekundach go schowaj
+    function showBanner() {
+        banner.style.display = 'block'; // pokaż baner
         setTimeout(() => {
-            banner.style.display = 'none';
-            // Po 5 sekundach wywołaj toggleBanner ponownie
-            setTimeout(toggleBanner, 5000);
+            banner.style.display = 'none'; // ukryj po 30 sekundach
+            setTimeout(showBanner, 5000); // po 5 sekundach pokaż ponownie
         }, 30000);
     }
 
-    // Startujemy cykl
-    toggleBanner();
-</script>  
+    // start cyklu
+    showBanner();
+</script>   
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
                 <div class="ad-banner large video">
@@ -2874,6 +2872,7 @@
 </script>
 </body>
 </html>                
+
 
 
 
