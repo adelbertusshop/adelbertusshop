@@ -938,36 +938,60 @@
             </div>
             
             <!-- Sekcja reklamowa - baner -->
-            <div class="ad-container">
-    <div class="ad-banner large video" id="adBanner">
-        <img src="https://i.ibb.co/k6QHxTRv/Messenger-creation-9-C2-DF47-C-5660-4-D41-8652-E1-A259-B8-B09-C.jpg" 
-             alt="Baner reklamowy">
+            
+<!-- Sekcja reklamowa - baner -->
+<div class="ad-container">
+    <div class="ad-banner large" id="adBanner">
+        <a href="https://wa.me/message/XNEKG5L6FAAVD1" target="_blank">
+            <img src="https://i.ibb.co/rG1Lx3Hk/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3.jpg" 
+                 alt="Reklama" 
+                 style="display: block; width: 728px; height: 90px;">
+        </a>
+        <div class="timer" id="bannerTimer">30s</div>
     </div>
 </div>
 
 <script>
-    <div class="ad-container">
-    <div class="ad-banner large video" id="adBanner" style="width: 25%; display: none; margin: auto;">
-        <img src="https://i.ibb.co/k6QHxTRv/Messenger-creation-9-C2-DF47-C-5660-4-D41-8652-E1-A259-B8-B09-C.jpg" 
-             alt="Baner reklamowy" 
-             style="width: 100%; height: auto; display: block;">
-    </div>
-</div>
-
-<script>
-    const banner = document.getElementById('adBanner');
-
-    function toggleBanner() {
-        banner.style.display = 'block'; // pokaż baner
-        setTimeout(() => {
-            banner.style.display = 'none'; // ukryj po 30 sekundach
-            setTimeout(toggleBanner, 5000); // po 5 sekundach pokaż ponownie
-        }, 30000);
+    // Funkcja obsługująca wyświetlanie banera w pętli
+    function handleBannerLoop() {
+        const banner = document.getElementById('adBanner');
+        const timer = document.getElementById('bannerTimer');
+        let countdown = 30;
+        
+        // Pokazanie banera
+        banner.style.display = 'block';
+        
+        // Odliczanie 30 sekund
+        const countdownInterval = setInterval(() => {
+            countdown--;
+            timer.textContent = countdown + 's';
+            
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+                
+                // Ukrycie banera na 5 sekund
+                banner.style.display = 'none';
+                timer.textContent = '5s';
+                
+                // Odliczanie 5 sekund przerwy
+                let pauseCountdown = 5;
+                const pauseInterval = setInterval(() => {
+                    pauseCountdown--;
+                    timer.textContent = pauseCountdown + 's';
+                    
+                    if (pauseCountdown <= 0) {
+                        clearInterval(pauseInterval);
+                        // Ponowne uruchomienie pętli
+                        handleBannerLoop();
+                    }
+                }, 1000);
+            }
+        }, 1000);
     }
-
-    // Startujemy cykl
-    toggleBanner();
-</script>
+    
+    // Rozpoczęcie pętli po załadowaniu strony
+    document.addEventListener('DOMContentLoaded', handleBannerLoop);
+</script>            
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
                 <div class="ad-banner large video">
@@ -977,12 +1001,59 @@
             </div>
             
             <!-- Sekcja reklamowa - wideo -->
-            <div class="ad-container">
-                <div class="ad-banner large video">
-                    <p>Miejsce na wideo (30s)</p>
-                    <div class="timer" id="videoTimer">30s</div>
-                </div>
-            </div>
+            <!-- Sekcja reklamowa - baner -->
+<div class="ad-container">
+    <div class="ad-banner large" id="adBanner">
+        <a href="#" target="_blank">
+            <img src="https://i.ibb.co/wN6t0fZC/Messenger-creation-61-DCC1-E2-6717-4-D1-C-BF72-EAE6-B3-CACE96.jpg" 
+                 alt="Reklama" 
+                 style="display: block; width: 728px; height: 90px;">
+        </a>
+        <div class="timer" id="bannerTimer">30s</div>
+    </div>
+</div>
+
+<script>
+    // Funkcja obsługująca wyświetlanie banera w pętli
+    function handleBannerLoop() {
+        const banner = document.getElementById('adBanner');
+        const timer = document.getElementById('bannerTimer');
+        let countdown = 30;
+        
+        // Pokazanie banera
+        banner.style.display = 'block';
+        
+        // Odliczanie 30 sekund
+        const countdownInterval = setInterval(() => {
+            countdown--;
+            timer.textContent = countdown + 's';
+            
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+                
+                // Ukrycie banera na 5 sekund
+                banner.style.display = 'none';
+                timer.textContent = '5s';
+                
+                // Odliczanie 5 sekund przerwy
+                let pauseCountdown = 5;
+                const pauseInterval = setInterval(() => {
+                    pauseCountdown--;
+                    timer.textContent = pauseCountdown + 's';
+                    
+                    if (pauseCountdown <= 0) {
+                        clearInterval(pauseInterval);
+                        // Ponowne uruchomienie pętli
+                        handleBannerLoop();
+                    }
+                }, 1000);
+            }
+        }, 1000);
+    }
+    
+    // Rozpoczęcie pętli po załadowaniu strony
+    document.addEventListener('DOMContentLoaded', handleBannerLoop);
+</script>   
             
             <div class="charity-section">
                 <h3 class="text-3xl font-bold mb-4">Razem możemy więcej</h3>
@@ -2872,6 +2943,7 @@
 </script>
 </body>
 </html>                
+
 
 
 
