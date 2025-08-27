@@ -936,19 +936,20 @@
                 <h2>Witaj w AdelbertusShop</h2>
                 <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
             </div>
-<!-- Baner 1 - okrągły -->
+  <!-- Banery -->
 <div class="ad-container">
-    <div class="ad-circle-banner" id="adBanner1">
-        <a href="https://wa.me/message/XNEKG5L6FAAVD1" target="_blank">
-            <img src="https://i.ibb.co/rG1Lx3Hk/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3.jpg" alt="Baner 1">
+    <!-- Baner 1 - prostokątny -->
+    <div class="ad-rect-banner" id="adBanner1">
+        <a href="#" target="_blank">
+            <img src="https://i.ibb.co/wN6t0fZC/Messenger-creation-61-DCC1-E2-6717-4-D1-C-BF72-EAE6-B3-CACE96.jpg" alt="Baner 1">
         </a>
         <div class="timer" id="timer1">30s</div>
     </div>
 
-    <!-- Baner 2 - prostokątny -->
-    <div class="ad-rect-banner" id="adBanner2" style="display:none;">
-        <a href="#" target="_blank">
-            <img src="https://i.ibb.co/wN6t0fZC/Messenger-creation-61-DCC1-E2-6717-4-D1-C-BF72-EAE6-B3-CACE96.jpg" alt="Baner 2">
+    <!-- Baner 2 - okrągły -->
+    <div class="ad-circle-banner" id="adBanner2" style="display:none;">
+        <a href="https://wa.me/message/XNEKG5L6FAAVD1" target="_blank">
+            <img src="https://i.ibb.co/rG1Lx3Hk/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3.jpg" alt="Baner 2">
         </a>
         <div class="timer" id="timer2">30s</div>
     </div>
@@ -962,24 +963,6 @@
     align-items: center;
     margin: 20px 0;
     gap: 15px;
-}
-
-/* Baner okrągły */
-.ad-circle-banner {
-    position: relative;
-    width: 80vw;
-    max-width: 400px;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.ad-circle-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
 }
 
 /* Baner prostokątny */
@@ -997,6 +980,24 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+}
+
+/* Baner okrągły */
+.ad-circle-banner {
+    position: relative;
+    width: 80vw;
+    max-width: 400px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.ad-circle-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     display: block;
 }
 
@@ -1048,7 +1049,7 @@ function updateTimer() {
 document.addEventListener('DOMContentLoaded', () => {
     showBanner(current);
 });
-</script>           
+</script>
             
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
@@ -2954,6 +2955,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>                
+
 
 
 
