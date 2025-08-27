@@ -139,7 +139,7 @@
             background: var(--color-gold);
         }
         
-        /* Karty produktów - POPRAWIONE */
+        /* Karty produktów */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -197,7 +197,7 @@
             margin-bottom: 1rem;
         }
         
-        /* Studio projektowe - ZMODYFIKOWANE */
+        /* Studio projektowe */
         .design-studio {
             background: white;
             border-radius: 15px;
@@ -292,7 +292,7 @@
             text-align: left;
         }
         
-        /* Sekcja bloga - ZMODYFIKOWANA */
+        /* Sekcja bloga */
         .blog-posts {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -404,7 +404,7 @@
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
         
-        /* Koszyk - ZMODYFIKOWANY */
+        /* Koszyk */
         #cartIcon {
             position: fixed;
             bottom: 2rem;
@@ -480,7 +480,7 @@
             border-top: 2px solid #eee;
         }
         
-        /* PayPal container - ZMODYFIKOWANY */
+        /* PayPal container */
         #paypal-container {
             margin-top: 1rem;
             min-height: 50px;
@@ -864,6 +864,47 @@
             color: #888;
             font-style: italic;
         }
+
+        /* Style dla przycisków w koszyku */
+        .cart-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .cart-buttons button {
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .cart-buttons button:hover {
+            opacity: 0.9;
+        }
+        
+        .email-order-btn {
+            background: var(--color-gold);
+            color: black;
+        }
+        
+        .whatsapp-order-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        /* Sekcja zamówienia */
+        .order-section {
+            background: black;
+            color: var(--color-gold);
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
     </style>
 </head>
 <body>
@@ -966,7 +1007,7 @@
             </div>
         </section>
 
-        <!-- Sklep - PRZYWRÓCONE WSZYSTKIE PRODUKTY -->
+        <!-- Sklep -->
         <section id="shop">
             <div class="section-title">
                 <h2>Nasze Produkty</h2>
@@ -1011,1224 +1052,1295 @@
                 
                 <div class="product-card fade-in">
                     <div class="product-image-container">
-                        <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Koszulka "Geometry"</div>
-                        <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Geometry" data-price="120" data-image="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png">Dodaj do koszyka</button>
-                    </div>
-                </div>
+                        <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc
+</div>
                 
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg" alt="Koszulka Modern" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Koszulka "Modern"</div>
-                        <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Modern" data-price="120" data-image="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg">Dodaj to koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Premium" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Koszulka "Premium"</div>
-                        <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Premium" data-price="120" data-image="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg" alt="Koszulka Urban" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Koszulka "Urban"</div>
-                        <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Urban" data-price="120" data-image="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka Art" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Koszulka "Art"</div>
-                        <div class="product-price">120 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Art" data-price="120" data-image="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png">Dodaj do koszyka</button>
-                    </div>
-                </div>
-            </div>
-            
-            <h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
-            <div class="products-grid">
-                <!-- Bluzy -->
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Bluza "Urban"</div>
-                        <div class="product-price">200 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Urban" data-price="200" data-image="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg" alt="Bluza Street" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Bluza "Street"</div>
-                        <div class="product-price">200 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Street" data-price="200" data-image="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Bluza Premium" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Bluza "Premium"</div>
-                        <div class="product-price">220 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Premium" data-price="220" data-image="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg" alt="Bluza Comfort" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Bluza "Comfort"</div>
-                        <div class="product-price">200 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Comfort" data-price="200" data-image="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png" alt="Bluza Style" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Bluza "Style"</div>
-                        <div class="product-price">200 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Style" data-price="200" data-image="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg" alt="Bluza Fashion" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Bluza "Fashion"</div>
-                        <div class="product-price">200 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Bluza Fashion" data-price="200" data-image="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-            </div>
-            
-            <h3 class="text-2xl font-bold my-6 text-center gold-text">Czapki</h3>
-            <div class="products-grid">
-                <!-- Czapki -->
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Classic" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Czapka "Classic"</div>
-                        <div class="product-price">99 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Classic" data-price="99" data-image="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Czapka Sport" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Czapka "Sport"</div>
-                        <div class="product-price">99 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Sport" data-price="99" data-image="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg" alt="Czapka Street" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Czapka "Street"</div>
-                        <div class="product-price">99 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Street" data-price="99" data-image="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Czapka "Premium"</div>
-                        <div class="product-price">99 zł</div>
-                        <button class="nav-btn add-to-cart-btn" data-name="Czapka Premium" data-price="99" data-image="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg">Dodaj do koszyka</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Sekcja zamówienia -->
-            <div class="section-title">
-                <h2>Złóż zamówienie</h2>
-                <p>Skorzystaj z naszych usług</p>
-            </div>
-            
-            <section id="zamowienia" class="order-form">
-                <h2 class="text-3xl mb-4 text-gold font-bold">Złóż zamówienie</h2>
-                
-                <form id="orderForm" class="space-y-4">
-                    <input type="text" name="name" placeholder="Imię i nazwisko" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
-                    <input type="email" name="email" placeholder="Email" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
-                    <input type="text" name="product" id="productInput" placeholder="Produkt" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
-                    <textarea name="address" placeholder="Adres dostawy" rows="3" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required></textarea>
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Koszulka "Geometry"</div>
+        <div class="product-price">120 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Geometry" data-price="120" data-image="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png">Dodaj do koszyka</button>
+    </div>
+</div>
 
-                    <div class="flex gap-4">
-                        <button type="submit" class="flex-1 bg-gold text-black py-2 rounded font-bold hover:bg-yellow-400 transition">Wyślij mail</button>
-                        <a href="#" id="whatsappBtn" target="_blank" class="flex-1 bg-black border border-gold text-gold py-2 rounded font-bold text-center hover:bg-gold hover:text-black transition">
-                            Zamów przez WhatsApp
-                        </a>
-                    </div>
-                </form>
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg" alt="Koszulka Modern" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Koszulka "Modern"</div>
+        <div class="product-price">120 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Modern" data-price="120" data-image="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg">Dodaj to koszyka</button>
+    </div>
+</div>
 
-                <p id="status" class="mt-4 text-white"></p>
-            </section>
-        </section>
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Premium" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Koszulka "Premium"</div>
+        <div class="product-price">120 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Premium" data-price="120" data-image="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg">Dodaj do koszyka</button>
+    </div>
+</div>
+
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg" alt="Koszulka Urban" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Koszulka "Urban"</div>
+        <div class="product-price">120 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Urban" data-price="120" data-image="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg">Dodaj do koszyka</button>
+    </div>
+</div>
+
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka Art" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Koszulka "Art"</div>
+        <div class="product-price">120 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Art" data-price="120" data-image="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png">Dodaj do koszyka</button>
+    </div>
+</div>
+</div>
+
+<h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
+<div class="products-grid">
+    <!-- Bluzy -->
+    <div class="product-card fade-in">
+        <div class="product-image-container">
+            <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
+        </div>
+        <div class="product-info">
+            <div class="product-title">Bluza "Urban"</div>
+            <div class="product-price">200 zł</div>
+            <button class="nav-btn add-to-cart-btn" data-name="Bluza Urban" data-price="200" data-image="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+        </div>
+    </div>
+    
+    <div class="product-card fade-in">
+        <div class="product-image-container">
+            <img src="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg" alt="Bluza Street" class="product-image">
+        </div>
+        <div class="product-info">
+            <div class="product-title">Bluza "Street"</div>
+            <div class="product-price">200 zł</div>
+            <button class="nav-btn add-to-cart-btn" data-name="Bluza Street" data-price="200" data-image="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg">Dodaj do koszyka</button>
+        </div>
+    </div>
+    
+    <div class="product-card fade-in">
+        <div class="product-image-container">
+            <img src="
+                <div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Bluza Premium" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Bluza "Premium"</div>
+        <div class="product-price">220 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Bluza Premium" data-price="220" data-image="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg">Dodaj do koszyka</button>
+    </div>
+</div>
+
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg" alt="Bluza Comfort" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Bluza "Comfort"</div>
+        <div class="product-price">200 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Bluza Comfort" data-price="200" data-image="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg">Dodaj do koszyka</button>
+    </div>
+</div>
+
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png" alt="Bluza Style" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Bluza "Style"</div>
+        <div class="product-price">200 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Bluza Style" data-price="200" data-image="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png">Dodaj do koszyka</button>
+    </div>
+</div>
+
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg" alt="Bluza Fashion" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Bluza "Fashion"</div>
+        <div class="product-price">200 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Bluza Fashion" data-price="200" data-image="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg">Dodaj do koszyka</button>
+    </div>
+</div>
+</div>
+
+<h3 class="text-2xl font-bold my-6 text-center gold-text">Czapki</h3>
+<div class="products-grid">
+    <!-- Czapki -->
+    <div class="product-card fade-in">
+        <div class="product-image-container">
+            <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Classic" class="product-image">
+        </div>
+        <div class="product-info">
+            <div class="product-title">Czapka "Classic"</div>
+            <div class="product-price">99 zł</div>
+            <button class="nav-btn add-to-cart-btn" data-name="Czapka Classic" data-price="99" data-image="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png">Dodaj do koszyka</button>
+        </div>
+    </div>
+    
+    <div class="product-card fade-in">
+        <div class="product-image-container">
+            <img src="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Czapka Sport" class="product-image">
+        </div>
+        <div class="product-info">
+            <div class="product-title">Czapka "Sport"</div>
+            <div class="product-price">99 zł</div>
+            <button class="nav-btn add-to-cart-btn" data-name="Czapka Sport" data-price="99" data-image="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg">Dodaj do koszyka</button>
+        </div>
+    </div>
+    
+    <div class="product-card fade-in">
+        <div class="product-image-container">
+            <img src="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg" alt="Czapka Street" class="product-image">
+        </div>
+        <div class="product-info">
+            <div class="product-title">Czapka "Street"</div>
+            <div class="product-price">99 zł</div>
+            <button class="nav-btn add-to-cart-btn" data-name="Czapka Street" data-price="99" data-image="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg">Dodaj do koszyka</button>
+        </div>
+    </div>
+    
+    <div class="product-card fade-in">
+        <div class="product-image-container">
+            <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
+        </div>
+        <div class="product-info">
+            <div class="product-title">Czapka "Premium"</div>
+            <div class="product-price">99 zł</div>
+            <button class="nav-btn add-to-cart-btn" data-name="Czapka Premium" data-price="99" data-image="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg">Dodaj do koszyka</button>
+        </div>
+    </div>
+</div>
+
+<!-- Sekcja zamówienia -->
+<div class="section-title">
+    <h2>Złóż zamówienie</h2>
+    <p>Skorzystaj z naszych usług</p>
+</div>
+
+<section id="zamowienia" class="order-form">
+    <h2 class="text-3xl mb-4 text-gold font-bold">Złóż zamówienie</h2>
+    
+    <form id="orderForm" class="space-y-4">
+        <input type="text" name="name" placeholder="Imię i nazwisko" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
+        <input type="email" name="email" placeholder="Email" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
+        <input type="text" name="product" id="productInput" placeholder="Produkt" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
+        <textarea name="address" placeholder="Adres dostawy" rows="3" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required></textarea>
+
+        <div class="flex gap-4">
+            <button type="submit" class="flex-1 bg-gold text-black py-2 rounded font-bold hover:bg-yellow-400 transition">Wyślij mail</button>
+            <a href="#" id="whatsappBtn" target="_blank" class="flex-1 bg-black border border-gold text-gold py-2 rounded font-bold text-center hover:bg-gold hover:text-black transition">
+                Zamów przez WhatsApp
+            </a>
+        </div>
+    </form>
+
+    <p id="status" class="mt-4 text-white"></p>
+</section>
+</section>
+
+<!-- Studio projektowe - ZMODYFIKOWANE -->
+<section id="design">
+    <div class="section-title">
+        <h2>Studio Projektowe</h2>
+        <p>Stwórz swój unikalny produkt</p>
+    </div>
+    
+    <div class="design-studio">
+        <!-- Przyciski po bokach -->
+        <div class="side-buttons left">
+            <button class="side-button" onclick="updateDesign()" title="Podgląd">
+                <i class="fas fa-sync"></i>
+            </button>
+            <button class="side-button" onclick="addToCartFromDesign()" title="Dodaj do koszyka">
+                <i class="fas fa-cart-plus"></i>
+            </button>
+        </div>
+        
+        <div class="side-buttons right">
+            <button class="side-button" onclick="sendDesignToEmail()" title="Wyślij projekt mailem">
+                <i class="fas fa-envelope"></i>
+            </button>
+            <button class="side-button" onclick="saveDesign()" title="Zapisz projekt">
+                <i class="fas fa-download"></i>
+            </button>
+        </div>
+        
+        <div class="product-base">
+            <div class="product-base-item active" data-base="tshirt">
+                <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka">
+                <p>Koszulka</p>
+            </div>
+            <div class="product-base-item" data-base="hoodie">
+                <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza">
+                <p>Bluza</p>
+            </div>
+            <div class="product-base-item" data-base="cap">
+                <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka">
+                <p>Czapka</p>
+            </div>
+        </div>
+        
+        <div class="design-options">
+            <div class="design-option active" data-area="front">Przód</div>
+            <div class="design-option" data-area="back">Tył</div>
+            <div class="design-option" data-area="sleeves">Rękawy</div>
+        </div>
+        
+        <div class="canvas-container">
+            <canvas id="designCanvas" width="500" height="400"></canvas>
+            <div class="canvas-controls">
+                <button class="nav-btn" onclick="clearCanvas()"><i class="fas fa-trash"></i> Wyczyść</button>
+                <button class="nav-btn" onclick="resetDesign()"><i class="fas fa-redo"></i> Resetuj</button>
+            </div>
+        </div>
+        
+        <div class="design-tools">
+            <div class="tool-group">
+                <div class="tool-title"><i class="fas fa-font"></i> Tekst</div>
+                <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3" oninput="updateDesign()">
+                
+                <div class="flex gap-3 mb-3">
+                    <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
+                        <option value="Arial">Arial</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Comic Sans MS">Comic Sans</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Palatino">Palatino</option>
+                        <option value="Garamond">Garamond</option>
+                        <option value="Brush Script MT">Brush Script</option>
+                    </select>
                     
-        <!-- Studio projektowe - ZMODYFIKOWANE -->
-        <section id="design">
-            <div class="section-title">
-                <h2>Studio Projektowe</h2>
-                <p>Stwórz swój unikalny produkt</p>
+                    <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
+                </div>
+                
+                <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3" oninput="updateDesign()">
             </div>
             
-            <div class="design-studio">
-                <!-- Przyciski po bokach -->
-                <div class="side-buttons left">
-                    <button class="side-button" onclick="updateDesign()" title="Podgląd">
-                        <i class="fas fa-sync"></i>
-                    </button>
-                    <button class="side-button" onclick="addToCartFromDesign()" title="Dodaj do koszyka">
-                        <i class="fas fa-cart-plus"></i>
-                    </button>
-                </div>
+            <div class="tool-group">
+                <div class="tool-title"><i class="fas fa-palette"></i> Opcje produktu</div>
                 
-                <div class="side-buttons right">
-                    <button class="side-button" onclick="sendDesignToEmail()" title="Wyślij projekt mailem">
-                        <i class="fas fa-envelope"></i>
-                    </button>
-                    <button class="side-button" onclick="saveDesign()" title="Zapisz projekt">
-                        <i class="fas fa-download"></i>
-                    </button>
-                </div>
+                <select id="productType" class="w-full p-3 border rounded mb-3">
+                    <option value="tshirt">Koszulka (120 zł)</option>
+                    <option value="hoodie">Bluza (200 zł)</option>
+                    <option value="cap">Czapka (99 zł)</option>
+                </select>
                 
-                <div class="product-base">
-                    <div class="product-base-item active" data-base="tshirt">
-                        <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka">
-                        <p>Koszulka</p>
-                    </div>
-                    <div class="product-base-item" data-base="hoodie">
-                        <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza">
-                        <p>Bluza</p>
-                    </div>
-                    <div class="product-base-item" data-base="cap">
-                        <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka">
-                        <p>Czapka</p>
-                    </div>
-                </div>
+                <select id="productSize" class="w-full p-3 border rounded mb-3">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
                 
-                <div class="design-options">
-                    <div class="design-option active" data-area="front">Przód</div>
-                    <div class="design-option" data-area="back">Tył</div>
-                    <div class="design-option" data-area="sleeves">Rękawy</div>
-                </div>
-                
-                <div class="canvas-container">
-                    <canvas id="designCanvas" width="500" height="400"></canvas>
-                    <div class="canvas-controls">
-                        <button class="nav-btn" onclick="clearCanvas()"><i class="fas fa-trash"></i> Wyczyść</button>
-                        <button class="nav-btn" onclick="resetDesign()"><i class="fas fa-redo"></i> Resetuj</button>
-                    </div>
-                </div>
-                
-                <div class="design-tools">
-                    <div class="tool-group">
-                        <div class="tool-title"><i class="fas fa-font"></i> Tekst</div>
-                        <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3" oninput="updateDesign()">
-                        
-                        <div class="flex gap-3 mb-3">
-                            <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
-                                <option value="Arial">Arial</option>
-                                <option value="Times New Roman">Times New Roman</option>
-                                <option value="Courier New">Courier New</option>
-                                <option value="Impact">Impact</option>
-                                <option value="Comic Sans MS">Comic Sans</option>
-                                <option value="Georgia">Georgia</option>
-                                <option value="Verdana">Verdana</option>
-                                <option value="Palatino">Palatino</option>
-                                <option value="Garamond">Garamond</option>
-                                <option value="Brush Script MT">Brush Script</option>
-                            </select>
-                            
-                            <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
-                        </div>
-                        
-                        <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3" oninput="updateDesign()">
-                    </div>
-                    
-                    <div class="tool-group">
-                        <div class="tool-title"><i class="fas fa-palette"></i> Opcje produktu</div>
-                        
-                        <select id="productType" class="w-full p-3 border rounded mb-3">
-                            <option value="tshirt">Koszulka (120 zł)</option>
-                            <option value="hoodie">Bluza (200 zł)</option>
-                            <option value="cap">Czapka (99 zł)</option>
-                        </select>
-                        
-                        <select id="productSize" class="w-full p-3 border rounded mb-3">
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
-                        </select>
-                        
-                        <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
-                        <button class="nav-btn gold-bg w-full" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
-                    </div>
-
-                    <div class="tool-group">
-                        <div class="tool-title"><i class="fas fa-edit"></i> Edycja elementów</div>
-                        <div class="transform-controls">
-                            <div class="transform-input">
-                                <label for="posX">Pozycja X</label>
-                                <input type="range" id="posX" min="0" max="500" value="250" oninput="updateElementPosition()">
-                            </div>
-                            <div class="transform-input">
-                                <label for="posY">Pozycja Y</label>
-                                <input type="range" id="posY" min="0" max="400" value="200" oninput="updateElementPosition()">
-                            </div>
-                            <div class="transform-input">
-                                <label for="scale">Skala</label>
-                                <input type="range" id="scale" min="0.1" max="2" step="0.1" value="1" oninput="updateElementScale()">
-                            </div>
-                            <div class="transform-input">
-                                <label for="rotation">Obrót</label>
-                                <input type="range" id="rotation" min="0" max="360" value="0" oninput="updateElementRotation()">
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <button class="nav-btn gold-bg w-full" onclick="bringToFront()"><i class="fas fa-layer-group"></i> Na wierzch</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="design-preview">
-                    <h3>Podgląd Twojego projektu</h3>
-                    <p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Zbiórka - ZMODYFIKOWANA -->
-        <section id="charity">
-            <div class="section-title">
-                <h2>Wspieramy Dom Dziecka "Promyk"</h2>
-                <p>Razem możemy zmienić świat na lepsze</p>
-            </div>
-            
-            <div class="charity-section">
-                <h3 class="text-3xl font-bold mb-4">Twoja pomoc ma znaczenie</h3>
-                <p class="text-xl mb-6">Wesprzyj podopiecznych Domu Dziecka "Promyk"</p>
-                
-                <div class="mb-6">
-                    <h4 class="text-2xl font-bold mb-3">📱 Przelew BLIK</h4>
-                    <div class="text-3xl font-mono font-bold">573-939-925</div>
-                    <p class="mt-2">z dopiskiem "POMOC"</p>
-                </div>
-                
-                <div class="mb-6">
-                    <h4 class="text-2xl font-bold mb-3">💳 PayPal</h4>
-                    <p>Wesprzyj nas przez PayPal - bezpieczna i szybka płatność</p>
-                    <a href="https://www.paypal.com/donate/?hosted_button_id=VG9UP4MTHHWYU" target="_blank" class="donate-button">
-                        <i class="fab fa-paypal"></i> Przekaż darowiznę
-                    </a>
-                </div>
-                
-                <div class="mb-6">
-                    <h4 class="text-2xl font-bold mb-3">📦 Przekaż dary</h4>
-                    <p>Skontaktuj się z nami, aby dowiedzieć się, jak przekazać materialne wsparcie</p>
-                    <p class="mt-2 font-bold">Tel: 604 296 360 | Email: mielniczukgrzegosz74@gmail.com</p>
-                </div>
-            </div>
-            
-            <div class="donors-list">
-                <h4 class="text-xl font-bold mb-4">Ostatni darczyńcy:</h4>
-                <ul id="donorsList" class="space-y-2">
-                    <!-- Zawartość będzie dynamicznie zmieniana -->
-                </ul>
-            </div>
-            
-            <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-                <h4 class="text-2xl font-bold mb-4">List od dzieci z Domu Dziecka "Promyk"</h4>
-                <div id="childrenLetter" class="italic text-lg border-l-4 border-gold pl-4 py-2">
-                    <!-- Zawartość będzie dynamicznie zmieniana -->
-                </div>
-            </div>
-            
-            <div class="mt-8 text-center">
-                <blockquote class="text-xl italic">
-                    "Największym bogactwem jest pomoc innym bez oczekiwania czegokolwiek w zamian."
-                </blockquote>
-                <p class="mt-4">- Wojciech, założyciel AdelbertusShop</p>
-            </div>
-        </section>
-
-        <!-- Blog - ZMODYFIKOWANY -->
-        <section id="blog">
-            <div class="section-title">
-                <h2>Blog</h2>
-                <p>Podziel się swoimi przemyśleniami i inspiracjami</p>
+                <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
+                <button class="nav-btn gold-bg w-full" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
             </div>
 
-            <div class="text-center mb-8">
-                <button class="nav-btn gold-bg" onclick="showBlogForm()"><i class="fas fa-pencil-alt"></i> Napisz nowy artykuł</button>
+            <div class="tool-group">
+                <div class="tool-title"><i class="fas fa-edit"></i> Edycja elementów</div>
+                <div class="transform-controls">
+                    <div class="transform-input">
+                        <label for="posX">Pozycja X</label>
+                        <input type="range" id="posX" min="0" max="500" value="250" oninput="updateElementPosition()">
+                    </div>
+                    <div class="transform-input">
+                        <label for="posY">Pozycja Y</label>
+                        <input type="range" id="posY" min="0" max="400" value="200" oninput="updateElementPosition()">
+                    </div>
+                    <div class="transform-input">
+                        <label for="scale">Skala</label>
+                        <input type="range" id="scale" min="0.1" max="2" step="0.1" value="1" oninput="updateElementScale()">
+                    </div>
+                    <div class="transform-input">
+                        <label for="rotation">Obrót</label>
+                        <input type="range" id="rotation" min="0" max="360" value="0" oninput="updateElementRotation()">
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button class="nav-btn gold-bg w-full" onclick="bringToFront()"><i class="fas fa-layer-group"></i> Na wierzch</button>
+                </div>
             </div>
-            
-            <div class="blog-posts" id="blogPostsContainer">
-                <!-- Artykuły będą dodawane dynamicznie -->
-            </div>
+        </div>
+        
+        <div class="design-preview">
+            <h3>Podgląd Twojego projektu</h3>
+            <p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>
+        </div>
+    </div>
+</section>
 
-            <!-- Formularz do dodawania nowych artykułów -->
-            <div id="blogForm" class="email-form" style="display: none;">
-                <h3 class="text-2xl font-bold mb-4">Dodaj nowy artykuł</h3>
-                <form id="newBlogPostForm">
-                    <div class="form-group">
-                        <label>Tytuł</label>
-                        <input type="text" id="blogTitle" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Krótki opis</label>
-                        <textarea id="blogExcerpt" rows="2" required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Pełna treść</label>
-                        <textarea id="blogContent" rows="5" required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>URL obrazka</label>
-                        <input type="url" id="blogImage" placeholder="https://...">
-                    </div>
-                    
-                    <button type="submit" class="nav-btn gold-bg">Opublikuj artykuł</button>
-                    <button type="button" class="nav-btn" onclick="hideBlogForm()">Anuluj</button>
-                </form>
-            </div>
-        </section>
+<!-- Zbiórka - ZMODYFIKOWANA -->
+<section id="charity">
+    <div class="section-title">
+        <h2>Wspieramy Domu Dziecka "Promyk"</h2>
+        <p>Razem możemy zmienić świat na lepsze</p>
+    </div>
+    
+    <div class="charity-section">
+        <h3 class="text-3xl font-bold mb-4">Twoja pomoc ma znaczenie</h3>
+        <p class="text-xl mb-6">Wesprzyj podopiecznych Domu Dziecka "Promyk"</p>
+        
+        <div class="mb-6">
+            <h4 class="text-2xl font-bold mb-3">📱 Przelew BLIK</h4>
+            <div class="text-3xl font-mono font-bold">573-939-925</div>
+            <p class="mt-2">z dopiskiem "POMOC"</p>
+        </div>
+        
+        <div class="mb-6">
+            <h4 class="text-2xl font-bold mb-3">💳 PayPal</h4>
+            <p>Wesprzyj nas przez PayPal - bezpieczna i szybka płatność</p>
+            <a href="https://www.paypal.com/donate/?hosted_button_id=VG9UP4MTHHWYU" target="_blank" class="donate-button">
+                <i class="fab fa-paypal"></i> Przekaż darowiznę
+            </a>
+        </div>
+        
+        <div class="mb-6">
+            <h4 class="text-2xl font-bold mb-3">📦 Przekaż dary</h4>
+            <p>Skontaktuj się z nami, aby dowiedzieć się, jak przekazać materialne wsparcie</p>
+            <p class="mt-2 font-bold">Tel: 604 296 360 | Email: mielniczukgrzegosz74@gmail.com</p>
+        </div>
+    </div>
+    
+    <div class="donors-list">
+        <h4 class="text-xl font-bold mb-4">Ostatni darczyńcy:</h4>
+        <ul id="donorsList" class="space-y-2">
+            <!-- Zawartość będzie dynamicznie zmieniana -->
+        </ul>
+    </div>
+    
+    <div class="bg-white p-6 rounded-lg shadow-md mt-6">
+        <h4 class="text-2xl font-bold mb-4">List od dzieci z Domu Dziecka "Promyk"</h4>
+        <div id="childrenLetter" class="italic text-lg border-l-4 border-gold pl-4 py-2">
+            <!-- Zawartość będzie dynamicznie zmieniana -->
+        </div>
+    </div>
+    
+    <div class="mt-8 text-center">
+        <blockquote class="text-xl italic">
+            "Największym bogactwem jest pomoc innym bez oczekiwania czegokolwiek w zamian."
+        </blockquote>
+        <p class="mt-4">- Wojciech, założyciel AdelbertusShop</p>
+    </div>
+</section>
 
-        <!-- Regulamin -->
-        <section id="regulations">
-            <div class="section-title">
-                <h2>Regulamin</h2>
-                <p>Zasady korzystania z naszego sklepu</p>
-            </div>
-            
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-3">§1 Postanowienia ogólne</h3>
-                    <p>Sklep internetowy AdelbertusShop prowadzony jest przez osobę fizyczną w ramach działalności nierejestrowanej na podstawie art. 5 ustawy o swobodzie działalności gospodarczej.</p>
-                </div>
-                
-                <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-3">§2 Zamówienia i płatności</h3>
-                    <p>1. Zamówienia można składać przez stronę internetową 24 godziny na dobę.</p>
-                    <p>2. Akceptowane formy płatności: PayPal, przelew bankowy, BLIK.</p>
-                    <p>3. Realizacja zamówienia następuje po zaksięgowaniu płatności.</p>
-                </div>
-                
-                <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-3">§3 Polityka prywatności i RODO</h3>
-                    <p>1. Administratorem danych osobowych jest AdelbertusShop.</p>
-                    <p>2. Dane osobowe przetwarzane są w celu realizacji zamówień, świadczenia usług oraz marketingu bezpośredniego.</p>
-                    <p>3. Podstawą przetwarzania danych jest niezbędność do wykonania umowy (art. 6 ust. 1 lit. b RODO) oraz prawnie uzasadniony interes administratora (art. 6 ust. 1 lit. f RODO).</p>
-                    <p>4. Dane przechowywane są przez okres niezbędny do realizacji zamówienia, a następnie przez okres wymagany przepisami prawa.</p>
-                    <p>5. Przysługuje Państwu prawo dostępu do danych, sprostowania, usunięcia, ograniczenia przetwarzania, wniesienia sprzeciwu oraz prawo do przenoszenia danych.</p>
-                    <p>6. Dane mogą być udostępniane podmiotom przetwarzającym je na nasze zlecenie (np. firmy kurierskie, płatności elektroniczne).</p>
-                    <p>7. Kontakt w sprawach ochrony danych: mielniczukgrzegosz74@gmail.com</p>
-                </div>
-                
-                <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-3">§4 Zwroty i reklamacje</h3>
-                    <p>1. Konsument ma prawo do odstąpienia od umowy w ciągu 14 dni bez podawania przyczyny.</p>
-                    <p>2. Zwrotów można dokonać na adres: AdelbertusShop, ul. Przykładowa 1, 00-000 Warszawa.</p>
-                    <p>3. Reklamacje są rozpatrywane w ciągu 14 dni od otrzymania.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Kontakt - ZMODYFIKOWANY -->
-        <section id="contact">
-            <div class="section-title">
-                <h2>Kontakt</h2>
-                <p>Skontaktuj się z nami</p>
-            </div>
-            
-            <div class="email-form">
-                <h3 class="text-2xl font-bold mb-4">Wyślij wiadomość</h3>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label>Imię i nazwisko</label>
-                        <input type="text" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Temat</label>
-                        <input type="text" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Wiadomość</label>
-                        <textarea rows="5" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="nav-btn gold-bg w-full">Wyślij wiadomość</button>
-                </form>
-            </div>
-            
-            <div class="bg-white p-6 rounded-lg shadow-md mt-8">
-                <h3 class="text-xl font-bold mb-4">Dane kontaktowe</h3>
-                <p class="mb-2"><i class="fas fa-envelope gold-text"></i> Email: mielniczukgrzegosz74@gmail.com</p>
-                <p class="mb-2"><i class="fas fa-phone gold-text"></i> Telefon: 604 296 360</p>
-                <p class="mb-4"><i class="fas fa-clock gold-text"></i> Godziny odpowiedzi: Pon-Pt 9:00-17:00</p>
-                
-                <h3 class="text-xl font-bold mt-6 mb-4">Social Media</h3>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link" target="_blank">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                    <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Koszyk - ZMODYFIKOWANY -->
-    <div id="cartIcon">
-        <i class="fas fa-shopping-cart"></i>
-        <span id="cartCount">0</span>
+<!-- Blog - ZMODYFIKOWANY -->
+<section id="blog">
+    <div class="section-title">
+        <h2>Blog</h2>
+        <p>Podziel się swoimi przemyśleniami i inspiracjami</p>
     </div>
 
-    <div id="cartPanel">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold">Twój koszyk</h2>
-            <button onclick="toggleCart()" class="text-2xl">&times;</button>
-        </div>
-        
-        <div id="cartItems" class="mb-6">
-            <!-- Produkty w koszyku -->
-        </div>
-        
-        <div class="cart-total">
-            <div class="flex justify-between text-xl font-bold">
-                <span>Suma:</span>
-                <span id="cartTotal">0 zł</span>
+    <div class="text-center mb-8">
+        <button class="nav-btn gold-bg" onclick="showBlogForm()"><i class="fas fa-pencil-alt"></i> Napisz nowy artykuł</button>
+    </div>
+    
+    <div class="blog-posts" id="blogPostsContainer">
+        <!-- Przykładowe artykuły -->
+        <div class="blog-post">
+            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sztuka" class="blog-image">
+            <div class="blog-content">
+                <h3 class="text-xl font-bold mb-2">Sztuka jako forma ekspresji</h3>
+                <p class="text-sm text-gray-600">Opublikowano: 12 czerwca 2023</p>
+                <div class="blog-excerpt">
+                    <p class="mt-3">Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...</p>
+                </div>
+                <div class="blog-full">
+                    <p class="mt-3">Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie i komunikować się z innymi bez słów. W kontekście mody, projektowanie ubrań to nie tylko tworzenie funkcjonalnych przedmiotów, ale także forma sztuki, która pozwala noszącym wyrazić swoją osobowość i wartości.</p>
+                </div>
+                <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
+                <button class="nav-btn mt-2" onclick="shareArticle('Sztuka jako forma ekspresji', 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
             </div>
         </div>
         
-        <div id="paypal-container" class="mt-4"></div>
+        <div class="blog-post">
+            <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Design" class="blog-image">
+            <div class="blog-content">
+                <h3 class="text-xl font-bold mb-2">Trendy w streetwearze 2023</h3>
+                <p class="text-sm text-gray-600">Opublikowano: 5 czerwca 2023</p>
+                <div class="blog-excerpt">
+                    <p class="mt-3">Odkryj najnowsze trendy w modzie ulicznej tego sezonu...</p>
+                </div>
+                <div class="blog-full">
+                    <p class="mt-3">Streetwear w 2023 roku ewoluuje w kierunku połączenia komfortu and style. Dominują oversize'owe fasony, earthy kolory oraz odważne nadruki. W tym sezonie królują również elementy vintage i moda zrównoważona.</p>
+                </div>
+                <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
+                <button class="nav-btn mt-2" onclick="shareArticle('Trendy w streetwearze 2023', 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formularz do dodawania nowych artykułów -->
+    <div id="blogForm" class="email-form" style="display: none;">
+        <h3 class="text-2xl font-bold mb-4">Dodaj nowy artykuł</h3>
+        <form id="newBlogPostForm">
+            <div class="form-group">
+                <label>Tytuł</label>
+                <input type="text" id="blogTitle" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Krótki opis</label>
+                <textarea id="blogExcerpt" rows="2" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Pełna treść</label>
+                <textarea id="blogContent" rows="5" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>URL obrazka</label>
+                <input type="url" id="blogImage" placeholder="https://...">
+            </div>
+            
+            <button type="submit" class="nav-btn gold-bg">Opublikuj artykuł</button>
+            <button type="button" class="nav-btn" onclick="hideBlogForm()">Anuluj</button>
+        </form>
+    </div>
+</section>
+
+<!-- Regulamin -->
+<section id="regulations">
+    <div class="section-title">
+        <h2>Regulamin</h2>
+        <p>Zasady korzystania z naszego sklepu</p>
+    </div>
+    
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="mb-6">
+            <h3 class="text-xl font-bold mb-3">§1 Postanowienia ogólne</h3>
+            <p>Sklep internetowy AdelbertusShop prowadzony jest przez osobę fizyczną w ramach działalności nierejestrowanej na podstawie art. 5 ustawy o swobodzie działalności gospodarczej.</p>
+        </div>
         
-        <button onclick="sendOrderEmail()" class="nav-btn mt-4">
+        <div class="mb-6">
+            <h3 class="text-xl font-bold mb-3">§2 Zamówienia i płatności</h3>
+            <p>1. Zamówienia można składać przez stronę internetową 24 godziny na dobę.</p>
+            <p>2. Akceptowane formy płatności: PayPal, przelew bankowy, BLIK.</p>
+            <p>3. Realizacja zamówienia następuje po zaksięgowaniu płatności.</p>
+        </div>
+        
+        <div class="mb-6">
+            <h3 class="text-xl font-bold mb-3">§3 Polityka prywatności i RODO</h3>
+            <p>1. Administratorem danych osobowych jest AdelbertusShop.</p>
+            <p>2. Dane osobowe przetwarzane są w celu realizacji zamówień, świadczenia usług oraz marketingu bezpośredniego.</p>
+            <p>3. Podstawą przetwarzania danych jest niezbędność do wykonania umowy (art. 6 ust. 1 lit. b RODO) oraz prawnie uzasadniony interes administratora (art. 6 ust. 1 lit. f RODO).</p>
+            <p>4. Dane przechowywane są przez okres niezbędny do realizacji zamówienia, a następnie przez okres wymagany przepisami prawa.</p>
+            <p>5. Przysługuje Państwu prawo dostępu do danych, sprostowania, usunięcia, ograniczenia przetwarzania, wniesienia sprzeciwu oraz prawo do przenoszenia danych.</p>
+            <p>6. Dane mogą być udostępniane podmiotom przetwarzającym je na nasze zlecenie (np. firmy kurierskie, płatności elektroniczne).</p>
+            <p>7. Kontakt w sprawach ochrony.
+                <!-- Kontynuacja kodu od miejsca przerwania -->
+<div class="mb-6">
+    <h3 class="text-xl font-bold mb-3">§4 Zwroty i reklamacje</h3>
+    <p>1. Konsument ma prawo do odstąpienia od umowy w ciągu 14 dni bez podawania przyczyny.</p>
+    <p>2. Zwrotów można dokonać na adres: AdelbertusShop, ul. Przykładowa 1, 00-000 Warszawa.</p>
+    <p>3. Reklamacje są rozpatrywane w ciągu 14 dni od otrzymania.</p>
+</div>
+</div>
+</section>
+
+<!-- Kontakt - ZMODYFIKOWANY -->
+<section id="contact">
+    <div class="section-title">
+        <h2>Kontakt</h2>
+        <p>Skontaktuj się z nami</p>
+    </div>
+    
+    <div class="email-form">
+        <h3 class="text-2xl font-bold mb-4">Wyślij wiadomość</h3>
+        <form id="contactForm">
+            <div class="form-group">
+                <label>Imię i nazwisko</label>
+                <input type="text" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Temat</label>
+                <input type="text" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Wiadomość</label>
+                <textarea rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="nav-btn gold-bg w-full">Wyślij wiadomość</button>
+        </form>
+    </div>
+    
+    <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+        <h3 class="text-xl font-bold mb-4">Dane kontaktowe</h3>
+        <p class="mb-2"><i class="fas fa-envelope gold-text"></i> Email: mielniczukgrzegosz74@gmail.com</p>
+        <p class="mb-2"><i class="fas fa-phone gold-text"></i> Telefon: 604 296 360</p>
+        <p class="mb-4"><i class="fas fa-clock gold-text"></i> Godziny odpowiedzi: Pon-Pt 9:00-17:00</p>
+        
+        <h3 class="text-xl font-bold mt-6 mb-4">Social Media</h3>
+        <div class="social-links">
+            <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- Koszyk - ZMODYFIKOWANY -->
+<div id="cartIcon">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cartCount">0</span>
+</div>
+
+<div id="cartPanel">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Twój koszyk</h2>
+        <button onclick="toggleCart()" class="text-2xl">&times;</button>
+    </div>
+    
+    <div id="cartItems" class="mb-6">
+        <!-- Produkty w koszyku -->
+    </div>
+    
+    <div class="cart-total">
+        <div class="flex justify-between text-xl font-bold">
+            <span>Suma:</span>
+            <span id="cartTotal">0 zł</span>
+        </div>
+    </div>
+    
+    <div id="paypal-container" class="mt-4"></div>
+    
+    <div class="cart-buttons">
+        <button onclick="sendOrderEmail()" class="email-order-btn">
             <i class="fas fa-envelope"></i> Wyślij zamówienie mailem
         </button>
-        
-        <p class="text-sm text-gray-600 text-center mt-4">Akceptujemy również przelewy bankowe и BLIK</p>
+        <button onclick="sendOrderWhatsApp()" class="whatsapp-order-btn">
+            <i class="fab fa-whatsapp"></i> Zamów przez WhatsApp
+        </button>
     </div>
+    
+    <p class="text-sm text-gray-600 text-center mt-4">Akceptujemy również przelewy bankowe i BLIK</p>
+</div>
 
-    <!-- Stopka -->
-    <footer>
-        <div class="logo">AdelbertusShop</div>
-        <p class="tagline">Tworzone z pasją, noszone z dumą</p>
-        
-        <div class="contact-info">
-            <p><i class="fas fa-envelope"></i> mielniczukgrzegosz74@gmail.com</p>
-            <p><i class="fas fa-phone"></i> 604 296 360</p>
+<!-- Stopka -->
+<footer>
+    <div class="logo">AdelbertusShop</div>
+    <p class="tagline">Tworzone z pasją, noszone z dumą</p>
+    
+    <div class="contact-info">
+        <p><i class="fas fa-envelope"></i> mielniczukgrzegosz74@gmail.com</p>
+        <p><i class="fas fa-phone"></i> 604 296 360</p>
+    </div>
+    
+    <!-- Sekcja reklam w stopce -->
+    <div class="footer-ads">
+        <div class="footer-ad">
+            <p>Reklama 1</p>
         </div>
-        
-        <!-- Sekcja reklam w stopce -->
-        <div class="footer-ads">
-            <div class="footer-ad">
-                <p>Reklama 1</p>
-            </div>
-            <div class="footer-ad">
-                <p>Reklama 2</p>
-            </div>
-            <div class="footer-ad">
-                <p>Reklama 3</p>
-            </div>
+        <div class="footer-ad">
+            <p>Reklama 2</p>
         </div>
-        
-        <div class="mt-6">
-            <p>© 2023 AdelbertusShop. Wszystkie prawa zastrzeżone.</p>
-            <p>Działalność nierejestrowana na podstawie art. 5 ustawy o swobodzie działalności gospodarczej.</p>
+        <div class="footer-ad">
+            <p>Reklama 3</p>
         </div>
-    </footer>
+    </div>
+    
+    <div class="mt-6">
+        <p>© 2023 AdelbertusShop. Wszystkie prawa zastrzeżone.</p>
+        <p>Działalność nierejestrowana na podstawie art. 5 ustawy o swobodzie działalności gospodarczej.</p>
+    </div>
+</footer>
 
-    <script>
-        // ===== GLOBALNE ZMIENNE =====
-        let cart = JSON.parse(localStorage.getItem('adelbertus_cart')) || [];
-        let currentDesign = {
-            text: '',
-            fontSize: 36,
-            fontFamily: 'Arial',
-            color: '#000000',
-            productType: 'tshirt',
-            productSize: 'M',
-            image: null,
-            imageX: 250,
-            imageY: 200,
-            imageScale: 1,
-            imageRotation: 0,
-            textX: 250,
-            textY: 200,
-            textScale: 1,
-            textRotation: 0,
-            activeElement: 'text',
-            baseProduct: 'tshirt',
-            designArea: 'front' // front, back, sleeves
-        };
+<script>
+    // ===== GLOBALNE ZMIENNE =====
+    let cart = JSON.parse(localStorage.getItem('adelbertus_cart')) || [];
+    let currentDesign = {
+        text: '',
+        fontSize: 36,
+        fontFamily: 'Arial',
+        color: '#000000',
+        productType: 'tshirt',
+        productSize: 'M',
+        image: null,
+        imageX: 250,
+        imageY: 200,
+        imageScale: 1,
+        imageRotation: 0,
+        textX: 250,
+        textY: 200,
+        textScale: 1,
+        textRotation: 0,
+        activeElement: 'text',
+        baseProduct: 'tshirt',
+        designArea: 'front'
+    };
 
-        // Dane do rotacji dla zbiórki
-        const donorsData = [
-            {
-                donors: [
-                    '<li><i class="fas fa-heart gold-text"></i> <strong>Anna K.</strong> - paczka z artykułami szkolnymi</li>',
-                    '<li><i class="fas fa-heart gold-text"></i> <strong>Tomasz W.</strong> - 500 zł przekazane przez BLIK</li>',
-                    '<li><i class="fas fa-heart gold-text"></i> <strong>Fundacja "Przyszłość"</strong> - zestaw komputerowy</li>',
-                    '<li><i class="fas fa-heart gold-text"></i> <strong>Pracownicy firmy XYZ</strong> - zbiórka zimowych ubrań</li>'
-                ],
-                letter: `"Drodzy Przyjaciele,<br><br>
-                Chcielibyśmy podziękować Wam za wszystkie otrzymane dary i wsparcie. Każda paczka, każdy uśmiech i każde dobre słowo dodaje nam siły i wiary w lepsze jutro. Dzięki Wam wiemy, że nie jesteśmy sami.<br><br>
-                Wasze gesty dobroci sprawiają, że nasze dni stają się jaśniejsze, a marzenia - bardziej realne. Dziękujemy, że jesteście częścią naszej historii.<br><br>
-                Z nadzieją w sercach,<br>
-                Dzieci z Domu Dziecka 'Promyk'"`
-            },
-            {
-                donors: [
-                    '<li><i class="fas fa-heart gold-text"></i> <strong>Jan Nowak</strong> - gry planszowe i puzzle</li>',
-                    '<li><i class="fas fa-heart gold-text"></i> <strong>Maria S.</strong> - 300 zł na wycieczkę</li>',
-                    '<li><i class="fas fa-heart gold-text"></i> <strong>Firma ABC</strong> - artykuły plastyczne</li>',
-                    '<li><i class="fas fa-heart gold-text"></i> <strong>Wolontariusze z miasta</strong> - remont sali zabaw</li>'
-                ],
-                letter: `"Kochani Darczyńcy,<br><br>
-                Wasza hojność nas zadziwia! Dzięki Wam możemy rozwijać nasze pasje i talenty. Ostatnio dostaliśmy wspaniałe instrumenty muzyczne i już tworzymy zespół.<br><br>
-                Nie moglibyśmy robić tych wszystkich wspaniałych rzeczy bez Waszego wsparcia. Dziękujemy za każde okazane serce.<br><br>
-                Z wdzięcznością,<br>
-                Podopieczni 'Promyka'"`
-            },
-            {
-                donors: [
-                    '<li><i class="fas fa-heart gold-text"></i> <strong>Grupa przyjaciół</strong> - rowery i kaski</li>',
-                    '<li><i class="fas fa-heart gold-text"></i> <strong>Pizzeria "Smak"</strong> - cotygodniowe dostawy pizzy</li>',
-                    '<li><i class="fas fa-heart gold-text"></i> <strong>Klub sportowy</strong> - sprzęt sportowy i treningi</li>',
-                    '<li><i class="fas fa-heart gold-text"></i> <strong>Anonimowy darczyńca</strong> - laptopy dla dzieci</li>'
-                ],
-                letter: `"Szanowni Państwo,<br><br>
-                Chcemy podzielić się naszą radością - dzięki Waszemu wsparciu mogliśmy zorganizować wspaniały wyjazd w góry. To były niezapomniane chwile!<br><br>
-                Widok szczęśliwych, uśmiechniętych dzieci jest bezcenny. Dziękujemy, że pomagacie nam tworzyć takie wspomnienia.<br><br>
-                Serdecznie,<br>
-                Wychowawcy i dzieci z 'Promyka'"`
-            }
-        ];
-
-        // ===== INICJALIZACJA =====
-        document.addEventListener('DOMContentLoaded', function() {
-            initNavigation();
-            initDesignStudio();
-            updateCart();
-            renderPayPalButton();
-            initContactForm();
-            initBlog();
-            initAddToCartButtons();
-            initProductBase();
-            initDesignOptions();
-            initOrderForm();
-            initAdTimers();
-            initCharityRotation();
-        });
-
-        // ===== NAWIGACJA =====
-        function initNavigation() {
-            const navButtons = document.querySelectorAll('.nav-btn');
-            
-            navButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    if (this.hasAttribute('data-section')) {
-                        e.preventDefault();
-                        
-                        // Usuń aktywną klasę ze wszystkich przycisków
-                        navButtons.forEach(btn => btn.classList.remove('active'));
-                        
-                        // Dodaj aktywną klasę do klikniętego przycisku
-                        this.classList.add('active');
-                        
-                        // Pokaż odpowiednią sekcję
-                        const sectionId = this.getAttribute('data-section');
-                        showSection(sectionId);
-                    }
-                });
-            });
-            
-            // Obsługa ikony koszyka
-            document.getElementById('cartIcon').addEventListener('click', toggleCart);
+    // Dane do rotacji dla zbiórki
+    const donorsData = [
+        {
+            donors: [
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Anna K.</strong> - paczka z artykułami szkolnymi</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Tomasz W.</strong> - 500 zł przekazane przez BLIK</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Fundacja "Przyszłość"</strong> - zestaw komputerowy</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Pracownicy firmy XYZ</strong> - zbiórka zimowych ubrań</li>'
+            ],
+            letter: `"Drodzy Przyjaciele,<br><br>
+            Chcielibyśmy podziękować Wam za wszystkie otrzymane dary i wsparcie. Każda paczka, każdy uśmiech i każde dobre słowo dodaje nam siły i wiary w lepsze jutro. Dzięki Wam wiemy, że nie jesteśmy sami.<br><br>
+            Wasze gesty dobroci sprawiają, że nasze dni stają się jaśniejsze, a marzenia - bardziej realne. Dziękujemy, że jesteście częścią naszej historii.<br><br>
+            Z nadzieją w sercach,<br>
+            Dzieci z Domu Dziecka 'Promyk'"`
+        },
+        {
+            donors: [
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Jan Nowak</strong> - gry planszowe i puzzle</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Maria S.</strong> - 300 zł na wycieczkę</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Firma ABC</strong> - artykuły plastyczne</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Wolontariusze z miasta</strong> - remont sali zabaw</li>'
+            ],
+            letter: `"Kochani Darczyńcy,<br><br>
+            Wasza hojność nas zadziwia! Dzięki Wam możemy rozwijać nasze pasje i talenty. Ostatnio dostaliśmy wspaniałe instrumenty muzyczne i już tworzymy zespół.<br><br>
+            Nie moglibyśmy robić tych wszystkich wspaniałych rzeczy bez Waszego wsparcia. Dziękujemy za każde okazane serce.<br><br>
+            Z wdzięcznością,<br>
+            Podopieczni 'Promyka'"`
+        },
+        {
+            donors: [
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Grupa przyjaciół</strong> - rowery i kaski</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Pizzeria "Smak"</strong> - cotygodniowe dostawy pizzy</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Klub sportowy</strong> - sprzęt sportowy i treningi</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Anonimowy darczyńca</strong> - laptopy dla dzieci</li>'
+            ],
+            letter: `"Szanowni Państwo,<br><br>
+            Chcemy podzielić się naszą radością - dzięki Waszemu wsparciu mogliśmy zorganizować wspaniały wyjazd w góry. To były niezapomniane chwile!<br><br>
+            Widok szczęśliwych, uśmiechniętych dzieci jest bezcenny. Dziękujemy, że pomagacie nam tworzyć takie wspomnienia.<br><br>
+            Serdecznie,<br>
+            Wychowawcy i dzieci z 'Promyka'"`
         }
+    ];
 
-        function toggleMobileMenu() {
-            document.getElementById('navContainer').classList.toggle('show');
-        }
+    // ===== INICJALIZACJA =====
+    document.addEventListener('DOMContentLoaded', function() {
+        initNavigation();
+        initDesignStudio();
+        updateCart();
+        renderPayPalButton();
+        initContactForm();
+        initBlog();
+        initAddToCartButtons();
+        initProductBase();
+        initDesignOptions();
+        initOrderForm();
+        initAdTimers();
+        initCharityRotation();
+    });
 
-        function showSection(sectionId) {
-            // Ukryj wszystkie sekcje
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Pokaż wybraną sekcję
-            document.getElementById(sectionId).classList.add('active');
-            
-            // Ukryj menu mobilne po wybraniu sekcji
-            if (window.innerWidth <= 768) {
-                document.getElementById('navContainer').classList.remove('show');
-            }
-            
-            // Przewiń do góry sekcji
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // ===== DODAWANIE DO KOSZYKA =====
-        function initAddToCartButtons() {
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('add-to-cart-btn')) {
+    // ===== NAWIGACJA =====
+    function initNavigation() {
+        const navButtons = document.querySelectorAll('.nav-btn');
+        
+        navButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.hasAttribute('data-section')) {
                     e.preventDefault();
-                    const name = e.target.getAttribute('data-name');
-                    const price = parseFloat(e.target.getAttribute('data-price'));
-                    const image = e.target.getAttribute('data-image');
                     
-                    addToCart(name, price, image);
+                    // Usuń aktywną klasę ze wszystkich przycisków
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Dodaj aktywną klasę do klikniętego przycisku
+                    this.classList.add('active');
+                    
+                    // Pokaż odpowiednią sekcję
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
                 }
             });
-        }
+        });
+        
+        // Obsługa ikony koszyka
+        document.getElementById('cartIcon').addEventListener('click', toggleCart);
+    }
 
-        function updateCart() {
-            const cartCount = document.getElementById('cartCount');
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-            
-            // Aktualizuj licznik
-            cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
-            
-            // Aktualizuj zawartość koszyka
-            cartItems.innerHTML = '';
-            
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p class="text-center text-gray-500">Twój koszyk jest pusty</p>';
-                cartTotal.textContent = '0 zł';
-                document.getElementById('paypal-container').innerHTML = '';
-            } else {
-                let total = 0;
+    function toggleMobileMenu() {
+        document.getElementById('navContainer').classList.toggle('show');
+    }
+
+    function showSection(sectionId) {
+        // Ukryj wszystkie sekcje
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        // Pokaż wybraną sekcję
+        document.getElementById(sectionId).classList.add('active');
+        
+        // Ukryj menu mobilne po wybraniu sekcji
+        if (window.innerWidth <= 768) {
+            document.getElementById('navContainer').classList.remove('show');
+        }
+        
+        // Przewiń do góry sekcji
+        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ===== DODAWANIE DO KOSZYKA =====
+    function initAddToCartButtons() {
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('add-to-cart-btn')) {
+                e.preventDefault();
+                const name = e.target.getAttribute('data-name');
+                const price = parseFloat(e.target.getAttribute('data-price'));
+                const image = e.target.getAttribute('data-image');
                 
-                cart.forEach((item, index) => {
-                    total += item.price * item.quantity;
-                    
-                    const cartItem = document.createElement('div');
-                    cartItem.className = 'cart-item';
-                    cartItem.innerHTML = `
-                        ${item.image ? `<img src="${item.image}" class="cart-item-image">` : ''}
-                        <div class="flex-1">
-                            <div class="font-bold">${item.name}</div>
-                            <div>${item.price} zł × ${item.quantity}</div>
-                            ${item.size ? `<div class="text-sm">Rozmiar: ${item.size}</div>` : ''}
-                        </div>
-                        <button onclick="removeFromCart(${index})" class="text-red-500"><i class="fas fa-trash"></i></button>
-                    `;
-                    
-                    cartItems.appendChild(cartItem);
-                });
-                
-                cartTotal.textContent = `${total.toFixed(2)} zł`;
-                
-                // Renderuj przycisk PayPal
-                renderPayPalButton();
+                addToCart(name, price, image);
             }
-            
-            // Zapisz do localStorage
-            localStorage.setItem('adelbertus_cart', JSON.stringify(cart));
-        }
+        });
+    }
 
-        function addToCart(name, price, image = null, size = null) {
-            // Sprawdź czy produkt już jest w koszyku
-            const existingIndex = cart.findIndex(item => 
-                item.name === name && item.size === size
-            );
-            
-            if (existingIndex >= 0) {
-                cart[existingIndex].quantity++;
-            } else {
-                cart.push({
-                    name,
-                    price,
-                    quantity: 1,
-                    image,
-                    size,
-                    id: Date.now()
-                });
-            }
-            
-            updateCart();
-            showNotification('✅ Produkt dodany do koszyka');
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-
-        function toggleCart() {
-            document.getElementById('cartPanel').classList.toggle('open');
-        }
-
-        // ===== STUDIO PROJEKTOWE - POPRAWIONE =====
-        function initDesignStudio() {
-            const canvas = document.getElementById('designCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            // Ustawienia canvas
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // Inicjalny render
-            updateDesign();
-        }
-
-        function initProductBase() {
-            const baseItems = document.querySelectorAll('.product-base-item');
-            baseItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    baseItems.forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                    currentDesign.baseProduct = this.getAttribute('data-base');
-                    updateDesign();
-                });
-            });
-        }
-
-        function initDesignOptions() {
-            const designOptions = document.querySelectorAll('.design-option');
-            designOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    designOptions.forEach(o => o.classList.remove('active'));
-                    this.classList.add('active');
-                    currentDesign.designArea = this.getAttribute('data-area');
-                    updateDesign();
-                });
-            });
-        }
-
-        function updateDesign() {
-            const canvas = document.getElementById('designCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            // Aktualizuj stan projektu
-            currentDesign.text = document.getElementById('designText').value;
-            currentDesign.fontFamily = document.getElementById('fontFamily').value;
-            currentDesign.fontSize = parseInt(document.getElementById('fontSize').value);
-            currentDesign.color = document.getElementById('textColor').value;
-            
-            // Wyczyść canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Narysuj tło - wirtualny produkt
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // Narysuj obrazek jeśli istnieje
-            if (currentDesign.image) {
-                ctx.save();
-                ctx.translate(currentDesign.imageX, currentDesign.imageY);
-                ctx.rotate(currentDesign.imageRotation * Math.PI / 180);
-                ctx.scale(currentDesign.imageScale, currentDesign.imageScale);
-                ctx.drawImage(currentDesign.image, -currentDesign.image.width/2, -currentDesign.image.height/2);
-                ctx.restore();
-            }
-            
-            // Narysuj tekst
-            if (currentDesign.text) {
-                ctx.save();
-                ctx.font = `${currentDesign.fontSize}px ${currentDesign.fontFamily}`;
-                ctx.fillStyle = currentDesign.color;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.translate(currentDesign.textX, currentDesign.textY);
-                ctx.rotate(currentDesign.textRotation * Math.PI / 180);
-                ctx.scale(currentDesign.textScale, currentDesign.textScale);
-                ctx.fillText(currentDesign.text, 0, 0);
-                ctx.restore();
-            }
-            
-            // Aktualizuj podgląd
-            const preview = document.querySelector('.design-preview');
-            if (currentDesign.text || currentDesign.image) {
-                preview.innerHTML = '<h3>Podgląd Twojego projektu</h3>';
-                const img = document.createElement('img');
-                img.src = canvas.toDataURL();
-                img.style.maxWidth = '100%';
-                img.style.marginTop = '1rem';
-                img.style.border = '1px solid #ddd';
-                preview.appendChild(img);
-            }
-        }
-
-        function handleImageUpload(event) {
-            const file = document.getElementById('designImage').files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    currentDesign.image = new Image();
-                    currentDesign.image.src = e.target.result;
-                    currentDesign.image.onload = function() {
-                        currentDesign.activeElement = 'image';
-                        updateTransformControls();
-                        updateDesign();
-                    };
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function updateElementPosition() {
-            if (currentDesign.activeElement === 'text') {
-                currentDesign.textX = parseInt(document.getElementById('posX').value);
-                currentDesign.textY = parseInt(document.getElementById('posY').value);
-            } else if (currentDesign.activeElement === 'image') {
-                currentDesign.imageX = parseInt(document.getElementById('posX').value);
-                currentDesign.imageY = parseInt(document.getElementById('posY').value);
-            }
-            updateDesign();
-        }
-
-        function updateElementScale() {
-            if (currentDesign.activeElement === 'text') {
-                currentDesign.textScale = parseFloat(document.getElementById('scale').value);
-            } else if (currentDesign.activeElement === 'image') {
-                currentDesign.imageScale = parseFloat(document.getElementById('scale').value);
-            }
-            updateDesign();
-        }
-
-        function updateElementRotation() {
-            if (currentDesign.activeElement === 'text') {
-                currentDesign.textRotation = parseInt(document.getElementById('rotation').value);
-            } else if (currentDesign.activeElement === 'image') {
-                currentDesign.imageRotation = parseInt(document.getElementById('rotation').value);
-            }
-            updateDesign();
-        }
-
-        function clearCanvas() {
-            const canvas = document.getElementById('designCanvas');
-            const ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            currentDesign.text = '';
-            currentDesign.image = null;
-            document.getElementById('designText').value = '';
-            
-            document.querySelector('.design-preview').innerHTML = '<h3>Podgląd Twojego projektu</h3><p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>';
-            
-            showNotification('Canvas wyczyszczony');
-        }
-
-        function resetDesign() {
-            currentDesign.textX = 250;
-            currentDesign.textY = 200;
-            currentDesign.textScale = 1;
-            currentDesign.textRotation = 0;
-            currentDesign.imageX = 250;
-            currentDesign.imageY = 200;
-            currentDesign.imageScale = 1;
-            currentDesign.imageRotation = 0;
-            
-            updateTransformControls();
-            updateDesign();
-            showNotification('Transformacje zresetowane');
-        }
-
-        function updateTransformControls() {
-            if (currentDesign.activeElement === 'text') {
-                document.getElementById('posX').value = currentDesign.textX;
-                document.getElementById('posY').value = currentDesign.textY;
-                document.getElementById('scale').value = currentDesign.textScale;
-                document.getElementById('rotation').value = currentDesign.textRotation;
-            } else if (currentDesign.activeElement === 'image') {
-                document.getElementById('posX').value = currentDesign.imageX;
-                document.getElementById('posY').value = currentDesign.imageY;
-                document.getElementById('scale').value = currentDesign.imageScale;
-                document.getElementById('rotation').value = currentDesign.imageRotation;
-            }
-        }
-
-        function addToCartFromDesign() {
-            const productType = document.getElementById('productType');
-            const productSize = document.getElementById('productSize');
-            
-            const prices = {
-                'tshirt': 120,
-                'hoodie': 200,
-                'cap': 99
-            };
-            
-            const price = prices[productType.value] || 120;
-            const canvas = document.getElementById('designCanvas');
-            
-            addToCart(
-                `Projekt: ${currentDesign.text || 'Niestandardowy'} (${productSize.value})`,
-                price,
-                canvas.toDataURL(),
-                productSize.value
-            );
-        }
-
-        function saveDesign() {
-            const canvas = document.getElementById('designCanvas');
-            const link = document.createElement('a');
-            link.download = 'adelbertus-design.png';
-            link.href = canvas.toDataURL();
-            link.click();
-            showNotification('✅ Projekt zapisany');
-        }
-
-        // ===== PAYPAL =====
-        function renderPayPalButton() {
-            const container = document.getElementById('paypal-container');
-            container.innerHTML = '';
-            
-            if (cart.length === 0) return;
-            
-            paypal.HostedButtons({
-                hostedButtonId: "L4639S4363CZE",
-            }).render("#paypal-container");
-        }
-
-        // ===== EMAIL =====
-        function sendDesignToEmail() {
-            const canvas = document.getElementById('designCanvas');
-            const imageData = canvas.toDataURL();
-            
-            const subject = 'Mój projekt z AdelbertusShop';
-            const body = `
-                Cześć! Oto mój projekt:\n
-                Tekst: ${currentDesign.text}\n
-                Rozmiar czcionki: ${currentDesign.fontSize}\n
-                Kolor: ${currentDesign.color}\n
-                Typ produktu: ${document.getElementById('productType').options[document.getElementById('productType').selectedIndex].text}\n
-                Rozmiar: ${document.getElementById('productSize').value}\n
-                Obszar: ${currentDesign.designArea}\n\n
-                
-                Obraz projektu (w załączniku):\n
-                Proszę o kontakt w sprawie realizacji zamówienia.
-            `;
-            
-            // W prawdziwym środowisku tutaj byłby kod do wysyłania maila z załącznikiem
-            // W tej wersji używamy prostszego rozwiązania z base64
-            window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
-            
-            showNotification('📧 Otwieranie klienta pocztowego...');
-        }
-
-        function sendOrderEmail() {
-            let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
+    function updateCart() {
+        const cartCount = document.getElementById('cartCount');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        
+        // Aktualizuj licznik
+        cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+        
+        // Aktualizuj zawartość koszyka
+        cartItems.innerHTML = '';
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<p class="text-center text-gray-500">Twój koszyk jest pusty</p>';
+            cartTotal.textContent = '0 zł';
+            document.getElementById('paypal-container').innerHTML = '';
+        } else {
+            let total = 0;
             
             cart.forEach((item, index) => {
-                emailBody += `${index + 1}. ${item.name} - ${item.price} zł × ${item.quantity}`;
-                if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
-                emailBody += '\n';
-            });
-            
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
-            emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
-            emailBody += `Proszę o potwierdzenie zamówienia и podanie terminu realizacji.`;
-            
-            window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
-        }
-
-        // ===== FORMULARZ ZAMÓWIENIA =====
-        function initOrderForm() {
-            const form = document.getElementById("orderForm");
-            const statusEl = document.getElementById("status");
-            const whatsappBtn = document.getElementById("whatsappBtn");
-            const productInput = document.getElementById("productInput");
-
-            if (!form) return;
-
-            // Aktualizuje link WhatsApp dynamicznie
-            productInput.addEventListener("input", () => {
-                const product = encodeURIComponent(productInput.value || "");
-                whatsappBtn.href = `https://wa.me/48604296650?text=Chcę%20zamówić:%20${product}`;
-            });
-
-            // Wysyłka maila
-            form.addEventListener("submit", async function(e){
-                e.preventDefault();
-                statusEl.textContent = "Wysyłam...";
-                statusEl.className = "";
-
-                const data = Object.fromEntries(new FormData(this));
-
-                try {
-                    // Symulacja wysyłki - w rzeczywistości połączenie z backendem
-                    await new Promise(resolve => setTimeout(resolve, 1500));
-                    
-                    statusEl.textContent = "✔ Zamówienie wysłane mailem!";
-                    statusEl.className = "text-green-400";
-                    this.reset();
-                    whatsappBtn.href = `https://wa.me/48604296650?text=Chcę%20zamówić:%20`;
-                } catch(err){
-                    statusEl.textContent = "✖ " + err.message;
-                    statusEl.className = "text-red-500";
-                }
-            });
-        }
-
-        // ===== REKLAMY =====
-        function initAdTimers() {
-            // Timer dla baneru
-            startTimer('bannerTimer', 30);
-            
-            // Timer dla animacji
-            startTimer('animationTimer', 30);
-            
-            // Timer dla wideo
-            startTimer('videoTimer', 30);
-        }
-
-        function startTimer(elementId, seconds) {
-            const timerElement = document.getElementById(elementId);
-            if (!timerElement) return;
-            
-            let timeLeft = seconds;
-            
-            const timerInterval = setInterval(() => {
-                timeLeft--;
-                timerElement.textContent = `${timeLeft}s`;
+                total += item.price * item.quantity;
                 
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    timerElement.textContent = 'Koniec';
-                    timerElement.style.backgroundColor = '#d4af37';
-                    timerElement.style.color = 'black';
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    ${item.image ? `<img src="${item.image}" class="cart-item-image">` : ''}
+                    <div class="flex-1">
+                        <div class="font-bold">${item.name}</div>
+                        <div>${item.price} zł × ${item.quantity}</div>
+                        ${item.size ? `<div class="text-sm">Rozmiar: ${item.size}</div>` : ''}
+                    </div>
+                    <button onclick="removeFromCart(${index})" class="text-red-500"><i class="fas fa-trash"></i></button>
+                `;
+                
+                cartItems.appendChild(cartItem);
+            });
+            
+            cartTotal.textContent = `${total.toFixed(2)} zł`;
+            
+            // Renderuj przycisk PayPal
+            renderPayPalButton();
+        }
+        
+        // Zapisz do localStorage
+        localStorage.setItem('adelbertus_cart', JSON.stringify(cart));
+    }
+
+    function addToCart(name, price, image = null, size = null) {
+        // Sprawdź czy produkt już jest w koszyku
+        const existingIndex = cart.findIndex(item => 
+            item.name === name && item.size === size
+        );
+        
+        if (existingIndex >= 0) {
+            cart[existingIndex].quantity++;
+        } else {
+            cart.push({
+                name,
+                price,
+                quantity: 1,
+                image,
+                size,
+                id: Date.now()
+            });
+        }
+        
+        updateCart();
+        showNotification('✅ Produkt dodany do koszyka');
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+    }
+
+    function toggleCart() {
+        document.getElementById('cartPanel').classList.toggle('open');
+    }
+
+    // ===== STUDIO PROJEKTOWE =====
+    function initDesignStudio() {
+        const canvas = document.getElementById('designCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Ustawienia canvas
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Inicjalny render
+        updateDesign();
+    }
+
+    function initProductBase() {
+        const baseItems = document.querySelectorAll('.product-base-item');
+        baseItems.forEach(item => {
+            item.addEventListener('click', function() {
+                baseItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                currentDesign.baseProduct = this.getAttribute('data-base');
+                updateDesign();
+            });
+        });
+    }
+
+    function initDesignOptions() {
+        const designOptions = document.querySelectorAll('.design-option');
+        designOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                designOptions.forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+                currentDesign.designArea = this.getAttribute('data-area');
+                updateDesign();
+            });
+        });
+    }
+
+    function updateDesign() {
+        const canvas = document.getElementById('designCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Aktualizuj stan projektu
+        currentDesign.text = document.getElementById('designText').value;
+        currentDesign.fontFamily = document.getElementById('fontFamily').value;
+        currentDesign.fontSize = parseInt(document.getElementById('fontSize').value);
+        currentDesign.color = document.getElementById('textColor').value;
+        
+        // Wyczyść canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Narysuj tło - wirtualny produkt
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Narysuj obrazek jeśli istnieje
+        if (currentDesign.image) {
+            ctx.save();
+            ctx.translate(currentDesign.imageX, currentDesign.imageY);
+            ctx.rotate(currentDesign.imageRotation * Math.PI / 180);
+            ctx.scale(currentDesign.imageScale, currentDesign.imageScale);
+            ctx.drawImage(currentDesign.image, -currentDesign.image.width/2, -currentDesign.image.height/2);
+            ctx.restore();
+        }
+        
+        // Narysuj tekst
+        if (currentDesign.text) {
+            ctx.save();
+            ctx.font = `${currentDesign.fontSize}px ${currentDesign.fontFamily}`;
+            ctx.fillStyle = currentDesign.color;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.translate(currentDesign.textX, currentDesign.textY);
+            ctx.rotate(currentDesign.textRotation * Math.PI / 180);
+            ctx.scale(currentDesign.textScale, currentDesign.textScale);
+            ctx.fillText(currentDesign.text, 0, 0);
+            ctx.restore();
+        }
+        
+        // Aktualizuj podgląd
+        const preview = document.querySelector('.design-preview');
+        if (currentDesign.text || currentDesign.image) {
+            preview.innerHTML = '<h3>Podgląd Twojego projektu</h3>';
+            const img = document.createElement('img');
+            img.src = canvas.toDataURL();
+            img.style.maxWidth = '100%';
+            img.style.marginTop = '1rem';
+            img.style.border = '1px solid #ddd';
+            preview.appendChild(img);
+        }
+    }
+
+    function handleImageUpload(event) {
+        const file = document.getElementById('designImage').files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentDesign.image = new Image();
+                currentDesign.image.src = e.target.result;
+                currentDesign.image.onload = function() {
+                    currentDesign.activeElement = 'image';
+                    updateTransformControls();
+                    updateDesign();
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function updateElementPosition() {
+        if (currentDesign.activeElement === 'text') {
+            currentDesign.textX = parseInt(document.getElementById('posX').value);
+            currentDesign.textY = parseInt(document.getElementById('posY').value);
+        } else if (currentDesign.activeElement === 'image') {
+            currentDesign.imageX = parseInt(document.getElementById('posX').value);
+            currentDesign.imageY = parseInt(document.getElementById('posY').value);
+        }
+        updateDesign();
+    }
+
+    function updateElementScale() {
+        if (currentDesign.activeElement === 'text') {
+            currentDesign.textScale = parseFloat(document.getElementById('scale').value);
+        } else if (currentDesign.activeElement === 'image') {
+            currentDesign.imageScale = parseFloat(document.getElementById('scale').value);
+        }
+        updateDesign();
+    }
+
+    function updateElementRotation() {
+        if (currentDesign.activeElement === 'text') {
+            currentDesign.textRotation = parseInt(document.getElementById('rotation').value);
+        } else if (currentDesign.activeElement === 'image') {
+            currentDesign.imageRotation = parseInt(document.getElementById('rotation').value);
+        }
+        updateDesign();
+    }
+
+    function clearCanvas() {
+        const canvas = document.getElementById('designCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        currentDesign.text = '';
+        currentDesign.image = null;
+        document.getElementById('designText').value = '';
+        
+        document.querySelector('.design-preview').innerHTML = '<h3>Podgląd Twojego projektu</h3><p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>';
+        
+        showNotification('Canvas wyczyszczony');
+    }
+
+    function resetDesign() {
+        currentDesign.textX = 250;
+        currentDesign.textY = 200;
+        currentDesign.textScale = 1;
+        currentDesign.textRotation = 0;
+        currentDesign.imageX = 250;
+        currentDesign.imageY = 200;
+        currentDesign.imageScale = 1;
+        currentDesign.imageRotation = 0;
+        
+        updateTransformControls();
+        updateDesign();
+        showNotification('Transformacje zresetowane');
+    }
+
+    function updateTransformControls() {
+        if (currentDesign.activeElement === 'text') {
+            document.getElementById('posX').value = currentDesign.textX;
+            document.getElementById('posY').value = currentDesign.textY;
+            document.getElementById('scale').value = currentDesign.textScale;
+            document.getElementById('rotation').value = currentDesign.textRotation;
+        } else if (currentDesign.activeElement === 'image') {
+            document.getElementById('posX').value = currentDesign.imageX;
+            document.getElementById('posY').value = currentDesign.imageY;
+            document.getElementById('scale').value = currentDesign.imageScale;
+            document.getElementById('rotation').value = currentDesign.imageRotation;
+        }
+    }
+
+    function addToCartFromDesign() {
+        const productType = document.getElementById('productType');
+        const productSize = document.getElementById('productSize');
+        
+        const prices = {
+            'tshirt': 120,
+            'hoodie': 200,
+            'cap': 99
+        };
+        
+        const price = prices[productType.value] || 120;
+        const canvas = document.getElementById('designCanvas');
+        
+        addToCart(
+            `Projekt: ${currentDesign.text || 'Niestandardowy'} (${productSize.value})`,
+            price,
+            canvas.toDataURL(),
+            productSize.value
+        );
+    }
+
+    function saveDesign() {
+        const canvas = document.getElementById('designCanvas');
+        const link = document.createElement('a');
+        link.download = 'adelbertus-design.png';
+        link.href = canvas.toDataURL();
+        link.click();
+        showNotification('✅ Projekt zapisany');
+    }
+
+    // ===== PAYPAL =====
+    function renderPayPalButton() {
+        const container = document.getElementById('paypal-container');
+        container.innerHTML = '';
+        
+        if (cart.length === 0) return;
+        
+        paypal.HostedButtons({
+            hostedButtonId: "L4639S4363CZE",
+        }).render("#paypal-container");
+    }
+
+    // ===== EMAIL =====
+    function sendDesignToEmail() {
+        const canvas = document.getElementById('designCanvas');
+        const imageData = canvas.toDataURL();
+        
+        const subject = 'Mój projekt z AdelbertusShop';
+        const body = `
+            Cześć! Oto mój projekt:\n
+            Tekst: ${currentDesign.text}\n
+            Rozmiar czcionki: ${currentDesign.fontSize}\n
+            Kolor: ${currentDesign.color}\n
+            Typ produktu: ${document.getElementById('productType').options[document.getElementById('productType').selectedIndex].text}\n
+            Rozmiar: ${document.getElementById('productSize').value}\n
+            Obszar: ${currentDesign.designArea}\n\n
+            
+            Obraz projektu (w załączniku):\n
+            Proszę o kontakt w sprawie realizacji zamówienia.
+        `;
+        
+        window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+        
+        showNotification('📧 Otwieranie klienta pocztowego...');
+    }
+
+    function sendOrderEmail() {
+        let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
+        
+        cart.forEach((item, index) => {
+            emailBody += `${index + 1}. ${item.name} - ${item.price} zł × ${item.quantity}`;
+            if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
+            emailBody += '\n';
+        });
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
+        emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
+        emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
+        
+        window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
+    }
+
+    function sendOrderWhatsApp() {
+        let message = 'Zamówienie z AdelbertusShop:%0A%0A';
+        
+        cart.forEach((item, index) => {
+            message += `${index + 1}. ${item.name} - ${item.price} zł × ${item.quantity}`;
+            if (item.size) message += ` (Rozmiar: ${item.size})`;
+            message += '%0A';
+        });
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        message += `%0ASUMA: ${total.toFixed(2)} zł%0A%0A`;
+        message += `Data: ${new Date().toLocaleString('pl-PL')}%0A%0A`;
+        message += `Proszę o potwierdzenie zamówienia.`;
+        
+        window.open(`https://wa.me/48604296650?text=${message}`);
+    }
+
+    // ===== FORMULARZ ZAMÓWIENIA =====
+    function initOrderForm() {
+        const form = document.getElementById("orderForm");
+        const statusEl = document.getElementById("status");
+        const whatsappBtn = document.getElementById("whatsappBtn");
+        const productInput = document.getElementById("productInput");
+
+        if (!form) return;
+
+        // Aktualizuje link WhatsApp dynamicznie
+        productInput.addEventListener("input", () => {
+            const product = encodeURIComponent(productInput.value || "");
+            whatsappBtn.href = `https://wa.me/48604296650?text=Chcę%20zamówić:%20${product}`;
+        });
+
+        // Wysyłka maila
+        form.addEventListener("submit", async function(e){
+            e.preventDefault();
+            statusEl.textContent = "Wysyłam...";
+            statusEl.className = "";
+
+            const data = Object.fromEntries(new FormData(this));
+
+            try {
+                // Symulacja wysyłki - w rzeczywistości połączenie z backendem
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                statusEl.textContent = "✔ Zamówienie wysłane mailem!";
+                statusEl.className = "text-green-400";
+                this.reset();
+                whatsappBtn.href = `https://wa.me/48604296650?text=Chcę%20zamówić:%20`;
+            } catch(err){
+                statusEl.textContent = "✖ " + err.message;
+                statusEl.className = "text-red-500";
+            }
+        });
+    }
+
+    // ===== REKLAMY =====
+    function initAdTimers() {
+        // Timer dla baneru
+        startTimer('bannerTimer', 30);
+        
+        // Timer dla animacji
+        startTimer('animationTimer', 30);
+        
+        // Timer dla wideo
+        startTimer('videoTimer', 30);
+    }
+
+    function startTimer(elementId, seconds) {
+        const timerElement = document.getElementById(elementId);
+        if (!timerElement) return;
+        
+        let timeLeft = seconds;
+        
+        const timerInterval = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = `${timeLeft}s`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                timerElement.textContent = 'Koniec';
+                timerElement.style.backgroundColor = '#d4af37';
+                timerElement.style.color = 'black';
+            }
+        }, 1000);
+    }
+
+    // ===== ZBIÓRKA - ROTACJA =====
+    function initCharityRotation() {
+        // Sprawdź, kiedy ostatnio zmieniano dane
+        const lastChange = localStorage.getItem('charityLastChange');
+        const currentIndex = localStorage.getItem('charityCurrentIndex') || 0;
+        const now = new Date().getTime();
+        const threeDays = 3 * 24 * 60 * 60 * 1000; // 3 dni w milisekundach
+        
+        let newIndex = parseInt(currentIndex);
+        
+        // Jeśli minęły 3 dni lub to pierwsza inicjalizacja, zmień dane
+        if (!lastChange || (now - lastChange) > threeDays) {
+            newIndex = (parseInt(currentIndex) + 1) % donorsData.length;
+            localStorage.setItem('charityLastChange', now);
+            localStorage.setItem('charityCurrentIndex', newIndex);
+        }
+        
+        // Aktualizuj dane na stronie
+        updateCharityContent(newIndex);
+    }
+
+    function updateCharityContent(index) {
+        const donorsList = document.getElementById('donorsList');
+        const childrenLetter = document.getElementById('childrenLetter');
+        
+        if (donorsList && donorsData[index]) {
+            donorsList.innerHTML = donorsData[index].donors.join('');
+        }
+        
+        if (childrenLetter && donorsData[index]) {
+            childrenLetter.innerHTML = donorsData[index].letter;
+        }
+    }
+
+    // ===== BLOG =====
+    function initBlog() {
+        // Wczytaj posty z localStorage
+        const blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+        
+        // Wyświetl posty
+        renderBlogPosts(blogPosts);
+        
+        // Inicjalizuj formularz
+        const blogForm = document.getElementById('newBlogPostForm');
+        if (blogForm) {
+            blogForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                addNewBlogPost();
+            });
+        }
+    }
+
+    function renderBlogPosts(posts) {
+        const container = document.getElementById('blogPostsContainer');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        if (posts.length === 0) {
+            // Dodaj przykładowe posty jeśli nie ma żadnych
+            const samplePosts = [
+                {
+                    title: "Sztuka jako forma ekspresji",
+                    excerpt: "Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...",
+                    content: "Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie i komunikować się z innymi bez słów.",
+                    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                    date: new Date().toISOString()
+                },
+                {
+                    title: "Trendy w streetwearze 2023",
+                    excerpt: "Odkryj najnowsze trendy w modzie ulicznej tego sezonu...",
+                    content: "Streetwear w 2023 roku ewoluuje w kierunku połączenia komfortu and style. Dominują oversize'owe fasony, earthy kolory oraz odważne nadruki.",
+                    image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                    date: new Date().toISOString()
                 }
-            }, 1000);
-        }
-
-        // ===== ZBIÓRKA - ROTACJA =====
-        function initCharityRotation() {
-            // Sprawdź, kiedy ostatnio zmieniano dane
-            const lastChange = localStorage.getItem('charityLastChange');
-            const currentIndex = localStorage.getItem('charityCurrentIndex') || 0;
-            const now = new Date().getTime();
-            const threeDays = 3 * 24 * 60 * 60 * 1000; // 3 dni w milisekundach
+            ];
             
-            let newIndex = parseInt(currentIndex);
-            
-            // Jeśli minęły 3 dni lub to pierwsza inicjalizacja, zmień dane
-            if (!lastChange || (now - lastChange) > threeDays) {
-                newIndex = (parseInt(currentIndex) + 1) % donorsData.length;
-                localStorage.setItem('charityLastChange', now);
-                localStorage.setItem('charityCurrentIndex', newIndex);
-            }
-            
-            // Aktualizuj dane na stronie
-            updateCharityContent(newIndex);
-        }
-
-        function updateCharityContent(index) {
-            const donorsList = document.getElementById('donorsList');
-            const childrenLetter = document.getElementById('childrenLetter');
-            
-            if (donorsList && donorsData[index]) {
-                donorsList.innerHTML = donorsData[index].donors.join('');
-            }
-            
-            if (childrenLetter && donorsData[index]) {
-                childrenLetter.innerHTML = donorsData[index].letter;
-            }
-        }
-
-        // ===== BLOG =====
-        function initBlog() {
-            // Wczytaj posty z localStorage
-            const blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
-            
-            // Wyświetl posty
-            renderBlogPosts(blogPosts);
-            
-            // Inicjalizuj formularz
-            const blogForm = document.getElementById('newBlogPostForm');
-            if (blogForm) {
-                blogForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    addNewBlogPost();
-                });
-            }
-        }
-
-        function renderBlogPosts(posts) {
-            const container = document.getElementById('blogPostsContainer');
-            if (!container) return;
-            
-            container.innerHTML = '';
-            
-            if (posts.length === 0) {
-                container.innerHTML = '<p class="text-center">Brak artykułów. Bądź pierwszy który doda wpis!</p>';
-                return;
-            }
-            
-            posts.forEach((post, index) => {
+            samplePosts.forEach((post, index) => {
                 const postElement = document.createElement('div');
                 postElement.className = 'blog-post';
                 postElement.innerHTML = `
-                    ${post.image ? `<img src="${post.image}" alt="${post.title}" class="blog-image">` : 
-                    `<img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="${post.title}" class="blog-image">`}
+                    <img src="${post.image}" alt="${post.title}" class="blog-image">
                     <div class="blog-content">
                         <h3 class="text-xl font-bold mb-2">${post.title}</h3>
                         <p class="text-sm text-gray-600">Opublikowano: ${new Date(post.date).toLocaleDateString('pl-PL')}</p>
@@ -2239,7 +2351,7 @@
                             <p class="mt-3">${post.content}</p>
                         </div>
                         <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
-                        <button class="nav-btn mt-2" onclick="shareArticle('${post.title}', '${post.image || 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'}')">
+                        <button class="nav-btn mt-2" onclick="shareArticle('${post.title}', '${post.image}')">
                             <i class="fas fa-share"></i> Udostępnij
                         </button>
                     </div>
@@ -2247,137 +2359,164 @@
                 
                 container.appendChild(postElement);
             });
+            return;
         }
-
-        function toggleReadMore(button) {
-            const post = button.closest('.blog-post');
-            const excerpt = post.querySelector('.blog-excerpt');
-            const full = post.querySelector('.blog-full');
+        
+        posts.forEach((post, index) => {
+            const postElement = document.createElement('div');
+            postElement.className = 'blog-post';
+            postElement.innerHTML = `
+                ${post.image ? `<img src="${post.image}" alt="${post.title}" class="blog-image">` : 
+                `<img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="${post.title}" class="blog-image">`}
+                <div class="blog-content">
+                    <h3 class="text-xl font-bold mb-2">${post.title}</h3>
+                    <p class="text-sm text-gray-600">Opublikowano: ${new Date(post.date).toLocaleDateString('pl-PL')}</p>
+                    <div class="blog-excerpt">
+                        <p class="mt-3">${post.excerpt}</p>
+                    </div>
+                    <div class="blog-full" style="display: none;">
+                        <p class="mt-3">${post.content}</p>
+                    </div>
+                    <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
+                    <button class="nav-btn mt-2" onclick="shareArticle('${post.title}', '${post.image || 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'}')">
+                        <i class="fas fa-share"></i> Udostępnij
+                    </button>
+                </div>
+            `;
             
-            if (full.style.display === 'block') {
-                full.style.display = 'none';
-                excerpt.style.display = 'block';
-                button.textContent = 'Czytaj więcej';
-            } else {
-                full.style.display = 'block';
-                excerpt.style.display = 'none';
-                button.textContent = 'Czytaj mniej';
-            }
+            container.appendChild(postElement);
+        });
+    }
+
+    function toggleReadMore(button) {
+        const post = button.closest('.blog-post');
+        const excerpt = post.querySelector('.blog-excerpt');
+        const full = post.querySelector('.blog-full');
+        
+        if (full.style.display === 'block') {
+            full.style.display = 'none';
+            excerpt.style.display = 'block';
+            button.textContent = 'Czytaj więcej';
+        } else {
+            full.style.display = 'block';
+            excerpt.style.display = 'none';
+            button.textContent = 'Czytaj mniej';
         }
+    }
 
-        function showBlogForm() {
-            document.getElementById('blogForm').style.display = 'block';
-            document.getElementById('blogForm').scrollIntoView({ behavior: 'smooth' });
+    function showBlogForm() {
+        document.getElementById('blogForm').style.display = 'block';
+        document.getElementById('blogForm').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function hideBlogForm() {
+        document.getElementById('blogForm').style.display = 'none';
+    }
+
+    function addNewBlogPost() {
+        const title = document.getElementById('blogTitle').value;
+        const excerpt = document.getElementById('blogExcerpt').value;
+        const content = document.getElementById('blogContent').value;
+        const image = document.getElementById('blogImage').value;
+        
+        const newPost = {
+            title,
+            excerpt,
+            content,
+            image,
+            date: new Date().toISOString()
+        };
+        
+        // Pobierz istniejące posty i dodaj nowy
+        const blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+        blogPosts.unshift(newPost);
+        
+        // Zapisz z powrotem do localStorage
+        localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
+        
+        // Odśwież wyświetlanie
+        renderBlogPosts(blogPosts);
+        
+        // Wyczyść formularz i ukryj go
+        document.getElementById('newBlogPostForm').reset();
+        hideBlogForm();
+        
+        showNotification('Artykuł dodany pomyślnie!');
+    }
+
+    function shareArticle(title, image) {
+        const subject = `Polecam artykuł: ${title}`;
+        const body = `Cześć! Polecam Ci ten artykuł z AdelbertusShop: ${title}\n\nZobacz więcej na naszej stronie!`;
+        
+        window.open(`mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    }
+
+    // ===== FORMULARZ KONTAKTOWY =====
+    function initContactForm() {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(contactForm);
+                const name = contactForm.querySelector('input[type="text"]').value;
+                const email = contactForm.querySelector('input[type="email"]').value;
+                const subject = contactForm.querySelectorAll('input[type="text"]')[1].value;
+                const message = contactForm.querySelector('textarea').value;
+                
+                const mailto = `mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Imię i nazwisko: ${name}\nEmail: ${email}\n\nWiadomość:\n${message}`)}`;
+                window.open(mailto);
+                
+                showNotification('📧 Otwieranie klienta pocztowego...');
+                contactForm.reset();
+            });
         }
+    }
 
-        function hideBlogForm() {
-            document.getElementById('blogForm').style.display = 'none';
-        }
+    // ===== POMOCNICZE =====
+    function showNotification(message) {
+        // Utwórz element powiadomienia
+        const notification = document.createElement('div');
+        notification.textContent = message;
+        notification.style.position = 'fixed';
+        notification.style.bottom = '20px';
+        notification.style.left = '50%';
+        notification.style.transform = 'translateX(-50%)';
+        notification.style.backgroundColor = '#d4af37';
+        notification.style.color = 'black';
+        notification.style.padding = '12px 24px';
+        notification.style.borderRadius = '30px';
+        notification.style.zIndex = '1000';
+        notification.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+        notification.style.fontWeight = 'bold';
+        
+        document.body.appendChild(notification);
+        
+        // Usuń po 3 sekundach
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
 
-        function addNewBlogPost() {
-            const title = document.getElementById('blogTitle').value;
-            const excerpt = document.getElementById('blogExcerpt').value;
-            const content = document.getElementById('blogContent').value;
-            const image = document.getElementById('blogImage').value;
-            
-            const newPost = {
-                title,
-                excerpt,
-                content,
-                image,
-                date: new Date().toISOString()
-            };
-            
-            // Pobierz istniejące posty i dodaj nowy
-            const blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
-            blogPosts.unshift(newPost);
-            
-            // Zapisz z powrotem do localStorage
-            localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
-            
-            // Odśwież wyświetlanie
-            renderBlogPosts(blogPosts);
-            
-            // Wyczyść formularz i ukryj go
-            document.getElementById('newBlogPostForm').reset();
-            hideBlogForm();
-            
-            showNotification('Artykuł dodany pomyślnie!');
-        }
-
-        function shareArticle(title, image) {
-            const subject = `Polecam artykuł: ${title}`;
-            const body = `Cześć! Polecam Ci ten artykuł z AdelbertusShop: ${title}\n\nZobacz więcej na naszej stronie!`;
-            
-            window.open(`mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
-        }
-
-        // ===== FORMULARZ KONTAKTOWY =====
-        function initContactForm() {
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const formData = new FormData(contactForm);
-                    const name = contactForm.querySelector('input[type="text"]').value;
-                    const email = contactForm.querySelector('input[type="email"]').value;
-                    const subject = contactForm.querySelectorAll('input[type="text"]')[1].value;
-                    const message = contactForm.querySelector('textarea').value;
-                    
-                    const mailto = `mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Imię i nazwisko: ${name}\nEmail: ${email}\n\nWiadomość:\n${message}`)}`;
-                    window.open(mailto);
-                    
-                    showNotification('📧 Otwieranie klienta pocztowego...');
-                    contactForm.reset();
-                });
-            }
-        }
-
-        // ===== POMOCNICZE =====
-        function showNotification(message) {
-            // Utwórz element powiadomienia
-            const notification = document.createElement('div');
-            notification.textContent = message;
-            notification.style.position = 'fixed';
-            notification.style.bottom = '20px';
-            notification.style.left = '50%';
-            notification.style.transform = 'translateX(-50%)';
-            notification.style.backgroundColor = '#d4af37';
-            notification.style.color = 'black';
-            notification.style.padding = '12px 24px';
-            notification.style.borderRadius = '30px';
-            notification.style.zIndex = '1000';
-            notification.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
-            notification.style.fontWeight = 'bold';
-            
-            document.body.appendChild(notification);
-            
-            // Usuń po 3 sekundach
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
-
-        // Globalne funkcje
-        window.addToCart = addToCart;
-        window.removeFromCart = removeFromCart;
-        window.toggleCart = toggleCart;
-        window.updateDesign = updateDesign;
-        window.clearCanvas = clearCanvas;
-        window.resetDesign = resetDesign;
-        window.addToCartFromDesign = addToCartFromDesign;
-        window.sendDesignToEmail = sendDesignToEmail;
-        window.saveDesign = saveDesign;
-        window.toggleReadMore = toggleReadMore;
-        window.showBlogForm = showBlogForm;
-        window.hideBlogForm = hideBlogForm;
-        window.shareArticle = shareArticle;
-        window.toggleMobileMenu = toggleMobileMenu;
-    </script>
+    // Globalne funkcje
+    window.addToCart = addToCart;
+    window.removeFromCart = removeFromCart;
+    window.toggleCart = toggleCart;
+    window.updateDesign = updateDesign;
+    window.clearCanvas = clearCanvas;
+    window.resetDesign = resetDesign;
+    window.addToCartFromDesign = addToCartFromDesign;
+    window.sendDesignToEmail = sendDesignToEmail;
+    window.saveDesign = saveDesign;
+    window.toggleReadMore = toggleReadMore;
+    window.showBlogForm = showBlogForm;
+    window.hideBlogForm = hideBlogForm;
+    window.shareArticle = shareArticle;
+    window.toggleMobileMenu = toggleMobileMenu;
+    window.sendOrderEmail = sendOrderEmail;
+    window.sendOrderWhatsApp = sendOrderWhatsApp;
+</script>
 </body>
-</html>
-
-
+</html>                
 
 
 
