@@ -927,49 +927,7 @@
             <button class="nav-btn" data-section="contact"><i class="fas fa-envelope"></i> Kontakt</button>
         </div>
     </nav>
- <div class="ad-container" style="width:364px; height:90px; position:relative; overflow:hidden; margin:20px auto; border-radius:4px;">
-    <!-- Baner 1 -->
-    <a href="https://example.com" target="_blank" 
-       style="position:absolute; width:100%; height:100%; transition:opacity 0.5s ease;">
-        <img src="A_logo_for_a_Polish_renovation_and_construction_co.png" 
-             style="width:100%; height:100%; object-fit:cover;" 
-             alt="Baner 1">
-    </a>
-    
-    <!-- Baner 2 -->
-    <a href="https://example.com" target="_blank" 
-       style="position:absolute; width:100%; height:100%; transition:opacity 0.5s ease; opacity:0;">
-        <img src="A_logo_in_digital_graphic_design_displays_Voytek_A.png" 
-             style="width:100%; height:100%; object-fit:cover;" 
-             alt="Baner 2">
-    </a>
-    
-    <!-- Timer -->
-    <div style="position:absolute; bottom:5px; right:5px; background:rgba(0,0,0,0.7); color:white; padding:3px 8px; border-radius:12px; font-size:11px; font-weight:bold;">
-        30s
-    </div>
-</div>
 
-<script>
-(function() {
-    const banners = document.querySelectorAll('.ad-container a');
-    const timer = document.querySelector('.ad-container div');
-    let current = 0;
-    let seconds = 30;
-    
-    setInterval(() => {
-        seconds--;
-        timer.textContent = seconds + 's';
-        
-        if (seconds === 0) {
-            banners[current].style.opacity = 0;
-            current = current === 0 ? 1 : 0;
-            banners[current].style.opacity = 1;
-            seconds = 30;
-        }
-    }, 1000);
-})();
-</script>
     
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
@@ -2875,6 +2833,7 @@
 </script>
 </body>
 </html>                
+
 
 
 
