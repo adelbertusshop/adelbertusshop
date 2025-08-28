@@ -936,119 +936,66 @@
                 <h2>Witaj w AdelbertusShop</h2>
                 <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
             </div>
-  <!-- Banery -->
-<div class="ad-container">
-    <!-- Baner 1 - prostokątny -->
-    <div class="ad-rect-banner" id="adBanner1">
-        <a href="#" target="_blank">
-            <img src="https://i.ibb.co/wN6t0fZC/Messenger-creation-61-DCC1-E2-6717-4-D1-C-BF72-EAE6-B3-CACE96.jpg" alt="Baner 1">
-        </a>
-        <div class="timer" id="timer1">30s</div>
-    </div>
-
-    <!-- Baner 2 - okrągły -->
-    <div class="ad-circle-banner" id="adBanner2" style="display:none;">
-        <a href="https://wa.me/message/XNEKG5L6FAAVD1" target="_blank">
-            <img src="https://i.ibb.co/rG1Lx3Hk/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3.jpg" alt="Baner 2">
-        </a>
-        <div class="timer" id="timer2">30s</div>
-    </div>
+ <!-- Sekcja reklamowa -->
+<div class="ad-container" style="width: 728px; height: 180px; margin: 20px auto; position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <!-- Baner 1 -->
+    <a href="https://example.com" target="_blank" class="ad-banner" style="position: absolute; width: 100%; height: 100%; transition: opacity 0.5s ease;">
+        <img src="https://i.ibb.co/sp4bCtgC/Messenger-creation-9-C2-DF47-C-5660-4-D41-8652-E1-A259-B8-B09-C.jpg" 
+             alt="Baner reklamowy 1" 
+             style="width: 100%; height: 100%; object-fit: cover;">
+    </a>
+    
+    <!-- Baner 2 -->
+    <a href="https://example.com" target="_blank" class="ad-banner" style="position: absolute; width: 100%; height: 100%; transition: opacity 0.5s ease; opacity: 0;">
+        <img src="https://i.ibb.co/Vc42CwbG/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3-2.jpg" 
+             alt="Baner reklamowy 2" 
+             style="width: 100%; height: 100%; object-fit: cover;">
+    </a>
+    
+    <!-- Timer -->
+    <div class="timer" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 15px; font-size: 12px; font-weight: bold;">30s</div>
 </div>
 
-<style>
-.ad-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px 0;
-    gap: 15px;
-}
-
-/* Baner prostokątny */
-.ad-rect-banner {
-    position: relative;
-    width: 80vw;
-    max-width: 600px;
-    height: 150px;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.ad-rect-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Baner okrągły */
-.ad-circle-banner {
-    position: relative;
-    width: 80vw;
-    max-width: 400px;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.ad-circle-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-/* Timer */
-.timer {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 1rem;
-}
-</style>
-
 <script>
-const banners = [
-    { el: document.getElementById('adBanner1'), timer: document.getElementById('timer1') },
-    { el: document.getElementById('adBanner2'), timer: document.getElementById('timer2') }
-];
-
-let current = 0;
-let countdown = 30;
-let intervalId;
-
-function showBanner(index) {
-    banners.forEach((b, i) => {
-        b.el.style.display = i === index ? 'block' : 'none';
-    });
-    countdown = 30;
-    updateTimer();
-    if(intervalId) clearInterval(intervalId);
-    intervalId = setInterval(() => {
-        countdown--;
-        updateTimer();
-        if(countdown <= 0) {
-            current = (current + 1) % banners.length;
-            showBanner(current);
+    document.addEventListener('DOMContentLoaded', function() {
+        const banners = document.querySelectorAll('.ad-banner');
+        const timer = document.querySelector('.timer');
+        let currentBanner = 0;
+        let countdown = 30;
+        
+        // Ustaw pierwszy baner jako widoczny
+        banners[0].style.opacity = '1';
+        
+        function switchBanner() {
+            // Ukryj aktualny baner
+            banners[currentBanner].style.opacity = '0';
+            
+            // Przełącz na następny baner
+            currentBanner = (currentBanner + 1) % banners.length;
+            
+            // Pokaż następny baner
+            setTimeout(() => {
+                banners[currentBanner].style.opacity = '1';
+            }, 500);
+            
+            // Resetuj odliczanie
+            countdown = 30;
+            timer.textContent = countdown + 's';
         }
-    }, 1000);
-}
-
-function updateTimer() {
-    banners[current].timer.textContent = countdown + "s";
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    showBanner(current);
-});
+        
+        // Odliczanie czasu
+        setInterval(() => {
+            countdown--;
+            timer.textContent = countdown + 's';
+            
+            if (countdown <= 0) {
+                switchBanner();
+            }
+        }, 1000);
+        
+        // Automatyczne przełączanie co 30 sekund
+        setInterval(switchBanner, 30000);
+    });
 </script>
             
             <!-- Sekcja reklamowa - animacja -->
@@ -2955,6 +2902,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>                
+
 
 
 
