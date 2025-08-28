@@ -927,76 +927,49 @@
             <button class="nav-btn" data-section="contact"><i class="fas fa-envelope"></i> Kontakt</button>
         </div>
     </nav>
-
-    <!-- Sekcja główna -->
-    <main>
-        <!-- Strona główna -->
-        <section id="home" class="active">
-            <div class="section-title">
-                <h2>Witaj w AdelbertusShop</h2>
-                <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
-            </div>
- <!-- Sekcja reklamowa -->
-<div class="ad-container" style="width: 728px; height: 180px; margin: 20px auto; position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+<div class="ad-container" style="width:364px; height:90px; position:relative; overflow:hidden; margin:20px auto; border-radius:4px;">
     <!-- Baner 1 -->
-    <a href="https://example.com" target="_blank" class="ad-banner" style="position: absolute; width: 100%; height: 100%; transition: opacity 0.5s ease;">
+    <a href="https://example.com" target="_blank" 
+       style="position:absolute; width:100%; height:100%; transition:opacity 0.5s ease;">
         <img src="https://i.ibb.co/sp4bCtgC/Messenger-creation-9-C2-DF47-C-5660-4-D41-8652-E1-A259-B8-B09-C.jpg" 
-             alt="Baner reklamowy 1" 
-             style="width: 100%; height: 100%; object-fit: cover;">
+             style="width:100%; height:100%; object-fit:cover;" 
+             alt="Baner 1">
     </a>
     
     <!-- Baner 2 -->
-    <a href="https://example.com" target="_blank" class="ad-banner" style="position: absolute; width: 100%; height: 100%; transition: opacity 0.5s ease; opacity: 0;">
+    <a href="https://example.com" target="_blank" 
+       style="position:absolute; width:100%; height:100%; transition:opacity 0.5s ease; opacity:0;">
         <img src="https://i.ibb.co/Vc42CwbG/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3-2.jpg" 
-             alt="Baner reklamowy 2" 
-             style="width: 100%; height: 100%; object-fit: cover;">
+             style="width:100%; height:100%; object-fit:cover;" 
+             alt="Baner 2">
     </a>
     
     <!-- Timer -->
-    <div class="timer" style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 15px; font-size: 12px; font-weight: bold;">30s</div>
+    <div style="position:absolute; bottom:5px; right:5px; background:rgba(0,0,0,0.7); color:white; padding:3px 8px; border-radius:12px; font-size:11px; font-weight:bold;">
+        30s
+    </div>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const banners = document.querySelectorAll('.ad-banner');
-        const timer = document.querySelector('.timer');
-        let currentBanner = 0;
-        let countdown = 30;
+(function() {
+    const banners = document.querySelectorAll('.ad-container a');
+    const timer = document.querySelector('.ad-container div');
+    let current = 0;
+    let seconds = 30;
+    
+    setInterval(() => {
+        seconds--;
+        timer.textContent = seconds + 's';
         
-        // Ustaw pierwszy baner jako widoczny
-        banners[0].style.opacity = '1';
-        
-        function switchBanner() {
-            // Ukryj aktualny baner
-            banners[currentBanner].style.opacity = '0';
-            
-            // Przełącz na następny baner
-            currentBanner = (currentBanner + 1) % banners.length;
-            
-            // Pokaż następny baner
-            setTimeout(() => {
-                banners[currentBanner].style.opacity = '1';
-            }, 500);
-            
-            // Resetuj odliczanie
-            countdown = 30;
-            timer.textContent = countdown + 's';
+        if (seconds === 0) {
+            banners[current].style.opacity = 0;
+            current = current === 0 ? 1 : 0;
+            banners[current].style.opacity = 1;
+            seconds = 30;
         }
-        
-        // Odliczanie czasu
-        setInterval(() => {
-            countdown--;
-            timer.textContent = countdown + 's';
-            
-            if (countdown <= 0) {
-                switchBanner();
-            }
-        }, 1000);
-        
-        // Automatyczne przełączanie co 30 sekund
-        setInterval(switchBanner, 30000);
-    });
-</script>
+    }, 1000);
+})();
+</script>   
             
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
@@ -2902,6 +2875,7 @@
 </script>
 </body>
 </html>                
+
 
 
 
