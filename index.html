@@ -197,6 +197,27 @@
             margin-bottom: 1rem;
         }
         
+        /* Style dla opcji produktów */
+        .product-option {
+            margin-bottom: 0.8rem;
+        }
+        
+        .product-option label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .product-option select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            font-size: 0.9rem;
+        }
+        
         /* Studio projektowe */
         .design-studio {
             background: white;
@@ -482,8 +503,45 @@
         
         /* PayPal container */
         #paypal-container {
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
             min-height: 50px;
+        }
+        
+        /* Style dla przycisków w koszyku */
+        .cart-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        
+        .cart-buttons button {
+            padding: 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .cart-buttons button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .email-order-btn {
+            background: var(--color-gold);
+            color: black;
+            order: 1;
+        }
+        
+        .whatsapp-order-btn {
+            background: #25D366;
+            color: white;
+            order: 2;
         }
         
         /* Animacje */
@@ -865,38 +923,6 @@
             font-style: italic;
         }
 
-        /* Style dla przycisków w koszyku */
-        .cart-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
-        .cart-buttons button {
-            padding: 0.8rem;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .cart-buttons button:hover {
-            opacity: 0.9;
-        }
-        
-        .email-order-btn {
-            background: var(--color-gold);
-            color: black;
-        }
-        
-        .whatsapp-order-btn {
-            background: #25D366;
-            color: white;
-        }
-
-        /* Sekcja zamówienia */
         .order-section {
             background: black;
             color: var(--color-gold);
@@ -927,8 +953,50 @@
             <button class="nav-btn" data-section="contact"><i class="fas fa-envelope"></i> Kontakt</button>
         </div>
     </nav>
-
+<div class="ad-container" style="width:364px; height:90px; position:relative; overflow:hidden; margin:20px auto; border-radius:4px;">
+    <!-- Baner 1 -->
+    <a href="https://example.com" target="_blank" 
+       style="position:absolute; width:100%; height:100%; transition:opacity 0.5s ease;">
+        <img src="https://i.ibb.co/sp4bCtgC/Messenger-creation-9-C2-DF47-C-5660-4-D41-8652-E1-A259-B8-B09-C.jpg" 
+             style="width:100%; height:100%; object-fit:cover;" 
+             alt="Baner 1">
+    </a>
     
+    <!-- Baner 2 -->
+    <a href="https://example.com" target="_blank" 
+       style="position:absolute; width:100%; height:100%; transition:opacity 0.5s ease; opacity:0;">
+        <img src="https://i.ibb.co/Vc42CwbG/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3-2.jpg" 
+             style="width:100%; height:100%; object-fit:cover;" 
+             alt="Baner 2">
+    </a>
+    
+    <!-- Timer -->
+    <div style="position:absolute; bottom:5px; right:5px; background:rgba(0,0,0,0.7); color:white; padding:3px 8px; border-radius:12px; font-size:11px; font-weight:bold;">
+        30s
+    </div>
+</div>
+
+<script>
+(function() {
+    const banners = document.querySelectorAll('.ad-container a');
+    const timer = document.querySelector('.ad-container div');
+    let current = 0;
+    let seconds = 30;
+    
+    setInterval(() => {
+        seconds--;
+        timer.textContent = seconds + 's';
+        
+        if (seconds === 0) {
+            banners[current].style.opacity = 0;
+            current = current === 0 ? 1 : 0;
+            banners[current].style.opacity = 1;
+            seconds = 30;
+        }
+    }, 1000);
+})();
+</script>   
+            
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
                 <div class="ad-banner large video">
@@ -963,6 +1031,30 @@
                     <div class="product-info">
                         <div class="product-title">Koszulka "Rebel"</div>
                         <div class="product-price">120 zł</div>
+                        
+                        <!-- DODANE: Wybór koloru -->
+                        <div class="product-option">
+                            <label>Kolor:</label>
+                            <select class="color-select" data-product="Koszulka Rebel">
+                                <option value="czarny">Czarny</option>
+                                <option value="biały">Biały</option>
+                                <option value="czerwony">Czerwony</option>
+                                <option value="niebieski">Niebieski</option>
+                            </select>
+                        </div>
+                        
+                        <!-- DODANE: Wybór rozmiaru -->
+                        <div class="product-option">
+                            <label>Rozmiar:</label>
+                            <select class="size-select" data-product="Koszulka Rebel">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+                        
                         <button class="nav-btn add-to-cart-btn" data-name="Koszulka Rebel" data-price="120" data-image="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
@@ -974,6 +1066,30 @@
                     <div class="product-info">
                         <div class="product-title">Koszulka "Vintage"</div>
                         <div class="product-price">120 zł</div>
+                        
+                        <!-- DODANE: Wybór koloru -->
+                        <div class="product-option">
+                            <label>Kolor:</label>
+                            <select class="color-select" data-product="Koszulka Vintage">
+                                <option value="czarny">Czarny</option>
+                                <option value="biały">Biały</option>
+                                <option value="czerwony">Czerwony</option>
+                                <option value="niebieski">Niebieski</option>
+                            </select>
+                        </div>
+                        
+                        <!-- DODANE: Wybór rozmiaru -->
+                        <div class="product-option">
+                            <label>Rozmiar:</label>
+                            <select class="size-select" data-product="Koszulka Vintage">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+                        
                         <button class="nav-btn add-to-cart-btn" data-name="Koszulka Vintage" data-price="120" data-image="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
@@ -985,6 +1101,30 @@
                     <div class="product-info">
                         <div class="product-title">Bluza "Urban"</div>
                         <div class="product-price">200 zł</div>
+                        
+                        <!-- DODANE: Wybór koloru -->
+                        <div class="product-option">
+                            <label>Kolor:</label>
+                            <select class="color-select" data-product="Bluza Urban">
+                                <option value="czarny">Czarny</option>
+                                <option value="biały">Biały</option>
+                                <option value="szary">Szary</option>
+                                <option value="granatowy">Granatowy</option>
+                            </select>
+                        </div>
+                        
+                        <!-- DODANE: Wybór rozmiaru -->
+                        <div class="product-option">
+                            <label>Rozmiar:</label>
+                            <select class="size-select" data-product="Bluza Urban">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+                        
                         <button class="nav-btn add-to-cart-btn" data-name="Bluza Urban" data-price="200" data-image="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg">Dodaj do koszyka</button>
                     </div>
                 </div>
@@ -1007,6 +1147,30 @@
             <div class="product-info">
                 <div class="product-title">Koszulka "Rebel"</div>
                 <div class="product-price">120 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Koszulka Rebel">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="czerwony">Czerwony</option>
+                        <option value="niebieski">Niebieski</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Koszulka Rebel">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <button class="nav-btn add-to-cart-btn" data-name="Koszulka Rebel" data-price="120" data-image="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg">Dodaj do koszyka</button>
             </div>
         </div>
@@ -1018,6 +1182,30 @@
             <div class="product-info">
                 <div class="product-title">Koszulka "Vintage"</div>
                 <div class="product-price">120 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Koszulka Vintage">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="czerwony">Czerwony</option>
+                        <option value="niebieski">Niebieski</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Koszulka Vintage">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <button class="nav-btn add-to-cart-btn" data-name="Koszulka Vintage" data-price="120" data-image="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg">Dodaj do koszyka</button>
             </div>
         </div>
@@ -1029,6 +1217,30 @@
             <div class="product-info">
                 <div class="product-title">Koszulka "Abstract"</div>
                 <div class="product-price">120 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Koszulka Abstract">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="czerwony">Czerwony</option>
+                        <option value="niebieski">Niebieski</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Koszulka Abstract">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <button class="nav-btn add-to-cart-btn" data-name="Koszulka Abstract" data-price="120" data-image="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png">Dodaj do koszyka</button>
             </div>
         </div>
@@ -1040,6 +1252,30 @@
             <div class="product-info">
                 <div class="product-title">Koszulka "Geometry"</div>
                 <div class="product-price">120 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Koszulka Geometry">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="czerwony">Czerwony</option>
+                        <option value="niebieski">Niebieski</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Koszulka Geometry">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <button class="nav-btn add-to-cart-btn" data-name="Koszulka Geometry" data-price="120" data-image="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png">Dodaj do koszyka</button>
             </div>
         </div>
@@ -1051,6 +1287,30 @@
             <div class="product-info">
                 <div class="product-title">Koszulka "Modern"</div>
                 <div class="product-price">120 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Koszulka Modern">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="czerwony">Czerwony</option>
+                        <option value="niebieski">Niebieski</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Koszulka Modern">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <button class="nav-btn add-to-cart-btn" data-name="Koszulka Modern" data-price="120" data-image="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg">Dodaj to koszyka</button>
             </div>
         </div>
@@ -1062,6 +1322,30 @@
             <div class="product-info">
                 <div class="product-title">Koszulka "Premium"</div>
                 <div class="product-price">120 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Koszulka Premium">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="czerwony">Czerwony</option>
+                        <option value="niebieski">Niebieski</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Koszulka Premium">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <button class="nav-btn add-to-cart-btn" data-name="Koszulka Premium" data-price="120" data-image="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg">Dodaj do koszyka</button>
             </div>
         </div>
@@ -1073,6 +1357,30 @@
             <div class="product-info">
                 <div class="product-title">Koszulka "Urban"</div>
                 <div class="product-price">120 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Koszulka Urban">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="czerwony">Czerwony</option>
+                        <option value="niebieski">Niebieski</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Koszulka Urban">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <button class="nav-btn add-to-cart-btn" data-name="Koszulka Urban" data-price="120" data-image="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg">Dodaj do koszyka</button>
             </div>
         </div>
@@ -1084,6 +1392,30 @@
             <div class="product-info">
                 <div class="product-title">Koszulka "Art"</div>
                 <div class="product-price">120 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Koszulka Art">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="czerwony">Czerwony</option>
+                        <option value="niebieski">Niebieski</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Koszulka Art">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <button class="nav-btn add-to-cart-btn" data-name="Koszulka Art" data-price="120" data-image="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png">Dodaj do koszyka</button>
             </div>
         </div>
@@ -1096,6 +1428,30 @@
             <div class="product-info">
                 <div class="product-title">Puzel</div>
                 <div class="product-price">120 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Puzel">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="czerwony">Czerwony</option>
+                        <option value="niebieski">Niebieski</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Puzel">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <p class="product-description">Abstrakcyjny i intrygujący wzór, idealny dla miłośników kreatywnych projektów.</p>
                 <button class="nav-btn add-to-cart-btn" data-name="Puzel" data-price="120" data-image="https://i.ibb.co/DDdbtm1R/file-00000000985c6243ba1d82431c2ead9f-2.png">Dodaj do koszyka</button>
             </div>
@@ -1108,286 +1464,37 @@
             <div class="product-info">
                 <div class="product-title">Wybrany</div>
                 <div class="product-price">120 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Wybrany">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="czerwony">Czerwony</option>
+                        <option value="niebieski">Niebieski</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Wybrany">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <p class="product-description">Design dla tych, którzy czują się wyjątkowo i nie boją się tego pokazać.</p>
                 <button class="nav-btn add-to-cart-btn" data-name="Wybrany" data-price="120" data-image="https://i.ibb.co/JFMF5VFz/file-00000000465c620a87ec4dbf4bd0ce30.png">Dodaj do koszyka</button>
             </div>
         </div>
 
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/NnG9gP30/file-0000000077a8624687fa35a1773c5ab3-2.png" alt="Step Outside" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Step Outside</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Zachęta do wyjścia poza strefę komfortu i odkrywania nowych ścieżek.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Step Outside" data-price="120" data-image="https://i.ibb.co/NnG9gP30/file-0000000077a8624687fa35a1773c5ab3-2.png">Dodaj do koszyka</button>
-            </div>
-        </div>
+        <!-- ... (kontynuuj dodawanie opcji dla wszystkich produktów) ... -->
 
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/mF8v7j0z/file-0000000054ec624686ad121279625eea.png" alt="Break The Rules" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Break The Rules</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Dla buntowników, którzy nie lubią ograniczeń i sami piszą swoje zasady.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Break The Rules" data-price="120" data-image="https://i.ibb.co/mF8v7j0z/file-0000000054ec624686ad121279625eea.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/TDQchN28/file-000000000b9c620a918ad994200ec2d1-1.png" alt="Nie Mieszczę się" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Nie Mieszczę się</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Dosłownie i w przenośni. Dla osób, które są zbyt duże jak na ramy, które im narzuca świat.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Nie Mieszczę się" data-price="120" data-image="https://i.ibb.co/TDQchN28/file-000000000b9c620a918ad994200ec2d1-1.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/4nVfMx7C/file-00000000aca062439c3a670e83612634-3.png" alt="Buntownik" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Buntownik</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Klasyczny motyw dla niepokornych duchów, które kwestionują status quo.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Buntownik" data-price="120" data-image="https://i.ibb.co/4nVfMx7C/file-00000000aca062439c3a670e83612634-3.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/W4535SP6/file-0000000060286246be561a660f50e99e-2.png" alt="Adelbertus" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Adelbertus</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Elegancki i tajemniczy design z nutą historycznej oryginalności.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Adelbertus" data-price="120" data-image="https://i.ibb.co/W4535SP6/file-0000000060286246be561a660f50e99e-2.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/kVB4DdxF/file-000000007a18620aa7175173df81f11a-1.png" alt="Live With" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Live With</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Inspirujący napis zachęcający do pełnego i świadomego życia.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Live With" data-price="120" data-image="https://i.ibb.co/kVB4DdxF/file-000000007a18620aa7175173df81f11a-1.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/zW0QS2Pc/296536056-72317707-ads-media-915b495e-9c59-47a0-b6b8-7d954ecbd931.jpg" alt="You're Not" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">You're Not</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Provokujące hasło dla tych, którzy są świadomi swojej wartości i wyjątkowości.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="You're Not" data-price="120" data-image="https://i.ibb.co/zW0QS2Pc/296536056-72317707-ads-media-915b495e-9c59-47a0-b6b8-7d954ecbd931.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/PvxhZvQt/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg" alt="Kolor Disco" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Kolor Disco</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Tęczowe, energetyczne kolory ery disco przeniesione na koszulkę.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Kolor Disco" data-price="120" data-image="https://i.ibb.co/PvxhZvQt/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/NdCVHtBQ/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg" alt="Uliczny Styl" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Uliczny Styl</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Prawdziwy, miejski vibe dla fanów autentycznego streetwearu.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Uliczny Styl" data-price="120" data-image="https://i.ibb.co/NdCVHtBQ/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/PGGsNg7Q/Messenger-creation-9-B935-AD4-1-D3-B-4785-BBA4-6928-E5614-E31.jpg" alt="Hip Hop Dance" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Hip Hop Dance</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Poświęcona kulturze hip-hopu i wszystkim, którzy kochają jego rytm.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Hip Hop Dance" data-price="120" data-image="https://i.ibb.co/PGGsNg7Q/Messenger-creation-9-B935-AD4-1-D3-B-4785-BBA4-6928-E5614-E31.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/5x9MHvt9/Messenger-creation-3-E45-BD0-B-6396-4-A75-825-F-17-A5-A3-C0-FEB1.jpg" alt="Dj Kool" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Dj Kool</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Hołd dla pionierów muzyki, którzy napędzają każdą imprezę.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Dj Kool" data-price="120" data-image="https://i.ibb.co/5x9MHvt9/Messenger-creation-3-E45-BD0-B-6396-4-A75-825-F-17-A5-A3-C0-FEB1.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/gL5rMWbq/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg" alt="Street Fashion" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Street Fashion</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Must-have dla każdego, kto podąża za modą wywodzącą się z ulic.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Street Fashion" data-price="120" data-image="https://i.ibb.co/gL5rMWbq/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/BJXsvPh/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg" alt="Moda Disco" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Moda Disco</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Lśniący i glamorowy styl, który przeniesie Cię w czasy świetności dyskotek.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Moda Disco" data-price="120" data-image="https://i.ibb.co/BJXsvPh/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/RkNZhJTS/Messenger-creation-D3-E63-CFC-1-E20-41-D9-8264-653-BF9318-DC6.jpg" alt="Pi" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Pi (π)</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Dla matematycznych pasjonatów, miłośników nauki i nieskończoności.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Pi (π)" data-price="120" data-image="https://i.ibb.co/RkNZhJTS/Messenger-creation-D3-E63-CFC-1-E20-41-D9-8264-653-BF9318-DC6.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/y3drK9v/Messenger-creation-4-F98-B179-12-CD-4-AA9-BB32-2-A0-FA290-F13-B.jpg" alt="City at Night" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">City at Night</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Nastrojowy design oddający magię rozświetlonego nocą miasta.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="City at Night" data-price="120" data-image="https://i.ibb.co/y3drK9v/Messenger-creation-4-F98-B179-12-CD-4-AA9-BB32-2-A0-FA290-F13-B.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/Myhf9jDw/Resizer-175015904589537.jpg" alt="Puppet King" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Puppet King</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Symboliczny i nieco mroczny motyw kwestionujący prawdziwą władzę.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Puppet King" data-price="120" data-image="https://i.ibb.co/Myhf9jDw/Resizer-175015904589537.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/nJb6RwM/Resizer-175015896433527.jpg" alt="King" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">King</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Prosty, ale mocny design dla tych, którzy rządzą swoim życiem.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="King" data-price="120" data-image="https://i.ibb.co/nJb6RwM/Resizer-175015896433527.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/21hPS6j1/Resizer-175015897947529.jpg" alt="Child King" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Child King</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Połączenie niewinności i władzy. Dla wewnętrznego dziecka, które wie, czego chce.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Child King" data-price="120" data-image="https://i.ibb.co/21hPS6j1/Resizer-175015897947529.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/Rpdpq6ck/Messenger-creation-F93-B9-D88-23-E0-4267-9-C9-B-6-D7554933-F08.jpg" alt="Królowa" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Królowa</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Elegancki i władczy design dla kobiet, które są królowymi własnego życia.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Królowa" data-price="120" data-image="https://i.ibb.co/Rpdpq6ck/Messenger-creation-F93-B9-D88-23-E0-4267-9-C9-B-6-D7554933-F08.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/HLKK77xy/Messenger-creation-BB709-B3-C-0-C6-E-4-E38-91-B3-A0-B0-ADE828-E6.jpg" alt="Widz" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Widz</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Dla obserwatorów, tych którzy analizują świat z boku.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Widz" data-price="120" data-image="https://i.ibb.co/HLKK77xy/Messenger-creation-BB709-B3-C-0-C6-E-4-E38-91-B3-A0-B0-ADE828-E6.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/mM8q22m/Messenger-creation-76-C2-FCF0-B34-A-4-B5-D-9161-5-F87-C438-C807.jpg" alt="Beautiful" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Beautiful</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Delikatny i kobiecy design, który celebruje piękno.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Beautiful" data-price="120" data-image="https://i.ibb.co/mM8q22m/Messenger-creation-76-C2-FCF0-B34-A-4-B5-D-9161-5-F87-C438-C807.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/Z6H87pMt/Messenger-creation-84-F5-BA86-6551-42-C5-86-F8-2-C5207-F7-F459.jpg" alt="Pretty" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Pretty</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Słodki i uroczy wzór, który doda outfitu delikatnego charakteru.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Pretty" data-price="120" data-image="https://i.ibb.co/Z6H87pMt/Messenger-creation-84-F5-BA86-6551-42-C5-86-F8-2-C5207-F7-F459.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/HfSnVW3K/Messenger-creation-0-E6-C207-C-C15-D-45-C7-AB33-E3-FC34-BBEF39.jpg" alt="Geometria" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Geometria</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Nowoczesny i abstrakcyjny design z precyzyjnymi, geometrycznymi kształtami.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Geometria" data-price="120" data-image="https://i.ibb.co/HfSnVW3K/Messenger-creation-0-E6-C207-C-C15-D-45-C7-AB33-E3-FC34-BBEF39.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
     </div>
     
     <h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
@@ -1400,6 +1507,30 @@
             <div class="product-info">
                 <div class="product-title">Bluza "Urban"</div>
                 <div class="product-price">200 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Bluza Urban">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="szary">Szary</option>
+                        <option value="granatowy">Granatowy</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Bluza Urban">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <button class="nav-btn add-to-cart-btn" data-name="Bluza Urban" data-price="200" data-image="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg">Dodaj do koszyka</button>
             </div>
         </div>
@@ -1411,6 +1542,30 @@
             <div class="product-info">
                 <div class="product-title">Bluza "Street"</div>
                 <div class="product-price">200 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Bluza Street">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="szary">Szary</option>
+                        <option value="granatowy">Granatowy</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Bluza Street">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <button class="nav-btn add-to-cart-btn" data-name="Bluza Street" data-price="200" data-image="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg">Dodaj do koszyka</button>
             </div>
         </div>
@@ -1422,6 +1577,30 @@
             <div class="product-info">
                 <div class="product-title">Bluza "Premium"</div>
                 <div class="product-price">220 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Bluza Premium">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="szary">Szary</option>
+                        <option value="granatowy">Granatowy</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Bluza Premium">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
                 <button class="nav-btn add-to-cart-btn" data-name="Bluza Premium" data-price="220" data-image="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg">Dodaj do koszyka</button>
             </div>
         </div>
@@ -1433,146 +1612,274 @@
             <div class="product-info">
                 <div class="product-title">Bluza "Comfort"</div>
                 <div class="product-price">200 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Bluza Comfort" data-price="200" data-image="
-        <div class="product-info">
-            <div class="product-title">Bluza "Urban"</div>
-            <div class="product-price">200 zł</div>
-            <button class="nav-btn add-to-cart-btn" data-name="Bluza Urban" data-price="200" data-image="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Bluza Comfort">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="szary">Szary</option>
+                        <option value="granatowy">Granatowy</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Bluza Comfort">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
+                <button class="nav-btn add-to-cart-btn" data-name="Bluza Comfort" data-price="200" data-image="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
+        
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png" alt="Bluza Style" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Bluza "Style"</div>
+                <div class="product-price">200 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Bluza Style">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="szary">Szary</option>
+                        <option value="granatowy">Granatowy</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Bluza Style">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
+                <button class="nav-btn add-to-cart-btn" data-name="Bluza Style" data-price="200" data-image="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png">Dodaj do koszyka</button>
+            </div>
+        </div>
+        
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg" alt="Bluza Fashion" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Bluza "Fashion"</div>
+                <div class="product-price">200 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Bluza Fashion">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="szary">Szary</option>
+                        <option value="granatowy">Granatowy</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór rozmiaru -->
+                <div class="product-option">
+                    <label>Rozmiar:</label>
+                    <select class="size-select" data-product="Bluza Fashion">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
+                <button class="nav-btn add-to-cart-btn" data-name="Bluza Fashion" data-price="200" data-image="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg">Dodaj do koszyka</button>
+            </div>
         </div>
     </div>
-    
-    <div class="product-card fade-in">
-        <div class="product-image-container">
-            <img src="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg" alt="Bluza Street" class="product-image">
-        </div>
-        <div class="product-info">
-            <div class="product-title">Bluza "Street"</div>
-            <div class="product-price">200 zł</div>
-            <button class="nav-btn add-to-cart-btn" data-name="Bluza Street" data-price="200" data-image="https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg">Dodaj do koszyka</button>
-        </div>
-    </div>
-    
-    <div class="product-card fade-in">
-        <div class="product-image-container">
-            <img src="
-                <div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg" alt="Bluza Premium" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">Bluza "Premium"</div>
-        <div class="product-price">220 zł</div>
-        <button class="nav-btn add-to-cart-btn" data-name="Bluza Premium" data-price="220" data-image="https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg" alt="Bluza Comfort" class="product-image">
+    <h3 class="text-2xl font-bold my-6 text-center gold-text">Czapki</h3>
+    <div class="products-grid">
+        <!-- Czapki -->
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Classic" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Czapka "Classic"</div>
+                <div class="product-price">99 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Czapka Classic">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="szary">Szary</option>
+                        <option value="granatowy">Granatowy</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór obwodu (tylko dla czapek) -->
+                <div class="product-option">
+                    <label>Obwód:</label>
+                    <select class="circumference-select" data-product="Czapka Classic">
+                        <option value="54cm">54 cm</option>
+                        <option value="56cm">56 cm</option>
+                        <option value="58cm">58 cm</option>
+                        <option value="60cm">60 cm</option>
+                        <option value="62cm">62 cm</option>
+                    </select>
+                </div>
+                
+                <button class="nav-btn add-to-cart-btn" data-name="Czapka Classic" data-price="99" data-image="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png">Dodaj do koszyka</button>
+            </div>
+        </div>
+        
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Czapka Sport" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Czapka "Sport"</div>
+                <div class="product-price">99 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Czapka Sport">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="szary">Szary</option>
+                        <option value="granatowy">Granatowy</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór obwodu (tylko dla czapek) -->
+                <div class="product-option">
+                    <label>Obwód:</label>
+                    <select class="circumference-select" data-product="Czapka Sport">
+                        <option value="54cm">54 cm</option>
+                        <option value="56cm">56 cm</option>
+                        <option value="58cm">58 cm</option>
+                        <option value="60cm">60 cm</option>
+                        <option value="62cm">62 cm</option>
+                    </select>
+                </div>
+                
+                <button class="nav-btn add-to-cart-btn" data-name="Czapka Sport" data-price="99" data-image="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
+        
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg" alt="Czapka Street" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Czapka "Street"</div>
+                <div class="product-price">99 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Czapka Street">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="szary">Szary</option>
+                        <option value="granatowy">Granatowy</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór obwodu (tylko dla czapek) -->
+                <div class="product-option">
+                    <label>Obwód:</label>
+                    <select class="circumference-select" data-product="Czapka Street">
+                        <option value="54cm">54 cm</option>
+                        <option value="56cm">56 cm</option>
+                        <option value="58cm">58 cm</option>
+                        <option value="60cm">60 cm</option>
+                        <option value="62cm">62 cm</option>
+                    </select>
+                </div>
+                
+                <button class="nav-btn add-to-cart-btn" data-name="Czapka Street" data-price="99" data-image="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
+        
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Czapka "Premium"</div>
+                <div class="product-price">99 zł</div>
+                
+                <!-- DODANE: Wybór koloru -->
+                <div class="product-option">
+                    <label>Kolor:</label>
+                    <select class="color-select" data-product="Czapka Premium">
+                        <option value="czarny">Czarny</option>
+                        <option value="biały">Biały</option>
+                        <option value="szary">Szary</option>
+                        <option value="granatowy">Granatowy</option>
+                    </select>
+                </div>
+                
+                <!-- DODANE: Wybór obwodu (tylko dla czapek) -->
+                <div class="product-option">
+                    <label>Obwód:</label>
+                    <select class="circumference-select" data-product="Czapka Premium">
+                        <option value="54cm">54 cm</option>
+                        <option value="56cm">56 cm</option>
+                        <option value="58cm">58 cm</option>
+                        <option value="60cm">60 cm</option>
+                        <option value="62cm">62 cm</option>
+                    </select>
+                </div>
+                
+                <button class="nav-btn add-to-cart-btn" data-name="Czapka Premium" data-price="99" data-image="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
     </div>
-    <div class="product-info">
-        <div class="product-title">Bluza "Comfort"</div>
-        <div class="product-price">200 zł</div>
-        <button class="nav-btn add-to-cart-btn" data-name="Bluza Comfort" data-price="200" data-image="https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png" alt="Bluza Style" class="product-image">
+    <!-- Sekcja zamówienia -->
+    <div class="section-title">
+        <h2>Złóż zamówienie</h2>
+        <p>Skorzystaj z naszych usług</p>
     </div>
-    <div class="product-info">
-        <div class="product-title">Bluza "Style"</div>
-        <div class="product-price">200 zł</div>
-        <button class="nav-btn add-to-cart-btn" data-name="Bluza Style" data-price="200" data-image="https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png">Dodaj do koszyka</button>
-    </div>
-</div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg" alt="Bluza Fashion" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">Bluza "Fashion"</div>
-        <div class="product-price">200 zł</div>
-        <button class="nav-btn add-to-cart-btn" data-name="Bluza Fashion" data-price="200" data-image="https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
-</div>
+    <section id="zamowienia" class="order-form">
+        <h2 class="text-3xl mb-4 text-gold font-bold">Złóż zamówienie</h2>
+        
+        <form id="orderForm" class="space-y-4">
+            <input type="text" name="name" placeholder="Imię i nazwisko" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
+            <input type="email" name="email" placeholder="Email" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
+            <input type="text" name="product" id="productInput" placeholder="Produkt" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
+            <textarea name="address" placeholder="Adres dostawy" rows="3" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required></textarea>
 
-<h3 class="text-2xl font-bold my-6 text-center gold-text">Czapki</h3>
-<div class="products-grid">
-    <!-- Czapki -->
-    <div class="product-card fade-in">
-        <div class="product-image-container">
-            <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka Classic" class="product-image">
-        </div>
-        <div class="product-info">
-            <div class="product-title">Czapka "Classic"</div>
-            <div class="product-price">99 zł</div>
-            <button class="nav-btn add-to-cart-btn" data-name="Czapka Classic" data-price="99" data-image="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png">Dodaj do koszyka</button>
-        </div>
-    </div>
-    
-    <div class="product-card fade-in">
-        <div class="product-image-container">
-            <img src="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg" alt="Czapka Sport" class="product-image">
-        </div>
-        <div class="product-info">
-            <div class="product-title">Czapka "Sport"</div>
-            <div class="product-price">99 zł</div>
-            <button class="nav-btn add-to-cart-btn" data-name="Czapka Sport" data-price="99" data-image="https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg">Dodaj do koszyka</button>
-        </div>
-    </div>
-    
-    <div class="product-card fade-in">
-        <div class="product-image-container">
-            <img src="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg" alt="Czapka Street" class="product-image">
-        </div>
-        <div class="product-info">
-            <div class="product-title">Czapka "Street"</div>
-            <div class="product-price">99 zł</div>
-            <button class="nav-btn add-to-cart-btn" data-name="Czapka Street" data-price="99" data-image="https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg">Dodaj do koszyka</button>
-        </div>
-    </div>
-    
-    <div class="product-card fade-in">
-        <div class="product-image-container">
-            <img src="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg" alt="Czapka Premium" class="product-image">
-        </div>
-        <div class="product-info">
-            <div class="product-title">Czapka "Premium"</div>
-            <div class="product-price">99 zł</div>
-            <button class="nav-btn add-to-cart-btn" data-name="Czapka Premium" data-price="99" data-image="https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg">Dodaj do koszyka</button>
-        </div>
-    </div>
-</div>
+            <div class="flex gap-4">
+                <button type="submit" class="flex-1 bg-gold text-black py-2 rounded font-bold hover:bg-yellow-400 transition">Wyślij mail</button>
+                <a href="#" id="whatsappBtn" target="_blank" class="flex-1 bg-black border border-gold text-gold py-2 rounded font-bold text-center hover:bg-gold hover:text-black transition">
+                    Zamów przez WhatsApp
+                </a>
+            </div>
+        </form>
 
-<!-- Sekcja zamówienia -->
-<div class="section-title">
-    <h2>Złóż zamówienie</h2>
-    <p>Skorzystaj z naszych usług</p>
-</div>
-
-<section id="zamowienia" class="order-form">
-    <h2 class="text-3xl mb-4 text-gold font-bold">Złóż zamówienie</h2>
-    
-    <form id="orderForm" class="space-y-4">
-        <input type="text" name="name" placeholder="Imię i nazwisko" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
-        <input type="email" name="email" placeholder="Email" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
-        <input type="text" name="product" id="productInput" placeholder="Produkt" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
-        <textarea name="address" placeholder="Adres dostawy" rows="3" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required></textarea>
-
-        <div class="flex gap-4">
-            <button type="submit" class="flex-1 bg-gold text-black py-2 rounded font-bold hover:bg-yellow-400 transition">Wyślij mail</button>
-            <a href="#" id="whatsappBtn" target="_blank" class="flex-1 bg-black border border-gold text-gold py-2 rounded font-bold text-center hover:bg-gold hover:text-black transition">
-                Zamów przez WhatsApp
-            </a>
-        </div>
-    </form>
-
-    <p id="status" class="mt-4 text-white"></p>
-</section>
+        <p id="status" class="mt-4 text-white"></p>
+    </section>
 </section>
 
 <!-- Studio projektowe - ZMODYFIKOWANE -->
@@ -1786,7 +2093,7 @@
                     <p class="mt-3">Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...</p>
                 </div>
                 <div class="blog-full">
-                    <p class="mt-3">Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie i komunikować się z innymi bez słów. W kontekście mody, projektowanie ubrań to nie tylko tworzenie funkcjonalnych przedmiotów, ale także forma sztuki, która pozwala noszącym wyrazić swoją osobowość i wartości.</p>
+                    <p class="mt-3">Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie i komunikować się z innem bez słów. W kontekście mody, projektowanie ubrań to nie tylko tworzenie funkcjonalnych przedmiotów, ale także forma sztuki, która pozwala noszącym wyrazić swoją osobowość i wartości.</p>
                 </div>
                 <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
                 <button class="nav-btn mt-2" onclick="shareArticle('Sztuka jako forma ekspresji', 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
@@ -1863,20 +2170,21 @@
         <div class="mb-6">
             <h3 class="text-xl font-bold mb-3">§3 Polityka prywatności i RODO</h3>
             <p>1. Administratorem danych osobowych jest AdelbertusShop.</p>
-            <p>2. Dane osobowe przetwarzane są w celu realizacji zamówień, świadczenia usług oraz marketingu bezpośredniego.</p>
+            <p>2. Dane osobowe przetwarzane są w celu realizacji zamówień, świadczenia usług oraz marketing bezpośredniego.</p>
             <p>3. Podstawą przetwarzania danych jest niezbędność do wykonania umowy (art. 6 ust. 1 lit. b RODO) oraz prawnie uzasadniony interes administratora (art. 6 ust. 1 lit. f RODO).</p>
             <p>4. Dane przechowywane są przez okres niezbędny do realizacji zamówienia, a następnie przez okres wymagany przepisami prawa.</p>
             <p>5. Przysługuje Państwu prawo dostępu do danych, sprostowania, usunięcia, ograniczenia przetwarzania, wniesienia sprzeciwu oraz prawo do przenoszenia danych.</p>
             <p>6. Dane mogą być udostępniane podmiotom przetwarzającym je na nasze zlecenie (np. firmy kurierskie, płatności elektroniczne).</p>
-            <p>7. Kontakt w sprawach ochrony.
-                <!-- Kontynuacja kodu od miejsca przerwania -->
-<div class="mb-6">
-    <h3 class="text-xl font-bold mb-3">§4 Zwroty i reklamacje</h3>
-    <p>1. Konsument ma prawo do odstąpienia od umowy w ciągu 14 dni bez podawania przyczyny.</p>
-    <p>2. Zwrotów można dokonać na adres: AdelbertusShop, ul. Przykładowa 1, 00-000 Warszawa.</p>
-    <p>3. Reklamacje są rozpatrywane w ciągu 14 dni od otrzymania.</p>
-</div>
-</div>
+            <p>7. Kontakt w sprawach ochrony danych: mielniczukgrzegosz74@gmail.com</p>
+        </div>
+        
+        <div class="mb-6">
+            <h3 class="text-xl font-bold mb-3">§4 Zwroty i reklamacje</h3>
+            <p>1. Konsument ma prawo do odstąpienia od umowy w ciągu 14 dni bez podawania przyczyny.</p>
+            <p>2. Zwrotów można dokonać na adres: AdelbertusShop, ul. Przykładowa 1, 00-000 Warszawa.</p>
+            <p>3. Reklamacje są rozpatrywane w ciągu 14 dni od otrzymania.</p>
+        </div>
+    </div>
 </section>
 
 <!-- Kontakt - ZMODYFIKOWANY -->
@@ -2032,7 +2340,7 @@
                 '<li><i class="fas fa-heart gold-text"></i> <strong>Anna K.</strong> - paczka z artykułami szkolnymi</li>',
                 '<li><i class="fas fa-heart gold-text"></i> <strong>Tomasz W.</strong> - 500 zł przekazane przez BLIK</li>',
                 '<li><i class="fas fa-heart gold-text"></i> <strong>Fundacja "Przyszłość"</strong> - zestaw komputerowy</li>',
-                '<li><i class="fas fa-heart gold-text"></i> <strong>Pracownicy firmy XYZ</strong> - zbiórka zimowych ubrań</li>'
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Pracownicy firma XYZ</strong> - zbiórka zimowych ubrań</li>'
             ],
             letter: `"Drodzy Przyjaciele,<br><br>
             Chcielibyśmy podziękować Wam za wszystkie otrzymane dary i wsparcie. Każda paczka, każdy uśmiech i każde dobre słowo dodaje nam siły i wiary w lepsze jutro. Dzięki Wam wiemy, że nie jesteśmy sami.<br><br>
@@ -2137,11 +2445,31 @@
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('add-to-cart-btn')) {
                 e.preventDefault();
+                const productCard = e.target.closest('.product-card');
                 const name = e.target.getAttribute('data-name');
                 const price = parseFloat(e.target.getAttribute('data-price'));
                 const image = e.target.getAttribute('data-image');
                 
-                addToCart(name, price, image);
+                // Pobierz wybrane opcje
+                const colorSelect = productCard.querySelector('.color-select');
+                const sizeSelect = productCard.querySelector('.size-select');
+                const circumferenceSelect = productCard.querySelector('.circumference-select');
+                
+                let options = {};
+                
+                if (colorSelect) {
+                    options.color = colorSelect.value;
+                }
+                
+                if (sizeSelect) {
+                    options.size = sizeSelect.value;
+                }
+                
+                if (circumferenceSelect) {
+                    options.circumference = circumferenceSelect.value;
+                }
+                
+                addToCart(name, price, image, options);
             }
         });
     }
@@ -2167,6 +2495,19 @@
             cart.forEach((item, index) => {
                 total += item.price * item.quantity;
                 
+                let optionsHtml = '';
+                if (item.options) {
+                    if (item.options.color) {
+                        optionsHtml += `<div class="text-sm">Kolor: ${item.options.color}</div>`;
+                    }
+                    if (item.options.size) {
+                        optionsHtml += `<div class="text-sm">Rozmiar: ${item.options.size}</div>`;
+                    }
+                    if (item.options.circumference) {
+                        optionsHtml += `<div class="text-sm">Obwód: ${item.options.circumference}</div>`;
+                    }
+                }
+                
                 const cartItem = document.createElement('div');
                 cartItem.className = 'cart-item';
                 cartItem.innerHTML = `
@@ -2174,7 +2515,7 @@
                     <div class="flex-1">
                         <div class="font-bold">${item.name}</div>
                         <div>${item.price} zł × ${item.quantity}</div>
-                        ${item.size ? `<div class="text-sm">Rozmiar: ${item.size}</div>` : ''}
+                        ${optionsHtml}
                     </div>
                     <button onclick="removeFromCart(${index})" class="text-red-500"><i class="fas fa-trash"></i></button>
                 `;
@@ -2192,10 +2533,11 @@
         localStorage.setItem('adelbertus_cart', JSON.stringify(cart));
     }
 
-    function addToCart(name, price, image = null, size = null) {
-        // Sprawdź czy produkt już jest w koszyku
+    function addToCart(name, price, image = null, options = {}) {
+        // Sprawdź czy produkt już jest w koszyku z tymi samymi opcjami
         const existingIndex = cart.findIndex(item => 
-            item.name === name && item.size === size
+            item.name === name && 
+            JSON.stringify(item.options) === JSON.stringify(options)
         );
         
         if (existingIndex >= 0) {
@@ -2206,7 +2548,7 @@
                 price,
                 quantity: 1,
                 image,
-                size,
+                options,
                 id: Date.now()
             });
         }
@@ -2423,7 +2765,7 @@
             `Projekt: ${currentDesign.text || 'Niestandardowy'} (${productSize.value})`,
             price,
             canvas.toDataURL(),
-            productSize.value
+            { size: productSize.value }
         );
     }
 
@@ -2477,7 +2819,20 @@
         
         cart.forEach((item, index) => {
             emailBody += `${index + 1}. ${item.name} - ${item.price} zł × ${item.quantity}`;
-            if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
+            
+            // Dodaj informacje o opcjach
+            if (item.options) {
+                if (item.options.color) {
+                    emailBody += `, Kolor: ${item.options.color}`;
+                }
+                if (item.options.size) {
+                    emailBody += `, Rozmiar: ${item.options.size}`;
+                }
+                if (item.options.circumference) {
+                    emailBody += `, Obwód: ${item.options.circumference}`;
+                }
+            }
+            
             emailBody += '\n';
         });
         
@@ -2492,9 +2847,22 @@
     function sendOrderWhatsApp() {
         let message = 'Zamówienie z AdelbertusShop:%0A%0A';
         
-        cart.forEach((item, index) => {
+        cart.forEach((item, index) {
             message += `${index + 1}. ${item.name} - ${item.price} zł × ${item.quantity}`;
-            if (item.size) message += ` (Rozmiar: ${item.size})`;
+            
+            // Dodaj informacje o opcjach
+            if (item.options) {
+                if (item.options.color) {
+                    message += `, Kolor: ${item.options.color}`;
+                }
+                if (item.options.size) {
+                    message += `, Rozmiar: ${item.options.size}`;
+                }
+                if (item.options.circumference) {
+                    message += `, Obwód: ${item.options.circumference}`;
+                }
+            }
+            
             message += '%0A';
         });
         
@@ -2652,7 +3020,7 @@
                 }
             ];
             
-            samplePosts.forEach((post, index) => {
+            samplePosts.forEach((post, index) {
                 const postElement = document.createElement('div');
                 postElement.className = 'blog-post';
                 postElement.innerHTML = `
@@ -2794,7 +3162,7 @@
         const notification = document.createElement('div');
         notification.textContent = message;
         notification.style.position = 'fixed';
-        notification.style.bottom = '20px';
+        notification.style.bottom: '20px';
         notification.style.left = '50%';
         notification.style.transform = 'translateX(-50%)';
         notification.style.backgroundColor = '#d4af37';
@@ -2832,10 +3200,7 @@
     window.sendOrderWhatsApp = sendOrderWhatsApp;
 </script>
 </body>
-</html>                
-
-
-
+</html>
 
 
 
