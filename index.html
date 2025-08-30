@@ -936,7 +936,7 @@
                 <h2>Witaj w AdelbertusShop</h2>
                 <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
             </div>
-            <!-- Sekcja reklamowa - baner -->
+           <!-- Sekcja reklamowa - baner -->
 <div class="ad-container">
     <div class="ad-banner active">
         <a href="#" target="_blank">
@@ -947,9 +947,7 @@
     
     <div class="ad-banner">
         <a href="#" target="_blank">
-            <div class="placeholder-banner">
-                <p>Drugi baner</p>
-            </div>
+            <img src="https://via.placeholder.com/150" alt="Baner 2" class="banner-img">
         </a>
         <div class="timer">15s</div>
     </div>
@@ -979,20 +977,11 @@
 
 .ad-banner.active { opacity: 1; }
 
-.banner-img { max-width: 50%; height: auto; border-radius: 4px; }
-
-.placeholder-banner {
-    width: 50%;
-    max-width: 150px;
+.banner-img {
+    max-width: 50%; /* zmniejszenie banerów o połowę */
+    max-height: 50%;
     height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #3a7bd5;
-    color: white;
-    border-radius: 8px;
-    font-weight: bold;
-    padding: 20px;
+    border-radius: 4px;
 }
 
 .timer {
@@ -1009,21 +998,18 @@
 /* Tablet */
 @media (max-width: 1024px) {
     .ad-container { height: 150px; }
-    .banner-img { max-width: 60%; }
-    .placeholder-banner { width: 120px; height: 120px; }
+    .banner-img { max-width: 40%; }
 }
 
 /* Telefon */
 @media (max-width: 768px) {
     .ad-container { height: 120px; }
-    .banner-img { max-width: 70%; }
-    .placeholder-banner { width: 100px; height: 100px; font-size: 12px; }
+    .banner-img { max-width: 50%; }
 }
 
 @media (max-width: 480px) {
     .ad-container { height: 100px; }
-    .banner-img { max-width: 80%; }
-    .placeholder-banner { width: 80px; height: 80px; font-size: 10px; }
+    .banner-img { max-width: 60%; }
 }
 </style>
 
@@ -1055,8 +1041,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (seconds <= 0) changeBanner();
     }, 1000);
 });
-</script>
-             
+</script>             
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
                 <div class="ad-banner large video">
@@ -2866,6 +2851,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
