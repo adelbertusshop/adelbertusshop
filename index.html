@@ -1695,83 +1695,130 @@
         <p class="mt-4 text-gray-400">– parafraza Machiavelli × AdelbertusShop</p>
     </div>
 </section>
-        
-<!-- Blog - ZMODYFIKOWANY -->
-<section id="blog">
-    <div class="section-title">
-        <h2>Blog</h2>
-        <p>Podziel się swoimi przemyśleniami i inspiracjami</p>
+        <section id="blog" class="influence-section">
+    <div class="section-title neon-glow">
+        <h2>Blog – Strefa Wpływu</h2>
+        <p>Nie czytasz? Tracisz przewagę.</p>
     </div>
 
     <div class="text-center mb-8">
-        <button class="nav-btn gold-bg" onclick="showBlogForm()"><i class="fas fa-pencil-alt"></i> Napisz nowy artykuł</button>
+        <button class="nav-btn gold-bg" onclick="showBlogForm()">
+            <i class="fas fa-feather-alt"></i> Zostaw swój manifest
+        </button>
     </div>
     
     <div class="blog-posts" id="blogPostsContainer">
-        <!-- Przykładowe artykuły -->
-        <div class="blog-post">
-            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sztuka" class="blog-image">
+        <!-- Przykład artykułu -->
+        <div class="blog-post shadow-lg hover:scale-105 transition-transform relative">
+            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713"
+                 alt="Sztuka" class="blog-image">
             <div class="blog-content">
-                <h3 class="text-xl font-bold mb-2">Sztuka jako forma ekspresji</h3>
-                <p class="text-sm text-gray-600">Opublikowano: 12 czerwca 2023</p>
-                <div class="blog-excerpt">
-                    <p class="mt-3">Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...</p>
+                <h3 class="text-2xl font-bold mb-2 text-gold">Sztuka jako narzędzie wpływu</h3>
+                <p class="text-sm text-gray-300 italic">Opublikowano: 12 czerwca 2023 | <span id="readersCount">327</span> czytelników</p>
+                
+                <!-- Licznik presji -->
+                <div class="countdown text-red-400 font-bold mb-2">Ten wpis może zniknąć za: <span id="countdownTimer">30</span> s</div>
+
+                <div class="blog-excerpt typing text-white">
+                    <p>Nie chodzi o piękno. Chodzi o władzę. Kto potrafi wyrazić siebie, potrafi też zmienić innych...</p>
                 </div>
-                <div class="blog-full">
-                    <p class="mt-3">Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie i komunikować się z innymi bez słów. W kontekście mody, projektowanie ubrań to nie tylko tworzenie funkcjonalnych przedmiotów, ale także forma sztuki, która pozwala noszącym wyrazić swoją osobowość i wartości.</p>
+                <div class="blog-full hidden text-gray-200">
+                    <p>Sztuka zawsze była narzędziem wpływu. W modzie, muzyce czy designie – każdy wybór jest komunikatem. 
+                    Nieświadomie zdradzasz światu kim jesteś. Ci, którzy to rozumieją, kreują rzeczywistość. Reszta staje się ich publicznością.</p>
                 </div>
-                <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
-                <button class="nav-btn mt-2" onclick="shareArticle('Sztuka jako forma ekspresji', 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
-            </div>
-        </div>
-        
-        <div class="blog-post">
-            <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Design" class="blog-image">
-            <div class="blog-content">
-                <h3 class="text-xl font-bold mb-2">Trendy w streetwearze 2023</h3>
-                <p class="text-sm text-gray-600">Opublikowano: 5 czerwca 2023</p>
-                <div class="blog-excerpt">
-                    <p class="mt-3">Odkryj najnowsze trendy w modzie ulicznej tego sezonu...</p>
-                </div>
-                <div class="blog-full">
-                    <p class="mt-3">Streetwear w 2023 roku ewoluuje w kierunku połączenia komfortu and style. Dominują oversize'owe fasony, earthy kolory oraz odważne nadruki. W tym sezonie królują również elementy vintage i moda zrównoważona.</p>
-                </div>
-                <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
-                <button class="nav-btn mt-2" onclick="shareArticle('Trendy w streetwearze 2023', 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
+                <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">🔑 Odkryj tajemnicę</button>
+                <button class="nav-btn mt-2" onclick="shareArticle('Sztuka jako narzędzie wpływu', 'https://images.unsplash.com/photo-1542831371-29b0f74f9713')">
+                    📢 Zostaw swój ślad
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Formularz do dodawania nowych artykułów -->
-    <div id="blogForm" class="email-form" style="display: none;">
-        <h3 class="text-2xl font-bold mb-4">Dodaj nowy artykuł</h3>
+    <!-- Formularz dodawania -->
+    <div id="blogForm" class="email-form hidden">
+        <h3 class="text-2xl font-bold mb-4 text-gold">Dodaj swój manifest</h3>
         <form id="newBlogPostForm">
             <div class="form-group">
-                <label>Tytuł</label>
+                <label class="text-white">Tytuł – co chcesz światu narzucić?</label>
                 <input type="text" id="blogTitle" required>
             </div>
-            
             <div class="form-group">
-                <label>Krótki opis</label>
+                <label class="text-white">Krótka zajawka – haczyk na emocje</label>
                 <textarea id="blogExcerpt" rows="2" required></textarea>
             </div>
-            
             <div class="form-group">
-                <label>Pełna treść</label>
+                <label class="text-white">Pełna treść – twoja narracja</label>
                 <textarea id="blogContent" rows="5" required></textarea>
             </div>
-            
             <div class="form-group">
-                <label>URL obrazka</label>
+                <label class="text-white">URL obrazka – obraz mówi więcej niż słowa</label>
                 <input type="url" id="blogImage" placeholder="https://...">
             </div>
-            
-            <button type="submit" class="nav-btn gold-bg">Opublikuj artykuł</button>
+            <button type="submit" class="nav-btn gold-bg">🔥 Opublikuj manifest</button>
             <button type="button" class="nav-btn" onclick="hideBlogForm()">Anuluj</button>
         </form>
     </div>
 </section>
 
+<!-- Pytania psychologiczne -->
+<div id="psyQuestions" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold text-gold opacity-0 transition-opacity duration-700 pointer-events-none"></div>
+
+<style>
+.influence-section {
+  background: linear-gradient(135deg, #0a0a0a, #1a0000);
+  color: #eee;
+  padding: 50px 20px;
+  border-top: 3px solid #ffd700;
+}
+
+.text-gold { color: #ffd700; }
+
+.neon-glow {
+  color: #ffd700;
+  text-shadow: 0 0 10px #ffae00, 0 0 20px #ff7300;
+}
+
+.typing {
+  border-right: 2px solid #ffd700;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 5s steps(60, end) forwards, blink 0.75s step-end infinite;
+}
+
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink { 50% { border-color: transparent } }
+</style>
+
+<script>
+/* Licznik presji */
+let countdown = 30;
+const timer = setInterval(() => {
+    countdown--;
+    document.getElementById("countdownTimer").innerText = countdown;
+    if (countdown <= 0) {
+        clearInterval(timer);
+        document.querySelector(".countdown").innerText = "Zbyt późno – inni już zabrali tę wiedzę.";
+    }
+}, 1000);
+
+/* Psychologiczne pytania pojawiające się przy scrollu */
+const questions = [
+    "Naprawdę jesteś gotów to zignorować?",
+    "Kto kontroluje słowa, kontroluje ludzi.",
+    "A jeśli to właśnie ta wiedza daje ci przewagę?",
+    "Czytaj dalej... albo inni zrobią to za ciebie."
+];
+window.addEventListener("scroll", () => {
+    const el = document.getElementById("psyQuestions");
+    if (Math.random() > 0.95) { // losowo przy scrollu
+        el.innerText = questions[Math.floor(Math.random() * questions.length)];
+        el.style.opacity = 1;
+        setTimeout(() => el.style.opacity = 0, 3000);
+    }
+});
+</script>
+    
 <!-- Regulamin -->
 <section id="regulations">
     <div class="section-title">
@@ -2847,6 +2894,7 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 </script>
 </body>
 </html>
+
 
 
 
