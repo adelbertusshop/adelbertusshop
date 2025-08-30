@@ -936,7 +936,7 @@
                 <h2>Witaj w AdelbertusShop</h2>
                 <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
             </div>
-           <!-- Sekcja reklamowa - baner -->
+<!-- Sekcja reklamowa - baner -->
 <div class="ad-container">
     <div class="ad-banner active">
         <a href="#" target="_blank">
@@ -944,7 +944,7 @@
         </a>
         <div class="timer">15s</div>
     </div>
-    
+
     <div class="ad-banner">
         <a href="#" target="_blank">
             <img src="https://via.placeholder.com/150" alt="Baner 2" class="banner-img">
@@ -957,8 +957,8 @@
 .ad-container {
     position: relative;
     max-width: 728px;
-    margin: 20px auto;
     height: 180px;
+    margin: 20px auto;
     overflow: hidden;
     border-radius: 8px;
     background: #f5f5f5;
@@ -975,10 +975,12 @@
     transition: opacity 1s ease;
 }
 
-.ad-banner.active { opacity: 1; }
+.ad-banner.active {
+    opacity: 1;
+}
 
 .banner-img {
-    max-width: 50%; /* zmniejszenie banerów o połowę */
+    max-width: 50%;
     max-height: 50%;
     height: auto;
     border-radius: 4px;
@@ -1041,7 +1043,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (seconds <= 0) changeBanner();
     }, 1000);
 });
-</script>             
+</script>            
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
                 <div class="ad-banner large video">
@@ -2851,6 +2853,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
