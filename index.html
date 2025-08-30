@@ -936,23 +936,22 @@
                 <h2>Witaj w AdelbertusShop</h2>
                 <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
             </div>
-            
-<!-- Sekcja reklamowa - baner -->
+            <!-- Sekcja reklamowa - baner -->
 <div class="ad-container">
-    <div class="ad-banner large active">
+    <div class="ad-banner active">
         <a href="#" target="_blank">
             <img src="https://i.ibb.co/Rk0nvFkV/Messenger-creation-9-C2-DF47-C-5660-4-D41-8652-E1-A259-B8-B09-C.jpg" alt="Baner 1" class="banner-img">
         </a>
-        <div class="timer" id="bannerTimer">15s</div>
+        <div class="timer">15s</div>
     </div>
     
-    <div class="ad-banner large">
+    <div class="ad-banner">
         <a href="#" target="_blank">
-            <!-- Tutaj wstaw drugi baner -->
             <div class="placeholder-banner">
-                <p>Drugi baner (kwadratowy)</p>
+                <p>Drugi baner</p>
             </div>
         </a>
+        <div class="timer">15s</div>
     </div>
 </div>
 
@@ -975,29 +974,25 @@
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.8s ease;
+    transition: opacity 1s ease;
 }
 
-.ad-banner.active {
-    opacity: 1;
-}
+.ad-banner.active { opacity: 1; }
 
-.banner-img {
-    max-width: 50%;
-    height: auto;
-    border-radius: 4px;
-}
+.banner-img { max-width: 50%; height: auto; border-radius: 4px; }
 
 .placeholder-banner {
-    width: 150px;
-    height: 150px;
+    width: 50%;
+    max-width: 150px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+    background: #3a7bd5;
     color: white;
     border-radius: 8px;
     font-weight: bold;
+    padding: 20px;
 }
 
 .timer {
@@ -1011,73 +1006,53 @@
     font-size: 12px;
 }
 
-/* Responsywność */
+/* Tablet */
+@media (max-width: 1024px) {
+    .ad-container { height: 150px; }
+    .banner-img { max-width: 60%; }
+    .placeholder-banner { width: 120px; height: 120px; }
+}
+
+/* Telefon */
 @media (max-width: 768px) {
-    .ad-container {
-        height: 150px;
-    }
-    
-    .banner-img {
-        max-width: 60%;
-    }
-    
-    .placeholder-banner {
-        width: 120px;
-        height: 120px;
-    }
+    .ad-container { height: 120px; }
+    .banner-img { max-width: 70%; }
+    .placeholder-banner { width: 100px; height: 100px; font-size: 12px; }
 }
 
 @media (max-width: 480px) {
-    .ad-container {
-        height: 120px;
-    }
-    
-    .banner-img {
-        max-width: 70%;
-    }
-    
-    .placeholder-banner {
-        width: 100px;
-        height: 100px;
-        font-size: 12px;
-    }
+    .ad-container { height: 100px; }
+    .banner-img { max-width: 80%; }
+    .placeholder-banner { width: 80px; height: 80px; font-size: 10px; }
 }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const banners = document.querySelectorAll('.ad-banner');
-    const timer = document.getElementById('bannerTimer');
     let currentIndex = 0;
-    let seconds = 15;
-    
-    // Funkcja do zmiany banerów
-    function changeBanner() {
-        // Ukryj aktualny baner
-        banners[currentIndex].classList.remove('active');
-        
-        // Przełącz na następny baner
-        currentIndex = (currentIndex + 1) % banners.length;
-        
-        // Pokaż nowy baner
-        banners[currentIndex].classList.add('active');
-        
-        // Zresetuj timer
-        seconds = 15;
-        timer.textContent = seconds + 's';
+    const displayTime = 15;
+    let seconds = displayTime;
+
+    function updateTimer() {
+        banners[currentIndex].querySelector('.timer').textContent = seconds + 's';
     }
-    
-    // Ustaw początkowy baner jako aktywny
+
+    function changeBanner() {
+        banners[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % banners.length;
+        banners[currentIndex].classList.add('active');
+        seconds = displayTime;
+        updateTimer();
+    }
+
     banners[currentIndex].classList.add('active');
-    
-    // Odliczanie timeru
+    updateTimer();
+
     setInterval(function() {
         seconds--;
-        timer.textContent = seconds + 's';
-        
-        if (seconds <= 0) {
-            changeBanner();
-        }
+        updateTimer();
+        if (seconds <= 0) changeBanner();
     }, 1000);
 });
 </script>
@@ -2891,6 +2866,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
