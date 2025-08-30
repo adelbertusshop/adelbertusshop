@@ -937,14 +937,151 @@
                 <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
             </div>
             
-            <!-- Sekcja reklamowa - baner -->
-            <div class="ad-container">
-                <div class="ad-banner large">
-                    <p>Miejsce na baner reklamowy (728x90)</p>
-                    <div class="timer" id="bannerTimer">30s</div>
-                </div>
+<!-- Sekcja reklamowa - baner -->
+<div class="ad-container">
+    <div class="ad-banner large active">
+        <a href="#" target="_blank">
+            <img src="https://i.ibb.co/Rk0nvFkV/Messenger-creation-9-C2-DF47-C-5660-4-D41-8652-E1-A259-B8-B09-C.jpg" alt="Baner 1" class="banner-img">
+        </a>
+        <div class="timer" id="bannerTimer">15s</div>
+    </div>
+    
+    <div class="ad-banner large">
+        <a href="#" target="_blank">
+            <!-- Tutaj wstaw drugi baner -->
+            <div class="placeholder-banner">
+                <p>Drugi baner (kwadratowy)</p>
             </div>
-            
+        </a>
+    </div>
+</div>
+
+<style>
+.ad-container {
+    position: relative;
+    max-width: 728px;
+    margin: 20px auto;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f5f5f5;
+}
+
+.ad-banner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.ad-banner.active {
+    opacity: 1;
+}
+
+.banner-img {
+    max-width: 50%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.placeholder-banner {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.timer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .ad-container {
+        height: 150px;
+    }
+    
+    .banner-img {
+        max-width: 60%;
+    }
+    
+    .placeholder-banner {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ad-container {
+        height: 120px;
+    }
+    
+    .banner-img {
+        max-width: 70%;
+    }
+    
+    .placeholder-banner {
+        width: 100px;
+        height: 100px;
+        font-size: 12px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const banners = document.querySelectorAll('.ad-banner');
+    const timer = document.getElementById('bannerTimer');
+    let currentIndex = 0;
+    let seconds = 15;
+    
+    // Funkcja do zmiany banerów
+    function changeBanner() {
+        // Ukryj aktualny baner
+        banners[currentIndex].classList.remove('active');
+        
+        // Przełącz na następny baner
+        currentIndex = (currentIndex + 1) % banners.length;
+        
+        // Pokaż nowy baner
+        banners[currentIndex].classList.add('active');
+        
+        // Zresetuj timer
+        seconds = 15;
+        timer.textContent = seconds + 's';
+    }
+    
+    // Ustaw początkowy baner jako aktywny
+    banners[currentIndex].classList.add('active');
+    
+    // Odliczanie timeru
+    setInterval(function() {
+        seconds--;
+        timer.textContent = seconds + 's';
+        
+        if (seconds <= 0) {
+            changeBanner();
+        }
+    }, 1000);
+});
+</script>
+             
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
                 <div class="ad-banner large video">
@@ -2754,6 +2891,7 @@
 </script>
 </body>
 </html>
+
 
 
 
