@@ -1812,6 +1812,54 @@
 </div>
 </section>
 
+<!-- DODANE: Neon glow i animacje -->
+<style>
+/* Neon glow */
+.neon-glow {
+  color: #fff;
+  text-shadow:
+    0 0 5px #a855f7,
+    0 0 10px #a855f7,
+    0 0 20px #9333ea,
+    0 0 40px #9333ea;
+  animation: neonPulse 2s infinite alternate;
+}
+
+@keyframes neonPulse {
+  from { text-shadow: 0 0 5px #a855f7, 0 0 10px #a855f7, 0 0 20px #9333ea; }
+  to   { text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7, 0 0 40px #9333ea; }
+}
+
+/* Animacja dopisywania tekstu */
+.typing {
+  border-right: 2px solid #ffd700;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 6s steps(60, end) forwards, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+/* Animacja donorów */
+.donor-entry {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
 <!-- Kontakt - ZMODYFIKOWANY -->
 <section id="contact">
     <div class="section-title">
@@ -1867,6 +1915,39 @@
     </div>
 </section>
 </main>
+
+<!-- DODANE: Skrypt dla efektów neonowych i animacji -->
+<script>
+// ✉️ Efekt dopisywania listu od dzieci
+document.addEventListener("DOMContentLoaded", () => {
+    const letter = "Dziękujemy za każdą pomoc. Dzięki Tobie czujemy, że nie jesteśmy sami. ❤️";
+    const letterBox = document.getElementById("childrenLetter");
+    
+    let i = 0;
+    function typeWriter() {
+        if (i < letter.length) {
+            letterBox.innerHTML += letter.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50); // prędkość pisania
+        }
+    }
+    typeWriter();
+});
+
+// 🔥 Animowane dodawanie darczyńców
+function addDonor(name, amount) {
+    const list = document.getElementById("donorsList");
+    const li = document.createElement("li");
+    li.className = "donor-entry";
+    li.textContent = `${name} – ${amount} zł`;
+    list.prepend(li);
+}
+
+// przykładowi darczyńcy co kilka sekund
+setTimeout(() => addDonor("Anna K.", 50), 2000);
+setTimeout(() => addDonor("Marek Z.", 100), 5000);
+setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
+</script>
 
 <!-- Koszyk - ZMODYFIKOWANY -->
 <div id="cartIcon">
@@ -2417,7 +2498,7 @@
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
         emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
-        emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
+        emailBody += `Proszę o potwierdzenie zamówienia and podanie terminu realizacji.`;
         
         window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
     }
@@ -2571,8 +2652,8 @@
             const samplePosts = [
                 {
                     title: "Sztuka jako forma ekspresji",
-                    excerpt: "Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...",
-                    content: "Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie i komunikować się z innymi bez słów.",
+                    excerpt: "Jak wyrażać siebie przez projektowanie ubrań and dlaczego warto...",
+                    content: "Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie and komunikować się z innymi bez słów.",
                     image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
                     date: new Date().toISOString()
                 },
@@ -2766,8 +2847,6 @@
 </script>
 </body>
 </html>
-
-
 
 
 
