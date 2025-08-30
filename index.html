@@ -1695,129 +1695,82 @@
         <p class="mt-4 text-gray-400">– parafraza Machiavelli × AdelbertusShop</p>
     </div>
 </section>
-        <section id="blog" class="influence-section">
-    <div class="section-title neon-glow">
-        <h2>Blog – Strefa Wpływu</h2>
-        <p>Nie czytasz? Tracisz przewagę.</p>
-    </div>
-
-    <div class="text-center mb-8">
-        <button class="nav-btn gold-bg" onclick="showBlogForm()">
-            <i class="fas fa-feather-alt"></i> Zostaw swój manifest
-        </button>
-    </div>
     
-    <div class="blog-posts" id="blogPostsContainer">
-        <!-- Przykład artykułu -->
-        <div class="blog-post shadow-lg hover:scale-105 transition-transform relative">
-            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713"
-                 alt="Sztuka" class="blog-image">
-            <div class="blog-content">
-                <h3 class="text-2xl font-bold mb-2 text-gold">Sztuka jako narzędzie wpływu</h3>
-                <p class="text-sm text-gray-300 italic">Opublikowano: 12 czerwca 2023 | <span id="readersCount">327</span> czytelników</p>
-                
-                <!-- Licznik presji -->
-                <div class="countdown text-red-400 font-bold mb-2">Ten wpis może zniknąć za: <span id="countdownTimer">30</span> s</div>
-
-                <div class="blog-excerpt typing text-white">
-                    <p>Nie chodzi o piękno. Chodzi o władzę. Kto potrafi wyrazić siebie, potrafi też zmienić innych...</p>
-                </div>
-                <div class="blog-full hidden text-gray-200">
-                    <p>Sztuka zawsze była narzędziem wpływu. W modzie, muzyce czy designie – każdy wybór jest komunikatem. 
-                    Nieświadomie zdradzasz światu kim jesteś. Ci, którzy to rozumieją, kreują rzeczywistość. Reszta staje się ich publicznością.</p>
-                </div>
-                <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">🔑 Odkryj tajemnicę</button>
-                <button class="nav-btn mt-2" onclick="shareArticle('Sztuka jako narzędzie wpływu', 'https://images.unsplash.com/photo-1542831371-29b0f74f9713')">
-                    📢 Zostaw swój ślad
-                </button>
-            </div>
-        </div>
+    <!-- Blog - WERSJA ROZSZERZONA Z TEMATAMI -->
+<section id="blog" class="bg-gradient-to-b from-black via-gray-900 to-black text-gold py-12">
+    <div class="section-title text-center">
+        <h2 class="text-4xl font-bold">Blog – Manipulacja, Psychologia, Wpływ</h2>
+        <p class="italic">Kto zna kody, ten kontroluje emocje</p>
     </div>
 
-    <!-- Formularz dodawania -->
-    <div id="blogForm" class="email-form hidden">
-        <h3 class="text-2xl font-bold mb-4 text-gold">Dodaj swój manifest</h3>
+    <!-- 🔥 Tabela tematów do wypełnienia -->
+    <div class="overflow-x-auto mt-10">
+        <table class="min-w-full border border-gold text-left text-lg">
+            <thead class="bg-gray-800 text-gold uppercase">
+                <tr>
+                    <th class="px-6 py-3 border border-gold">Temat</th>
+                    <th class="px-6 py-3 border border-gold">Opis</th>
+                    <th class="px-6 py-3 border border-gold">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="px-6 py-4 border border-gold">Psychologia tłumu</td>
+                    <td class="px-6 py-4 border border-gold">Jak jednostka gubi wolność w masie – i jak to wykorzystać.</td>
+                    <td class="px-6 py-4 border border-gold text-gray-400 italic">Do wypełnienia</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 border border-gold">Język jako narzędzie władzy</td>
+                    <td class="px-6 py-4 border border-gold">Słowa, które sterują podświadomością bardziej niż fakty.</td>
+                    <td class="px-6 py-4 border border-gold text-gray-400 italic">Do wypełnienia</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 border border-gold">Efekt Machiavelliego</td>
+                    <td class="px-6 py-4 border border-gold">Dlaczego lepiej być budzącym lęk niż lubianym.</td>
+                    <td class="px-6 py-4 border border-gold text-gray-400 italic">Do wypełnienia</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 border border-gold">Kody wizualne</td>
+                    <td class="px-6 py-4 border border-gold">Symbole i kolory, które wywołują emocje bez słów.</td>
+                    <td class="px-6 py-4 border border-gold text-gray-400 italic">Do wypełnienia</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 border border-gold">Socjotechnika sprzedaży</td>
+                    <td class="px-6 py-4 border border-gold">Jak subtelnie zmuszać ludzi do wyborów, które wyglądają na ich własne.</td>
+                    <td class="px-6 py-4 border border-gold text-gray-400 italic">Do wypełnienia</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Formularz dodawania artykułu -->
+    <div id="blogForm" class="email-form bg-gray-800 mt-12 p-6 rounded-lg shadow-lg">
+        <h3 class="text-2xl font-bold mb-4 text-gold">Dodaj nowy artykuł</h3>
         <form id="newBlogPostForm">
-            <div class="form-group">
-                <label class="text-white">Tytuł – co chcesz światu narzucić?</label>
-                <input type="text" id="blogTitle" required>
+            <div class="form-group mb-4">
+                <label class="block text-gold">Tytuł</label>
+                <input type="text" id="blogTitle" required class="w-full p-2 rounded bg-black text-white border border-gold">
             </div>
-            <div class="form-group">
-                <label class="text-white">Krótka zajawka – haczyk na emocje</label>
-                <textarea id="blogExcerpt" rows="2" required></textarea>
+            
+            <div class="form-group mb-4">
+                <label class="block text-gold">Krótki opis</label>
+                <textarea id="blogExcerpt" rows="2" required class="w-full p-2 rounded bg-black text-white border border-gold"></textarea>
             </div>
-            <div class="form-group">
-                <label class="text-white">Pełna treść – twoja narracja</label>
-                <textarea id="blogContent" rows="5" required></textarea>
+            
+            <div class="form-group mb-4">
+                <label class="block text-gold">Pełna treść</label>
+                <textarea id="blogContent" rows="5" required class="w-full p-2 rounded bg-black text-white border border-gold"></textarea>
             </div>
-            <div class="form-group">
-                <label class="text-white">URL obrazka – obraz mówi więcej niż słowa</label>
-                <input type="url" id="blogImage" placeholder="https://...">
+            
+            <div class="form-group mb-4">
+                <label class="block text-gold">URL obrazka</label>
+                <input type="url" id="blogImage" placeholder="https://..." class="w-full p-2 rounded bg-black text-white border border-gold">
             </div>
-            <button type="submit" class="nav-btn gold-bg">🔥 Opublikuj manifest</button>
-            <button type="button" class="nav-btn" onclick="hideBlogForm()">Anuluj</button>
+            
+            <button type="submit" class="nav-btn gold-bg">Opublikuj artykuł</button>
         </form>
     </div>
-</section>
-
-<!-- Pytania psychologiczne -->
-<div id="psyQuestions" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold text-gold opacity-0 transition-opacity duration-700 pointer-events-none"></div>
-
-<style>
-.influence-section {
-  background: linear-gradient(135deg, #0a0a0a, #1a0000);
-  color: #eee;
-  padding: 50px 20px;
-  border-top: 3px solid #ffd700;
-}
-
-.text-gold { color: #ffd700; }
-
-.neon-glow {
-  color: #ffd700;
-  text-shadow: 0 0 10px #ffae00, 0 0 20px #ff7300;
-}
-
-.typing {
-  border-right: 2px solid #ffd700;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-  animation: typing 5s steps(60, end) forwards, blink 0.75s step-end infinite;
-}
-
-@keyframes typing { from { width: 0 } to { width: 100% } }
-@keyframes blink { 50% { border-color: transparent } }
-</style>
-
-<script>
-/* Licznik presji */
-let countdown = 30;
-const timer = setInterval(() => {
-    countdown--;
-    document.getElementById("countdownTimer").innerText = countdown;
-    if (countdown <= 0) {
-        clearInterval(timer);
-        document.querySelector(".countdown").innerText = "Zbyt późno – inni już zabrali tę wiedzę.";
-    }
-}, 1000);
-
-/* Psychologiczne pytania pojawiające się przy scrollu */
-const questions = [
-    "Naprawdę jesteś gotów to zignorować?",
-    "Kto kontroluje słowa, kontroluje ludzi.",
-    "A jeśli to właśnie ta wiedza daje ci przewagę?",
-    "Czytaj dalej... albo inni zrobią to za ciebie."
-];
-window.addEventListener("scroll", () => {
-    const el = document.getElementById("psyQuestions");
-    if (Math.random() > 0.95) { // losowo przy scrollu
-        el.innerText = questions[Math.floor(Math.random() * questions.length)];
-        el.style.opacity = 1;
-        setTimeout(() => el.style.opacity = 0, 3000);
-    }
-});
-</script>
+</section>     
     
 <!-- Regulamin -->
 <section id="regulations">
@@ -2894,6 +2847,7 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 </script>
 </body>
 </html>
+
 
 
 
