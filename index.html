@@ -936,14 +936,12 @@
                 <h2>Witaj w AdelbertusShop</h2>
                 <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
             </div>
-            <!-- Sekcja reklamowa - pojedynczy baner -->
+           <!-- Sekcja reklamowa - pojedynczy baner -->
 <div class="ad-container">
     <div class="ad-banner active">
         <a href="#" target="_blank">
-            <img src="https://i.ibb.co/Rk0nvFkV/Messenger-creation-9-C2-DF47-C-5660-4-D41-8652-E1-A259-B8-B09-C.jpg" 
-                 alt="Voytek Art" class="banner-img">
+            <img src="https://i.ibb.co/3rN7M1r/Voytek-Art-Logo.jpg" alt="Voytek Art Portrait" class="banner-img">
         </a>
-        <div class="timer">10s</div>
     </div>
 </div>
 
@@ -955,13 +953,14 @@
     margin: 20px auto;
     overflow: hidden;
     border-radius: 8px;
-    background: #f5f5f5;
+    background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .ad-banner {
+    position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
@@ -976,83 +975,54 @@
 }
 
 .banner-img {
-    max-width: 50%;
-    max-height: 50%;
+    max-width: 60%;
+    max-height: 100%;
     height: auto;
     border-radius: 4px;
-}
-
-.timer {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 10px;
-    font-size: 12px;
 }
 
 /* Tablet */
 @media (max-width: 1024px) {
     .ad-container { height: 150px; }
-    .banner-img { max-width: 40%; }
+    .banner-img { max-width: 70%; }
 }
 
 /* Telefon */
 @media (max-width: 768px) {
     .ad-container { height: 120px; }
-    .banner-img { max-width: 50%; }
+    .banner-img { max-width: 80%; }
 }
 
 @media (max-width: 480px) {
     .ad-container { height: 100px; }
-    .banner-img { max-width: 60%; }
+    .banner-img { max-width: 90%; }
 }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const banner = document.querySelector('.ad-banner');
-    const timerEl = banner.querySelector('.timer');
-    const displayTime = 10; // czas wyświetlania w sekundach
-    const pauseTime = 3;    // czas przerwy w sekundach
-    let seconds = displayTime;
-    let showing = true;
-
-    function updateTimer() {
-        if (showing) {
-            timerEl.textContent = seconds + 's';
-        } else {
-            timerEl.textContent = '';
-        }
-    }
+    let visible = true;
+    let seconds = 10; // czas wyświetlania
 
     function toggleBanner() {
-        if (showing) {
+        if (visible) {
             banner.classList.remove('active');
-            showing = false;
-            setTimeout(() => {
-                showing = true;
-                banner.classList.add('active');
-                seconds = displayTime;
-                updateTimer();
-            }, pauseTime * 1000);
+            visible = false;
+            seconds = 3; // czas przerwy
+        } else {
+            banner.classList.add('active');
+            visible = true;
+            seconds = 10; // czas wyświetlania
         }
     }
 
-    banner.classList.add('active');
-    updateTimer();
-
-    setInterval(function() {
-        if (showing) {
-            seconds--;
-            updateTimer();
-            if (seconds <= 0) toggleBanner();
-        }
+    setInterval(() => {
+        seconds--;
+        if (seconds <= 0) toggleBanner();
     }, 1000);
 });
-</script>  
+</script>            
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
                 <div class="ad-banner large video">
@@ -2862,6 +2832,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
