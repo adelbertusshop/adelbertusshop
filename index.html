@@ -1734,82 +1734,151 @@
         <p class="mt-4 text-gray-400">– parafraza Machiavelli × AdelbertusShop</p>
     </div>
 </section>
-    <!-- Blog - WERSJA ROZSZERZONA Z TEMATAMI -->
-<section id="blog" class="bg-gradient-to-b from-black via-gray-900 to-black text-gold py-12">
-    <div class="section-title text-center">
-        <h2 class="text-4xl font-bold">Blog – Manipulacja, Psychologia, Wpływ</h2>
-        <p class="italic">Kto zna kody, ten kontroluje emocje</p>
+    
+   <!-- Blog - WERSJA Z FORUM I CYKLICZNYMI CYTATAMI -->
+<section id="blog" class="bg-gray-950 py-12">
+    <div class="section-title text-center mb-12">
+        <h2 class="text-4xl font-bold text-gold-400">Blog</h2>
+        <p class="text-gray-300">Miejsce, gdzie każdy może podzielić się swoją myślą</p>
     </div>
 
-    <!-- 🔥 Tabela tematów do wypełnienia -->
-    <div class="overflow-x-auto mt-10">
-        <table class="min-w-full border border-gold text-left text-lg">
-            <thead class="bg-gray-800 text-gold uppercase">
-                <tr>
-                    <th class="px-6 py-3 border border-gold">Temat</th>
-                    <th class="px-6 py-3 border border-gold">Opis</th>
-                    <th class="px-6 py-3 border border-gold">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="px-6 py-4 border border-gold">Psychologia tłumu</td>
-                    <td class="px-6 py-4 border border-gold">Jak jednostka gubi wolność w masie – i jak to wykorzystać.</td>
-                    <td class="px-6 py-4 border border-gold text-gray-400 italic">Do wypełnienia</td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 border border-gold">Język jako narzędzie władzy</td>
-                    <td class="px-6 py-4 border border-gold">Słowa, które sterują podświadomością bardziej niż fakty.</td>
-                    <td class="px-6 py-4 border border-gold text-gray-400 italic">Do wypełnienia</td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 border border-gold">Efekt Machiavelliego</td>
-                    <td class="px-6 py-4 border border-gold">Dlaczego lepiej być budzącym lęk niż lubianym.</td>
-                    <td class="px-6 py-4 border border-gold text-gray-400 italic">Do wypełnienia</td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 border border-gold">Kody wizualne</td>
-                    <td class="px-6 py-4 border border-gold">Symbole i kolory, które wywołują emocje bez słów.</td>
-                    <td class="px-6 py-4 border border-gold text-gray-400 italic">Do wypełnienia</td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 border border-gold">Socjotechnika sprzedaży</td>
-                    <td class="px-6 py-4 border border-gold">Jak subtelnie zmuszać ludzi do wyborów, które wyglądają na ich własne.</td>
-                    <td class="px-6 py-4 border border-gold text-gray-400 italic">Do wypełnienia</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Dynamiczny cytat -->
+    <div class="max-w-2xl mx-auto mb-12 text-center">
+        <blockquote id="dynamic-quote" class="italic text-gold-300 text-xl border-l-4 border-gold-500 pl-4">
+            „Twoje słowa mają większą moc, niż myślisz.”
+        </blockquote>
+    </div>
+
+    <div class="text-center mb-8">
+        <button class="nav-btn gold-bg px-6 py-2 rounded-lg shadow-lg hover:scale-105 transition" onclick="showBlogForm()">
+            <i class="fas fa-pencil-alt"></i> Napisz nowy artykuł
+        </button>
+    </div>
+    
+    <div class="blog-posts grid grid-cols-1 md:grid-cols-2 gap-8 px-6" id="blogPostsContainer">
+        
+        <!-- POST 1 -->
+        <div class="blog-post bg-gray-900 border border-gold-500 rounded-lg shadow-lg hover:bg-gray-800 transition">
+            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sztuka" class="blog-image rounded-t-lg">
+            <div class="blog-content p-6">
+                <h3 class="text-xl font-bold text-gold-400 mb-2">Sztuka jako forma ekspresji</h3>
+                <p class="text-sm text-gray-400">Opublikowano: 12 czerwca 2023</p>
+                <div class="blog-excerpt">
+                    <p class="mt-3 text-gray-200">Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...</p>
+                </div>
+                <div class="blog-full hidden">
+                    <p class="mt-3 text-gray-300">Sztuka to sposób, by inni mogli zobaczyć twoje emocje. Nie trzeba być mistrzem – wystarczy być sobą.</p>
+                    <blockquote class="italic text-gold-300 mt-4 border-l-4 border-gold-500 pl-4">
+                        „Ludzie widzą w twojej twórczości siebie.”
+                    </blockquote>
+
+                    <!-- Sekcja komentarzy -->
+                    <div class="comments mt-6">
+                        <h4 class="text-lg font-bold text-gold-400 mb-2">Komentarze:</h4>
+                        <ul id="comments-post1" class="text-gray-200 space-y-2">
+                            <li>💬 Świetny artykuł, naprawdę trafia w punkt.</li>
+                        </ul>
+                        <form class="mt-3" onsubmit="addComment(event, 'comments-post1')">
+                            <input type="text" class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600" placeholder="Dodaj komentarz..." required>
+                        </form>
+                    </div>
+                </div>
+                <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
+                <button class="nav-btn mt-2" onclick="shareArticle('Sztuka jako forma ekspresji', 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
+            </div>
+        </div>
+
+        <!-- POST 2 -->
+        <div class="blog-post bg-gray-900 border border-gold-500 rounded-lg shadow-lg hover:bg-gray-800 transition">
+            <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Streetwear" class="blog-image rounded-t-lg">
+            <div class="blog-content p-6">
+                <h3 class="text-xl font-bold text-gold-400 mb-2">Trendy w streetwearze 2023</h3>
+                <p class="text-sm text-gray-400">Opublikowano: 5 czerwca 2023</p>
+                <div class="blog-excerpt">
+                    <p class="mt-3 text-gray-200">Moda uliczna nie jest tylko ubraniem – to sposób na bycie sobą.</p>
+                </div>
+                <div class="blog-full hidden">
+                    <p class="mt-3 text-gray-300">Streetwear pokazuje kim jesteś bez słów. To nie trend, to codzienność.</p>
+                    <blockquote class="italic text-gold-300 mt-4 border-l-4 border-gold-500 pl-4">
+                        „Twój styl jest wiadomością, którą wszyscy czytają.”
+                    </blockquote>
+
+                    <!-- Sekcja komentarzy -->
+                    <div class="comments mt-6">
+                        <h4 class="text-lg font-bold text-gold-400 mb-2">Komentarze:</h4>
+                        <ul id="comments-post2" class="text-gray-200 space-y-2">
+                            <li>💬 Tak właśnie czuję, streetwear to moje życie!</li>
+                        </ul>
+                        <form class="mt-3" onsubmit="addComment(event, 'comments-post2')">
+                            <input type="text" class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600" placeholder="Dodaj komentarz..." required>
+                        </form>
+                    </div>
+                </div>
+                <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
+                <button class="nav-btn mt-2" onclick="shareArticle('Trendy w streetwearze 2023', 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
+            </div>
+        </div>
+
     </div>
 
     <!-- Formularz dodawania artykułu -->
-    <div id="blogForm" class="email-form bg-gray-800 mt-12 p-6 rounded-lg shadow-lg">
-        <h3 class="text-2xl font-bold mb-4 text-gold">Dodaj nowy artykuł</h3>
+    <div id="blogForm" class="email-form max-w-xl mx-auto mt-12 bg-gray-900 p-6 rounded-lg shadow-lg border border-gold-500 hidden">
+        <h3 class="text-2xl font-bold text-gold-400 mb-4">Dodaj nowy artykuł</h3>
         <form id="newBlogPostForm">
             <div class="form-group mb-4">
-                <label class="block text-gold">Tytuł</label>
-                <input type="text" id="blogTitle" required class="w-full p-2 rounded bg-black text-white border border-gold">
+                <label class="text-gray-300">Tytuł</label>
+                <input type="text" id="blogTitle" required class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600">
             </div>
             
             <div class="form-group mb-4">
-                <label class="block text-gold">Krótki opis</label>
-                <textarea id="blogExcerpt" rows="2" required class="w-full p-2 rounded bg-black text-white border border-gold"></textarea>
+                <label class="text-gray-300">Krótki opis</label>
+                <textarea id="blogExcerpt" rows="2" required class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600"></textarea>
             </div>
             
             <div class="form-group mb-4">
-                <label class="block text-gold">Pełna treść</label>
-                <textarea id="blogContent" rows="5" required class="w-full p-2 rounded bg-black text-white border border-gold"></textarea>
+                <label class="text-gray-300">Pełna treść</label>
+                <textarea id="blogContent" rows="5" required class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600"></textarea>
             </div>
             
             <div class="form-group mb-4">
-                <label class="block text-gold">URL obrazka</label>
-                <input type="url" id="blogImage" placeholder="https://..." class="w-full p-2 rounded bg-black text-white border border-gold">
+                <label class="text-gray-300">URL obrazka</label>
+                <input type="url" id="blogImage" placeholder="https://..." class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600">
             </div>
             
-            <button type="submit" class="nav-btn gold-bg">Opublikuj artykuł</button>
+            <button type="submit" class="nav-btn gold-bg px-6 py-2 rounded-lg shadow-lg">Opublikuj artykuł</button>
+            <button type="button" class="nav-btn px-6 py-2 rounded-lg" onclick="hideBlogForm()">Anuluj</button>
         </form>
     </div>
-</section>   
-    
+</section>
+
+<script>
+// Lista cytatów do rotacji
+const quotes = [
+    "„Twoje słowa mają większą moc, niż myślisz.”",
+    "„Ludzie słyszą, ale pamiętają to, co widzą.”",
+    "„To, co tworzysz, mówi więcej niż tysiąc słów.”",
+    "„Styl to nie ubranie – to komunikat.”"
+];
+
+let quoteIndex = 0;
+function changeQuote() {
+    quoteIndex = (quoteIndex + 1) % quotes.length;
+    document.getElementById("dynamic-quote").innerText = quotes[quoteIndex];
+}
+// Zmiana co 3 dni = 259200000 ms
+setInterval(changeQuote, 259200000);
+
+// Funkcja dodawania komentarzy
+function addComment(event, commentListId) {
+    event.preventDefault();
+    const input = event.target.querySelector("input");
+    const commentList = document.getElementById(commentListId);
+    const newComment = document.createElement("li");
+    newComment.textContent = "💬 " + input.value;
+    commentList.appendChild(newComment);
+    input.value = "";
+}
+</script>    
 <!-- Regulamin -->
 <section id="regulations">
     <div class="section-title">
@@ -1882,7 +1951,7 @@
 }
 
 @keyframes blink {
-  50% { border-color: transparent }
+ 50% { border-color: transparent }
 }
 
 /* Animacja donorów */
@@ -1894,6 +1963,105 @@
 
 @keyframes fadeInUp {
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* DODANE: Style dla sekcji i koszyka */
+section {
+  display: none;
+}
+
+section.active {
+  display: block;
+}
+
+#cartPanel {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100vh;
+  background: white;
+  z-index: 1000;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+#cartPanel.open {
+  display: block;
+}
+
+#cartIcon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+  cursor: pointer;
+  background: #d4af37;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 24px;
+}
+
+#cartCount {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.nav-btn.active {
+  background: #d4af37;
+  color: black;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.email-order-btn, .whatsapp-order-btn {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.email-order-btn {
+  background: #d4af37;
+  color: black;
+}
+
+.whatsapp-order-btn {
+  background: #25D366;
+  color: white;
 }
 </style>
 
@@ -1960,24 +2128,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const letter = "Dziękujemy za każdą pomoc. Dzięki Tobie czujemy, że nie jesteśmy sami. ❤️";
     const letterBox = document.getElementById("childrenLetter");
     
-    let i = 0;
-    function typeWriter() {
-        if (i < letter.length) {
-            letterBox.innerHTML += letter.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50); // prędkość pisania
+    if (letterBox) {
+        let i = 0;
+        function typeWriter() {
+            if (i < letter.length) {
+                letterBox.innerHTML += letter.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
         }
+        typeWriter();
     }
-    typeWriter();
 });
 
 // 🔥 Animowane dodawanie darczyńców
 function addDonor(name, amount) {
     const list = document.getElementById("donorsList");
-    const li = document.createElement("li");
-    li.className = "donor-entry";
-    li.textContent = `${name} – ${amount} zł`;
-    list.prepend(li);
+    if (list) {
+        const li = document.createElement("li");
+        li.className = "donor-entry";
+        li.textContent = `${name} – ${amount} zł`;
+        list.prepend(li);
+    }
 }
 
 // przykładowi darczyńcy co kilka sekund
@@ -2076,17 +2248,17 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
         designArea: 'front'
     };
 
-    // Dane do rotacji dla zbiórki
+    // Dane do rotacji dla zbiórka
     const donorsData = [
         {
             donors: [
                 '<li><i class="fas fa-heart gold-text"></i> <strong>Anna K.</strong> - paczka z artykułami szkolnymi</li>',
                 '<li><i class="fas fa-heart gold-text"></i> <strong>Tomasz W.</strong> - 500 zł przekazane przez BLIK</li>',
                 '<li><i class="fas fa-heart gold-text"></i> <strong>Fundacja "Przyszłość"</strong> - zestaw komputerowy</li>',
-                '<li><i class="fas fa-heart gold-text"></i> <strong>Pracownicy firmy XYZ</strong> - zbiórka zimowych ubrań</li>'
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Pracownicy firma XYZ</strong> - zbiórka zimowych ubrań</li>'
             ],
             letter: `"Drodzy Przyjaciele,<br><br>
-            Chcielibyśmy podziękować Wam za wszystkie otrzymane dary i wsparcie. Każda paczka, każdy uśmiech i każde dobre słowo dodaje nam siły i wiary w lepsze jutro. Dzięki Wam wiemy, że nie jesteśmy sami.<br><br>
+            Chcielibyśmy podziękować Wam za wszystkie otrzymane dary i wsparcie. Każda paczka, każdy uśmiech i każde dobre słowie dodaje nam siły i wiary w lepsze jutro. Dzięki Wam wiemy, że nie jesteśmy sami.<br><br>
             Wasze gesty dobroci sprawiają, że nasze dni stają się jaśniejsze, a marzenia - bardziej realne. Dziękujemy, że jesteście częścią naszej historii.<br><br>
             Z nadzieją w sercach,<br>
             Dzieci z Domu Dziecka 'Promyk'"`
@@ -2133,6 +2305,9 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
         initOrderForm();
         initAdTimers();
         initCharityRotation();
+        
+        // Pokaż domyślną sekcję
+        showSection('sklep');
     });
 
     // ===== NAWIGACJA =====
@@ -2172,15 +2347,18 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
         });
         
         // Pokaż wybraną sekcję
-        document.getElementById(sectionId).classList.add('active');
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
         
         // Ukryj menu mobilne po wybraniu sekcji
         if (window.innerWidth <= 768) {
             document.getElementById('navContainer').classList.remove('show');
         }
         
-        // Przewiń do góry sekcji
-        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        // Przewiń do góry strony
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // ===== DODAWANIE DO KOSZYKA =====
@@ -2202,6 +2380,8 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
         const cartItems = document.getElementById('cartItems');
         const cartTotal = document.getElementById('cartTotal');
         
+        if (!cartCount || !cartItems || !cartTotal) return;
+        
         // Aktualizuj licznik
         cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
         
@@ -2211,7 +2391,9 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
         if (cart.length === 0) {
             cartItems.innerHTML = '<p class="text-center text-gray-500">Twój koszyk jest pusty</p>';
             cartTotal.textContent = '0 zł';
-            document.getElementById('paypal-container').innerHTML = '';
+            if (document.getElementById('paypal-container')) {
+                document.getElementById('paypal-container').innerHTML = '';
+            }
         } else {
             let total = 0;
             
@@ -2278,6 +2460,8 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
     // ===== STUDIO PROJEKTOWE =====
     function initDesignStudio() {
         const canvas = document.getElementById('designCanvas');
+        if (!canvas) return;
+        
         const ctx = canvas.getContext('2d');
         
         // Ustawienia canvas
@@ -2314,6 +2498,8 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 
     function updateDesign() {
         const canvas = document.getElementById('designCanvas');
+        if (!canvas) return;
+        
         const ctx = canvas.getContext('2d');
         
         // Aktualizuj stan projektu
@@ -2355,7 +2541,7 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
         
         // Aktualizuj podgląd
         const preview = document.querySelector('.design-preview');
-        if (currentDesign.text || currentDesign.image) {
+        if (preview && (currentDesign.text || currentDesign.image)) {
             preview.innerHTML = '<h3>Podgląd Twojego projektu</h3>';
             const img = document.createElement('img');
             img.src = canvas.toDataURL();
@@ -2414,6 +2600,8 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 
     function clearCanvas() {
         const canvas = document.getElementById('designCanvas');
+        if (!canvas) return;
+        
         const ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = '#ffffff';
@@ -2423,7 +2611,10 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
         currentDesign.image = null;
         document.getElementById('designText').value = '';
         
-        document.querySelector('.design-preview').innerHTML = '<h3>Podgląd Twojego projektu</h3><p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>';
+        const preview = document.querySelector('.design-preview');
+        if (preview) {
+            preview.innerHTML = '<h3>Podgląd Twojego projektu</h3><p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>';
+        }
         
         showNotification('Canvas wyczyszczony');
     }
@@ -2480,6 +2671,8 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 
     function saveDesign() {
         const canvas = document.getElementById('designCanvas');
+        if (!canvas) return;
+        
         const link = document.createElement('a');
         link.download = 'adelbertus-design.png';
         link.href = canvas.toDataURL();
@@ -2490,18 +2683,24 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
     // ===== PAYPAL =====
     function renderPayPalButton() {
         const container = document.getElementById('paypal-container');
+        if (!container) return;
+        
         container.innerHTML = '';
         
         if (cart.length === 0) return;
         
-        paypal.HostedButtons({
-            hostedButtonId: "L4639S4363CZE",
-        }).render("#paypal-container");
+        if (typeof paypal !== 'undefined') {
+            paypal.HostedButtons({
+                hostedButtonId: "L4639S4363CZE",
+            }).render("#paypal-container");
+        }
     }
 
     // ===== EMAIL =====
     function sendDesignToEmail() {
         const canvas = document.getElementById('designCanvas');
+        if (!canvas) return;
+        
         const imageData = canvas.toDataURL();
         
         const subject = 'Mój projekt z AdelbertusShop';
@@ -2535,7 +2734,7 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
         emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
-        emailBody += `Proszę o potwierdzenie zamówienia and podanie terminu realizacji.`;
+        emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
         
         window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
     }
@@ -2567,14 +2766,18 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
         if (!form) return;
 
         // Aktualizuje link WhatsApp dynamicznie
-        productInput.addEventListener("input", () => {
-            const product = encodeURIComponent(productInput.value || "");
-            whatsappBtn.href = `https://wa.me/48604296650?text=Chcę%20zamówić:%20${product}`;
-        });
+        if (productInput && whatsappBtn) {
+            productInput.addEventListener("input", () => {
+                const product = encodeURIComponent(productInput.value || "");
+                whatsappBtn.href = `https://wa.me/48604296650?text=Chcę%20zamówić:%20${product}`;
+            });
+        }
 
         // Wysyłka maila
         form.addEventListener("submit", async function(e){
             e.preventDefault();
+            if (!statusEl) return;
+            
             statusEl.textContent = "Wysyłam...";
             statusEl.className = "";
 
@@ -2587,7 +2790,9 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
                 statusEl.textContent = "✔ Zamówienie wysłane mailem!";
                 statusEl.className = "text-green-400";
                 this.reset();
-                whatsappBtn.href = `https://wa.me/48604296650?text=Chcę%20zamówić:%20`;
+                if (whatsappBtn) {
+                    whatsappBtn.href = `https://wa.me/48604296650?text=Chcę%20zamówić:%20`;
+                }
             } catch(err){
                 statusEl.textContent = "✖ " + err.message;
                 statusEl.className = "text-red-500";
@@ -2597,7 +2802,7 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 
     // ===== REKLAMY =====
     function initAdTimers() {
-        // Timer dla baneru
+        // Timer dla banerę
         startTimer('bannerTimer', 30);
         
         // Timer dla animacji
@@ -2689,15 +2894,15 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
             const samplePosts = [
                 {
                     title: "Sztuka jako forma ekspresji",
-                    excerpt: "Jak wyrażać siebie przez projektowanie ubrań and dlaczego warto...",
-                    content: "Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie and komunikować się z innymi bez słów.",
+                    excerpt: "Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...",
+                    content: "Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie i komunikować się z innymi bez słów.",
                     image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
                     date: new Date().toISOString()
                 },
                 {
                     title: "Trendy w streetwearze 2023",
                     excerpt: "Odkryj najnowsze trendy w modzie ulicznej tego sezonu...",
-                    content: "Streetwear w 2023 roku ewoluuje w kierunku połączenia komfortu and style. Dominują oversize'owe fasony, earthy kolory oraz odważne nadruki.",
+                    content: "Streetwear w 2023 roku ewoluuje w kierunku połączenia komfortu i stylu. Dominują oversize'owe fasony, earthy kolory oraz odważne nadruki.",
                     image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
                     date: new Date().toISOString()
                 }
@@ -2824,7 +3029,6 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                const formData = new FormData(contactForm);
                 const name = contactForm.querySelector('input[type="text"]').value;
                 const email = contactForm.querySelector('input[type="email"]').value;
                 const subject = contactForm.querySelectorAll('input[type="text"]')[1].value;
@@ -2884,9 +3088,6 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 </script>
 </body>
 </html>
-
-
-
 
 
 
