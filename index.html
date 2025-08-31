@@ -972,14 +972,85 @@
         <h2>Witaj w AdelbertusShop</h2>
         <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
     </div>
-    
     <!-- Sekcja reklamowa - baner -->
-            <div class="ad-container">
-                <div class="ad-banner large">
-                    <p>Miejsce na baner reklamowy (728x90)</p>
-                    <div class="timer" id="bannerTimer">30s</div>
-                </div>
-            </div>
+<div class="ad-container flex justify-center my-8">
+  <div class="ad-banner relative">
+    <img src="voytek-art-portrait.jpg" alt="Voytek Art. Portrait" class="h-24 object-contain mx-auto" id="rotatingBanner">
+  </div>
+</div>
+
+<style>
+  .ad-container {
+    text-align: center;
+  }
+  .ad-banner {
+    max-width: 364px; /* połowa standardowego 728px */
+    height: auto;
+  }
+  .hidden-banner {
+    display: none;
+  }
+</style>
+
+<script>
+  const banner = document.getElementById("rotatingBanner");
+
+  function showBanner() {
+    banner.classList.remove("hidden-banner");
+    setTimeout(hideBanner, 10000); // 10 sekund widoczny
+  }
+
+  function hideBanner() {
+    banner.classList.add("hidden-banner");
+    setTimeout(showBanner, 3000); // 3 sekundy przerwy
+  }
+
+  // Start animacji
+  showBanner();
+</script> 
+    <!-- Sekcja reklamowa - baner Filipex -->
+<div class="ad-container flex justify-center my-8">
+  <div class="ad-banner relative">
+    <img src="filipex-banner.jpg" alt="Filipex Firma Remontowo-Budowlana" 
+         class="ad-img" id="bannerFilipex">
+  </div>
+</div>
+
+<style>
+  .ad-container {
+    text-align: center;
+  }
+  .ad-banner {
+    position: relative;
+    width: 364px; /* połowa szerokości 728px */
+    height: 364px; /* kwadrat */
+    overflow: hidden;
+  }
+  .ad-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .hidden-banner {
+    display: none;
+  }
+</style>
+
+<script>
+  const filipexBanner = document.getElementById("bannerFilipex");
+
+  function loopFilipexBanner() {
+    filipexBanner.classList.remove("hidden-banner");
+    setTimeout(() => {
+      filipexBanner.classList.add("hidden-banner");
+      setTimeout(() => {
+        loopFilipexBanner();
+      }, 3000); // znika na 3 sekundy
+    }, 10000); // widoczny 10 sekund
+  }
+
+  loopFilipexBanner();
+</script>    
               
     <!-- Sekcja reklamowa - animacja -->
     <div class="ad-container">
@@ -3591,6 +3662,7 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 </script>
 </body>
 </html>
+
 
 
 
