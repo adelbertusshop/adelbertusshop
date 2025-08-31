@@ -2373,124 +2373,107 @@ function addComment(event, commentListId) {
 </div>
 </div>
 </section>
-    
- <!-- Kontakt - ROZSZERZONY z moderacją -->
-<section id="contact" class="relative bg-gradient-to-r from-gray-50 to-gray-100 py-12">
-  <div class="section-title text-center mb-8">
-    <h2 class="text-4xl font-bold text-gray-800">Kontakt</h2>
-    <p class="text-lg text-gray-600">To Twoje miejsce. Twoje słowa mają znaczenie.</p>
+    <!-- Kontakt - FINALNA WERSJA -->
+<section id="contact" class="bg-gradient-to-b from-white via-gray-50 to-white py-12 px-6">
+  <div class="section-title text-center mb-10">
+    <h2 class="text-4xl font-extrabold text-gray-900">Kontakt</h2>
+    <p class="text-lg text-gray-600 mt-2">To Twoje miejsce – masz wpływ na wszystko, co tu się dzieje.</p>
   </div>
 
-  <!-- Formularz wiadomości -->
-  <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
+  <!-- Formularz kontaktowy -->
+  <div class="email-form bg-white shadow-lg rounded-2xl p-8 mb-10">
     <h3 class="text-2xl font-bold mb-4">Wyślij wiadomość</h3>
-    <form id="contactForm" class="space-y-4">
-      <div>
-        <label class="block text-sm font-medium">Imię</label>
-        <input type="text" class="w-full border rounded px-3 py-2" required>
+    <form id="contactForm">
+      <div class="form-group mb-4">
+        <label class="block font-semibold mb-1">Imię i nazwisko</label>
+        <input type="text" required class="w-full border rounded-lg px-3 py-2">
       </div>
-      <div>
-        <label class="block text-sm font-medium">Email</label>
-        <input type="email" class="w-full border rounded px-3 py-2" required>
+      
+      <div class="form-group mb-4">
+        <label class="block font-semibold mb-1">Email</label>
+        <input type="email" required class="w-full border rounded-lg px-3 py-2">
       </div>
-      <div>
-        <label class="block text-sm font-medium">Temat</label>
-        <input type="text" class="w-full border rounded px-3 py-2" required>
+      
+      <div class="form-group mb-4">
+        <label class="block font-semibold mb-1">Temat</label>
+        <input type="text" required class="w-full border rounded-lg px-3 py-2">
       </div>
-      <div>
-        <label class="block text-sm font-medium">Wiadomość</label>
-        <textarea rows="4" class="w-full border rounded px-3 py-2" required></textarea>
+      
+      <div class="form-group mb-4">
+        <label class="block font-semibold mb-1">Wiadomość</label>
+        <textarea rows="5" required class="w-full border rounded-lg px-3 py-2"></textarea>
       </div>
+      
       <button type="submit" class="nav-btn gold-bg w-full">Wyślij wiadomość</button>
     </form>
   </div>
 
-  <!-- Forum dyskusyjne -->
-  <div class="max-w-4xl mx-auto mt-12">
-    <h3 class="text-2xl font-bold mb-6 text-center">Twoje miejsce do dyskusji</h3>
+  <!-- Dane kontaktowe -->
+  <div class="bg-white p-6 rounded-2xl shadow-md mb-10">
+    <h3 class="text-xl font-bold mb-4">Dane kontaktowe</h3>
+    <p class="mb-2"><i class="fas fa-envelope gold-text"></i> Email: <b>mielniczukgrzegosz74@gmail.com</b></p>
+    <p class="mb-2"><i class="fas fa-phone gold-text"></i> Telefon: <b>604 296 360</b></p>
+    <p class="mb-4"><i class="fas fa-clock gold-text"></i> Godziny odpowiedzi: <b>Pon-Pt 9:00-17:00</b></p>
     
-    <!-- Formularz dodawania wpisu -->
-    <form id="forumForm" class="bg-white p-6 rounded-lg shadow-md mb-6">
-      <div class="mb-4">
-        <label class="block text-sm font-medium">Twój wpis</label>
-        <textarea id="forumMessage" rows="3" class="w-full border rounded px-3 py-2" placeholder="Podziel się swoją myślą..." required></textarea>
-      </div>
-      <button type="submit" class="nav-btn gold-bg">Dodaj wpis</button>
-      <p id="errorMsg" class="text-red-500 mt-2 hidden">⚠️ Wpis zawiera niedozwolone słowa.</p>
-    </form>
-
-    <!-- Lista wpisów -->
-    <div id="forumPosts" class="space-y-4">
-      <!-- Wpisy będą dodawane tutaj -->
+    <h3 class="text-xl font-bold mt-6 mb-4">Social Media</h3>
+    <div class="social-links flex gap-4">
+      <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link text-pink-500 text-2xl" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link text-black text-2xl" target="_blank">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link text-blue-600 text-2xl" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+      </a>
     </div>
   </div>
 
-  <!-- Login moderatora -->
-  <div class="max-w-md mx-auto mt-12 text-center">
-    <h3 class="text-xl font-bold mb-2">Panel moderatora</h3>
-    <input type="password" id="modPassword" placeholder="Wpisz hasło" class="border rounded px-3 py-2 mb-2 w-full">
-    <button onclick="loginModerator()" class="nav-btn gold-bg w-full">Zaloguj</button>
-    <p id="loginMsg" class="mt-2 text-sm text-red-500 hidden">❌ Błędne hasło</p>
+  <!-- Forum dyskusyjne -->
+  <div class="bg-white p-6 rounded-2xl shadow-md">
+    <h3 class="text-2xl font-bold mb-4">Forum – Twoje miejsce na głos</h3>
+    <p class="text-gray-600 mb-4">Dodaj swój wpis i stań się częścią społeczności.</p>
+    
+    <form id="forumForm" class="mb-6">
+      <input type="text" id="forumUser" placeholder="Twoje imię" required class="w-full border rounded-lg px-3 py-2 mb-2">
+      <textarea id="forumMessage" rows="3" placeholder="Napisz swój wpis..." required class="w-full border rounded-lg px-3 py-2 mb-2"></textarea>
+      <button type="submit" class="nav-btn gold-bg w-full">Dodaj wpis</button>
+    </form>
+    
+    <div id="forumPosts" class="space-y-4">
+      <!-- Wpisy forum będą dodawane tutaj -->
+    </div>
   </div>
 </section>
 
 <script>
-  const bannedWords = ["kurwa","idiota","debil","chuj","pizda","spierdalaj"];
-  const forumForm = document.getElementById("forumForm");
-  const forumPosts = document.getElementById("forumPosts");
-  const errorMsg = document.getElementById("errorMsg");
-
-  // Zapis wpisów w pamięci przeglądarki
-  let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
-  let moderator = false;
-  const MOD_PASS = "Wojownik.03"; // 🔑 Twoje hasło moderatora
-
-  function renderPosts(){
-    forumPosts.innerHTML = "";
-    posts.forEach((post, index) => {
-      let div = document.createElement("div");
-      div.className = "bg-white p-4 rounded shadow";
-      div.innerHTML = `
-        <p class="text-gray-800">${post}</p>
-        ${moderator ? `<button onclick="deletePost(${index})" class="text-red-500 mt-2">Usuń</button>` : ""}
-      `;
-      forumPosts.appendChild(div);
-    });
-  }
-
-  forumForm.addEventListener("submit", e => {
+  // Lista słów zakazanych
+  const forbiddenWords = ["idiota", "głupek", "kurwa", "chuj", "pedał", "debil"];
+  
+  // Obsługa forum
+  document.getElementById("forumForm").addEventListener("submit", function(e) {
     e.preventDefault();
-    const msg = document.getElementById("forumMessage").value.trim();
-    if(bannedWords.some(w => msg.toLowerCase().includes(w))){
-      errorMsg.classList.remove("hidden");
+    
+    const user = document.getElementById("forumUser").value.trim();
+    const message = document.getElementById("forumMessage").value.trim();
+    
+    // Sprawdzenie wulgaryzmów
+    let containsBad = forbiddenWords.some(word => message.toLowerCase().includes(word));
+    
+    if (containsBad) {
+      alert("Twój wpis zawiera niedozwolone treści. Spróbuj napisać inaczej.");
       return;
     }
-    errorMsg.classList.add("hidden");
-    posts.push(msg);
-    localStorage.setItem("forumPosts", JSON.stringify(posts));
-    document.getElementById("forumMessage").value = "";
-    renderPosts();
-  });
-
-  function loginModerator(){
-    const pass = document.getElementById("modPassword").value;
-    if(pass === MOD_PASS){
-      moderator = true;
-      document.getElementById("loginMsg").classList.add("hidden");
-      renderPosts();
-    } else {
-      document.getElementById("loginMsg").classList.remove("hidden");
+    
+    if (user && message) {
+      const postDiv = document.createElement("div");
+      postDiv.classList.add("p-4", "bg-gray-50", "rounded-lg", "shadow-sm");
+      postDiv.innerHTML = `<p class="font-bold">${user}</p><p>${message}</p>`;
+      document.getElementById("forumPosts").prepend(postDiv);
+      
+      document.getElementById("forumForm").reset();
     }
-  }
-
-  function deletePost(index){
-    posts.splice(index, 1);
-    localStorage.setItem("forumPosts", JSON.stringify(posts));
-    renderPosts();
-  }
-
-  // Pierwsze renderowanie
-  renderPosts();
+  });
 </script>
     
 <!-- DODANE: Neon glow i animacje -->
@@ -3608,6 +3591,7 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 </script>
 </body>
 </html>
+
 
 
 
