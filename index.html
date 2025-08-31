@@ -1047,8 +1047,7 @@
                         <div class="product-title">Koszulka "Abstract"</div>
                         <div class="product-price">120 zł</div>
                         <button class="nav-btn add-to-cart-btn" data-name="Koszulka Abstract" data-price="120" data-image="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png">Dodaj do koszyka</button>
-                    </div>
-                    
+                    </div><!-- POPRZEDNI KOD (bez zmian) -->
 </div>
                 
 <div class="product-card fade-in">
@@ -1407,8 +1406,7 @@
                     </div>
                 </div>
             </div>
-
-<h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
+            <h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
 <div class="products-grid">
     <!-- Bluzy -->
     <div class="product-card fade-in">
@@ -1524,7 +1522,33 @@
         </div>
     </div>
 </div>
-<style>
+
+<!-- Sekcja zamówienia -->
+<div class="section-title">
+    <h2>Złóż zamówienie</h2>
+    <p>Skorzystaj z naszych usług</p>
+</div>
+
+<section id="zamowienia" class="order-form">
+    <h2 class="text-3xl mb-4 text-gold font-bold">Złóż zamówienie</h2>
+    
+    <form id="orderForm" class="space-y-4">
+        <input type="text" name="name" placeholder="Imię i nazwisko" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
+        <input type="email" name="email" placeholder="Email" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
+        <input type="text" name="product" id="productInput" placeholder="Produkt" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required>
+        <textarea name="address" placeholder="Adres dostawy" rows="3" class="w-full p-2 rounded border border-gray-700 bg-gray-900 text-white" required></textarea>
+
+        <div class="flex gap-4">
+            <button type="submit" class="flex-1 bg-gold text-black py-2 rounded font-bold hover:bg-yellow-400 transition">Wyślij mail</button>
+            <a href="#" id="whatsappBtn" target="_blank" class="flex-1 bg-black border border-gold text-gold py-2 rounded font-bold text-center hover:bg-gold hover:text-black transition">
+                Zamów przez WhatsApp
+            </a>
+        </div>
+    </form>
+
+    <p id="status" class="mt-4 text-white"></p>
+</section>
+</section>
 
 <!-- Studio projektowe - ZMODYFIKOWANE -->
 <section id="design">
@@ -1660,7 +1684,7 @@
         </div>
     </div>
 </section>
-        <!-- Zbiórka FINALNA – FUZJA 6 STYLÓW -->
+<!-- 🎁 Sekcja Zbiórki FINALNA -->
 <section id="charity" class="bg-gradient-to-r from-gray-900 via-purple-900 to-black text-white py-12 px-6 rounded-2xl shadow-lg">
     
     <!-- Nagłówek -->
@@ -1668,7 +1692,7 @@
         <h2 class="text-5xl font-extrabold tracking-wide neon-glow">
             [ UPLOAD NADZIEI // PROMYK ]
         </h2>
-        <p class="text-lg italic mt-2 text-gray-300 typing">
+        <p class="text-lg italic mt-2 text-gray-300">
             Jesteś częścią czegoś większego, niż Ty sam.  
             (a przy okazji możesz być lepszy niż sąsiad 😉)
         </p>
@@ -1685,24 +1709,20 @@
     
     <!-- Metody wsparcia -->
     <div class="grid md:grid-cols-3 gap-8 text-center">
-        
         <!-- BLIK -->
         <div class="p-6 bg-black/40 rounded-xl border border-purple-700 shadow-md hover:scale-105 transition">
             <h4 class="text-2xl font-bold mb-2">📱 BLIK TRANSFER</h4>
             <div class="text-3xl font-mono font-bold text-green-400">573-939-925</div>
             <p class="mt-2 text-sm">dopisz kod: <span class="font-bold">POMOC</span></p>
-            <p class="mt-3 italic text-gray-400">[execute transfer >> unlock karma]</p>
         </div>
         
         <!-- PayPal -->
         <div class="p-6 bg-black/40 rounded-xl border border-purple-700 shadow-md hover:scale-105 transition">
             <h4 class="text-2xl font-bold mb-2">💳 PayPal</h4>
-            <p>Bezpieczna, szybka i globalna pomoc</p>
             <a href="https://www.paypal.com/donate/?hosted_button_id=VG9UP4MTHHWYU" target="_blank" 
                class="mt-4 inline-block bg-yellow-400 text-black font-bold px-4 py-2 rounded-lg hover:bg-yellow-300 transition">
                 ➡️ Przekaż darowiznę
             </a>
-            <p class="mt-3 italic text-gray-400">[donate = +100 exp to your soul]</p>
         </div>
         
         <!-- Dary -->
@@ -1710,7 +1730,6 @@
             <h4 class="text-2xl font-bold mb-2">📦 Dary rzeczowe</h4>
             <p>Tel: <span class="font-bold">604 296 360</span></p>
             <p>Email: <span class="font-bold">mielniczukgrzegosz74@gmail.com</span></p>
-            <p class="mt-3 italic text-gray-400">[material gift detected]</p>
         </div>
     </div>
     
@@ -1723,15 +1742,7 @@
     <!-- List od dzieci -->
     <div class="bg-white/10 p-6 rounded-lg shadow-md mt-10 border-l-4 border-yellow-400">
         <h4 class="text-2xl font-bold mb-4 text-yellow-300">✉️ List od dzieci z Domu Dziecka "Promyk"</h4>
-        <div id="childrenLetter" class="italic text-lg text-gray-100"></div>
-    </div>
-    
-    <!-- Stopka -->
-    <div class="mt-12 text-center">
-        <blockquote class="text-xl italic text-purple-300">
-            "Władza to zdolność kształtowania świata – wybierz, czy będzie lepszy."
-        </blockquote>
-        <p class="mt-4 text-gray-400">– parafraza Machiavelli × AdelbertusShop</p>
+        <div id="childrenLetter" class="italic text-lg text-gray-100 typing"></div>
     </div>
 </section>
 
@@ -1751,20 +1762,11 @@
   to   { text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7, 0 0 40px #9333ea; }
 }
 
-/* Typing effect */
+/* Typing efekt */
 .typing {
   border-right: 2px solid #ffd700;
   white-space: nowrap;
   overflow: hidden;
-  width: 0;
-  animation: typing 6s steps(60, end) forwards, blink 0.75s step-end infinite;
-}
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-@keyframes blink {
-  50% { border-color: transparent }
 }
 
 /* Animacja donorów */
@@ -1779,38 +1781,51 @@
 </style>
 
 <script>
-// ✉️ Efekt dopisywania listu od dzieci
-document.addEventListener("DOMContentLoaded", () => {
-    const letter = "Dziękujemy za każdą pomoc. Dzięki Tobie czujemy, że nie jesteśmy sami. ❤️";
+// 🔥 Donorzy rotacyjni
+const donors = [
+    {name: "Anna K.", amount: 50},
+    {name: "Marek Z.", amount: 100},
+    {name: "👑 Sekretny Darczyńca", amount: 250},
+    {name: "Natalia P.", amount: 75},
+    {name: "Bartek L.", amount: 30}
+];
+let donorIndex = 0;
+function addDonor() {
+    const list = document.getElementById("donorsList");
+    const li = document.createElement("li");
+    li.className = "donor-entry";
+    li.textContent = `${donors[donorIndex].name} – ${donors[donorIndex].amount} zł`;
+    list.prepend(li);
+    donorIndex = (donorIndex + 1) % donors.length;
+}
+setInterval(addDonor, 4000); // co 4s nowy donor
+
+// ✉️ Listy od dzieci (cykliczne)
+const letters = [
+    "Dziękujemy za każdą pomoc. Dzięki Tobie czujemy, że nie jesteśmy sami. ❤️",
+    "Każdy dar to dla nas promień światła w ciemności. ✨",
+    "Nie możemy oddać wszystkiego, co czujemy – ale dziękujemy z całego serca! 🙏",
+    "Twoja pomoc daje nam nadzieję na lepsze jutro. 🌍"
+];
+let letterIndex = 0;
+function typeLetter() {
     const letterBox = document.getElementById("childrenLetter");
-    
+    letterBox.textContent = ""; // reset
     let i = 0;
     function typeWriter() {
-        if (i < letter.length) {
-            letterBox.innerHTML += letter.charAt(i);
+        if (i < letters[letterIndex].length) {
+            letterBox.textContent += letters[letterIndex].charAt(i);
             i++;
             setTimeout(typeWriter, 50);
         }
     }
     typeWriter();
-});
-
-// 🔥 Animowane dodawanie darczyńców
-function addDonor(name, amount) {
-    const list = document.getElementById("donorsList");
-    const li = document.createElement("li");
-    li.className = "donor-entry";
-    li.textContent = `${name} – ${amount} zł`;
-    list.prepend(li);
+    letterIndex = (letterIndex + 1) % letters.length;
 }
-
-// przykładowi darczyńcy co kilka sekund
-setTimeout(() => addDonor("Anna K.", 50), 2000);
-setTimeout(() => addDonor("Marek Z.", 100), 5000);
-setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
-</script>       
-
-<!-- Blog - FINALNA WERSJA Z FORUM, CYTATAMI I FILTREM -->
+typeLetter();
+setInterval(typeLetter, 15000); // co 15s nowy list
+</script>
+<!-- Blog - WERSJA Z FORUM I CYKLICZNYMI CYTATAMI -->
 <section id="blog" class="bg-gray-950 py-12">
     <div class="section-title text-center mb-12">
         <h2 class="text-4xl font-bold text-gold-400">Blog</h2>
@@ -1831,69 +1846,7 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
     </div>
     
     <div class="blog-posts grid grid-cols-1 md:grid-cols-2 gap-8 px-6" id="blogPostsContainer">
-        
-        <!-- POST 1 -->
-        <div class="blog-post bg-gray-900 border border-gold-500 rounded-lg shadow-lg hover:bg-gray-800 transition">
-            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sztuka" class="blog-image rounded-t-lg">
-            <div class="blog-content p-6">
-                <h3 class="text-xl font-bold text-gold-400 mb-2">Sztuka jako forma ekspresji</h3>
-                <p class="text-sm text-gray-400">Opublikowano: 12 czerwca 2023</p>
-                <div class="blog-excerpt">
-                    <p class="mt-3 text-gray-200">Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...</p>
-                </div>
-                <div class="blog-full hidden">
-                    <p class="mt-3 text-gray-300">Sztuka to sposób, by inni mogli zobaczyć twoje emocje. Nie trzeba być mistrzem – wystarczy być sobą.</p>
-                    <blockquote class="italic text-gold-300 mt-4 border-l-4 border-gold-500 pl-4">
-                        „Ludzie widzą w twojej twórczości siebie.”
-                    </blockquote>
-
-                    <!-- Sekcja komentarzy -->
-                    <div class="comments mt-6">
-                        <h4 class="text-lg font-bold text-gold-400 mb-2">Komentarze:</h4>
-                        <ul id="comments-post1" class="text-gray-200 space-y-2">
-                            <li>💬 Świetny artykuł, naprawdę trafia w punkt.</li>
-                        </ul>
-                        <form class="mt-3" onsubmit="addComment(event, 'comments-post1')">
-                            <input type="text" class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600" placeholder="Dodaj komentarz..." required>
-                        </form>
-                    </div>
-                </div>
-                <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
-                <button class="nav-btn mt-2" onclick="shareArticle('Sztuka jako forma ekspresji', 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
-            </div>
-        </div>
-
-        <!-- POST 2 -->
-        <div class="blog-post bg-gray-900 border border-gold-500 rounded-lg shadow-lg hover:bg-gray-800 transition">
-            <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Streetwear" class="blog-image rounded-t-lg">
-            <div class="blog-content p-6">
-                <h3 class="text-xl font-bold text-gold-400 mb-2">Trendy w streetwearze 2023</h3>
-                <p class="text-sm text-gray-400">Opublikowano: 5 czerwca 2023</p>
-                <div class="blog-excerpt">
-                    <p class="mt-3 text-gray-200">Moda uliczna nie jest tylko ubraniem – to sposób na bycie sobą.</p>
-                </div>
-                <div class="blog-full hidden">
-                    <p class="mt-3 text-gray-300">Streetwear pokazuje kim jesteś bez słów. To nie trend, to codzienność.</p>
-                    <blockquote class="italic text-gold-300 mt-4 border-l-4 border-gold-500 pl-4">
-                        „Twój styl jest wiadomością, którą wszyscy czytają.”
-                    </blockquote>
-
-                    <!-- Sekcja komentarzy -->
-                    <div class="comments mt-6">
-                        <h4 class="text-lg font-bold text-gold-400 mb-2">Komentarze:</h4>
-                        <ul id="comments-post2" class="text-gray-200 space-y-2">
-                            <li>💬 Tak właśnie czuję, streetwear to moje życie!</li>
-                        </ul>
-                        <form class="mt-3" onsubmit="addComment(event, 'comments-post2')">
-                            <input type="text" class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600" placeholder="Dodaj komentarz..." required>
-                        </form>
-                    </div>
-                </div>
-                <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
-                <button class="nav-btn mt-2" onclick="shareArticle('Trendy w streetwearze 2023', 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
-            </div>
-        </div>
-
+        <!-- Tutaj będą dodawane posty -->
     </div>
 
     <!-- Formularz dodawania artykułu -->
@@ -1927,7 +1880,7 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 </section>
 
 <script>
-// Lista cytatów do rotacji
+// ====================== CYTATY ======================
 const quotes = [
     "„Twoje słowa mają większą moc, niż myślisz.”",
     "„Ludzie słyszą, ale pamiętają to, co widzą.”",
@@ -1938,95 +1891,94 @@ const quotes = [
 let quoteIndex = 0;
 function changeQuote() {
     const quoteElement = document.getElementById("dynamic-quote");
-    quoteElement.classList.add("opacity-0"); // znikanie
+    quoteElement.classList.add("opacity-0");
     setTimeout(() => {
         quoteIndex = (quoteIndex + 1) % quotes.length;
         quoteElement.innerText = quotes[quoteIndex];
-        quoteElement.classList.remove("opacity-0"); // pojawianie się
+        quoteElement.classList.remove("opacity-0");
     }, 1000);
 }
-// zmiana cytatu co 10 sekund
-setInterval(changeQuote, 10000);
+setInterval(changeQuote, 10000); // co 10 sekund
 
-// Filtr obraźliwych słów
-const bannedWords = ["kurwa","chuj","pierdole","idiota","debil","szmata"];
+// ====================== KOMENTARZE z filtrem ======================
+const badWords = ["kurwa", "chuj", "debil", "idiota"]; // tu możesz dodać kolejne
 function filterBadWords(text) {
-    let clean = text;
-    bannedWords.forEach(word => {
+    let filtered = text;
+    badWords.forEach(word => {
         const regex = new RegExp(word, "gi");
-        clean = clean.replace(regex, "***");
+        filtered = filtered.replace(regex, "***");
     });
-    return clean;
+    return filtered;
 }
 
-// Dodawanie komentarzy
 function addComment(event, commentListId) {
     event.preventDefault();
     const input = event.target.querySelector("input");
+    let commentText = filterBadWords(input.value);
     const commentList = document.getElementById(commentListId);
     const newComment = document.createElement("li");
-    newComment.textContent = "💬 " + filterBadWords(input.value);
+    newComment.textContent = "💬 " + commentText;
     commentList.appendChild(newComment);
     input.value = "";
 }
 
-// Formularz dodawania artykułu
+// ====================== NOWE ARTYKUŁY ======================
 document.getElementById("newBlogPostForm").addEventListener("submit", function(e) {
     e.preventDefault();
+
     const title = document.getElementById("blogTitle").value;
     const excerpt = document.getElementById("blogExcerpt").value;
     const content = document.getElementById("blogContent").value;
-    const image = document.getElementById("blogImage").value || "https://via.placeholder.com/500x300";
+    const image = document.getElementById("blogImage").value || "https://via.placeholder.com/500";
 
-    const newPost = document.createElement("div");
-    newPost.className = "blog-post bg-gray-900 border border-gold-500 rounded-lg shadow-lg hover:bg-gray-800 transition";
-    newPost.innerHTML = `
-        <img src="${image}" alt="${title}" class="blog-image rounded-t-lg">
-        <div class="blog-content p-6">
-            <h3 class="text-xl font-bold text-gold-400 mb-2">${title}</h3>
-            <p class="text-sm text-gray-400">Opublikowano: ${new Date().toLocaleDateString()}</p>
-            <div class="blog-excerpt">
-                <p class="mt-3 text-gray-200">${excerpt}</p>
-            </div>
-            <div class="blog-full hidden">
-                <p class="mt-3 text-gray-300">${content}</p>
-                <blockquote class="italic text-gold-300 mt-4 border-l-4 border-gold-500 pl-4">
-                    „Każda historia ma znaczenie.”
-                </blockquote>
-                <div class="comments mt-6">
-                    <h4 class="text-lg font-bold text-gold-400 mb-2">Komentarze:</h4>
-                    <ul class="text-gray-200 space-y-2"></ul>
-                    <form class="mt-3" onsubmit="addComment(event, this.previousElementSibling.id)">
-                        <input type="text" class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600" placeholder="Dodaj komentarz..." required>
-                    </form>
+    const postId = "post-" + Date.now();
+    const commentListId = "comments-" + Date.now();
+
+    const newPost = `
+        <div class="blog-post bg-gray-900 border border-gold-500 rounded-lg shadow-lg hover:bg-gray-800 transition">
+            <img src="${image}" alt="${title}" class="blog-image rounded-t-lg">
+            <div class="blog-content p-6">
+                <h3 class="text-xl font-bold text-gold-400 mb-2">${title}</h3>
+                <p class="text-sm text-gray-400">Opublikowano: ${new Date().toLocaleDateString()}</p>
+                <div class="blog-excerpt">
+                    <p class="mt-3 text-gray-200">${excerpt}</p>
                 </div>
+                <div class="blog-full hidden">
+                    <p class="mt-3 text-gray-300">${content}</p>
+                    <blockquote class="italic text-gold-300 mt-4 border-l-4 border-gold-500 pl-4">
+                        „Twój artykuł inspiruje innych!”
+                    </blockquote>
+                    <div class="comments mt-6">
+                        <h4 class="text-lg font-bold text-gold-400 mb-2">Komentarze:</h4>
+                        <ul id="${commentListId}" class="text-gray-200 space-y-2"></ul>
+                        <form class="mt-3" onsubmit="addComment(event, '${commentListId}')">
+                            <input type="text" class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600" placeholder="Dodaj komentarz..." required>
+                        </form>
+                    </div>
+                </div>
+                <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
             </div>
-            <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
         </div>
     `;
-    document.getElementById("blogPostsContainer").prepend(newPost);
+
+    document.getElementById("blogPostsContainer").insertAdjacentHTML("afterbegin", newPost);
     hideBlogForm();
+    this.reset();
 });
 
-// Funkcje do pokazywania/ukrywania formularza
+// ====================== ROZWIJANIE POSTÓW ======================
+function toggleReadMore(button) {
+    const fullContent = button.parentElement.querySelector(".blog-full");
+    fullContent.classList.toggle("hidden");
+    button.textContent = fullContent.classList.contains("hidden") ? "Czytaj więcej" : "Zwiń";
+}
+
+// ====================== FORMULARZ ======================
 function showBlogForm() {
     document.getElementById("blogForm").classList.remove("hidden");
 }
 function hideBlogForm() {
     document.getElementById("blogForm").classList.add("hidden");
-}
-
-// Funkcja rozwijania treści
-function toggleReadMore(button) {
-    const post = button.closest(".blog-post");
-    const fullContent = post.querySelector(".blog-full");
-    if (fullContent.classList.contains("hidden")) {
-        fullContent.classList.remove("hidden");
-        button.textContent = "Zwiń";
-    } else {
-        fullContent.classList.add("hidden");
-        button.textContent = "Czytaj więcej";
-    }
 }
 </script>
 
@@ -2058,8 +2010,8 @@ function toggleReadMore(button) {
             <p>4. Dane przechowywane są przez okres niezbędny do realizacji zamówienia, a następnie przez okres wymagany przepisami prawa.</p>
             <p>5. Przysługuje Państwu prawo dostępu do danych, sprostowania, usunięcia, ograniczenia przetwarzania, wniesienia sprzeciwu oraz prawo do przenoszenia danych.</p>
             <p>6. Dane mogą być udostępniane podmiotom przetwarzającym je na nasze zlecenie (np. firmy kurierskie, płatności elektroniczne).</p>
-            <p>7. Kontakt w sprawach ochron    
-      <!-- Kontynuacja kodu od miejsca przerwania -->
+            <p>7. Kontakt w sprawach ochron 
+                <!-- Kontynuacja kodu od miejsca przerwania -->
 <div class="mb-6">
     <h3 class="text-xl font-bold mb-3">§4 Zwroty i reklamacje</h3>
     <p>1. Konsument ma prawo do odstąpienia od umowy w ciągu 14 dni bez podawania przyczyny.</p>
@@ -2170,6 +2122,22 @@ function toggleReadMore(button) {
     }
   });
 </script>
+        
+        <h3 class="text-xl font-bold mt-6 mb-4">Social Media</h3>
+        <div class="social-links">
+            <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+    </div>
+</section>
+</main>
 
 <!-- Koszyk - ZMODYFIKOWANY -->
 <div id="cartIcon">
@@ -3067,11 +3035,8 @@ function toggleReadMore(button) {
     window.sendOrderEmail = sendOrderEmail;
     window.sendOrderWhatsApp = sendOrderWhatsApp;
 </script>
-</section>          
 </body>
-</html>                
-                
-               
+</html>               
 
 
 
