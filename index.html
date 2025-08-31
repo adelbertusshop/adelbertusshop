@@ -1521,7 +1521,6 @@
     <p id="status" class="mt-4 text-white"></p>
 </section>
 </section>
-
 <!-- Studio projektowe - ZMODYFIKOWANE -->
 <section id="design">
     <div class="section-title">
@@ -1620,7 +1619,7 @@
                     <option value="XXL">XXL</option>
                 </select>
                 
-                <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
+                <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload(event)">
                 <button class="nav-btn gold-bg w-full" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
             </div>
 
@@ -1656,6 +1655,482 @@
         </div>
     </div>
 </section>
+
+<!-- DODANE: Style dla Studio Projektowego -->
+<style>
+.design-studio {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.side-buttons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+}
+
+.side-buttons.left {
+    left: 10px;
+}
+
+.side-buttons.right {
+    right: 10px;
+}
+
+.side-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #d4af37;
+    border: none;
+    color: black;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.side-button:hover {
+    transform: scale(1.1);
+    background: #c19b2e;
+}
+
+.product-base {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.product-base-item {
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.product-base-item.active {
+    border-color: #d4af37;
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.product-base-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.product-base-item p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.design-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.design-option {
+    padding: 10px 20px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.design-option.active {
+    border-color: #d4af37;
+    background: #d4af37;
+    color: black;
+}
+
+.canvas-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#designCanvas {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background: white;
+    margin-bottom: 15px;
+}
+
+.canvas-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.design-tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.tool-group {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.tool-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #d4af37;
+    font-size: 18px;
+}
+
+.transform-controls {
+    display: grid;
+    gap: 10px;
+}
+
+.transform-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.transform-input label {
+    font-size: 14px;
+    color: #666;
+}
+
+.transform-input input[type="range"] {
+    width: 100%;
+}
+
+.design-preview {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .side-buttons {
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 20px;
+        transform: none;
+    }
+    
+    .design-tools {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-base {
+        flex-wrap: wrap;
+    }
+    
+    #designCanvas {
+        width: 100%;
+        height: auto;
+    }
+}
+</style>
+
+<script>
+// ===== FUNKCJE STUDIO PROJEKTOWEGO =====
+
+function initDesignStudio() {
+    const canvas = document.getElementById('designCanvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Ustawienia canvas
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Inicjalizacja produktów bazowych
+    initProductBase();
+    
+    // Inicjalizacja opcji designu
+    initDesignOptions();
+    
+    // Inicjalny render
+    updateDesign();
+}
+
+function initProductBase() {
+    const baseItems = document.querySelectorAll('.product-base-item');
+    baseItems.forEach(item => {
+        item.addEventListener('click', function() {
+            baseItems.forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+            currentDesign.baseProduct = this.getAttribute('data-base');
+            updateDesign();
+        });
+    });
+}
+
+function initDesignOptions() {
+    const designOptions = document.querySelectorAll('.design-option');
+    designOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            designOptions.forEach(o => o.classList.remove('active'));
+            this.classList.add('active');
+            currentDesign.designArea = this.getAttribute('data-area');
+            updateDesign();
+        });
+    });
+}
+
+function updateDesign() {
+    const canvas = document.getElementById('designCanvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Aktualizuj stan projektu
+    currentDesign.text = document.getElementById('designText').value;
+    currentDesign.fontFamily = document.getElementById('fontFamily').value;
+    currentDesign.fontSize = parseInt(document.getElementById('fontSize').value);
+    currentDesign.color = document.getElementById('textColor').value;
+    
+    // Wyczyść canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Narysuj tło - wirtualny produkt
+    ctx.fillStyle = '#f8f9fa';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Narysuj kontur produktu
+    ctx.strokeStyle = '#ddd';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(50, 50, canvas.width - 100, canvas.height - 100);
+    
+    // Narysuj obrazek jeśli istnieje
+    if (currentDesign.image) {
+        ctx.save();
+        ctx.translate(currentDesign.imageX, currentDesign.imageY);
+        ctx.rotate(currentDesign.imageRotation * Math.PI / 180);
+        ctx.scale(currentDesign.imageScale, currentDesign.imageScale);
+        ctx.drawImage(currentDesign.image, -currentDesign.image.width/2, -currentDesign.image.height/2);
+        ctx.restore();
+    }
+    
+    // Narysuj tekst
+    if (currentDesign.text) {
+        ctx.save();
+        ctx.font = `${currentDesign.fontSize}px ${currentDesign.fontFamily}`;
+        ctx.fillStyle = currentDesign.color;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.translate(currentDesign.textX, currentDesign.textY);
+        ctx.rotate(currentDesign.textRotation * Math.PI / 180);
+        ctx.scale(currentDesign.textScale, currentDesign.textScale);
+        ctx.fillText(currentDesign.text, 0, 0);
+        ctx.restore();
+    }
+    
+    // Aktualizuj podgląd
+    updateDesignPreview();
+}
+
+function updateDesignPreview() {
+    const preview = document.querySelector('.design-preview');
+    const canvas = document.getElementById('designCanvas');
+    
+    if (preview && canvas && (currentDesign.text || currentDesign.image)) {
+        preview.innerHTML = '<h3>Podgląd Twojego projektu</h3>';
+        const img = document.createElement('img');
+        img.src = canvas.toDataURL();
+        img.style.maxWidth = '100%';
+        img.style.marginTop = '1rem';
+        img.style.border = '1px solid #ddd';
+        img.style.borderRadius = '10px';
+        preview.appendChild(img);
+    }
+}
+
+function handleImageUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            currentDesign.image = new Image();
+            currentDesign.image.src = e.target.result;
+            currentDesign.image.onload = function() {
+                currentDesign.activeElement = 'image';
+                updateTransformControls();
+                updateDesign();
+                showNotification('✅ Obraz załadowany pomyślnie');
+            };
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function updateElementPosition() {
+    if (currentDesign.activeElement === 'text') {
+        currentDesign.textX = parseInt(document.getElementById('posX').value);
+        currentDesign.textY = parseInt(document.getElementById('posY').value);
+    } else if (currentDesign.activeElement === 'image') {
+        currentDesign.imageX = parseInt(document.getElementById('posX').value);
+        currentDesign.imageY = parseInt(document.getElementById('posY').value);
+    }
+    updateDesign();
+}
+
+function updateElementScale() {
+    if (currentDesign.activeElement === 'text') {
+        currentDesign.textScale = parseFloat(document.getElementById('scale').value);
+    } else if (currentDesign.activeElement === 'image') {
+        currentDesign.imageScale = parseFloat(document.getElementById('scale').value);
+    }
+    updateDesign();
+}
+
+function updateElementRotation() {
+    if (currentDesign.activeElement === 'text') {
+        currentDesign.textRotation = parseInt(document.getElementById('rotation').value);
+    } else if (currentDesign.activeElement === 'image') {
+        currentDesign.imageRotation = parseInt(document.getElementById('rotation').value);
+    }
+    updateDesign();
+}
+
+function updateTransformControls() {
+    if (currentDesign.activeElement === 'text') {
+        document.getElementById('posX').value = currentDesign.textX;
+        document.getElementById('posY').value = currentDesign.textY;
+        document.getElementById('scale').value = currentDesign.textScale;
+        document.getElementById('rotation').value = currentDesign.textRotation;
+    } else if (currentDesign.activeElement === 'image') {
+        document.getElementById('posX').value = currentDesign.imageX;
+        document.getElementById('posY').value = currentDesign.imageY;
+        document.getElementById('scale').value = currentDesign.imageScale;
+        document.getElementById('rotation').value = currentDesign.imageRotation;
+    }
+}
+
+function clearCanvas() {
+    const canvas = document.getElementById('designCanvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#f8f9fa';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    currentDesign.text = '';
+    currentDesign.image = null;
+    document.getElementById('designText').value = '';
+    
+    const preview = document.querySelector('.design-preview');
+    if (preview) {
+        preview.innerHTML = '<h3>Podgląd Twojego projektu</h3><p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>';
+    }
+    
+    showNotification('Canvas wyczyszczony');
+}
+
+function resetDesign() {
+    currentDesign.textX = 250;
+    currentDesign.textY = 200;
+    currentDesign.textScale = 1;
+    currentDesign.textRotation = 0;
+    currentDesign.imageX = 250;
+    currentDesign.imageY = 200;
+    currentDesign.imageScale = 1;
+    currentDesign.imageRotation = 0;
+    
+    updateTransformControls();
+    updateDesign();
+    showNotification('Transformacje zresetowane');
+}
+
+function bringToFront() {
+    // Funkcja do zarządzania warstwami (można rozbudować)
+    showNotification('Element przeniesiony na wierzch');
+}
+
+function addToCartFromDesign() {
+    const productType = document.getElementById('productType');
+    const productSize = document.getElementById('productSize');
+    
+    const prices = {
+        'tshirt': 120,
+        'hoodie': 200,
+        'cap': 99
+    };
+    
+    const price = prices[productType.value] || 120;
+    const canvas = document.getElementById('designCanvas');
+    
+    if (canvas) {
+        addToCart(
+            `Projekt: ${currentDesign.text || 'Niestandardowy'} (${productSize.value})`,
+            price,
+            canvas.toDataURL(),
+            productSize.value
+        );
+    }
+}
+
+function sendDesignToEmail() {
+    const canvas = document.getElementById('designCanvas');
+    if (!canvas) return;
+    
+    const imageData = canvas.toDataURL();
+    
+    const subject = 'Mój projekt z AdelbertusShop';
+    const body = `
+        Cześć! Oto mój projekt:\n
+        Tekst: ${currentDesign.text}\n
+        Rozmiar czcionki: ${currentDesign.fontSize}\n
+        Kolor: ${currentDesign.color}\n
+        Typ produktu: ${document.getElementById('productType').options[document.getElementById('productType').selectedIndex].text}\n
+        Rozmiar: ${document.getElementById('productSize').value}\n
+        Obszar: ${currentDesign.designArea}\n\n
+        
+        Obraz projektu (w załączniku):\n
+        Proszę o kontakt w sprawie realizacji zamówienia.
+    `;
+    
+    window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    
+    showNotification('📧 Otwieranie klienta pocztowego...');
+}
+
+function saveDesign() {
+    const canvas = document.getElementById('designCanvas');
+    if (!canvas) return;
+    
+    const link = document.createElement('a');
+    link.download = 'adelbertus-design.png';
+    link.href = canvas.toDataURL();
+    link.click();
+    showNotification('✅ Projekt zapisany');
+}
+
+// Inicjalizacja studio przy ładowaniu strony
+document.addEventListener('DOMContentLoaded', function() {
+    initDesignStudio();
+});
+</script>
+    
 <!-- Zbiórka FINALNA – FUZJA 6 STYLÓW -->
 <section id="charity" class="bg-gradient-to-r from-gray-900 via-purple-900 to-black text-white py-12 px-6 rounded-2xl shadow-lg">
     
@@ -3119,6 +3594,7 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 </script>
 </body>
 </html>
+
 
 
 
