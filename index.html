@@ -1524,6 +1524,98 @@
         </div>
     </div>
 </div>
+<style>
+/* Style dla nowego formularza */
+.order-form {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 20px auto;
+    max-width: 600px;
+    border: 2px solid #d4af37;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #d4af37;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d4af37;
+    border-radius: 8px;
+    background: #333;
+    color: white;
+    font-size: 16px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+option {
+    background: #333;
+    color: white;
+    padding: 10px;
+}
+
+/* Przyciski */
+.nav-btn {
+    background: #d4af37;
+    color: black;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: #ffd700;
+    transform: translateY(-2px);
+}
+
+/* Kontener przycisków */
+.flex {
+    display: flex;
+    gap: 15px;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+/* Tekst */
+.text-white {
+    color: white !important;
+}
+
+.text-gold {
+    color: #d4af37 !important;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .order-form {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .flex {
+        flex-direction: column;
+    }
+}
+</style>
 <!-- Sekcja zamówienia -->
 <div class="section-title">
     <h2>Złóż zamówienie</h2>
@@ -3416,6 +3508,7 @@ function showOldOrderForm() {
 </html>                
                 
                
+
 
 
 
