@@ -1686,136 +1686,375 @@
         </div>
     </div>
 </section>
+        <!-- Zbiórka FINALNA – FUZJA 6 STYLÓW -->
+<section id="charity" class="bg-gradient-to-r from-gray-900 via-purple-900 to-black text-white py-12 px-6 rounded-2xl shadow-lg">
+    
+    <!-- Nagłówek -->
+    <div class="section-title text-center mb-10">
+        <h2 class="text-5xl font-extrabold tracking-wide neon-glow">
+            [ UPLOAD NADZIEI // PROMYK ]
+        </h2>
+        <p class="text-lg italic mt-2 text-gray-300 typing">
+            Jesteś częścią czegoś większego, niż Ty sam.  
+            (a przy okazji możesz być lepszy niż sąsiad 😉)
+        </p>
+    </div>
 
-<!-- Zbiórka - ZMODYFIKOWANA -->
-<section id="charity">
-    <div class="section-title">
-        <h2>Wspieramy Domu Dziecka "Promyk"</h2>
-        <p>Razem możemy zmienić świat na lepsze</p>
+    <!-- Sekcja emocji -->
+    <div class="text-center max-w-2xl mx-auto mb-10">
+        <h3 class="text-3xl font-bold mb-4">Twoja decyzja zmienia czyjeś życie</h3>
+        <p class="text-xl text-gray-200">
+            Każda złotówka = kawałek światła w ciemnym świecie.  
+            Nie musisz być bohaterem, wystarczy że klikniesz.
+        </p>
     </div>
     
-    <div class="charity-section">
-        <h3 class="text-3xl font-bold mb-4">Twoja pomoc ma znaczenie</h3>
-        <p class="text-xl mb-6">Wesprzyj podopiecznych Domu Dziecka "Promyk"</p>
+    <!-- Metody wsparcia -->
+    <div class="grid md:grid-cols-3 gap-8 text-center">
         
-        <div class="mb-6">
-            <h4 class="text-2xl font-bold mb-3">📱 Przelew BLIK</h4>
-            <div class="text-3xl font-mono font-bold">573-939-925</div>
-            <p class="mt-2">z dopiskiem "POMOC"</p>
+        <!-- BLIK -->
+        <div class="p-6 bg-black/40 rounded-xl border border-purple-700 shadow-md hover:scale-105 transition">
+            <h4 class="text-2xl font-bold mb-2">📱 BLIK TRANSFER</h4>
+            <div class="text-3xl font-mono font-bold text-green-400">573-939-925</div>
+            <p class="mt-2 text-sm">dopisz kod: <span class="font-bold">POMOC</span></p>
+            <p class="mt-3 italic text-gray-400">[execute transfer >> unlock karma]</p>
         </div>
         
-        <div class="mb-6">
-            <h4 class="text-2xl font-bold mb-3">💳 PayPal</h4>
-            <p>Wesprzyj nas przez PayPal - bezpieczna i szybka płatność</p>
-            <a href="https://www.paypal.com/donate/?hosted_button_id=VG9UP4MTHHWYU" target="_blank" class="donate-button">
-                <i class="fab fa-paypal"></i> Przekaż darowiznę
+        <!-- PayPal -->
+        <div class="p-6 bg-black/40 rounded-xl border border-purple-700 shadow-md hover:scale-105 transition">
+            <h4 class="text-2xl font-bold mb-2">💳 PayPal</h4>
+            <p>Bezpieczna, szybka i globalna pomoc</p>
+            <a href="https://www.paypal.com/donate/?hosted_button_id=VG9UP4MTHHWYU" target="_blank" 
+               class="mt-4 inline-block bg-yellow-400 text-black font-bold px-4 py-2 rounded-lg hover:bg-yellow-300 transition">
+                ➡️ Przekaż darowiznę
             </a>
+            <p class="mt-3 italic text-gray-400">[donate = +100 exp to your soul]</p>
         </div>
         
-        <div class="mb-6">
-            <h4 class="text-2xl font-bold mb-3">📦 Przekaż dary</h4>
-            <p>Skontaktuj się z nami, aby dowiedzieć się, jak przekazać materialne wsparcie</p>
-            <p class="mt-2 font-bold">Tel: 604 296 360 | Email: mielniczukgrzegosz74@gmail.com</p>
+        <!-- Dary -->
+        <div class="p-6 bg-black/40 rounded-xl border border-purple-700 shadow-md hover:scale-105 transition">
+            <h4 class="text-2xl font-bold mb-2">📦 Dary rzeczowe</h4>
+            <p>Tel: <span class="font-bold">604 296 360</span></p>
+            <p>Email: <span class="font-bold">mielniczukgrzegosz74@gmail.com</span></p>
+            <p class="mt-3 italic text-gray-400">[material gift detected]</p>
         </div>
     </div>
     
-    <div class="donors-list">
-        <h4 class="text-xl font-bold mb-4">Ostatni darczyńcy:</h4>
-        <ul id="donorsList" class="space-y-2">
-            <!-- Zawartość będzie dynamicznie zmieniana -->
-        </ul>
+    <!-- Lista darczyńców -->
+    <div class="donors-list mt-12 bg-black/30 p-6 rounded-xl border border-purple-800">
+        <h4 class="text-2xl font-bold mb-4">🔥 Ostatni, którzy dołączyli do gry:</h4>
+        <ul id="donorsList" class="space-y-2 text-green-300 font-mono"></ul>
     </div>
     
-    <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-        <h4 class="text-2xl font-bold mb-4">List od dzieci z Domu Dziecka "Promyk"</h4>
-        <div id="childrenLetter" class="italic text-lg border-l-4 border-gold pl-4 py-2">
-            <!-- Zawartość będzie dynamicznie zmieniana -->
-        </div>
+    <!-- List od dzieci -->
+    <div class="bg-white/10 p-6 rounded-lg shadow-md mt-10 border-l-4 border-yellow-400">
+        <h4 class="text-2xl font-bold mb-4 text-yellow-300">✉️ List od dzieci z Domu Dziecka "Promyk"</h4>
+        <div id="childrenLetter" class="italic text-lg text-gray-100"></div>
     </div>
     
-    <div class="mt-8 text-center">
-        <blockquote class="text-xl italic">
-            "Największym bogactwem jest pomoc innym bez oczekiwania czegokolwiek w zamian."
+    <!-- Stopka -->
+    <div class="mt-12 text-center">
+        <blockquote class="text-xl italic text-purple-300">
+            "Władza to zdolność kształtowania świata – wybierz, czy będzie lepszy."
         </blockquote>
-        <p class="mt-4">- Wojciech, założyciel AdelbertusShop</p>
+        <p class="mt-4 text-gray-400">– parafraza Machiavelli × AdelbertusShop</p>
     </div>
 </section>
 
-<!-- Blog - ZMODYFIKOWANY -->
-<section id="blog">
-    <div class="section-title">
-        <h2>Blog</h2>
-        <p>Podziel się swoimi przemyśleniami i inspiracjami</p>
+<style>
+/* Neon glow */
+.neon-glow {
+  color: #fff;
+  text-shadow:
+    0 0 5px #a855f7,
+    0 0 10px #a855f7,
+    0 0 20px #9333ea,
+    0 0 40px #9333ea;
+  animation: neonPulse 2s infinite alternate;
+}
+@keyframes neonPulse {
+  from { text-shadow: 0 0 5px #a855f7, 0 0 10px #a855f7, 0 0 20px #9333ea; }
+  to   { text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7, 0 0 40px #9333ea; }
+}
+
+/* Typing effect */
+.typing {
+  border-right: 2px solid #ffd700;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 6s steps(60, end) forwards, blink 0.75s step-end infinite;
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+/* Animacja donorów */
+.donor-entry {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 1s forwards;
+}
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<script>
+// ✉️ Efekt dopisywania listu od dzieci
+document.addEventListener("DOMContentLoaded", () => {
+    const letter = "Dziękujemy za każdą pomoc. Dzięki Tobie czujemy, że nie jesteśmy sami. ❤️";
+    const letterBox = document.getElementById("childrenLetter");
+    
+    let i = 0;
+    function typeWriter() {
+        if (i < letter.length) {
+            letterBox.innerHTML += letter.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50);
+        }
+    }
+    typeWriter();
+});
+
+// 🔥 Animowane dodawanie darczyńców
+function addDonor(name, amount) {
+    const list = document.getElementById("donorsList");
+    const li = document.createElement("li");
+    li.className = "donor-entry";
+    li.textContent = `${name} – ${amount} zł`;
+    list.prepend(li);
+}
+
+// przykładowi darczyńcy co kilka sekund
+setTimeout(() => addDonor("Anna K.", 50), 2000);
+setTimeout(() => addDonor("Marek Z.", 100), 5000);
+setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
+</script>       
+
+<!-- Blog - FINALNA WERSJA Z FORUM, CYTATAMI I FILTREM -->
+<section id="blog" class="bg-gray-950 py-12">
+    <div class="section-title text-center mb-12">
+        <h2 class="text-4xl font-bold text-gold-400">Blog</h2>
+        <p class="text-gray-300">Miejsce, gdzie każdy może podzielić się swoją myślą</p>
+    </div>
+
+    <!-- Dynamiczny cytat -->
+    <div class="max-w-2xl mx-auto mb-12 text-center">
+        <blockquote id="dynamic-quote" class="italic text-gold-300 text-xl border-l-4 border-gold-500 pl-4 opacity-100 transition-opacity duration-1000">
+            „Twoje słowa mają większą moc, niż myślisz.”
+        </blockquote>
     </div>
 
     <div class="text-center mb-8">
-        <button class="nav-btn gold-bg" onclick="showBlogForm()"><i class="fas fa-pencil-alt"></i> Napisz nowy artykuł</button>
+        <button class="nav-btn gold-bg px-6 py-2 rounded-lg shadow-lg hover:scale-105 transition" onclick="showBlogForm()">
+            <i class="fas fa-pencil-alt"></i> Napisz nowy artykuł
+        </button>
     </div>
     
-    <div class="blog-posts" id="blogPostsContainer">
-        <!-- Przykładowe artykuły -->
-        <div class="blog-post">
-            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sztuka" class="blog-image">
-            <div class="blog-content">
-                <h3 class="text-xl font-bold mb-2">Sztuka jako forma ekspresji</h3>
-                <p class="text-sm text-gray-600">Opublikowano: 12 czerwca 2023</p>
+    <div class="blog-posts grid grid-cols-1 md:grid-cols-2 gap-8 px-6" id="blogPostsContainer">
+        
+        <!-- POST 1 -->
+        <div class="blog-post bg-gray-900 border border-gold-500 rounded-lg shadow-lg hover:bg-gray-800 transition">
+            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sztuka" class="blog-image rounded-t-lg">
+            <div class="blog-content p-6">
+                <h3 class="text-xl font-bold text-gold-400 mb-2">Sztuka jako forma ekspresji</h3>
+                <p class="text-sm text-gray-400">Opublikowano: 12 czerwca 2023</p>
                 <div class="blog-excerpt">
-                    <p class="mt-3">Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...</p>
+                    <p class="mt-3 text-gray-200">Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...</p>
                 </div>
-                <div class="blog-full">
-                    <p class="mt-3">Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie i komunikować się z innymi bez słów. W kontekście mody, projektowanie ubrań to nie tylko tworzenie funkcjonalnych przedmiotów, ale także forma sztuki, która pozwala noszącym wyrazić swoją osobowość i wartości.</p>
+                <div class="blog-full hidden">
+                    <p class="mt-3 text-gray-300">Sztuka to sposób, by inni mogli zobaczyć twoje emocje. Nie trzeba być mistrzem – wystarczy być sobą.</p>
+                    <blockquote class="italic text-gold-300 mt-4 border-l-4 border-gold-500 pl-4">
+                        „Ludzie widzą w twojej twórczości siebie.”
+                    </blockquote>
+
+                    <!-- Sekcja komentarzy -->
+                    <div class="comments mt-6">
+                        <h4 class="text-lg font-bold text-gold-400 mb-2">Komentarze:</h4>
+                        <ul id="comments-post1" class="text-gray-200 space-y-2">
+                            <li>💬 Świetny artykuł, naprawdę trafia w punkt.</li>
+                        </ul>
+                        <form class="mt-3" onsubmit="addComment(event, 'comments-post1')">
+                            <input type="text" class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600" placeholder="Dodaj komentarz..." required>
+                        </form>
+                    </div>
                 </div>
                 <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
                 <button class="nav-btn mt-2" onclick="shareArticle('Sztuka jako forma ekspresji', 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
             </div>
         </div>
-        
-        <div class="blog-post">
-            <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Design" class="blog-image">
-            <div class="blog-content">
-                <h3 class="text-xl font-bold mb-2">Trendy w streetwearze 2023</h3>
-                <p class="text-sm text-gray-600">Opublikowano: 5 czerwca 2023</p>
+
+        <!-- POST 2 -->
+        <div class="blog-post bg-gray-900 border border-gold-500 rounded-lg shadow-lg hover:bg-gray-800 transition">
+            <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Streetwear" class="blog-image rounded-t-lg">
+            <div class="blog-content p-6">
+                <h3 class="text-xl font-bold text-gold-400 mb-2">Trendy w streetwearze 2023</h3>
+                <p class="text-sm text-gray-400">Opublikowano: 5 czerwca 2023</p>
                 <div class="blog-excerpt">
-                    <p class="mt-3">Odkryj najnowsze trendy w modzie ulicznej tego sezonu...</p>
+                    <p class="mt-3 text-gray-200">Moda uliczna nie jest tylko ubraniem – to sposób na bycie sobą.</p>
                 </div>
-                <div class="blog-full">
-                    <p class="mt-3">Streetwear w 2023 roku ewoluuje w kierunku połączenia komfortu and style. Dominują oversize'owe fasony, earthy kolory oraz odważne nadruki. W tym sezonie królują również elementy vintage i moda zrównoważona.</p>
+                <div class="blog-full hidden">
+                    <p class="mt-3 text-gray-300">Streetwear pokazuje kim jesteś bez słów. To nie trend, to codzienność.</p>
+                    <blockquote class="italic text-gold-300 mt-4 border-l-4 border-gold-500 pl-4">
+                        „Twój styl jest wiadomością, którą wszyscy czytają.”
+                    </blockquote>
+
+                    <!-- Sekcja komentarzy -->
+                    <div class="comments mt-6">
+                        <h4 class="text-lg font-bold text-gold-400 mb-2">Komentarze:</h4>
+                        <ul id="comments-post2" class="text-gray-200 space-y-2">
+                            <li>💬 Tak właśnie czuję, streetwear to moje życie!</li>
+                        </ul>
+                        <form class="mt-3" onsubmit="addComment(event, 'comments-post2')">
+                            <input type="text" class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600" placeholder="Dodaj komentarz..." required>
+                        </form>
+                    </div>
                 </div>
                 <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
                 <button class="nav-btn mt-2" onclick="shareArticle('Trendy w streetwearze 2023', 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"><i class="fas fa-share"></i> Udostępnij</button>
             </div>
         </div>
+
     </div>
 
-    <!-- Formularz do dodawania nowych artykułów -->
-    <div id="blogForm" class="email-form" style="display: none;">
-        <h3 class="text-2xl font-bold mb-4">Dodaj nowy artykuł</h3>
+    <!-- Formularz dodawania artykułu -->
+    <div id="blogForm" class="email-form max-w-xl mx-auto mt-12 bg-gray-900 p-6 rounded-lg shadow-lg border border-gold-500 hidden">
+        <h3 class="text-2xl font-bold text-gold-400 mb-4">Dodaj nowy artykuł</h3>
         <form id="newBlogPostForm">
-            <div class="form-group">
-                <label>Tytuł</label>
-                <input type="text" id="blogTitle" required>
+            <div class="form-group mb-4">
+                <label class="text-gray-300">Tytuł</label>
+                <input type="text" id="blogTitle" required class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600">
             </div>
             
-            <div class="form-group">
-                <label>Krótki opis</label>
-                <textarea id="blogExcerpt" rows="2" required></textarea>
+            <div class="form-group mb-4">
+                <label class="text-gray-300">Krótki opis</label>
+                <textarea id="blogExcerpt" rows="2" required class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600"></textarea>
             </div>
             
-            <div class="form-group">
-                <label>Pełna treść</label>
-                <textarea id="blogContent" rows="5" required></textarea>
+            <div class="form-group mb-4">
+                <label class="text-gray-300">Pełna treść</label>
+                <textarea id="blogContent" rows="5" required class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600"></textarea>
             </div>
             
-            <div class="form-group">
-                <label>URL obrazka</label>
-                <input type="url" id="blogImage" placeholder="https://...">
+            <div class="form-group mb-4">
+                <label class="text-gray-300">URL obrazka</label>
+                <input type="url" id="blogImage" placeholder="https://..." class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600">
             </div>
             
-            <button type="submit" class="nav-btn gold-bg">Opublikuj artykuł</button>
-            <button type="button" class="nav-btn" onclick="hideBlogForm()">Anuluj</button>
+            <button type="submit" class="nav-btn gold-bg px-6 py-2 rounded-lg shadow-lg">Opublikuj artykuł</button>
+            <button type="button" class="nav-btn px-6 py-2 rounded-lg" onclick="hideBlogForm()">Anuluj</button>
         </form>
     </div>
 </section>
+
+<script>
+// Lista cytatów do rotacji
+const quotes = [
+    "„Twoje słowa mają większą moc, niż myślisz.”",
+    "„Ludzie słyszą, ale pamiętają to, co widzą.”",
+    "„To, co tworzysz, mówi więcej niż tysiąc słów.”",
+    "„Styl to nie ubranie – to komunikat.”"
+];
+
+let quoteIndex = 0;
+function changeQuote() {
+    const quoteElement = document.getElementById("dynamic-quote");
+    quoteElement.classList.add("opacity-0"); // znikanie
+    setTimeout(() => {
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        quoteElement.innerText = quotes[quoteIndex];
+        quoteElement.classList.remove("opacity-0"); // pojawianie się
+    }, 1000);
+}
+// zmiana cytatu co 10 sekund
+setInterval(changeQuote, 10000);
+
+// Filtr obraźliwych słów
+const bannedWords = ["kurwa","chuj","pierdole","idiota","debil","szmata"];
+function filterBadWords(text) {
+    let clean = text;
+    bannedWords.forEach(word => {
+        const regex = new RegExp(word, "gi");
+        clean = clean.replace(regex, "***");
+    });
+    return clean;
+}
+
+// Dodawanie komentarzy
+function addComment(event, commentListId) {
+    event.preventDefault();
+    const input = event.target.querySelector("input");
+    const commentList = document.getElementById(commentListId);
+    const newComment = document.createElement("li");
+    newComment.textContent = "💬 " + filterBadWords(input.value);
+    commentList.appendChild(newComment);
+    input.value = "";
+}
+
+// Formularz dodawania artykułu
+document.getElementById("newBlogPostForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const title = document.getElementById("blogTitle").value;
+    const excerpt = document.getElementById("blogExcerpt").value;
+    const content = document.getElementById("blogContent").value;
+    const image = document.getElementById("blogImage").value || "https://via.placeholder.com/500x300";
+
+    const newPost = document.createElement("div");
+    newPost.className = "blog-post bg-gray-900 border border-gold-500 rounded-lg shadow-lg hover:bg-gray-800 transition";
+    newPost.innerHTML = `
+        <img src="${image}" alt="${title}" class="blog-image rounded-t-lg">
+        <div class="blog-content p-6">
+            <h3 class="text-xl font-bold text-gold-400 mb-2">${title}</h3>
+            <p class="text-sm text-gray-400">Opublikowano: ${new Date().toLocaleDateString()}</p>
+            <div class="blog-excerpt">
+                <p class="mt-3 text-gray-200">${excerpt}</p>
+            </div>
+            <div class="blog-full hidden">
+                <p class="mt-3 text-gray-300">${content}</p>
+                <blockquote class="italic text-gold-300 mt-4 border-l-4 border-gold-500 pl-4">
+                    „Każda historia ma znaczenie.”
+                </blockquote>
+                <div class="comments mt-6">
+                    <h4 class="text-lg font-bold text-gold-400 mb-2">Komentarze:</h4>
+                    <ul class="text-gray-200 space-y-2"></ul>
+                    <form class="mt-3" onsubmit="addComment(event, this.previousElementSibling.id)">
+                        <input type="text" class="w-full p-2 rounded bg-gray-800 text-gray-200 border border-gray-600" placeholder="Dodaj komentarz..." required>
+                    </form>
+                </div>
+            </div>
+            <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
+        </div>
+    `;
+    document.getElementById("blogPostsContainer").prepend(newPost);
+    hideBlogForm();
+});
+
+// Funkcje do pokazywania/ukrywania formularza
+function showBlogForm() {
+    document.getElementById("blogForm").classList.remove("hidden");
+}
+function hideBlogForm() {
+    document.getElementById("blogForm").classList.add("hidden");
+}
+
+// Funkcja rozwijania treści
+function toggleReadMore(button) {
+    const post = button.closest(".blog-post");
+    const fullContent = post.querySelector(".blog-full");
+    if (fullContent.classList.contains("hidden")) {
+        fullContent.classList.remove("hidden");
+        button.textContent = "Zwiń";
+    } else {
+        fullContent.classList.add("hidden");
+        button.textContent = "Czytaj więcej";
+    }
+}
+</script>
 
 <!-- Regulamin -->
 <section id="regulations">
@@ -1855,62 +2094,108 @@
 </div>
 </div>
 </section>
+<!-- Kontakt - FINALNA WERSJA -->
+<section id="contact" class="bg-gradient-to-b from-white via-gray-50 to-white py-12 px-6">
+  <div class="section-title text-center mb-10">
+    <h2 class="text-4xl font-extrabold text-gray-900">Kontakt</h2>
+    <p class="text-lg text-gray-600 mt-2">To Twoje miejsce – masz wpływ na wszystko, co tu się dzieje.</p>
+  </div>
 
-<!-- Kontakt - ZMODYFIKOWANY -->
-<section id="contact">
-    <div class="section-title">
-        <h2>Kontakt</h2>
-        <p>Skontaktuj się z nami</p>
-    </div>
+  <!-- Formularz kontaktowy -->
+  <div class="email-form bg-white shadow-lg rounded-2xl p-8 mb-10">
+    <h3 class="text-2xl font-bold mb-4">Wyślij wiadomość</h3>
+    <form id="contactForm">
+      <div class="form-group mb-4">
+        <label class="block font-semibold mb-1">Imię i nazwisko</label>
+        <input type="text" required class="w-full border rounded-lg px-3 py-2">
+      </div>
+      
+      <div class="form-group mb-4">
+        <label class="block font-semibold mb-1">Email</label>
+        <input type="email" required class="w-full border rounded-lg px-3 py-2">
+      </div>
+      
+      <div class="form-group mb-4">
+        <label class="block font-semibold mb-1">Temat</label>
+        <input type="text" required class="w-full border rounded-lg px-3 py-2">
+      </div>
+      
+      <div class="form-group mb-4">
+        <label class="block font-semibold mb-1">Wiadomość</label>
+        <textarea rows="5" required class="w-full border rounded-lg px-3 py-2"></textarea>
+      </div>
+      
+      <button type="submit" class="nav-btn gold-bg w-full">Wyślij wiadomość</button>
+    </form>
+  </div>
+
+  <!-- Dane kontaktowe -->
+  <div class="bg-white p-6 rounded-2xl shadow-md mb-10">
+    <h3 class="text-xl font-bold mb-4">Dane kontaktowe</h3>
+    <p class="mb-2"><i class="fas fa-envelope gold-text"></i> Email: <b>mielniczukgrzegosz74@gmail.com</b></p>
+    <p class="mb-2"><i class="fas fa-phone gold-text"></i> Telefon: <b>604 296 360</b></p>
+    <p class="mb-4"><i class="fas fa-clock gold-text"></i> Godziny odpowiedzi: <b>Pon-Pt 9:00-17:00</b></p>
     
-    <div class="email-form">
-        <h3 class="text-2xl font-bold mb-4">Wyślij wiadomość</h3>
-        <form id="contactForm">
-            <div class="form-group">
-                <label>Imię i nazwisko</label>
-                <input type="text" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Temat</label>
-                <input type="text" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Wiadomość</label>
-                <textarea rows="5" required></textarea>
-            </div>
-            
-            <button type="submit" class="nav-btn gold-bg w-full">Wyślij wiadomość</button>
-        </form>
+    <h3 class="text-xl font-bold mt-6 mb-4">Social Media</h3>
+    <div class="social-links flex gap-4">
+      <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link text-pink-500 text-2xl" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link text-black text-2xl" target="_blank">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link text-blue-600 text-2xl" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+      </a>
     </div>
+  </div>
+
+  <!-- Forum dyskusyjne -->
+  <div class="bg-white p-6 rounded-2xl shadow-md">
+    <h3 class="text-2xl font-bold mb-4">Forum – Twoje miejsce na głos</h3>
+    <p class="text-gray-600 mb-4">Dodaj swój wpis i stań się częścią społeczności.</p>
     
-    <div class="bg-white p-6 rounded-lg shadow-md mt-8">
-        <h3 class="text-xl font-bold mb-4">Dane kontaktowe</h3>
-        <p class="mb-2"><i class="fas fa-envelope gold-text"></i> Email: mielniczukgrzegosz74@gmail.com</p>
-        <p class="mb-2"><i class="fas fa-phone gold-text"></i> Telefon: 604 296 360</p>
-        <p class="mb-4"><i class="fas fa-clock gold-text"></i> Godziny odpowiedzi: Pon-Pt 9:00-17:00</p>
-        
-        <h3 class="text-xl font-bold mt-6 mb-4">Social Media</h3>
-        <div class="social-links">
-            <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link" target="_blank">
-                <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link" target="_blank">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-        </div>
+    <form id="forumForm" class="mb-6">
+      <input type="text" id="forumUser" placeholder="Twoje imię" required class="w-full border rounded-lg px-3 py-2 mb-2">
+      <textarea id="forumMessage" rows="3" placeholder="Napisz swój wpis..." required class="w-full border rounded-lg px-3 py-2 mb-2"></textarea>
+      <button type="submit" class="nav-btn gold-bg w-full">Dodaj wpis</button>
+    </form>
+    
+    <div id="forumPosts" class="space-y-4">
+      <!-- Wpisy forum będą dodawane tutaj -->
     </div>
+  </div>
 </section>
-</main>
+
+<script>
+  // Lista słów zakazanych
+  const forbiddenWords = ["idiota", "głupek", "kurwa", "chuj", "pedał", "debil"];
+  
+  // Obsługa forum
+  document.getElementById("forumForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const user = document.getElementById("forumUser").value.trim();
+    const message = document.getElementById("forumMessage").value.trim();
+    
+    // Sprawdzenie wulgaryzmów
+    let containsBad = forbiddenWords.some(word => message.toLowerCase().includes(word));
+    
+    if (containsBad) {
+      alert("Twój wpis zawiera niedozwolone treści. Spróbuj napisać inaczej.");
+      return;
+    }
+    
+    if (user && message) {
+      const postDiv = document.createElement("div");
+      postDiv.classList.add("p-4", "bg-gray-50", "rounded-lg", "shadow-sm");
+      postDiv.innerHTML = `<p class="font-bold">${user}</p><p>${message}</p>`;
+      document.getElementById("forumPosts").prepend(postDiv);
+      
+      document.getElementById("forumForm").reset();
+    }
+  });
+</script>
 
 <!-- Koszyk - ZMODYFIKOWANY -->
 <div id="cartIcon">
@@ -2812,6 +3097,7 @@
 </html>                
                 
                
+
 
 
 
