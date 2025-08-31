@@ -966,12 +966,281 @@
             <button class="nav-btn" data-section="contact"><i class="fas fa-envelope"></i> Kontakt</button>
         </div>
     </nav>
-<!-- Strona główna -->
+    
+    <!-- Strona główna -->
 <section id="home" class="active">
     <div class="section-title">
         <h2>Witaj w AdelbertusShop</h2>
         <p>Odkryj świat wyjątkowych, personalizowanych produktów</p>
     </div>
+
+    <!-- Produkty z przyciskiem KUP -->
+    <div class="products-grid">
+        <!-- Przykładowy produkt -->
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Koszulka "Rebel"</div>
+                <div class="product-price">120 zł</div>
+                <button class="nav-btn buy-btn" 
+                        data-product='{"name":"Koszulka Rebel","price":120,"image":"https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg","type":"tshirt"}'>
+                    Kup teraz
+                </button>
+            </div>
+        </div>
+
+        <!-- Kolejne produkty... -->
+    </div>
+</section>
+
+<!-- Modal do wyboru opcji -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalProductName"></h2>
+        <img id="modalProductImage" src="" alt="" style="max-width: 200px;">
+        
+        <div class="modal-options">
+            <!-- Wybór koloru -->
+            <div class="option-group">
+                <h3>Wybierz kolor:</h3>
+                <div class="color-options-modal">
+                    <div class="color-option-modal selected" data-color="czarny" style="background-color: #000000;"></div>
+                    <div class="color-option-modal" data-color="biały" style="background-color: #ffffff; border: 1px solid #ccc;"></div>
+                    <div class="color-option-modal" data-color="czerwony" style="background-color: #ff0000;"></div>
+                    <div class="color-option-modal" data-color="niebieski" style="background-color: #0000ff;"></div>
+                    <div class="color-option-modal" data-color="zielony" style="background-color: #00ff00;"></div>
+                    <div class="color-option-modal" data-color="żółty" style="background-color: #ffff00;"></div>
+                </div>
+            </div>
+
+            <!-- Wybór rozmiaru -->
+            <div class="option-group">
+                <h3>Wybierz rozmiar:</h3>
+                <select id="sizeSelect" class="size-select-modal">
+                    <option value="S">S</option>
+                    <option value="M" selected>M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+            </div>
+
+            <!-- Dla czapek - rozmiar w cm -->
+            <div class="option-group cap-sizes" style="display: none;">
+                <h3>Obwód głowy:</h3>
+                <select id="capSizeSelect" class="size-select-modal">
+                    <option value="54cm">54 cm</option>
+                    <option value="56cm">56 cm</option>
+                    <option value="58cm">58 cm</option>
+                    <option value="60cm">60 cm</option>
+                    <option value="62cm">62 cm</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="modalAddToCart" class="nav-btn gold-bg">Dodaj do koszyka</button>
+    </div>
+</div>
+
+<style>
+/* Style modala */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.option-group {
+    margin: 15px 0;
+}
+
+.color-options-modal {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.color-option-modal {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.color-option-modal.selected {
+    border-color: #d4af37;
+    transform: scale(1.2);
+}
+
+.size-select-modal {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+</style>
+
+<script>
+// Zmienne globalne
+let currentProduct = null;
+let selectedColor = 'czarny';
+let selectedSize = 'M';
+
+// Otwieranie modala
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('buy-btn')) {
+        const productData = JSON.parse(e.target.getAttribute('data-product'));
+        openProductModal(productData);
+    }
+});
+
+function openProductModal(product) {
+    currentProduct = product;
+    
+    // Ustaw zawartość modala
+    document.getElementById('modalProductName').textContent = product.name;
+    document.getElementById('modalProductImage').src = product.image;
+    
+    // Pokazuj odpowiednie opcje rozmiarów
+    if (product.type === 'cap') {
+        document.querySelector('.cap-sizes').style.display = 'block';
+        document.getElementById('sizeSelect').style.display = 'none';
+    } else {
+        document.querySelector('.cap-sizes').style.display = 'none';
+        document.getElementById('sizeSelect').style.display = 'block';
+    }
+    
+    // Resetuj wybory
+    selectedColor = 'czarny';
+    selectedSize = product.type === 'cap' ? '54cm' : 'M';
+    
+    // Pokaz modal
+    document.getElementById('productModal').style.display = 'block';
+}
+
+// Zamykanie modala
+document.querySelector('.close').addEventListener('click', function() {
+    document.getElementById('productModal').style.display = 'none';
+});
+
+// Wybór koloru
+document.querySelectorAll('.color-option-modal').forEach(option => {
+    option.addEventListener('click', function() {
+        document.querySelectorAll('.color-option-modal').forEach(opt => {
+            opt.classList.remove('selected');
+        });
+        this.classList.add('selected');
+        selectedColor = this.getAttribute('data-color');
+    });
+});
+
+// Wybór rozmiaru
+document.getElementById('sizeSelect').addEventListener('change', function() {
+    selectedSize = this.value;
+});
+
+document.getElementById('capSizeSelect').addEventListener('change', function() {
+    selectedSize = this.value;
+});
+
+// Dodawanie do koszyka z modala
+document.getElementById('modalAddToCart').addEventListener('click', function() {
+    if (currentProduct) {
+        addToCart(
+            `${currentProduct.name} (${selectedColor}, ${selectedSize})`,
+            currentProduct.price,
+            currentProduct.image,
+            selectedSize,
+            selectedColor
+        );
+        
+        // Zamknij modal
+        document.getElementById('productModal').style.display = 'none';
+        showNotification('✅ Produkt dodany do koszyka');
+    }
+});
+
+// Modyfikacja funkcji addToCart
+function addToCart(name, price, image = null, size = null, color = null) {
+    // Sprawdź czy produkt już jest w koszyku
+    const existingIndex = cart.findIndex(item => 
+        item.name === name && 
+        item.color === color && 
+        item.size === size
+    );
+    
+    if (existingIndex >= 0) {
+        cart[existingIndex].quantity++;
+    } else {
+        cart.push({
+            name,
+            price,
+            quantity: 1,
+            image,
+            size,
+            color,
+            id: Date.now()
+        });
+    }
+    
+    updateCart();
+}
+
+// Aktualizacja funkcji wysyłania zamówień
+function sendOrderEmail() {
+    let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
+    
+    cart.forEach((item, index) => {
+        emailBody += `${index + 1}. ${item.name} - ${item.price} zł × ${item.quantity}`;
+        if (item.color) emailBody += `, Kolor: ${item.color}`;
+        if (item.size) emailBody += `, Rozmiar: ${item.size}`;
+        emailBody += '\n';
+    });
+    
+    // ... reszta funkcji
+}
+
+function sendOrderWhatsApp() {
+    let message = 'Zamówienie z AdelbertusShop:%0A%0A';
+    
+    cart.forEach((item, index) => {
+        message += `${index + 1}. ${item.name} - ${item.price} zł × ${item.quantity}`;
+        if (item.color) message += `, Kolor: ${item.color}`;
+        if (item.size) message += `, Rozmiar: ${item.size}`;
+        message += '%0A';
+    });
+    
+    // ... reszta funkcji
+}
+</script>
+    
     <!-- Sekcja reklamowa - baner -->
 <div class="ad-container flex justify-center my-8">
   <div class="ad-banner relative">
@@ -5131,6 +5400,7 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 </script>
 </body>
 </html>
+
 
 
 
