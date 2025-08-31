@@ -1917,7 +1917,93 @@ function addComment(event, commentListId) {
 </div>
 </div>
 </section>
+    <!-- Kontakt - FINALNA WERSJA -->
+<section id="contact" class="relative bg-gradient-to-b from-white to-gray-50 py-12">
+    <div class="section-title text-center mb-10">
+        <h2>Kontakt</h2>
+        <p>Jesteśmy tu, żeby Cię wysłuchać</p>
+    </div>
 
+    <!-- Rotujący cytat -->
+    <div class="max-w-2xl mx-auto text-center mb-10">
+        <blockquote id="rotatingQuote" class="text-2xl italic font-semibold text-gray-800 leading-relaxed">
+            "Twoje słowa mają znaczenie – to od Ciebie zaczyna się zmiana."
+        </blockquote>
+    </div>
+
+    <!-- Formularz kontaktowy -->
+    <div class="email-form max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+        <h3 class="text-2xl font-bold mb-4">Wyślij wiadomość</h3>
+        <form id="contactForm">
+            <div class="form-group mb-4">
+                <label class="block text-sm font-medium mb-1">Imię i nazwisko</label>
+                <input type="text" class="w-full border rounded p-2" required>
+            </div>
+            
+            <div class="form-group mb-4">
+                <label class="block text-sm font-medium mb-1">Email</label>
+                <input type="email" class="w-full border rounded p-2" required>
+            </div>
+            
+            <div class="form-group mb-4">
+                <label class="block text-sm font-medium mb-1">Temat</label>
+                <input type="text" class="w-full border rounded p-2" required>
+            </div>
+            
+            <div class="form-group mb-6">
+                <label class="block text-sm font-medium mb-1">Wiadomość</label>
+                <textarea rows="5" class="w-full border rounded p-2" required></textarea>
+            </div>
+            
+            <button type="submit" class="nav-btn gold-bg w-full py-3 rounded-lg font-bold text-lg shadow-md hover:scale-105 transition">
+                Wyślij wiadomość
+            </button>
+        </form>
+    </div>
+    
+    <!-- Dane kontaktowe -->
+    <div class="bg-white p-6 rounded-lg shadow-md mt-10 max-w-2xl mx-auto">
+        <h3 class="text-xl font-bold mb-4">Dane kontaktowe</h3>
+        <p class="mb-2"><i class="fas fa-envelope gold-text"></i> Email: mielniczukgrzegosz74@gmail.com</p>
+        <p class="mb-2"><i class="fas fa-phone gold-text"></i> Telefon: 604 296 360</p>
+        <p class="mb-4"><i class="fas fa-clock gold-text"></i> Godziny odpowiedzi: Pon-Pt 9:00-17:00</p>
+        
+        <h3 class="text-xl font-bold mt-6 mb-4">Social Media</h3>
+        <div class="social-links flex space-x-4">
+            <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link text-2xl" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link text-2xl" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link text-2xl" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+// Lista cytatów
+const quotes = [
+    "Twoje słowa mają znaczenie – to od Ciebie zaczyna się zmiana.",
+    "Każda wiadomość to krok do stworzenia czegoś większego.",
+    "To miejsce istnieje dzięki Tobie – jesteś częścią tej przestrzeni.",
+    "Nie ma małych głosów – każdy głos kształtuje całość.",
+    "Pisząc tutaj, zostawiasz swój ślad w czymś większym niż my sami."
+];
+
+// Funkcja zmiany cytatu co 3 dni
+function getQuoteForToday() {
+    const startDate = new Date("2024-01-01"); 
+    const today = new Date();
+    const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+    return quotes[Math.floor(diffDays / 3) % quotes.length];
+}
+
+document.getElementById("rotatingQuote").textContent = getQuoteForToday();
+</script>
+    
 <!-- DODANE: Neon glow i animacje -->
 <style>
 /* Neon glow */
@@ -2065,61 +2151,6 @@ section.active {
 }
 </style>
 
-<!-- Kontakt - ZMODYFIKOWANY -->
-<section id="contact">
-    <div class="section-title">
-        <h2>Kontakt</h2>
-        <p>Skontaktuj się z nami</p>
-    </div>
-    
-    <div class="email-form">
-        <h3 class="text-2xl font-bold mb-4">Wyślij wiadomość</h3>
-        <form id="contactForm">
-            <div class="form-group">
-                <label>Imię i nazwisko</label>
-                <input type="text" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Temat</label>
-                <input type="text" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Wiadomość</label>
-                <textarea rows="5" required></textarea>
-            </div>
-            
-            <button type="submit" class="nav-btn gold-bg w-full">Wyślij wiadomość</button>
-        </form>
-    </div>
-    
-    <div class="bg-white p-6 rounded-lg shadow-md mt-8">
-        <h3 class="text-xl font-bold mb-4">Dane kontaktowe</h3>
-        <p class="mb-2"><i class="fas fa-envelope gold-text"></i> Email: mielniczukgrzegosz74@gmail.com</p>
-        <p class="mb-2"><i class="fas fa-phone gold-text"></i> Telefon: 604 296 360</p>
-        <p class="mb-4"><i class="fas fa-clock gold-text"></i> Godziny odpowiedzi: Pon-Pt 9:00-17:00</p>
-        
-        <h3 class="text-xl font-bold mt-6 mb-4">Social Media</h3>
-        <div class="social-links">
-            <a href="https://www.instagram.com/mielniczukgrzegosz74/profilecard/?igsh=MXg1dWMycDBjeTlpYw==" class="social-link" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.tiktok.com/@ja.jestem3?_t=ZN-8z3xiAfOynu&_r=1" class="social-link" target="_blank">
-                <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://www.facebook.com/share/p/19jxDk2vM7/" class="social-link" target="_blank">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-        </div>
-    </div>
-</section>
-</main>
 
 <!-- DODANE: Skrypt dla efektów neonowych i animacji -->
 <script>
@@ -3088,6 +3119,7 @@ setTimeout(() => addDonor("👑 Sekretny Darczyńca", 250), 8000);
 </script>
 </body>
 </html>
+
 
 
 
