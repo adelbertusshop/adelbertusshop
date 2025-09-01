@@ -6,7 +6,6 @@
     <title>AdelbertusShop | Ekskluzywne Projekty</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
         
@@ -481,9 +480,33 @@
         }
         
         /* PayPal container */
-        #paypal-container {
-            margin-top: 1rem;
+        .paypal-container {
+            margin: 1.5rem 0;
             min-height: 50px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        /* Nowe style dla przycisków PayPal - zapobiegają nakładaniu się */
+        .payment-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .payment-option {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--color-dark-gold);
+            font-family: 'Playfair Display', serif;
         }
         
         /* Animacje */
@@ -535,6 +558,10 @@
             
             .sticky-buttons {
                 bottom: 5rem;
+            }
+            
+            .payment-section {
+                gap: 1.5rem;
             }
         }
 
@@ -909,6 +936,137 @@
 </head>
 <body>
     <!-- Nagłówek -->
+    <header>
+        <div class="logo">AdelbertusShop</div>
+        <div class="tagline">Ekskluzywne Projekty i Personalizowane Produkty</div>
+    </header>
+
+    <!-- Nawigacja -->
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" data-section="home">Strona Główna</button>
+            <button class="nav-btn" data-section="products">Produkty</button>
+            <button class="nav-btn" data-section="design">Projektowanie</button>
+            <button class="nav-btn" data-section="charity">Zbiórka Charytatywna</button>
+            <button class="nav-btn" data-section="blog">Blog</button>
+            <button class="nav-btn" data-section="reviews">Opinie</button>
+            <button class="nav-btn" data-section="payment">Płatności</button>
+            <button class="nav-btn" data-section="contact">Kontakt</button>
+        </div>
+    </nav>
+
+    <!-- Sekcja Płatności - poprawiona -->
+    <section id="payment" class="active">
+        <h2 class="section-title">Płatności</h2>
+        
+        <div class="payment-section">
+            <div class="payment-option">
+                <h3 class="payment-title">Standardowa płatność PayPal</h3>
+                <div id="paypal-container-standard" class="paypal-container"></div>
+            </div>
+            
+            <div class="payment-option">
+                <h3 class="payment-title">Płatność w PLN (bez Venmo)</h3>
+                <div id="paypal-container-pln" class="paypal-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reszta sekcji (pomijam dla czytelności) -->
+
+    <!-- Ikona koszyka -->
+    <div id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartCount">0</span>
+    </div>
+
+    <!-- Panel koszyka -->
+    <div id="cartPanel">
+        <h3>Twój Koszyk</h3>
+        <div id="cartItems"></div>
+        <div class="cart-total">
+            <p>Suma: <span id="cartTotal">0.00</span> PLN</p>
+        </div>
+        <div class="paypal-container">
+            <div id="paypal-container-cart"></div>
+        </div>
+        <div class="cart-buttons">
+            <button class="email-order-btn">Zamów przez E-mail</button>
+            <button class="whatsapp-order-btn">Zamów przez WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- Stopka -->
+    <footer>
+        <div class="contact-info">
+            <h3>Kontakt</h3>
+            <p>Email: info@adelbertusshop.com</p>
+            <p>Telefon: +48 123 456 789</p>
+        </div>
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2025 AdelbertusShop. Wszystkie prawa zastrzeżone.</p>
+    </footer>
+
+    <!-- Skrypty -->
+    <script>
+        // Inicjalizacja przycisków PayPal po załadowaniu SDK
+        document.addEventListener('DOMContentLoaded', function() {
+            // Standardowy przycisk PayPal
+            if (typeof paypal !== 'undefined') {
+                paypal.HostedButtons({
+                    hostedButtonId: "90VCBWDNDXAZN"
+                }).render("#paypal-container-standard");
+                
+                // Przycisk PayPal z określonymi parametrami
+                paypal.HostedButtons({
+                    hostedButtonId: "90VCBWDNDXAZN"
+                }).render("#paypal-container-pln");
+                
+                // Przycisk PayPal dla koszyka
+                paypal.HostedButtons({
+                    hostedButtonId: "90VCBWDNDXAZN"
+                }).render("#paypal-container-cart");
+            } else {
+                console.error("PayPal SDK nie został załadowany.");
+            }
+        });
+
+        // Podstawowa obsługa nawigacji
+        document.querySelectorAll('.nav-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const sectionId = this.getAttribute('data-section');
+                
+                // Ukryj wszystkie sekcje
+                document.querySelectorAll('section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Pokaż wybraną sekcję
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Aktualizuj aktywny przycisk
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Obsługa koszyka (uproszczona)
+        let cartCount = 0;
+        document.getElementById('cartIcon').addEventListener('click', function() {
+            document.getElementById('cartPanel').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
+
+<!-- Nagłówek -->
     <header>
         <div class="logo">AdelbertusShop</div>
         <div class="tagline">Tworzone z pasją, noszone z dumą</div>
@@ -3035,6 +3193,7 @@ function hideBlogForm() {
 </script>
 </body>
 </html>               
+
 
 
 
