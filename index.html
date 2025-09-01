@@ -5,110 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdelbertusShop | Ekskluzywne Projekty</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
-        
-        :root {
-            --color-gold: #d4af37;
-            --color-dark-gold: #b8941f;
-            --color-dark: #1a1a1a;
-            --color-light: #f8f5f0;
-            --color-cream: #fff8e7;
-        }
-        
-        * {
+        /* Style CSS */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--color-light);
+            background-color: #f8f5f0;
             color: #333;
-            line-height: 1.6;
-            padding-bottom: 80px;
         }
         
-        h1, h2, h3, h4, h5 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
-        
-        .gold-text {
-            color: var(--color-gold);
-        }
-        
-        .gold-border {
-            border: 2px solid var(--color-gold);
-        }
-        
-        .gold-bg {
-            background: var(--color-gold);
-        }
-        
-        /* Nagłówek i nawigacja */
         header {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg');
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
             background-size: cover;
             background-position: center;
             color: white;
             padding: 2rem 0;
             text-align: center;
-            position: relative;
         }
         
         .logo {
-            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             font-weight: 900;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .tagline {
-            font-style: italic;
-            margin-bottom: 2rem;
-            font-size: 1.2rem;
-            opacity: 0.9;
         }
         
         nav {
             background: rgba(0, 0, 0, 0.7);
             padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
         
         .nav-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
         }
         
         .nav-btn {
             background: transparent;
             color: white;
-            border: 2px solid var(--color-gold);
+            border: 2px solid #d4af37;
             padding: 0.8rem 1.5rem;
             margin: 0.5rem;
             border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s ease;
         }
         
         .nav-btn:hover, .nav-btn.active {
-            background: var(--color-gold);
+            background: #d4af37;
             color: black;
         }
         
-        /* Sekcje */
         section {
             display: none;
             padding: 3rem 1rem;
@@ -118,28 +66,8 @@
         
         section.active {
             display: block;
-            animation: fadeIn 0.5s ease;
         }
         
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: var(--color-gold);
-        }
-        
-        /* Karty produktów */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -152,14 +80,8 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .product-image-container {
@@ -168,7 +90,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--color-cream);
+            background: #fff8e7;
         }
         
         .product-image {
@@ -191,217 +113,21 @@
         }
         
         .product-price {
-            color: var(--color-gold);
+            color: #d4af37;
             font-weight: 700;
             font-size: 1.3rem;
             margin-bottom: 1rem;
         }
         
-        /* Studio projektowe */
-        .design-studio {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-            margin: 2rem 0;
-            position: relative;
-        }
-        
-        .canvas-container {
-            border: 3px solid var(--color-gold);
-            border-radius: 10px;
-            padding: 1rem;
-            background: white;
-            margin: 0 auto;
-            max-width: 600px;
-            position: relative;
-        }
-        
-        #designCanvas {
-            width: 100%;
-            background: white;
-            border: 1px solid #ddd;
-            cursor: move;
-        }
-        
-        .canvas-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .design-tools {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .tool-group {
-            background: var(--color-cream);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 1px solid #eee;
-        }
-        
-        .tool-title {
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--color-dark-gold);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .transform-controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-        }
-        
-        .transform-input {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 0.5rem;
-        }
-        
-        .transform-input label {
-            font-size: 0.8rem;
-            margin-bottom: 0.2rem;
-        }
-        
-        /* Sekcja zbiórki */
-        .charity-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1840&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 4rem 2rem;
-            border-radius: 15px;
-            text-align: center;
-            margin: 2rem 0;
-        }
-        
-        .donors-list {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            text-align: left;
-        }
-        
-        /* Sekcja bloga */
-        .blog-posts {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .blog-post {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .blog-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .blog-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .blog-excerpt {
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-        
-        .blog-full {
-            display: none;
-            margin-bottom: 1rem;
-        }
-        
-        /* Opinie */
-        .reviews {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .review {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .review-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .review-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 1rem;
-        }
-        
-        .review-stars {
-            color: var(--color-gold);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Stopka */
-        footer {
-            background: var(--color-dark);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-        
-        .contact-info {
-            margin: 1.5rem 0;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        
-        .social-link {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: var(--color-gold);
+        .add-to-cart {
+            background: #d4af37;
             color: black;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: auto;
         }
         
         /* Koszyk */
@@ -409,7 +135,7 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: var(--color-gold);
+            background: #d4af37;
             color: black;
             width: 60px;
             height: 60px;
@@ -459,11 +185,35 @@
             right: 0;
         }
         
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+        }
+        
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+        }
+        
         .cart-item {
             display: flex;
             align-items: center;
             padding: 1rem;
             border-bottom: 1px solid #eee;
+            position: relative;
         }
         
         .cart-item-image {
@@ -474,398 +224,76 @@
             margin-right: 1rem;
         }
         
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .cart-item-price {
+            color: #d4af37;
+            font-weight: 700;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff0000;
+            cursor: pointer;
+            font-size: 1.2rem;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        
         .cart-total {
             margin-top: auto;
             padding-top: 1rem;
             border-top: 2px solid #eee;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
         }
         
         /* PayPal container */
-        #paypal-container {
-            margin-top: 1rem;
+        .paypal-container {
+            margin: 1.5rem 0;
             min-height: 50px;
-        }
-        
-        /* Animacje */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease;
-        }
-        
-        /* Responsywność */
-        @media (max-width: 768px) {
-            .products-grid, .blog-posts, .reviews {
-                grid-template-columns: 1fr;
-            }
-            
-            #cartPanel {
-                width: 100%;
-                right: -100%;
-            }
-            
-            .design-tools {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .nav-btn {
-                width: 80%;
-                margin: 0.3rem;
-            }
-            
-            .transform-controls {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-            }
-            
-            .sticky-buttons {
-                bottom: 5rem;
-            }
-        }
-
-        /* Nowe style dla lepszego układu */
-        .sticky-buttons {
-            position: sticky;
-            bottom: 1rem;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            z-index: 98;
-            margin-top: 2rem;
-        }
-
-        .action-buttons {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .design-preview {
-            margin-top: 2rem;
-            text-align: center;
-            padding: 1rem;
-            background: var(--color-cream);
-            border-radius: 10px;
         }
         
-        .product-base {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .product-base-item {
-            border: 2px solid #eee;
-            border-radius: 8px;
-            padding: 0.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .product-base-item:hover, .product-base-item.active {
-            border-color: var(--color-gold);
-            background: var(--color-cream);
-        }
-        
-        .product-base-item img {
-            max-width: 100%;
-            height: 120px;
-            object-fit: contain;
-        }
-        
-        .email-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-top: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-        }
-        
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: var(--color-gold);
-            color: black;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            margin: 0.5rem auto;
-            width: 80%;
-        }
-        
-        .design-area {
-            position: relative;
-            margin-bottom: 1rem;
-        }
-        
-        .design-options {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .design-option {
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--color-gold);
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .design-option.active {
-            background: var(--color-gold);
-            color: black;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-container {
-                display: none;
-                flex-direction: column;
-            }
-            
-            .nav-container.show {
-                display: flex;
-            }
-            
-            .design-options {
-                flex-direction: column;
-            }
-        }
-
-        /* Style dla wirtualnych produktów */
-        .virtual-product {
-            position: relative;
-            width: 100%;
-            margin: 0 auto;
-        }
-        
-        .product-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .design-area-front, .design-area-back, .design-area-sleeve {
-            border: 2px dashed #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 15px;
-            background: white;
-        }
-        
-        .design-area-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: var(--color-dark-gold);
-        }
-        
-        /* PayPal darowizny */
-        .donate-button {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 1rem 2rem;
-            background: #0070ba;
-            color: white;
-            border-radius: 30px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .donate-button:hover {
-            background: #005ea6;
-            transform: translateY(-2px);
-        }
-        
-        /* Nowe style dla reklam */
-        .ad-container {
-            width: 100%;
-            margin: 2rem 0;
-            text-align: center;
-        }
-        
-        .ad-banner {
-            width: 100%;
-            max-width: 728px;
-            height: 90px;
-            background: #f0f0f0;
-            margin: 1rem auto;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-style: italic;
-        }
-        
-        .ad-banner.large {
-            max-width: 970px;
-            height: 250px;
-        }
-        
-        .ad-banner.video {
-            position: relative;
-        }
-        
-        .ad-banner.video .timer {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-        }
-        
-        /* Style dla przycisków po bokach */
-        .side-buttons {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+        .payment-section {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            z-index: 10;
+            gap: 2rem;
+            margin: 2rem 0;
         }
         
-        .side-buttons.left {
-            left: 10px;
+        .payment-option {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        .side-buttons.right {
-            right: 10px;
-        }
-        
-        .side-button {
-            background: var(--color-gold);
-            color: black;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.2rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .side-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        
-        /* Style dla formularza zamówienia */
-        .order-form {
-            background: black;
-            color: var(--color-gold);
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 600px;
-            margin: 2rem auto;
-        }
-        
-        .order-form input,
-        .order-form textarea {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            border: 1px solid #444;
-            border-radius: 5px;
-            background: #333;
-            color: white;
-        }
-        
-        .order-form button {
-            background: var(--color-gold);
-            color: black;
-            border: none;
-            padding: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 1rem;
-        }
-        
-        /* Style dla stopki z reklamami */
-        .footer-ads {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #444;
-        }
-        
-        .footer-ad {
-            background: #222;
-            padding: 1rem;
-            border-radius: 8px;
+        .payment-title {
             text-align: center;
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-style: italic;
+            margin-bottom: 1rem;
+            color: #b8941f;
         }
-
-        /* Style dla przycisków w koszyku */
+        
+        /* Przyciski w koszyku */
         .cart-buttons {
             display: flex;
             flex-direction: column;
@@ -879,15 +307,10 @@
             border: none;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .cart-buttons button:hover {
-            opacity: 0.9;
         }
         
         .email-order-btn {
-            background: var(--color-gold);
+            background: #d4af37;
             color: black;
         }
         
@@ -895,20 +318,349 @@
             background: #25D366;
             color: white;
         }
-
-        /* Sekcja zamówienia */
-        .order-section {
-            background: black;
-            color: var(--color-gold);
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 600px;
-            margin: 2rem auto;
+        
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            #cartPanel {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 80%;
+                margin: 0.3rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    
+    <!-- Nagłówek -->
+    <header>
+        <div class="logo">AdelbertusShop</div>
+        <div class="tagline">Ekskluzywne Projekty i Personalizowane Produkty</div>
+    </header>
+
+    <!-- Nawigacja -->
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" data-section="home">Strona Główna</button>
+            <button class="nav-btn" data-section="products">Produkty</button>
+            <button class="nav-btn" data-section="payment">Płatności</button>
+            <button class="nav-btn" data-section="contact">Kontakt</button>
+        </div>
+    </nav>
+
+    <!-- Sekcja główna -->
+    <section id="home" class="active">
+        <h2>Witaj w AdelbertusShop</h2>
+        <p>Oferujemy ekskluzywne, personalizowane produkty najwyższej jakości.</p>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://via.placeholder.com/300x300?text=Produkt+1" alt="Produkt 1" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Personalizowana Koszulka</h3>
+                    <p class="product-price">89.99 PLN</p>
+                    <button class="add-to-cart" data-id="1" data-name="Personalizowana Koszulka" data-price="89.99" data-image="https://via.placeholder.com/300x300?text=Produkt+1">Dodaj do koszyka</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://via.placeholder.com/300x300?text=Produkt+2" alt="Produkt 2" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Kubek z Nadrukiem</h3>
+                    <p class="product-price">39.99 PLN</p>
+                    <button class="add-to-cart" data-id="2" data-name="Kubek z Nadrukiem" data-price="39.99" data-image="https://via.placeholder.com/300x300?text=Produkt+2">Dodaj do koszyka</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://via.placeholder.com/300x300?text=Produkt+3" alt="Produkt 3" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Torba Bawełniana</h3>
+                    <p class="product-price">59.99 PLN</p>
+                    <button class="add-to-cart" data-id="3" data-name="Torba Bawełniana" data-price="59.99" data-image="https://via.placeholder.com/300x300?text=Produkt+3">Dodaj do koszyka</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja Płatności -->
+    <section id="payment">
+        <h2>Płatności</h2>
+        
+        <div class="payment-section">
+            <div class="payment-option">
+                <h3 class="payment-title">Standardowa płatność PayPal</h3>
+                <div id="paypal-container-standard" class="paypal-container"></div>
+            </div>
+            
+            <div class="payment-option">
+                <h3 class="payment-title">Płatność w PLN (bez Venmo)</h3>
+                <div id="paypal-container-pln" class="paypal-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja Kontakt -->
+    <section id="contact">
+        <h2>Kontakt</h2>
+        <p>Email: info@adelbertusshop.com</p>
+        <p>Telefon: +48 123 456 789</p>
+    </section>
+
+    <!-- Ikona koszyka -->
+    <div id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartCount">0</span>
+    </div>
+
+    <!-- Panel koszyka -->
+    <div id="cartPanel">
+        <div class="cart-header">
+            <h3>Twój Koszyk</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">Twój koszyk jest pusty</div>
+        </div>
+        <div class="cart-total">
+            <span>Suma:</span>
+            <span id="cartTotal">0.00 PLN</span>
+        </div>
+        <div class="paypal-container">
+            <div id="paypal-container-cart"></div>
+        </div>
+        <div class="cart-buttons">
+            <button class="email-order-btn">Zamów przez E-mail</button>
+            <button class="whatsapp-order-btn">Zamów przez WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- Stopka -->
+    <footer>
+        <p>&copy; 2025 AdelbertusShop. Wszystkie prawa zastrzeżone.</p>
+    </footer>
+
+    <!-- Skrypty -->
+    <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+    <script>
+        // Dane produktów
+        const products = [
+            { id: 1, name: "Personalizowana Koszulka", price: 89.99, image: "https://via.placeholder.com/300x300?text=Produkt+1" },
+            { id: 2, name: "Kubek z Nadrukiem", price: 39.99, image: "https://via.placeholder.com/300x300?text=Produkt+2" },
+            { id: 3, name: "Torba Bawełniana", price: 59.99, image: "https://via.placeholder.com/300x300?text=Produkt+3" }
+        ];
+
+        // Koszyk
+        let cart = [];
+        const cartIcon = document.getElementById('cartIcon');
+        const cartPanel = document.getElementById('cartPanel');
+        const cartCount = document.getElementById('cartCount');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const closeCart = document.querySelector('.close-cart');
+
+        // Inicjalizacja przycisków PayPal
+        function initPayPal() {
+            if (typeof paypal !== 'undefined') {
+                // Standardowy przycisk PayPal
+                paypal.HostedButtons({
+                    hostedButtonId: "90VCBWDNDXAZN"
+                }).render("#paypal-container-standard");
+                
+                // Przycisk PayPal z określonymi parametrami
+                paypal.HostedButtons({
+                    hostedButtonId: "90VCBWDNDXAZN"
+                }).render("#paypal-container-pln");
+                
+                // Przycisk PayPal dla koszyka
+                paypal.HostedButtons({
+                    hostedButtonId: "90VCBWDNDXAZN"
+                }).render("#paypal-container-cart");
+            } else {
+                console.error("PayPal SDK nie został załadowany.");
+                setTimeout(initPayPal, 500);
+            }
+        }
+
+        // Inicjalizacja po załadowaniu strony
+        document.addEventListener('DOMContentLoaded', function() {
+            initPayPal();
+            updateCart();
+            
+            // Obsługa dodawania produktów do koszyka
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    const image = this.getAttribute('data-image');
+                    
+                    addToCart(id, name, price, image);
+                });
+            });
+
+            // Obsługa otwierania/zamykania koszyka
+            cartIcon.addEventListener('click', function() {
+                cartPanel.classList.add('open');
+            });
+
+            closeCart.addEventListener('click', function() {
+                cartPanel.classList.remove('open');
+            });
+
+            // Obsługa przycisku zamówienia przez e-mail
+            document.querySelector('.email-order-btn').addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert('Koszyk jest pusty!');
+                    return;
+                }
+                
+                const subject = 'Zamówienie z AdelbertusShop';
+                let body = 'Szczegóły zamówienia:\n\n';
+                
+                cart.forEach(item => {
+                    body += `${item.name} - ${item.price.toFixed(2)} PLN x ${item.quantity}\n`;
+                });
+                
+                body += `\nSuma: ${cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2)} PLN`;
+                
+                window.location.href = `mailto:info@adelbertusshop.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            });
+
+            // Obsługa przycisku zamówienia przez WhatsApp
+            document.querySelector('.whatsapp-order-btn').addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert('Koszyk jest pusty!');
+                    return;
+                }
+                
+                let message = 'Cześć! Chcę złożyć zamówienie:\n\n';
+                
+                cart.forEach(item => {
+                    message += `${item.name} - ${item.price.toFixed(2)} PLN x ${item.quantity}\n`;
+                });
+                
+                message += `\nSuma: ${cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2)} PLN`;
+                
+                window.open(`https://wa.me/48123456789?text=${encodeURIComponent(message)}`, '_blank');
+            });
+
+            // Podstawowa obsługa nawigacji
+            document.querySelectorAll('.nav-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    
+                    // Ukryj wszystkie sekcje
+                    document.querySelectorAll('section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Pokaż wybraną sekcję
+                    document.getElementById(sectionId).classList.add('active');
+                    
+                    // Aktualizuj aktywny przycisk
+                    document.querySelectorAll('.nav-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        });
+
+        // Funkcja dodająca produkt do koszyka
+        function addToCart(id, name, price, image) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price,
+                    image,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+        }
+
+        // Funkcja aktualizująca koszyk
+        function updateCart() {
+            // Aktualizacja licznika
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Aktualizacja zawartości koszyka
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Twój koszyk jest pusty</div>';
+            } else {
+                cartItems.innerHTML = '';
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">${item.price.toFixed(2)} PLN x ${item.quantity}</div>
+                        </div>
+                        <button class="remove-item" data-id="${item.id}">&times;</button>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+                
+                // Dodanie obsługi przycisku usuwania
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        removeFromCart(id);
+                    });
+                });
+            }
+            
+            // Aktualizacja sumy
+            const total = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            cartTotal.textContent = total.toFixed(2) + ' PLN';
+        }
+
+        // Funkcja usuwająca produkt z koszyka
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+    </script>
+</body>
+</html>    
     <!-- Nagłówek -->
     <header>
         <div class="logo">AdelbertusShop</div>
@@ -3486,6 +3238,7 @@ function hideBlogForm() {
 </script>
 </body>
 </html>               
+
 
 
 
