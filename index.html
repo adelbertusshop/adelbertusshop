@@ -1680,18 +1680,41 @@ let canvas = document.getElementById("designCanvas");
 let ctx = canvas.getContext("2d");
 let currentText = { text: "", x: 200, y: 200, font: "Arial", size: 36, color: "#000000" };
 let baseImage = new Image();
-baseImage.src = "https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg"; // domyślna koszulka
+let uploadedImage = null;
 
+// Działające URL produktów
+const productImages = {
+  tshirt: "https://i.ibb.co/6RJj4qM/white-tshirt.png",
+  hoodie: "https://i.ibb.co/4T2N0qH/white-hoodie.png", 
+  cap: "https://i.ibb.co/0Q8L0zZ/white-cap.png"
+};
+
+const productPrices = {
+  tshirt: 120,
+  hoodie: 200,
+  cap: 99
+};
+
+// Inicjalizacja
+baseImage.src = productImages.tshirt;
 baseImage.onload = () => redrawCanvas();
 
 // 🔹 Rysowanie wszystkiego
 function redrawCanvas() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.drawImage(baseImage,0,0,canvas.width,canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(baseImage, 0, 0, canvas.width, canvas.height);
+  
+  // Rysuj uploaded image jeśli istnieje
+  if (uploadedImage) {
+    ctx.drawImage(uploadedImage, 100, 100, 200, 200);
+  }
+  
+  // Rysuj tekst jeśli istnieje
   if (currentText.text) {
-    ctx.font = `${currentText.size}px ${currentText.font}`;
+    ctx.font = `${currentText.size}px "${currentText.font}"`;
     ctx.fillStyle = currentText.color;
     ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
     ctx.fillText(currentText.text, currentText.x, currentText.y);
   }
 }
@@ -1700,7 +1723,7 @@ function redrawCanvas() {
 function updateDesignText() {
   currentText.text = document.getElementById("designText").value;
   currentText.font = document.getElementById("fontFamily").value;
-  currentText.size = document.getElementById("fontSize").value;
+  currentText.size = parseInt(document.getElementById("fontSize").value);
   currentText.color = document.getElementById("textColor").value;
   redrawCanvas();
   updateSummary();
@@ -1712,10 +1735,20 @@ canvas.addEventListener("mousedown", e => {
   let rect = canvas.getBoundingClientRect();
   let mx = e.clientX - rect.left;
   let my = e.clientY - rect.top;
-  if (Math.abs(mx - currentText.x) < 100 && Math.abs(my - currentText.y) < 50) {
-    dragging = true;
+  
+  // Sprawdź czy kliknięto w obszar tekstu
+  if (currentText.text) {
+    ctx.font = `${currentText.size}px "${currentText.font}"`;
+    let textWidth = ctx.measureText(currentText.text).width;
+    let textHeight = currentText.size;
+    
+    if (Math.abs(mx - currentText.x) < textWidth/2 && 
+        Math.abs(my - currentText.y) < textHeight/2) {
+      dragging = true;
+    }
   }
 });
+
 canvas.addEventListener("mousemove", e => {
   if (dragging) {
     let rect = canvas.getBoundingClientRect();
@@ -1724,56 +1757,122 @@ canvas.addEventListener("mousemove", e => {
     redrawCanvas();
   }
 });
+
 canvas.addEventListener("mouseup", () => dragging = false);
+canvas.addEventListener("mouseleave", () => dragging = false);
 
 // 🔹 Zmiana produktu
 function changeProductBase() {
   let type = document.getElementById("productType").value;
   baseImage = new Image();
-  if(type==="tshirt") baseImage.src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg";
-  if(type==="hoodie") baseImage.src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg";
-  if(type==="cap") baseImage.src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png";
+  baseImage.src = productImages[type];
   baseImage.onload = () => redrawCanvas();
   updateSummary();
+}
+
+// 🔹 Obsługa uploadu obrazu
+function handleImageUpload() {
+  const file = document.getElementById('designImage').files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      uploadedImage = new Image();
+      uploadedImage.onload = function() {
+        redrawCanvas();
+        updateSummary();
+      }
+      uploadedImage.src = e.target.result;
+    }
+    reader.readAsDataURL(file);
+  }
 }
 
 // 🔹 Podsumowanie
 function updateSummary(){
   let size = document.getElementById("productSize").value;
   let type = document.getElementById("productType").value;
+  let price = productPrices[type];
+  
   let summary = `
-    <p><b>Produkt:</b> ${type}</p>
+    <p><b>Produkt:</b> ${type} (${price} zł)</p>
     <p><b>Rozmiar:</b> ${size}</p>
     <p><b>Tekst:</b> ${currentText.text || "-"}</p>
     <p><b>Czcionka:</b> ${currentText.font}, ${currentText.size}px</p>
-    <p><b>Kolor:</b> ${currentText.color}</p>
+    <p><b>Kolor tekstu:</b> <span style="color:${currentText.color}">${currentText.color}</span></p>
+    <p><b>Obraz:</b> ${uploadedImage ? "Tak" : "Nie"}</p>
+    <p><b>Łączna cena:</b> ${price} zł</p>
   `;
   document.getElementById("summaryBox").innerHTML = summary;
 }
 
 // 🔹 Funkcje przycisków
 function clearCanvas(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   currentText = { text: "", x: 200, y: 200, font: "Arial", size: 36, color: "#000000" };
-  document.getElementById("designText").value="";
-  document.getElementById("summaryBox").innerHTML="<p>Brak danych – dodaj coś do projektu.</p>";
+  uploadedImage = null;
+  document.getElementById("designText").value = "";
+  document.getElementById("summaryBox").innerHTML = "<p>Brak danych – dodaj coś do projektu.</p>";
 }
-function resetDesign(){ changeProductBase(); updateSummary(); }
+
+function resetDesign(){ 
+  changeProductBase(); 
+  updateSummary(); 
+}
+
 function saveDesign(){
-  let link=document.createElement("a");
-  link.download="projekt.png";
-  link.href=canvas.toDataURL();
+  let link = document.createElement("a");
+  link.download = "projekt.png";
+  link.href = canvas.toDataURL("image/png");
   link.click();
 }
+
 function sendDesignToEmail(){
-  let body=document.getElementById("summaryBox").innerText;
-  window.location.href=`mailto:mielniczukgrzegosz74@gmail.com?subject=Projekt%20produktu&body=${encodeURIComponent(body)}`;
+  let type = document.getElementById("productType").value;
+  let size = document.getElementById("productSize").value;
+  let price = productPrices[type];
+  
+  let body = `
+PROJEKT PRODUKTU
+----------------
+Produkt: ${type}
+Rozmiar: ${size}
+Cena: ${price} zł
+Tekst: ${currentText.text || "Brak"}
+Czcionka: ${currentText.font}, ${currentText.size}px
+Kolor tekstu: ${currentText.color}
+Obraz: ${uploadedImage ? "Dodany" : "Brak"}
+  `.trim();
+  
+  window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Projekt%20produktu&body=${encodeURIComponent(body)}`;
 }
+
 function addToCartFromDesign(){
-  let item=document.getElementById("summaryBox").innerText;
-  localStorage.setItem("cartItem",item);
-  alert("✅ Projekt dodany do koszyka!");
+  let type = document.getElementById("productType").value;
+  let size = document.getElementById("productSize").value;
+  let price = productPrices[type];
+  
+  let cartItem = {
+    product: type,
+    size: size,
+    price: price,
+    text: currentText.text,
+    font: currentText.font,
+    fontSize: currentText.size,
+    color: currentText.color,
+    hasImage: !!uploadedImage,
+    timestamp: new Date().toISOString()
+  };
+  
+  // Pobierz istniejący koszyk lub stwórz nowy
+  let cart = JSON.parse(localStorage.getItem('designCart') || '[]');
+  cart.push(cartItem);
+  localStorage.setItem('designCart', JSON.stringify(cart));
+  
+  alert(`✅ Projekt dodany do koszyka! Cena: ${price} zł`);
 }
+
+// Inicjalizacja podsumowania przy starcie
+updateSummary();
 </script>
         
 <!-- 🎁 Sekcja Zbiórki FINALNA -->
@@ -3114,6 +3213,7 @@ function hideBlogForm() {
 </script>
 </body>
 </html>             
+
 
 
 
