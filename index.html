@@ -1651,7 +1651,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <option value="hoodie">Bluza (200 zł)</option>
               <option value="cap">Czapka (99 zł)</option>
             </select>
-            <select id="productSize" class="w-full p-2 border rounded">
+            <select id="productSize" class="w-full p-2 border rounded" onchange="updateSummary()">
               <option value="S">S</option>
               <option value="M">M</option>
               <option value="L">L</option>
@@ -1682,6 +1682,14 @@ let ctx = canvas.getContext("2d");
 let currentText = { text: "", x: 200, y: 200, font: "Arial", size: 36, color: "#000000" };
 let uploadedImage = null;
 let dragging = false;
+let currentProduct = "tshirt";
+
+// Obrazy produktów (działające linki z internetu)
+const productImages = {
+  tshirt: "https://i.ibb.co/6RJj4qM/white-tshirt.png", // przykładowy obraz koszulki
+  hoodie: "https://i.ibb.co/4T2N0qH/white-hoodie.png", // przykładowy obraz bluzy
+  cap: "https://i.ibb.co/0Q8L0zZ/white-cap.png" // przykładowy obraz czapki
+};
 
 // Ceny produktów
 const productPrices = {
@@ -1692,15 +1700,12 @@ const productPrices = {
 
 // Inicjalizacja canvas
 function initCanvas() {
-  // Rysujemy prosty kształt produktu
-  ctx.fillStyle = "#f3f4f6";
-  ctx.fillRect(50, 50, 300, 300);
-  
-  // Dodajemy tekst informacyjny
-  ctx.font = "16px Arial";
-  ctx.fillStyle = "#000";
-  ctx.textAlign = "center";
-  ctx.fillText("Tutaj pojawi się Twój projekt", 200, 200);
+  // Wczytaj domyślny obraz produktu
+  const img = new Image();
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  };
+  img.src = productImages.tshirt;
 }
 
 // Inicjalizacja przy załadowaniu strony
@@ -1735,9 +1740,11 @@ canvas.addEventListener("mousedown", function(e) {
   if (currentText.text) {
     ctx.font = `${currentText.size}px ${currentText.font}`;
     const textWidth = ctx.measureText(currentText.text).width;
+    const textHeight = currentText.size;
     
+    // Sprawdzamy czy kliknięto w pobliżu tekstu
     if (Math.abs(mouseX - currentText.x) < textWidth / 2 && 
-        Math.abs(mouseY - currentText.y) < currentText.size / 2) {
+        Math.abs(mouseY - currentText.y) < textHeight / 2) {
       dragging = true;
     }
   }
@@ -1762,6 +1769,8 @@ canvas.addEventListener("mouseleave", function() {
 
 // 🔹 Zmiana produktu
 function changeProductBase() {
+  const typeSelect = document.getElementById("productType");
+  currentProduct = typeSelect.value;
   redrawCanvas();
   updateSummary();
 }
@@ -1788,41 +1797,44 @@ function redrawCanvas() {
   // Czyszczenie canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   
-  // Rysowanie tła (produktu)
-  ctx.fillStyle = "#f3f4f6";
-  ctx.fillRect(50, 50, 300, 300);
-  
-  // Rysowanie uploaded image jeśli istnieje
-  if (uploadedImage) {
-    // Zachowujemy proporcje obrazu
-    const maxWidth = 250;
-    const maxHeight = 250;
-    let width = uploadedImage.width;
-    let height = uploadedImage.height;
+  // Rysowanie obrazu produktu
+  const img = new Image();
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     
-    if (width > maxWidth) {
-      height = (height * maxWidth) / width;
-      width = maxWidth;
+    // Rysowanie uploaded image jeśli istnieje
+    if (uploadedImage) {
+      // Zachowujemy proporcje obrazu
+      const maxWidth = 200;
+      const maxHeight = 200;
+      let width = uploadedImage.width;
+      let height = uploadedImage.height;
+      
+      if (width > maxWidth) {
+        height = (height * maxWidth) / width;
+        width = maxWidth;
+      }
+      if (height > maxHeight) {
+        width = (width * maxHeight) / height;
+        height = maxHeight;
+      }
+      
+      const x = (canvas.width - width) / 2;
+      const y = (canvas.height - height) / 2;
+      
+      ctx.drawImage(uploadedImage, x, y, width, height);
     }
-    if (height > maxHeight) {
-      width = (width * maxHeight) / height;
-      height = maxHeight;
+    
+    // Rysowanie tekstu jeśli istnieje
+    if (currentText.text) {
+      ctx.font = `${currentText.size}px ${currentText.font}`;
+      ctx.fillStyle = currentText.color;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(currentText.text, currentText.x, currentText.y);
     }
-    
-    const x = (canvas.width - width) / 2;
-    const y = (canvas.height - height) / 2;
-    
-    ctx.drawImage(uploadedImage, x, y, width, height);
-  }
-  
-  // Rysowanie tekstu jeśli istnieje
-  if (currentText.text) {
-    ctx.font = `${currentText.size}px ${currentText.font}`;
-    ctx.fillStyle = currentText.color;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(currentText.text, currentText.x, currentText.y);
-  }
+  };
+  img.src = productImages[currentProduct];
 }
 
 // 🔹 Podsumowanie
@@ -1854,7 +1866,7 @@ function clearCanvas() {
   uploadedImage = null;
   document.getElementById("designText").value = "";
   document.getElementById("designImage").value = "";
-  initCanvas();
+  redrawCanvas();
   updateSummary();
 }
 
@@ -3257,6 +3269,7 @@ function hideBlogForm() {
 </script>
 </body>
 </html>             
+
 
 
 
