@@ -1587,141 +1587,226 @@ document.addEventListener("DOMContentLoaded", () => {
     <p id="status" class="mt-4 text-white"></p>
 </section>
 </section>
-<!-- Sekcja Zaprojektuj -->
-<section id="design" class="py-12 bg-gray-100">
-  <div class="section-title text-center mb-10">
-    <h2 class="text-3xl font-bold">Zaprojektuj swój produkt</h2>
-    <p class="text-gray-600">Stwórz unikalną koszulkę, bluzę lub czapkę</p>
+<!-- Sekcja projektowania -->
+<section id="design">
+  <div class="section-title">
+    <h2>Zaprojektuj swój produkt</h2>
+    <p>Dodaj tekst i grafikę na koszulce, bluzie lub czapce</p>
   </div>
 
-  <div class="design-studio grid grid-cols-12 gap-6 max-w-7xl mx-auto">
-    
-    <!-- Lewa kolumna: narzędzia -->
-    <div class="col-span-3 space-y-6">
-      <!-- Tekst -->
-      <div class="tool-group bg-white p-4 rounded-xl shadow">
-        <h3 class="font-semibold mb-3"><i class="fas fa-font"></i> Tekst</h3>
-        <input type="text" id="designText" placeholder="Wpisz swój tekst" 
-               class="w-full p-2 border rounded mb-3" oninput="updateDesign()">
+  <div class="design-studio">
+    <!-- Wybór produktu -->
+    <div class="product-base">
+      <button onclick="setBase('tshirt')">👕 Koszulka</button>
+      <button onclick="setBase('hoodie')">🧥 Bluza</button>
+      <button onclick="setBase('cap')">🧢 Czapka</button>
+    </div>
 
-        <div class="flex gap-2 mb-3">
-          <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
-            <option value="Arial">Arial</option>
-            <option value="Times New Roman">Times</option>
-            <option value="Impact">Impact</option>
-            <option value="Comic Sans MS">Comic Sans</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Verdana">Verdana</option>
-          </select>
-          <input type="number" id="fontSize" value="36" min="10" max="100" 
-                 class="w-20 p-2 border rounded" oninput="updateDesign()">
-        </div>
-
-        <input type="color" id="textColor" value="#000000" 
-               class="w-full h-10" oninput="updateDesign()">
-      </div>
-
-      <!-- Opcje produktu -->
-      <div class="tool-group bg-white p-4 rounded-xl shadow">
-        <h3 class="font-semibold mb-3"><i class="fas fa-tshirt"></i> Produkt</h3>
-        <select id="productType" class="w-full p-2 border rounded mb-3" onchange="updateSummary()">
-          <option value="tshirt" data-price="120">Koszulka (120 zł)</option>
-          <option value="hoodie" data-price="200">Bluza (200 zł)</option>
-          <option value="cap" data-price="99">Czapka (99 zł)</option>
-        </select>
-
-        <select id="productSize" class="w-full p-2 border rounded mb-3" onchange="updateSummary()">
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-          <option value="XXL">XXL</option>
-        </select>
-
-        <input type="file" id="designImage" accept="image/*" class="w-full mb-2 hidden" onchange="handleImageUpload()">
-        <button class="w-full bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600"
-                onclick="document.getElementById('designImage').click()">
-          <i class="fas fa-upload"></i> Wybierz obraz
-        </button>
-      </div>
-
-      <!-- Edycja -->
-      <div class="tool-group bg-white p-4 rounded-xl shadow">
-        <h3 class="font-semibold mb-3"><i class="fas fa-edit"></i> Edycja elementów</h3>
-        <label>Pozycja X</label>
-        <input type="range" id="posX" min="0" max="500" value="250" oninput="updateElementPosition()">
-        <label>Pozycja Y</label>
-        <input type="range" id="posY" min="0" max="400" value="200" oninput="updateElementPosition()">
-        <label>Skala</label>
-        <input type="range" id="scale" min="0.1" max="2" step="0.1" value="1" oninput="updateElementScale()">
-        <label>Obrót</label>
-        <input type="range" id="rotation" min="0" max="360" value="0" oninput="updateElementRotation()">
+    <!-- Canvas projektu -->
+    <div class="canvas-container">
+      <canvas id="designCanvas" width="400" height="400"></canvas>
+      <div class="canvas-controls">
+        <button onclick="clearCanvas()">🗑 Wyczyść</button>
+        <button onclick="resetDesign()">🔄 Resetuj</button>
       </div>
     </div>
 
-    <!-- Środkowa kolumna: kanwa -->
-    <div class="col-span-6 bg-white rounded-xl shadow p-4 flex flex-col items-center">
-      <canvas id="designCanvas" width="500" height="400" class="border mb-4"></canvas>
-      <div class="flex gap-3">
-        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" onclick="clearCanvas()">
-          <i class="fas fa-trash"></i> Wyczyść
-        </button>
-        <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" onclick="resetDesign()">
-          <i class="fas fa-redo"></i> Resetuj
-        </button>
-      </div>
+    <!-- Narzędzia -->
+    <div class="design-tools">
+      <h3>✏️ Tekst</h3>
+      <input type="text" id="designText" placeholder="Twój napis">
+      <select id="fontFamily">
+        <option value="Arial">Arial</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Impact">Impact</option>
+        <option value="Comic Sans MS">Comic Sans</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Brush Script MT">Brush Script</option>
+      </select>
+      <input type="number" id="fontSize" value="36" min="10" max="100">
+      <input type="color" id="textColor" value="#000000">
+      <button onclick="addText()">Dodaj napis</button>
+
+      <h3>🖼 Grafika</h3>
+      <input type="file" id="designImage" accept="image/*" onchange="handleImageUpload()">
     </div>
 
-    <!-- Prawa kolumna: podsumowanie -->
-    <div class="col-span-3 space-y-6">
-      <div class="bg-white p-4 rounded-xl shadow">
-        <h3 class="font-semibold mb-3"><i class="fas fa-list"></i> Podsumowanie</h3>
-        <ul id="summaryList" class="text-sm text-gray-700 space-y-2">
-          <li>Produkt: <span id="summaryProduct">Koszulka</span></li>
-          <li>Rozmiar: <span id="summarySize">M</span></li>
-          <li>Tekst: <span id="summaryText">-</span></li>
-          <li>Font: <span id="summaryFont">Arial</span></li>
-          <li>Kolor tekstu: <span id="summaryColor">#000000</span></li>
-          <li>Cena: <span id="summaryPrice">120 zł</span></li>
-        </ul>
-      </div>
-
-      <div class="bg-white p-4 rounded-xl shadow text-center">
-        <p class="text-sm text-gray-600 mb-3">
-          📸 Zrób zdjęcie/zrzut ekranu swojego projektu i wyślij na mail:  
-          <strong>twojmail@example.com</strong>
-        </p>
-        <div class="flex flex-col gap-2">
-          <button class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
-            <i class="fas fa-cart-plus"></i> Dodaj do koszyka
-          </button>
-          <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-            <i class="fas fa-envelope"></i> Wyślij mailem
-          </button>
-          <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-            <i class="fas fa-download"></i> Zapisz projekt
-          </button>
-        </div>
-      </div>
+    <!-- Podsumowanie -->
+    <div class="summary">
+      <h3>📋 Podsumowanie projektu</h3>
+      <pre id="summaryBox">Brak zmian</pre>
+      <button onclick="addToCart()">🛒 Dodaj do koszyka</button>
+      <button onclick="sendByEmail()">📧 Wyślij mailem</button>
+      <button onclick="saveProject()">💾 Zapisz projekt</button>
     </div>
   </div>
 </section>
 
-<script>
-function updateSummary() {
-  const product = document.getElementById("productType");
-  const size = document.getElementById("productSize").value;
-  const text = document.getElementById("designText").value || "-";
-  const font = document.getElementById("fontFamily").value;
-  const color = document.getElementById("textColor").value;
-  const price = product.options[product.selectedIndex].dataset.price;
+<style>
+#design { padding:20px; }
+.design-studio { display:grid; gap:20px; }
+.canvas-container { position:relative; text-align:center; }
+canvas { border:2px dashed #aaa; background:#fff; max-width:100%; touch-action:none; }
+.canvas-controls { margin-top:10px; }
+.design-tools input, .design-tools select, .design-tools button { display:block; margin:5px 0; padding:5px; }
+.summary { padding:10px; border:1px solid #ccc; background:#fafafa; }
+</style>
 
-  document.getElementById("summaryProduct").textContent = product.options[product.selectedIndex].text;
-  document.getElementById("summarySize").textContent = size;
-  document.getElementById("summaryText").textContent = text;
-  document.getElementById("summaryFont").textContent = font;
-  document.getElementById("summaryColor").textContent = color;
-  document.getElementById("summaryPrice").textContent = price + " zł";
+<script>
+const canvas = document.getElementById("designCanvas");
+const ctx = canvas.getContext("2d");
+
+let baseImage = new Image();
+let elements = [];
+let activeElement = null;
+let dragOffsetX = 0, dragOffsetY = 0;
+let isDragging = false;
+
+// Ustawianie bazy produktu
+function setBase(type) {
+  baseImage = new Image();
+  if (type === "tshirt") baseImage.src = "https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg";
+  if (type === "hoodie") baseImage.src = "https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg";
+  if (type === "cap") baseImage.src = "https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png";
+  baseImage.onload = drawCanvas;
+}
+
+// Rysowanie canvasu
+function drawCanvas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (baseImage) ctx.drawImage(baseImage, 0, 0, canvas.width, canvas.height);
+
+  elements.forEach(el => {
+    ctx.save();
+    ctx.translate(el.x, el.y);
+    ctx.rotate(el.rotation * Math.PI / 180);
+    ctx.scale(el.scale, el.scale);
+
+    if (el.type === "text") {
+      ctx.font = `${el.size}px ${el.font}`;
+      ctx.fillStyle = el.color;
+      ctx.textAlign = "center";
+      ctx.fillText(el.text, 0, 0);
+    } else if (el.type === "image") {
+      ctx.drawImage(el.img, -el.w/2, -el.h/2, el.w, el.h);
+    }
+
+    ctx.restore();
+  });
+}
+
+// Dodawanie tekstu
+function addText() {
+  const text = document.getElementById("designText").value;
+  if (!text) return;
+  const font = document.getElementById("fontFamily").value;
+  const size = parseInt(document.getElementById("fontSize").value);
+  const color = document.getElementById("textColor").value;
+  elements.push({type:"text", text, font, size, color, x:200, y:200, scale:1, rotation:0});
+  updateSummary();
+  drawCanvas();
+}
+
+// Upload grafiki
+function handleImageUpload() {
+  const file = document.getElementById("designImage").files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = () => {
+      elements.push({type:"image", img, x:200, y:200, w:100, h:100, scale:1, rotation:0});
+      drawCanvas();
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// Znajdź element pod kliknięciem
+function getElementAt(x, y) {
+  for (let i = elements.length-1; i >= 0; i--) {
+    let el = elements[i];
+    if (el.type === "text") {
+      ctx.font = `${el.size}px ${el.font}`;
+      let width = ctx.measureText(el.text).width;
+      if (x > el.x - width/2 && x < el.x + width/2 && y > el.y - el.size && y < el.y) {
+        return el;
+      }
+    } else if (el.type === "image") {
+      if (x > el.x - el.w/2 && x < el.x + el.w/2 && y > el.y - el.h/2 && y < el.y + el.h/2) {
+        return el;
+      }
+    }
+  }
+  return null;
+}
+
+// Obsługa myszki i dotyku
+function pointerDown(e) {
+  const rect = canvas.getBoundingClientRect();
+  const x = (e.clientX || e.touches[0].clientX) - rect.left;
+  const y = (e.clientY || e.touches[0].clientY) - rect.top;
+  activeElement = getElementAt(x, y);
+  if (activeElement) {
+    dragOffsetX = x - activeElement.x;
+    dragOffsetY = y - activeElement.y;
+    isDragging = true;
+  }
+}
+function pointerMove(e) {
+  if (!isDragging || !activeElement) return;
+  const rect = canvas.getBoundingClientRect();
+  const x = (e.clientX || e.touches[0].clientX) - rect.left;
+  const y = (e.clientY || e.touches[0].clientY) - rect.top;
+  activeElement.x = x - dragOffsetX;
+  activeElement.y = y - dragOffsetY;
+  drawCanvas();
+}
+function pointerUp() {
+  isDragging = false;
+  updateSummary();
+}
+
+canvas.addEventListener("mousedown", pointerDown);
+canvas.addEventListener("mousemove", pointerMove);
+canvas.addEventListener("mouseup", pointerUp);
+canvas.addEventListener("touchstart", pointerDown);
+canvas.addEventListener("touchmove", pointerMove);
+canvas.addEventListener("touchend", pointerUp);
+
+// Podsumowanie
+function updateSummary() {
+  let text = "Projekt zawiera:\n";
+  elements.forEach(el => {
+    if (el.type === "text") {
+      text += `📝 "${el.text}" (${el.font}, ${el.size}px, ${el.color})\n`;
+    } else if (el.type === "image") {
+      text += `🖼 Grafika (${el.w}x${el.h})\n`;
+    }
+  });
+  document.getElementById("summaryBox").textContent = text;
+}
+
+// Czyszczenie
+function clearCanvas() {
+  elements = [];
+  drawCanvas();
+  document.getElementById("summaryBox").textContent = "Brak zmian";
+}
+function resetDesign() { clearCanvas(); }
+
+// Koszyk / email / zapis
+function addToCart() { alert("Dodano projekt do koszyka 🛒"); }
+function sendByEmail() {
+  const summary = document.getElementById("summaryBox").textContent;
+  window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Projekt%20produktu&body=${encodeURIComponent(summary)}`;
+}
+function saveProject() {
+  const link = document.createElement("a");
+  link.download = "projekt.png";
+  link.href = canvas.toDataURL();
+  link.click();
 }
 </script>
         
@@ -3063,6 +3148,7 @@ function hideBlogForm() {
 </script>
 </body>
 </html>             
+
 
 
 
