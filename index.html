@@ -1601,7 +1601,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <!-- Podgląd projektu -->
       <div class="bg-white p-4 rounded-xl shadow">
         <h3 class="text-lg font-semibold mb-3">Podgląd</h3>
-        <canvas id="designCanvas" width="400" height="400" class="border mx-auto"></canvas>
+        <div class="relative mx-auto" style="width: 400px; height: 400px;">
+          <canvas id="designCanvas" width="400" height="400" class="border mx-auto"></canvas>
+        </div>
         
         <div class="flex justify-center gap-3 mt-4 flex-wrap">
           <button onclick="clearCanvas()" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">🗑️ Wyczyść</button>
@@ -1623,23 +1625,19 @@ document.addEventListener("DOMContentLoaded", () => {
         <details class="bg-white rounded-xl shadow p-4">
           <summary class="font-semibold cursor-pointer">✍️ Tekst</summary>
           <div class="mt-3 space-y-3">
-            <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-2 border rounded" oninput="updateDesignText()">
+            <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-2 border rounded">
             <div class="flex gap-2">
-              <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesignText()">
+              <select id="fontFamily" class="flex-1 p-2 border rounded">
                 <option value="Arial">Arial</option>
                 <option value="Times New Roman">Times New Roman</option>
                 <option value="Courier New">Courier New</option>
                 <option value="Impact">Impact</option>
                 <option value="Comic Sans MS">Comic Sans</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Verdana">Verdana</option>
-                <option value="Palatino">Palatino</option>
-                <option value="Garamond">Garamond</option>
-                <option value="Brush Script MT">Brush Script</option>
               </select>
-              <input type="number" id="fontSize" value="36" min="10" max="100" class="w-24 p-2 border rounded" oninput="updateDesignText()">
+              <input type="number" id="fontSize" value="24" min="10" max="100" class="w-24 p-2 border rounded">
             </div>
-            <input type="color" id="textColor" value="#000000" class="w-full h-10" oninput="updateDesignText()">
+            <input type="color" id="textColor" value="#000000" class="w-full h-10">
+            <button onclick="addTextToCanvas()" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 w-full">Dodaj tekst</button>
           </div>
         </details>
 
@@ -1658,6 +1656,12 @@ document.addEventListener("DOMContentLoaded", () => {
               <option value="L">L</option>
               <option value="XL">XL</option>
               <option value="XXL">XXL</option>
+            </select>
+            <select id="productColor" class="w-full p-2 border rounded" onchange="changeProductColor()">
+              <option value="white">Biały</option>
+              <option value="black">Czarny</option>
+              <option value="red">Czerwony</option>
+              <option value="blue">Niebieski</option>
             </select>
             <button onclick="document.getElementById('designImage').click()" class="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 w-full">📤 Dodaj obraz</button>
             <input type="file" id="designImage" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
@@ -1680,16 +1684,33 @@ document.addEventListener("DOMContentLoaded", () => {
 // Podstawowe zmienne
 let canvas = document.getElementById("designCanvas");
 let ctx = canvas.getContext("2d");
-let currentText = { text: "", x: 200, y: 200, font: "Arial", size: 36, color: "#000000" };
-let uploadedImage = null;
-let dragging = false;
+let elements = [];
+let selectedElement = null;
+let isDragging = false;
+let startX, startY;
 let currentProduct = "tshirt";
+let currentColor = "white";
 
-// Obrazy produktów (działające linki z internetu)
+// Obrazy produktów (placeholdery)
 const productImages = {
-  tshirt: "https://i.ibb.co/6RJj4qM/white-tshirt.png", // przykładowy obraz koszulki
-  hoodie: "https://i.ibb.co/4T2N0qH/white-hoodie.png", // przykładowy obraz bluzy
-  cap: "https://i.ibb.co/0Q8L0zZ/white-cap.png" // przykładowy obraz czapki
+  tshirt: {
+    white: "https://placehold.co/400x500/ffffff/000000?text=Koszulka",
+    black: "https://placehold.co/400x500/000000/ffffff?text=Koszulka",
+    red: "https://placehold.co/400x500/ff0000/ffffff?text=Koszulka",
+    blue: "https://placehold.co/400x500/0000ff/ffffff?text=Koszulka"
+  },
+  hoodie: {
+    white: "https://placehold.co/400x500/ffffff/000000?text=Bluza",
+    black: "https://placehold.co/400x500/000000/ffffff?text=Bluza",
+    red: "https://placehold.co/400x500/ff0000/ffffff?text=Bluza",
+    blue: "https://placehold.co/400x500/0000ff/ffffff?text=Bluza"
+  },
+  cap: {
+    white: "https://placehold.co/400x400/ffffff/000000?text=Czapka",
+    black: "https://placehold.co/400x400/000000/ffffff?text=Czapka",
+    red: "https://placehold.co/400x400/ff0000/ffffff?text=Czapka",
+    blue: "https://placehold.co/400x400/0000ff/ffffff?text=Czapka"
+  }
 };
 
 // Ceny produktów
@@ -1699,81 +1720,106 @@ const productPrices = {
   cap: 99
 };
 
-// Inicjalizacja canvas
-function initCanvas() {
-  // Wczytaj domyślny obraz produktu
-  const img = new Image();
-  img.onload = function() {
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  };
-  img.src = productImages.tshirt;
-}
-
-// Inicjalizacja przy załadowaniu strony
+// Inicjalizacja
 window.onload = function() {
   initCanvas();
   updateSummary();
+  
+  // Nasłuchiwanie zdarzeń myszy na canvas
+  canvas.addEventListener('mousedown', handleMouseDown);
+  canvas.addEventListener('mousemove', handleMouseMove);
+  canvas.addEventListener('mouseup', handleMouseUp);
+  canvas.addEventListener('mouseleave', handleMouseUp);
 };
 
-// 🔹 Aktualizacja tekstu
-function updateDesignText() {
-  const textInput = document.getElementById("designText");
-  const fontSelect = document.getElementById("fontFamily");
-  const fontSizeInput = document.getElementById("fontSize");
-  const colorInput = document.getElementById("textColor");
+// Inicjalizacja canvas
+function initCanvas() {
+  redrawCanvas();
+}
+
+// Obsługa zdarzeń myszy
+function handleMouseDown(e) {
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
   
-  currentText.text = textInput.value;
-  currentText.font = fontSelect.value;
-  currentText.size = parseInt(fontSizeInput.value);
-  currentText.color = colorInput.value;
+  // Sprawdź czy kliknięto w element
+  for (let i = elements.length - 1; i >= 0; i--) {
+    const el = elements[i];
+    if (x >= el.x && x <= el.x + el.width && y >= el.y && y <= el.y + el.height) {
+      isDragging = true;
+      selectedElement = el;
+      startX = x;
+      startY = y;
+      return;
+    }
+  }
+  
+  // Jeśli nie kliknięto w element, odznacz
+  selectedElement = null;
+  redrawCanvas();
+}
+
+function handleMouseMove(e) {
+  if (!isDragging || !selectedElement) return;
+  
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  
+  const dx = x - startX;
+  const dy = y - startY;
+  
+  // Przesuwanie elementu
+  selectedElement.x += dx;
+  selectedElement.y += dy;
+  
+  startX = x;
+  startY = y;
+  redrawCanvas();
+}
+
+function handleMouseUp() {
+  isDragging = false;
+  updateSummary();
+}
+
+// 🔹 Dodawanie tekstu do canvas
+function addTextToCanvas() {
+  const text = document.getElementById("designText").value;
+  if (!text) return;
+  
+  const fontFamily = document.getElementById("fontFamily").value;
+  const fontSize = parseInt(document.getElementById("fontSize").value);
+  const color = document.getElementById("textColor").value;
+  
+  elements.push({
+    type: 'text',
+    text: text,
+    x: 100,
+    y: 100,
+    width: 150,
+    height: 40,
+    fontFamily: fontFamily,
+    fontSize: fontSize,
+    color: color
+  });
   
   redrawCanvas();
   updateSummary();
 }
 
-// 🔹 Przeciąganie tekstu
-canvas.addEventListener("mousedown", function(e) {
-  const rect = canvas.getBoundingClientRect();
-  const mouseX = e.clientX - rect.left;
-  const mouseY = e.clientY - rect.top;
-  
-  // Sprawdzamy czy kliknięto w obszar tekstu
-  if (currentText.text) {
-    ctx.font = `${currentText.size}px ${currentText.font}`;
-    const textWidth = ctx.measureText(currentText.text).width;
-    const textHeight = currentText.size;
-    
-    // Sprawdzamy czy kliknięto w pobliżu tekstu
-    if (Math.abs(mouseX - currentText.x) < textWidth / 2 && 
-        Math.abs(mouseY - currentText.y) < textHeight / 2) {
-      dragging = true;
-    }
-  }
-});
-
-canvas.addEventListener("mousemove", function(e) {
-  if (dragging) {
-    const rect = canvas.getBoundingClientRect();
-    currentText.x = e.clientX - rect.left;
-    currentText.y = e.clientY - rect.top;
-    redrawCanvas();
-  }
-});
-
-canvas.addEventListener("mouseup", function() {
-  dragging = false;
-});
-
-canvas.addEventListener("mouseleave", function() {
-  dragging = false;
-});
-
 // 🔹 Zmiana produktu
 function changeProductBase() {
-  const typeSelect = document.getElementById("productType");
-  currentProduct = typeSelect.value;
+  currentProduct = document.getElementById("productType").value;
   redrawCanvas();
   updateSummary();
+}
+
+// 🔹 Zmiana koloru produktu
+function changeProductColor() {
+  currentColor = document.getElementById("productColor").value;
+  redrawCanvas();
 }
 
 // 🔹 Obsługa uploadu obrazu
@@ -1782,12 +1828,20 @@ function handleImageUpload(event) {
   if (file) {
     const reader = new FileReader();
     reader.onload = function(e) {
-      uploadedImage = new Image();
-      uploadedImage.onload = function() {
+      const img = new Image();
+      img.onload = function() {
+        elements.push({
+          type: 'image',
+          image: img,
+          x: 100,
+          y: 100,
+          width: 100,
+          height: 100
+        });
         redrawCanvas();
         updateSummary();
       };
-      uploadedImage.src = e.target.result;
+      img.src = e.target.result;
     };
     reader.readAsDataURL(file);
   }
@@ -1798,62 +1852,63 @@ function redrawCanvas() {
   // Czyszczenie canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   
-  // Rysowanie obrazu produktu
-  const img = new Image();
-  img.onload = function() {
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  // Rysowanie produktu
+  const productImg = new Image();
+  productImg.onload = function() {
+    ctx.drawImage(productImg, 0, 0, canvas.width, canvas.height);
     
-    // Rysowanie uploaded image jeśli istnieje
-    if (uploadedImage) {
-      // Zachowujemy proporcje obrazu
-      const maxWidth = 200;
-      const maxHeight = 200;
-      let width = uploadedImage.width;
-      let height = uploadedImage.height;
-      
-      if (width > maxWidth) {
-        height = (height * maxWidth) / width;
-        width = maxWidth;
+    // Rysowanie elementów
+    elements.forEach(el => {
+      if (el.type === 'text') {
+        ctx.font = `${el.fontSize}px ${el.fontFamily}`;
+        ctx.fillStyle = el.color;
+        ctx.fillText(el.text, el.x, el.y + el.fontSize);
+        
+        // Rysowanie ramki jeśli element jest zaznaczony
+        if (el === selectedElement) {
+          ctx.strokeStyle = '#3b82f6';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(el.x, el.y, el.width, el.height);
+        }
+      } else if (el.type === 'image') {
+        ctx.drawImage(el.image, el.x, el.y, el.width, el.height);
+        
+        // Rysowanie ramki jeśli element jest zaznaczony
+        if (el === selectedElement) {
+          ctx.strokeStyle = '#3b82f6';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(el.x, el.y, el.width, el.height);
+        }
       }
-      if (height > maxHeight) {
-        width = (width * maxHeight) / height;
-        height = maxHeight;
-      }
-      
-      const x = (canvas.width - width) / 2;
-      const y = (canvas.height - height) / 2;
-      
-      ctx.drawImage(uploadedImage, x, y, width, height);
-    }
-    
-    // Rysowanie tekstu jeśli istnieje
-    if (currentText.text) {
-      ctx.font = `${currentText.size}px ${currentText.font}`;
-      ctx.fillStyle = currentText.color;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText(currentText.text, currentText.x, currentText.y);
-    }
+    });
   };
-  img.src = productImages[currentProduct];
+  productImg.src = productImages[currentProduct][currentColor];
 }
 
 // 🔹 Podsumowanie
 function updateSummary() {
-  const typeSelect = document.getElementById("productType");
-  const sizeSelect = document.getElementById("productSize");
-  const type = typeSelect.value;
-  const size = sizeSelect.value;
+  const type = document.getElementById("productType").value;
+  const size = document.getElementById("productSize").value;
+  const color = document.getElementById("productColor").value;
   const price = productPrices[type];
   
   let summaryHTML = `
     <div class="space-y-2">
       <p><b>Produkt:</b> ${type} (${price} zł)</p>
       <p><b>Rozmiar:</b> ${size}</p>
-      <p><b>Tekst:</b> ${currentText.text || "Brak"}</p>
-      <p><b>Czcionka:</b> ${currentText.font}, ${currentText.size}px</p>
-      <p><b>Kolor tekstu:</b> <span style="color:${currentText.color}">${currentText.color}</span></p>
-      <p><b>Obraz:</b> ${uploadedImage ? "Dodany" : "Brak"}</p>
+      <p><b>Kolor:</b> ${color}</p>
+      <p><b>Elementy:</b> ${elements.length}</p>
+  `;
+  
+  elements.forEach((el, index) => {
+    if (el.type === 'text') {
+      summaryHTML += `<p class="pl-4">- Tekst: "${el.text}"</p>`;
+    } else if (el.type === 'image') {
+      summaryHTML += `<p class="pl-4">- Obraz</p>`;
+    }
+  });
+  
+  summaryHTML += `
       <p class="pt-2 border-t"><b>Łączna cena:</b> ${price} zł</p>
     </div>
   `;
@@ -1863,16 +1918,22 @@ function updateSummary() {
 
 // 🔹 Funkcje przycisków
 function clearCanvas() {
-  currentText = { text: "", x: 200, y: 200, font: "Arial", size: 36, color: "#000000" };
-  uploadedImage = null;
-  document.getElementById("designText").value = "";
-  document.getElementById("designImage").value = "";
+  elements = [];
+  selectedElement = null;
   redrawCanvas();
   updateSummary();
 }
 
 function resetDesign() {
   clearCanvas();
+  document.getElementById("productType").value = "tshirt";
+  document.getElementById("productSize").value = "M";
+  document.getElementById("productColor").value = "white";
+  document.getElementById("designText").value = "";
+  currentProduct = "tshirt";
+  currentColor = "white";
+  redrawCanvas();
+  updateSummary();
 }
 
 function saveDesign() {
@@ -1888,6 +1949,7 @@ function saveDesign() {
 function sendDesignToEmail() {
   const type = document.getElementById("productType").value;
   const size = document.getElementById("productSize").value;
+  const color = document.getElementById("productColor").value;
   const price = productPrices[type];
   
   let body = `
@@ -1895,12 +1957,18 @@ PROJEKT PRODUKTU
 ----------------
 Produkt: ${type}
 Rozmiar: ${size}
+Kolor: ${color}
 Cena: ${price} zł
-Tekst: ${currentText.text || "Brak"}
-Czcionka: ${currentText.font}, ${currentText.size}px
-Kolor tekstu: ${currentText.color}
-Obraz: ${uploadedImage ? "Dodany" : "Brak"}
+Elementy: ${elements.length}
   `.trim();
+  
+  elements.forEach((el, index) => {
+    if (el.type === 'text') {
+      body += `\nTekst ${index+1}: "${el.text}" (${el.fontFamily}, ${el.fontSize}px, ${el.color})`;
+    } else if (el.type === 'image') {
+      body += `\nObraz ${index+1}: Wymiary ${el.width}x${el.height}`;
+    }
+  });
   
   window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Projekt%20produktu&body=${encodeURIComponent(body)}`;
 }
@@ -1908,6 +1976,7 @@ Obraz: ${uploadedImage ? "Dodany" : "Brak"}
 function addToCartFromDesign() {
   const type = document.getElementById("productType").value;
   const size = document.getElementById("productSize").value;
+  const color = document.getElementById("productColor").value;
   const price = productPrices[type];
   
   // Pobierz istniejący koszyk lub stwórz nowy
@@ -1917,12 +1986,9 @@ function addToCartFromDesign() {
   cart.push({
     product: type,
     size: size,
+    color: color,
     price: price,
-    text: currentText.text,
-    font: currentText.font,
-    fontSize: currentText.size,
-    color: currentText.color,
-    hasImage: !!uploadedImage,
+    elements: elements,
     timestamp: new Date().toISOString()
   });
   
@@ -1931,7 +1997,8 @@ function addToCartFromDesign() {
   
   alert(`✅ Projekt dodany do koszyka!\nCena: ${price} zł\nIlość produktów w koszyku: ${cart.length}`);
 }
-</script>        
+</script>
+        
 <!-- 🎁 Sekcja Zbiórki FINALNA -->
 <section id="charity" class="bg-gradient-to-r from-gray-900 via-purple-900 to-black text-white py-12 px-6 rounded-2xl shadow-lg">
     
@@ -3270,6 +3337,7 @@ function hideBlogForm() {
 </script>
 </body>
 </html>             
+
 
 
 
