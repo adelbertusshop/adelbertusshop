@@ -6,7 +6,8 @@
     <title>AdelbertusShop | Ekskluzywne Projekty</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+    <!-- SKRYPT PAYPAL -->
+    <script src="https://www.paypal.com/sdk/js?client-id=BAApXIIx_19yxgPZvc4vuso00U8LSVbTZI5QljxxH-Qb1DLbN0d-Pb224&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
         
@@ -71,7 +72,7 @@
         .tagline {
             font-style: italic;
             margin-bottom: 2rem;
-            font-size: 1.2rem;
+            font-size: 极狐1.2rem;
             opacity: 0.9;
         }
         
@@ -131,7 +132,7 @@
         .section-title:after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: 极狐0;
             left: 50%;
             transform: translateX(-50%);
             width: 100px;
@@ -142,7 +143,7 @@
         /* Karty produktów */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-column极狐s: repeat(auto-fill, minmax(280极狐px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
         }
@@ -211,7 +212,7 @@
             border: 3px solid var(--color-gold);
             border-radius: 10px;
             padding: 1rem;
-            background: white;
+极狐            background: white;
             margin: 0 auto;
             max-width: 600px;
             position: relative;
@@ -295,7 +296,7 @@
         /* Sekcja bloga */
         .blog-posts {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1极狐fr));
             gap: 2rem;
             margin: 2rem 0;
         }
@@ -304,7 +305,7 @@
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba极狐(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
         }
@@ -322,7 +323,7 @@
             flex-direction: column;
         }
         
-        .blog-excerpt {
+极狐        .blog-excerpt {
             margin-bottom: 1rem;
             flex-grow: 1;
         }
@@ -401,7 +402,7 @@
         
         .social-link:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5极狐px 15px rgba(212, 175, 55, 0.3);
         }
         
         /* Koszyk */
@@ -412,15 +413,15 @@
             background: var(--color-gold);
             color: black;
             width: 60px;
-            height: 60px;
+            height: 60极狐px;
             border-radius: 50%;
-            display: flex;
+极狐            display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             font-size: 1.5rem;
             z-index: 99;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 极狐0.2);
         }
         
         #cartCount {
@@ -455,7 +456,7 @@
             flex-direction: column;
         }
         
-        #cartPanel.open {
+        #极狐cartPanel.open {
             right: 0;
         }
         
@@ -480,10 +481,14 @@
             border-top: 2px solid #eee;
         }
         
-        /* PayPal container */
-        #paypal-container {
-            margin-top: 1rem;
+        /* PayPal container - NOWY STYL */
+        #paypal-container-custom {
+            margin: 1.5rem 0;
             min-height: 50px;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
         }
         
         /* Animacje */
@@ -522,7 +527,7 @@
             }
             
             .transform-controls {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1极狐fr;
             }
             
             .logo {
@@ -602,7 +607,7 @@
         
         .form-group {
             margin-bottom: 1.5rem;
-        }
+极狐        }
         
         .form-group label {
             display: block;
@@ -649,7 +654,7 @@
         }
         
         .design-option {
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1极狐rem;
             border: 2px solid var(--color-gold);
             border-radius: 20px;
             cursor: pointer;
@@ -719,7 +724,7 @@
             border-radius: 30px;
             font-weight: bold;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 极狐0.3s ease;
         }
         
         .donate-button:hover {
@@ -752,7 +757,7 @@
         .ad-banner.large {
             max-width: 970px;
             height: 250px;
-        }
+极狐        }
         
         .ad-banner.video {
             position: relative;
@@ -793,7 +798,7 @@
             color: black;
             border: none;
             border-radius: 50%;
-            width: 50px;
+            width: 极狐50px;
             height: 50px;
             display: flex;
             align-items: center;
@@ -846,9 +851,9 @@
         .footer-ads {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+            gap: 1极狐rem;
             margin-top: 2rem;
-            padding-top: 2rem;
+            padding极狐-top: 2rem;
             border-top: 1px solid #444;
         }
         
@@ -873,7 +878,7 @@
             margin-top: 1rem;
         }
         
-        .cart-buttons button {
+        .极狐cart-buttons button {
             padding: 0.8rem;
             border-radius: 5px;
             border: none;
@@ -905,9 +910,426 @@
             max-width: 600px;
             margin: 2rem auto;
         }
+        
+        /* Nowe style dla koszyka */
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        
+        .cart-item-price {
+            color: var(--color-gold);
+            font-weight: bold;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        
+        .quantity-btn {
+            background: #f0f0f0;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .quantity-value {
+            margin: 0 0.5rem;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .remove-item {
+            color: #ff0000;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: 0.5rem;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+        }
+        
+        /* Style dla przycisku Dodaj do koszyka */
+        .add-to-cart {
+            background: var(--color-gold);
+            color: black;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+        
+        .add-to-cart:hover {
+            background: var(--color-dark-gold);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <h1 class="logo">Adelbertus<span class="gold-text">Shop</span></h1>
+        <p class="tagline">Ekskluzywne projekty od polskich twórców</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" data-section="home">Strona Główna</button>
+            <button class="nav-btn" data-section="products">Produkty</button>
+            <button class="nav-btn" data-section="designer">Projektant</button>
+            <button class="nav-btn极狐" data-section="charity">Zbiórka Charytatywna</button>
+            <button class="nav-btn" data-section="blog">Blog</button>
+            <button class="nav-btn" data-section极狐="reviews">Opinie</button>
+            <button class="nav-btn" data-section="contact">Kontakt</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="active">
+            <h2 class="section-title">Witamy w <span class="gold-text">AdelbertusShop</span></极狐h2>
+            <div class="charity-section">
+                <h3>Wspieramy <span class="gold-text">Akcję Charytatywną</span></h3>
+                <p>10% z każdego zakupu przekazujemy na pomoc osobom potrzebującym. Razem możemy więcej!</p>
+                <div class="donors-list">
+                    <h4>Ostatni darczyńcy:</h4>
+                    <p>Jan K. - 50 zł</p>
+                    <p>Anna M. - 100 zł</p>
+                    <p>Robert P. - 75 zł</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products">
+            <h2 class="section-title">Nasze <span class="gold-text">Produk极狐ty</span></h2>
+            <div class="products-grid">
+                <!-- Products will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Designer Section -->
+        <section id="designer">
+            <h2 class="section-title">Projektant <span class="gold-text">Online</span></h2>
+            <div class="design-studio">
+                <极狐div class="canvas-container">
+                    <canvas id="designCanvas" width="500" height="500"></canvas>
+                </div>
+                <div class="canvas-controls">
+                    <button id="saveDesign" class="gold-b极狐g">Zapisz projekt</button>
+                    <button id="resetDesign">Resetuj</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other sections will be here -->
+        
+        <!-- Cart Panel -->
+        <div id="cartPanel">
+            <h2>Twój koszyk</h2>
+            <div class="cart-items">
+                <!-- Cart items will be added here -->
+            </div>
+            <div class="cart-total">
+                <h3>Suma: <span id="cartTotal">0.00</span> PLN</h3>
+            </div>
+            
+            <!-- NOWY KOD PAYPAL -->
+            <div id="paypal-container-custom">
+                <div id="paypal-container-90VCBWDNDXAZN"></div>
+            </div>
+            
+            <div class="cart-buttons">
+                <button class="email-order-btn" id="emailOrderBtn">
+                    <i class="fas fa-envelope"></i> Zamów przez e-mail
+                </button>
+                <button class="whatsapp-order-btn" id="whatsappOrderBtn">
+                    <i class="fab fa-whatsapp"></i> Zamów przez WhatsApp
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Icon -->
+    <div id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartCount">0</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="contact-info">
+            <h3>Kontakt</h3>
+            <p>Email: info@adelbertusshop.pl</p>
+            <p>Telefon: +48 123 456 789</p>
+        </div>
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+        <p>&copy; 2025 AdelbertusShop. Wszystkie prawa zastrzeżone.</p>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+        const cartItemsContainer = document.querySelector('.cart-items');
+        const cartCountElement = document.getElementById('cartCount');
+        const cartTotalElement = document.getElementById('cartTotal');
+        const cartPanel = document.getElementById('cartPanel');
+        const emailOrderBtn = document.getElementById('emailOrderBtn');
+        const whatsappOrderBtn = document.getElementById('whatsappOrderBtn');
+
+        // Sample products
+        const sampleProducts = [
+            { id: 1, name: 'Koszulka Premium', price: 89.99, image: 'https://via.placeholder.com/300x400/fff8e7/333?text=Koszulka+Premium' },
+            { id: 2, name: 'Bluza z nadrukiem', price: 149.99, image: 'https://via.placeholder.com/极狐300x400/fff8e7/333?text=Bluza+z+nadrukiem' },
+            { id: 3, name: 'Czapka designerska', price: 59.99, image: 'https://via.placeholder.com/300x400/fff8e7/333?text=Czapka+designerska' },
+            { id: 4, name: '极狐Torba bawełniana', price: 49.99, image: 'https://via.placeholder.com/300x400/fff8e7/333?text=Torba+bawełniana' }
+        ];
+
+        // Basic functionality for the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const sections = document.querySelectorAll('section');
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetSection = button.getAttribute('data-section');
+                    
+                    // Update active button
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Show target section
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === targetSection) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // Cart functionality
+            const cartIcon = document.getElementById('cartIcon');
+            
+            cartIcon.addEventListener('click', () => {
+                cartPanel.classList.toggle('open');
+            });
+            
+            // Render products
+            const productsGrid = document.querySelector('.products-grid');
+            
+            sampleProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image-container">
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-price">${product.price.toFixed(2)} PLN</p>
+                        <button class="add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}" data-image="${product.image}">Dodaj do koszyka</button>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+            
+            // Add to cart functionality
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-to-cart')) {
+                    const id = parseInt(e.target.getAttribute('data-id'));
+                    const name = e.target.getAttribute('data-name');
+                    const price = parseFloat(e.target.getAttribute('data-price'));
+                    const image = e.target.getAttribute('data-image');
+                    
+                    addToCart(id, name, price, image);
+                }
+                
+                // Quantity buttons
+                if (e.target.classList.contains('quantity-btn')) {
+                    const itemId = parseInt(e.target.closest('.cart-item').getAttribute('data-id'));
+                    const isIncrease = e.target.classList.contains('increase');
+                    updateQuantity(itemId, isIncrease);
+                }
+                
+                // Remove item
+                if (e.target.classList.contains('remove-item')) {
+                    const itemId = parseInt(e.target.closest('.cart-item').getAttribute('data-id'));
+                    removeFromCart(itemId);
+                }
+            });
+            
+            // Email order button
+            emailOrderBtn.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert('Koszyk jest pusty!');
+                    return;
+                }
+                
+                const subject = 'Zamówienie z AdelbertusShop';
+                const body = generateOrderEmailBody();
+                window.location.href = `mailto:info@adelbertusshop.pl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            });
+            
+            // WhatsApp order button
+            whatsappOrderBtn.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert('Koszyk jest pusty!');
+                    return;
+                }
+                
+                const message = generateOrderWhatsAppMessage();
+                window.open(`https://wa.me/48123456789?text=${encodeURIComponent(message)}`, '_blank');
+            });
+            
+            // Initialize PayPal button
+            if (typeof paypal !== 'undefined') {
+                paypal.HostedButtons({
+                    hostedButtonId: "90VCBWDNDXAZN"
+                }).render("#paypal-container-90VCBWDNDXAZN");
+            }
+        });
+        
+        // Cart functions
+        function addToCart(id, name, price, image) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem极狐) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price,
+                    image,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            
+            // Show cart panel if it's closed
+            if (!cartPanel.classList.contains('open')) {
+                cartPanel.classList.add('open');
+            }
+        }
+        
+        function updateQuantity(id, isIncrease) {
+            const item = cart.find(item => item.id === id);
+            
+            if (item) {
+                if (isIncrease) {
+                    item.quantity += 1;
+                } else {
+                    if (item.quantity > 1) {
+                        item.quantity -= 1;
+                    } else {
+                        removeFromCart(id);
+                        return;
+                    }
+                }
+                
+                updateCart();
+            }
+        }
+        
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+        
+        function updateCart() {
+            // Update cart count
+            const totalCount = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCountElement.textContent = totalCount;
+            
+            // Update cart items
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="empty-cart">Twój koszyk jest pusty</div>';
+            } else {
+                cart.forEach(item => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.setAttribute('data-id', item.id);
+                    
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart极狐-item-image">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">${item.price.toFixed(2)} PLN</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn decrease">-</button>
+                                <span class="quantity-value">${item.quantity}</span>
+                                <button class="quantity-btn increase">+</button>
+                                <button class="remove-item"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+            }
+            
+            // Update total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotalElement.textContent = total.toFixed(2);
+        }
+        
+        function generateOrderEmailBody() {
+            let body = 'Szczegóły zamówienia:\n\n';
+            
+            cart.forEach(item => {
+                body += `${item.name} - ${item.quantity} x ${item.price.toFixed(2)} PLN = ${(item.quantity * item.price).极狐toFixed(2)} PLN\n`;
+            });
+            
+            body += `\nSUMA: ${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)} PLN\n\n`;
+            body += 'Proszę o potwierdzenie zamówienia i podanie danych do wysyłki.\n\n';
+            body += 'Pozdrawiam,\n';
+            
+            return body;
+        }
+        
+        function generateOrderWhatsAppMessage() {
+            let message = 'Cześć! Chciałbym złożyć zamówienie:\n\n';
+            
+            cart.forEach(item => {
+                message += `${item.name} - ${item.quantity} x ${item.price.toFixed(2)} PLN\n`;
+极狐            });
+            
+            message += `\nSUMA: ${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)} PLN\n\n`;
+            message += 'Proszę o potwierdzenie dostępności i podanie terminu realizacji.';
+            
+            return message;
+        }
+    </script>
+</body>
+</html>
     <!-- Nagłówek -->
     <header>
         <div class="logo">AdelbertusShop</div>
@@ -3269,6 +3691,7 @@ function hideBlogForm() {
 </script>
 </body>
 </html>             
+
 
 
 
