@@ -1659,7 +1659,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <option value="XXL">XXL</option>
             </select>
             <button onclick="document.getElementById('designImage').click()" class="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 w-full">📤 Dodaj obraz</button>
-            <input type="file" id="designImage" accept="image/*" class="hidden" onchange="handleImageUpload()">
+            <input type="file" id="designImage" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
           </div>
         </details>
 
@@ -1676,103 +1676,99 @@ document.addEventListener("DOMContentLoaded", () => {
 </section>
 
 <script>
+// Podstawowe zmienne
 let canvas = document.getElementById("designCanvas");
 let ctx = canvas.getContext("2d");
 let currentText = { text: "", x: 200, y: 200, font: "Arial", size: 36, color: "#000000" };
-let baseImage = new Image();
 let uploadedImage = null;
+let dragging = false;
 
-// Działające URL produktów
-const productImages = {
-  tshirt: "https://i.ibb.co/6RJj4qM/white-tshirt.png",
-  hoodie: "https://i.ibb.co/4T2N0qH/white-hoodie.png", 
-  cap: "https://i.ibb.co/0Q8L0zZ/white-cap.png"
-};
-
+// Ceny produktów
 const productPrices = {
   tshirt: 120,
   hoodie: 200,
   cap: 99
 };
 
-// Inicjalizacja
-baseImage.src = productImages.tshirt;
-baseImage.onload = () => redrawCanvas();
-
-// 🔹 Rysowanie wszystkiego
-function redrawCanvas() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(baseImage, 0, 0, canvas.width, canvas.height);
+// Inicjalizacja canvas
+function initCanvas() {
+  // Rysujemy prosty kształt produktu
+  ctx.fillStyle = "#f3f4f6";
+  ctx.fillRect(50, 50, 300, 300);
   
-  // Rysuj uploaded image jeśli istnieje
-  if (uploadedImage) {
-    ctx.drawImage(uploadedImage, 100, 100, 200, 200);
-  }
-  
-  // Rysuj tekst jeśli istnieje
-  if (currentText.text) {
-    ctx.font = `${currentText.size}px "${currentText.font}"`;
-    ctx.fillStyle = currentText.color;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(currentText.text, currentText.x, currentText.y);
-  }
+  // Dodajemy tekst informacyjny
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#000";
+  ctx.textAlign = "center";
+  ctx.fillText("Tutaj pojawi się Twój projekt", 200, 200);
 }
 
-// 🔹 Tekst
+// Inicjalizacja przy załadowaniu strony
+window.onload = function() {
+  initCanvas();
+  updateSummary();
+};
+
+// 🔹 Aktualizacja tekstu
 function updateDesignText() {
-  currentText.text = document.getElementById("designText").value;
-  currentText.font = document.getElementById("fontFamily").value;
-  currentText.size = parseInt(document.getElementById("fontSize").value);
-  currentText.color = document.getElementById("textColor").value;
+  const textInput = document.getElementById("designText");
+  const fontSelect = document.getElementById("fontFamily");
+  const fontSizeInput = document.getElementById("fontSize");
+  const colorInput = document.getElementById("textColor");
+  
+  currentText.text = textInput.value;
+  currentText.font = fontSelect.value;
+  currentText.size = parseInt(fontSizeInput.value);
+  currentText.color = colorInput.value;
+  
   redrawCanvas();
   updateSummary();
 }
 
 // 🔹 Przeciąganie tekstu
-let dragging = false;
-canvas.addEventListener("mousedown", e => {
-  let rect = canvas.getBoundingClientRect();
-  let mx = e.clientX - rect.left;
-  let my = e.clientY - rect.top;
+canvas.addEventListener("mousedown", function(e) {
+  const rect = canvas.getBoundingClientRect();
+  const mouseX = e.clientX - rect.left;
+  const mouseY = e.clientY - rect.top;
   
-  // Sprawdź czy kliknięto w obszar tekstu
+  // Sprawdzamy czy kliknięto w obszar tekstu
   if (currentText.text) {
-    ctx.font = `${currentText.size}px "${currentText.font}"`;
-    let textWidth = ctx.measureText(currentText.text).width;
-    let textHeight = currentText.size;
+    ctx.font = `${currentText.size}px ${currentText.font}`;
+    const textWidth = ctx.measureText(currentText.text).width;
     
-    if (Math.abs(mx - currentText.x) < textWidth/2 && 
-        Math.abs(my - currentText.y) < textHeight/2) {
+    if (Math.abs(mouseX - currentText.x) < textWidth / 2 && 
+        Math.abs(mouseY - currentText.y) < currentText.size / 2) {
       dragging = true;
     }
   }
 });
 
-canvas.addEventListener("mousemove", e => {
+canvas.addEventListener("mousemove", function(e) {
   if (dragging) {
-    let rect = canvas.getBoundingClientRect();
+    const rect = canvas.getBoundingClientRect();
     currentText.x = e.clientX - rect.left;
     currentText.y = e.clientY - rect.top;
     redrawCanvas();
   }
 });
 
-canvas.addEventListener("mouseup", () => dragging = false);
-canvas.addEventListener("mouseleave", () => dragging = false);
+canvas.addEventListener("mouseup", function() {
+  dragging = false;
+});
+
+canvas.addEventListener("mouseleave", function() {
+  dragging = false;
+});
 
 // 🔹 Zmiana produktu
 function changeProductBase() {
-  let type = document.getElementById("productType").value;
-  baseImage = new Image();
-  baseImage.src = productImages[type];
-  baseImage.onload = () => redrawCanvas();
+  redrawCanvas();
   updateSummary();
 }
 
 // 🔹 Obsługa uploadu obrazu
-function handleImageUpload() {
-  const file = document.getElementById('designImage').files[0];
+function handleImageUpload(event) {
+  const file = event.target.files[0];
   if (file) {
     const reader = new FileReader();
     reader.onload = function(e) {
@@ -1780,56 +1776,106 @@ function handleImageUpload() {
       uploadedImage.onload = function() {
         redrawCanvas();
         updateSummary();
-      }
+      };
       uploadedImage.src = e.target.result;
-    }
+    };
     reader.readAsDataURL(file);
   }
 }
 
-// 🔹 Podsumowanie
-function updateSummary(){
-  let size = document.getElementById("productSize").value;
-  let type = document.getElementById("productType").value;
-  let price = productPrices[type];
+// 🔹 Rysowanie wszystkiego
+function redrawCanvas() {
+  // Czyszczenie canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   
-  let summary = `
-    <p><b>Produkt:</b> ${type} (${price} zł)</p>
-    <p><b>Rozmiar:</b> ${size}</p>
-    <p><b>Tekst:</b> ${currentText.text || "-"}</p>
-    <p><b>Czcionka:</b> ${currentText.font}, ${currentText.size}px</p>
-    <p><b>Kolor tekstu:</b> <span style="color:${currentText.color}">${currentText.color}</span></p>
-    <p><b>Obraz:</b> ${uploadedImage ? "Tak" : "Nie"}</p>
-    <p><b>Łączna cena:</b> ${price} zł</p>
+  // Rysowanie tła (produktu)
+  ctx.fillStyle = "#f3f4f6";
+  ctx.fillRect(50, 50, 300, 300);
+  
+  // Rysowanie uploaded image jeśli istnieje
+  if (uploadedImage) {
+    // Zachowujemy proporcje obrazu
+    const maxWidth = 250;
+    const maxHeight = 250;
+    let width = uploadedImage.width;
+    let height = uploadedImage.height;
+    
+    if (width > maxWidth) {
+      height = (height * maxWidth) / width;
+      width = maxWidth;
+    }
+    if (height > maxHeight) {
+      width = (width * maxHeight) / height;
+      height = maxHeight;
+    }
+    
+    const x = (canvas.width - width) / 2;
+    const y = (canvas.height - height) / 2;
+    
+    ctx.drawImage(uploadedImage, x, y, width, height);
+  }
+  
+  // Rysowanie tekstu jeśli istnieje
+  if (currentText.text) {
+    ctx.font = `${currentText.size}px ${currentText.font}`;
+    ctx.fillStyle = currentText.color;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(currentText.text, currentText.x, currentText.y);
+  }
+}
+
+// 🔹 Podsumowanie
+function updateSummary() {
+  const typeSelect = document.getElementById("productType");
+  const sizeSelect = document.getElementById("productSize");
+  const type = typeSelect.value;
+  const size = sizeSelect.value;
+  const price = productPrices[type];
+  
+  let summaryHTML = `
+    <div class="space-y-2">
+      <p><b>Produkt:</b> ${type} (${price} zł)</p>
+      <p><b>Rozmiar:</b> ${size}</p>
+      <p><b>Tekst:</b> ${currentText.text || "Brak"}</p>
+      <p><b>Czcionka:</b> ${currentText.font}, ${currentText.size}px</p>
+      <p><b>Kolor tekstu:</b> <span style="color:${currentText.color}">${currentText.color}</span></p>
+      <p><b>Obraz:</b> ${uploadedImage ? "Dodany" : "Brak"}</p>
+      <p class="pt-2 border-t"><b>Łączna cena:</b> ${price} zł</p>
+    </div>
   `;
-  document.getElementById("summaryBox").innerHTML = summary;
+  
+  document.getElementById("summaryBox").innerHTML = summaryHTML;
 }
 
 // 🔹 Funkcje przycisków
-function clearCanvas(){
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+function clearCanvas() {
   currentText = { text: "", x: 200, y: 200, font: "Arial", size: 36, color: "#000000" };
   uploadedImage = null;
   document.getElementById("designText").value = "";
-  document.getElementById("summaryBox").innerHTML = "<p>Brak danych – dodaj coś do projektu.</p>";
+  document.getElementById("designImage").value = "";
+  initCanvas();
+  updateSummary();
 }
 
-function resetDesign(){ 
-  changeProductBase(); 
-  updateSummary(); 
+function resetDesign() {
+  clearCanvas();
 }
 
-function saveDesign(){
-  let link = document.createElement("a");
-  link.download = "projekt.png";
-  link.href = canvas.toDataURL("image/png");
+function saveDesign() {
+  const dataURL = canvas.toDataURL("image/png");
+  const link = document.createElement("a");
+  link.download = "mój-projekt.png";
+  link.href = dataURL;
+  document.body.appendChild(link);
   link.click();
+  document.body.removeChild(link);
 }
 
-function sendDesignToEmail(){
-  let type = document.getElementById("productType").value;
-  let size = document.getElementById("productSize").value;
-  let price = productPrices[type];
+function sendDesignToEmail() {
+  const type = document.getElementById("productType").value;
+  const size = document.getElementById("productSize").value;
+  const price = productPrices[type];
   
   let body = `
 PROJEKT PRODUKTU
@@ -1846,12 +1892,16 @@ Obraz: ${uploadedImage ? "Dodany" : "Brak"}
   window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Projekt%20produktu&body=${encodeURIComponent(body)}`;
 }
 
-function addToCartFromDesign(){
-  let type = document.getElementById("productType").value;
-  let size = document.getElementById("productSize").value;
-  let price = productPrices[type];
+function addToCartFromDesign() {
+  const type = document.getElementById("productType").value;
+  const size = document.getElementById("productSize").value;
+  const price = productPrices[type];
   
-  let cartItem = {
+  // Pobierz istniejący koszyk lub stwórz nowy
+  let cart = JSON.parse(localStorage.getItem('designCart') || '[]');
+  
+  // Dodaj nowy produkt
+  cart.push({
     product: type,
     size: size,
     price: price,
@@ -1861,20 +1911,14 @@ function addToCartFromDesign(){
     color: currentText.color,
     hasImage: !!uploadedImage,
     timestamp: new Date().toISOString()
-  };
+  });
   
-  // Pobierz istniejący koszyk lub stwórz nowy
-  let cart = JSON.parse(localStorage.getItem('designCart') || '[]');
-  cart.push(cartItem);
+  // Zapisz koszyk
   localStorage.setItem('designCart', JSON.stringify(cart));
   
-  alert(`✅ Projekt dodany do koszyka! Cena: ${price} zł`);
+  alert(`✅ Projekt dodany do koszyka!\nCena: ${price} zł\nIlość produktów w koszyku: ${cart.length}`);
 }
-
-// Inicjalizacja podsumowania przy starcie
-updateSummary();
-</script>
-        
+</script>        
 <!-- 🎁 Sekcja Zbiórki FINALNA -->
 <section id="charity" class="bg-gradient-to-r from-gray-900 via-purple-900 to-black text-white py-12 px-6 rounded-2xl shadow-lg">
     
@@ -3213,6 +3257,7 @@ function hideBlogForm() {
 </script>
 </body>
 </html>             
+
 
 
 
