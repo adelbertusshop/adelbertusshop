@@ -908,7 +908,6 @@
     </style>
 </head>
 <body>
-
     <!-- Nagłówek -->
     <header>
         <div class="logo">AdelbertusShop</div>
@@ -939,51 +938,13 @@
             </div>
             
             <!-- Sekcja reklamowa - baner -->
-            <!-- Baner prostokątny -->
-<div class="ad-container" style="text-align:center; margin:20px 0;">
-  <div id="bannerLarge">
-    <a href="https://ibb.co/2xhgSK0" target="_blank">
-      <img src="https://i.ibb.co/SbyRcvD/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3.jpg" 
-           alt="Baner prostokątny" 
-           style="max-width:728px; width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.3);">
-    </a>
-  </div>
-</div>
-
-<!-- Baner kwadratowy -->
-<div class="ad-container" style="text-align:center; margin:20px 0;">
-  <div id="bannerSquare">
-    <a href="https://ibb.co/d46RkY29" target="_blank">
-      <img src="https://i.ibb.co/zVbzPvRc/Messenger-creation-9-C2-DF47-C-5660-4-D41-8652-E1-A259-B8-B09-C.jpg" 
-           alt="Baner kwadratowy" 
-           style="max-width:300px; width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.3);">
-    </a>
-  </div>
-</div>
-
-<script>
-// Funkcja cyklu 10s widoczny, 3s ukryty
-function cycleBanner(bannerId) {
-  const banner = document.getElementById(bannerId);
-
-  function showBanner() {
-    banner.style.display = "block";
-    setTimeout(hideBanner, 10000); // 10s
-  }
-
-  function hideBanner() {
-    banner.style.display = "none";
-    setTimeout(showBanner, 3000); // 3s
-  }
-
-  showBanner();
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  cycleBanner("bannerLarge");
-  cycleBanner("bannerSquare");
-});
-</script>            
+            <div class="ad-container">
+                <div class="ad-banner large">
+                    <p>Miejsce na baner reklamowy (728x90)</p>
+                    <div class="timer" id="bannerTimer">30s</div>
+                </div>
+            </div>
+            
             <!-- Sekcja reklamowa - animacja -->
             <div class="ad-container">
                 <div class="ad-banner large video">
@@ -1045,7 +1006,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </div>
         </section>
-        <!-- Sklep - ZAKTUALIZOWANY -->
+<!-- Sklep - ZAKTUALIZOWANY -->
 <section id="shop">
     <div class="section-title">
         <h2>Nasze Produkty</h2>
@@ -1443,8 +1404,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button class="nav-btn add-to-cart-btn" data-name="Geometria" data-price="120" data-image="https://i.ibb.co/HfSnVW3K/Messenger-creation-0-E6-C207-C-C15-D-45-C7-AB33-E3-FC34-BBEF39.jpg">Dodaj do koszyka</button>
             </div>
         </div>
-    </div>
-    
+    </div>    
+
 <h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
 <div class="products-grid">
     <!-- Bluzy -->
@@ -1587,600 +1548,143 @@ document.addEventListener("DOMContentLoaded", () => {
 
     <p id="status" class="mt-4 text-white"></p>
 </section>
-<!-- ====== SEK CJA: ZAPROJEKTUJ (PRO) ====== -->
-<section id="zaprojektuj" class="design-studio">
-  <div class="section-title">
-    <h2>Zaprojektuj swój produkt</h2>
-    <p>Wybierz produkt, widok i stwórz własny nadruk</p>
-  </div>
-
-  <!-- GÓRNE AKCJE -->
-  <div class="top-bar">
-    <button class="btn" onclick="newProject()">🆕 Nowy projekt</button>
-    <button class="btn" onclick="savePNG()">💾 Zapisz PNG</button>
-    <button class="btn" onclick="sendProject()">📧 Wyślij mailem</button>
-    <button class="btn btn-primary" onclick="addToCart()">🛒 Dodaj do koszyka</button>
-  </div>
-
-  <div class="studio-grid">
-    <!-- LEWA KOLUMNA -->
-    <aside class="panel">
-      <h3 class="panel-title">Produkt</h3>
-      <div class="product-switch">
-        <button class="chip active" data-product="tshirt" onclick="setProduct('tshirt', this)">👕 Koszulka</button>
-        <button class="chip" data-product="hoodie" onclick="setProduct('hoodie', this)">🧥 Bluza</button>
-        <button class="chip" data-product="cap" onclick="setProduct('cap', this)">🧢 Czapka</button>
-      </div>
-
-      <h3 class="panel-title">Widok</h3>
-      <div class="view-switch" id="viewSwitch">
-        <!-- generowane dynamicznie -->
-      </div>
-
-      <h3 class="panel-title">Kolor bazowy</h3>
-      <div class="color-picker">
-        <button class="swatch" style="--c:#000" onclick="setBaseColor('#000')"></button>
-        <button class="swatch" style="--c:#fff;border:1px solid #ddd" onclick="setBaseColor('#fff')"></button>
-        <button class="swatch" style="--c:#b91c1c" onclick="setBaseColor('#b91c1c')"></button>
-        <button class="swatch" style="--c:#1e3a8a" onclick="setBaseColor('#1e3a8a')"></button>
-        <button class="swatch" style="--c:#065f46" onclick="setBaseColor('#065f46')"></button>
-        <button class="swatch" style="--c:#f59e0b" onclick="setBaseColor('#f59e0b')"></button>
-      </div>
-    </aside>
-
-    <!-- ŚRODEK: PODGLĄD I PROJEKT -->
-    <main class="canvas-wrap">
-      <div id="productArea">
-        <div id="productColor"></div>
-        <img id="productImage" alt="Produkt">
-        <div id="designElements" aria-label="obszar projektowania"></div>
-      </div>
-
-      <div class="canvas-tools">
-        <button class="btn" onclick="clearElements()">🗑 Wyczyść elementy</button>
-        <button class="btn" onclick="centerActive()">🎯 Wyśrodkuj aktywny</button>
-        <button class="btn" onclick="deleteActive()">❌ Usuń aktywny</button>
-      </div>
-    </main>
-
-    <!-- PRAWA KOLUMNA -->
-    <aside class="panel">
-      <h3 class="panel-title">Rozmiar & cena</h3>
-      <select id="productSize" class="input" onchange="updateSummary()">
-        <option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option>
-      </select>
-      <div class="price">Cena: <span id="price">120 zł</span></div>
-
-      <h3 class="panel-title">Dodaj tekst</h3>
-      <input id="txtContent" class="input" type="text" placeholder="Twój napis">
-      <div class="row">
-        <select id="txtFont" class="input">
-          <option>Arial</option><option>Verdana</option><option>Times New Roman</option>
-          <option>Impact</option><option>Georgia</option><option>Courier New</option>
-          <option>Brush Script MT</option>
-        </select>
-        <input id="txtSize" class="input" type="number" min="12" max="120" value="40">
-      </div>
-      <div class="row">
-        <input id="txtColor" class="input" type="color" value="#000000">
-        <button class="btn" onclick="addText()">➕ Dodaj napis</button>
-      </div>
-
-      <h3 class="panel-title">Dodaj obrazek</h3>
-      <input id="imgInput" class="input" type="file" accept="image/*" onchange="addImage(event)">
-
-      <h3 class="panel-title">Podsumowanie</h3>
-      <div id="summary" class="summary">Brak elementów</div>
-    </aside>
-  </div>
 </section>
 
-<style>
-/* Layout */
-.design-studio{padding:20px;background:#0b0c10;color:#e5e7eb}
-.section-title h2{font-size:28px;margin:0 0 4px}
-.section-title p{color:#9ca3af;margin:0 0 16px}
-.top-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.studio-grid{display:grid;grid-template-columns:260px 1fr 280px;gap:16px}
-.panel{background:#111318;border:1px solid #1f2430;border-radius:12px;padding:14px}
-.panel-title{margin:10px 0 8px;font-size:14px;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em}
-.canvas-wrap{background:#111318;border:1px solid #1f2430;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:12px;align-items:center}
-#productArea{position:relative;width:min(520px,90vw);aspect-ratio:1/1.1;background:#0d0f14;border:1px dashed #2b3240;border-radius:12px;overflow:hidden}
-#productColor{position:absolute;inset:0;background:#000;opacity:.22;mix-blend-mode:multiply;pointer-events:none}
-#productImage{position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;object-fit:contain;z-index:1}
-#designElements{position:absolute;inset:0;z-index:2}
-.canvas-tools{display:flex;gap:8px;flex-wrap:wrap}
-/* UI */
-.btn{background:#1f2937;color:#e5e7eb;border:1px solid #374151;border-radius:10px;padding:8px 12px;cursor:pointer}
-.btn:hover{background:#2a3547}
-.btn-primary{background:#f59e0b;border-color:#f59e0b;color:#1b1300}
-.btn-primary:hover{background:#ffb31f}
-.input{background:#0f1116;color:#e5e7eb;border:1px solid #2b3240;border-radius:8px;padding:8px;width:100%}
-.row{display:flex;gap:8px;margin:8px 0}
-.product-switch,.view-switch{display:flex;flex-wrap:wrap;gap:8px}
-.chip{padding:6px 10px;border-radius:999px;border:1px solid #2b3240;background:#0f1116;color:#d1d5db;cursor:pointer}
-.chip.active{border-color:#f59e0b;color:#ffd37a;background:#1c1405}
-.color-picker{display:flex;gap:6px;flex-wrap:wrap}
-.swatch{width:24px;height:24px;border-radius:6px;background:var(--c);cursor:pointer}
-.price{margin:8px 0 12px;font-weight:700}
-.summary{background:#0f1116;border:1px solid #2b3240;border-radius:8px;padding:10px;white-space:pre-wrap;font-size:13px}
-
-/* Elementy projektu */
-.draggable{position:absolute;cursor:move;user-select:none;touch-action:none}
-.draggable.active{outline:1px dashed #f59e0b;outline-offset:2px}
-.draggable .handles{position:absolute;right:-14px;bottom:-14px;display:flex;gap:6px}
-.handle{width:12px;height:12px;border-radius:50%;background:#f59e0b;border:2px solid #1b1300;cursor:grab}
-
-/* Mobile */
-@media (max-width: 980px){
-  .studio-grid{grid-template-columns:1fr}
-  .panel{order:2}
-  .canvas-wrap{order:1}
-  .top-bar{justify-content:center}
-}
-</style>
-
-<script>
-// Zmienne globalne
-let currentProduct = 'tshirt';
-let currentView = 'front';
-let baseColor = '#000000';
-let priceMap = { tshirt:120, hoodie:200, cap:99 };
-let activeEl = null;
-
-// Poprawione obrazy produktów (działające linki)
-const productImages = {
-  tshirt: {
-    front: "https://placehold.co/400x500/ffffff/000000?text=Koszulka+Przód",
-    back:  "https://placehold.co/400x500/ffffff/000000?text=Koszulka+Tył",
-    left:  "https://placehold.co/200x400/ffffff/000000?text=Lewy+Rękaw",
-    right: "https://placehold.co/200x400/ffffff/000000?text=Prawy+Rękaw",
-  },
-  hoodie: {
-    front: "https://placehold.co/400x500/ffffff/000000?text=Bluza+Przód",
-    back:  "https://placehold.co/400x500/ffffff/000000?text=Bluza+Tył",
-    sleeves:"https://placehold.co/200x400/ffffff/000000?text=Rękawy",
-  },
-  cap: {
-    front: "https://placehold.co/400x400/ffffff/000000?text=Czapka+Przód",
-    back:  "https://placehold.co/400x400/ffffff/000000?text=Czapka+Tył",
-  }
-};
-
-// Inicjalizacja po załadowaniu DOM
-document.addEventListener('DOMContentLoaded', function() {
-  // Sprawdź czy elementy istnieją przed ich użyciem
-  if (document.getElementById('productImage') && document.getElementById('designElements')) {
-    setProduct('tshirt', document.querySelector('.chip[data-product="tshirt"]'));
-    setBaseColor('#000');
-    if (document.getElementById('productSize')) {
-      document.getElementById('productSize').value = 'M';
-    }
-    updatePrice();
-    updateSummary();
-  }
-});
-
-// Funkcje produktu i widoku
-function setProduct(p, btn) {
-  currentProduct = p;
-  document.querySelectorAll('.product-switch .chip').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  
-  // Aktualizuj widoki
-  const vs = document.getElementById('viewSwitch');
-  if (vs) {
-    vs.innerHTML = '';
-    const views = Object.keys(productImages[p]);
-    views.forEach(v => {
-      const b = document.createElement('button');
-      b.className = 'chip' + (v === views[0] ? ' active' : '');
-      b.textContent = labelView(v);
-      b.onclick = () => setView(v, b);
-      vs.appendChild(b);
-    });
-    setView(views[0], vs.querySelector('.chip'));
-  }
-  updatePrice();
-  updateSummary();
-}
-
-function labelView(v) {
-  const viewLabels = {
-    front: 'Przód', 
-    back: 'Tył', 
-    left: 'Lewy rękaw', 
-    right: 'Prawy rękaw', 
-    sleeves: 'Rękawy'
-  };
-  return viewLabels[v] || v;
-}
-
-function setView(v, btn) {
-  currentView = v;
-  document.querySelectorAll('#viewSwitch .chip').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  
-  const src = productImages[currentProduct][v];
-  const img = document.getElementById('productImage');
-  if (img && src) {
-    img.src = src;
-  }
-  updateSummary();
-}
-
-function setBaseColor(c) {
-  baseColor = c;
-  const colorEl = document.getElementById('productColor');
-  if (colorEl) {
-    colorEl.style.background = c;
-  }
-  updateSummary();
-}
-
-function updatePrice() {
-  const priceEl = document.getElementById('price');
-  if (priceEl) {
-    priceEl.textContent = priceMap[currentProduct] + ' zł';
-  }
-}
-
-// Funkcje elementów projektu
-function addText() {
-  const textInput = document.getElementById('txtContent');
-  if (!textInput) return;
-  
-  const text = textInput.value.trim();
-  if (!text) return;
-  
-  const font = document.getElementById('txtFont')?.value || 'Arial';
-  const size = parseInt(document.getElementById('txtSize')?.value) || 40;
-  const color = document.getElementById('txtColor')?.value || '#000000';
-  
-  const designLayer = document.getElementById('designElements');
-  if (!designLayer) return;
-  
-  const el = document.createElement('div');
-  el.className = 'draggable';
-  el.textContent = text;
-  el.style.fontFamily = font;
-  el.style.fontSize = size + 'px';
-  el.style.color = color;
-  el.style.left = '45%';
-  el.style.top = '45%';
-  el.style.transform = 'translate(-50%, -50%)';
-  
-  mountDraggable(el);
-  designLayer.appendChild(el);
-  setActive(el);
-  updateSummary();
-  
-  // Wyczyść pole tekstowe
-  textInput.value = '';
-}
-
-function addImage(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  
-  const designLayer = document.getElementById('designElements');
-  if (!designLayer) return;
-  
-  const url = URL.createObjectURL(file);
-  const img = document.createElement('img');
-  img.src = url;
-  img.className = 'draggable';
-  img.style.maxWidth = '160px';
-  img.style.maxHeight = '160px';
-  img.style.left = '40%';
-  img.style.top = '40%';
-  img.style.transform = 'translate(-50%, -50%)';
-  
-  mountDraggable(img);
-  designLayer.appendChild(img);
-  setActive(img);
-  updateSummary();
-  
-  // Resetuj input
-  e.target.value = '';
-}
-
-function clearElements() {
-  const designLayer = document.getElementById('designElements');
-  if (designLayer) {
-    designLayer.innerHTML = '';
-  }
-  activeEl = null;
-  updateSummary();
-}
-
-function setActive(el) {
-  document.querySelectorAll('.draggable').forEach(item => {
-    item.classList.remove('active');
-  });
-  
-  if (el) {
-    el.classList.add('active');
-    activeEl = el;
-  } else {
-    activeEl = null;
-  }
-}
-
-function centerActive() {
-  if (!activeEl) return;
-  activeEl.style.left = '50%';
-  activeEl.style.top = '50%';
-  activeEl.style.transform = 'translate(-50%, -50%)';
-  updateSummary();
-}
-
-function deleteActive() {
-  if (!activeEl) return;
-  activeEl.remove();
-  activeEl = null;
-  updateSummary();
-}
-
-// Funkcje przeciągania
-function mountDraggable(el) {
-  el.addEventListener('mousedown', startDrag);
-  el.addEventListener('touchstart', startDrag, { passive: false });
-  el.addEventListener('click', () => setActive(el));
-}
-
-let isDragging = false;
-let startX, startY, initialX, initialY;
-
-function startDrag(e) {
-  e.preventDefault();
-  setActive(this);
-  
-  isDragging = true;
-  if (e.type === 'touchstart') {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-  } else {
-    startX = e.clientX;
-    startY = e.clientY;
-  }
-  
-  // Zapisz początkową pozycję elementu
-  initialX = parseFloat(this.style.left) || 0;
-  initialY = parseFloat(this.style.top) || 0;
-  
-  // Dodaj nasłuchiwanie zdarzeń
-  document.addEventListener('mousemove', drag);
-  document.addEventListener('touchmove', drag, { passive: false });
-  document.addEventListener('mouseup', stopDrag);
-  document.addEventListener('touchend', stopDrag);
-}
-
-function drag(e) {
-  if (!isDragging || !activeEl) return;
-  e.preventDefault();
-  
-  let currentX, currentY;
-  if (e.type === 'touchmove') {
-    currentX = e.touches[0].clientX;
-    currentY = e.touches[0].clientY;
-  } else {
-    currentX = e.clientX;
-    currentY = e.clientY;
-  }
-  
-  const dx = currentX - startX;
-  const dy = currentY - startY;
-  
-  activeEl.style.left = (initialX + dx) + 'px';
-  activeEl.style.top = (initialY + dy) + 'px';
-}
-
-function stopDrag() {
-  isDragging = false;
-  document.removeEventListener('mousemove', drag);
-  document.removeEventListener('touchmove', drag);
-  document.removeEventListener('mouseup', stopDrag);
-  document.removeEventListener('touchend', stopDrag);
-  updateSummary();
-}
-
-// Podsumowanie
-function updateSummary() {
-  const summaryEl = document.getElementById('summary');
-  if (!summaryEl) return;
-  
-  const sizeEl = document.getElementById('productSize');
-  const size = sizeEl ? sizeEl.value : 'M';
-  
-  let lines = [];
-  lines.push(`Produkt: ${labelProduct(currentProduct)} | Widok: ${labelView(currentView)} | Rozmiar: ${size}`);
-  lines.push(`Kolor bazowy: ${baseColor}`);
-  
-  const designLayer = document.getElementById('designElements');
-  const els = designLayer ? Array.from(designLayer.children) : [];
-  
-  if (els.length === 0) {
-    lines.push('Elementy: brak');
-  } else {
-    els.forEach((node, i) => {
-      const type = node.tagName === 'IMG' ? 'Obraz' : 'Tekst';
-      const x = Math.round(parseFloat(node.style.left) || 0);
-      const y = Math.round(parseFloat(node.style.top) || 0);
-      const xy = `x:${x}, y:${y}`;
-      
-      if (type === 'Tekst') {
-        lines.push(`${i+1}. Tekst "${node.textContent}" (${node.style.fontFamily}, ${node.style.fontSize}, ${node.style.color}) @ ${xy}`);
-      } else {
-        const width = node.naturalWidth || 0;
-        const height = node.naturalHeight || 0;
-        lines.push(`${i+1}. Obraz (${width}x${height}) @ ${xy}`);
-      }
-    });
-  }
-  
-  summaryEl.textContent = lines.join('\n');
-}
-
-function labelProduct(p) { 
-  const products = {
-    tshirt: 'Koszulka', 
-    hoodie: 'Bluza', 
-    cap: 'Czapka'
-  };
-  return products[p] || p; 
-}
-
-// Funkcje akcji
-function newProject() {
-  clearElements();
-  
-  const txtContent = document.getElementById('txtContent');
-  const txtSize = document.getElementById('txtSize');
-  const txtColor = document.getElementById('txtColor');
-  
-  if (txtContent) txtContent.value = '';
-  if (txtSize) txtSize.value = '40';
-  if (txtColor) txtColor.value = '#000000';
-  
-  setBaseColor('#000000');
-  updateSummary();
-}
-
-function sendProject() {
-  const summaryEl = document.getElementById('summary');
-  if (!summaryEl) return;
-  
-  const body = encodeURIComponent(summaryEl.textContent + '\n\n(Dołącz zrzut PNG: użyj przycisku "Zapisz PNG")');
-  window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Projekt%20ze%20studia&body=${body}`;
-}
-
-function addToCart() {
-  // Sprawdź czy localStorage jest dostępny
-  try {
-    let cart = JSON.parse(localStorage.getItem('designCart')) || [];
+<!-- Studio projektowe - ZMODYFIKOWANE -->
+<section id="design">
+    <div class="section-title">
+        <h2>Studio Projektowe</h2>
+        <p>Stwórz swój unikalny produkt</p>
+    </div>
     
-    const sizeEl = document.getElementById('productSize');
-    const size = sizeEl ? sizeEl.value : 'M';
-    
-    const designLayer = document.getElementById('designElements');
-    const elements = designLayer ? Array.from(designLayer.children).map(el => {
-      if (el.tagName === 'IMG') {
-        return {
-          type: 'image',
-          src: el.src,
-          x: parseFloat(el.style.left) || 0,
-          y: parseFloat(el.style.top) || 0,
-          width: el.naturalWidth,
-          height: el.naturalHeight
-        };
-      } else {
-        return {
-          type: 'text',
-          content: el.textContent,
-          font: el.style.fontFamily,
-          size: el.style.fontSize,
-          color: el.style.color,
-          x: parseFloat(el.style.left) || 0,
-          y: parseFloat(el.style.top) || 0
-        };
-      }
-    }) : [];
-    
-    cart.push({
-      product: currentProduct,
-      view: currentView,
-      size: size,
-      color: baseColor,
-      price: priceMap[currentProduct],
-      elements: elements,
-      timestamp: new Date().toISOString()
-    });
-    
-    localStorage.setItem('designCart', JSON.stringify(cart));
-    alert('✅ Projekt dodany do koszyka!');
-  } catch (e) {
-    alert('❌ Nie udało się dodać do koszyka. Sprawdź konsolę przeglądarki.');
-    console.error('Błąd dodawania do koszyka:', e);
-  }
-}
+    <div class="design-studio">
+        <!-- Przyciski po bokach -->
+        <div class="side-buttons left">
+            <button class="side-button" onclick="updateDesign()" title="Podgląd">
+                <i class="fas fa-sync"></i>
+            </button>
+            <button class="side-button" onclick="addToCartFromDesign()" title="Dodaj do koszyka">
+                <i class="fas fa-cart-plus"></i>
+            </button>
+        </div>
+        
+        <div class="side-buttons right">
+            <button class="side-button" onclick="sendDesignToEmail()" title="Wyślij projekt mailem">
+                <i class="fas fa-envelope"></i>
+            </button>
+            <button class="side-button" onclick="saveDesign()" title="Zapisz projekt">
+                <i class="fas fa-download"></i>
+            </button>
+        </div>
+        
+        <div class="product-base">
+            <div class="product-base-item active" data-base="tshirt">
+                <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka">
+                <p>Koszulka</p>
+            </div>
+            <div class="product-base-item" data-base="hoodie">
+                <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza">
+                <p>Bluza</p>
+            </div>
+            <div class="product-base-item" data-base="cap">
+                <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka">
+                <p>Czapka</p>
+            </div>
+        </div>
+        
+        <div class="design-options">
+            <div class="design-option active" data-area="front">Przód</div>
+            <div class="design-option" data-area="back">Tył</div>
+            <div class="design-option" data-area="sleeves">Rękawy</div>
+        </div>
+        
+        <div class="canvas-container">
+            <canvas id="designCanvas" width="500" height="400"></canvas>
+            <div class="canvas-controls">
+                <button class="nav-btn" onclick="clearCanvas()"><i class="fas fa-trash"></i> Wyczyść</button>
+                <button class="nav-btn" onclick="resetDesign()"><i class="fas fa-redo"></i> Resetuj</button>
+            </div>
+        </div>
+        
+        <div class="design-tools">
+            <div class="tool-group">
+                <div class="tool-title"><i class="fas fa-font"></i> Tekst</div>
+                <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3" oninput="updateDesign()">
+                
+                <div class="flex gap-3 mb-3">
+                    <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
+                        <option value="Arial">Arial</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Comic Sans MS">Comic Sans</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Palatino">Palatino</option>
+                        <option value="Garamond">Garamond</option>
+                        <option value="Brush Script MT">Brush Script</option>
+                    </select>
+                    
+                    <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
+                </div>
+                
+                <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3" oninput="updateDesign()">
+            </div>
+            
+            <div class="tool-group">
+                <div class="tool-title"><i class="fas fa-palette"></i> Opcje produktu</div>
+                
+                <select id="productType" class="w-full p-3 border rounded mb-3">
+                    <option value="tshirt">Koszulka (120 zł)</option>
+                    <option value="hoodie">Bluza (200 zł)</option>
+                    <option value="cap">Czapka (99 zł)</option>
+                </select>
+                
+                <select id="productSize" class="w-full p-3 border rounded mb-3">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+                
+                <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
+                <button class="nav-btn gold-bg w-full" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
+            </div>
 
-function savePNG() {
-  const productArea = document.getElementById('productArea');
-  if (!productArea) return;
-  
-  const img = document.getElementById('productImage');
-  if (!img || !img.complete) {
-    alert('Poczekaj aż obraz produktu się załaduje');
-    return;
-  }
-  
-  // Utwórz canvas
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  
-  // Ustaw rozmiar canvasu
-  canvas.width = productArea.offsetWidth;
-  canvas.height = productArea.offsetHeight;
-  
-  // Wypełnij tłem
-  ctx.fillStyle = baseColor;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-  // Narysuj produkt
-  const imgAspect = img.naturalWidth / img.naturalHeight;
-  const areaAspect = canvas.width / canvas.height;
-  
-  let drawWidth, drawHeight, drawX, drawY;
-  
-  if (imgAspect > areaAspect) {
-    drawWidth = canvas.width;
-    drawHeight = canvas.width / imgAspect;
-    drawX = 0;
-    drawY = (canvas.height - drawHeight) / 2;
-  } else {
-    drawHeight = canvas.height;
-    drawWidth = canvas.height * imgAspect;
-    drawX = (canvas.width - drawWidth) / 2;
-    drawY = 0;
-  }
-  
-  ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
-  
-  // Narysuj elementy projektu
-  const designLayer = document.getElementById('designElements');
-  if (designLayer) {
-    const elements = designLayer.children;
-    for (let i = 0; i < elements.length; i++) {
-      const el = elements[i];
-      const x = parseFloat(el.style.left) || 0;
-      const y = parseFloat(el.style.top) || 0;
-      
-      if (el.tagName === 'IMG') {
-        const width = el.offsetWidth;
-        const height = el.offsetHeight;
-        ctx.drawImage(el, x - width/2, y - height/2, width, height);
-      } else {
-        ctx.font = el.style.fontSize + ' ' + el.style.fontFamily;
-        ctx.fillStyle = el.style.color;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(el.textContent, x, y);
-      }
-    }
-  }
-  
-  // Zapisz jako PNG
-  const link = document.createElement('a');
-  link.download = 'projekt-' + currentProduct + '-' + currentView + '.png';
-  link.href = canvas.toDataURL('image/png');
-  link.click();
-}
-</script> 
-<!-- 🎁 Sekcja Zbiórki FINALNA -->
-<section id="charity" class="bg-gradient-to-r from-gray-900 via-purple-900 to-black text-white py-12 px-6 rounded-2xl shadow-lg">
-    
-    <!-- Nagłówek -->
+            <div class="tool-group">
+                <div class="tool-title"><i class="fas fa-edit"></i> Edycja elementów</div>
+                <div class="transform-controls">
+                    <div class="transform-input">
+                        <label for="posX">Pozycja X</label>
+                        <input type="range" id="posX" min="0" max="500" value="250" oninput="updateElementPosition()">
+                    </div>
+                    <div class="transform-input">
+                        <label for="posY">Pozycja Y</label>
+                        <input type="range" id="posY" min="0" max="400" value="200" oninput="updateElementPosition()">
+                    </div>
+                    <div class="transform-input">
+                        <label for="scale">Skala</label>
+                        <input type="range" id="scale" min="0.1" max="2" step="0.1" value="1" oninput="updateElementScale()">
+                    </div>
+                    <div class="transform-input">
+                        <label for="rotation">Obrót</label>
+                        <input type="range" id="rotation" min="0" max="360" value="0" oninput="updateElementRotation()">
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button class="nav-btn gold-bg w-full" onclick="bringToFront()"><i class="fas fa-layer-group"></i> Na wierzch</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="design-preview">
+            <h3>Podgląd Twojego projektu</h3>
+            <p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>
+        </div>
+    </div>
+</section>
+<!-- Nagłówek -->
     <div class="section-title text-center mb-10">
         <h2 class="text-5xl font-extrabold tracking-wide neon-glow">
             [ UPLOAD NADZIEI // PROMYK ]
@@ -2318,6 +1822,7 @@ function typeLetter() {
 typeLetter();
 setInterval(typeLetter, 15000); // co 15s nowy list
 </script>
+        
 <!-- Blog - WERSJA Z FORUM I CYKLICZNYMI CYTATAMI -->
 <section id="blog" class="bg-gray-950 py-12">
     <div class="section-title text-center mb-12">
@@ -2474,7 +1979,6 @@ function hideBlogForm() {
     document.getElementById("blogForm").classList.add("hidden");
 }
 </script>
-
 <!-- Regulamin -->
 <section id="regulations">
     <div class="section-title">
@@ -2504,8 +2008,7 @@ function hideBlogForm() {
             <p>5. Przysługuje Państwu prawo dostępu do danych, sprostowania, usunięcia, ograniczenia przetwarzania, wniesienia sprzeciwu oraz prawo do przenoszenia danych.</p>
             <p>6. Dane mogą być udostępniane podmiotom przetwarzającym je na nasze zlecenie (np. firmy kurierskie, płatności elektroniczne).</p>
             <p>7. Kontakt w sprawach ochron
-                
-             <!-- Kontynuacja kodu od miejsca przerwania -->
+                <!-- Kontynuacja kodu od miejsca przerwania -->
 <div class="mb-6">
     <h3 class="text-xl font-bold mb-3">§4 Zwroty i reklamacje</h3>
     <p>1. Konsument ma prawo do odstąpienia od umowy w ciągu 14 dni bez podawania przyczyny.</p>
@@ -3514,8 +3017,7 @@ function hideBlogForm() {
     window.sendOrderWhatsApp = sendOrderWhatsApp;
 </script>
 </body>
-</html>             
-
+</html>               
 
 
 
