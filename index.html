@@ -864,37 +864,37 @@
             color: #888;
             font-style: italic;
         }
+        /* Style dla przycisków w koszyku - POPRAWIONE */
+.cart-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 1rem;
+}
 
-        /* Style dla przycisków w koszyku */
-        .cart-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
-        .cart-buttons button {
-            padding: 0.8rem;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .cart-buttons button:hover {
-            opacity: 0.9;
-        }
-        
-        .email-order-btn {
-            background: var(--color-gold);
-            color: black;
-        }
-        
-        .whatsapp-order-btn {
-            background: #25D366;
-            color: white;
-        }
+.cart-buttons button {
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.cart-buttons button:hover {
+    opacity: 0.9;
+}
+
+.email-order-btn {
+    background: var(--color-gold);
+    color: black;
+}
+
+.whatsapp-order-btn {
+    background: #25D366;
+    color: white;
+}
 
         /* Sekcja zamówienia */
         .order-section {
@@ -2725,6 +2725,7 @@ function hideBlogForm() {
 </body>
 </html>
       
+
 
 
 
