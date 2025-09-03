@@ -2173,13 +2173,51 @@ function hideBlogForm() {
     </div>
     
     <!-- Sekcja reklam w stopce -->
-    <div class="footer-ads">
-        <div class="footer-ad">
-            <p>Reklama 1</p>
-        </div>
-        <div class="footer-ad">
-            <p>Reklama 2</p>
-        </div>
+<!-- Baner prostokątny -->
+<div class="ad-container" style="text-align:center; margin:20px 0;">
+  <div id="bannerLarge">
+    <a href="https://ibb.co/2xhgSK0" target="_blank">
+      <img src="https://i.ibb.co/SbyRcvD/Messenger-creation-00818231-9273-41-E1-8247-0342-F5054-BE3.jpg" 
+           alt="Baner prostokątny" 
+           style="max-width:728px; width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+    </a>
+  </div>
+</div>
+
+<!-- Baner kwadratowy -->
+<div class="ad-container" style="text-align:center; margin:20px 0;">
+  <div id="bannerSquare">
+    <a href="https://ibb.co/d46RkY29" target="_blank">
+      <img src="https://i.ibb.co/zVbzPvRc/Messenger-creation-9-C2-DF47-C-5660-4-D41-8652-E1-A259-B8-B09-C.jpg" 
+           alt="Baner kwadratowy" 
+           style="max-width:300px; width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+    </a>
+  </div>
+</div>
+
+<script>
+// Funkcja cyklu 10s widoczny, 3s ukryty
+function cycleBanner(bannerId) {
+  const banner = document.getElementById(bannerId);
+
+  function showBanner() {
+    banner.style.display = "block";
+    setTimeout(hideBanner, 10000); // 10s
+  }
+
+  function hideBanner() {
+    banner.style.display = "none";
+    setTimeout(showBanner, 3000); // 3s
+  }
+
+  showBanner();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  cycleBanner("bannerLarge");
+  cycleBanner("bannerSquare");
+});
+</script>    
         <div class="footer-ad">
             <p>Reklama 3</p>
         </div>
@@ -3024,6 +3062,7 @@ function hideBlogForm() {
 </body>
 </html>
       
+
 
 
 
