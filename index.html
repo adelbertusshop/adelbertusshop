@@ -96,570 +96,755 @@
             color: white;
             border: 2px solid var(--color-gold);
             padding: 0.8rem 1.5rem;
-            margin: 0.5rem; 
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.review-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.review-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 1rem;
-}
-
-.review-stars {
-    color: var(--color-gold);
-    margin-bottom: 0.5rem;
-}
-
-/* Stopka */
-footer {
-    background: var(--color-dark);
-    color: white;
-    padding: 3rem 1rem;
-    text-align: center;
-    margin-top: 4rem;
-}
-
-.contact-info {
-    margin: 1.5rem 0;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 1.5rem 0;
-}
-
-.social-link {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    background: var(--color-gold);
-    color: black;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.social-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-}
-
-/* Koszyk */
-#cartIcon {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: var(--color-gold);
-    color: black;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.5rem;
-    z-index: 99;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-#cartCount {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: red;
-    color: white;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    font-size: 0.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-}
-
-#cartPanel {
-    position: fixed;
-    top: 0;
-    right: -400px;
-    width: 400px;
-    height: 100vh;
-    background: white;
-    z-index: 100;
-    transition: right 0.3s ease;
-    box-shadow: -5px 极
-    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
-    padding: 2rem;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-}
-
-#cartPanel.open {
-    right: 0;
-}
-
-.cart-item {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid #eee;
-}
-
-.cart-item-image {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-right: 1rem;
-}
-
-.cart-total {
-    margin-top: auto;
-    padding-top: 1rem;
-    border-top: 2px solid #eee;
-}
-
-/* PayPal container */
-#paypal-container {
-    margin-top: 1rem;
-    min-height: 50px;
-}
-
-/* POPRAWIONE PRZYCISKI W KOSZYKU - NIE NAKŁADAJĄ SIĘ */
-.cart-buttons {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-    margin-top: 1.5rem;
-}
-
-.cart-buttons button {
-    padding: 1rem;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    width: 100%;
-    text-align: center;
-    font-size: 1rem;
-}
-
-.cart-buttons button:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-}
-
-.email-order-btn {
-    background: var(--color-gold);
-    color: black;
-}
-
-.whatsapp-order-btn {
-    background: #25D366;
-    color: white;
-}
-
-/* Animacje */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-in {
-    animation: fade极
-    animation: fadeIn 0.5s ease;
-}
-
-/* Responsywność */
-@media (max-width: 768px) {
-    .products-grid, .blog-posts, .reviews {
-        grid-template-columns: 1fr;
-    }
-    
-    #cartPanel {
-        width: 100%;
-        right: -100%;
-    }
-    
-    .design-tools {
-        grid-template-columns: 1fr;
-    }
-    
-    .nav-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .nav-btn {
-        width: 80%;
-        margin: 0.3rem;
-    }
-    
-    .transform-controls {
-        grid-template-columns: 1fr;
-    }
-    
-    .logo {
-        font-size: 2.5rem;
-    }
-    
-    .action-buttons {
-        flex-direction: column;
-    }
-    
-    .sticky-buttons {
-        bottom: 5rem;
-    }
-
-    /* Responsywność przycisków w koszyku */
-    .cart-buttons {
-        gap: 0.5rem;
-    }
-    
-    .cart-buttons button {
-        padding: 0.8rem;
-        font-size: 0.9rem;
-    }
-}
-
-/* Nowe style dla lepszego układu */
-.sticky-buttons {
-    position: sticky;
-    bottom: 1rem;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 4px极  
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    z-index: 98;
-    margin-top: 2rem;
-}
-
-.action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.design-preview {
-    margin-top: 2rem;
-    text-align: center;
-    padding: 极  
-            padding: 1rem;
-    background: var(--color-cream);
-    border-radius: 10px;
-}
-
-.product-base {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(极  
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.product-base-item {
-    border: 2px solid #eee;
-    border-radius: 8px;
-    padding: 0.5rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.product-base-item:hover, .product-base-item.active {
-    border-color: var(--color-gold);
-    background: var(--color-cream);
-}
-
-.product-base-item img {
-    max-width: 100%;
-    height: 120px;
-    object-fit: contain;
-}
-
-.email-form {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 极
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    margin-top: 2rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-family: inherit;
-}
-
-.form-group textarea {
-    min-height: 150px;
-    resize: vertical;
-}
-
-.mobile-menu-btn {
-    display: none;
-    background: var(--color-gold);
-    color: black;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: 600;
-    margin: 0.5rem auto;
-    width: 80%;
-}
-
-.design-area {
-    position: relative;
-    margin-bottom: 1rem;
-}
-
-.design-options {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-}
-
-.design-option {
-    padding: 0.5rem 1rem;
-    border: 2px solid var(--color-gold);
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.design-option.active {
-    background: var(--color-gold);
-    color: black;
-}
-
-@media (max-width: 768px) {
-    .mobile-menu-btn {
-        display: block;
-    }
-    
-    .nav-container {
-        display: none;
-        flex-direction: column;
-    }
-    
-    .nav-container.show {
-        display: flex;
-    }
-    
-    .design-options {
-        flex-direction: column;
-    }
-}
-
-/* Style dla wirtualnych produktów */
-.virtual-product {
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.product-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.design-area-front, .design-area-back, .design-area-slee极
-    height: 100%;
-}
-
-.design-area-front, .design-area-back, .design-area-sleeve {
-    border: 2px dashed #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 15px;
-    background: white;
-}
-
-.design-area-title {
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: var(--color-dark-gold);
-}
-
-/* PayPal darowizny */
-.donate-button {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 1rem 2rem;
-    background: #0070ba;
-    color: white;
-    border-radius: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.donate-button:hover {
-    background: #005ea6;
-    transform: translateY(-2px);
-}
-
-/* Nowe style dla reklam */
-.ad-container {
-    width: 100%;
-    margin: 2rem 0;
-    text-align: center;
-}
-
-.ad-banner {
-    width: 100%;
-    max-width: 728px;
-    height: 90px;
-    background: #f0f0f0;
-    margin: 1rem auto;
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #888;
-    font-style: italic;
-}
-
-.ad-banner.large {
-    max-width: 970px;
-    height: 250px;
-}
-
-.ad-banner.video {
-    position: relative;
-}
-
-.ad-banner.video .timer {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 5px 极
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-}
-
-/* Style dla przycisków po bokach */
-.side-buttons {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    z-index: 10;
-}
-
-.side-buttons.left {
-    left: 极
-    left: 10px;
-}
-
-.side-buttons.right {
-    right: 10px;
-}
-
-.side-button {
-    background: var(--color-gold);
-    color: black;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display:极
+            margin: 0.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--color-gold);
+            color: black;
+        }
+        
+        /* Sekcje */
+        section {
+            display: none;
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--color-gold);
+        }
+        
+        /* Karty produktów */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.2rem;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-}
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image-container {
+            height: 280px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-cream);
+        }
+        
+        .product-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .product-price {
+            color: var(--color-gold);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Studio projektowe */
+        .design-studio {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .canvas-container {
+            border: 3px solid var(--color-gold);
+            border-radius: 10px;
+            padding: 1rem;
+            background: white;
+            margin: 0 auto;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        #designCanvas {
+            width: 100%;
+            background: white;
+            border: 1px solid #ddd;
+            cursor: move;
+        }
+        
+        .canvas-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .design-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .tool-group {
+            background: var(--color-cream);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+        
+        .tool-title {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-dark-gold);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .transform-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+        
+        .transform-input {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.5rem;
+        }
+        
+        .transform-input label {
+            font-size: 0.8rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        /* Sekcja zbiórki */
+        .charity-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1840&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .donors-list {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        /* Sekcja bloga */
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .blog-post {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-excerpt {
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .blog-full {
+            display: none;
+            margin-bottom: 1rem;
+        }
+        
+        /* Opinie */
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .review {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+        
+        .review-stars {
+            color: var(--color-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Stopka */
+        footer {
+            background: var(--color-dark);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .contact-info {
+            margin: 1.5rem 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--color-gold);
+            color: black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Koszyk */
+        #cartIcon {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--color-gold);
+            color: black;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: 99;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        #cartCount {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        #cartPanel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            z-index: 100;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            padding: 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #cartPanel.open {
+            right: 0;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 1rem;
+        }
+        
+        .cart-total {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 2px solid #eee;
+        }
+        
+        /* PayPal container */
+        #paypal-container {
+            margin-top: 1rem;
+            min-height: 50px;
+        }
+        
+        /* Animacje */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .products-grid, .blog-posts, .reviews {
+                grid-template-columns: 1fr;
+            }
+            
+            #cartPanel {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .design-tools {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 80%;
+                margin: 0.3rem;
+            }
+            
+            .transform-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .sticky-buttons {
+                bottom: 5rem;
+            }
+        }
 
-.side-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
+        /* Nowe style dla lepszego układu */
+        .sticky-buttons {
+            position: sticky;
+            bottom: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 98;
+            margin-top: 2rem;
+        }
 
-/* Style dla formularza zamówienia */
-.order-form {
-    background: black;
-    color: var(--color-gold);
-    padding: 2rem;
-   极 
-    padding: 2rem;
-border-radius: 15px;
-max-width: 极
-        max-width: 600px;
-    margin: 2rem auto;
-}
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
 
-.order-form input,
-.order-form textarea {
-    width: 100%;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border: 1px solid #444;
-    border-radius: 5px;
-    background: #333;
-    color: white;
-}
+        .design-preview {
+            margin-top: 2rem;
+            text-align: center;
+            padding: 1rem;
+            background: var(--color-cream);
+            border-radius: 10px;
+        }
+        
+        .product-base {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-base-item {
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .product-base-item:hover, .product-base-item.active {
+            border-color: var(--color-gold);
+            background: var(--color-cream);
+        }
+        
+        .product-base-item img {
+            max-width: 100%;
+            height: 120px;
+            object-fit: contain;
+        }
+        
+        .email-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: var(--color-gold);
+            color: black;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 0.5rem auto;
+            width: 80%;
+        }
+        
+        .design-area {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        .design-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .design-option {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--color-gold);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-option.active {
+            background: var(--color-gold);
+            color: black;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-container {
+                display: none;
+                flex-direction: column;
+            }
+            
+            .nav-container.show {
+                display: flex;
+            }
+            
+            .design-options {
+                flex-direction: column;
+            }
+        }
 
-.order-form button {
-    background: var(--color-gold);
-    color: black;
-    border: none;
-    padding: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 100%;
-    margin-top: 1rem;
-}
-
-/* Style dla stopki z reklamami */
-.footer-ads {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250极  
+        /* Style dla wirtualnych produktów */
+        .virtual-product {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .product-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .design-area-front, .design-area-back, .design-area-sleeve {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+            background: white;
+        }
+        
+        .design-area-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--color-dark-gold);
+        }
+        
+        /* PayPal darowizny */
+        .donate-button {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+            background: #0070ba;
+            color: white;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .donate-button:hover {
+            background: #005ea6;
+            transform: translateY(-2px);
+        }
+        
+        /* Nowe style dla reklam */
+        .ad-container {
+            width: 100%;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .ad-banner {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: #f0f0f0;
+            margin: 1rem auto;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+        }
+        
+        .ad-banner.large {
+            max-width: 970px;
+            height: 250px;
+        }
+        
+        .ad-banner.video {
+            position: relative;
+        }
+        
+        .ad-banner.video .timer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        /* Style dla przycisków po bokach */
+        .side-buttons {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 10;
+        }
+        
+        .side-buttons.left {
+            left: 10px;
+        }
+        
+        .side-buttons.right {
+            right: 10px;
+        }
+        
+        .side-button {
+            background: var(--color-gold);
+            color: black;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .side-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Style dla formularza zamówienia */
+        .order-form {
+            background: black;
+            color: var(--color-gold);
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        
+        .order-form input,
+        .order-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: #333;
+            color: white;
+        }
+        
+        .order-form button {
+            background: var(--color-gold);
+            color: black;
+            border: none;
+            padding: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        /* Style dla stopki z reklamami */
+        .footer-ads {
+            display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
             margin-top: 2rem;
@@ -678,6 +863,37 @@ max-width: 极
             justify-content: center;
             color: #888;
             font-style: italic;
+        }
+
+        /* Style dla przycisków w koszyku */
+        .cart-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .cart-buttons button {
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .cart-buttons button:hover {
+            opacity: 0.9;
+        }
+        
+        .email-order-btn {
+            background: var(--color-gold);
+            color: black;
+        }
+        
+        .whatsapp-order-btn {
+            background: #25D366;
+            color: white;
         }
 
         /* Sekcja zamówienia */
@@ -790,405 +1006,106 @@ max-width: 极
                 </div>
             </div>
         </section>
-<!-- Sklep - ZAKTUALIZOWANY -->
-<section id="shop">
-    <div class="section-title">
-        <h2>Nasze Produkty</h2>
-        <p>Odkryj naszą ekskluzywną kolekcję</p>
+
+        <!-- Sklep -->
+        <section id="shop">
+            <div class="section-title">
+                <h2>Nasze Produkty</h2>
+                <p>Odkryj naszą ekskluzywną kolekcję</p>
+            </div>
+            
+            <h3 class="text-2xl font-bold mb-6 text-center gold-text">Koszulki</h3>
+            <div class="products-grid">
+                <!-- Koszulki -->
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Rebel"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Rebel" data-price="120" data-image="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Vintage"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Vintage" data-price="120" data-image="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg">Dodaj do koszyka</button>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Abstract" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Koszulka "Abstract"</div>
+                        <div class="product-price">120 zł</div>
+                        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Abstract" data-price="120" data-image="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png">Dodaj do koszyka</button>
+                    </div>
+                    <!-- POPRZEDNI KOD (bez zmian) -->
+</div>
+                
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image">
     </div>
-    
-    <h3 class="text-2xl font-bold mb-6 text-center gold-text">Koszulki</h3>
-    <div class="products-grid">
-        <!-- Oryginalne 8 koszulek -->
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Rebel"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Rebel" data-price="120" data-image="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Vintage"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Vintage" data-price="120" data-image="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Abstract" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Abstract"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Abstract" data-price="120" data-image="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Geometry"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Geometry" data-price="120" data-image="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg" alt="Koszulka Modern" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Modern"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Modern" data-price="120" data-image="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg">Dodaj to koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Premium" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Premium"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Premium" data-price="120" data-image="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg" alt="Koszulka Urban" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Urban"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Urban" data-price="120" data-image="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-        
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka Art" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Koszulka "Art"</div>
-                <div class="product-price">120 zł</div>
-                <button class="nav-btn add-to-cart-btn" data-name="Koszulka Art" data-price="120" data-image="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png">Dodaj do koszyka</button>
-            </div>
-        </div>
+    <div class="product-info">
+        <div class="product-title">Koszulka "Geometry"</div>
+        <div class="product-price">120 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Geometry" data-price="120" data-image="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png">Dodaj do koszyka</button>
+    </div>
+</div>
 
-        <!-- Nowe koszulki - 26 sztuk -->
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/DDdbtm1R/file-00000000985c6243ba1d82431c2ead9f-2.png" alt="Puzel" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Puzel</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Abstrakcyjny i intrygujący wzór, idealny dla miłośników kreatywnych projektów.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Puzel" data-price="120" data-image="https://i.ibb.co/DDdbtm1R/file-00000000985c6243ba1d82431c2ead9f-2.png">Dodaj do koszyka</button>
-            </div>
-        </div>
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg" alt="Koszulka Modern" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Koszulka "Modern"</div>
+        <div class="product-price">120 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Modern" data-price="120" data-image="https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg">Dodaj to koszyka</button>
+    </div>
+</div>
 
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/JFMF5VFz/file-00000000465c620a87ec4dbf4bd0ce30.png" alt="Wybrany" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Wybrany</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Design dla tych, którzy czują się wyjątkowo i nie boją się tego pokazać.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Wybrany" data-price="120" data-image="https://i.ibb.co/JFMF5VFz/file-00000000465c620a87ec4dbf4bd0ce30.png">Dodaj do koszyka</button>
-            </div>
-        </div>
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg" alt="Koszulka Premium" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Koszulka "Premium"</div>
+        <div class="product-price">120 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Premium" data-price="120" data-image="https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg">Dodaj do koszyka</button>
+    </div>
+</div>
 
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/NnG9gP30/file-0000000077a8624687fa35a1773c5ab3-2.png" alt="Step Outside" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Step Outside</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Zachęta do wyjścia poza strefę komfortu i odkrywania nowych ścieżek.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Step Outside" data-price="120" data-image="https://i.ibb.co/NnG9gP30/file-0000000077a8624687fa35a1773c5ab3-2.png">Dodaj do koszyka</button>
-            </div>
-        </div>
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg" alt="Koszulka Urban" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Koszulka "Urban"</div>
+        <div class="product-price">120 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Urban" data-price="120" data-image="https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg">Dodaj do koszyka</button>
+    </div>
+</div>
 
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/mF8v7j0z/file-0000000054ec624686ad121279625eea.png" alt="Break The Rules" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Break The Rules</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Dla buntowników, którzy nie lubią ograniczeń i sami piszą swoje zasady.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Break The Rules" data-price="120" data-image="https://i.ibb.co/mF8v7j0z/file-0000000054ec624686ad121279625eea.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/TDQchN28/file-000000000b9c620a918ad994200ec2d1-1.png" alt="Nie Mieszczę się" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Nie Mieszczę się</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Dosłownie i w przenośni. Dla osób, które są zbyt duże jak na ramy, które im narzuca świat.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Nie Mieszczę się" data-price="120" data-image="https://i.ibb.co/TDQchN28/file-000000000b9c620a918ad994200ec2d1-1.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/4nVfMx7C/file-00000000aca062439c3a670e83612634-3.png" alt="Buntownik" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Buntownik</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Klasyczny motyw dla niepokornych duchów, które kwestionują status quo.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Buntownik" data-price="120" data-image="https://i.ibb.co/4nVfMx7C/file-00000000aca062439c3a670e83612634-3.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/W4535SP6/file-0000000060286246be561a660f50e99e-2.png" alt="Adelbertus" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Adelbertus</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Elegancki i tajemniczy design z nutą historycznej oryginalności.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Adelbertus" data-price="120" data-image="https://i.ibb.co/W4535SP6/file-0000000060286246be561a660f50e99e-2.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/kVB4DdxF/file-000000007a18620aa7175173df81f11a-1.png" alt="Live With" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Live With</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Inspirujący napis zachęcający do pełnego i świadomego życia.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Live With" data-price="120" data-image="https://i.ibb.co/kVB4DdxF/file-000000007a18620aa7175173df81f11a-1.png">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/zW0QS2Pc/296536056-72317707-ads-media-915b495e-9c59-47a0-b6b8-7d954ecbd931.jpg" alt="You're Not" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">You're Not</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Provokujące hasło dla tych, którzy są świadomi swojej wartości i wyjątkowości.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="You're Not" data-price="120" data-image="https://i.ibb.co/zW0QS2Pc/296536056-72317707-ads-media-915b495e-9c59-47a0-b6b8-7d954ecbd931.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/PvxhZvQt/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg" alt="Kolor Disco" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Kolor Disco</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Tęczowe, energetyczne kolory ery disco przeniesione na koszulkę.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Kolor Disco" data-price="120" data-image="https://i.ibb.co/PvxhZvQt/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/NdCVHtBQ/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg" alt="Uliczny Styl" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Uliczny Styl</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Prawdziwy, miejski vibe dla fanów autentycznego streetwearu.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Uliczny Styl" data-price="120" data-image="https://i.ibb.co/NdCVHtBQ/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/PGGsNg7Q/Messenger-creation-9-B935-AD4-1-D3-B-4785-BBA4-6928-E5614-E31.jpg" alt="Hip Hop Dance" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Hip Hop Dance</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Poświęcona kulturze hip-hopu i wszystkim, którzy kochają jego rytm.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Hip Hop Dance" data-price="120" data-image="https://i.ibb.co/PGGsNg7Q/Messenger-creation-9-B935-AD4-1-D3-B-4785-BBA4-6928-E5614-E31.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/5x9MHvt9/Messenger-creation-3-E45-BD0-B-6396-4-A75-825-F-17-A5-A3-C0-FEB1.jpg" alt="Dj Kool" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Dj Kool</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Hołd dla pionierów muzyki, którzy napędzają każdą imprezę.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Dj Kool" data-price="120" data-image="https://i.ibb.co/5x9MHvt9/Messenger-creation-3-E45-BD0-B-6396-4-A75-825-F-17-A5-A3-C0-FEB1.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/gL5rMWbq/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg" alt="Street Fashion" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Street Fashion</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Must-have dla każdego, kto podąża za modą wywodzącą się z ulic.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Street Fashion" data-price="120" data-image="https://i.ibb.co/gL5rMWbq/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/BJXsvPh/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg" alt="Moda Disco" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Moda Disco</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Lśniący i glamorowy styl, który przeniesie Cię w czasy świetności dyskotek.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Moda Disco" data-price="120" data-image="https://i.ibb.co/BJXsvPh/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/RkNZhJTS/Messenger-creation-D3-E63-CFC-1-E20-41-D9-8264-653-BF9318-DC6.jpg" alt="Pi" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Pi (π)</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Dla matematycznych pasjonatów, miłośników nauki i nieskończoności.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Pi (π)" data-price="120" data-image="https://i.ibb.co/RkNZhJTS/Messenger-creation-D3-E63-CFC-1-E20-41-D9-8264-653-BF9318-DC6.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/y3drK9v/Messenger-creation-4-F98-B179-12-CD-4-AA9-BB32-2-A0-FA290-F13-B.jpg" alt="City at Night" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">City at Night</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Nastrojowy design oddający magię rozświetlonego nocą miasta.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="City at Night" data-price="120" data-image="https://i.ibb.co/y3drK9v/Messenger-creation-4-F98-B179-12-CD-4-AA9-BB32-2-A0-FA290-F13-B.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/Myhf9jDw/Resizer-175015904589537.jpg" alt="Puppet King" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Puppet King</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Symboliczny i nieco mroczny motyw kwestionujący prawdziwą władzę.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Puppet King" data-price="120" data-image="https://i.ibb.co/Myhf9jDw/Resizer-175015904589537.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/nJb6RwM/Resizer-175015896433527.jpg" alt="King" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">King</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Prosty, ale mocny design dla tych, którzy rządzą swoim życiem.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="King" data-price="120" data-image="https://i.ibb.co/nJb6RwM/Resizer-175015896433527.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/21hPS6j1/Resizer-175015897947529.jpg" alt="Child King" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Child King</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Połączenie niewinności i władzy. Dla wewnętrznego dziecka, które wie, czego chce.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Child King" data-price="120" data-image="https://i.ibb.co/21hPS6j1/Resizer-175015897947529.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/Rpdpq6ck/Messenger-creation-F93-B9-D88-23-E0-4267-9-C9-B-6-D7554933-F08.jpg" alt="Królowa" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Królowa</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Elegancki i władczy design dla kobiet, które są królowymi własnego życia.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Królowa" data-price="120" data-image="https://i.ibb.co/Rpdpq6ck/Messenger-creation-F93-B9-D88-23-E0-4267-9-C9-B-6-D7554933-F08.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/HLKK77xy/Messenger-creation-BB709-B3-C-0-C6-E-4-E38-91-B3-A0-B0-ADE828-E6.jpg" alt="Widz" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Widz</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Dla obserwatorów, tych którzy analizują świat z boku.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Widz" data-price="120" data-image="https://i.ibb.co/HLKK77xy/Messenger-creation-BB709-B3-C-0-C6-E-4-E38-91-B3-A0-B0-ADE828-E6.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/mM8q22m/Messenger-creation-76-C2-FCF0-B34-A-4-B5-D-9161-5-F87-C438-C807.jpg" alt="Beautiful" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Beautiful</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Delikatny i kobiecy design, który celebruje piękno.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Beautiful" data-price="120" data-image="https://i.ibb.co/mM8q22m/Messenger-creation-76-C2-FCF0-B34-A-4-B5-D-9161-5-F87-C438-C807.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/Z6H87pMt/Messenger-creation-84-F5-BA86-6551-42-C5-86-F8-2-C5207-F7-F459.jpg" alt="Pretty" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Pretty</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Słodki i uroczy wzór, który doda outfitu delikatnego charakteru.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Pretty" data-price="120" data-image="https://i.ibb.co/Z6H87pMt/Messenger-creation-84-F5-BA86-6551-42-C5-86-F8-2-C5207-F7-F459.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-
-        <div class="product-card fade-in">
-            <div class="product-image-container">
-                <img src="https://i.ibb.co/HfSnVW3K/Messenger-creation-0-E6-C207-C-C15-D-45-C7-AB33-E3-FC34-BBEF39.jpg" alt="Geometria" class="product-image">
-            </div>
-            <div class="product-info">
-                <div class="product-title">Geometria</div>
-                <div class="product-price">120 zł</div>
-                <p class="product-description">Nowoczesny i abstrakcyjny design z precyzyjnymi, geometrycznymi kształtami.</p>
-                <button class="nav-btn add-to-cart-btn" data-name="Geometria" data-price="120" data-image="https://i.ibb.co/HfSnVW3K/Messenger-creation-0-E6-C207-C-C15-D-45-C7-AB33-E3-FC34-BBEF39.jpg">Dodaj do koszyka</button>
-            </div>
-        </div>
-    </div>    
+<div class="product-card fade-in">
+    <div class="product-image-container">
+        <img src="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png" alt="Koszulka Art" class="product-image">
+    </div>
+    <div class="product-info">
+        <div class="product-title">Koszulka "Art"</div>
+        <div class="product-price">120 zł</div>
+        <button class="nav-btn add-to-cart-btn" data-name="Koszulka Art" data-price="120" data-image="https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png">Dodaj do koszyka</button>
+    </div>
+</div>
+</div>
 
 <h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
 <div class="products-grid">
@@ -1333,596 +1250,141 @@ max-width: 极
     <p id="status" class="mt-4 text-white"></p>
 </section>
 </section>
-<!-- ====== SEK CJA: ZAPROJEKTUJ (PRO) ====== -->
-<section id="zaprojektuj" class="design-studio">
-  <div class="section-title">
-    <h2>Zaprojektuj swój produkt</h2>
-    <p>Wybierz produkt, widok i stwórz własny nadruk</p>
-  </div>
 
-  <!-- GÓRNE AKCJE -->
-  <div class="top-bar">
-    <button class="btn" onclick="newProject()">🆕 Nowy projekt</button>
-    <button class="btn" onclick="savePNG()">💾 Zapisz PNG</button>
-    <button class="btn" onclick="sendProject()">📧 Wyślij mailem</button>
-    <button class="btn btn-primary" onclick="addToCart()">🛒 Dodaj do koszyka</button>
-  </div>
+<!-- Studio projektowe - ZMODYFIKOWANE -->
+<section id="design">
+    <div class="section-title">
+        <h2>Studio Projektowe</h2>
+        <p>Stwórz swój unikalny produkt</p>
+    </div>
+    
+    <div class="design-studio">
+        <!-- Przyciski po bokach -->
+        <div class="side-buttons left">
+            <button class="side-button" onclick="updateDesign()" title="Podgląd">
+                <i class="fas fa-sync"></i>
+            </button>
+            <button class="side-button" onclick="addToCartFromDesign()" title="Dodaj do koszyka">
+                <i class="fas fa-cart-plus"></i>
+            </button>
+        </div>
+        
+        <div class="side-buttons right">
+            <button class="side-button" onclick="sendDesignToEmail()" title="Wyślij projekt mailem">
+                <i class="fas fa-envelope"></i>
+            </button>
+            <button class="side-button" onclick="saveDesign()" title="Zapisz projekt">
+                <i class="fas fa-download"></i>
+            </button>
+        </div>
+        
+        <div class="product-base">
+            <div class="product-base-item active" data-base="tshirt">
+                <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka">
+                <p>Koszulka</p>
+            </div>
+            <div class="product-base-item" data-base="hoodie">
+                <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza">
+                <p>Bluza</p>
+            </div>
+            <div class="product-base-item" data-base="cap">
+                <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka">
+                <p>Czapka</p>
+            </div>
+        </div>
+        
+        <div class="design-options">
+            <div class="design-option active" data-area="front">Przód</div>
+            <div class="design-option" data-area="back">Tył</div>
+            <div class="design-option" data-area="sleeves">Rękawy</div>
+        </div>
+        
+        <div class="canvas-container">
+            <canvas id="designCanvas" width="500" height="400"></canvas>
+            <div class="canvas-controls">
+                <button class="nav-btn" onclick="clearCanvas()"><i class="fas fa-trash"></i> Wyczyść</button>
+                <button class="nav-btn" onclick="resetDesign()"><i class="fas fa-redo"></i> Resetuj</button>
+            </div>
+        </div>
+        
+        <div class="design-tools">
+            <div class="tool-group">
+                <div class="tool-title"><i class="fas fa-font"></i> Tekst</div>
+                <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3" oninput="updateDesign()">
+                
+                <div class="flex gap-3 mb-3">
+                    <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
+                        <option value="Arial">Arial</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Comic Sans MS">Comic Sans</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Palatino">Palatino</option>
+                        <option value="Garamond">Garamond</option>
+                        <option value="Brush Script MT">Brush Script</option>
+                    </select>
+                    
+                    <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
+                </div>
+                
+                <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3" oninput="updateDesign()">
+            </div>
+            
+            <div class="tool-group">
+                <div class="tool-title"><i class="fas fa-palette"></i> Opcje produktu</div>
+                
+                <select id="productType" class="w-full p-3 border rounded mb-3">
+                    <option value="tshirt">Koszulka (120 zł)</option>
+                    <option value="hoodie">Bluza (200 zł)</option>
+                    <option value="cap">Czapka (99 zł)</option>
+                </select>
+                
+                <select id="productSize" class="w-full p-3 border rounded mb-3">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+                
+                <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
+                <button class="nav-btn gold-bg w-full" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
+            </div>
 
-  <div class="studio-grid">
-    <!-- LEWA KOLUMNA -->
-    <aside class="panel">
-      <h3 class="panel-title">Produkt</h3>
-      <div class="product-switch">
-        <button class="chip active" data-product="tshirt" onclick="setProduct('tshirt', this)">👕 Koszulka</button>
-        <button class="chip" data-product="hoodie" onclick="setProduct('hoodie', this)">🧥 Bluza</button>
-        <button class="chip" data-product="cap" onclick="setProduct('cap', this)">🧢 Czapka</button>
-      </div>
-
-      <h3 class="panel-title">Widok</h3>
-      <div class="view-switch" id="viewSwitch">
-        <!-- generowane dynamicznie -->
-      </div>
-
-      <h3 class="panel-title">Kolor bazowy</h3>
-      <div class="color-picker">
-        <button class="swatch" style="--c:#000" onclick="setBaseColor('#000')"></button>
-        <button class="swatch" style="--c:#fff;border:1px solid #ddd" onclick="setBaseColor('#fff')"></button>
-        <button class="swatch" style="--c:#b91c1c" onclick="setBaseColor('#b91c1c')"></button>
-        <button class="swatch" style="--c:#1e3a8a" onclick="setBaseColor('#1e3a8a')"></button>
-        <button class="swatch" style="--c:#065f46" onclick="setBaseColor('#065f46')"></button>
-        <button class="swatch" style="--c:#f59e0b" onclick="setBaseColor('#f59e0b')"></button>
-      </div>
-    </aside>
-
-    <!-- ŚRODEK: PODGLĄD I PROJEKT -->
-    <main class="canvas-wrap">
-      <div id="productArea">
-        <div id="productColor"></div>
-        <img id="productImage" alt="Produkt">
-        <div id="designElements" aria-label="obszar projektowania"></div>
-      </div>
-
-      <div class="canvas-tools">
-        <button class="btn" onclick="clearElements()">🗑 Wyczyść elementy</button>
-        <button class="btn" onclick="centerActive()">🎯 Wyśrodkuj aktywny</button>
-        <button class="btn" onclick="deleteActive()">❌ Usuń aktywny</button>
-      </div>
-    </main>
-
-    <!-- PRAWA KOLUMNA -->
-    <aside class="panel">
-      <h3 class="panel-title">Rozmiar & cena</h3>
-      <select id="productSize" class="input" onchange="updateSummary()">
-        <option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option>
-      </select>
-      <div class="price">Cena: <span id="price">120 zł</span></div>
-
-      <h3 class="panel-title">Dodaj tekst</h3>
-      <input id="txtContent" class="input" type="text" placeholder="Twój napis">
-      <div class="row">
-        <select id="txtFont" class="input">
-          <option>Arial</option><option>Verdana</option><option>Times New Roman</option>
-          <option>Impact</option><option>Georgia</option><option>Courier New</option>
-          <option>Brush Script MT</option>
-        </select>
-        <input id="txtSize" class="input" type="number" min="12" max="120" value="40">
-      </div>
-      <div class="row">
-        <input id="txtColor" class="input" type="color" value="#000000">
-        <button class="btn" onclick="addText()">➕ Dodaj napis</button>
-      </div>
-
-      <h3 class="panel-title">Dodaj obrazek</h3>
-      <input id="imgInput" class="input" type="file" accept="image/*" onchange="addImage(event)">
-
-      <h3 class="panel-title">Podsumowanie</h3>
-      <div id="summary" class="summary">Brak elementów</div>
-    </aside>
-  </div>
+            <div class="tool-group">
+                <div class="tool-title"><i class="fas fa-edit"></i> Edycja elementów</div>
+                <div class="transform-controls">
+                    <div class="transform-input">
+                        <label for="posX">Pozycja X</label>
+                        <input type="range" id="posX" min="0" max="500" value="250" oninput="updateElementPosition()">
+                    </div>
+                    <div class="transform-input">
+                        <label for="posY">Pozycja Y</label>
+                        <input type="range" id="posY" min="0" max="400" value="200" oninput="updateElementPosition()">
+                    </div>
+                    <div class="transform-input">
+                        <label for="scale">Skala</label>
+                        <input type="range" id="scale" min="0.1" max="2" step="0.1" value="1" oninput="updateElementScale()">
+                    </div>
+                    <div class="transform-input">
+                        <label for="rotation">Obrót</label>
+                        <input type="range" id="rotation" min="0" max="360" value="0" oninput="updateElementRotation()">
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button class="nav-btn gold-bg w-full" onclick="bringToFront()"><i class="fas fa-layer-group"></i> Na wierzch</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="design-preview">
+            <h3>Podgląd Twojego projektu</h3>
+            <p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>
+        </div>
+    </div>
 </section>
-
-<style>
-/* Layout */
-.design-studio{padding:20px;background:#0b0c10;color:#e5e7eb}
-.section-title h2{font-size:28px;margin:0 0 4px}
-.section-title p{color:#9ca3af;margin:0 0 16px}
-.top-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.studio-grid{display:grid;grid-template-columns:260px 1fr 280px;gap:16px}
-.panel{background:#111318;border:1px solid #1f2430;border-radius:12px;padding:14px}
-.panel-title{margin:10px 0 8px;font-size:14px;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em}
-.canvas-wrap{background:#111318;border:1px solid #1f2430;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:12px;align-items:center}
-#productArea{position:relative;width:min(520px,90vw);aspect-ratio:1/1.1;background:#0d0f14;border:1px dashed #2b3240;border-radius:12px;overflow:hidden}
-#productColor{position:absolute;inset:0;background:#000;opacity:.22;mix-blend-mode:multiply;pointer-events:none}
-#productImage{position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;object-fit:contain;z-index:1}
-#designElements{position:absolute;inset:0;z-index:2}
-.canvas-tools{display:flex;gap:8px;flex-wrap:wrap}
-/* UI */
-.btn{background:#1f2937;color:#e5e7eb;border:1px solid #374151;border-radius:10px;padding:8px 12px;cursor:pointer}
-.btn:hover{background:#2a3547}
-.btn-primary{background:#f59e0b;border-color:#f59e0b;color:#1b1300}
-.btn-primary:hover{background:#ffb31f}
-.input{background:#0f1116;color:#e5e7eb;border:1px solid #2b3240;border-radius:8px;padding:8px;width:100%}
-.row{display:flex;gap:8px;margin:8px 0}
-.product-switch,.view-switch{display:flex;flex-wrap:wrap;gap:8px}
-.chip{padding:6px 10px;border-radius:999px;border:1px solid #2b3240;background:#0f1116;color:#d1d5db;cursor:pointer}
-.chip.active{border-color:#f59e0b;color:#ffd37a;background:#1c1405}
-.color-picker{display:flex;gap:6px;flex-wrap:wrap}
-.swatch{width:24px;height:24px;border-radius:6px;background:var(--c);cursor:pointer}
-.price{margin:8px 0 12px;font-weight:700}
-.summary{background:#0f1116;border:1px solid #2b3240;border-radius:8px;padding:10px;white-space:pre-wrap;font-size:13px}
-
-/* Elementy projektu */
-.draggable{position:absolute;cursor:move;user-select:none;touch-action:none}
-.draggable.active{outline:1px dashed #f59e0b;outline-offset:2px}
-.draggable .handles{position:absolute;right:-14px;bottom:-14px;display:flex;gap:6px}
-.handle{width:12px;height:12px;border-radius:50%;background:#f59e0b;border:2px solid #1b1300;cursor:grab}
-
-/* Mobile */
-@media (max-width: 980px){
-  .studio-grid{grid-template-columns:1fr}
-  .panel{order:2}
-  .canvas-wrap{order:1}
-  .top-bar{justify-content:center}
-}
-</style>
-
-<script>
-// Zmienne globalne
-let currentProduct = 'tshirt';
-let currentView = 'front';
-let baseColor = '#000000';
-let priceMap = { tshirt:120, hoodie:200, cap:99 };
-let activeEl = null;
-
-// Poprawione obrazy produktów (działające linki)
-const productImages = {
-  tshirt: {
-    front: "https://placehold.co/400x500/ffffff/000000?text=Koszulka+Przód",
-    back:  "https://placehold.co/400x500/ffffff/000000?text=Koszulka+Tył",
-    left:  "https://placehold.co/200x400/ffffff/000000?text=Lewy+Rękaw",
-    right: "https://placehold.co/200x400/ffffff/000000?text=Prawy+Rękaw",
-  },
-  hoodie: {
-    front: "https://placehold.co/400x500/ffffff/000000?text=Bluza+Przód",
-    back:  "https://placehold.co/400x500/ffffff/000000?text=Bluza+Tył",
-    sleeves:"https://placehold.co/200x400/ffffff/000000?text=Rękawy",
-  },
-  cap: {
-    front: "https://placehold.co/400x400/ffffff/000000?text=Czapka+Przód",
-    back:  "https://placehold.co/400x400/ffffff/000000?text=Czapka+Tył",
-  }
-};
-
-// Inicjalizacja po załadowaniu DOM
-document.addEventListener('DOMContentLoaded', function() {
-  // Sprawdź czy elementy istnieją przed ich użyciem
-  if (document.getElementById('productImage') && document.getElementById('designElements')) {
-    setProduct('tshirt', document.querySelector('.chip[data-product="tshirt"]'));
-    setBaseColor('#000');
-    if (document.getElementById('productSize')) {
-      document.getElementById('productSize').value = 'M';
-    }
-    updatePrice();
-    updateSummary();
-  }
-});
-
-// Funkcje produktu i widoku
-function setProduct(p, btn) {
-  currentProduct = p;
-  document.querySelectorAll('.product-switch .chip').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  
-  // Aktualizuj widoki
-  const vs = document.getElementById('viewSwitch');
-  if (vs) {
-    vs.innerHTML = '';
-    const views = Object.keys(productImages[p]);
-    views.forEach(v => {
-      const b = document.createElement('button');
-      b.className = 'chip' + (v === views[0] ? ' active' : '');
-      b.textContent = labelView(v);
-      b.onclick = () => setView(v, b);
-      vs.appendChild(b);
-    });
-    setView(views[0], vs.querySelector('.chip'));
-  }
-  updatePrice();
-  updateSummary();
-}
-
-function labelView(v) {
-  const viewLabels = {
-    front: 'Przód', 
-    back: 'Tył', 
-    left: 'Lewy rękaw', 
-    right: 'Prawy rękaw', 
-    sleeves: 'Rękawy'
-  };
-  return viewLabels[v] || v;
-}
-
-function setView(v, btn) {
-  currentView = v;
-  document.querySelectorAll('#viewSwitch .chip').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  
-  const src = productImages[currentProduct][v];
-  const img = document.getElementById('productImage');
-  if (img && src) {
-    img.src = src;
-  }
-  updateSummary();
-}
-
-function setBaseColor(c) {
-  baseColor = c;
-  const colorEl = document.getElementById('productColor');
-  if (colorEl) {
-    colorEl.style.background = c;
-  }
-  updateSummary();
-}
-
-function updatePrice() {
-  const priceEl = document.getElementById('price');
-  if (priceEl) {
-    priceEl.textContent = priceMap[currentProduct] + ' zł';
-  }
-}
-
-// Funkcje elementów projektu
-function addText() {
-  const textInput = document.getElementById('txtContent');
-  if (!textInput) return;
-  
-  const text = textInput.value.trim();
-  if (!text) return;
-  
-  const font = document.getElementById('txtFont')?.value || 'Arial';
-  const size = parseInt(document.getElementById('txtSize')?.value) || 40;
-  const color = document.getElementById('txtColor')?.value || '#000000';
-  
-  const designLayer = document.getElementById('designElements');
-  if (!designLayer) return;
-  
-  const el = document.createElement('div');
-  el.className = 'draggable';
-  el.textContent = text;
-  el.style.fontFamily = font;
-  el.style.fontSize = size + 'px';
-  el.style.color = color;
-  el.style.left = '45%';
-  el.style.top = '45%';
-  el.style.transform = 'translate(-50%, -50%)';
-  
-  mountDraggable(el);
-  designLayer.appendChild(el);
-  setActive(el);
-  updateSummary();
-  
-  // Wyczyść pole tekstowe
-  textInput.value = '';
-}
-
-function addImage(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  
-  const designLayer = document.getElementById('designElements');
-  if (!designLayer) return;
-  
-  const url = URL.createObjectURL(file);
-  const img = document.createElement('img');
-  img.src = url;
-  img.className = 'draggable';
-  img.style.maxWidth = '160px';
-  img.style.maxHeight = '160px';
-  img.style.left = '40%';
-  img.style.top = '40%';
-  img.style.transform = 'translate(-50%, -50%)';
-  
-  mountDraggable(img);
-  designLayer.appendChild(img);
-  setActive(img);
-  updateSummary();
-  
-  // Resetuj input
-  e.target.value = '';
-}
-
-function clearElements() {
-  const designLayer = document.getElementById('designElements');
-  if (designLayer) {
-    designLayer.innerHTML = '';
-  }
-  activeEl = null;
-  updateSummary();
-}
-
-function setActive(el) {
-  document.querySelectorAll('.draggable').forEach(item => {
-    item.classList.remove('active');
-  });
-  
-  if (el) {
-    el.classList.add('active');
-    activeEl = el;
-  } else {
-    activeEl = null;
-  }
-}
-
-function centerActive() {
-  if (!activeEl) return;
-  activeEl.style.left = '50%';
-  activeEl.style.top = '50%';
-  activeEl.style.transform = 'translate(-50%, -50%)';
-  updateSummary();
-}
-
-function deleteActive() {
-  if (!activeEl) return;
-  activeEl.remove();
-  activeEl = null;
-  updateSummary();
-}
-
-// Funkcje przeciągania
-function mountDraggable(el) {
-  el.addEventListener('mousedown', startDrag);
-  el.addEventListener('touchstart', startDrag, { passive: false });
-  el.addEventListener('click', () => setActive(el));
-}
-
-let isDragging = false;
-let startX, startY, initialX, initialY;
-
-function startDrag(e) {
-  e.preventDefault();
-  setActive(this);
-  
-  isDragging = true;
-  if (e.type === 'touchstart') {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-  } else {
-    startX = e.clientX;
-    startY = e.clientY;
-  }
-  
-  // Zapisz początkową pozycję elementu
-  initialX = parseFloat(this.style.left) || 0;
-  initialY = parseFloat(this.style.top) || 0;
-  
-  // Dodaj nasłuchiwanie zdarzeń
-  document.addEventListener('mousemove', drag);
-  document.addEventListener('touchmove', drag, { passive: false });
-  document.addEventListener('mouseup', stopDrag);
-  document.addEventListener('touchend', stopDrag);
-}
-
-function drag(e) {
-  if (!isDragging || !activeEl) return;
-  e.preventDefault();
-  
-  let currentX, currentY;
-  if (e.type === 'touchmove') {
-    currentX = e.touches[0].clientX;
-    currentY = e.touches[0].clientY;
-  } else {
-    currentX = e.clientX;
-    currentY = e.clientY;
-  }
-  
-  const dx = currentX - startX;
-  const dy = currentY - startY;
-  
-  activeEl.style.left = (initialX + dx) + 'px';
-  activeEl.style.top = (initialY + dy) + 'px';
-}
-
-function stopDrag() {
-  isDragging = false;
-  document.removeEventListener('mousemove', drag);
-  document.removeEventListener('touchmove', drag);
-  document.removeEventListener('mouseup', stopDrag);
-  document.removeEventListener('touchend', stopDrag);
-  updateSummary();
-}
-
-// Podsumowanie
-function updateSummary() {
-  const summaryEl = document.getElementById('summary');
-  if (!summaryEl) return;
-  
-  const sizeEl = document.getElementById('productSize');
-  const size = sizeEl ? sizeEl.value : 'M';
-  
-  let lines = [];
-  lines.push(`Produkt: ${labelProduct(currentProduct)} | Widok: ${labelView(currentView)} | Rozmiar: ${size}`);
-  lines.push(`Kolor bazowy: ${baseColor}`);
-  
-  const designLayer = document.getElementById('designElements');
-  const els = designLayer ? Array.from(designLayer.children) : [];
-  
-  if (els.length === 0) {
-    lines.push('Elementy: brak');
-  } else {
-    els.forEach((node, i) => {
-      const type = node.tagName === 'IMG' ? 'Obraz' : 'Tekst';
-      const x = Math.round(parseFloat(node.style.left) || 0);
-      const y = Math.round(parseFloat(node.style.top) || 0);
-      const xy = `x:${x}, y:${y}`;
-      
-      if (type === 'Tekst') {
-        lines.push(`${i+1}. Tekst "${node.textContent}" (${node.style.fontFamily}, ${node.style.fontSize}, ${node.style.color}) @ ${xy}`);
-      } else {
-        const width = node.naturalWidth || 0;
-        const height = node.naturalHeight || 0;
-        lines.push(`${i+1}. Obraz (${width}x${height}) @ ${xy}`);
-      }
-    });
-  }
-  
-  summaryEl.textContent = lines.join('\n');
-}
-
-function labelProduct(p) { 
-  const products = {
-    tshirt: 'Koszulka', 
-    hoodie: 'Bluza', 
-    cap: 'Czapka'
-  };
-  return products[p] || p; 
-}
-
-// Funkcje akcji
-function newProject() {
-  clearElements();
-  
-  const txtContent = document.getElementById('txtContent');
-  const txtSize = document.getElementById('txtSize');
-  const txtColor = document.getElementById('txtColor');
-  
-  if (txtContent) txtContent.value = '';
-  if (txtSize) txtSize.value = '40';
-  if (txtColor) txtColor.value = '#000000';
-  
-  setBaseColor('#000000');
-  updateSummary();
-}
-
-function sendProject() {
-  const summaryEl = document.getElementById('summary');
-  if (!summaryEl) return;
-  
-  const body = encodeURIComponent(summaryEl.textContent + '\n\n(Dołącz zrzut PNG: użyj przycisku "Zapisz PNG")');
-  window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Projekt%20ze%20studia&body=${body}`;
-}
-
-function addToCart() {
-  // Sprawdź czy localStorage jest dostępny
-  try {
-    let cart = JSON.parse(localStorage.getItem('designCart')) || [];
-    
-    const sizeEl = document.getElementById('productSize');
-    const size = sizeEl ? sizeEl.value : 'M';
-    
-    const designLayer = document.getElementById('designElements');
-    const elements = designLayer ? Array.from(designLayer.children).map(el => {
-      if (el.tagName === 'IMG') {
-        return {
-          type: 'image',
-          src: el.src,
-          x: parseFloat(el.style.left) || 0,
-          y: parseFloat(el.style.top) || 0,
-          width: el.naturalWidth,
-          height: el.naturalHeight
-        };
-      } else {
-        return {
-          type: 'text',
-          content: el.textContent,
-          font: el.style.fontFamily,
-          size: el.style.fontSize,
-          color: el.style.color,
-          x: parseFloat(el.style.left) || 0,
-          y: parseFloat(el.style.top) || 0
-        };
-      }
-    }) : [];
-    
-    cart.push({
-      product: currentProduct,
-      view: currentView,
-      size: size,
-      color: baseColor,
-      price: priceMap[currentProduct],
-      elements: elements,
-      timestamp: new Date().toISOString()
-    });
-    
-    localStorage.setItem('designCart', JSON.stringify(cart));
-    alert('✅ Projekt dodany do koszyka!');
-  } catch (e) {
-    alert('❌ Nie udało się dodać do koszyka. Sprawdź konsolę przeglądarki.');
-    console.error('Błąd dodawania do koszyka:', e);
-  }
-}
-
-function savePNG() {
-  const productArea = document.getElementById('productArea');
-  if (!productArea) return;
-  
-  const img = document.getElementById('productImage');
-  if (!img || !img.complete) {
-    alert('Poczekaj aż obraz produktu się załaduje');
-    return;
-  }
-  
-  // Utwórz canvas
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  
-  // Ustaw rozmiar canvasu
-  canvas.width = productArea.offsetWidth;
-  canvas.height = productArea.offsetHeight;
-  
-  // Wypełnij tłem
-  ctx.fillStyle = baseColor;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-  // Narysuj produkt
-  const imgAspect = img.naturalWidth / img.naturalHeight;
-  const areaAspect = canvas.width / canvas.height;
-  
-  let drawWidth, drawHeight, drawX, drawY;
-  
-  if (imgAspect > areaAspect) {
-    drawWidth = canvas.width;
-    drawHeight = canvas.width / imgAspect;
-    drawX = 0;
-    drawY = (canvas.height - drawHeight) / 2;
-  } else {
-    drawHeight = canvas.height;
-    drawWidth = canvas.height * imgAspect;
-    drawX = (canvas.width - drawWidth) / 2;
-    drawY = 0;
-  }
-  
-  ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
-  
-  // Narysuj elementy projektu
-  const designLayer = document.getElementById('designElements');
-  if (designLayer) {
-    const elements = designLayer.children;
-    for (let i = 0; i < elements.length; i++) {
-      const el = elements[i];
-      const x = parseFloat(el.style.left) || 0;
-      const y = parseFloat(el.style.top) || 0;
-      
-      if (el.tagName === 'IMG') {
-        const width = el.offsetWidth;
-        const height = el.offsetHeight;
-        ctx.drawImage(el, x - width/2, y - height/2, width, height);
-      } else {
-        ctx.font = el.style.fontSize + ' ' + el.style.fontFamily;
-        ctx.fillStyle = el.style.color;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(el.textContent, x, y);
-      }
-    }
-  }
-  
-  // Zapisz jako PNG
-  const link = document.createElement('a');
-  link.download = 'projekt-' + currentProduct + '-' + currentView + '.png';
-  link.href = canvas.toDataURL('image/png');
-  link.click();
-}
-</script>
         
 <!-- 🎁 Sekcja Zbiórki FINALNA -->
 <section id="charity" class="bg-gradient-to-r from-gray-900 via-purple-900 to-black text-white py-12 px-6 rounded-2xl shadow-lg">
@@ -2065,7 +1527,7 @@ function typeLetter() {
 typeLetter();
 setInterval(typeLetter, 15000); // co 15s nowy list
 </script>
-     
+        
 <!-- Blog - WERSJA Z FORUM I CYKLICZNYMI CYTATAMI -->
 <section id="blog" class="bg-gray-950 py-12">
     <div class="section-title text-center mb-12">
@@ -2222,6 +1684,7 @@ function hideBlogForm() {
     document.getElementById("blogForm").classList.add("hidden");
 }
 </script>
+        
 <!-- Regulamin -->
 <section id="regulations">
     <div class="section-title">
@@ -2250,8 +1713,8 @@ function hideBlogForm() {
             <p>4. Dane przechowywane są przez okres niezbędny do realizacji zamówienia, a następnie przez okres wymagany przepisami prawa.</p>
             <p>5. Przysługuje Państwu prawo dostępu do danych, sprostowania, usunięcia, ograniczenia przetwarzania, wniesienia sprzeciwu oraz prawo do przenoszenia danych.</p>
             <p>6. Dane mogą być udostępniane podmiotom przetwarzającym je na nasze zlecenie (np. firmy kurierskie, płatności elektroniczne).</p>
-            <p>7. Kontakt w sprawach ochron
-                <!-- Kontynuacja kodu od miejsca przerwania -->
+            <p>7. Kontakt w sprawach ochron                
+<!-- Kontynuacja kodu od miejsca przerwania -->
 <div class="mb-6">
     <h3 class="text-xl font-bold mb-3">§4 Zwroty i reklamacje</h3>
     <p>1. Konsument ma prawo do odstąpienia od umowy w ciągu 14 dni bez podawania przyczyny.</p>
@@ -3260,9 +2723,8 @@ function hideBlogForm() {
     window.sendOrderWhatsApp = sendOrderWhatsApp;
 </script>
 </body>
-</html>               
-
-
+</html>
+      
 
 
 
