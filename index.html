@@ -1581,141 +1581,321 @@
     <p id="status" class="mt-4 text-white"></p>
 </section>
 </section>
+<!-- ====== SEK CJA: ZAPROJEKTUJ (FINAL) ====== -->
+<section id="zaprojektuj" class="design-studio">
+  <div class="section-title">
+    <h2>Zaprojektuj swój produkt</h2>
+    <p>Wybierz produkt, widok i stwórz własny nadruk</p>
+  </div>
 
-<!-- Studio projektowe - ZMODYFIKOWANE -->
-<section id="design">
-    <div class="section-title">
-        <h2>Studio Projektowe</h2>
-        <p>Stwórz swój unikalny produkt</p>
-    </div>
-    
-    <div class="design-studio">
-        <!-- Przyciski po bokach -->
-        <div class="side-buttons left">
-            <button class="side-button" onclick="updateDesign()" title="Podgląd">
-                <i class="fas fa-sync"></i>
-            </button>
-            <button class="side-button" onclick="addToCartFromDesign()" title="Dodaj do koszyka">
-                <i class="fas fa-cart-plus"></i>
-            </button>
-        </div>
-        
-        <div class="side-buttons right">
-            <button class="side-button" onclick="sendDesignToEmail()" title="Wyślij projekt mailem">
-                <i class="fas fa-envelope"></i>
-            </button>
-            <button class="side-button" onclick="saveDesign()" title="Zapisz projekt">
-                <i class="fas fa-download"></i>
-            </button>
-        </div>
-        
-        <div class="product-base">
-            <div class="product-base-item active" data-base="tshirt">
-                <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka">
-                <p>Koszulka</p>
-            </div>
-            <div class="product-base-item" data-base="hoodie">
-                <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza">
-                <p>Bluza</p>
-            </div>
-            <div class="product-base-item" data-base="cap">
-                <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka">
-                <p>Czapka</p>
-            </div>
-        </div>
-        
-        <div class="design-options">
-            <div class="design-option active" data-area="front">Przód</div>
-            <div class="design-option" data-area="back">Tył</div>
-            <div class="design-option" data-area="sleeves">Rękawy</div>
-        </div>
-        
-        <div class="canvas-container">
-            <canvas id="designCanvas" width="500" height="400"></canvas>
-            <div class="canvas-controls">
-                <button class="nav-btn" onclick="clearCanvas()"><i class="fas fa-trash"></i> Wyczyść</button>
-                <button class="nav-btn" onclick="resetDesign()"><i class="fas fa-redo"></i> Resetuj</button>
-            </div>
-        </div>
-        
-        <div class="design-tools">
-            <div class="tool-group">
-                <div class="tool-title"><i class="fas fa-font"></i> Tekst</div>
-                <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3" oninput="updateDesign()">
-                
-                <div class="flex gap-3 mb-3">
-                    <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
-                        <option value="Arial">Arial</option>
-                        <option value="Times New Roman">Times New Roman</option>
-                        <option value="Courier New">Courier New</option>
-                        <option value="Impact">Impact</option>
-                        <option value="Comic Sans MS">Comic Sans</option>
-                        <option value="Georgia">Georgia</option>
-                        <option value="Verdana">Verdana</option>
-                        <option value="Palatino">Palatino</option>
-                        <option value="Garamond">Garamond</option>
-                        <option value="Brush Script MT">Brush Script</option>
-                    </select>
-                    
-                    <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
-                </div>
-                
-                <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3" oninput="updateDesign()">
-            </div>
-            
-            <div class="tool-group">
-                <div class="tool-title"><i class="fas fa-palette"></i> Opcje produktu</div>
-                
-                <select id="productType" class="w-full p-3 border rounded mb-3">
-                    <option value="tshirt">Koszulka (120 zł)</option>
-                    <option value="hoodie">Bluza (200 zł)</option>
-                    <option value="cap">Czapka (99 zł)</option>
-                </select>
-                
-                <select id="productSize" class="w-full p-3 border rounded mb-3">
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                </select>
-                
-                <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
-                <button class="nav-btn gold-bg w-full" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
-            </div>
+  <!-- GÓRNE AKCJE -->
+  <div class="top-bar">
+    <button class="btn" onclick="newProject()">🆕 Nowy projekt</button>
+    <button class="btn" onclick="savePNG()">💾 Zapisz PNG</button>
+    <button class="btn" onclick="sendProject()">📧 Wyślij mailem</button>
+    <button class="btn btn-primary" onclick="addToCart()">🛒 Dodaj do koszyka</button>
+  </div>
 
-            <div class="tool-group">
-                <div class="tool-title"><i class="fas fa-edit"></i> Edycja elementów</div>
-                <div class="transform-controls">
-                    <div class="transform-input">
-                        <label for="posX">Pozycja X</label>
-                        <input type="range" id="posX" min="0" max="500" value="250" oninput="updateElementPosition()">
-                    </div>
-                    <div class="transform-input">
-                        <label for="posY">Pozycja Y</label>
-                        <input type="range" id="posY" min="0" max="400" value="200" oninput="updateElementPosition()">
-                    </div>
-                    <div class="transform-input">
-                        <label for="scale">Skala</label>
-                        <input type="range" id="scale" min="0.1" max="2" step="0.1" value="1" oninput="updateElementScale()">
-                    </div>
-                    <div class="transform-input">
-                        <label for="rotation">Obrót</label>
-                        <input type="range" id="rotation" min="0" max="360" value="0" oninput="updateElementRotation()">
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <button class="nav-btn gold-bg w-full" onclick="bringToFront()"><i class="fas fa-layer-group"></i> Na wierzch</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="design-preview">
-            <h3>Podgląd Twojego projektu</h3>
-            <p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>
-        </div>
-    </div>
+  <div class="studio-grid">
+    <!-- LEWA KOLUMNA -->
+    <aside class="panel">
+      <h3 class="panel-title">Produkt</h3>
+      <div class="product-switch">
+        <button class="chip active" data-product="tshirt_men" onclick="setProduct('tshirt_men', this)">👕 Koszulka męska</button>
+        <button class="chip" data-product="tshirt_women" onclick="setProduct('tshirt_women', this)">👚 Koszulka damska</button>
+        <button class="chip" data-product="hoodie" onclick="setProduct('hoodie', this)">🧥 Bluza</button>
+        <button class="chip" data-product="hoodie_cap" onclick="setProduct('hoodie_cap', this)">🧥 Bluza z kapturem</button>
+        <button class="chip" data-product="cap" onclick="setProduct('cap', this)">🧢 Czapka</button>
+        <button class="chip" data-product="cap_hat" onclick="setProduct('cap_hat', this)">🧢 Czapka z daszkiem</button>
+      </div>
+
+      <h3 class="panel-title">Widok</h3>
+      <div class="view-switch" id="viewSwitch"></div>
+
+      <h3 class="panel-title">Kolor bazowy</h3>
+      <div class="color-picker">
+        <button class="swatch" style="--c:#000" onclick="setBaseColor('#000')"></button>
+        <button class="swatch" style="--c:#fff;border:1px solid #ddd" onclick="setBaseColor('#fff')"></button>
+        <button class="swatch" style="--c:#b91c1c" onclick="setBaseColor('#b91c1c')"></button>
+        <button class="swatch" style="--c:#1e3a8a" onclick="setBaseColor('#1e3a8a')"></button>
+        <button class="swatch" style="--c:#065f46" onclick="setBaseColor('#065f46')"></button>
+        <button class="swatch" style="--c:#f59e0b" onclick="setBaseColor('#f59e0b')"></button>
+      </div>
+    </aside>
+
+    <!-- ŚRODEK: PODGLĄD I PROJEKT -->
+    <main class="canvas-wrap">
+      <div id="productArea">
+        <div id="productColor"></div>
+        <img id="productImage" alt="Produkt">
+        <div id="designElements" aria-label="obszar projektowania"></div>
+      </div>
+
+      <div class="canvas-tools">
+        <button class="btn" onclick="clearElements()">🗑 Wyczyść elementy</button>
+        <button class="btn" onclick="centerActive()">🎯 Wyśrodkuj aktywny</button>
+        <button class="btn" onclick="deleteActive()">❌ Usuń aktywny</button>
+      </div>
+    </main>
+
+    <!-- PRAWA KOLUMNA -->
+    <aside class="panel">
+      <h3 class="panel-title">Rozmiar & cena</h3>
+      <select id="productSize" class="input" onchange="updateSummary()">
+        <option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option>
+      </select>
+      <div class="price">Cena: <span id="price">120 zł</span></div>
+
+      <h3 class="panel-title">Dodaj tekst</h3>
+      <input id="txtContent" class="input" type="text" placeholder="Twój napis">
+      <div class="row">
+        <select id="txtFont" class="input">
+          <option>Arial</option><option>Verdana</option><option>Times New Roman</option>
+          <option>Impact</option><option>Georgia</option><option>Courier New</option>
+          <option>Brush Script MT</option><option>Comic Sans MS</option>
+          <option>Garamond</option><option>Trebuchet MS</option>
+        </select>
+        <input id="txtSize" class="input" type="number" min="12" max="120" value="40">
+      </div>
+      <div class="row">
+        <input id="txtColor" class="input" type="color" value="#000000">
+        <button class="btn" onclick="addText()">➕ Dodaj napis</button>
+      </div>
+
+      <h3 class="panel-title">Dodaj obrazek</h3>
+      <input id="imgInput" class="input" type="file" accept="image/*" onchange="addImage(event)">
+
+      <h3 class="panel-title">Podsumowanie</h3>
+      <div id="summary" class="summary">Brak elementów</div>
+    </aside>
+  </div>
 </section>
+
+<style>
+/* Layout */
+.design-studio{padding:20px;background:#0b0c10;color:#e5e7eb}
+.section-title h2{font-size:28px;margin:0 0 4px}
+.section-title p{color:#9ca3af;margin:0 0 16px}
+.top-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.studio-grid{display:grid;grid-template-columns:260px 1fr 280px;gap:16px}
+.panel{background:#111318;border:1px solid #1f2430;border-radius:12px;padding:14px}
+.panel-title{margin:10px 0 8px;font-size:14px;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em}
+.canvas-wrap{background:#111318;border:1px solid #1f2430;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:12px;align-items:center}
+#productArea{position:relative;width:min(520px,90vw);aspect-ratio:1/1.1;background:#0d0f14;border:1px dashed #2b3240;border-radius:12px;overflow:hidden}
+#productColor{position:absolute;inset:0;background:#000;opacity:.22;mix-blend-mode:multiply;pointer-events:none}
+#productImage{position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;object-fit:contain;z-index:1}
+#designElements{position:absolute;inset:0;z-index:2}
+.canvas-tools{display:flex;gap:8px;flex-wrap:wrap}
+/* UI */
+.btn{background:#1f2937;color:#e5e7eb;border:1px solid #374151;border-radius:10px;padding:8px 12px;cursor:pointer}
+.btn:hover{background:#2a3547}
+.btn-primary{background:#f59e0b;border-color:#f59e0b;color:#1b1300}
+.btn-primary:hover{background:#ffb31f}
+.input{background:#0f1116;color:#e5e7eb;border:1px solid #2b3240;border-radius:8px;padding:8px;width:100%}
+.row{display:flex;gap:8px;margin:8px 0}
+.product-switch,.view-switch{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:6px 10px;border-radius:999px;border:1px solid #2b3240;background:#0f1116;color:#d1d5db;cursor:pointer}
+.chip.active{border-color:#f59e0b;color:#ffd37a;background:#1c1405}
+.color-picker{display:flex;gap:6px;flex-wrap:wrap}
+.swatch{width:24px;height:24px;border-radius:6px;background:var(--c);cursor:pointer}
+.price{margin:8px 0 12px;font-weight:700}
+.summary{background:#0f1116;border:1px solid #2b3240;border-radius:8px;padding:10px;white-space:pre-wrap;font-size:13px;overflow:auto;max-height:180px}
+.draggable{position:absolute;cursor:move;user-select:none;touch-action:none}
+.draggable.active{outline:1px dashed #f59e0b;outline-offset:2px}
+/* Mobile */
+@media (max-width: 980px){
+  .studio-grid{grid-template-columns:1fr}
+  .panel{order:2}
+  .canvas-wrap{order:1}
+  .top-bar{justify-content:center}
+}
+</style>
+
+<script>
+// === GLOBALNE ===
+let currentProduct = 'tshirt_men';
+let currentView = 'front';
+let baseColor = '#000000';
+let priceMap = { tshirt_men:120, tshirt_women:120, hoodie:180, hoodie_cap:200, cap:80, cap_hat:90 };
+let activeEl = null;
+
+// === OBRAZY PRODUKTÓW ===
+const productImages = {
+  tshirt_men: {
+    front: "https://i.ibb.co/C3sQZbzW/Screenshot-2025-09-03-21-34-27.png",
+    back: "https://i.ibb.co/5hbqdShw/Screenshot-2025-09-03-21-35-05.png",
+    right: "https://i.ibb.co/q3jhSqbd/Screenshot-2025-09-03-21-35-26.png",
+    left: "https://i.ibb.co/Q7JX8rc3/Screenshot-2025-09-03-21-35-44.png"
+  },
+  tshirt_women: {
+    front: "https://i.ibb.co/7x01YyxW/Screenshot-2025-09-03-21-39-40.png",
+    back: "https://i.ibb.co/4RPsF04T/Screenshot-2025-09-03-21-39-53.png",
+    right: "https://i.ibb.co/Ld5svrZZ/Screenshot-2025-09-03-21-40-20.png"
+  },
+  hoodie: {
+    front: "https://i.ibb.co/cSDrRTQb/Screenshot-2025-09-03-21-47-31.png",
+    back: "https://i.ibb.co/ynWTdTxB/Screenshot-2025-09-03-21-47-41.png",
+    left: "https://i.ibb.co/4nmpTKWQ/Screenshot-2025-09-03-21-47-55.png",
+    right: "https://i.ibb.co/d02W6bmx/Screenshot-2025-09-03-21-48-07.png"
+  },
+  hoodie_cap: {
+    front: "https://i.ibb.co/G4Sk06d8/Screenshot-2025-09-03-21-49-47.png",
+    back: "https://i.ibb.co/B5rQ3wgY/Screenshot-2025-09-03-21-49-59.png",
+    left: "https://i.ibb.co/ZzpvCYWd/Screenshot-2025-09-03-21-50-12.png",
+    right: "https://i.ibb.co/rK8hDs8N/Screenshot-2025-09-03-21-50-20.png"
+  },
+  cap: {
+    front: "https://i.ibb.co/4ZgGCLKF/Screenshot-2025-09-03-21-42-58.png"
+  },
+  cap_hat: {
+    front: "https://i.ibb.co/KcH6r5VK/Screenshot-2025-09-03-21-41-23.png",
+    back: "https://i.ibb.co/RpzhjNZf/Screenshot-2025-09-03-21-41-57.png",
+    left: "https://i.ibb.co/JWsPTZTm/Screenshot-2025-09-03-21-42-12.png",
+    right: "https://i.ibb.co/1twx95vM/Screenshot-2025-09-03-21-42-23.png"
+  }
+};
+
+// === INIT ===
+document.addEventListener('DOMContentLoaded', () => {
+  setProduct('tshirt_men', document.querySelector('.chip[data-product="tshirt_men"]'));
+  setBaseColor('#000');
+});
+
+// === FUNKCJE PRODUKTÓW ===
+function setProduct(p, btn){
+  currentProduct = p;
+  document.querySelectorAll('.product-switch .chip').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  const vs=document.getElementById('viewSwitch'); vs.innerHTML='';
+  Object.keys(productImages[p]).forEach((v,i)=>{
+    const b=document.createElement('button');
+    b.className='chip'+(i===0?' active':'');
+    b.textContent=labelView(v);
+    b.onclick=()=>setView(v,b);
+    vs.appendChild(b);
+    if(i===0) setView(v,b);
+  });
+  updatePrice(); updateSummary();
+}
+function setView(v,btn){
+  currentView=v;
+  document.querySelectorAll('#viewSwitch .chip').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.getElementById('productImage').src=productImages[currentProduct][v];
+  updateSummary();
+}
+function labelView(v){
+  return {front:'Przód',back:'Tył',left:'Lewy bok',right:'Prawy bok'}[v]||v;
+}
+function setBaseColor(c){
+  baseColor=c; document.getElementById('productColor').style.background=c; updateSummary();
+}
+function updatePrice(){
+  document.getElementById('price').textContent=priceMap[currentProduct]+' zł';
+}
+
+// === TEKST / OBRAZ ===
+function addText(){
+  const t=document.getElementById('txtContent').value.trim(); if(!t) return;
+  const f=document.getElementById('txtFont').value, s=document.getElementById('txtSize').value, c=document.getElementById('txtColor').value;
+  const el=document.createElement('div'); el.className='draggable'; el.textContent=t;
+  el.style.cssText=`font-family:${f};font-size:${s}px;color:${c};left:50%;top:50%;transform:translate(-50%,-50%)`;
+  mountDraggable(el); document.getElementById('designElements').appendChild(el);
+  setActive(el); document.getElementById('txtContent').value=''; updateSummary();
+}
+function addImage(e){
+  const f=e.target.files[0]; if(!f) return;
+  const url=URL.createObjectURL(f); const img=document.createElement('img'); img.src=url; img.className='draggable';
+  img.style.cssText="max-width:160px;max-height:160px;left:50%;top:50%;transform:translate(-50%,-50%)";
+  mountDraggable(img); document.getElementById('designElements').appendChild(img);
+  setActive(img); e.target.value=''; updateSummary();
+}
+
+// === DRAG ===
+function mountDraggable(el){el.onmousedown=startDrag;el.ontouchstart=startDrag;el.onclick=()=>setActive(el);}
+let isDragging=false,startX,startY,initX,initY;
+function startDrag(e){e.preventDefault();setActive(this);isDragging=true;
+  startX=(e.touches?e.touches[0].clientX:e.clientX);
+  startY=(e.touches?e.touches[0].clientY:e.clientY);
+  initX=parseFloat(this.style.left);initY=parseFloat(this.style.top);
+  document.onmousemove=document.ontouchmove=drag;document.onmouseup=document.ontouchend=stopDrag;}
+function drag(e){if(!isDragging) return;let cx=(e.touches?e.touches[0].clientX:e.clientX),cy=(e.touches?e.touches[0].clientY:e.clientY);
+  activeEl.style.left=(initX+(cx-startX))+'px';activeEl.style.top=(initY+(cy-startY))+'px';}
+function stopDrag(){isDragging=false;document.onmousemove=document.ontouchmove=null;updateSummary();}
+function setActive(el){document.querySelectorAll('.draggable').forEach(x=>x.classList.remove('active')); if(el){el.classList.add('active');activeEl=el;}}
+
+// === NARZĘDZIA ===
+function clearElements(){document.getElementById('designElements').innerHTML='';activeEl=null;updateSummary();}
+function centerActive(){if(activeEl){activeEl.style.left='50%';activeEl.style.top='50%';updateSummary();}}
+function deleteActive(){if(activeEl){activeEl.remove();activeEl=null;updateSummary();}}
+
+// === PODSUMOWANIE ===
+function updateSummary(){
+  const size=document.getElement
+function updateSummary(){
+  const size=document.getElementById('productSize').value;
+  const elements=[...document.getElementById('designElements').children];
+  if(elements.length===0){
+    document.getElementById('summary').textContent="Brak elementów";
+    return;
+  }
+  let txt=`Produkt: ${currentProduct}\nWidok: ${labelView(currentView)}\nKolor: ${baseColor}\nRozmiar: ${size}\nCena: ${priceMap[currentProduct]} zł\n\nElementy:\n`;
+  elements.forEach((el,i)=>{
+    if(el.tagName==="DIV"){
+      txt+=`[${i+1}] Tekst: "${el.textContent}"\n - czcionka: ${el.style.fontFamily}\n - rozmiar: ${el.style.fontSize}\n - kolor: ${el.style.color}\n`;
+    } else if(el.tagName==="IMG"){
+      txt+=`[${i+1}] Obrazek: ${el.src.substring(0,40)}...\n`;
+    }
+  });
+  document.getElementById('summary').textContent=txt;
+}
+
+// === KOSZYK ===
+function addToCart(){
+  const summary=document.getElementById('summary').textContent;
+  if(summary==="Brak elementów"){alert("Dodaj coś do projektu przed koszykiem!");return;}
+  html2canvas(document.getElementById('productArea')).then(canvas=>{
+    const thumb=canvas.toDataURL("image/png");
+    const item={product:currentProduct,view:currentView,summary:summary,price:priceMap[currentProduct],image:thumb};
+    let cart=JSON.parse(localStorage.getItem("cart")||"[]");
+    cart.push(item);
+    localStorage.setItem("cart",JSON.stringify(cart));
+    alert("Dodano do koszyka! 🛒");
+  });
+}
+
+// === PNG ===
+function savePNG(){
+  html2canvas(document.getElementById('productArea')).then(canvas=>{
+    const link=document.createElement("a");
+    link.download="projekt.png";
+    link.href=canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+
+// === MAIL ===
+function sendProject(){
+  html2canvas(document.getElementById('productArea')).then(canvas=>{
+    const img=canvas.toDataURL("image/png");
+    const body=encodeURIComponent("Mój projekt:\n\n"+document.getElementById('summary').textContent);
+    window.location.href=`mailto:?subject=Projekt&body=${body}`;
+  });
+}
+
+// === NOWY PROJEKT ===
+function newProject(){
+  clearElements();
+  setBaseColor('#000');
+  document.getElementById('txtContent').value='';
+  document.getElementById('txtSize').value=40;
+  document.getElementById('txtColor').value='#000000';
+  updateSummary();
+}
+</script>
+
+<!-- Import html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
         
 <!-- 🎁 Sekcja Zbiórki FINALNA -->
 <section id="charity" class="bg-gradient-to-r from-gray-900 via-purple-900 to-black text-white py-12 px-6 rounded-2xl shadow-lg">
@@ -3094,6 +3274,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </body>
 </html>
       
+
 
 
 
