@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -7,10 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
-    <!-- Dodane fonty dla sekcji projektowania -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Abril+Fatface&family=Bebas+Neue&family=Lobster&family=Montserrat:wght@400;700&family=Oswald:wght@400;600&family=Pacifico&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Raleway:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
         
@@ -909,56 +906,6 @@
             max-width: 600px;
             margin: 2rem auto;
         }
-
-        /* ==== STYLE DLA SEKCJI ZAPROJEKTUJ PRO ==== */
-        #zaprojektuj-pro.design-studio{padding:20px;background:#0b0c10;color:#e5e7eb}
-        #zaprojektuj-pro .section-title h2{font-size:28px;margin:0 0 4px}
-        #zaprojektuj-pro .section-title p{color:#9ca3af;margin:0 0 16px}
-        #zaprojektuj-pro .top-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-        #zaprojektuj-pro .studio-grid{display:grid;grid-template-columns:260px 1fr 300px;gap:16px}
-        #zaprojektuj-pro .panel{background:#111318;border:1px solid #1f2430;border-radius:12px;padding:14px}
-        #zaprojektuj-pro .panel-title{margin:10px 0 8px;font-size:13px;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em}
-        #zaprojektuj-pro .canvas-wrap{background:#111318;border:1px solid #1f2430;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:12px;align-items:center}
-
-        /* Obszar produktu */
-        #dsp-product-area{position:relative;width:min(560px,92vw);aspect-ratio:1/1.05;background:#0d0f14;border:1px dashed #2b3240;border-radius:12px;overflow:hidden}
-        #dsp-product-color{position:absolute;inset:0;background:#000;opacity:.22;mix-blend-mode:multiply;pointer-events:none}
-        #dsp-product-image{position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;object-fit:contain;z-index:1}
-        #dsp-design-layer{position:absolute;inset:0;z-index:2}
-
-        /* UI */
-        #zaprojektuj-pro .btn{background:#1f2937;color:#e5e7eb;border:1px solid #374151;border-radius:10px;padding:8px 12px;cursor:pointer}
-        #zaprojektuj-pro .btn:hover{background:#2a3547}
-        #zaprojektuj-pro .btn-primary{background:#f59e0b;border-color:#f59e0b;color:#1b1300}
-        #zaprojektuj-pro .btn-primary:hover{background:#ffb31f}
-        #zaprojektuj-pro .input{background:#0f1116;color:#e5e7eb;border:1px solid #2b3240;border-radius:8px;padding:8px;width:100%}
-        #zaprojektuj-pro .row{display:flex;gap:8px;margin:8px 0;align-items:center}
-        #zaprojektuj-pro .mini{width:64px;color:#9ca3af;font-size:12px}
-        #zaprojektuj-pro .product-switch,#zaprojektuj-pro .view-switch{display:flex;flex-wrap:wrap;gap:8px}
-        #zaprojektuj-pro .chip{padding:6px 10px;border-radius:999px;border:1px solid #2b3240;background:#0f1116;color:#d1d5db;cursor:pointer}
-        #zaprojektuj-pro .chip.active{border-color:#f59e0b;color:#ffd37a;background:#1c1405}
-        #zaprojektuj-pro .color-picker{display:flex;gap:6px;flex-wrap:wrap}
-        #zaprojektuj-pro .swatch{width:24px;height:24px;border-radius:6px;background:var(--c);cursor:pointer}
-        #zaprojektuj-pro .price{margin:8px 0 12px;font-weight:700}
-        #zaprojektuj-pro .summary{background:#0f1116;border:1px solid #2b3240;border-radius:8px;padding:10px;white-space:pre-wrap;font-size:13px}
-        #zaprojektuj-pro .thumb-wrap{margin-top:6px}
-        #zaprojektuj-pro .thumb{width:100%;border-radius:8px;border:1px solid #2b3240}
-        #zaprojektuj-pro .hint{font-size:12px;color:#9ca3af;margin-top:8px}
-        #zaprojektuj-pro .canvas-tools{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-
-        /* Elementy projektu */
-        #zaprojektuj-pro .draggable{position:absolute;cursor:move;user-select:none;touch-action:none;left:50%;top:50%;transform:translate(-50%,-50%);--r:0deg;--s:1}
-        #zaprojektuj-pro .draggable.active{outline:1px dashed #f59e0b;outline-offset:2px}
-        #zaprojektuj-pro .draggable > .inner{display:inline-block;transform:translate(-50%,-50%) rotate(var(--r)) scale(var(--s));position:absolute;left:50%;top:50%}
-        #zaprojektuj-pro .draggable.text .inner{white-space:pre;}
-
-        /* Mobile */
-        @media (max-width: 980px){
-          #zaprojektuj-pro .studio-grid{grid-template-columns:1fr}
-          #zaprojektuj-pro .panel{order:2}
-          #zaprojektuj-pro .canvas-wrap{order:1}
-          #zaprojektuj-pro .top-bar{justify-content:center}
-        }
     </style>
 </head>
 <body>
@@ -974,7 +921,7 @@
         <div class="nav-container" id="navContainer">
             <button class="nav-btn active" data-section="home"><i class="fas fa-home"></i> Strona Główna</button>
             <button class="nav-btn" data-section="shop"><i class="fas fa-tshirt"></i> Sklep</button>
-            <button class="nav-btn" data-section="zaprojektuj-pro"><i class="fas fa-paint-brush"></i> Projektuj</button>
+            <button class="nav-btn" data-section="design"><i class="fas fa-paint-brush"></i> Projektuj</button>
             <button class="nav-btn" data-section="charity"><i class="fas fa-hand-holding-heart"></i> Zbiórka</button>
             <button class="nav-btn" data-section="blog"><i class="fas fa-blog"></i> Blog</button>
             <button class="nav-btn" data-section="regulations"><i class="fas fa-file-alt"></i> Regulamin</button>
@@ -1069,6 +1016,22 @@
     <h3 class="text-2xl font-bold mb-6 text-center gold-text">Koszulki</h3>
     <div class="products-grid">
         <!-- Oryginalne 8 koszulek -->
+<!-- Koszulka Rock styl -->
+<div class="product-card fade-in">
+  <div class="product-image-container">
+      <img src="https://i.ibb.co/RpCfWYVc/Screenshot-2025-09-05-17-19-30.png" alt="Koszulka Rock styl" class="product-image">
+  </div>
+  <div class="product-info">
+      <div class="product-title">Koszulka "Rock styl"</div>
+      <div class="product-price">120 zł</div>
+      <button class="nav-btn add-to-cart-btn" 
+              data-name="Koszulka Rock styl" 
+              data-price="120" 
+              data-image="https://i.ibb.co/RpCfWYVc/Screenshot-2025-09-05-17-19-30.png">
+          Dodaj do koszyka
+      </button>
+  </div>
+</div>        
         <div class="product-card fade-in">
             <div class="product-image-container">
                 <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Rebel" class="product-image">
@@ -1270,145 +1233,138 @@
             <div class="product-image-container">
                 <img src="https://i.ibb.co/PvxhZvQt/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg" alt="Kolor Disco" class="product-image">
             </div>
-               <div class="product-info">
-        <div class="product-title">Kolor Disco</div>
-        <div class="product-price">120 zł</div>
-        <p class="product-description">Tęczowe, energetyczne kolory ery disco przeniesione na koszulkę.</p>
-        <button class="nav-btn add-to-cart-btn" data-name="Kolor Disco" data-price="120" data-image="https://i.ibb.co/PvxhZvQt/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
+            <div class="product-info">
+                <div class="product-title">Kolor Disco</div>
+                <div class="product-price">120 zł</div>
+                <p class="product-description">Tęczowe, energetyczne kolory ery disco przeniesione na koszulkę.</p>
+                <button class="nav-btn add-to-cart-btn" data-name="Kolor Disco" data-price="120" data-image="https://i.ibb.co/PvxhZvQt/Messenger-creation-BDF4866-E-A667-40-C0-AE32-277-FFA07-C201.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/NdCVHtBQ/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg" alt="Uliczny Styl" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">Uliczny Styl</div>
-        <div class="product-price">120 zł</div>
-        <p class="product-description">Prawdziwy, miejski vibe dla fanów autentycznego streetwearu.</p>
-        <button class="nav-btn add-to-cart-btn" data-name="Uliczny Styl" data-price="120" data-image="https://i.ibb.co/NdCVHtBQ/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/NdCVHtBQ/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg" alt="Uliczny Styl" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Uliczny Styl</div>
+                <div class="product-price">120 zł</div>
+                <p class="product-description">Prawdziwy, miejski vibe dla fanów autentycznego streetwearu.</p>
+                <button class="nav-btn add-to-cart-btn" data-name="Uliczny Styl" data-price="120" data-image="https://i.ibb.co/NdCVHtBQ/Messenger-creation-0236-E1-D6-46-AE-49-DA-BB00-8-B95-D27-D6-AAB.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/PGGsNg7Q/Messenger-creation-9-B935-AD4-1-D3-B-4785-BBA4-6928-E5614-E31.jpg" alt="Hip Hop Dance" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">Hip Hop Dance</div>
-        <div class="product-price">120 zł</div>
-        <p class="product-description">Poświęcona kulturze hip-hopu i wszystkim, którzy kochają jego rytm.</p>
-        <button class="nav-btn add-to-cart-btn" data-name="Hip Hop Dance" data-price="120" data-image="https://i.ibb.co/PGGsNg7Q/Messenger-creation-9-B935-AD4-1-D3-B-4785-BBA4-6928-E5614-E31.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/PGGsNg7Q/Messenger-creation-9-B935-AD4-1-D3-B-4785-BBA4-6928-E5614-E31.jpg" alt="Hip Hop Dance" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Hip Hop Dance</div>
+                <div class="product-price">120 zł</div>
+                <p class="product-description">Poświęcona kulturze hip-hopu i wszystkim, którzy kochają jego rytm.</p>
+                <button class="nav-btn add-to-cart-btn" data-name="Hip Hop Dance" data-price="120" data-image="https://i.ibb.co/PGGsNg7Q/Messenger-creation-9-B935-AD4-1-D3-B-4785-BBA4-6928-E5614-E31.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/5x9MHvt9/Messenger-creation-3-E45-BD0-B-6396-4-A75-825-F-17-A5-A3-C0-FEB1.jpg" alt="Dj Kool" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">Dj Kool</div>
-        <div class="product-price">120 zł</div>
-        <p class="product-description">Hołd dla pionierów muzyki, którzy napędzają każdą imprezę.</p>
-        <button class="nav-btn add-to-cart-btn" data-name="Dj Kool" data-price="120" data-image="https://i.ibb.co/5x9MHvt9/Messenger-creation-3-E45-BD0-B-6396-4-A75-825-F-17-A5-A3-C0-FEB1.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/5x9MHvt9/Messenger-creation-3-E45-BD0-B-6396-4-A75-825-F-17-A5-A3-C0-FEB1.jpg" alt="Dj Kool" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Dj Kool</div>
+                <div class="product-price">120 zł</div>
+                <p class="product-description">Hołd dla pionierów muzyki, którzy napędzają każdą imprezę.</p>
+                <button class="nav-btn add-to-cart-btn" data-name="Dj Kool" data-price="120" data-image="https://i.ibb.co/5x9MHvt9/Messenger-creation-3-E45-BD0-B-6396-4-A75-825-F-17-A5-A3-C0-FEB1.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/gL5rMWbq/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg" alt="Street Fashion" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">Street Fashion</div>
-        <div class="product-price">120 zł</div>
-        <p class="product-description">Must-have dla każdego, kto podąża za modą wywodzącą się z ulic.</p>
-        <button class="nav-btn add-to-cart-btn" data-name="Street Fashion" data-price="120" data-image="https://i.ibb.co/gL5rMWbq/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/gL5rMWbq/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg" alt="Street Fashion" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Street Fashion</div>
+                <div class="product-price">120 zł</div>
+                <p class="product-description">Must-have dla każdego, kto podąża za modą wywodzącą się z ulic.</p>
+                <button class="nav-btn add-to-cart-btn" data-name="Street Fashion" data-price="120" data-image="https://i.ibb.co/gL5rMWbq/Messenger-creation-2-B5-A02-A5-C091-4917-A445-F5972-DAC4-EC3.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/BJXsvPh/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg" alt="Moda Disco" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">Moda Disco</div>
-        <div class="product-price">120 zł</div>
-        <p class="product-description">Lśniący i glamorowy styl, który przeniesie Cię w czasy świetności dyskotek.</p>
-        <button class="nav-btn add-to-cart-btn" data-name="Moda Disco" data-price="120" data-image="https://i.ibb.co/BJXsvPh/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/BJXsvPh/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg" alt="Moda Disco" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Moda Disco</div>
+                <div class="product-price">120 zł</div>
+                <p class="product-description">Lśniący i glamorowy styl, który przeniesie Cię w czasy świetności dyskotek.</p>
+                <button class="nav-btn add-to-cart-btn" data-name="Moda Disco" data-price="120" data-image="https://i.ibb.co/BJXsvPh/Messenger-creation-3-BB9-C15-D-C49-B-40-D8-A8-D9-D6-AE3-FA419-EE.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/RkNZhJTS/Messenger-creation-D3-E63-CFC-1-E20-41-D9-8264-653-BF9318-DC6.jpg" alt="Pi" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">Pi (π)</div>
-        <div class="product-price">120 zł</div>
-        <p class="product-description">Dla matematycznych pasjonatów, miłośników nauki i nieskończoności.</p>
-        <button class="nav-btn add-to-cart-btn" data-name="Pi (π)" data-price="120" data-image="https://i.ibb.co/RkNZhJTS/Messenger-creation-D3-E63-CFC-1-E20-41-D9-8264-653-BF9318-DC6.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/RkNZhJTS/Messenger-creation-D3-E63-CFC-1-E20-41-D9-8264-653-BF9318-DC6.jpg" alt="Pi" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Pi (π)</div>
+                <div class="product-price">120 zł</div>
+                <p class="product-description">Dla matematycznych pasjonatów, miłośników nauki i nieskończoności.</p>
+                <button class="nav-btn add-to-cart-btn" data-name="Pi (π)" data-price="120" data-image="https://i.ibb.co/RkNZhJTS/Messenger-creation-D3-E63-CFC-1-E20-41-D9-8264-653-BF9318-DC6.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/y3drK9v/Messenger-creation-4-F98-B179-12-CD-4-AA9-BB32-2-A0-FA290-F13-B.jpg" alt="City at Night" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">City at Night</div>
-        <div class="product-price">120 zł</div>
-        <p class="product-description">Nastrojowy design oddający magię rozświetlonego nocą miasta.</p>
-        <button class="nav-btn add-to-cart-btn" data-name="City at Night" data-price="120" data-image="https://i.ibb.co/y3drK9v/Messenger-creation-4-F98-B179-12-CD-4-AA9-BB32-2-A0-FA290-F13-B.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/y3drK9v/Messenger-creation-4-F98-B179-12-CD-4-AA9-BB32-2-A0-FA290-F13-B.jpg" alt="City at Night" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">City at Night</div>
+                <div class="product-price">120 zł</div>
+                <p class="product-description">Nastrojowy design oddający magię rozświetlonego nocą miasta.</p>
+                <button class="nav-btn add-to-cart-btn" data-name="City at Night" data-price="120" data-image="https://i.ibb.co/y3drK9v/Messenger-creation-4-F98-B179-12-CD-4-AA9-BB32-2-A0-FA290-F13-B.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/Myhf9jDw/Resizer-175015904589537.jpg" alt="Puppet King" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">Puppet King</div>
-        <div class="product-price">120 zł</div>
-        <p class="product-description">Symboliczny i nieco mroczny motyw kwestionujący prawdziwą władzę.</p>
-        <button class="nav-btn add-to-cart-btn" data-name="Puppet King" data-price="120" data-image="https://i.ibb.co/Myhf9jDw/Resizer-175015904589537.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/Myhf9jDw/Resizer-175015904589537.jpg" alt="Puppet King" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Puppet King</div>
+                <div class="product-price">120 zł</div>
+                <p class="product-description">Symboliczny i nieco mroczny motyw kwestionujący prawdziwą władzę.</p>
+                <button class="nav-btn add-to-cart-btn" data-name="Puppet King" data-price="120" data-image="https://i.ibb.co/Myhf9jDw/Resizer-175015904589537.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/nJb6RwM/Resizer-175015896433527.jpg" alt="King" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">King</div>
-        <div class="product-price">120 zł</div>
-        <p class="product-description">Prosty, ale mocny design dla tych, którzy rządzą swoim życiem.</p>
-        <button class="nav-btn add-to-cart-btn" data-name="King" data-price="120" data-image="https://i.ibb.co/nJb6RwM/Resizer-175015896433527.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/nJb6RwM/Resizer-175015896433527.jpg" alt="King" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">King</div>
+                <div class="product-price">120 zł</div>
+                <p class="product-description">Prosty, ale mocny design dla tych, którzy rządzą swoim życiem.</p>
+                <button class="nav-btn add-to-cart-btn" data-name="King" data-price="120" data-image="https://i.ibb.co/nJb6RwM/Resizer-175015896433527.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/21hPS6j1/Resizer-175015897947529.jpg" alt="Child King" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">Child King</div>
-        <div class="product-price">120 zł</div>
-        <p class="product-description">Połączenie niewinności i władzy. Dla wewnętrznego dziecka, które wie, czego chce.</p>
-        <button class="nav-btn add-to-cart-btn" data-name="Child King" data-price="120" data-image="https://i.ibb.co/21hPS6j1/Resizer-175015897947529.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/21hPS6j1/Resizer-175015897947529.jpg" alt="Child King" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Child King</div>
+                <div class="product-price">120 zł</div>
+                <p class="product-description">Połączenie niewinności i władzy. Dla wewnętrznego dziecka, które wie, czego chce.</p>
+                <button class="nav-btn add-to-cart-btn" data-name="Child King" data-price="120" data-image="https://i.ibb.co/21hPS6j1/Resizer-175015897947529.jpg">Dodaj do koszyka</button>
+            </div>
+        </div>
 
-<div class="product-card fade-in">
-    <div class="product-image-container">
-        <img src="https://i.ibb.co/Rpdpq6ck/Messenger-creation-F93-B9-D88-23-E0-4267-9-C9-B-6-D7554933-F08.jpg" alt="Królowa" class="product-image">
-    </div>
-    <div class="product-info">
-        <div class="product-title">Królowa</div>
-        <div class="product-price">120 zł</div>
-        <p class="product-description">Elegancki i władczy design dla kobiet, które są królowymi własnego życia.</p>
-        <button class="nav-btn add-to-cart-btn" data-name="Królowa" data-price="120" data-image="https://i.ibb.co/Rpdpq6ck/Messenger-creation-F93-B9-D88-23-E0-4267-9-C9-B-6-D7554933-F08.jpg">Dodaj do koszyka</button>
-    </div>
-</div>
+        <div class="product-card fade-in">
+            <div class="product-image-container">
+                <img src="https://i.ibb.co/Rpdpq6ck/Messenger-creation-F93-B9-D88-23-E0-4267-9-C9-B-6-D7554933-F08.jpg" alt="Królowa" class="product-image">
+            </div>
             <div class="product-info">
                 <div class="product-title">Królowa</div>
                 <div class="product-price">120 zł</div>
@@ -1469,6 +1425,22 @@
 <h3 class="text-2xl font-bold my-6 text-center gold-text">Bluzy</h3>
 <div class="products-grid">
     <!-- Bluzy -->
+<!-- Bluza Rock styl -->
+<div class="product-card fade-in">
+  <div class="product-image-container">
+      <img src="https://i.ibb.co/Kc656h77/Messenger-creation-D3-E63-CFC-1-E20-41-D9-8264-653-BF9318-DC6.jpg" alt="Bluza Rock styl" class="product-image">
+  </div>
+  <div class="product-info">
+      <div class="product-title">Bluza "Rock styl"</div>
+      <div class="product-price">200 zł</div>
+      <button class="nav-btn add-to-cart-btn" 
+              data-name="Bluza Rock styl" 
+              data-price="180" 
+              data-image="https://i.ibb.co/Kc656h77/Messenger-creation-D3-E63-CFC-1-E20-41-D9-8264-653-BF9318-DC6.jpg">
+          Dodaj do koszyka
+      </button>
+  </div>
+</div>    
     <div class="product-card fade-in">
         <div class="product-image-container">
             <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image">
@@ -1610,118 +1582,139 @@
 </section>
 </section>
 
-<!-- ============== SEKCJA ZAPROJEKTUJ PRO ============== -->
-<section id="zaprojektuj-pro">
-  <div class="section-title">
-    <h2>Zaprojektuj swój produkt</h2>
-    <p>Wybierz produkt, widok i stwórz własny nadruk</p>
-  </div>
+<!-- Studio projektowe - ZMODYFIKOWANE -->
+<section id="design">
+    <div class="section-title">
+        <h2>Studio Projektowe</h2>
+        <p>Stwórz swój unikalny produkt</p>
+    </div>
+    
+    <div class="design-studio">
+        <!-- Przyciski po bokach -->
+        <div class="side-buttons left">
+            <button class="side-button" onclick="updateDesign()" title="Podgląd">
+                <i class="fas fa-sync"></i>
+            </button>
+            <button class="side-button" onclick="addToCartFromDesign()" title="Dodaj do koszyka">
+                <i class="fas fa-cart-plus"></i>
+            </button>
+        </div>
+        
+        <div class="side-buttons right">
+            <button class="side-button" onclick="sendDesignToEmail()" title="Wyślij projekt mailem">
+                <i class="fas fa-envelope"></i>
+            </button>
+            <button class="side-button" onclick="saveDesign()" title="Zapisz projekt">
+                <i class="fas fa-download"></i>
+            </button>
+        </div>
+        
+        <div class="product-base">
+            <div class="product-base-item active" data-base="tshirt">
+                <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka">
+                <p>Koszulka</p>
+            </div>
+            <div class="product-base-item" data-base="hoodie">
+                <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza">
+                <p>Bluza</p>
+            </div>
+            <div class="product-base-item" data-base="cap">
+                <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka">
+                <p>Czapka</p>
+            </div>
+        </div>
+        
+        <div class="design-options">
+            <div class="design-option active" data-area="front">Przód</div>
+            <div class="design-option" data-area="back">Tył</div>
+            <div class="design-option" data-area="sleeves">Rękawy</div>
+        </div>
+        
+        <div class="canvas-container">
+            <canvas id="designCanvas" width="500" height="400"></canvas>
+            <div class="canvas-controls">
+                <button class="nav-btn" onclick="clearCanvas()"><i class="fas fa-trash"></i> Wyczyść</button>
+                <button class="nav-btn" onclick="resetDesign()"><i class="fas fa-redo"></i> Resetuj</button>
+            </div>
+        </div>
+        
+        <div class="design-tools">
+            <div class="tool-group">
+                <div class="tool-title"><i class="fas fa-font"></i> Tekst</div>
+                <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3" oninput="updateDesign()">
+                
+                <div class="flex gap-3 mb-3">
+                    <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
+                        <option value="Arial">Arial</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Comic Sans MS">Comic Sans</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Palatino">Palatino</option>
+                        <option value="Garamond">Garamond</option>
+                        <option value="Brush Script MT">Brush Script</option>
+                    </select>
+                    
+                    <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
+                </div>
+                
+                <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3" oninput="updateDesign()">
+            </div>
+            
+            <div class="tool-group">
+                <div class="tool-title"><i class="fas fa-palette"></i> Opcje produktu</div>
+                
+                <select id="productType" class="w-full p-3 border rounded mb-3">
+                    <option value="tshirt">Koszulka (120 zł)</option>
+                    <option value="hoodie">Bluza (200 zł)</option>
+                    <option value="cap">Czapka (99 zł)</option>
+                </select>
+                
+                <select id="productSize" class="w-full p-3 border rounded mb-3">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+                
+                <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
+                <button class="nav-btn gold-bg w-full" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
+            </div>
 
-  <!-- AKCJE GÓRNE -->
-  <div class="top-bar">
-    <button class="btn" onclick="DSP.newProject()">🆕 Nowy projekt</button>
-    <button class="btn" onclick="DSP.savePNG()">💾 Zapisz PNG</button>
-    <button class="btn" onclick="DSP.sendProject()">📧 Wyślij mailem</button>
-    <button class="btn btn-primary" onclick="DSP.addToCart()">🛒 Dodaj do koszyka</button>
-  </div>
-
-  <div class="studio-grid">
-    <!-- LEWA KOLUMNA -->
-    <aside class="panel">
-      <h3 class="panel-title">Produkt</h3>
-      <div class="product-switch">
-        <button class="chip active" data-product="tshirt_m" onclick="DSP.setProduct('tshirt_m', this)">👕 Koszulka męska</button>
-        <button class="chip" data-product="tshirt_w" onclick="DSP.setProduct('tshirt_w', this)">👚 Koszulka damska</button>
-        <button class="chip" data-product="hoodie" onclick="DSP.setProduct('hoodie', this)">🧥 Bluza</button>
-        <button class="chip" data-product="hoodie_hooded" onclick="DSP.setProduct('hoodie_hooded', this)">🧥 Bluza z kapturem</button>
-        <button class="chip" data-product="cap_beanie" onclick="DSP.setProduct('cap_beanie', this)">🧢 Czapka</button>
-        <button class="chip" data-product="cap_snapback" onclick="DSP.setProduct('cap_snapback', this)">🧢 Czapka z daszkiem</button>
-      </div>
-
-      <h3 class="panel-title">Widok</h3>
-      <div class="view-switch" id="dsp-view-switch"><!-- generowane --></div>
-
-      <h3 class="panel-title">Kolor bazowy</h3>
-      <div class="color-picker">
-        <button class="swatch" style="--c:#000" onclick="DSP.setBaseColor('#000')"></button>
-        <button class="swatch" style="--c:#fff;border:1px solid #ddd" onclick="DSP.setBaseColor('#fff')"></button>
-        <button class="swatch" style="--c:#1e293b" onclick="DSP.setBaseColor('#1e293b')"></button>
-        <button class="swatch" style="--c:#b91c1c" onclick="DSP.setBaseColor('#b91c1c')"></button>
-        <button class="swatch" style="--c:#1e3a8a" onclick="DSP.setBaseColor('#1e3a8a')"></button>
-        <button class="swatch" style="--c:#065f46" onclick="DSP.setBaseColor('#065f46')"></button>
-        <button class="swatch" style="--c:#f59e0b" onclick="DSP.setBaseColor('#f59e0b')"></button>
-        <input class="input" type="color" value="#000000" oninput="DSP.setBaseColor(this.value)">
-      </div>
-    </aside>
-
-    <!-- ŚRODEK: PODGLĄD -->
-    <main class="canvas-wrap">
-      <div id="dsp-product-area">
-        <div id="dsp-product-color"></div>
-        <img id="dsp-product-image" alt="Produkt">
-        <div id="dsp-design-layer" aria-label="obszar projektowania"></div>
-      </div>
-
-      <div class="canvas-tools">
-        <button class="btn" onclick="DSP.clearElements()">🗑 Wyczyść elementy</button>
-        <button class="btn" onclick="DSP.centerActive()">🎯 Wyśrodkuj aktywny</button>
-        <button class="btn" onclick="DSP.deleteActive()">❌ Usuń aktywny</button>
-        <button class="btn" onclick="DSP.bringToFront()">⬆ Warstwa w górę</button>
-        <button class="btn" onclick="DSP.sendToBack()">⬇ Warstwa w dół</button>
-      </div>
-    </main>
-
-    <!-- PRAWA KOLUMNA -->
-    <aside class="panel">
-      <h3 class="panel-title">Rozmiar & cena</h3>
-      <select id="dsp-size" class="input" onchange="DSP.updateSummary()">
-        <option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option>
-      </select>
-      <div class="price">Cena: <span id="dsp-price">120 zł</span></div>
-
-      <h3 class="panel-title">Dodaj tekst</h3>
-      <input id="dsp-text" class="input" type="text" placeholder="Twój napis">
-      <div class="row">
-        <select id="dsp-font" class="input">
-          <option>Montserrat</option><option>Poppins</option><option>Oswald</option>
-          <option>Anton</option><option>Bebas Neue</option><option>Playfair Display</option>
-          <option>Raleway</option><option>Roboto Mono</option><option>Abril Fatface</option>
-          <option>Lobster</option><option>Pacifico</option>
-          <option>Arial</option><option>Verdana</option><option>Times New Roman</option><option>Georgia</option>
-        </select>
-        <input id="dsp-fontsize" class="input" type="number" min="12" max="160" value="42">
-      </div>
-      <div class="row">
-        <input id="dsp-textcolor" class="input" type="color" value="#000000">
-        <button class="btn" onclick="DSP.addText()">➕ Dodaj napis</button>
-      </div>
-
-      <h3 class="panel-title">Edytuj aktywny element</h3>
-      <div class="row">
-        <label class="mini">Skala</label><input id="dsp-scale" class="input" type="range" min="0.2" max="3" step="0.05" value="1" oninput="DSP.applyTransform()">
-      </div>
-      <div class="row">
-        <label class="mini">Obrót</label><input id="dsp-rotate" class="input" type="range" min="-180" max="180" step="1" value="0" oninput="DSP.applyTransform()">
-      </div>
-      <div class="row">
-        <label class="mini">Kąt X</label><input id="dsp-x" class="input" type="range" min="0" max="100" value="50" oninput="DSP.applyPosition()">
-      </div>
-      <div class="row">
-        <label class="mini">Kąt Y</label><input id="dsp-y" class="input" type="range" min="0" max="100" value="50" oninput="DSP.applyPosition()">
-      </div>
-
-      <h3 class="panel-title">Dodaj obrazek</h3>
-      <input id="dsp-image" class="input" type="file" accept="image/*" onchange="DSP.addImage(event)">
-
-      <h3 class="panel-title">Podsumowanie</h3>
-      <div id="dsp-summary" class="summary">Brak elementów</div>
-      <div id="dsp-thumb-wrap" class="thumb-wrap hidden">
-        <p class="panel-title" style="margin-top:10px">Miniatura</p>
-        <img id="dsp-thumb" class="thumb" alt="Podgląd projektu">
-      </div>
-      <p class="hint">Po zaprojektowaniu zrób zrzut / zapisz PNG i wyślij na mail: <strong>mielniczukgrzegosz74@gmail.com</strong></p>
-    </aside>
-  </div>
+            <div class="tool-group">
+                <div class="tool-title"><i class="fas fa-edit"></i> Edycja elementów</div>
+                <div class="transform-controls">
+                    <div class="transform-input">
+                        <label for="posX">Pozycja X</label>
+                        <input type="range" id="posX" min="0" max="500" value="250" oninput="updateElementPosition()">
+                    </div>
+                    <div class="transform-input">
+                        <label for="posY">Pozycja Y</label>
+                        <input type="range" id="posY" min="0" max="400" value="200" oninput="updateElementPosition()">
+                    </div>
+                    <div class="transform-input">
+                        <label for="scale">Skala</label>
+                        <input type="range" id="scale" min="0.1" max="2" step="0.1" value="1" oninput="updateElementScale()">
+                    </div>
+                    <div class="transform-input">
+                        <label for="rotation">Obrót</label>
+                        <input type="range" id="rotation" min="0" max="360" value="0" oninput="updateElementRotation()">
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button class="nav-btn gold-bg w-full" onclick="bringToFront()"><i class="fas fa-layer-group"></i> Na wierzch</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="design-preview">
+            <h3>Podgląd Twojego projektu</h3>
+            <p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>
+        </div>
+    </div>
 </section>
         
 <!-- 🎁 Sekcja Zbiórki FINALNA -->
@@ -1831,8 +1824,8 @@ const donors = [
 ];
 let donorIndex = 0;
 function addDonor() {
-    const list = document.getElementById('donorsList');
-    const li = document.createElement('li');
+    const list = document.getElementById("donorsList");
+    const li = document.createElement("li");
     li.className = "donor-entry";
     li.textContent = `${donors[donorIndex].name} – ${donors[donorIndex].amount} zł`;
     list.prepend(li);
@@ -1849,7 +1842,7 @@ const letters = [
 ];
 let letterIndex = 0;
 function typeLetter() {
-    const letterBox = document.getElementById('childrenLetter');
+    const letterBox = document.getElementById("childrenLetter");
     letterBox.textContent = ""; // reset
     let i = 0;
     function typeWriter() {
@@ -1931,12 +1924,12 @@ const quotes = [
 
 let quoteIndex = 0;
 function changeQuote() {
-    const quoteElement = document.getElementById('dynamic-quote');
-    quoteElement.classList.add('opacity-0');
+    const quoteElement = document.getElementById("dynamic-quote");
+    quoteElement.classList.add("opacity-0");
     setTimeout(() => {
         quoteIndex = (quoteIndex + 1) % quotes.length;
         quoteElement.innerText = quotes[quoteIndex];
-        quoteElement.classList.remove('opacity-0');
+        quoteElement.classList.remove("opacity-0");
     }, 1000);
 }
 setInterval(changeQuote, 10000); // co 10 sekund
@@ -1964,13 +1957,13 @@ function addComment(event, commentListId) {
 }
 
 // ====================== NOWE ARTYKUŁY ======================
-document.getElementById('newBlogPostForm').addEventListener('submit', function(e) {
+document.getElementById("newBlogPostForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const title = document.getElementById('blogTitle').value;
-    const excerpt = document.getElementById('blogExcerpt').value;
-    const content = document.getElementById('blogContent').value;
-    const image = document.getElementById('blogImage').value || "https://via.placeholder.com/500";
+    const title = document.getElementById("blogTitle").value;
+    const excerpt = document.getElementById("blogExcerpt").value;
+    const content = document.getElementById("blogContent").value;
+    const image = document.getElementById("blogImage").value || "https://via.placeholder.com/500";
 
     const postId = "post-" + Date.now();
     const commentListId = "comments-" + Date.now();
@@ -2002,24 +1995,24 @@ document.getElementById('newBlogPostForm').addEventListener('submit', function(e
         </div>
     `;
 
-    document.getElementById('blogPostsContainer').insertAdjacentHTML('afterbegin', newPost);
+    document.getElementById("blogPostsContainer").insertAdjacentHTML("afterbegin", newPost);
     hideBlogForm();
     this.reset();
 });
 
 // ====================== ROZWIJANIE POSTÓW ======================
 function toggleReadMore(button) {
-    const fullContent = button.parentElement.querySelector('.blog-full');
-    fullContent.classList.toggle('hidden');
-    button.textContent = fullContent.classList.contains('hidden') ? 'Czytaj więcej' : 'Zwiń';
+    const fullContent = button.parentElement.querySelector(".blog-full");
+    fullContent.classList.toggle("hidden");
+    button.textContent = fullContent.classList.contains("hidden") ? "Czytaj więcej" : "Zwiń";
 }
 
 // ====================== FORMULARZ ======================
 function showBlogForm() {
-    document.getElementById('blogForm').classList.remove('hidden');
+    document.getElementById("blogForm").classList.remove("hidden");
 }
 function hideBlogForm() {
-    document.getElementById('blogForm').classList.add('hidden');
+    document.getElementById("blogForm").classList.add("hidden");
 }
 </script>
         
@@ -2139,11 +2132,11 @@ function hideBlogForm() {
   const forbiddenWords = ["idiota", "głupek", "kurwa", "chuj", "pedał", "debil"];
   
   // Obsługa forum
-  document.getElementById('forumForm').addEventListener('submit', function(e) {
+  document.getElementById("forumForm").addEventListener("submit", function(e) {
     e.preventDefault();
     
-    const user = document.getElementById('forumUser').value.trim();
-    const message = document.getElementById('forumMessage').value.trim();
+    const user = document.getElementById("forumUser").value.trim();
+    const message = document.getElementById("forumMessage").value.trim();
     
     // Sprawdzenie wulgaryzmów
     let containsBad = forbiddenWords.some(word => message.toLowerCase().includes(word));
@@ -2154,12 +2147,12 @@ function hideBlogForm() {
     }
     
     if (user && message) {
-      const postDiv = document.createElement('div');
-      postDiv.classList.add('p-4', 'bg-gray-50', 'rounded-lg', 'shadow-sm');
+      const postDiv = document.createElement("div");
+      postDiv.classList.add("p-4", "bg-gray-50", "rounded-lg", "shadow-sm");
       postDiv.innerHTML = `<p class="font-bold">${user}</p><p>${message}</p>`;
-      document.getElementById('forumPosts').prepend(postDiv);
+      document.getElementById("forumPosts").prepend(postDiv);
       
-      document.getElementById('forumForm').reset();
+      document.getElementById("forumForm").reset();
     }
   });
 </script>
@@ -2323,11 +2316,11 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             donors: [
                 '<li><i class="fas fa-heart gold-text"></i> <strong>Grupa przyjaciół</strong> - rowery i kaski</li>',
-                '<li><i class="fas fa-heart gold-text"></i> <strong>Pizzeria "Smak"</strong> - cotygodniowe dostawy pizza</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Pizzeria "Smak"</strong> - cotygodniowe dostawy pizzy</li>',
                 '<li><i class="fas fa-heart gold-text"></i> <strong>Klub sportowy</strong> - sprzęt sportowy i treningi</li>',
                 '<li><i class="fas fa-heart gold-text"></i> <strong>Anonimowy darczyńca</strong> - laptopy dla dzieci</li>'
             ],
-                      letter: `"Szanowni Państwo,<br><br>
+            letter: `"Szanowni Państwo,<br><br>
             Chcemy podzielić się naszą radością - dzięki Waszemu wsparciu mogliśmy zorganizować wspaniały wyjazd w góry. To były niezapomniane chwile!<br><br>
             Widok szczęśliwych, uśmiechniętych dzieci jest bezcenny. Dziękujemy, że pomagacie nam tworzyć takie wspomnienia.<br><br>
             Serdecznie,<br>
@@ -2338,19 +2331,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // ===== INICJALIZACJA =====
     document.addEventListener('DOMContentLoaded', function() {
         initNavigation();
+        initDesignStudio();
         updateCart();
         renderPayPalButton();
         initContactForm();
         initBlog();
         initAddToCartButtons();
+        initProductBase();
+        initDesignOptions();
         initOrderForm();
         initAdTimers();
         initCharityRotation();
-        
-        // Inicjalizacja DSP po załadowaniu DOM
-        if (typeof DSP !== 'undefined') {
-            DSP.init();
-        }
     });
 
     // ===== NAWIGACJA =====
@@ -2493,6 +2484,218 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('cartPanel').classList.toggle('open');
     }
 
+    // ===== STUDIO PROJEKTOWE =====
+    function initDesignStudio() {
+        const canvas = document.getElementById('designCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Ustawienia canvas
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Inicjalny render
+        updateDesign();
+    }
+
+    function initProductBase() {
+        const baseItems = document.querySelectorAll('.product-base-item');
+        baseItems.forEach(item => {
+            item.addEventListener('click', function() {
+                baseItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                currentDesign.baseProduct = this.getAttribute('data-base');
+                updateDesign();
+            });
+        });
+    }
+
+    function initDesignOptions() {
+        const designOptions = document.querySelectorAll('.design-option');
+        designOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                designOptions.forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+                currentDesign.designArea = this.getAttribute('data-area');
+                updateDesign();
+            });
+        });
+    }
+
+    function updateDesign() {
+        const canvas = document.getElementById('designCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Aktualizuj stan projektu
+        currentDesign.text = document.getElementById('designText').value;
+        currentDesign.fontFamily = document.getElementById('fontFamily').value;
+        currentDesign.fontSize = parseInt(document.getElementById('fontSize').value);
+        currentDesign.color = document.getElementById('textColor').value;
+        
+        // Wyczyść canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Narysuj tło - wirtualny produkt
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Narysuj obrazek jeśli istnieje
+        if (currentDesign.image) {
+            ctx.save();
+            ctx.translate(currentDesign.imageX, currentDesign.imageY);
+            ctx.rotate(currentDesign.imageRotation * Math.PI / 180);
+            ctx.scale(currentDesign.imageScale, currentDesign.imageScale);
+            ctx.drawImage(currentDesign.image, -currentDesign.image.width/2, -currentDesign.image.height/2);
+            ctx.restore();
+        }
+        
+        // Narysuj tekst
+        if (currentDesign.text) {
+            ctx.save();
+            ctx.font = `${currentDesign.fontSize}px ${currentDesign.fontFamily}`;
+            ctx.fillStyle = currentDesign.color;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.translate(currentDesign.textX, currentDesign.textY);
+            ctx.rotate(currentDesign.textRotation * Math.PI / 180);
+            ctx.scale(currentDesign.textScale, currentDesign.textScale);
+            ctx.fillText(currentDesign.text, 0, 0);
+            ctx.restore();
+        }
+        
+        // Aktualizuj podgląd
+        const preview = document.querySelector('.design-preview');
+        if (currentDesign.text || currentDesign.image) {
+            preview.innerHTML = '<h3>Podgląd Twojego projektu</h3>';
+            const img = document.createElement('img');
+            img.src = canvas.toDataURL();
+            img.style.maxWidth = '100%';
+            img.style.marginTop = '1rem';
+            img.style.border = '1px solid #ddd';
+            preview.appendChild(img);
+        }
+    }
+
+    function handleImageUpload(event) {
+        const file = document.getElementById('designImage').files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentDesign.image = new Image();
+                currentDesign.image.src = e.target.result;
+                currentDesign.image.onload = function() {
+                    currentDesign.activeElement = 'image';
+                    updateTransformControls();
+                    updateDesign();
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function updateElementPosition() {
+        if (currentDesign.activeElement === 'text') {
+            currentDesign.textX = parseInt(document.getElementById('posX').value);
+            currentDesign.textY = parseInt(document.getElementById('posY').value);
+        } else if (currentDesign.activeElement === 'image') {
+            currentDesign.imageX = parseInt(document.getElementById('posX').value);
+            currentDesign.imageY = parseInt(document.getElementById('posY').value);
+        }
+        updateDesign();
+    }
+
+    function updateElementScale() {
+        if (currentDesign.activeElement === 'text') {
+            currentDesign.textScale = parseFloat(document.getElementById('scale').value);
+        } else if (currentDesign.activeElement === 'image') {
+            currentDesign.imageScale = parseFloat(document.getElementById('scale').value);
+        }
+        updateDesign();
+    }
+
+    function updateElementRotation() {
+        if (currentDesign.activeElement === 'text') {
+            currentDesign.textRotation = parseInt(document.getElementById('rotation').value);
+        } else if (currentDesign.activeElement === 'image') {
+            currentDesign.imageRotation = parseInt(document.getElementById('rotation').value);
+        }
+        updateDesign();
+    }
+
+    function clearCanvas() {
+        const canvas = document.getElementById('designCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        currentDesign.text = '';
+        currentDesign.image = null;
+        document.getElementById('designText').value = '';
+        
+        document.querySelector('.design-preview').innerHTML = '<h3>Podgląd Twojego projektu</h3><p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>';
+        
+        showNotification('Canvas wyczyszczony');
+    }
+
+    function resetDesign() {
+        currentDesign.textX = 250;
+        currentDesign.textY = 200;
+        currentDesign.textScale = 1;
+        currentDesign.textRotation = 0;
+        currentDesign.imageX = 250;
+        currentDesign.imageY = 200;
+        currentDesign.imageScale = 1;
+        currentDesign.imageRotation = 0;
+        
+        updateTransformControls();
+        updateDesign();
+        showNotification('Transformacje zresetowane');
+    }
+
+    function updateTransformControls() {
+        if (currentDesign.activeElement === 'text') {
+            document.getElementById('posX').value = currentDesign.textX;
+            document.getElementById('posY').value = currentDesign.textY;
+            document.getElementById('scale').value = currentDesign.textScale;
+            document.getElementById('rotation').value = currentDesign.textRotation;
+        } else if (currentDesign.activeElement === 'image') {
+            document.getElementById('posX').value = currentDesign.imageX;
+            document.getElementById('posY').value = currentDesign.imageY;
+            document.getElementById('scale').value = currentDesign.imageScale;
+            document.getElementById('rotation').value = currentDesign.imageRotation;
+        }
+    }
+
+    function addToCartFromDesign() {
+        const productType = document.getElementById('productType');
+        const productSize = document.getElementById('productSize');
+        
+        const prices = {
+            'tshirt': 120,
+            'hoodie': 200,
+            'cap': 99
+        };
+        
+        const price = prices[productType.value] || 120;
+        const canvas = document.getElementById('designCanvas');
+        
+        addToCart(
+            `Projekt: ${currentDesign.text || 'Niestandardowy'} (${productSize.value})`,
+            price,
+            canvas.toDataURL(),
+            productSize.value
+        );
+    }
+
+    function saveDesign() {
+        const canvas = document.getElementById('designCanvas');
+        const link = document.createElement('a');
+        link.download = 'adelbertus-design.png';
+        link.href = canvas.toDataURL();
+        link.click();
+        showNotification('✅ Projekt zapisany');
+    }
+
     // ===== PAYPAL =====
     function renderPayPalButton() {
         const container = document.getElementById('paypal-container');
@@ -2506,6 +2709,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ===== EMAIL =====
+    function sendDesignToEmail() {
+        const canvas = document.getElementById('designCanvas');
+        const imageData = canvas.toDataURL();
+        
+        const subject = 'Mój projekt z AdelbertusShop';
+        const body = `
+            Cześć! Oto mój projekt:\n
+            Tekst: ${currentDesign.text}\n
+            Rozmiar czcionki: ${currentDesign.fontSize}\n
+            Kolor: ${currentDesign.color}\n
+            Typ produktu: ${document.getElementById('productType').options[document.getElementById('productType').selectedIndex].text}\n
+            Rozmiar: ${document.getElementById('productSize').value}\n
+            Obszar: ${currentDesign.designArea}\n\n
+            
+            Obraz projektu (w załączniku):\n
+            Proszę o kontakt w sprawie realizacji zamówienia.
+        `;
+        
+        window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+        
+        showNotification('📧 Otwieranie klienta pocztowego...');
+    }
+
     function sendOrderEmail() {
         let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
         
@@ -2834,7 +3060,7 @@ document.addEventListener("DOMContentLoaded", () => {
         notification.style.backgroundColor = '#d4af37';
         notification.style.color = 'black';
         notification.style.padding = '12px 24px';
-        notification.style.borrow-radius = '30px';
+        notification.style.borderRadius = '30px';
         notification.style.zIndex = '1000';
         notification.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
         notification.style.fontWeight = 'bold';
@@ -2851,6 +3077,12 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addToCart = addToCart;
     window.removeFromCart = removeFromCart;
     window.toggleCart = toggleCart;
+    window.updateDesign = updateDesign;
+    window.clearCanvas = clearCanvas;
+    window.resetDesign = resetDesign;
+    window.addToCartFromDesign = addToCartFromDesign;
+    window.sendDesignToEmail = sendDesignToEmail;
+    window.saveDesign = saveDesign;
     window.toggleReadMore = toggleReadMore;
     window.showBlogForm = showBlogForm;
     window.hideBlogForm = hideBlogForm;
@@ -2859,496 +3091,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.sendOrderEmail = sendOrderEmail;
     window.sendOrderWhatsApp = sendOrderWhatsApp;
 </script>
-
-<!-- ======== LOGIKA ZAPROJEKTUJ PRO ======== -->
-<script>
-/* ======== LOGIKA ZAPROJEKTUJ PRO ======== */
-const DSP = (() => {
-  // Konfiguracja produktów i cen
-  const priceMap = { tshirt_m:120, tshirt_w:120, hoodie:200, hoodie_hooded:220, cap_beanie:99, cap_snapback:119 };
-
-  const productImages = {
-    tshirt_m: {
-      front: "https://i.ibb.co/C3sQZbzW/Screenshot-2025-09-03-21-34-27.png",
-      back:  "https://i.ibb.co/5hbqdShw/Screenshot-2025-09-03-21-35-05.png",
-      right: "https://i.ibb.co/q3jhSqbd/Screenshot-2025-09-03-21-35-26.png",
-      left:  "https://i.ibb.co/Q7JX8rc3/Screenshot-2025-09-03-21-35-44.png",
-    },
-    tshirt_w: {
-      front: "https://i.ibb.co/7x01YyxW/Screenshot-2025-09-03-21-39-40.png",
-      back:  "https://i.ibb.co/4RPsF04T/Screenshot-2025-09-03-21-39-53.png",
-      right: "https://i.ibb.co/Ld5svrZZ/Screenshot-2025-09-03-21-40-20.png",
-    },
-       hoodie: {
-      front: "https://i.ibb.co/cSDrRTQb/Screenshot-2025-09-03-21-47-31.png",
-      back:  "https://i.ibb.co/ynWTdTxB/Screenshot-2025-09-03-21-47-41.png",
-      left:  "https://i.ibb.co/4nmpTKWQ/Screenshot-2025-09-03-21-47-55.png",
-      right: "https://i.ibb.co/d02W6bmx/Screenshot-2025-09-03-21-48-07.png",
-    },
-    hoodie_hooded: {
-      front: "https://i.ibb.co/G4Sk06d8/Screenshot-2025-09-03-21-49-47.png",
-      back:  "https://i.ibb.co/B5rQ3wgY/Screenshot-2025-09-03-21-49-59.png",
-      left:  "https://i.ibb.co/ZzpvCYWd/Screenshot-2025-09-03-21-50-12.png",
-      right: "https://i.ibb.co/rK8hDs8N/Screenshot-2025-09-03-21-50-20.png",
-    },
-    cap_beanie: {
-      front: "https://i.ibb.co/4ZgGCLKF/Screenshot-2025-09-03-21-42-58.png",
-    },
-    cap_snapback: {
-      front: "https://i.ibb.co/KcH6r5VK/Screenshot-2025-09-03-21-41-23.png",
-      back:  "https://i.ibb.co/RpzhjNZf/Screenshot-2025-09-03-21-41-57.png",
-      left:  "https://i.ibb.co/JWsPTZTm/Screenshot-2025-09-03-21-42-12.png",
-      right: "https://i.ibb.co/1twx95vM/Screenshot-2025-09-03-21-42-23.png",
-    }
-  };
-
-  // Stan
-  let currentProduct = 'tshirt_m';
-  let currentView = 'front';
-  let baseColor = '#000000';
-  let activeEl = null;
-
-  // Elementy DOM
-  const $img = () => document.getElementById('dsp-product-image');
-  const $layer = () => document.getElementById('dsp-design-layer');
-  const $color = () => document.getElementById('dsp-product-color');
-  const $summary = () => document.getElementById('dsp-summary');
-  const $thumb = () => document.getElementById('dsp-thumb');
-  const $thumbWrap = () => document.getElementById('dsp-thumb-wrap');
-  const $viewSwitch = () => document.getElementById('dsp-view-switch');
-
-  // Helpers
-  const labelProduct = p => ({
-    tshirt_m:'Koszulka męska', tshirt_w:'Koszulka damska',
-    hoodie:'Bluza', hoodie_hooded:'Bluza z kapturem',
-    cap_beanie:'Czapka', cap_snapback:'Czapka z daszkiem'
-  }[p] || p);
-  const labelView = v => ({front:'Przód', back:'Tył', left:'Lewy bok', right:'Prawy bok'}[v]||v);
-
-  function init() {
-    setProduct('tshirt_m', document.querySelector('.chip[data-product="tshirt_m"]'));
-    setBaseColor('#000');
-    document.getElementById('dsp-size').value = 'M';
-    updatePrice();
-    updateSummary();
-    mountLayerClick();
-  }
-
-  function setProduct(p, btn) {
-    currentProduct = p;
-    document.querySelectorAll('.product-switch .chip').forEach(b=>b.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-
-    // Odśwież dostępne widoki
-    $viewSwitch().innerHTML = '';
-    const views = Object.keys(productImages[p]);
-    views.forEach((v, i) => {
-      const b = document.createElement('button');
-      b.className = 'chip' + (i===0?' active':'');
-      b.textContent = labelView(v);
-      b.onclick = ()=> setView(v, b);
-      $viewSwitch().appendChild(b);
-    });
-    setView(views[0], $viewSwitch().querySelector('.chip'));
-    updatePrice();
-    updateSummary();
-  }
-
-  function setView(v, btn){
-    currentView = v;
-    document.querySelectorAll('#dsp-view-switch .chip').forEach(b=>b.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-    const src = productImages[currentProduct][v];
-    if (src) $img().src = src;
-    updateSummary();
-  }
-
-  function setBaseColor(c){
-    baseColor = c;
-    $color().style.background = c;
-    updateSummary();
-  }
-
-  function updatePrice(){
-    document.getElementById('dsp-price').textContent = priceMap[currentProduct] + ' zł';
-  }
-
-  // ----- Elementy projektu -----
-  function addText(){
-    const text = document.getElementById('dsp-text').value.trim();
-    if (!text) return;
-    const font = document.getElementById('dsp-font').value;
-    const size = parseInt(document.getElementById('dsp-fontsize').value) || 42;
-    const color = document.getElementById('dsp-textcolor').value;
-
-    const el = document.createElement('div');
-    el.className = 'draggable text';
-    el.style.setProperty('--r','0deg');
-    el.style.setProperty('--s','1');
-    el.dataset.type = 'text';
-    el.dataset.font = font;
-    el.dataset.size = size;
-    el.dataset.color = color;
-    el.dataset.x = 50;
-    el.dataset.y = 50;
-
-    const inner = document.createElement('div');
-    inner.className = 'inner';
-    inner.textContent = text;
-    inner.style.fontFamily = font + ', sans-serif';
-    inner.style.fontSize = size + 'px';
-    inner.style.color = color;
-    el.appendChild(inner);
-
-    mountDraggable(el);
-    $layer().appendChild(el);
-    setActive(el);
-    document.getElementById('dsp-text').value = '';
-    updateSummary();
-  }
-
-  function addImage(e){
-    const file = e.target.files[0];
-    if (!file) return;
-    const url = URL.createObjectURL(file);
-
-    const el = document.createElement('div');
-    el.className = 'draggable image';
-    el.style.setProperty('--r','0deg');
-    el.style.setProperty('--s','1');
-    el.dataset.type = 'image';
-    el.dataset.src = url;
-    el.dataset.x = 50;
-    el.dataset.y = 50;
-
-    const inner = document.createElement('div');
-    inner.className = 'inner';
-    const img = document.createElement('img');
-    img.src = url;
-    img.style.maxWidth = '220px';
-    img.style.maxHeight = '220px';
-    img.style.display = 'block';
-    inner.appendChild(img);
-    el.appendChild(inner);
-
-    mountDraggable(el);
-    $layer().appendChild(el);
-    setActive(el);
-    e.target.value = '';
-    updateSummary();
-  }
-
-  function clearElements(){
-    $layer().innerHTML = '';
-    activeEl = null;
-    updateSummary();
-    hideThumb();
-  }
-
-  function setActive(el){
-    document.querySelectorAll('#dsp-design-layer .draggable').forEach(n=>n.classList.remove('active'));
-    activeEl = el;
-    if (el){
-      el.classList.add('active');
-      // Załaduj kontrolki pozycji/transformacji
-      document.getElementById('dsp-scale').value = parseFloat(el.style.getPropertyValue('--s')) || 1;
-      const r = parseFloat((el.style.getPropertyValue('--r')||'0deg').replace('deg','')) || 0;
-      document.getElementById('dsp-rotate').value = r;
-      document.getElementById('dsp-x').value = el.dataset.x || 50;
-      document.getElementById('dsp-y').value = el.dataset.y || 50;
-    }
-  }
-
-  function centerActive(){
-    if (!activeEl) return;
-    activeEl.dataset.x = 50;
-    activeEl.dataset.y = 50;
-    applyPosition();
-  }
-
-  function deleteActive(){
-    if (!activeEl) return;
-    activeEl.remove();
-    activeEl = null;
-    updateSummary();
-  }
-
-  function bringToFront(){
-    if (!activeEl) return;
-    $layer().appendChild(activeEl);
-  }
-  function sendToBack(){
-    if (!activeEl) return;
-    $layer().insertBefore(activeEl, $layer().firstChild);
-  }
-
-  // Dragging
-  function mountDraggable(el){
-    el.addEventListener('pointerdown', startDrag);
-    el.addEventListener('click', ()=> setActive(el));
-  }
-
-  let dragging = false, start = {x:0,y:0}, startXY={x:50,y:50};
-  function startDrag(e){
-    setActive(this);
-    dragging = true;
-    this.setPointerCapture(e.pointerId);
-    start.x = e.clientX; start.y = e.clientY;
-    startXY.x = parseFloat(this.dataset.x)||50;
-    startXY.y = parseFloat(this.dataset.y)||50;
-    this.addEventListener('pointermove', onDrag);
-    this.addEventListener('pointerup', stopDrag, {once:true});
-  }
-  function onDrag(e){
-    if (!dragging || !activeEl) return;
-    const area = document.getElementById('dsp-product-area').getBoundingClientRect();
-    const dx = (e.clientX - start.x) / area.width * 100;
-    const dy = (e.clientY - start.y) / area.height * 100;
-    activeEl.dataset.x = clamp(startXY.x + dx, 0, 100);
-    activeEl.dataset.y = clamp(startXY.y + dy, 0, 100);
-    updateElTransform(activeEl);
-    syncSliders();
-  }
-  function stopDrag(e){
-    dragging = false;
-    this.releasePointerCapture(e.pointerId);
-    this.removeEventListener('pointermove', onDrag);
-    updateSummary();
-  }
-
-  function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
-  function syncSliders(){
-    document.getElementById('dsp-x').value = activeEl ? activeEl.dataset.x : 50;
-    document.getElementById('dsp-y').value = activeEl ? activeEl.dataset.y : 50;
-  }
-
-  function applyTransform(){
-    if (!activeEl) return;
-    const s = parseFloat(document.getElementById('dsp-scale').value)||1;
-    const r = parseFloat(document.getElementById('dsp-rotate').value)||0;
-    activeEl.style.setProperty('--s', s);
-    activeEl.style.setProperty('--r', r + 'deg');
-    updateSummary();
-  }
-
-  function applyPosition(){
-    if (!activeEl) return;
-    const x = parseFloat(document.getElementById('dsp-x').value)||50;
-    const y = parseFloat(document.getElementById('dsp-y').value)||50;
-    activeEl.dataset.x = x; activeEl.dataset.y = y;
-    updateElTransform(activeEl);
-    updateSummary();
-  }
-
-  function updateElTransform(el){
-    const x = parseFloat(el.dataset.x)||50;
-    const y = parseFloat(el.dataset.y)||50;
-    el.style.left = x + '%';
-    el.style.top  = y + '%';
-  }
-
-  function mountLayerClick(){
-    $layer().addEventListener('click', (e)=>{
-      if (e.target === $layer()) setActive(null);
-    });
-  }
-
-  // ----- Podsumowanie + Miniatura -----
-  function updateSummary(){
-    const size = document.getElementById('dsp-size').value;
-    let lines = [];
-    lines.push(`Produkt: ${labelProduct(currentProduct)} | Widok: ${labelView(currentView)} | Rozmiar: ${size}`);
-    lines.push(`Kolor bazowy: ${baseColor}`);
-    const els = Array.from($layer().children);
-    if (els.length === 0){
-      lines.push('Elementy: brak');
-    } else {
-      els.forEach((el, i)=>{
-        const x = Math.round(parseFloat(el.dataset.x)||50);
-        const y = Math.round(parseFloat(el.dataset.y)||50);
-        const s = parseFloat(el.style.getPropertyValue('--s'))||1;
-        const r = parseFloat((el.style.getPropertyValue('--r')||'0deg').replace('deg',''))||0;
-        if (el.dataset.type === 'text'){
-          const inner = el.querySelector('.inner');
-          lines.push(`${i+1}. Tekst "${inner.textContent}" (font:${el.dataset.font}, size:${el.dataset.size}px, color:${el.dataset.color}) @ ${x}%,${y}% | scale:${s.toFixed(2)} rot:${r}°`);
-        } else {
-          const img = el.querySelector('img');
-          lines.push(`${i+1}. Obraz (${img.naturalWidth}x${img.naturalHeight}) @ ${x}%,${y}% | scale:${s.toFixed(2)} rot:${r}°`);
-        }
-      });
-    }
-    $summary().textContent = lines.join('\n');
-  }
-
-  function hideThumb(){
-    $thumbWrap().classList.add('hidden');
-  }
-  function showThumb(url){
-    $thumb().src = url;
-    $thumbWrap().classList.remove('hidden');
-  }
-
-  // Render PNG do pobrania + miniatura
-  function savePNG(){
-    renderToCanvas().then(({canvas, url})=>{
-      // miniatura
-      showThumb(url);
-      // pobierz
-      const a = document.createElement('a');
-      a.download = `projekt-${currentProduct}-${currentView}.png`;
-      a.href = url;
-      a.click();
-    }).catch(err=>{
-      console.error(err);
-      alert('Nie udało się wygenerować PNG. Upewnij się, że obrazy się załadowały.');
-    });
-  }
-
-  // Rysowanie na canvasie: kolor, mockup, elementy (tekst+obraz, z obrotem/skalą)
-  async function renderToCanvas(){
-    const area = document.getElementById('dsp-product-area');
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-
-    const w = area.clientWidth;
-    const h = area.clientHeight;
-    canvas.width = w; canvas.height = h;
-
-    // tło kolor
-    ctx.fillStyle = baseColor;
-    ctx.fillRect(0,0,w,h);
-
-    // rysuj mockup
-    const baseImg = $img();
-    await ensureLoaded(baseImg);
-    // dopasowanie contain
-    const imgW = baseImg.naturalWidth, imgH = baseImg.naturalHeight;
-    const imgAspect = imgW/imgH, areaAspect = w/h;
-    let dw, dh, dx, dy;
-    if (imgAspect > areaAspect) { dw = w; dh = w/imgAspect; dx = 0; dy = (h-dh)/2; }
-    else { dh = h; dw = h*imgAspect; dx = (w-dw)/2; dy = 0; }
-    ctx.drawImage(baseImg, dx, dy, dw, dh);
-
-    // elementy (kolejność DOM)
-    const els = Array.from($layer().children);
-    for (const el of els){
-      const xPct = parseFloat(el.dataset.x)||50;
-      const yPct = parseFloat(el.dataset.y)||50;
-      const x = xPct/100 * w;
-      const y = yPct/100 * h;
-      const scale = parseFloat(el.style.getPropertyValue('--s'))||1;
-      const rot = (parseFloat((el.style.getPropertyValue('--r')||'0deg').replace('deg',''))||0) * Math.PI/180;
-
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(rot);
-      ctx.scale(scale, scale);
-
-      if (el.dataset.type === 'text'){
-        const font = el.dataset.size + 'px ' + (el.dataset.font || 'Montserrat');
-        ctx.font = font;
-        ctx.fillStyle = el.dataset.color || '#000';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        const inner = el.querySelector('.inner');
-        ctx.fillText(inner.textContent, 0, 0);
-      } else {
-        const img = el.querySelector('img');
-        await ensureLoaded(img);
-        const maxW = 220, maxH = 220; // zgodne z DOM
-        const ratio = Math.min(maxW/img.naturalWidth, maxH/img.naturalHeight);
-        const drawW = img.naturalWidth * ratio;
-        const drawH = img.naturalHeight * ratio;
-        ctx.drawImage(img, -drawW/2, -drawH/2, drawW, drawH);
-      }
-      ctx.restore();
-    }
-
-    const url = canvas.toDataURL('image/png');
-    return {canvas, url};
-  }
-
-  function ensureLoaded(img){
-    return new Promise((res, rej)=>{
-      if (img.complete && img.naturalWidth) return res();
-      img.onload = ()=>res();
-      img.onerror = ()=>rej(new Error('image load error'));
-    });
-  }
-
-  // ----- Akcje główne -----
-  function newProject(){
-    clearElements();
-    document.getElementById('dsp-text').value='';
-    document.getElementById('dsp-fontsize').value='42';
-    document.getElementById('dsp-textcolor').value='#000000';
-    setBaseColor('#000000');
-    updateSummary();
-  }
-
-  function sendProject(){
-    const body = encodeURIComponent($summary().textContent + '\n\n(Dołącz PNG: użyj "Zapisz PNG")');
-    window.location.href = `mailto:mielniczukgrzegosz74@gmail.com?subject=Projekt%20ze%20studia&body=${body}`;
-  }
-
-  function addToCart(){
-    try{
-      const size = document.getElementById('dsp-size').value;
-      const els = Array.from($layer().children).map(el=>{
-        const common = {
-          x: parseFloat(el.dataset.x)||50,
-          y: parseFloat(el.dataset.y)||50,
-          scale: parseFloat(el.style.getPropertyValue('--s'))||1,
-          rotate: parseFloat((el.style.getPropertyValue('--r')||'0deg').replace('deg',''))||0,
-        };
-        if (el.dataset.type==='text'){
-          return {...common, type:'text', text: el.querySelector('.inner').textContent, font: el.dataset.font, size: parseInt(el.dataset.size)||42, color: el.dataset.color};
-        } else {
-          return {...common, type:'image', src: el.dataset.src};
-        }
-      });
-
-      const item = {
-        product: currentProduct,
-        productLabel: labelProduct(currentProduct),
-        view: currentView,
-        size,
-        color: baseColor,
-        price: priceMap[currentProduct],
-        elements: els,
-        time: new Date().toISOString()
-      };
-
-      const cart = JSON.parse(localStorage.getItem('designCart')||'[]');
-      cart.push(item);
-      localStorage.setItem('designCart', JSON.stringify(cart));
-      alert('✅ Projekt dodany do koszyka!');
-    }catch(e){
-      console.error(e);
-      alert('❌ Błąd dodawania do koszyka.');
-    }
-  }
-
-  // API kontroli z suwaków
-  function applyTransformPublic(){ applyTransform(); }
-  function applyPositionPublic(){ applyPosition(); }
-
-  // Inicjalizacja
-  document.addEventListener('DOMContentLoaded', init);
-
-  return {
-    init,
-    setProduct, setBaseColor, setView,
-    addText, addImage, clearElements, centerActive, deleteActive,
-    bringToFront, sendToBack, applyTransform: applyTransformPublic, applyPosition: applyPositionPublic,
-    savePNG, newProject, sendProject, addToCart, updateSummary
-  };
-})();
-</script>
-<!-- ============ /ZAPROJEKTUJ PRO ============ -->
 </body>
 </html>
-
+      
 
 
 
