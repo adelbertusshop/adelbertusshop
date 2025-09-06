@@ -1581,141 +1581,891 @@
     <p id="status" class="mt-4 text-white"></p>
 </section>
 </section>
+<!-- ============== ZAPROJEKTUJ PRO (FINAL) ============== -->
+<section id="zaprojektuj-pro" class="design-studio">
+  <div class="section-title">
+    <h2>Zaprojektuj swój produkt</h2>
+    <p>Wybierz produkt, widok i stwórz własny nadruk</p>
+  </div>
 
-<!-- Studio projektowe - ZMODYFIKOWANE -->
-<section id="design">
-    <div class="section-title">
-        <h2>Studio Projektowe</h2>
-        <p>Stwórz swój unikalny produkt</p>
-    </div>
-    
-    <div class="design-studio">
-        <!-- Przyciski po bokach -->
-        <div class="side-buttons left">
-            <button class="side-button" onclick="updateDesign()" title="Podgląd">
-                <i class="fas fa-sync"></i>
-            </button>
-            <button class="side-button" onclick="addToCartFromDesign()" title="Dodaj do koszyka">
-                <i class="fas fa-cart-plus"></i>
-            </button>
-        </div>
-        
-        <div class="side-buttons right">
-            <button class="side-button" onclick="sendDesignToEmail()" title="Wyślij projekt mailem">
-                <i class="fas fa-envelope"></i>
-            </button>
-            <button class="side-button" onclick="saveDesign()" title="Zapisz projekt">
-                <i class="fas fa-download"></i>
-            </button>
-        </div>
-        
-        <div class="product-base">
-            <div class="product-base-item active" data-base="tshirt">
-                <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka">
-                <p>Koszulka</p>
-            </div>
-            <div class="product-base-item" data-base="hoodie">
-                <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza">
-                <p>Bluza</p>
-            </div>
-            <div class="product-base-item" data-base="cap">
-                <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapka">
-                <p>Czapka</p>
-            </div>
-        </div>
-        
-        <div class="design-options">
-            <div class="design-option active" data-area="front">Przód</div>
-            <div class="design-option" data-area="back">Tył</div>
-            <div class="design-option" data-area="sleeves">Rękawy</div>
-        </div>
-        
-        <div class="canvas-container">
-            <canvas id="designCanvas" width="500" height="400"></canvas>
-            <div class="canvas-controls">
-                <button class="nav-btn" onclick="clearCanvas()"><i class="fas fa-trash"></i> Wyczyść</button>
-                <button class="nav-btn" onclick="resetDesign()"><i class="fas fa-redo"></i> Resetuj</button>
-            </div>
-        </div>
-        
-        <div class="design-tools">
-            <div class="tool-group">
-                <div class="tool-title"><i class="fas fa-font"></i> Tekst</div>
-                <input type="text" id="designText" placeholder="Wpisz swój tekst" class="w-full p-3 border rounded mb-3" oninput="updateDesign()">
-                
-                <div class="flex gap-3 mb-3">
-                    <select id="fontFamily" class="flex-1 p-2 border rounded" onchange="updateDesign()">
-                        <option value="Arial">Arial</option>
-                        <option value="Times New Roman">Times New Roman</option>
-                        <option value="Courier New">Courier New</option>
-                        <option value="Impact">Impact</option>
-                        <option value="Comic Sans MS">Comic Sans</option>
-                        <option value="Georgia">Georgia</option>
-                        <option value="Verdana">Verdana</option>
-                        <option value="Palatino">Palatino</option>
-                        <option value="Garamond">Garamond</option>
-                        <option value="Brush Script MT">Brush Script</option>
-                    </select>
-                    
-                    <input type="number" id="fontSize" value="36" min="10" max="100" class="w-20 p-2 border rounded" oninput="updateDesign()">
-                </div>
-                
-                <input type="color" id="textColor" value="#000000" class="w-full h-10 mb-3" oninput="updateDesign()">
-            </div>
-            
-            <div class="tool-group">
-                <div class="tool-title"><i class="fas fa-palette"></i> Opcje produktu</div>
-                
-                <select id="productType" class="w-full p-3 border rounded mb-3">
-                    <option value="tshirt">Koszulka (120 zł)</option>
-                    <option value="hoodie">Bluza (200 zł)</option>
-                    <option value="cap">Czapka (99 zł)</option>
-                </select>
-                
-                <select id="productSize" class="w-full p-3 border rounded mb-3">
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                </select>
-                
-                <input type="file" id="designImage" accept="image/*" class="w-full mb-3" onchange="handleImageUpload()">
-                <button class="nav-btn gold-bg w-full" onclick="document.getElementById('designImage').click()"><i class="fas fa-upload"></i> Wybierz obraz</button>
-            </div>
+  <!-- AKCJE GÓRNE -->
+  <div class="top-bar">
+    <button class="btn" id="new-project-btn">🆕 Nowy projekt</button>
+    <button class="btn" id="save-png-btn">💾 Zapisz PNG</button>
+    <button class="btn" id="send-email-btn">📧 Wyślij mailem</button>
+    <button class="btn btn-primary" id="add-to-cart-btn">🛒 Dodaj do koszyka</button>
+  </div>
 
-            <div class="tool-group">
-                <div class="tool-title"><i class="fas fa-edit"></i> Edycja elementów</div>
-                <div class="transform-controls">
-                    <div class="transform-input">
-                        <label for="posX">Pozycja X</label>
-                        <input type="range" id="posX" min="0" max="500" value="250" oninput="updateElementPosition()">
-                    </div>
-                    <div class="transform-input">
-                        <label for="posY">Pozycja Y</label>
-                        <input type="range" id="posY" min="0" max="400" value="200" oninput="updateElementPosition()">
-                    </div>
-                    <div class="transform-input">
-                        <label for="scale">Skala</label>
-                        <input type="range" id="scale" min="0.1" max="2" step="0.1" value="1" oninput="updateElementScale()">
-                    </div>
-                    <div class="transform-input">
-                        <label for="rotation">Obrót</label>
-                        <input type="range" id="rotation" min="0" max="360" value="0" oninput="updateElementRotation()">
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <button class="nav-btn gold-bg w-full" onclick="bringToFront()"><i class="fas fa-layer-group"></i> Na wierzch</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="design-preview">
-            <h3>Podgląd Twojego projektu</h3>
-            <p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>
-        </div>
-    </div>
+  <div class="studio-grid">
+    <!-- LEWA KOLUMNA -->
+    <aside class="panel">
+      <h3 class="panel-title">Produkt</h3>
+      <div class="product-switch">
+        <button class="chip active" data-product="tshirt_m">👕 Koszulka męska</button>
+        <button class="chip" data-product="tshirt_w">👚 Koszulka damska</button>
+        <button class="chip" data-product="hoodie">🧥 Bluza</button>
+        <button class="chip" data-product="hoodie_hooded">🧥 Bluza z kapturem</button>
+        <button class="chip" data-product="cap_beanie">🧢 Czapka</button>
+        <button class="chip" data-product="cap_snapback">🧢 Czapka z daszkiem</button>
+      </div>
+
+      <h3 class="panel-title">Widok</h3>
+      <div class="view-switch" id="dsp-view-switch">
+        <button class="chip active" data-view="front">Przód</button>
+      </div>
+
+      <h3 class="panel-title">Kolor bazowy</h3>
+      <div class="color-picker">
+        <button class="swatch" style="background:#000" data-color="#000000"></button>
+        <button class="swatch" style="background:#fff;border:1px solid #ddd" data-color="#ffffff"></button>
+        <button class="swatch" style="background:#1e293b" data-color="#1e293b"></button>
+        <button class="swatch" style="background:#b91c1c" data-color="#b91c1c"></button>
+        <button class="swatch" style="background:#1e3a8a" data-color="#1e3a8a"></button>
+        <button class="swatch" style="background:#065f46" data-color="#065f46"></button>
+        <button class="swatch" style="background:#f59e0b" data-color="#f59e0b"></button>
+        <input class="input" type="color" id="color-picker-input" value="#000000">
+      </div>
+    </aside>
+
+    <!-- ŚRODEK: PODGLĄD -->
+    <main class="canvas-wrap">
+      <div id="dsp-product-area">
+        <div id="dsp-product-color"></div>
+        <img id="dsp-product-image" alt="Produkt" src="https://i.ibb.co/C3sQZbzW/Screenshot-2025-09-03-21-34-27.png">
+        <div id="dsp-design-layer" aria-label="obszar projektowania"></div>
+      </div>
+
+      <div class="canvas-tools">
+        <button class="btn" id="clear-elements-btn">🗑 Wyczyść elementy</button>
+        <button class="btn" id="center-active-btn">🎯 Wyśrodkuj aktywny</button>
+        <button class="btn" id="delete-active-btn">❌ Usuń aktywny</button>
+        <button class="btn" id="bring-to-front-btn">⬆ Warstwa w górę</button>
+        <button class="btn" id="send-to-back-btn">⬇ Warstwa w dół</button>
+      </div>
+    </main>
+
+    <!-- PRAWA KOLUMNA -->
+    <aside class="panel">
+      <h3 class="panel-title">Rozmiar & cena</h3>
+      <select id="dsp-size" class="input">
+        <option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option>
+      </select>
+      <div class="price">Cena: <span id="dsp-price">120 zł</span></div>
+
+      <h3 class="panel-title">Dodaj tekst</h3>
+      <input id="dsp-text" class="input" type="text" placeholder="Twój napis">
+      <div class="row">
+        <select id="dsp-font" class="input">
+          <option>Montserrat</option><option>Poppins</option><option>Oswald</option>
+          <option>Anton</option><option>Bebas Neue</option><option>Playfair Display</option>
+          <option>Raleway</option><option>Roboto Mono</option><option>Abril Fatface</option>
+          <option>Lobster</option><option>Pacifico</option>
+          <option>Arial</option><option>Verdana</option><option>Times New Roman</option><option>Georgia</option>
+        </select>
+        <input id="dsp-fontsize" class="input" type="number" min="12" max="160" value="42">
+      </div>
+      <div class="row">
+        <input id="dsp-textcolor" class="input" type="color" value="#000000">
+        <button class="btn" id="add-text-btn">➕ Dodaj napis</button>
+      </div>
+
+      <h3 class="panel-title">Edytuj aktywny element</h3>
+      <div class="row">
+        <label class="mini">Skala</label><input id="dsp-scale" class="input" type="range" min="0.2" max="3" step="0.05" value="1">
+      </div>
+      <div class="row">
+        <label class="mini">Obrót</label><input id="dsp-rotate" class="input" type="range" min="-180" max="180" step="1" value="0">
+      </div>
+      <div class="row">
+        <label class="mini">Kąt X</label><input id="dsp-x" class="input" type="range" min="0" max="100" value="50">
+      </div>
+      <div class="row">
+        <label class="mini">Kąt Y</label><input id="dsp-y" class="input" type="range" min="0" max="100" value="50">
+      </div>
+
+      <h3 class="panel-title">Dodaj obrazek</h3>
+      <input id="dsp-image" class="input" type="file" accept="image/*">
+
+      <h3 class="panel-title">Podsumowanie</h3>
+      <div id="dsp-summary" class="summary">Brak elementów</div>
+      <div id="dsp-thumb-wrap" class="thumb-wrap hidden">
+        <p class="panel-title" style="margin-top:10px">Miniatura</p>
+        <img id="dsp-thumb" class="thumb" alt="Podgląd projektu">
+      </div>
+      <p class="hint">Po zaprojektowaniu zrób zrzut / zapisz PNG i wyślij na mail: <strong>mielniczukgrzegosz74@gmail.com</strong></p>
+    </aside>
+  </div>
 </section>
+
+<style>
+/* ==== Layout & Styl PRO ==== */
+#zaprojektuj-pro.design-studio {
+  padding: 20px;
+  background: #0b0c10;
+  color: #e5e7eb;
+  display: block !important;
+}
+#zaprojektuj-pro .section-title h2 {
+  font-size: 28px;
+  margin: 0 0 4px;
+  color: #e5e7eb;
+  text-align: center;
+}
+#zaprojektuj-pro .section-title p {
+  color: #9ca3af;
+  margin: 0 0 16px;
+  text-align: center;
+}
+#zaprojektuj-pro .top-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  justify-content: center;
+}
+#zaprojektuj-pro .studio-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr 300px;
+  gap: 16px;
+}
+#zaprojektuj-pro .panel {
+  background: #111318;
+  border: 1px solid #1f2430;
+  border-radius: 12px;
+  padding: 14px;
+}
+#zaprojektuj-pro .panel-title {
+  margin: 10px 0 8px;
+  font-size: 13px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+#zaprojektuj-pro .canvas-wrap {
+  background: #111318;
+  border: 1px solid #1f2430;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Obszar produktu */
+#dsp-product-area {
+  position: relative;
+  width: min(560px, 92vw);
+  aspect-ratio: 1/1.05;
+  background: #0d0f14;
+  border: 1px dashed #2b3240;
+  border-radius: 12px;
+  overflow: hidden;
+}
+#dsp-product-color {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: .22;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+#dsp-product-image {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+#dsp-design-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+/* UI */
+#zaprojektuj-pro .btn {
+  background: #1f2937;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#zaprojektuj-pro .btn:hover {
+  background: #2a3547;
+}
+#zaprojektuj-pro .btn-primary {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #1b1300;
+}
+#zaprojektuj-pro .btn-primary:hover {
+  background: #ffb31f;
+}
+#zaprojektuj-pro .input {
+  background: #0f1116;
+  color: #e5e7eb;
+  border: 1px solid #2b3240;
+  border-radius: 8px;
+  padding: 8px;
+  width: 100%;
+}
+#zaprojektuj-pro .row {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0;
+  align-items: center;
+}
+#zaprojektuj-pro .mini {
+  width: 64px;
+  color: #9ca3af;
+  font-size: 12px;
+}
+#zaprojektuj-pro .product-switch, #zaprojektuj-pro .view-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+#zaprojektuj-pro .chip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #2b3240;
+  background: #0f1116;
+  color: #d1d5db;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#zaprojektuj-pro .chip.active {
+  border-color: #f59e0b;
+  color: #ffd37a;
+  background: #1c1405;
+}
+#zaprojektuj-pro .color-picker {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+#zaprojektuj-pro .swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+#zaprojektuj-pro .price {
+  margin: 8px 0 12px;
+  font-weight: 700;
+  color: #e5e7eb;
+}
+#zaprojektuj-pro .summary {
+  background: #0f1116;
+  border: 1px solid #2b3240;
+  border-radius: 8px;
+  padding: 10px;
+  white-space: pre-wrap;
+  font-size: 13px;
+  color: #e5e7eb;
+}
+#zaprojektuj-pro .thumb-wrap {
+  margin-top: 6px;
+}
+#zaprojektuj-pro .thumb {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #2b3240;
+}
+#zaprojektuj-pro .hint {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 8px;
+}
+#zaprojektuj-pro .canvas-tools {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Elementy projektu */
+.draggable {
+  position: absolute;
+  cursor: move;
+  user-select: none;
+  touch-action: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.draggable.active {
+  outline: 2px dashed #f59e0b;
+  outline-offset: 2px;
+}
+.draggable > .inner {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.draggable.text .inner {
+  white-space: pre;
+  font-family: inherit;
+}
+
+/* Mobile */
+@media (max-width: 980px) {
+  #zaprojektuj-pro .studio-grid {
+    grid-template-columns: 1fr;
+  }
+  #zaprojektuj-pro .panel {
+    order: 2;
+  }
+  #zaprojektuj-pro .canvas-wrap {
+    order: 1;
+  }
+  #zaprojektuj-pro .top-bar {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  #zaprojektuj-pro {
+    padding: 15px 10px;
+  }
+  #zaprojektuj-pro .studio-grid {
+    gap: 12px;
+  }
+  #dsp-product-area {
+    width: 100%;
+    max-width: 400px;
+  }
+  #zaprojektuj-pro .top-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+  #zaprojektuj-pro .btn {
+    width: 100%;
+    max-width: 250px;
+    margin: 5px 0;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Konfiguracja produktów i cen
+  const priceMap = { 
+    tshirt_m: 120, 
+    tshirt_w: 120, 
+    hoodie: 200, 
+    hoodie_hooded: 220, 
+    cap_beanie: 99, 
+    cap_snapback: 119 
+  };
+
+  const productImages = {
+    tshirt_m: {
+      front: "https://i.ibb.co/C3sQZbzW/Screenshot-2025-09-03-21-34-27.png",
+      back: "https://i.ibb.co/5hbqdShw/Screenshot-2025-09-03-21-35-05.png",
+      right: "https://i.ibb.co/q3jhSqbd/Screenshot-2025-09-03-21-35-26.png",
+      left: "https://i.ibb.co/Q7JX8rc3/Screenshot-2025-09-03-21-35-44.png",
+    },
+    tshirt_w: {
+      front: "https://i.ibb.co/7x01YyxW/Screenshot-2025-09-03-21-39-40.png",
+      back: "https://i.ibb.co/4RPsF04T/Screenshot-2025-09-03-21-39-53.png",
+      right: "https://i.ibb.co/Ld5svrZZ/Screenshot-2025-09-03-21-40-20.png",
+    },
+    hoodie: {
+      front: "https://i.ibb.co/cSDrRTQb/Screenshot-2025-09-03-21-47-31.png",
+      back: "https://i.ibb.co/ynWTdTxB/Screenshot-2025-09-03-21-47-41.png",
+      left: "https://i.ibb.co/4nmpTKWQ/Screenshot-2025-09-03-21-47-55.png",
+      right: "https://i.ibb.co/d02W6bmx/Screenshot-2025-09-03-21-48-07.png",
+    },
+    hoodie_hooded: {
+      front: "https://i.ibb.co/G4Sk06d8/Screenshot-2025-09-03-21-49-47.png",
+      back: "https://i.ibb.co/B5rQ3wgY/Screenshot-2025-09-03-21-49-59.png",
+      left: "https://i.ibb.co/ZzpvCYWd/Screenshot-2025-09-03-21-50-12.png",
+      right: "https://i.ibb.co/rK8hDs8N/Screenshot-2025-09-03-21-50-20.png",
+    },
+    cap_beanie: {
+      front: "https://i.ibb.co/4ZgGCLKF/Screenshot-2025-09-03-21-42-58.png",
+    },
+    cap_snapback: {
+      front: "https://i.ibb.co/KcH6r5VK/Screenshot-2025-09-03-21-41-23.png",
+      back: "https://i.ibb.co/RpzhjNZf/Screenshot-2025-09-03-21-41-57.png",
+      left: "https://i.ibb.co/JWsPTZTm/Screenshot-2025-09-03-21-42-12.png",
+      right: "https://i.ibb.co/1twx95vM/Screenshot-2025-09-03-21-42-23.png",
+    }
+  };
+
+  // Stan
+  let currentProduct = 'tshirt_m';
+  let currentView = 'front';
+  let baseColor = '#000000';
+  let activeEl = null;
+  let elements = [];
+
+  // Elementy DOM
+  const $ = (id) => document.getElementById(id);
+  const $img = () => $('dsp-product-image');
+  const $layer = () => $('dsp-design-layer');
+  const $color = () => $('dsp-product-color');
+  const $summary = () => $('dsp-summary');
+  const $viewSwitch = () => $('dsp-view-switch');
+
+  // Inicjalizacja
+  function init() {
+    setupEventListeners();
+    setProduct('tshirt_m');
+    setBaseColor('#000000');
+    updatePrice();
+    updateSummary();
+  }
+
+  // Setup event listeners
+  function setupEventListeners() {
+    // Przyciski produktów
+    document.querySelectorAll('.product-switch .chip').forEach(btn => {
+      btn.addEventListener('click', () => setProduct(btn.dataset.product, btn));
+    });
+
+    // Przyciski widoków
+    document.querySelectorAll('.view-switch .chip').forEach(btn => {
+      btn.addEventListener('click', () => setView(btn.dataset.view, btn));
+    });
+
+    // Przyciski kolorów
+    document.querySelectorAll('.color-picker .swatch').forEach(btn => {
+      btn.addEventListener('click', () => setBaseColor(btn.dataset.color));
+    });
+
+    $('#color-picker-input').addEventListener('input', (e) => setBaseColor(e.target.value));
+
+    // Główne przyciski akcji
+    $('#new-project-btn').addEventListener('click', newProject);
+    $('#save-png-btn').addEventListener('click', savePNG);
+    $('#send-email-btn').addEventListener('click', sendProject);
+    $('#add-to-cart-btn').addEventListener('click', addToCart);
+
+    // Przyciski narzędzi
+    $('#clear-elements-btn').addEventListener('click', clearElements);
+    $('#center-active-btn').addEventListener('click', centerActive);
+    $('#delete-active-btn').addEventListener('click', deleteActive);
+    $('#bring-to-front-btn').addEventListener('click', bringToFront);
+    $('#send-to-back-btn').addEventListener('click', sendToBack);
+
+    // Dodawanie tekstu
+    $('#add-text-btn').addEventListener('click', addText);
+
+    // Dodawanie obrazka
+    $('#dsp-image').addEventListener('change', addImage);
+
+    // Kontrolki transformacji
+    $('#dsp-scale').addEventListener('input', applyTransform);
+    $('#dsp-rotate').addEventListener('input', applyTransform);
+    $('#dsp-x').addEventListener('input', applyPosition);
+    $('#dsp-y').addEventListener('input', applyPosition);
+  }
+
+  function setProduct(product, btn = null) {
+    currentProduct = product;
+    
+    // Aktualizuj aktywne przyciski
+    document.querySelectorAll('.product-switch .chip').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    
+    // Odśwież dostępne widoki
+    updateViewButtons();
+    updatePrice();
+  }
+
+  function updateViewButtons() {
+    $viewSwitch().innerHTML = '';
+    const views = Object.keys(productImages[currentProduct] || {front: ''});
+    
+    views.forEach((view, i) => {
+      const btn = document.createElement('button');
+      btn.className = `chip ${i === 0 ? 'active' : ''}`;
+      btn.dataset.view = view;
+      btn.textContent = view === 'front' ? 'Przód' : 
+                        view === 'back' ? 'Tył' : 
+                        view === 'left' ? 'Lewy bok' : 
+                        view === 'right' ? 'Prawy bok' : view;
+      btn.addEventListener('click', () => setView(view, btn));
+      $viewSwitch().appendChild(btn);
+    });
+    
+    if (views.length > 0) {
+      setView(views[0]);
+    }
+  }
+
+  function setView(view, btn = null) {
+    currentView = view;
+    
+    document.querySelectorAll('#dsp-view-switch .chip').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    
+    const src = productImages[currentProduct]?.[view];
+    if (src && $img()) {
+      $img().src = src;
+    }
+    updateSummary();
+  }
+
+  function setBaseColor(color) {
+    baseColor = color;
+    if ($color()) {
+      $color().style.background = color;
+    }
+    $('#color-picker-input').value = color;
+    updateSummary();
+  }
+
+  function updatePrice() {
+    const priceElement = $('dsp-price');
+    if (priceElement) {
+      priceElement.textContent = (priceMap[currentProduct] || 120) + ' zł';
+    }
+  }
+
+  function addText() {
+    const text = $('#dsp-text').value.trim();
+    if (!text) return alert('Wpisz tekst!');
+
+    const font = $('#dsp-font').value;
+    const size = parseInt($('#dsp-fontsize').value) || 42;
+    const color = $('#dsp-textcolor').value;
+
+    const el = document.createElement('div');
+    el.className = 'draggable text';
+    el.dataset.type = 'text';
+    el.dataset.x = 50;
+    el.dataset.y = 50;
+
+    const inner = document.createElement('div');
+    inner.className = 'inner';
+    inner.textContent = text;
+    inner.style.fontFamily = font;
+    inner.style.fontSize = size + 'px';
+    inner.style.color = color;
+    el.appendChild(inner);
+
+    setupElementInteractions(el);
+    $layer().appendChild(el);
+    elements.push(el);
+    
+    setActive(el);
+    $('#dsp-text').value = '';
+    updateSummary();
+  }
+
+  function addImage(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      return alert('Proszę wybrać plik obrazka!');
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const el = document.createElement('div');
+      el.className = 'draggable image';
+      el.dataset.type = 'image';
+      el.dataset.x = 50;
+      el.dataset.y = 50;
+
+      const inner = document.createElement('div');
+      inner.className = 'inner';
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.style.maxWidth = '200px';
+      img.style.maxHeight = '200px';
+      inner.appendChild(img);
+      el.appendChild(inner);
+
+      setupElementInteractions(el);
+      $layer().appendChild(el);
+      elements.push(el);
+      
+      setActive(el);
+      updateSummary();
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function setupElementInteractions(el) {
+    // Kliknięcie - ustaw jako aktywny
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setActive(el);
+    });
+
+    // Przeciąganie
+    let isDragging = false;
+    let startX, startY, startLeft, startTop;
+
+    el.addEventListener('mousedown', startDrag);
+    el.addEventListener('touchstart', startDrag);
+
+    function startDrag(e) {
+      e.preventDefault();
+      isDragging = true;
+      setActive(el);
+      
+      const rect = el.getBoundingClientRect();
+      startX = e.clientX || e.touches[0].clientX;
+      startY = e.clientY || e.touches[0].clientY;
+      startLeft = parseInt(el.style.left) || 50;
+      startTop = parseInt(el.style.top) || 50;
+
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('touchmove', drag);
+      document.addEventListener('mouseup', stopDrag);
+      document.addEventListener('touchend', stopDrag);
+    }
+
+    function drag(e) {
+      if (!isDragging) return;
+      
+      const x = e.clientX || e.touches[0].clientX;
+      const y = e.clientY || e.touches[0].clientY;
+      
+      const deltaX = ((x - startX) / $layer().offsetWidth) * 100;
+      const deltaY = ((y - startY) / $layer().offsetHeight) * 100;
+      
+      const newX = Math.max(0, Math.min(100, startLeft + deltaX));
+      const newY = Math.max(0, Math.min(100, startTop + deltaY));
+      
+      el.style.left = newX + '%';
+      el.style.top = newY + '%';
+      el.dataset.x = newX;
+      el.dataset.y = newY;
+      
+      // Aktualizuj suwaki pozycji
+      $('#dsp-x').value = newX;
+      $('#dsp-y').value = newY;
+    }
+
+    function stopDrag() {
+      isDragging = false;
+      document.removeEventListener('mousemove', drag);
+      document.removeEventListener('touchmove', drag);
+      updateSummary();
+    }
+  }
+
+  function setActive(el) {
+    elements.forEach(e => e.classList.remove('active'));
+    activeEl = el;
+    
+    if (el) {
+      el.classList.add('active');
+      
+      // Aktualizuj kontrolki transformacji
+      $('#dsp-scale').value = parseFloat(el.dataset.scale) || 1;
+      $('#dsp-rotate').value = parseFloat(el.dataset.rotate) || 0;
+      $('#dsp-x').value = parseFloat(el.dataset.x) || 50;
+      $('#dsp-y').value = parseFloat(el.dataset.y) || 50;
+    }
+  }
+
+  function applyTransform() {
+    if (!activeEl) return;
+    
+    const scale = parseFloat($('#dsp-scale').value);
+    const rotate = parseFloat($('#dsp-rotate').value);
+    
+    activeEl.dataset.scale = scale;
+    activeEl.dataset.rotate = rotate;
+    
+    const inner = activeEl.querySelector('.inner');
+    if (inner) {
+      inner.style.transform = `translate(-50%, -50%) rotate(${rotate}deg) scale(${scale})`;
+    }
+    
+    updateSummary();
+  }
+
+  function applyPosition() {
+    if (!activeEl) return;
+    
+    const x = parseFloat($('#dsp-x').value);
+    const y = parseFloat($('#dsp-y').value);
+    
+    activeEl.style.left = x + '%';
+    activeEl.style.top = y + '%';
+    activeEl.dataset.x = x;
+    activeEl.dataset.y = y;
+    
+    updateSummary();
+  }
+
+  function clearElements() {
+    if (!confirm('Czy na pewno chcesz usunąć wszystkie elementy?')) return;
+    
+    elements.forEach(el => el.remove());
+    elements = [];
+    activeEl = null;
+    updateSummary();
+  }
+
+  function centerActive() {
+    if (!activeEl) return;
+    
+    activeEl.style.left = '50%';
+    activeEl.style.top = '50%';
+    activeEl.dataset.x = 50;
+    activeEl.dataset.y = 50;
+    
+    $('#dsp-x').value = 50;
+    $('#dsp-y').value = 50;
+    
+    updateSummary();
+  }
+
+  function deleteActive() {
+    if (!activeEl) return;
+    
+    const index = elements.indexOf(activeEl);
+    if (index > -1) {
+      elements.splice(index, 1);
+    }
+    activeEl.remove();
+    activeEl = null;
+    updateSummary();
+  }
+
+  function bringToFront() {
+    if (!activeEl) return;
+    $layer().appendChild(activeEl);
+  }
+
+  function sendToBack() {
+    if (!activeEl) return;
+    $layer().insertBefore(activeEl, $layer().firstChild);
+  }
+
+  function updateSummary() {
+    const size = $('#dsp-size').value;
+    let summaryText = `Produkt: ${getProductName(currentProduct)} | Widok: ${currentView} | Rozmiar: ${size}\n`;
+    summaryText += `Kolor bazowy: ${baseColor}\n\n`;
+    
+    if (elements.length === 0) {
+      summaryText += 'Brak elementów projektowych';
+    } else {
+      summaryText += `Elementy (${elements.length}):\n`;
+      elements.forEach((el, i) => {
+        const x = Math.round(parseFloat(el.dataset.x) || 50);
+        const y = Math.round(parseFloat(el.dataset.y) || 50);
+        
+        if (el.dataset.type === 'text') {
+          const text = el.querySelector('.inner').textContent;
+          summaryText += `${i+1}. Tekst: "${text}" @ ${x}%,${y}%\n`;
+        } else {
+          summaryText += `${i+1}. Obraz @ ${x}%,${y}%\n`;
+        }
+      });
+    }
+    
+    if ($summary()) {
+      $summary().textContent = summaryText;
+    }
+  }
+
+  function getProductName(productKey) {
+    const names = {
+      tshirt_m: 'Koszulka męska',
+      tshirt_w: 'Koszulka damska', 
+      hoodie: 'Bluza',
+      hoodie_hooded: 'Bluza z kapturem',
+      cap_beanie: 'Czapka',
+      cap_snapback: 'Czapka z daszkiem'
+    };
+    return names[productKey] || productKey;
+  }
+
+  function newProject() {
+    if (confirm('Czy na pewno chcesz rozpocząć nowy projekt? Utracisz wszystkie niezapisane zmiany.')) {
+      clearElements();
+      $('#dsp-text').value = '';
+      $('#dsp-fontsize').value = '42';
+      $('#dsp-textcolor').value = '#000000';
+      setBaseColor('#000000');
+      setProduct('tshirt_m');
+      updateSummary();
+    }
+  }
+
+  function savePNG() {
+    alert('Funkcja zapisywania PNG będzie dostępna wkrótce!');
+    // Tutaj implementacja zapisywania canvas jako PNG
+  }
+
+  function sendProject() {
+    const summary = $summary().textContent;
+    const subject = 'Mój projekt z AdelbertusShop';
+    const body = encodeURIComponent(`Projekt produktu:\n\n${summary}\n\nData: ${new Date().toLocaleString()}`);
+    window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`);
+  }
+
+  function addToCart() {
+    const size = $('#dsp-size').value;
+    const productName = getProductName(currentProduct);
+    
+    // Zbierz informacje o projekcie
+    const projectData = {
+      product: currentProduct,
+      productName: productName,
+      size: size,
+      price: priceMap[currentProduct],
+      baseColor: baseColor,
+      view: currentView,
+      elements: []
+    };
+    
+    // Dodaj informacje o elementach
+    elements.forEach(el => {
+      const elementData = {
+        type: el.dataset.type,
+        x: parseFloat(el.dataset.x) || 50,
+        y: parseFloat(el.dataset.y) || 50,
+        scale: parseFloat(el.dataset.scale) || 1,
+        rotation: parseFloat(el.dataset.rotate) || 0
+      };
+      
+      if (el.dataset.type === 'text') {
+        elementData.text = el.querySelector('.inner').textContent;
+        elementData.font = el.querySelector('.inner').style.fontFamily;
+        elementData.fontSize = parseInt(el.querySelector('.inner').style.fontSize) || 42;
+        elementData.color = el.querySelector('.inner').style.color;
+      } else if (el.dataset.type === 'image') {
+        elementData.src = el.querySelector('img').src;
+      }
+      
+      projectData.elements.push(elementData);
+    });
+    
+    // Zapisz w localStorage (symulacja koszyka)
+    let cart = JSON.parse(localStorage.getItem('designCart') || '[]');
+    cart.push(projectData);
+    localStorage.setItem('designCart', JSON.stringify(cart));
+    
+    alert(`Dodano do koszyka: ${productName} (${size}) za ${priceMap[currentProduct]} zł`);
+    
+    // Możesz też przekierować do koszyka
+    // window.location.href = '/koszyk';
+  }
+
+  // Inicjalizacja
+  init();
+});
+</script>
         
 <!-- 🎁 Sekcja Zbiórki FINALNA -->
 <section id="charity" class="bg-gradient-to-r from-gray-900 via-purple-900 to-black text-white py-12 px-6 rounded-2xl shadow-lg">
@@ -3094,6 +3844,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </body>
 </html>
       
+
 
 
 
