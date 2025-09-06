@@ -2069,6 +2069,13 @@ document.addEventListener('DOMContentLoaded', function() {
     $('#dsp-rotate').addEventListener('input', applyTransform);
     $('#dsp-x').addEventListener('input', applyPosition);
     $('#dsp-y').addEventListener('input', applyPosition);
+    
+    // Kliknięcie poza elementem - usuwa zaznaczenie
+    $layer().addEventListener('click', (e) => {
+      if (e.target === $layer()) {
+        setActive(null);
+      }
+    });
   }
 
   function setProduct(product, btn = null) {
@@ -2077,6 +2084,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Aktualizuj aktywne przyciski
     document.querySelectorAll('.product-switch .chip').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
+    else {
+      // Jeśli nie przekazano przycisku, znajdź odpowiedni
+      document.querySelector(`.product-switch .chip[data-product="${product}"]`).classList.add('active');
+    }
     
     // Odśwież dostępne widoki
     updateViewButtons();
@@ -2089,7 +2100,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     views.forEach((view, i) => {
       const btn = document.createElement('button');
-      btn.className = `chip ${i === 0 ? 'active' : ''}`;
+      btn.className = `chip ${view === currentView ? 'active' : ''}`;
       btn.dataset.view = view;
       btn.textContent = view === 'front' ? 'Przód' : 
                         view === 'back' ? 'Tył' : 
@@ -2098,10 +2109,6 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.addEventListener('click', () => setView(view, btn));
       $viewSwitch().appendChild(btn);
     });
-    
-    if (views.length > 0) {
-      setView(views[0]);
-    }
   }
 
   function setView(view, btn = null) {
@@ -2109,6 +2116,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.querySelectorAll('#dsp-view-switch .chip').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
+    else {
+      // Jeśli nie przekazano przycisku, znajdź odpowiedni
+      document.querySelector(`#dsp-view-switch .chip[data-view="${view}"]`).classList.add('active');
+    }
     
     const src = productImages[currentProduct]?.[view];
     if (src && $img()) {
@@ -2146,6 +2157,8 @@ document.addEventListener('DOMContentLoaded', function() {
     el.dataset.type = 'text';
     el.dataset.x = 50;
     el.dataset.y = 50;
+    el.dataset.scale = 1;
+    el.dataset.rotate = 0;
 
     const inner = document.createElement('div');
     inner.className = 'inner';
@@ -2179,6 +2192,8 @@ document.addEventListener('DOMContentLoaded', function() {
       el.dataset.type = 'image';
       el.dataset.x = 50;
       el.dataset.y = 50;
+      el.dataset.scale = 1;
+      el.dataset.rotate = 0;
 
       const inner = document.createElement('div');
       inner.className = 'inner';
@@ -2195,6 +2210,9 @@ document.addEventListener('DOMContentLoaded', function() {
       
       setActive(el);
       updateSummary();
+      
+      // Resetuj input pliku
+      $('#dsp-image').value = '';
     };
     reader.readAsDataURL(file);
   }
@@ -2221,8 +2239,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const rect = el.getBoundingClientRect();
       startX = e.clientX || e.touches[0].clientX;
       startY = e.clientY || e.touches[0].clientY;
-      startLeft = parseInt(el.style.left) || 50;
-      startTop = parseInt(el.style.top) || 50;
+      startLeft = parseFloat(el.dataset.x) || 50;
+      startTop = parseFloat(el.dataset.y) || 50;
 
       document.addEventListener('mousemove', drag);
       document.addEventListener('touchmove', drag);
@@ -2272,6 +2290,12 @@ document.addEventListener('DOMContentLoaded', function() {
       $('#dsp-rotate').value = parseFloat(el.dataset.rotate) || 0;
       $('#dsp-x').value = parseFloat(el.dataset.x) || 50;
       $('#dsp-y').value = parseFloat(el.dataset.y) || 50;
+    } else {
+      // Wyzeruj kontrolki gdy nie ma aktywnego elementu
+      $('#dsp-scale').value = 1;
+      $('#dsp-rotate').value = 0;
+      $('#dsp-x').value = 50;
+      $('#dsp-y').value = 50;
     }
   }
 
@@ -3844,6 +3868,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </body>
 </html>
       
+
 
 
 
