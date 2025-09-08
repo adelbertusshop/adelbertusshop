@@ -1,4 +1,32 @@
 
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Zamówienie</title>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <h1>Zamów produkt</h1>
+  <button id="orderBtn">Zamów</button>
+</body>
+</html>
+
+
+---
+
+Po wrzuceniu tej struktury do repozytorium i deployu na Netlify:
+
+1. Funkcja Netlify korzysta z .env.
+
+
+2. Przy kliknięciu “Zamów” wyśle zamówienie do Hoplix.
+
+
+3. Wszystko gotowe do działania.
+
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -2262,7 +2290,6 @@ document.addEventListener("DOMContentLoaded", () => {
 </footer>
 
 <script>
-<script>
     // ===== GLOBALNE ZMIENNE =====
     let cart = JSON.parse(localStorage.getItem('adelbertus_cart')) || [];
     let currentDesign = {
@@ -2272,7 +2299,18 @@ document.addEventListener("DOMContentLoaded", () => {
         color: '#000000',
         productType: 'tshirt',
         productSize: 'M',
-        image: null
+        image: null,
+        imageX: 250,
+        imageY: 200,
+        imageScale: 1,
+        imageRotation: 0,
+        textX: 250,
+        textY: 200,
+        textScale: 1,
+        textRotation: 0,
+        activeElement: 'text',
+        baseProduct: 'tshirt',
+        designArea: 'front'
     };
 
     // Dane do rotacji dla zbiórki
@@ -2280,80 +2318,61 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             donors: [
                 '<li><i class="fas fa-heart gold-text"></i> <strong>Anna K.</strong> - paczka z artykułami szkolnymi</li>',
-                '<li><i class="fas fa-heart gold-text"></i> <strong>Tomasz W.</strong> - 500 zł przekazane przez BLIK</li>'
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Tomasz W.</strong> - 500 zł przekazane przez BLIK</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Fundacja "Przyszłość"</strong> - zestaw komputerowy</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Pracownicy firmy XYZ</strong> - zbiórka zimowych ubrań</li>'
             ],
             letter: `"Drodzy Przyjaciele,<br><br>
-            Chcielibyśmy podziękować Wam za wszystkie otrzymane dary. Każda paczka dodaje nam siły i wiary w lepsze jutro.<br><br>
+            Chcielibyśmy podziękować Wam za wszystkie otrzymane dary i wsparcie. Każda paczka, każdy uśmiech i każde dobre słowo dodaje nam siły i wiary w lepsze jutro. Dzięki Wam wiemy, że nie jesteśmy sami.<br><br>
+            Wasze gesty dobroci sprawiają, że nasze dni stają się jaśniejsze, a marzenia - bardziej realne. Dziękujemy, że jesteście częścią naszej historii.<br><br>
             Z nadzieją w sercach,<br>
             Dzieci z Domu Dziecka 'Promyk'"`
+        },
+        {
+            donors: [
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Jan Nowak</strong> - gry planszowe i puzzle</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Maria S.</strong> - 300 zł na wycieczkę</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Firma ABC</strong> - artykuły plastyczne</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Wolontariusze z miasta</strong> - remont sali zabaw</li>'
+            ],
+            letter: `"Kochani Darczyńcy,<br><br>
+            Wasza hojność nas zadziwia! Dzięki Wam możemy rozwijać nasze pasje i talenty. Ostatnio dostaliśmy wspaniałe instrumenty muzyczne i już tworzymy zespół.<br><br>
+            Nie moglibyśmy robić tych wszystkich wspaniałych rzeczy bez Waszego wsparcia. Dziękujemy za każde okazane serce.<br><br>
+            Z wdzięcznością,<br>
+            Podopieczni 'Promyka'"`
+        },
+        {
+            donors: [
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Grupa przyjaciół</strong> - rowery i kaski</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Pizzeria "Smak"</strong> - cotygodniowe dostawy pizzy</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Klub sportowy</strong> - sprzęt sportowy i treningi</li>',
+                '<li><i class="fas fa-heart gold-text"></i> <strong>Anonimowy darczyńca</strong> - laptopy dla dzieci</li>'
+            ],
+            letter: `"Szanowni Państwo,<br><br>
+            Chcemy podzielić się naszą radością - dzięki Waszemu wsparciu mogliśmy zorganizować wspaniały wyjazd w góry. To były niezapomniane chwile!<br><br>
+            Widok szczęśliwych, uśmiechniętych dzieci jest bezcenny. Dziękujemy, że pomagacie nam tworzyć takie wspomnienia.<br><br>
+            Serdecznie,<br>
+            Wychowawcy i dzieci z 'Promyka'"`
         }
     ];
 
-    // ===== INTEGRACJA Z HOPLIX =====
-    const HOPLIX_API_KEY = 'did95cecde75ed33a6a4fa3f7e00fb1e';
-    const HOPLIX_SECRET_KEY = '69d04afba7bf514926b6698d5ea44018';
+    // ===== INICJALIZACJA =====
+    document.addEventListener('DOMContentLoaded', function() {
+        initNavigation();
+        initDesignStudio();
+        updateCart();
+        renderPayPalButton();
+        initContactForm();
+        initBlog();
+        initAddToCartButtons();
+        initProductBase();
+        initDesignOptions();
+        initOrderForm();
+        initAdTimers();
+        initCharityRotation();
+    });
 
-    // Funkcja wysyłająca zamówienie do Hoplix
-    async function sendOrderToHoplix(orderData) {
-        try {
-            console.log("Wysyłanie zamówienia do Hoplix:", orderData);
-            
-            // Symulacja wysłania - w rzeczywistości odkomentuj poniższe:
-            /*
-            const response = await fetch('https://api.hoplix.com/orders', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-API-KEY': HOPLIX_API_KEY,
-                    'X-API-SECRET': HOPLIX_SECRET_KEY,
-                },
-                body: JSON.stringify(orderData),
-            });
-
-            if (!response.ok) {
-                throw new Error(`Błąd Hoplix API: ${response.status}`);
-            }
-
-            return await response.json();
-            */
-            
-            // Tymczasowo zwracamy symulowaną odpowiedź
-            return { order_id: 'HOPLX_' + Date.now(), status: 'success' };
-            
-        } catch (error) {
-            console.error("Błąd przy wysyłaniu do Hoplix:", error);
-            throw error;
-        }
-    }
-
-    // Przygotowanie danych zamówienia dla Hoplix
-    function prepareHoplixOrder(customerData) {
-        const items = cart.map(item => ({
-            product_id: item.name.replace(/\s+/g, '_').toLowerCase(),
-            product_name: item.name,
-            quantity: item.quantity,
-            price: item.price,
-            size: item.size || 'M'
-        }));
-
-        return {
-            items: items,
-            customer: {
-                first_name: customerData.name.split(' ')[0],
-                last_name: customerData.name.split(' ').slice(1).join(' '),
-                email: customerData.email,
-                phone: customerData.phone || '',
-            },
-            shipping_address: {
-                address_line1: customerData.address,
-                city: 'Warszawa',
-                postal_code: '00-001',
-                country: 'PL'
-            }
-        };
-    }
-
-    // ===== PODSTAWOWE FUNKCJE =====
+    // ===== NAWIGACJA =====
     function initNavigation() {
         const navButtons = document.querySelectorAll('.nav-btn');
         
@@ -2374,6 +2393,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         });
+        
+        // Obsługa ikony koszyka
+        document.getElementById('cartIcon').addEventListener('click', toggleCart);
+    }
+
+    function toggleMobileMenu() {
+        document.getElementById('navContainer').classList.toggle('show');
     }
 
     function showSection(sectionId) {
@@ -2383,32 +2409,75 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         
         // Pokaż wybraną sekcję
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
-            targetSection.classList.add('active');
-            targetSection.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(sectionId).classList.add('active');
+        
+        // Ukryj menu mobilne po wybraniu sekcji
+        if (window.innerWidth <= 768) {
+            document.getElementById('navContainer').classList.remove('show');
         }
+        
+        // Przewiń do góry sekcji
+        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
     }
 
-    function toggleMobileMenu() {
-        const navContainer = document.getElementById('navContainer');
-        if (navContainer) {
-            navContainer.classList.toggle('show');
-        }
-    }
-
-    // ===== KOSZYK =====
+    // ===== DODAWANIE DO KOSZYKA =====
     function initAddToCartButtons() {
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('add-to-cart-btn')) {
+                e.preventDefault();
                 const name = e.target.getAttribute('data-name');
                 const price = parseFloat(e.target.getAttribute('data-price'));
                 const image = e.target.getAttribute('data-image');
                 
                 addToCart(name, price, image);
-                e.preventDefault();
             }
         });
+    }
+
+    function updateCart() {
+        const cartCount = document.getElementById('cartCount');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        
+        // Aktualizuj licznik
+        cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+        
+        // Aktualizuj zawartość koszyka
+        cartItems.innerHTML = '';
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<p class="text-center text-gray-500">Twój koszyk jest pusty</p>';
+            cartTotal.textContent = '0 zł';
+            document.getElementById('paypal-container').innerHTML = '';
+        } else {
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    ${item.image ? `<img src="${item.image}" class="cart-item-image">` : ''}
+                    <div class="flex-1">
+                        <div class="font-bold">${item.name}</div>
+                        <div>${item.price} zł × ${item.quantity}</div>
+                        ${item.size ? `<div class="text-sm">Rozmiar: ${item.size}</div>` : ''}
+                    </div>
+                    <button onclick="removeFromCart(${index})" class="text-red-500"><i class="fas fa-trash"></i></button>
+                `;
+                
+                cartItems.appendChild(cartItem);
+            });
+            
+            cartTotal.textContent = `${total.toFixed(2)} zł`;
+            
+            // Renderuj przycisk PayPal
+            renderPayPalButton();
+        }
+        
+        // Zapisz do localStorage
+        localStorage.setItem('adelbertus_cart', JSON.stringify(cart));
     }
 
     function addToCart(name, price, image = null, size = null) {
@@ -2434,171 +2503,580 @@ document.addEventListener("DOMContentLoaded", () => {
         showNotification('✅ Produkt dodany do koszyka');
     }
 
-    function updateCart() {
-        const cartCount = document.getElementById('cartCount');
-        const cartItems = document.getElementById('cartItems');
-        const cartTotal = document.getElementById('cartTotal');
-        
-        if (cartCount) cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
-        
-        if (cartItems) {
-            cartItems.innerHTML = '';
-            
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p class="text-center text-gray-500">Twój koszyk jest pusty</p>';
-                if (cartTotal) cartTotal.textContent = '0 zł';
-            } else {
-                let total = 0;
-                
-                cart.forEach((item, index) => {
-                    total += item.price * item.quantity;
-                    
-                    const cartItem = document.createElement('div');
-                    cartItem.className = 'cart-item';
-                    cartItem.innerHTML = `
-                        ${item.image ? `<img src="${item.image}" class="cart-item-image">` : ''}
-                        <div class="flex-1">
-                            <div class="font-bold">${item.name}</div>
-                            <div>${item.price} zł × ${item.quantity}</div>
-                            ${item.size ? `<div class="text-sm">Rozmiar: ${item.size}</div>` : ''}
-                        </div>
-                        <button onclick="removeFromCart(${index})" class="text-red-500"><i class="fas fa-trash"></i></button>
-                    `;
-                    
-                    cartItems.appendChild(cartItem);
-                });
-                
-                if (cartTotal) cartTotal.textContent = `${total.toFixed(2)} zł`;
-            }
-        }
-        
-        localStorage.setItem('adelbertus_cart', JSON.stringify(cart));
-    }
-
     function removeFromCart(index) {
         cart.splice(index, 1);
         updateCart();
     }
 
     function toggleCart() {
-        const cartPanel = document.getElementById('cartPanel');
-        if (cartPanel) {
-            cartPanel.classList.toggle('open');
+        document.getElementById('cartPanel').classList.toggle('open');
+    }
+
+    // ===== STUDIO PROJEKTOWE =====
+    function initDesignStudio() {
+        const canvas = document.getElementById('designCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Ustawienia canvas
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Inicjalny render
+        updateDesign();
+    }
+
+    function initProductBase() {
+        const baseItems = document.querySelectorAll('.product-base-item');
+        baseItems.forEach(item => {
+            item.addEventListener('click', function() {
+                baseItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                currentDesign.baseProduct = this.getAttribute('data-base');
+                updateDesign();
+            });
+        });
+    }
+
+    function initDesignOptions() {
+        const designOptions = document.querySelectorAll('.design-option');
+        designOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                designOptions.forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+                currentDesign.designArea = this.getAttribute('data-area');
+                updateDesign();
+            });
+        });
+    }
+
+    function updateDesign() {
+        const canvas = document.getElementById('designCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Aktualizuj stan projektu
+        currentDesign.text = document.getElementById('designText').value;
+        currentDesign.fontFamily = document.getElementById('fontFamily').value;
+        currentDesign.fontSize = parseInt(document.getElementById('fontSize').value);
+        currentDesign.color = document.getElementById('textColor').value;
+        
+        // Wyczyść canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Narysuj tło - wirtualny produkt
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Narysuj obrazek jeśli istnieje
+        if (currentDesign.image) {
+            ctx.save();
+            ctx.translate(currentDesign.imageX, currentDesign.imageY);
+            ctx.rotate(currentDesign.imageRotation * Math.PI / 180);
+            ctx.scale(currentDesign.imageScale, currentDesign.imageScale);
+            ctx.drawImage(currentDesign.image, -currentDesign.image.width/2, -currentDesign.image.height/2);
+            ctx.restore();
+        }
+        
+        // Narysuj tekst
+        if (currentDesign.text) {
+            ctx.save();
+            ctx.font = `${currentDesign.fontSize}px ${currentDesign.fontFamily}`;
+            ctx.fillStyle = currentDesign.color;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.translate(currentDesign.textX, currentDesign.textY);
+            ctx.rotate(currentDesign.textRotation * Math.PI / 180);
+            ctx.scale(currentDesign.textScale, currentDesign.textScale);
+            ctx.fillText(currentDesign.text, 0, 0);
+            ctx.restore();
+        }
+        
+        // Aktualizuj podgląd
+        const preview = document.querySelector('.design-preview');
+        if (currentDesign.text || currentDesign.image) {
+            preview.innerHTML = '<h3>Podgląd Twojego projektu</h3>';
+            const img = document.createElement('img');
+            img.src = canvas.toDataURL();
+            img.style.maxWidth = '100%';
+            img.style.marginTop = '1rem';
+            img.style.border = '1px solid #ddd';
+            preview.appendChild(img);
         }
     }
 
-    // ===== ZAMÓWIENIA =====
-    async function sendOrderEmail() {
-        const customerName = prompt("Podaj swoje imię i nazwisko:");
-        const customerEmail = prompt("Podaj swój email:");
-        const customerAddress = prompt("Podaj adres dostawy:");
-        const customerPhone = prompt("Podaj numer telefonu (opcjonalnie):") || '';
+    function handleImageUpload(event) {
+        const file = document.getElementById('designImage').files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentDesign.image = new Image();
+                currentDesign.image.src = e.target.result;
+                currentDesign.image.onload = function() {
+                    currentDesign.activeElement = 'image';
+                    updateTransformControls();
+                    updateDesign();
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+    }
 
-        if (!customerName || !customerEmail || !customerAddress) {
-            alert("Proszę wypełnić wszystkie wymagane pola!");
+    function updateElementPosition() {
+        if (currentDesign.activeElement === 'text') {
+            currentDesign.textX = parseInt(document.getElementById('posX').value);
+            currentDesign.textY = parseInt(document.getElementById('posY').value);
+        } else if (currentDesign.activeElement === 'image') {
+            currentDesign.imageX = parseInt(document.getElementById('posX').value);
+            currentDesign.imageY = parseInt(document.getElementById('posY').value);
+        }
+        updateDesign();
+    }
+
+    function updateElementScale() {
+        if (currentDesign.activeElement === 'text') {
+            currentDesign.textScale = parseFloat(document.getElementById('scale').value);
+        } else if (currentDesign.activeElement === 'image') {
+            currentDesign.imageScale = parseFloat(document.getElementById('scale').value);
+        }
+        updateDesign();
+    }
+
+    function updateElementRotation() {
+        if (currentDesign.activeElement === 'text') {
+            currentDesign.textRotation = parseInt(document.getElementById('rotation').value);
+        } else if (currentDesign.activeElement === 'image') {
+            currentDesign.imageRotation = parseInt(document.getElementById('rotation').value);
+        }
+        updateDesign();
+    }
+
+    function clearCanvas() {
+        const canvas = document.getElementById('designCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        currentDesign.text = '';
+        currentDesign.image = null;
+        document.getElementById('designText').value = '';
+        
+        document.querySelector('.design-preview').innerHTML = '<h3>Podgląd Twojego projektu</h3><p>Tekst i grafika pojawią się tutaj po wprowadzeniu zmian i kliknięciu przycisku "Podgląd"</p>';
+        
+        showNotification('Canvas wyczyszczony');
+    }
+
+    function resetDesign() {
+        currentDesign.textX = 250;
+        currentDesign.textY = 200;
+        currentDesign.textScale = 1;
+        currentDesign.textRotation = 0;
+        currentDesign.imageX = 250;
+        currentDesign.imageY = 200;
+        currentDesign.imageScale = 1;
+        currentDesign.imageRotation = 0;
+        
+        updateTransformControls();
+        updateDesign();
+        showNotification('Transformacje zresetowane');
+    }
+
+    function updateTransformControls() {
+        if (currentDesign.activeElement === 'text') {
+            document.getElementById('posX').value = currentDesign.textX;
+            document.getElementById('posY').value = currentDesign.textY;
+            document.getElementById('scale').value = currentDesign.textScale;
+            document.getElementById('rotation').value = currentDesign.textRotation;
+        } else if (currentDesign.activeElement === 'image') {
+            document.getElementById('posX').value = currentDesign.imageX;
+            document.getElementById('posY').value = currentDesign.imageY;
+            document.getElementById('scale').value = currentDesign.imageScale;
+            document.getElementById('rotation').value = currentDesign.imageRotation;
+        }
+    }
+
+    function addToCartFromDesign() {
+        const productType = document.getElementById('productType');
+        const productSize = document.getElementById('productSize');
+        
+        const prices = {
+            'tshirt': 120,
+            'hoodie': 200,
+            'cap': 99
+        };
+        
+        const price = prices[productType.value] || 120;
+        const canvas = document.getElementById('designCanvas');
+        
+        addToCart(
+            `Projekt: ${currentDesign.text || 'Niestandardowy'} (${productSize.value})`,
+            price,
+            canvas.toDataURL(),
+            productSize.value
+        );
+    }
+
+    function saveDesign() {
+        const canvas = document.getElementById('designCanvas');
+        const link = document.createElement('a');
+        link.download = 'adelbertus-design.png';
+        link.href = canvas.toDataURL();
+        link.click();
+        showNotification('✅ Projekt zapisany');
+    }
+
+    // ===== PAYPAL =====
+    function renderPayPalButton() {
+        const container = document.getElementById('paypal-container');
+        container.innerHTML = '';
+        
+        if (cart.length === 0) return;
+        
+        paypal.HostedButtons({
+            hostedButtonId: "L4639S4363CZE",
+        }).render("#paypal-container");
+    }
+
+    // ===== EMAIL =====
+    function sendDesignToEmail() {
+        const canvas = document.getElementById('designCanvas');
+        const imageData = canvas.toDataURL();
+        
+        const subject = 'Mój projekt z AdelbertusShop';
+        const body = `
+            Cześć! Oto mój projekt:\n
+            Tekst: ${currentDesign.text}\n
+            Rozmiar czcionki: ${currentDesign.fontSize}\n
+            Kolor: ${currentDesign.color}\n
+            Typ produktu: ${document.getElementById('productType').options[document.getElementById('productType').selectedIndex].text}\n
+            Rozmiar: ${document.getElementById('productSize').value}\n
+            Obszar: ${currentDesign.designArea}\n\n
+            
+            Obraz projektu (w załączniku):\n
+            Proszę o kontakt w sprawie realizacji zamówienia.
+        `;
+        
+        window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+        
+        showNotification('📧 Otwieranie klienta pocztowego...');
+    }
+
+    function sendOrderEmail() {
+        let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
+        
+        cart.forEach((item, index) => {
+            emailBody += `${index + 1}. ${item.name} - ${item.price} zł × ${item.quantity}`;
+            if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
+            emailBody += '\n';
+        });
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
+        emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
+        emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
+        
+        window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
+    }
+
+    function sendOrderWhatsApp() {
+        let message = 'Zamówienie z AdelbertusShop:%0A%0A';
+        
+        cart.forEach((item, index) => {
+            message += `${index + 1}. ${item.name} - ${item.price} zł × ${item.quantity}`;
+            if (item.size) message += ` (Rozmiar: ${item.size})`;
+            message += '%0A';
+        });
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        message += `%0ASUMA: ${total.toFixed(2)} zł%0A%0A`;
+        message += `Data: ${new Date().toLocaleString('pl-PL')}%0A%0A`;
+        message += `Proszę o potwierdzenie zamówienia.`;
+        
+        window.open(`https://wa.me/48604296650?text=${message}`);
+    }
+
+    // ===== FORMULARZ ZAMÓWIENIA =====
+    function initOrderForm() {
+        const form = document.getElementById("orderForm");
+        const statusEl = document.getElementById("status");
+        const whatsappBtn = document.getElementById("whatsappBtn");
+        const productInput = document.getElementById("productInput");
+
+        if (!form) return;
+
+        // Aktualizuje link WhatsApp dynamicznie
+        productInput.addEventListener("input", () => {
+            const product = encodeURIComponent(productInput.value || "");
+            whatsappBtn.href = `https://wa.me/48604296650?text=Chcę%20zamówić:%20${product}`;
+        });
+
+        // Wysyłka maila
+        form.addEventListener("submit", async function(e){
+            e.preventDefault();
+            statusEl.textContent = "Wysyłam...";
+            statusEl.className = "";
+
+            const data = Object.fromEntries(new FormData(this));
+
+            try {
+                // Symulacja wysyłki - w rzeczywistości połączenie z backendem
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                statusEl.textContent = "✔ Zamówienie wysłane mailem!";
+                statusEl.className = "text-green-400";
+                this.reset();
+                whatsappBtn.href = `https://wa.me/48604296650?text=Chcę%20zamówić:%20`;
+            } catch(err){
+                statusEl.textContent = "✖ " + err.message;
+                statusEl.className = "text-red-500";
+            }
+        });
+    }
+
+    // ===== REKLAMY =====
+    function initAdTimers() {
+        // Timer dla baneru
+        startTimer('bannerTimer', 30);
+        
+        // Timer dla animacji
+        startTimer('animationTimer', 30);
+        
+        // Timer dla wideo
+        startTimer('videoTimer', 30);
+    }
+
+    function startTimer(elementId, seconds) {
+        const timerElement = document.getElementById(elementId);
+        if (!timerElement) return;
+        
+        let timeLeft = seconds;
+        
+        const timerInterval = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = `${timeLeft}s`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                timerElement.textContent = 'Koniec';
+                timerElement.style.backgroundColor = '#d4af37';
+                timerElement.style.color = 'black';
+            }
+        }, 1000);
+    }
+
+    // ===== ZBIÓRKA - ROTACJA =====
+    function initCharityRotation() {
+        // Sprawdź, kiedy ostatnio zmieniano dane
+        const lastChange = localStorage.getItem('charityLastChange');
+        const currentIndex = localStorage.getItem('charityCurrentIndex') || 0;
+        const now = new Date().getTime();
+        const threeDays = 3 * 24 * 60 * 60 * 1000; // 3 dni w milisekundach
+        
+        let newIndex = parseInt(currentIndex);
+        
+        // Jeśli minęły 3 dni lub to pierwsza inicjalizacja, zmień dane
+        if (!lastChange || (now - lastChange) > threeDays) {
+            newIndex = (parseInt(currentIndex) + 1) % donorsData.length;
+            localStorage.setItem('charityLastChange', now);
+            localStorage.setItem('charityCurrentIndex', newIndex);
+        }
+        
+        // Aktualizuj dane na stronie
+        updateCharityContent(newIndex);
+    }
+
+    function updateCharityContent(index) {
+        const donorsList = document.getElementById('donorsList');
+        const childrenLetter = document.getElementById('childrenLetter');
+        
+        if (donorsList && donorsData[index]) {
+            donorsList.innerHTML = donorsData[index].donors.join('');
+        }
+        
+        if (childrenLetter && donorsData[index]) {
+            childrenLetter.innerHTML = donorsData[index].letter;
+        }
+    }
+
+    // ===== BLOG =====
+    function initBlog() {
+        // Wczytaj posty z localStorage
+        const blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+        
+        // Wyświetl posty
+        renderBlogPosts(blogPosts);
+        
+        // Inicjalizuj formularz
+        const blogForm = document.getElementById('newBlogPostForm');
+        if (blogForm) {
+            blogForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                addNewBlogPost();
+            });
+        }
+    }
+
+    function renderBlogPosts(posts) {
+        const container = document.getElementById('blogPostsContainer');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        if (posts.length === 0) {
+            // Dodaj przykładowe posty jeśli nie ma żadnych
+            const samplePosts = [
+                {
+                    title: "Sztuka jako forma ekspresji",
+                    excerpt: "Jak wyrażać siebie przez projektowanie ubrań i dlaczego warto...",
+                    content: "Pełna treść artykułu o sztuce jako formie ekspresji. Sztuka odgrywa kluczową rolę w naszym życiu, pozwala wyrażać emocje, opowiadać historie i komunikować się z innymi bez słów.",
+                    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                    date: new Date().toISOString()
+                },
+                {
+                    title: "Trendy w streetwearze 2023",
+                    excerpt: "Odkryj najnowsze trendy w modzie ulicznej tego sezonu...",
+                    content: "Streetwear w 2023 roku ewoluuje w kierunku połączenia komfortu and style. Dominują oversize'owe fasony, earthy kolory oraz odważne nadruki.",
+                    image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                    date: new Date().toISOString()
+                }
+            ];
+            
+            samplePosts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                postElement.className = 'blog-post';
+                postElement.innerHTML = `
+                    <img src="${post.image}" alt="${post.title}" class="blog-image">
+                    <div class="blog-content">
+                        <h3 class="text-xl font-bold mb-2">${post.title}</h3>
+                        <p class="text-sm text-gray-600">Opublikowano: ${new Date(post.date).toLocaleDateString('pl-PL')}</p>
+                        <div class="blog-excerpt">
+                            <p class="mt-3">${post.excerpt}</p>
+                        </div>
+                        <div class="blog-full" style="display: none;">
+                            <p class="mt-3">${post.content}</p>
+                        </div>
+                        <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
+                        <button class="nav-btn mt-2" onclick="shareArticle('${post.title}', '${post.image}')">
+                            <i class="fas fa-share"></i> Udostępnij
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(postElement);
+            });
             return;
         }
+        
+        posts.forEach((post, index) => {
+            const postElement = document.createElement('div');
+            postElement.className = 'blog-post';
+            postElement.innerHTML = `
+                ${post.image ? `<img src="${post.image}" alt="${post.title}" class="blog-image">` : 
+                `<img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="${post.title}" class="blog-image">`}
+                <div class="blog-content">
+                    <h3 class="text-xl font-bold mb-2">${post.title}</h3>
+                    <p class="text-sm text-gray-600">Opublikowano: ${new Date(post.date).toLocaleDateString('pl-PL')}</p>
+                    <div class="blog-excerpt">
+                        <p class="mt-3">${post.excerpt}</p>
+                    </div>
+                    <div class="blog-full" style="display: none;">
+                        <p class="mt-3">${post.content}</p>
+                    </div>
+                    <button class="nav-btn mt-4 read-more-btn" onclick="toggleReadMore(this)">Czytaj więcej</button>
+                    <button class="nav-btn mt-2" onclick="shareArticle('${post.title}', '${post.image || 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'}')">
+                        <i class="fas fa-share"></i> Udostępnij
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(postElement);
+        });
+    }
 
-        const customerData = {
-            name: customerName,
-            email: customerEmail,
-            address: customerAddress,
-            phone: customerPhone
-        };
-
-        try {
-            // Przygotuj dane dla Hoplix
-            const hoplixOrderData = prepareHoplixOrder(customerData);
-            
-            // Wyślij zamówienie do Hoplix
-            const result = await sendOrderToHoplix(hoplixOrderData);
-            
-            // Przygotuj treść emaila
-            let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
-            
-            cart.forEach((item, index) => {
-                emailBody += `${index + 1}. ${item.name} - ${item.price} zł × ${item.quantity}`;
-                if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
-                emailBody += '\n';
-            });
-
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
-            emailBody += `Dane klienta:\n`;
-            emailBody += `Imię i nazwisko: ${customerData.name}\n`;
-            emailBody += `Email: ${customerData.email}\n`;
-            emailBody += `Adres: ${customerData.address}\n`;
-            if (customerData.phone) emailBody += `Telefon: ${customerData.phone}\n`;
-            emailBody += `\nData: ${new Date().toLocaleString('pl-PL')}\n\n`;
-            emailBody += `Numer zamówienia Hoplix: ${result.order_id || 'Brak'}\n\n`;
-            emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
-
-            window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
-            
-            alert("Zamówienie zostało wysłane do Hoplix i do naszego emaila!");
-            cart = [];
-            updateCart();
-            
-        } catch (error) {
-            console.error("Błąd podczas przetwarzania zamówienia:", error);
-            alert("Wystąpił błąd podczas przetwarzania zamówienia. Skontaktuj się z nami bezpośrednio.");
+    function toggleReadMore(button) {
+        const post = button.closest('.blog-post');
+        const excerpt = post.querySelector('.blog-excerpt');
+        const full = post.querySelector('.blog-full');
+        
+        if (full.style.display === 'block') {
+            full.style.display = 'none';
+            excerpt.style.display = 'block';
+            button.textContent = 'Czytaj więcej';
+        } else {
+            full.style.display = 'block';
+            excerpt.style.display = 'none';
+            button.textContent = 'Czytaj mniej';
         }
     }
 
-    async function sendOrderWhatsApp() {
-        const customerName = prompt("Podaj swoje imię i nazwisko:");
-        const customerEmail = prompt("Podaj swój email:");
-        const customerAddress = prompt("Podaj adres dostawy:");
-        const customerPhone = prompt("Podaj numer telefonu:") || '';
+    function showBlogForm() {
+        document.getElementById('blogForm').style.display = 'block';
+        document.getElementById('blogForm').scrollIntoView({ behavior: 'smooth' });
+    }
 
-        if (!customerName || !customerEmail || !customerAddress) {
-            alert("Proszę wypełnić wszystkie wymagane pola!");
-            return;
-        }
+    function hideBlogForm() {
+        document.getElementById('blogForm').style.display = 'none';
+    }
 
-        const customerData = {
-            name: customerName,
-            email: customerEmail,
-            address: customerAddress,
-            phone: customerPhone
+    function addNewBlogPost() {
+        const title = document.getElementById('blogTitle').value;
+        const excerpt = document.getElementById('blogExcerpt').value;
+        const content = document.getElementById('blogContent').value;
+        const image = document.getElementById('blogImage').value;
+        
+        const newPost = {
+            title,
+            excerpt,
+            content,
+            image,
+            date: new Date().toISOString()
         };
+        
+        // Pobierz istniejące posty i dodaj nowy
+        const blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+        blogPosts.unshift(newPost);
+        
+        // Zapisz z powrotem do localStorage
+        localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
+        
+        // Odśwież wyświetlanie
+        renderBlogPosts(blogPosts);
+        
+        // Wyczyść formularz i ukryj go
+        document.getElementById('newBlogPostForm').reset();
+        hideBlogForm();
+        
+        showNotification('Artykuł dodany pomyślnie!');
+    }
 
-        try {
-            // Przygotuj dane dla Hoplix
-            const hoplixOrderData = prepareHoplixOrder(customerData);
-            
-            // Wyślij zamówienie do Hoplix
-            const result = await sendOrderToHoplix(hoplixOrderData);
-            
-            // Przygotuj wiadomość WhatsApp
-            let message = 'Zamówienie z AdelbertusShop:%0A%0A';
-            
-            cart.forEach((item, index) => {
-                message += `${index + 1}. ${item.name} - ${item.price} zł × ${item.quantity}`;
-                if (item.size) message += ` (Rozmiar: ${item.size})`;
-                message += '%0A';
+    function shareArticle(title, image) {
+        const subject = `Polecam artykuł: ${title}`;
+        const body = `Cześć! Polecam Ci ten artykuł z AdelbertusShop: ${title}\n\nZobacz więcej na naszej stronie!`;
+        
+        window.open(`mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    }
+
+    // ===== FORMULARZ KONTAKTOWY =====
+    function initContactForm() {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(contactForm);
+                const name = contactForm.querySelector('input[type="text"]').value;
+                const email = contactForm.querySelector('input[type="email"]').value;
+                const subject = contactForm.querySelectorAll('input[type="text"]')[1].value;
+                const message = contactForm.querySelector('textarea').value;
+                
+                const mailto = `mailto:mielniczukgrzegosz74@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Imię i nazwisko: ${name}\nEmail: ${email}\n\nWiadomość:\n${message}`)}`;
+                window.open(mailto);
+                
+                showNotification('📧 Otwieranie klienta pocztowego...');
+                contactForm.reset();
             });
-
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            message += `%0ASUMA: ${total.toFixed(2)} zł%0A%0A`;
-            message += `Dane klienta:%0A`;
-            message += `Imię i nazwisko: ${customerData.name}%0A`;
-            message += `Email: ${customerData.email}%0A`;
-            message += `Adres: ${customerData.address}%0A`;
-            if (customerData.phone) message += `Telefon: ${customerData.phone}%0A`;
-            message += `%0AData: ${new Date().toLocaleString('pl-PL')}%0A%0A`;
-            message += `Numer zamówienia Hoplix: ${result.order_id || 'Brak'}%0A%0A`;
-            message += `Proszę o potwierdzenie zamówienia.`;
-
-            window.open(`https://wa.me/48604296650?text=${message}`);
-            
-        } catch (error) {
-            console.error("Błąd podczas przetwarzania zamówienia:", error);
-            alert("Wystąpił błąd podczas przetwarzania zamówienia. Skontaktuj się z nami bezpośśrednio.");
         }
     }
 
-    // ===== POMOCNICZE FUNKCJE =====
+    // ===== POMOCNICZE =====
     function showNotification(message) {
         // Utwórz element powiadomienia
         const notification = document.createElement('div');
@@ -2623,48 +3101,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000);
     }
 
-    function initCharityRotation() {
-        const donorsList = document.getElementById('donorsList');
-        const childrenLetter = document.getElementById('childrenLetter');
-        
-        if (donorsList && donorsData[0]) {
-            donorsList.innerHTML = donorsData[0].donors.join('');
-        }
-        
-        if (childrenLetter && donorsData[0]) {
-            childrenLetter.innerHTML = donorsData[0].letter;
-        }
-    }
-
-    // ===== INICJALIZACJA =====
-    document.addEventListener('DOMContentLoaded', function() {
-        initNavigation();
-        initAddToCartButtons();
-        updateCart();
-        initCharityRotation();
-        
-        // Inicjalizacja ikony koszyka
-        const cartIcon = document.getElementById('cartIcon');
-        if (cartIcon) {
-            cartIcon.addEventListener('click', toggleCart);
-        }
-        
-        console.log("Sklep AdelbertusShop został zainicjalizowany");
-    });
-
-    // Udostępnij funkcje globalnie
-    window.toggleMobileMenu = toggleMobileMenu;
+    // Globalne funkcje
     window.addToCart = addToCart;
     window.removeFromCart = removeFromCart;
     window.toggleCart = toggleCart;
+    window.updateDesign = updateDesign;
+    window.clearCanvas = clearCanvas;
+    window.resetDesign = resetDesign;
+    window.addToCartFromDesign = addToCartFromDesign;
+    window.sendDesignToEmail = sendDesignToEmail;
+    window.saveDesign = saveDesign;
+    window.toggleReadMore = toggleReadMore;
+    window.showBlogForm = showBlogForm;
+    window.hideBlogForm = hideBlogForm;
+    window.shareArticle = shareArticle;
+    window.toggleMobileMenu = toggleMobileMenu;
     window.sendOrderEmail = sendOrderEmail;
     window.sendOrderWhatsApp = sendOrderWhatsApp;
-</script>    
+</script>
 </body>
 </html>
       
-
-
 
 
 
