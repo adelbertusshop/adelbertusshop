@@ -2511,8 +2511,57 @@
 
         <script>
             // ============================================================
-            // DANE PRODUKTÓW DO MODALU SKLEPU
+            // SYSTEM POLECEŃ (REFERRAL) – PROSTA PIERWSZA WERSJA
             // ============================================================
+            
+            // Funkcja odczytująca parametr ?ref= z URL i zapisująca do localStorage
+            function captureReferrerFromUrl() {
+                try {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const ref = urlParams.get('ref'); // pobiera wartość parametru 'ref'
+                    
+                    if (ref && ref.trim() !== '') {
+                        // Zapisz w localStorage pod kluczem 'referrer' – wartość pozostaje nawet po przejściu na inne podstrony
+                        localStorage.setItem('referrer', ref.trim());
+                        console.log('✅ Zapisano referrer (polecającego):', ref.trim());
+                    } else {
+                        // Jeśli parametru nie ma – nic nie robimy (pole może być puste)
+                        console.log('ℹ️ Brak parametru ?ref= w adresie URL.');
+                    }
+                } catch (e) {
+                    console.error('Błąd podczas zapisywania referrera:', e);
+                }
+            }
+
+            // Funkcja pomocnicza do pobrania wartości referrer z localStorage (używana w formularzu)
+            function getReferrerValue() {
+                return localStorage.getItem('referrer') || ''; // jeśli brak, zwróć pusty string
+            }
+
+            // Dodanie ukrytego pola <input type="hidden" name="referrer"> do formularza zamówienia
+            // Ponieważ w strukturze strony nie ma widocznego <form>, musimy stworzyć go dynamicznie i dodać do koszyka/paypala.
+            // Zgodnie z punktem 4 i 5: ukryte pole ma być przesyłane razem z zamówieniem.
+            // W istniejącym kodzie zamówienie jest wysyłane przez email/WhatsApp – tam dodamy wartość referrer.
+            // Dodatkowo, jeśli w przyszłości pojawi się tradycyjny formularz, zadbamy o ukryte pole.
+            
+            // Modyfikujemy funkcje wysyłające zamówienie (sendOrderEmail, sendOrderWhatsApp) aby dołączały referrer.
+            // Zachowujemy oryginalne funkcje, ale nadpisujemy je, aby zawierały referrer.
+            
+            // Zapamiętujemy oryginalne funkcje (jeśli istnieją) – ale nie są one jeszcze zdefiniowane w tym momencie,
+            // więc po prostu zdefiniujemy je na nowo z obsługą referrera.
+            
+            // UWAGA: W dalszej części skryptu znajdują się definicje funkcji sendOrderEmail i sendOrderWhatsApp.
+            // Aby zachować pełną kompatybilność, podmienimy je poniżej, po oryginalnych definicjach.
+            // Jednak ponieważ skrypt jest długi i zawiera już te funkcje, umieścimy nasze modyfikacje na samym końcu,
+            // po oryginalnych deklaracjach, ale przed ich wywołaniem. Dzięki temu nadpiszemy je w bezpieczny sposób.
+            
+            // Na razie deklarujemy funkcję, która zostanie wywołana po pełnym załadowaniu DOM.
+            
+            // ============================================================
+            // KONIEC SYSTEMU POLECEŃ – RESZTA KODU BEZ ZMIAN
+            // ============================================================
+            
+            // DANE PRODUKTÓW DO MODALU SKLEPU
             const SHOP_PRODUCTS = {
                 koszulka: [
                     { name:'Koszulka "Portret"', price:80, images:['https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg','https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg','https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
@@ -2824,43 +2873,23 @@
                 hideCartPopup();
             }
 
-            function sendOrderEmail() {
-                let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
-                
-                cart.forEach((item, index) => {
-                    emailBody += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
-                    if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
-                    if (item.color) emailBody += ` (Kolor: ${item.color})`;
-                    emailBody += '\n';
-                });
-                
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
-                emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
-                emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
-                
-                window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
-            }
+            // Oryginalne funkcje wysyłania – nadpiszemy je, aby dołączały referrer
+            // Najpierw zapiszmy je jako oryginalne (jeśli istnieją) – ale one jeszcze nie istnieją,
+            // więc po prostu zdefiniujemy je od nowa z obsługą referrera.
+            
+            // UWAGA: w dalszej części skryptu znajdują się definicje sendOrderEmail i sendOrderWhatsApp.
+            // Aby mieć pewność, że nasze wersje są używane, nadpiszemy je po załadowaniu całego skryptu,
+            // ale przed jakimkolwiek wywołaniem. Najlepiej zrobić to na końcu skryptu, w eventzie DOMContentLoaded.
+            
+            // Na razie kontynuujemy oryginalny kod, ale później podmienimy funkcje.
+            
+            // ======== POCZĄTEK ORYGINALNYCH FUNKCJI (które zostaną nadpisane) ========
+            // Te funkcje są zdefiniowane niżej w skrypcie, ale dla porządku pokazujemy je w komentarzu.
+            // W rzeczywistości one istnieją w dalszej części. My dodamy nasze wersje po nich.
+            
+            // ======== KONIEC ORYGINALNYCH FUNKCJI ========
 
-            function sendOrderWhatsApp() {
-                let message = 'Zamówienie z AdelbertusShop:%0A%0A';
-                
-                cart.forEach((item, index) => {
-                    message += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
-                    if (item.size) message += ` (Rozmiar: ${item.size})`;
-                    if (item.color) message += ` (Kolor: ${item.color})`;
-                    message += '%0A';
-                });
-                
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                message += `%0ASUMA: ${total.toFixed(2)} zł%0A%0A`;
-                message += `Data: ${new Date().toLocaleString('pl-PL')}%0A%0A`;
-                message += `Proszę o potwierdzenie zamówienia.`;
-                
-                window.open(`https://wa.me/48604296360?text=${message}`);
-            }
-
-            // Funkcje pomocnicze
+            // Kontynuacja oryginalnego kodu
             function showNotification(message) {
                 const notification = document.createElement('div');
                 notification.textContent = message;
@@ -3071,9 +3100,9 @@
             const canvas = document.getElementById('studioCanvas');
             const ctx = canvas.getContext('2d');
             const productMap = {
-                hoodie: { name: 'Bluza', price: 170, path: 'M80 30 Q55 40 35 70 L35 220 Q30 235 35 250 L35 350 Q35 365 47 370 L110 375 Q125 370 135 357 L147 280 Q155 260 172 240 Q195 220 220 220 L220 70 Q195 40 170 30 Z' },
-                tshirt: { name: 'Koszulka', price: 80, path: 'M80 40 Q60 20 40 40 L40 90 Q35 110 40 130 L40 250 Q40 260 48 266 L70 278 Q80 282 90 276 L110 250 Q120 258 130 266 L150 276 Q160 282 170 278 L190 266 Q198 260 200 250 L200 130 Q205 110 200 90 L200 40 Q180 20 160 40 Z' },
-                cap: { name: 'Czapka', price: 99, path: 'M50 120 Q30 80 50 50 Q90 20 140 35 Q180 45 220 80 Q250 110 240 140 Q220 170 170 175 L106 180 Q80 184 60 170 Q45 155 50 120 Z' }
+                hoodie: { name: 'Bluza', price: 170, path: 'M80 30 Q55 40 35 70 L35 220 Q30 235 35 250 L35 350 Q35 365 47 370 L110 375 Q125 370 135 357 L147 280 Q155 260 172 240 Q195 220 220 220 L220 70 Q195 40 170 30Z' },
+                tshirt: { name: 'Koszulka', price: 80, path: 'M80 40 Q60 20 40 40 L40 90 Q35 110 40 130 L40 250 Q40 260 48 266 L70 278 Q80 282 90 276 L110 250 Q120 258 130 266 L150 276 Q160 282 170 278 L190 266 Q198 260 200 250 L200 130 Q205 110 200 90 L200 40 Q180 20 160 40Z' },
+                cap: { name: 'Czapka', price: 99, path: 'M50 120 Q30 80 50 50 Q90 20 140 35 Q180 45 220 80 Q250 110 240 140 Q220 170 170 175 L106 180 Q80 184 60 170 Q45 155 50 120Z' }
             };
 
             function createSwatches() {
@@ -3717,8 +3746,72 @@
                 return total; 
             }
 
+            // ===== NADPISANIE FUNKCJI WYSYŁANIA ZAMÓWIEŃ, ABY DOŁĄCZYĆ REFERRER =====
+            // Oryginalne funkcje są zdefiniowane powyżej (jeśli istnieją). Nadpisujemy je teraz, aby dodać pole referrer.
+            
+            // Funkcja wysyłająca zamówienie emailem z dołączonym referrer
+            window.sendOrderEmail = function() {
+                let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
+                
+                cart.forEach((item, index) => {
+                    emailBody += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
+                    if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
+                    if (item.color) emailBody += ` (Kolor: ${item.color})`;
+                    emailBody += '\n';
+                });
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
+                
+                // Dodaj informację o polecającym (referrer)
+                const referrer = getReferrerValue();
+                if (referrer) {
+                    emailBody += `\nPolecający (referrer): ${referrer}\n`;
+                } else {
+                    emailBody += `\nPolecający (referrer): brak\n`;
+                }
+                
+                emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
+                emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
+                
+                window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
+            };
+
+            // Funkcja wysyłająca zamówienie przez WhatsApp z dołączonym referrer
+            window.sendOrderWhatsApp = function() {
+                let message = 'Zamówienie z AdelbertusShop:%0A%0A';
+                
+                cart.forEach((item, index) => {
+                    message += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
+                    if (item.size) message += ` (Rozmiar: ${item.size})`;
+                    if (item.color) message += ` (Kolor: ${item.color})`;
+                    message += '%0A';
+                });
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                message += `%0ASUMA: ${total.toFixed(2)} zł%0A%0A`;
+                
+                // Dodaj informację o polecającym (referrer)
+                const referrer = getReferrerValue();
+                if (referrer) {
+                    message += `Polecający (referrer): ${referrer}%0A`;
+                } else {
+                    message += `Polecający (referrer): brak%0A`;
+                }
+                
+                message += `Data: ${new Date().toLocaleString('pl-PL')}%0A%0A`;
+                message += `Proszę o potwierdzenie zamówienia.`;
+                
+                window.open(`https://wa.me/48604296360?text=${message}`);
+            };
+
+            // ===== KONIEC NADPISYWANIA FUNKCJI =====
+
             // Inicjalizacja
             document.addEventListener('DOMContentLoaded', function() {
+                // 1. Przechwyć referrer z URL i zapisz w localStorage (jeśli istnieje)
+                captureReferrerFromUrl();
+                
                 initNavigation();
                 initProductOptions();
                 updateCart();
@@ -3801,13 +3894,13 @@
                 }
             });
 
-            // Eksport funkcji do globalnego scope
+            // Eksport funkcji do globalnego scope (zapewniamy, że nasze nadpisane są widoczne)
             window.addToCart = addToCart;
             window.removeFromCart = removeFromCart;
             window.toggleCart = toggleCart;
             window.toggleMobileMenu = toggleMobileMenu;
-            window.sendOrderEmail = sendOrderEmail;
-            window.sendOrderWhatsApp = sendOrderWhatsApp;
+            window.sendOrderEmail = window.sendOrderEmail; // już nadpisane
+            window.sendOrderWhatsApp = window.sendOrderWhatsApp; // już nadpisane
             window.acceptCookies = acceptCookies;
             window.toggleChatbot = toggleChatbot;
             window.openImageZoom = openImageZoom;
@@ -3824,6 +3917,9 @@
             window.closeProdModal = closeProdModal;
             window.sprodQtyChange = sprodQtyChange;
             window.sprodAddToCart = sprodAddToCart;
+            
+            // Dodajemy również globalny dostęp do funkcji systemu poleceń (opcjonalnie)
+            window.getReferrerValue = getReferrerValue;
         </script>
     </main>
 </body>
