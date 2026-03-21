@@ -10,16 +10,19 @@
   <h1>Strona testowa Adelbertus</h1>
   <p>Witaj! To jest testowa podstrona sklepu Adelbertus. Jeśli to widzisz, wszystko działa poprawnie 🚀</p>
 
-  <!-- SCRIPT SUPABASE -->
+  <!-- ========================== -->
+  <!--  TUTAJ JS SUPABASE       -->
+  <!-- ========================== -->
   <script type="module">
-    // 1️⃣ Konfiguracja Supabase
-    const supabaseUrl = 'https://twojprojekt.supabase.co'; // <-- wklej tu swój URL Supabase
-    const supabaseKey = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG'; // <-- Twój klucz Supabase
+    // 1️⃣ Supabase setup
+    const supabaseUrl = 'https://TU_WKLEJ_SWÓJ_URL.supabase.co'; // <-- ZAMIENIĆ NA SWÓJ URL
+    const supabaseKey = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG'; // <-- TWÓJ KLUCZ SUPABASE
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    // 2️⃣ Funkcja pobierająca dane
+    // 2️⃣ Fetch danych z tabeli
     async function getData() {
-      let { data, error } = await supabase.from('nazwa_tabeli').select('*'); // <-- wpisz nazwę swojej tabeli
+      // <-- ZAMIENIĆ 'nazwa_tabeli' NA SWOJĄ TABELĘ, np. 'produkty'
+      let { data, error } = await supabase.from('polecenia').select('*'); 
       if (error) {
         console.error('Błąd fetch:', error);
       } else {
@@ -27,8 +30,10 @@
       }
     }
 
-    // 3️⃣ Wywołanie fetch
+    // 3️⃣ Uruchomienie fetch
     getData();
   </script>
+  <!-- ========================== -->
+
 </body>
 </html>
