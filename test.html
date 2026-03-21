@@ -1,8 +1,6 @@
 // Supabase setup
-const supabaseUrl = 'TWÓJ_SUPABASE_URL';
-const supabaseKey = 'TWÓJ_SUPABASE_ANON_KEY';
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
+const supabaseUrl = 'https://twojprojekt.supabase.co'; // Twój Supabase URL
+const supabaseKey = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG';
 // Fetch danych
 async function getData() {
   let { data, error } = await supabase.from('nazwa_tabeli').select('*');
