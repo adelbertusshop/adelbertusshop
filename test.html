@@ -10,15 +10,16 @@
   <h1>Strona testowa Adelbertus</h1>
   <p>Witaj! To jest testowa podstrona sklepu Adelbertus. Jeśli to widzisz, wszystko działa poprawnie 🚀</p>
 
+  <!-- SCRIPT SUPABASE -->
   <script type="module">
-    // Supabase setup
-    const supabaseUrl = 'https://twojprojekt.supabase.co'; // <-- tu wklej swój URL Supabase
-    const supabaseKey = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG'; // <-- Twój klucz
+    // 1️⃣ Konfiguracja Supabase
+    const supabaseUrl = 'https://twojprojekt.supabase.co'; // <-- wklej tu swój URL Supabase
+    const supabaseKey = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG'; // <-- Twój klucz Supabase
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    // Fetch danych
+    // 2️⃣ Funkcja pobierająca dane
     async function getData() {
-      let { data, error } = await supabase.from('nazwa_tabeli').select('*'); // <-- tu wpisz nazwę swojej tabeli
+      let { data, error } = await supabase.from('nazwa_tabeli').select('*'); // <-- wpisz nazwę swojej tabeli
       if (error) {
         console.error('Błąd fetch:', error);
       } else {
@@ -26,6 +27,7 @@
       }
     }
 
+    // 3️⃣ Wywołanie fetch
     getData();
   </script>
 </body>
