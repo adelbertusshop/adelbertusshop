@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Adelbertus</title>
-  <meta name="description" content="To jest strona testowa sklepu Adelbertus – sprawdzamy jak działa widoczność w Google.">
-</head>
-<body>
-  <h1>Strona testowa Adelbertus</h1>
-  <p>Witaj! To jest testowa podstrona sklepu Adelbertus. Jeśli to widzisz, wszystko działa poprawnie 🚀</p>
-</body>
-</html>
+// Supabase setup
+const supabaseUrl = 'TWÓJ_SUPABASE_URL';
+const supabaseKey = 'TWÓJ_SUPABASE_ANON_KEY';
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+// Fetch danych
+async function getData() {
+  let { data, error } = await supabase.from('nazwa_tabeli').select('*');
+  if (error) {
+    console.error('Błąd fetch:', error);
+  } else {
+    console.log('Tabela polecenia:', data);
+  }
+}
+
+getData();
