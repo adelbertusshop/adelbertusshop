@@ -2,33 +2,32 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Test</title>
+  <title>Adelbertus Test</title>
 
-  <!-- 🔥 TO DODAJESZ -->
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-
 </head>
 <body>
 
-<h1>Test działa</h1>
+<h1>Adelbertus działa</h1>
 
 <script>
-  const supabaseUrl = 'https://https://oujlhtzyvdplyrezibiy.supabase.co
-  const supabaseKey = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG';
+const supabaseUrl = 'https://oujlhtzyvdplyrezibiy.supabase.co';
+const supabaseKey = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG';
 
-  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-  async function getData() {
-    let { data, error } = await supabase.from('polecenia').select('*');
+async function getData() {
+  let { data, error } = await supabase.from('polecenia').select('*');
 
-    if (error) {
-      console.error('BŁĄD:', error);
-    } else {
-      console.log('DANE:', data);
-    }
+  if (error) {
+    console.error('BŁĄD:', error);
+  } else {
+    console.log('DANE:', data);
   }
+}
 
-  getData();
+getData();
 </script>
 
 </body>
