@@ -3,24 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adelbertus Test - czysta wersja</title>
+  <title>Test Adelbertus Minimal</title>
 
   <!-- Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body style="font-family:sans-serif; padding:2rem; background:#f5f5f5;">
 
-<h1 style="font-size:2rem; margin-bottom:1rem;">Adelbertus Test</h1>
-<p style="margin-bottom:1rem;">Dane z Supabase w czystej wersji:</p>
+<h1>Adelbertus Test Minimal</h1>
+<p>Dane z Supabase poniżej:</p>
 
 <script>
-  // 🔥 Twoje Supabase
+  // 🔥 Supabase
   const supabaseUrl = 'https://oujlhtzyvdplyrezibiy.supabase.co';
   const supabaseKey = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG';
 
   const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-  // 🔥 Pobieranie danych
   async function getData() {
     let { data, error } = await supabase.from('polecenia').select('*');
 
@@ -28,7 +27,7 @@
       console.error('BŁĄD:', error);
     } else {
       console.log('DANE:', data);
-      // 🔹 dodatkowo pokazujemy od razu na stronie
+      // pokaż na stronie
       const pre = document.createElement('pre');
       pre.textContent = JSON.stringify(data, null, 2);
       document.body.appendChild(pre);
