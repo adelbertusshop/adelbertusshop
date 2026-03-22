@@ -2,38 +2,34 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Adelbertus</title>
-  <meta name="description" content="To jest strona testowa sklepu Adelbertus – sprawdzamy jak działa widoczność w Google.">
+  <title>Test</title>
+
+  <!-- 🔥 TO DODAJESZ -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
 </head>
 <body>
-  <h1>Strona testowa Adelbertus</h1>
-  <p>Witaj! To jest testowa podstrona sklepu Adelbertus. Jeśli to widzisz, wszystko działa poprawnie 🚀</p>
 
-  <!-- ========================== -->
-  <!--  TUTAJ JS SUPABASE       -->
-  <!-- ========================== -->
-  <script type="module">
-    // 1️⃣ Supabase setup
-    const supabaseUrl = 'https://https://oujlhtzyvdplyrezibiy.supabase.co// <-- ZAMIENIĆ NA SWÓJ URL
-    const supabaseKey = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG'; // <-- TWÓJ KLUCZ SUPABASE
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+<h1>Test działa</h1>
 
-    // 2️⃣ Fetch danych z tabeli
-    async function getData() {
-      // <-- ZAMIENIĆ 'nazwa_tabeli' NA SWOJĄ TABELĘ, np. 'polecenia'
-      let { data, error } = await supabase.from('polecenia').select('*'); 
-      if (error) {
-        console.error('Błąd fetch:', error);
-      } else {
-        console.log('Tabela polecenia:', data);
-      }
+<script>
+  const supabaseUrl = 'https://https://oujlhtzyvdplyrezibiy.supabase.co
+  const supabaseKey = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG';
+
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+  async function getData() {
+    let { data, error } = await supabase.from('polecenia').select('*');
+
+    if (error) {
+      console.error('BŁĄD:', error);
+    } else {
+      console.log('DANE:', data);
     }
+  }
 
-    // 3️⃣ Uruchomienie fetch
-    getData();
-  </script>
-  <!-- ========================== -->
+  getData();
+</script>
 
 </body>
 </html>
