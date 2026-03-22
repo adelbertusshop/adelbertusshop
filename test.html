@@ -15,13 +15,13 @@
   <!-- ========================== -->
   <script type="module">
     // 1️⃣ Supabase setup
-    const supabaseUrl = 'https://TU_WKLEJ_SWÓJ_URL.supabase.co'; // <-- ZAMIENIĆ NA SWÓJ URL
+    const supabaseUrl = 'https://https://oujlhtzyvdplyrezibiy.supabase.co// <-- ZAMIENIĆ NA SWÓJ URL
     const supabaseKey = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG'; // <-- TWÓJ KLUCZ SUPABASE
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
     // 2️⃣ Fetch danych z tabeli
     async function getData() {
-      // <-- ZAMIENIĆ 'nazwa_tabeli' NA SWOJĄ TABELĘ, np. 'produkty'
+      // <-- ZAMIENIĆ 'nazwa_tabeli' NA SWOJĄ TABELĘ, np. 'polecenia'
       let { data, error } = await supabase.from('polecenia').select('*'); 
       if (error) {
         console.error('Błąd fetch:', error);
