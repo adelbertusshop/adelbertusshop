@@ -1,41 +1,5 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Adelbertus Minimal</title>
-
-  <!-- Supabase JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-</head>
-<body style="font-family:sans-serif; padding:2rem; background:#f5f5f5;">
-
-<h1>Adelbertus Test Minimal</h1>
-<p>Dane z Supabase poniżej:</p>
-
-<script>
-  // 🔥 Supabase
-  const supabaseUrl = 'https://oujlhtzyvdplyrezibiy.supabase.co';
-  const supabaseKey = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG';
-
-  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-  async function getData() {
-    let { data, error } = await supabase.from('polecenia').select('*');
-
-    if (error) {
-      console.error('BŁĄD:', error);
-    } else {
-      console.log('DANE:', data);
-      // pokaż na stronie
-      const pre = document.createElement('pre');
-      pre.textContent = JSON.stringify(data, null, 2);
-      document.body.appendChild(pre);
-    }
-  }
-
-  getData();
-</script>
-
-</body>
-</html>
+{
+  "message": "DataCloneError: Failed to execute 'postMessage' on 'Window': Headers object could not be cloned.",
+  "details": "DataCloneError: Failed to execute 'postMessage' on 'Window': Headers object could not be cloned.\n    at about:srcdoc:116:27\n    at new Promise (<anonymous>)\n    at window.fetch (about:srcdoc:89:18)\n    at https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2:7:74833\n    at https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2:7:75021\n    at async about:srcdoc:333:31",
+  "hint": "",
+  "code": ""
