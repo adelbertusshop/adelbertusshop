@@ -1,5 +1,39 @@
-{
-  "message": "DataCloneError: Failed to execute 'postMessage' on 'Window': Headers object could not be cloned.",
-  "details": "DataCloneError: Failed to execute 'postMessage' on 'Window': Headers object could not be cloned.\n    at about:srcdoc:116:27\n    at new Promise (<anonymous>)\n    at window.fetch (about:srcdoc:89:18)\n    at https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2:7:74833\n    at https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2:7:75021\n    at async about:srcdoc:333:31",
-  "hint": "",
-  "code": ""
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>TEST Supabase</title>
+  <style>
+    body { font-family: monospace; background: #111; color: #eee; padding: 2rem; }
+    .ok  { color: #4caf50; font-size: 1.4rem; }
+    .err { color: #f44336; font-size: 1.4rem; }
+    pre  { background: #1e1e1e; padding: 1rem; border-radius: 8px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+<p id="s">⏳ Łączenie...</p>
+<pre id="o"></pre>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  var s = document.getElementById('s');
+  var o = document.getElementById('o');
+  if (typeof supabase === 'undefined') {
+    s.className='err'; s.textContent='❌ Supabase nie załadował się';
+  } else {
+    var c = supabase.createClient(
+      'https://oujlhtzyvdplyrezibiy.supabase.co',
+      'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG'
+    );
+    c.from('polecenia').select('*').then(function(r){
+      if(r.error){
+        s.className='err'; s.textContent='❌ BŁĄD:';
+        o.textContent = JSON.stringify(r.error, null, 2);
+      } else {
+        s.className='ok'; s.textContent='✅ OK — rekordów: ' + r.data.length;
+        o.textContent = JSON.stringify(r.data, null, 2);
+      }
+    });
+  }
+</script>
+</body>
+</html>
