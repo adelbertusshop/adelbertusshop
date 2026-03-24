@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -14,9 +13,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- SYSTEM POLECEŃ (REFERRAL) -->
-    <script src="js/referral.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
@@ -2515,9 +2511,101 @@
 
         <script>
             // ============================================================
-            // SYSTEM POLECEŃ (REFERRAL) – ZMIENIONE FUNKCJE WYSYŁANIA
+            // SYSTEM POLECEŃ (REFERRAL) – wdrożony 24.03.2026
             // ============================================================
-            // Funkcje sendOrderEmail i sendOrderWhatsApp zostały nadpisane, aby dodać informację o kodzie polecającym
+            (function() {
+                // Odczytaj parametr ?ref= z URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const refCode = urlParams.get('ref');
+                
+                // Zapisz do cookie (90 dni, path=/)
+                if (refCode && refCode.trim() !== '') {
+                    const cookieValue = encodeURIComponent(refCode);
+                    const expires = new Date();
+                    expires.setTime(expires.getTime() + (90 * 24 * 60 * 60 * 1000));
+                    document.cookie = `referral_code=${cookieValue}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+                    
+                    // Zapisz do localStorage
+                    localStorage.setItem('referral_code', refCode);
+                }
+                
+                // Funkcja globalna do pobierania kodu polecającego
+                window.getReferralCode = function() {
+                    // 1) sprawdź w localStorage
+                    let stored = localStorage.getItem('referral_code');
+                    if (stored && stored !== '') return stored;
+                    
+                    // 2) sprawdź w cookie
+                    const cookies = document.cookie.split('; ');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const [key, value] = cookies[i].split('=');
+                        if (key === 'referral_code') {
+                            const decoded = decodeURIComponent(value);
+                            if (decoded && decoded !== '') return decoded;
+                        }
+                    }
+                    
+                    // 3) ostatnia szansa – sprawdź ponownie URL (jeśli strona odświeżona a parametr wciąż jest)
+                    const params = new URLSearchParams(window.location.search);
+                    const paramRef = params.get('ref');
+                    if (paramRef && paramRef.trim() !== '') return paramRef;
+                    
+                    return '';
+                };
+            })();
+            
+            // ============================================================
+            // NADPISANE FUNKCJE WYSYŁANIA ZAMÓWIEŃ Z SYSTEMEM POLECEŃ
+            // ============================================================
+            function sendOrderEmail() {
+                let referralCode = '';
+                if (typeof window.getReferralCode === 'function') {
+                    referralCode = window.getReferralCode();
+                }
+                const referralLine = referralCode ? `Polecający (ref): ${referralCode}` : 'Polecający (ref): BRAK';
+                
+                let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
+                
+                cart.forEach((item, index) => {
+                    emailBody += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
+                    if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
+                    if (item.color) emailBody += ` (Kolor: ${item.color})`;
+                    emailBody += '\n';
+                });
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
+                emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
+                emailBody += `${referralLine}\n\n`;
+                emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
+                
+                window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
+            }
+
+            function sendOrderWhatsApp() {
+                let referralCode = '';
+                if (typeof window.getReferralCode === 'function') {
+                    referralCode = window.getReferralCode();
+                }
+                const referralLine = referralCode ? `Polecający (ref): ${referralCode}` : 'Polecający (ref): BRAK';
+                
+                let message = 'Zamówienie z AdelbertusShop:%0A%0A';
+                
+                cart.forEach((item, index) => {
+                    message += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
+                    if (item.size) message += ` (Rozmiar: ${item.size})`;
+                    if (item.color) message += ` (Kolor: ${item.color})`;
+                    message += '%0A';
+                });
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                message += `%0ASUMA: ${total.toFixed(2)} zł%0A%0A`;
+                message += `Data: ${new Date().toLocaleString('pl-PL')}%0A%0A`;
+                message += `${referralLine}%0A%0A`;
+                message += `Proszę o potwierdzenie zamówienia.`;
+                
+                window.open(`https://wa.me/48604296360?text=${message}`);
+            }
             
             // ============================================================
             // DANE PRODUKTÓW DO MODALU SKLEPU
@@ -2831,61 +2919,6 @@
             function goToCheckout() {
                 toggleCart();
                 hideCartPopup();
-            }
-
-            // ============================================================
-            // NADPISANE FUNKCJE WYSYŁANIA ZAMÓWIEŃ Z SYSTEMEM POLECEŃ
-            // ============================================================
-            function sendOrderEmail() {
-                // Pobranie kodu polecającego
-                let referralCode = '';
-                if (typeof window.getReferralCode === 'function') {
-                    referralCode = window.getReferralCode();
-                }
-                const referralLine = referralCode ? `Polecający (ref): ${referralCode}` : 'Polecający (ref): BRAK';
-                
-                let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
-                
-                cart.forEach((item, index) => {
-                    emailBody += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
-                    if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
-                    if (item.color) emailBody += ` (Kolor: ${item.color})`;
-                    emailBody += '\n';
-                });
-                
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
-                emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
-                emailBody += `${referralLine}\n\n`;
-                emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
-                
-                window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
-            }
-
-            function sendOrderWhatsApp() {
-                // Pobranie kodu polecającego
-                let referralCode = '';
-                if (typeof window.getReferralCode === 'function') {
-                    referralCode = window.getReferralCode();
-                }
-                const referralLine = referralCode ? `Polecający (ref): ${referralCode}` : 'Polecający (ref): BRAK';
-                
-                let message = 'Zamówienie z AdelbertusShop:%0A%0A';
-                
-                cart.forEach((item, index) => {
-                    message += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
-                    if (item.size) message += ` (Rozmiar: ${item.size})`;
-                    if (item.color) message += ` (Kolor: ${item.color})`;
-                    message += '%0A';
-                });
-                
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                message += `%0ASUMA: ${total.toFixed(2)} zł%0A%0A`;
-                message += `Data: ${new Date().toLocaleString('pl-PL')}%0A%0A`;
-                message += `${referralLine}%0A%0A`;
-                message += `Proszę o potwierdzenie zamówienia.`;
-                
-                window.open(`https://wa.me/48604296360?text=${message}`);
             }
 
             // Funkcje pomocnicze
