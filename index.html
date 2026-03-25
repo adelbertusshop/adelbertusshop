@@ -2510,32 +2510,26 @@
         </footer>
 
         <script>
-            // ============================================================
-            // SYSTEM POLECEŃ (REFERRAL) – wdrożony 24.03.2026
-            // ============================================================
+            /* =============================================
+               SYSTEM POLECEŃ (REFERRAL) – czysta wersja v2
+               Wdrożone 24.03.2026 – bez błędów 'export'
+               ============================================= */
             (function() {
-                // Odczytaj parametr ?ref= z URL
                 const urlParams = new URLSearchParams(window.location.search);
                 const refCode = urlParams.get('ref');
                 
-                // Zapisz do cookie (90 dni, path=/)
                 if (refCode && refCode.trim() !== '') {
                     const cookieValue = encodeURIComponent(refCode);
                     const expires = new Date();
                     expires.setTime(expires.getTime() + (90 * 24 * 60 * 60 * 1000));
                     document.cookie = `referral_code=${cookieValue}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
-                    
-                    // Zapisz do localStorage
                     localStorage.setItem('referral_code', refCode);
                 }
                 
-                // Funkcja globalna do pobierania kodu polecającego
                 window.getReferralCode = function() {
-                    // 1) sprawdź w localStorage
                     let stored = localStorage.getItem('referral_code');
                     if (stored && stored !== '') return stored;
                     
-                    // 2) sprawdź w cookie
                     const cookies = document.cookie.split('; ');
                     for (let i = 0; i < cookies.length; i++) {
                         const [key, value] = cookies[i].split('=');
@@ -2545,7 +2539,6 @@
                         }
                     }
                     
-                    // 3) ostatnia szansa – sprawdź ponownie URL (jeśli strona odświeżona a parametr wciąż jest)
                     const params = new URLSearchParams(window.location.search);
                     const paramRef = params.get('ref');
                     if (paramRef && paramRef.trim() !== '') return paramRef;
@@ -2554,9 +2547,6 @@
                 };
             })();
             
-            // ============================================================
-            // NADPISANE FUNKCJE WYSYŁANIA ZAMÓWIEŃ Z SYSTEMEM POLECEŃ
-            // ============================================================
             function sendOrderEmail() {
                 let referralCode = '';
                 if (typeof window.getReferralCode === 'function') {
@@ -2660,13 +2650,11 @@
                 ]
             };
 
-            // Stan dla modalii
             let _catCurrent = null;
             let _catPage = 0;
             const CAT_PAGE_SIZE = 9;
             let _prodCurrent = null;
 
-            // Funkcje dla modalii kategorii
             function openCategoryModal(cat) {
                 _catCurrent = cat;
                 _catPage = 0;
@@ -2720,7 +2708,6 @@
                 if (e.target === document.getElementById('shopCatModal')) closeCategoryModal();
             }
 
-            // Funkcje dla modalii produktu
             function openProductModal(cat, idx) {
                 const prod = SHOP_PRODUCTS[cat][idx];
                 _prodCurrent = { ...prod };
@@ -2809,7 +2796,6 @@
                 if (e.target === document.getElementById('shopProdModal')) closeProductModal();
             }
 
-            // Obsługa koszyka
             let cart = JSON.parse(localStorage.getItem('adelbertus_cart')) || [];
 
             function addToCart(name, price, image = null, size = null, color = null) {
@@ -2921,7 +2907,6 @@
                 hideCartPopup();
             }
 
-            // Funkcje pomocnicze
             function showNotification(message) {
                 const notification = document.createElement('div');
                 notification.textContent = message;
@@ -3112,7 +3097,6 @@
                 }, 4000);
             }
 
-            // Funkcje konfiguratora
             const state = {
                 product: 'hoodie',
                 canvasColor: '#ffffff',
@@ -3311,7 +3295,6 @@
                     });
                 });
 
-                // Tworzenie przycisków rozmiaru
                 const sizeGrid = document.getElementById('sizeGrid');
                 const sizes = ['XS','S','M','L','XL','XXL','2XL','3XL'];
                 sizes.forEach(s => {
@@ -3364,22 +3347,17 @@
                     a.click(); 
                 });
                 
-                // Podpięcie przycisku "DODAJ DO KOSZYKA" z konfiguratora do systemu koszyka
                 document.getElementById('addToCartBtn').addEventListener('click', ()=>{ 
                     const productName = productMap[state.product].name + ' (Projekt)';
                     const price = calcTotal();
-                    
-                    // Konwertujemy canvas na data URL, aby zapisać obraz w koszyku
                     const canvasData = canvas.toDataURL('image/png');
                     const size = state.orderSize;
                     const colorName = state.orderColor.name;
                     
-                    // Dodajemy produkt do koszyka dla każdej sztuki
                     for (let i = 0; i < state.orderQty; i++) {
                         addToCart(productName, price / state.orderQty, canvasData, size, colorName);
                     }
                     
-                    // Pokazujemy komunikat
                     showNotification('✅ Projekt dodany do koszyka');
                     showCartPopup();
                 });
@@ -3778,7 +3756,6 @@
                 return total; 
             }
 
-            // Inicjalizacja
             document.addEventListener('DOMContentLoaded', function() {
                 initNavigation();
                 initProductOptions();
@@ -3787,7 +3764,6 @@
                 initImageZoom();
                 initCharitySection();
                 
-                // Inicjalizacja konfiguratora
                 createSwatches();
                 createOrderSwatches();
                 createFontOptions();
@@ -3796,7 +3772,6 @@
                 setupEvents();
                 render();
                 
-                // Opinie rotujące
                 const allReviews = [
                     { name: "Anna K.", text: "Koszulki są niesamowite! Jakość wykonania i oryginalny design - polecam każdemu!", stars: 5 },
                     { name: "Marek W.", text: "Zamówienie dotarło błyskawicznie, a bluza jest jeszcze lepsza niż na zdjęciach. Na pewno wrócę!", stars: 5 },
@@ -3854,7 +3829,6 @@
                 }, 3600000);
             });
 
-            // Obsługa klawisza ESC dla modalii
             document.addEventListener('keydown', e => {
                 if (e.key === 'Escape') {
                     closeProductModal();
@@ -3862,7 +3836,6 @@
                 }
             });
 
-            // Eksport funkcji do globalnego scope
             window.addToCart = addToCart;
             window.removeFromCart = removeFromCart;
             window.toggleCart = toggleCart;
@@ -3887,56 +3860,5 @@
             window.sprodAddToCart = sprodAddToCart;
         </script>
     </main>
-    <!-- =============================================
-     SYSTEM POLECEŃ (REFERRAL) – najprostsza wersja
-     Wdrożone 24.03.2026
-     ============================================= -->
-<script>
-(function() {
-    'use strict';
-
-    function getRefFromUrl() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('ref');
-    }
-
-    function saveRef(ref) {
-        if (!ref || ref.trim() === '') return;
-
-        const expires = new Date();
-        expires.setTime(expires.getTime() + 90 * 24 * 60 * 60 * 1000);
-
-        document.cookie = `ref_code=${ref.trim()}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
-        localStorage.setItem('ref_code', ref.trim());
-
-        console.log(`✅ System poleceń: zapisano ref = ${ref.trim()}`);
-    }
-
-    function getReferralCode() {
-        let ref = localStorage.getItem('ref_code');
-        if (!ref) {
-            const cookies = document.cookie.split('; ');
-            const refCookie = cookies.find(row => row.startsWith('ref_code='));
-            if (refCookie) ref = refCookie.split('=')[1];
-        }
-        return ref || '';
-    }
-
-    // Uruchomienie
-    const refFromUrl = getRefFromUrl();
-    if (refFromUrl) {
-        saveRef(refFromUrl);
-    }
-
-    const currentRef = getReferralCode();
-    if (currentRef) {
-        console.log(`📌 Aktualny polecający (ref): ${currentRef}`);
-    }
-
-    // Udostępnij funkcję globalnie
-    window.getReferralCode = getReferralCode;
-
-})();
-</script>
 </body>
 </html>
