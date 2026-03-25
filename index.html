@@ -3887,5 +3887,56 @@
             window.sprodAddToCart = sprodAddToCart;
         </script>
     </main>
+    <!-- =============================================
+     SYSTEM POLECEŃ (REFERRAL) – najprostsza wersja
+     Wdrożone 24.03.2026
+     ============================================= -->
+<script>
+(function() {
+    'use strict';
+
+    function getRefFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('ref');
+    }
+
+    function saveRef(ref) {
+        if (!ref || ref.trim() === '') return;
+
+        const expires = new Date();
+        expires.setTime(expires.getTime() + 90 * 24 * 60 * 60 * 1000);
+
+        document.cookie = `ref_code=${ref.trim()}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+        localStorage.setItem('ref_code', ref.trim());
+
+        console.log(`✅ System poleceń: zapisano ref = ${ref.trim()}`);
+    }
+
+    function getReferralCode() {
+        let ref = localStorage.getItem('ref_code');
+        if (!ref) {
+            const cookies = document.cookie.split('; ');
+            const refCookie = cookies.find(row => row.startsWith('ref_code='));
+            if (refCookie) ref = refCookie.split('=')[1];
+        }
+        return ref || '';
+    }
+
+    // Uruchomienie
+    const refFromUrl = getRefFromUrl();
+    if (refFromUrl) {
+        saveRef(refFromUrl);
+    }
+
+    const currentRef = getReferralCode();
+    if (currentRef) {
+        console.log(`📌 Aktualny polecający (ref): ${currentRef}`);
+    }
+
+    // Udostępnij funkcję globalnie
+    window.getReferralCode = getReferralCode;
+
+})();
+</script>
 </body>
 </html>
