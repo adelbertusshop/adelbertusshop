@@ -2514,6 +2514,7 @@
                SYSTEM POLECEŃ (REFERRAL) – czysta wersja v2
                Wdrożone 24.03.2026 – bez błędów 'export'
                ============================================= */
+            
             (function() {
                 const urlParams = new URLSearchParams(window.location.search);
                 const refCode = urlParams.get('ref');
@@ -2597,9 +2598,7 @@
                 window.open(`https://wa.me/48604296360?text=${message}`);
             }
             
-            // ============================================================
             // DANE PRODUKTÓW DO MODALU SKLEPU
-            // ============================================================
             const SHOP_PRODUCTS = {
                 koszulka: [
                     { name:'Koszulka "Portret"', price:80, images:['https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg','https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg','https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
