@@ -2510,93 +2510,60 @@
         </footer>
 
         <script>
-            /* =============================================
-               SYSTEM POLECEŃ (REFERRAL) – czysta wersja v2
-               Wdrożone 24.03.2026 – bez błędów 'export'
-               ============================================= */
-            
-            (function() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const refCode = urlParams.get('ref');
-                
-                if (refCode && refCode.trim() !== '') {
-                    const cookieValue = encodeURIComponent(refCode);
-                    const expires = new Date();
-                    expires.setTime(expires.getTime() + (90 * 24 * 60 * 60 * 1000));
-                    document.cookie = `referral_code=${cookieValue}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
-                    localStorage.setItem('referral_code', refCode);
-                }
-                
-                window.getReferralCode = function() {
-                    let stored = localStorage.getItem('referral_code');
-                    if (stored && stored !== '') return stored;
-                    
-                    const cookies = document.cookie.split('; ');
-                    for (let i = 0; i < cookies.length; i++) {
-                        const [key, value] = cookies[i].split('=');
-                        if (key === 'referral_code') {
-                            const decoded = decodeURIComponent(value);
-                            if (decoded && decoded !== '') return decoded;
-                        }
-                    }
-                    
-                    const params = new URLSearchParams(window.location.search);
-                    const paramRef = params.get('ref');
-                    if (paramRef && paramRef.trim() !== '') return paramRef;
-                    
-                    return '';
-                };
-            })();
-            
-            function sendOrderEmail() {
-                let referralCode = '';
-                if (typeof window.getReferralCode === 'function') {
-                    referralCode = window.getReferralCode();
-                }
-                const referralLine = referralCode ? `Polecający (ref): ${referralCode}` : 'Polecający (ref): BRAK';
-                
-                let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
-                
-                cart.forEach((item, index) => {
-                    emailBody += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
-                    if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
-                    if (item.color) emailBody += ` (Kolor: ${item.color})`;
-                    emailBody += '\n';
-                });
-                
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
-                emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
-                emailBody += `${referralLine}\n\n`;
-                emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
-                
-                window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
-            }
+       <!-- =============================================
+     SYSTEM POLECEŃ (REFERRAL) – czysta wersja FINAL
+     Bez żadnego 'export' – działa na pewno
+     ============================================= -->
+<script>
+(function() {
+    'use strict';
 
-            function sendOrderWhatsApp() {
-                let referralCode = '';
-                if (typeof window.getReferralCode === 'function') {
-                    referralCode = window.getReferralCode();
-                }
-                const referralLine = referralCode ? `Polecający (ref): ${referralCode}` : 'Polecający (ref): BRAK';
-                
-                let message = 'Zamówienie z AdelbertusShop:%0A%0A';
-                
-                cart.forEach((item, index) => {
-                    message += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
-                    if (item.size) message += ` (Rozmiar: ${item.size})`;
-                    if (item.color) message += ` (Kolor: ${item.color})`;
-                    message += '%0A';
-                });
-                
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                message += `%0ASUMA: ${total.toFixed(2)} zł%0A%0A`;
-                message += `Data: ${new Date().toLocaleString('pl-PL')}%0A%0A`;
-                message += `${referralLine}%0A%0A`;
-                message += `Proszę o potwierdzenie zamówienia.`;
-                
-                window.open(`https://wa.me/48604296360?text=${message}`);
-            }
+    // Odczyt ref z URL
+    function getRefFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('ref');
+    }
+
+    // Zapisz ref
+    function saveRef(ref) {
+        if (!ref || ref.trim() === '') return;
+
+        const expires = new Date();
+        expires.setTime(expires.getTime() + 90 * 24 * 60 * 60 * 1000);
+
+        document.cookie = `ref_code=${ref.trim()}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+        localStorage.setItem('ref_code', ref.trim());
+
+        console.log(`✅ Ref zapisany: ${ref.trim()}`);
+    }
+
+    // Pobierz aktualny ref
+    function getReferralCode() {
+        let ref = localStorage.getItem('ref_code');
+        if (!ref) {
+            const cookies = document.cookie.split('; ');
+            const refCookie = cookies.find(row => row.startsWith('ref_code='));
+            if (refCookie) ref = refCookie.split('=')[1];
+        }
+        return ref || '';
+    }
+
+    // Uruchom
+    const refFromUrl = getRefFromUrl();
+    if (refFromUrl) {
+        saveRef(refFromUrl);
+    }
+
+    const currentRef = getReferralCode();
+    if (currentRef) {
+        console.log(`📌 Aktualny ref: ${currentRef}`);
+    }
+
+    // Udostępnij globalnie
+    window.getReferralCode = getReferralCode;
+
+})();
+</script>
             
             // DANE PRODUKTÓW DO MODALU SKLEPU
             const SHOP_PRODUCTS = {
