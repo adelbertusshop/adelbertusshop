@@ -2510,62 +2510,9 @@
         </footer>
 
         <script>
-       <!-- =============================================
-     SYSTEM POLECEŃ (REFERRAL) – czysta wersja FINAL
-     Bez żadnego 'export' – działa na pewno
-     ============================================= -->
-<script>
-(function() {
-    'use strict';
-
-    // Odczyt ref z URL
-    function getRefFromUrl() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('ref');
-    }
-
-    // Zapisz ref
-    function saveRef(ref) {
-        if (!ref || ref.trim() === '') return;
-
-        const expires = new Date();
-        expires.setTime(expires.getTime() + 90 * 24 * 60 * 60 * 1000);
-
-        document.cookie = `ref_code=${ref.trim()}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
-        localStorage.setItem('ref_code', ref.trim());
-
-        console.log(`✅ Ref zapisany: ${ref.trim()}`);
-    }
-
-    // Pobierz aktualny ref
-    function getReferralCode() {
-        let ref = localStorage.getItem('ref_code');
-        if (!ref) {
-            const cookies = document.cookie.split('; ');
-            const refCookie = cookies.find(row => row.startsWith('ref_code='));
-            if (refCookie) ref = refCookie.split('=')[1];
-        }
-        return ref || '';
-    }
-
-    // Uruchom
-    const refFromUrl = getRefFromUrl();
-    if (refFromUrl) {
-        saveRef(refFromUrl);
-    }
-
-    const currentRef = getReferralCode();
-    if (currentRef) {
-        console.log(`📌 Aktualny ref: ${currentRef}`);
-    }
-
-    // Udostępnij globalnie
-    window.getReferralCode = getReferralCode;
-
-})();
-</script>
-            
+            // ============================================================
             // DANE PRODUKTÓW DO MODALU SKLEPU
+            // ============================================================
             const SHOP_PRODUCTS = {
                 koszulka: [
                     { name:'Koszulka "Portret"', price:80, images:['https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg','https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg','https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
@@ -2616,11 +2563,13 @@
                 ]
             };
 
+            // Stan dla modalii
             let _catCurrent = null;
             let _catPage = 0;
             const CAT_PAGE_SIZE = 9;
             let _prodCurrent = null;
 
+            // Funkcje dla modalii kategorii
             function openCategoryModal(cat) {
                 _catCurrent = cat;
                 _catPage = 0;
@@ -2674,6 +2623,7 @@
                 if (e.target === document.getElementById('shopCatModal')) closeCategoryModal();
             }
 
+            // Funkcje dla modalii produktu
             function openProductModal(cat, idx) {
                 const prod = SHOP_PRODUCTS[cat][idx];
                 _prodCurrent = { ...prod };
@@ -2762,6 +2712,7 @@
                 if (e.target === document.getElementById('shopProdModal')) closeProductModal();
             }
 
+            // Obsługa koszyka
             let cart = JSON.parse(localStorage.getItem('adelbertus_cart')) || [];
 
             function addToCart(name, price, image = null, size = null, color = null) {
@@ -2873,6 +2824,43 @@
                 hideCartPopup();
             }
 
+            function sendOrderEmail() {
+                let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
+                
+                cart.forEach((item, index) => {
+                    emailBody += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
+                    if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
+                    if (item.color) emailBody += ` (Kolor: ${item.color})`;
+                    emailBody += '\n';
+                });
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\n`;
+                emailBody += `Data: ${new Date().toLocaleString('pl-PL')}\n\n`;
+                emailBody += `Proszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
+                
+                window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
+            }
+
+            function sendOrderWhatsApp() {
+                let message = 'Zamówienie z AdelbertusShop:%0A%0A';
+                
+                cart.forEach((item, index) => {
+                    message += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
+                    if (item.size) message += ` (Rozmiar: ${item.size})`;
+                    if (item.color) message += ` (Kolor: ${item.color})`;
+                    message += '%0A';
+                });
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                message += `%0ASUMA: ${total.toFixed(2)} zł%0A%0A`;
+                message += `Data: ${new Date().toLocaleString('pl-PL')}%0A%0A`;
+                message += `Proszę o potwierdzenie zamówienia.`;
+                
+                window.open(`https://wa.me/48604296360?text=${message}`);
+            }
+
+            // Funkcje pomocnicze
             function showNotification(message) {
                 const notification = document.createElement('div');
                 notification.textContent = message;
@@ -3063,6 +3051,7 @@
                 }, 4000);
             }
 
+            // Funkcje konfiguratora
             const state = {
                 product: 'hoodie',
                 canvasColor: '#ffffff',
@@ -3261,6 +3250,7 @@
                     });
                 });
 
+                // Tworzenie przycisków rozmiaru
                 const sizeGrid = document.getElementById('sizeGrid');
                 const sizes = ['XS','S','M','L','XL','XXL','2XL','3XL'];
                 sizes.forEach(s => {
@@ -3313,17 +3303,22 @@
                     a.click(); 
                 });
                 
+                // Podpięcie przycisku "DODAJ DO KOSZYKA" z konfiguratora do systemu koszyka
                 document.getElementById('addToCartBtn').addEventListener('click', ()=>{ 
                     const productName = productMap[state.product].name + ' (Projekt)';
                     const price = calcTotal();
+                    
+                    // Konwertujemy canvas na data URL, aby zapisać obraz w koszyku
                     const canvasData = canvas.toDataURL('image/png');
                     const size = state.orderSize;
                     const colorName = state.orderColor.name;
                     
+                    // Dodajemy produkt do koszyka dla każdej sztuki
                     for (let i = 0; i < state.orderQty; i++) {
                         addToCart(productName, price / state.orderQty, canvasData, size, colorName);
                     }
                     
+                    // Pokazujemy komunikat
                     showNotification('✅ Projekt dodany do koszyka');
                     showCartPopup();
                 });
@@ -3722,6 +3717,7 @@
                 return total; 
             }
 
+            // Inicjalizacja
             document.addEventListener('DOMContentLoaded', function() {
                 initNavigation();
                 initProductOptions();
@@ -3730,6 +3726,7 @@
                 initImageZoom();
                 initCharitySection();
                 
+                // Inicjalizacja konfiguratora
                 createSwatches();
                 createOrderSwatches();
                 createFontOptions();
@@ -3738,6 +3735,7 @@
                 setupEvents();
                 render();
                 
+                // Opinie rotujące
                 const allReviews = [
                     { name: "Anna K.", text: "Koszulki są niesamowite! Jakość wykonania i oryginalny design - polecam każdemu!", stars: 5 },
                     { name: "Marek W.", text: "Zamówienie dotarło błyskawicznie, a bluza jest jeszcze lepsza niż na zdjęciach. Na pewno wrócę!", stars: 5 },
@@ -3795,6 +3793,7 @@
                 }, 3600000);
             });
 
+            // Obsługa klawisza ESC dla modalii
             document.addEventListener('keydown', e => {
                 if (e.key === 'Escape') {
                     closeProductModal();
@@ -3802,6 +3801,7 @@
                 }
             });
 
+            // Eksport funkcji do globalnego scope
             window.addToCart = addToCart;
             window.removeFromCart = removeFromCart;
             window.toggleCart = toggleCart;
