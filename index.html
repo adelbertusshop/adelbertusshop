@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
@@ -1955,6 +1956,7 @@
             <button class="nav-btn" data-section="shop"><i class="fas fa-tshirt"></i> Sklep</button>
             <button class="nav-btn" data-section="configurator"><i class="fas fa-paint-brush"></i> Konfigurator</button>
             <button class="nav-btn" data-section="charity"><i class="fas fa-hand-holding-heart"></i> Zbiórka</button>
+            <button class="nav-btn" data-section="referral"><i class="fas fa-envelope"></i> Poleć znajomego</button>
             <button class="nav-btn" data-section="partners"><i class="fas fa-handshake"></i> Partnerzy</button>
             <button class="nav-btn" data-section="regulations"><i class="fas fa-file-alt"></i> Regulamin</button>
         </div>
@@ -2248,6 +2250,28 @@
             </div>
         </section>
 
+        <!-- ===== NOWA SEKCJA: POLEĆ ZNAJOMEGO ===== -->
+        <section id="referral">
+            <div class="section-title">
+                <h2>Poleć znajomego</h2>
+                <p>Podziel się swoim kodem i zbieraj punkty!</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-xl p-8 max-w-2xl mx-auto text-center">
+                <i class="fas fa-gift text-6xl text-gold mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Zaproś przyjaciela</h3>
+                <p class="text-gray-600 mb-6">Wyślij znajomemu kod i otrzymaj 10% zniżki na następne zakupy! Twój znajomy też dostanie 5% rabatu!</p>
+                
+                <div class="mb-6">
+                    <label for="ref-email" class="block text-left font-medium mb-2">E-mail znajomego:</label>
+                    <input type="email" id="ref-email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-gold focus:outline-none" placeholder="friend@example.com" required>
+                    <button onclick="wyslijPolecenie()" class="mt-4 bg-gold text-black font-bold px-8 py-3 rounded-full hover:bg-dark-gold transition">
+                        <i class="fas fa-paper-plane"></i> Wyślij zaproszenie
+                    </button>
+                </div>
+                <div id="ref-info" class="text-sm text-gray-500 mt-4"></div>
+            </div>
+        </section>
+
         <!-- ===== MODAL KATEGORII ===== -->
         <div id="shopCatModal" class="smodal-backdrop" onclick="closeCatModal(event)">
             <div class="smodal-box smodal-cat">
@@ -2510,6 +2534,32 @@
         </footer>
 
         <script>
+            // ============================================================
+            // SUPABASE KONFIGURACJA I FUNKCJA POLEĆ
+            // ============================================================
+            const SB_URL = "https://oujlhtzyvdplyrezibiy.supabase.co";
+            const SB_KEY = "sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG";
+            const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
+
+            async function wyslijPolecenie() {
+                const email = document.getElementById('ref-email').value;
+                if (!email) {
+                    alert("Wpisz adres e-mail znajomego.");
+                    return;
+                }
+                const { error } = await supabaseClient
+                    .from('referrals')
+                    .insert([{ referred_email: email }]);
+
+                if (error) {
+                    console.error(error);
+                    alert("Błąd zapisu. Spróbuj ponownie później.");
+                } else {
+                    alert("Polecenie wysłane! Dziękujemy.");
+                    document.getElementById('ref-email').value = '';
+                }
+            }
+
             // ============================================================
             // DANE PRODUKTÓW DO MODALU SKLEPU
             // ============================================================
@@ -3824,28 +3874,7 @@
             window.closeProdModal = closeProdModal;
             window.sprodQtyChange = sprodQtyChange;
             window.sprodAddToCart = sprodAddToCart;
-        </script>
-        
-        <!-- Supabase Script -->
-        <input type="email" id="mail_znajomego" placeholder="Wpisz mail kolegi">
-        <button id="wyslij_polecenie">Poleć i zgarnij bonus</button>
-        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-        <script>
-            const SB_URL = "https://oujlhtzyvdplyrezibiy.supabase.co";
-            const SB_KEY = "sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG";
-            const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
-            
-            document.getElementById('wyslij_polecenie').onclick = async () => {
-                const email = document.getElementById('mail_znajomego').value;
-                const { error } = await supabaseClient
-                    .from('polecenia')
-                    .insert([{ email_znajomego: email, kto_poleca: 'Klient_Adelbertus' }]);
-                if (error) {
-                    alert('Ups! Coś nie pykło. Spróbuj rano.');
-                } else {
-                    alert('Sukces! Polecenie zapisane.');
-                }
-            };
+            window.wyslijPolecenie = wyslijPolecenie;
         </script>
     </main>
 </body>
