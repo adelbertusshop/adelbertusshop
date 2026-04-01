@@ -13,8 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
@@ -2866,26 +2865,25 @@
             const SB_URL = "https://oujlhtzyvdplyrezibiy.supabase.co";
             const SB_KEY = "sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG";
             const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
-// Tworzymy połączenie (bez słowa export!)
-const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
 
-// Funkcja wysyłania - czysta, bez zbędnych dodatków
-async function wyslijPolecenie() {
-    const emailInput = document.getElementById('mail_znajomego'); // Upewnij się, że masz takie ID w HTML
-    const email = emailInput.value;
+            async function wyslijPolecenie() {
+                const email = document.getElementById('ref-email').value;
+                if (!email) {
+                    alert("Wpisz adres e-mail znajomego.");
+                    return;
+                }
+                const { error } = await supabaseClient
+                    .from('referrals')
+                    .insert([{ referred_email: email }]);
 
-    const { error } = await supabaseClient
-        .from('polecenia')
-        .insert([{ email_znajomego: email, kto_poleca: 'Klient_Adelbertus' }]);
-
-    if (error) {
-        console.error(error);
-        alert("Błąd zapisu w bazie.");
-    } else {
-        alert("Sukces! Polecenie zapisane.");
-        emailInput.value = ''; // Czyścimy okienko po wysłaniu
-    }
-}
+                if (error) {
+                    console.error(error);
+                    alert("Błąd zapisu. Spróbuj ponownie później.");
+                } else {
+                    alert("Polecenie wysłane! Dziękujemy.");
+                    document.getElementById('ref-email').value = '';
+                }
+            }
 
             // ============================================================
             // DANE PRODUKTÓW DO MODALU SKLEPU
