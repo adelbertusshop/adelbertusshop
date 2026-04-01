@@ -2166,7 +2166,7 @@
     </style>  
 </head>
 <body>
-    <!-- NOWA HERO SEKCJA – π PREMIUM -->
+    <!-- NOWA HERO SEKCJA – π PREMIUM (z działającym przyciskiem) -->
     <section class="hero-pi" id="heroSection">
         <div class="hero-container">
             <div class="hero-layout">
@@ -2198,7 +2198,7 @@
                         Jest postawą. Symbolem tych, którzy liczą dalej niż do trzech 
                         i myślą głębiej niż scrollują.
                     </p>
-                    <button class="hero-cta" onclick="document.querySelector('[data-section=\'shop\']').click();">
+                    <button class="hero-cta" id="heroShopButton">
                         Odkryj kolekcję π <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
@@ -4109,6 +4109,24 @@
                 setupEvents();
                 renderCanvas();
                 
+                // PODPIĘCIE PRZYCISKU Z HERO (naprawione)
+                const heroButton = document.getElementById('heroShopButton');
+                if (heroButton) {
+                    heroButton.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const shopBtn = document.querySelector('.nav-btn[data-section="shop"]');
+                        if (shopBtn) {
+                            shopBtn.click();
+                        } else {
+                            // Fallback – ręczne przełączenie sekcji
+                            showSection('shop');
+                            // aktywuj przycisk w nawigacji
+                            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+                            if (shopBtn) shopBtn.classList.add('active');
+                        }
+                    });
+                }
+                
                 // Opinie rotujące
                 const allReviews = [
                     { name: "Anna K.", text: "Koszulki są niesamowite! Jakość wykonania i oryginalny design - polecam każdemu!", stars: 5 },
@@ -4203,4 +4221,4 @@
     </main>
 </body>
 </html>
-<!-- Hero Adelbertus v2 – złoty π hook -->
+<!-- Hero Adelbertus v2 – złoty π hook (przycisk działa) -->
