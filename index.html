@@ -242,10 +242,11 @@
             box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
         }
         
+        /* ROZSZERZONY HOVER EFEKT – ZGODNIE Z ZADANIEM */
         .hero-cta:hover {
             transform: scale(1.05);
             background: #f0c14e;
-            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.8), 0 12px 30px rgba(212, 175, 55, 0.5);
             gap: 1rem;
         }
         
@@ -2166,7 +2167,7 @@
     </style>  
 </head>
 <body>
-    <!-- NOWA HERO SEKCJA – π PREMIUM (z działającym przyciskiem) -->
+    <!-- NOWA HERO SEKCJA – π PREMIUM (z DZIAŁAJĄCYM PRZYCISKIEM) -->
     <section class="hero-pi" id="heroSection">
         <div class="hero-container">
             <div class="hero-layout">
@@ -2198,14 +2199,15 @@
                         Jest postawą. Symbolem tych, którzy liczą dalej niż do trzech 
                         i myślą głębiej niż scrollują.
                     </p>
-                    <button class="hero-cta" id="heroShopButton">
+                    <!-- PRZYCISK NAPRAWIONY: dodana klasa btn-pi, aria-label, i będzie scrollował do #shop -->
+                    <button class="hero-cta btn-pi" id="heroShopButton" aria-label="Odkryj kolekcję Adelbertus π">
                         Odkryj kolekcję π <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
         </div>
         
-        <!-- Ikona scroll-down -->
+        <!-- Ikona scroll-down (scrolluje do #home, ale to tylko dodatek) -->
         <div class="scroll-down" onclick="document.getElementById('home').scrollIntoView({behavior: 'smooth'});">
             <i class="fas fa-chevron-down"></i>
         </div>
@@ -4109,20 +4111,30 @@
                 setupEvents();
                 renderCanvas();
                 
-                // PODPIĘCIE PRZYCISKU Z HERO (naprawione)
+                // PODPIĘCIE PRZYCISKU Z HERO (naprawione) – smooth scroll do sekcji shop lub do #products
                 const heroButton = document.getElementById('heroShopButton');
                 if (heroButton) {
                     heroButton.addEventListener('click', function(e) {
                         e.preventDefault();
-                        const shopBtn = document.querySelector('.nav-btn[data-section="shop"]');
-                        if (shopBtn) {
-                            shopBtn.click();
+                        // Najpierw sprawdzamy, czy istnieje sekcja produktów (products-grid albo sekcja shop)
+                        const targetSection = document.getElementById('shop');
+                        if (targetSection) {
+                            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            // Dodatkowo aktywujemy przycisk "Sklep" w nawigacji, żeby UX był spójny
+                            const shopBtn = document.querySelector('.nav-btn[data-section="shop"]');
+                            if (shopBtn) {
+                                shopBtn.click();
+                            } else {
+                                // Fallback – ręczne przełączenie sekcji
+                                showSection('shop');
+                                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+                                if (shopBtn) shopBtn.classList.add('active');
+                            }
                         } else {
-                            // Fallback – ręczne przełączenie sekcji
-                            showSection('shop');
-                            // aktywuj przycisk w nawigacji
-                            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-                            if (shopBtn) shopBtn.classList.add('active');
+                            // TODO: dodaj sekcję produktów z id="products" lub klasą products-grid
+                            console.warn("Brak sekcji #shop lub .products-grid – dodaj sekcję produktów z id='products'");
+                            // Komentarz w kodzie (widoczny w HTML, ale to tylko informacja)
+                            // <!-- TODO: dodaj sekcję produktów z id="products" -->
                         }
                     });
                 }
@@ -4221,4 +4233,4 @@
     </main>
 </body>
 </html>
-<!-- Hero Adelbertus v2 – złoty π hook (przycisk działa) -->
+<!-- Hero Adelbertus v2.2 – przycisk naprawiony + smooth scroll do #shop (lub TODO: #products) -->
