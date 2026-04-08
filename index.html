@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>AdelbertusShop — π nie jest liczbą. Jest postawą.</title>
-    <meta name="description" content="Adelbertus – custom clothing dla tych, którzy liczą dalej niż do trzech i myślą głębiej niż scrollują. Odkryj kolekcję π.">
+    <title>AdelbertusShop — Konfigurator Odzieży</title>
+    <meta name="description" content="Sklep z odzieżą vintage w stylu 80s i 90s. Koszulki, bluzy, czapki z unikalnymi projektami.">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,8 +12,7 @@
     <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
@@ -24,7 +23,6 @@
             --color-dark: #1a1a1a;
             --color-light: #f8f5f0;
             --color-cream: #fff8e7;
-            --color-black: #0a0a0a;
         }
         
         * {
@@ -57,286 +55,7 @@
             background: var(--color-gold);
         }
 
-        /* ===== NOWA HERO SEKCJA – π PHILOSOPHY PREMIUM ===== */
-        .hero-pi {
-            position: relative;
-            min-height: 100vh;
-            width: 100%;
-            background: #0a0a0a;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Subtelny noise + gradient */
-        .hero-pi::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.08) 0%, rgba(0,0,0,0) 70%);
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .hero-pi::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');
-            background-repeat: repeat;
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .hero-container {
-            position: relative;
-            z-index: 10;
-            max-width: 1400px;
-            width: 90%;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            padding: 4rem 0;
-        }
-        
-        /* Layout desktop: dwa filary – wizualny + tekst */
-        .hero-layout {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
-            width: 100%;
-            flex-wrap: wrap;
-        }
-        
-        /* Lewa strona – wizual π + linie */
-        .hero-visual {
-            flex: 1.2;
-            position: relative;
-            min-width: 280px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .pi-artwork {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            aspect-ratio: 1 / 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        /* Kontury twarzy / oka (linie białe i złote) */
-        .face-outline {
-            position: absolute;
-            width: 80%;
-            height: 80%;
-            top: 10%;
-            left: 10%;
-        }
-        
-        .face-outline svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
-            animation: fadeInLines 1.2s ease-out;
-        }
-        
-        .face-outline svg path {
-            stroke-dasharray: 300;
-            stroke-dashoffset: 300;
-            animation: drawLine 1.5s ease-out forwards;
-        }
-        
-        @keyframes drawLine {
-            to { stroke-dashoffset: 0; }
-        }
-        
-        @keyframes fadeInLines {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        /* Złoty π jako centralny akcent */
-        .pi-symbol {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 10rem;
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-            color: var(--color-gold);
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 40px rgba(212, 175, 55, 0.3);
-            z-index: 5;
-            animation: piGlow 3s infinite alternate;
-        }
-        
-        @keyframes piGlow {
-            0% { text-shadow: 0 0 15px rgba(212, 175, 55, 0.4); opacity: 0.9; }
-            100% { text-shadow: 0 0 35px rgba(212, 175, 55, 0.9), 0 0 15px rgba(255, 215, 0, 0.5); opacity: 1; }
-        }
-        
-        /* Prawa strona – tekst + CTA */
-        .hero-text {
-            flex: 1;
-            text-align: left;
-            color: white;
-            max-width: 600px;
-        }
-        
-        .hero-headline {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-        
-        .hero-headline .gold {
-            color: var(--color-gold);
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-            display: inline-block;
-        }
-        
-        .hero-subheadline {
-            font-size: clamp(1rem, 3vw, 1.4rem);
-            line-height: 1.5;
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 2.5rem;
-            font-weight: 400;
-            max-width: 500px;
-        }
-        
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: var(--color-gold);
-            color: #0a0a0a;
-            font-weight: 700;
-            font-size: 1.1rem;
-            padding: 1rem 2.5rem;
-            border-radius: 60px;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            border: none;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 0.5px;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
-        }
-        
-        /* ROZSZERZONY HOVER EFEKT – ZGODNIE Z ZADANIEM */
-        .hero-cta:hover {
-            transform: scale(1.05);
-            background: #f0c14e;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.8), 0 12px 30px rgba(212, 175, 55, 0.5);
-            gap: 1rem;
-        }
-        
-        .hero-cta i {
-            transition: transform 0.2s;
-        }
-        
-        .hero-cta:hover i {
-            transform: translateX(5px);
-        }
-        
-        /* Scroll down icon */
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 20;
-            color: var(--color-gold);
-            font-size: 1.8rem;
-            cursor: pointer;
-            animation: bounce 2s infinite;
-            transition: opacity 0.3s;
-            background: rgba(10,10,10,0.5);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-        }
-        
-        .scroll-down:hover {
-            opacity: 0.8;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-        
-        /* Responsywność hero */
-        @media (max-width: 900px) {
-            .hero-layout {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-            }
-            
-            .hero-text {
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-subheadline {
-                text-align: center;
-            }
-            
-            .pi-symbol {
-                font-size: 7rem;
-            }
-            
-            .hero-visual {
-                max-width: 350px;
-                margin: 0 auto;
-            }
-        }
-        
-        @media (max-width: 550px) {
-            .pi-symbol {
-                font-size: 5rem;
-            }
-            
-            .hero-cta {
-                padding: 0.8rem 1.8rem;
-                font-size: 1rem;
-            }
-            
-            .scroll-down {
-                bottom: 15px;
-                width: 38px;
-                height: 38px;
-                font-size: 1.3rem;
-            }
-        }
-        
-        /* reszta Twojego oryginalnego CSS zostaje bez zmian – poniżej tylko drobne poprawki dla zachowania spójności */
+        /* STYLE DLA CHATBOTA */
         .chatbot-container {
             position: fixed;
             bottom: 20px;
@@ -2167,53 +1886,6 @@
     </style>  
 </head>
 <body>
-    <!-- NOWA HERO SEKCJA – π PREMIUM (z DZIAŁAJĄCYM PRZYCISKIEM) -->
-    <section class="hero-pi" id="heroSection">
-        <div class="hero-container">
-            <div class="hero-layout">
-                <!-- Lewa strona: grafika liniowa + złoty π -->
-                <div class="hero-visual">
-                    <div class="pi-artwork">
-                        <!-- Minimalistyczny profil twarzy / oko z linii (white/gold) -->
-                        <div class="face-outline">
-                            <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M120 80 Q150 55 180 80 Q195 95 195 120 Q195 145 175 155 Q160 162 145 155 Q130 148 125 135" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                                <path d="M105 165 Q115 185 140 190 Q165 185 175 165" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.8"/>
-                                <circle cx="140" cy="125" r="8" stroke="#D4AF37" stroke-width="2" fill="none"/>
-                                <path d="M210 100 L230 130 L210 160" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
-                                <path d="M90 200 L110 220 L95 245" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" fill="none"/>
-                                <path d="M195 220 L215 245 L190 265" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
-                            </svg>
-                        </div>
-                        <!-- Złoty symbol π jako centralny akcent -->
-                        <div class="pi-symbol">π</div>
-                    </div>
-                </div>
-                
-                <!-- Prawa strona: tekst + CTA -->
-                <div class="hero-text">
-                    <h1 class="hero-headline">
-                        <span class="gold">π</span> nie jest liczbą.
-                    </h1>
-                    <p class="hero-subheadline">
-                        Jest postawą. Symbolem tych, którzy liczą dalej niż do trzech 
-                        i myślą głębiej niż scrollują.
-                    </p>
-                    <!-- PRZYCISK NAPRAWIONY: dodana klasa btn-pi, aria-label, i będzie scrollował do #shop -->
-                    <button class="hero-cta btn-pi" id="heroShopButton" aria-label="Odkryj kolekcję Adelbertus π">
-                        Odkryj kolekcję π <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Ikona scroll-down (scrolluje do #home, ale to tylko dodatek) -->
-        <div class="scroll-down" onclick="document.getElementById('home').scrollIntoView({behavior: 'smooth'});">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
-    
-    <!-- Reszta oryginalnej strony – wszystko bez zmian -->
     <!-- Chatbot -->
     <div class="chatbot-container">
         <button class="chatbot-button pulse" onclick="toggleChatbot()" id="chatbotButton">
@@ -2283,7 +1955,6 @@
             <button class="nav-btn" data-section="shop"><i class="fas fa-tshirt"></i> Sklep</button>
             <button class="nav-btn" data-section="configurator"><i class="fas fa-paint-brush"></i> Konfigurator</button>
             <button class="nav-btn" data-section="charity"><i class="fas fa-hand-holding-heart"></i> Zbiórka</button>
-            <button class="nav-btn" data-section="referral"><i class="fas fa-envelope"></i> Poleć znajomego</button>
             <button class="nav-btn" data-section="partners"><i class="fas fa-handshake"></i> Partnerzy</button>
             <button class="nav-btn" data-section="regulations"><i class="fas fa-file-alt"></i> Regulamin</button>
         </div>
@@ -2577,28 +2248,6 @@
             </div>
         </section>
 
-        <!-- ===== NOWA SEKCJA: POLEĆ ZNAJOMEGO ===== -->
-        <section id="referral">
-            <div class="section-title">
-                <h2>Poleć znajomego</h2>
-                <p>Podziel się swoim kodem i zbieraj punkty!</p>
-            </div>
-            <div class="bg-white rounded-2xl shadow-xl p-8 max-w-2xl mx-auto text-center">
-                <i class="fas fa-gift text-6xl text-gold mb-4"></i>
-                <h3 class="text-2xl font-bold mb-2">Zaproś przyjaciela</h3>
-                <p class="text-gray-600 mb-6">Wyślij znajomemu kod i otrzymaj 10% zniżki na następne zakupy! Twój znajomy też dostanie 5% rabatu!</p>
-                
-                <div class="mb-6">
-                    <label for="ref-email" class="block text-left font-medium mb-2">E-mail znajomego:</label>
-                    <input type="email" id="ref-email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-gold focus:outline-none" placeholder="friend@example.com" required>
-                    <button onclick="wyslijPolecenie()" class="mt-4 bg-gold text-black font-bold px-8 py-3 rounded-full hover:bg-dark-gold transition">
-                        <i class="fas fa-paper-plane"></i> Wyślij zaproszenie
-                    </button>
-                </div>
-                <div id="ref-info" class="text-sm text-gray-500 mt-4"></div>
-            </div>
-        </section>
-
         <!-- ===== MODAL KATEGORII ===== -->
         <div id="shopCatModal" class="smodal-backdrop" onclick="closeCatModal(event)">
             <div class="smodal-box smodal-cat">
@@ -2861,32 +2510,6 @@
         </footer>
 
         <script>
-            // ============================================================
-            // SUPABASE KONFIGURACJA I FUNKCJA POLEĆ
-            // ============================================================
-            const SB_URL = "https://oujlhtzyvdplyrezibiy.supabase.co";
-            const SB_KEY = "sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG";
-            const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
-
-            async function wyslijPolecenie() {
-                const email = document.getElementById('ref-email').value;
-                if (!email) {
-                    alert("Wpisz adres e-mail znajomego.");
-                    return;
-                }
-                const { error } = await supabaseClient
-                    .from('referrals')
-                    .insert([{ referred_email: email }]);
-
-                if (error) {
-                    console.error(error);
-                    alert("Błąd zapisu. Spróbuj ponownie później.");
-                } else {
-                    alert("Polecenie wysłane! Dziękujemy.");
-                    document.getElementById('ref-email').value = '';
-                }
-            }
-
             // ============================================================
             // DANE PRODUKTÓW DO MODALU SKLEPU
             // ============================================================
@@ -3445,8 +3068,8 @@
                 nextId: 1,
             };
 
-            const canvasEl = document.getElementById('studioCanvas');
-            const ctxCanvas = canvasEl.getContext('2d');
+            const canvas = document.getElementById('studioCanvas');
+            const ctx = canvas.getContext('2d');
             const productMap = {
                 hoodie: { name: 'Bluza', price: 170, path: 'M80 30 Q55 40 35 70 L35 220 Q30 235 35 250 L35 350 Q35 365 47 370 L110 375 Q125 370 135 357 L147 280 Q155 260 172 240 Q195 220 220 220 L220 70 Q195 40 170 30 Z' },
                 tshirt: { name: 'Koszulka', price: 80, path: 'M80 40 Q60 20 40 40 L40 90 Q35 110 40 130 L40 250 Q40 260 48 266 L70 278 Q80 282 90 276 L110 250 Q120 258 130 266 L150 276 Q160 282 170 278 L190 266 Q198 260 200 250 L200 130 Q205 110 200 90 L200 40 Q180 20 160 40 Z' },
@@ -3463,7 +3086,7 @@
                     b.style.background=c; 
                     b.title=c; 
                     b.dataset.color=c; 
-                    b.onclick=()=>{state.canvasColor=c; renderCanvas(); markActiveSwatch();}; 
+                    b.onclick=()=>{state.canvasColor=c; render(); markActiveSwatch();}; 
                     parent.appendChild(b);
                 });
             }
@@ -3515,7 +3138,7 @@
                         c.classList.add('active'); 
                         state.product=c.dataset.product; 
                         document.getElementById('activeName').textContent=productMap[state.product].name; 
-                        renderCanvas(); 
+                        render(); 
                         updateOrderSummary(); 
                         updatePrice(); 
                     }); 
@@ -3524,30 +3147,30 @@
                 document.getElementById('gridToggle').onclick = ()=>{ 
                     state.showGrid = !state.showGrid; 
                     document.getElementById('gridToggle').textContent = state.showGrid ? 'Ukryj siatkę' : 'Pokaż siatkę'; 
-                    renderCanvas(); 
+                    render(); 
                 };
                 
                 document.getElementById('liveText').addEventListener('input', ()=>{ 
                     if(!state.selectedId){ return;} 
                     const l=findLayer(state.selectedId); 
-                    if(l && l.type==='text'){ l.text = event.target.value; renderCanvas(); updateLayerUI(); }
+                    if(l && l.type==='text'){ l.text = event.target.value; render(); updateLayerUI(); }
                 });
                 
                 document.getElementById('fontFamily').addEventListener('change', ()=>{ 
                     const l=findLayer(state.selectedId); 
-                    if(l && l.type==='text'){ l.font = event.target.value; renderCanvas(); updateLayerUI(); }
+                    if(l && l.type==='text'){ l.font = event.target.value; render(); updateLayerUI(); }
                 });
                 
                 document.getElementById('fontSize').addEventListener('input', ()=>{ 
                     const v=Number(event.target.value); 
                     document.getElementById('fontSizeLabel').textContent=v; 
                     const l=findLayer(state.selectedId); 
-                    if(l && l.type==='text'){ l.fontSize=v; renderCanvas(); updateLayerUI(); }
+                    if(l && l.type==='text'){ l.fontSize=v; render(); updateLayerUI(); }
                 });
                 
                 document.getElementById('textColor').addEventListener('input', ()=>{ 
                     const l=findLayer(state.selectedId); 
-                    if(l && l.type==='text'){ l.fontColor=event.target.value; renderCanvas(); updateLayerUI(); }
+                    if(l && l.type==='text'){ l.fontColor=event.target.value; render(); updateLayerUI(); }
                 });
                 
                 document.getElementById('addTextBtn').addEventListener('click', ()=>{ 
@@ -3563,7 +3186,7 @@
                             if(id==='boldBtn') l.bold=!l.bold; 
                             if(id==='italicBtn') l.italic=!l.italic; 
                             if(id==='underlineBtn') l.underline=!l.underline; 
-                            renderCanvas(); 
+                            render(); 
                             updateLayerUI(); 
                         } 
                     });
@@ -3580,7 +3203,7 @@
                     b.addEventListener('click', ()=>{ 
                         document.getElementById('textColor').value=c; 
                         const l=findLayer(state.selectedId); 
-                        if(l && l.type==='text'){ l.fontColor=c; renderCanvas(); updateLayerUI(); } 
+                        if(l && l.type==='text'){ l.fontColor=c; render(); updateLayerUI(); } 
                     }); 
                     presetDiv.appendChild(b); 
                 });
@@ -3622,7 +3245,7 @@
                         if(id==='layerRotation') l.rotation=Number(event.target.value); 
                         if(id==='layerScale'){ const v=Number(event.target.value)/100; l.scaleX=v; l.scaleY=v; } 
                         if(id==='layerOpacity') l.opacity=Number(event.target.value)/100; 
-                        renderCanvas(); 
+                        render(); 
                         updateLayerUI(); 
                     });
                 });
@@ -3673,7 +3296,7 @@
                 });
 
                 document.getElementById('exportPng').addEventListener('click', ()=>{ 
-                    const data=canvasEl.toDataURL('image/png',1); 
+                    const data=canvas.toDataURL('image/png',1); 
                     const a=document.createElement('a'); 
                     a.href=data; 
                     a.download=`adelbertus-projekt-${Date.now()}.png`; 
@@ -3686,7 +3309,7 @@
                     const price = calcTotal();
                     
                     // Konwertujemy canvas na data URL, aby zapisać obraz w koszyku
-                    const canvasData = canvasEl.toDataURL('image/png');
+                    const canvasData = canvas.toDataURL('image/png');
                     const size = state.orderSize;
                     const colorName = state.orderColor.name;
                     
@@ -3700,15 +3323,15 @@
                     showCartPopup();
                 });
 
-                canvasEl.addEventListener('mousedown', onMouseDown);
+                canvas.addEventListener('mousedown', onMouseDown);
                 window.addEventListener('mousemove', onMouseMove);
                 window.addEventListener('mouseup', onMouseUp);
-                canvasEl.addEventListener('wheel', e=>{ 
+                canvas.addEventListener('wheel', e=>{ 
                     e.preventDefault(); 
                     const delta=e.deltaY>0?-0.05:0.05; 
                     state.zoom=Math.min(2,Math.max(0.5,state.zoom+delta)); 
                     document.getElementById('zoomLabel').textContent=`Zoom ${Math.round(state.zoom*100)}%`; 
-                    renderCanvas(); 
+                    render(); 
                 });
             }
 
@@ -3744,7 +3367,7 @@
                 };
                 state.layers.push(layer); 
                 selectLayer(layer.id); 
-                renderCanvas(); 
+                render(); 
                 updateLayersPanel(); 
             }
 
@@ -3776,7 +3399,7 @@
                         }
                         state.layers.push(layer); 
                         selectLayer(layer.id); 
-                        renderCanvas(); 
+                        render(); 
                         updateLayersPanel();
                     };
                     img.src = reader.result;
@@ -3786,9 +3409,9 @@
 
             function findLayer(id) { return state.layers.find(l=>l.id===id); }
             
-            function selectLayer(id) { state.selectedId=id; updateLayerUI(); renderCanvas(); }
+            function selectLayer(id) { state.selectedId=id; updateLayerUI(); render(); }
             
-            function deselect() { state.selectedId=null; updateLayerUI(); renderCanvas(); }
+            function deselect() { state.selectedId=null; updateLayerUI(); render(); }
 
             function updateLayerUI() {
                 const selected = findLayer(state.selectedId);
@@ -3824,7 +3447,7 @@
                 else { state.layers.splice(Math.max(0, i-1),0,item);} 
                 if(dir===999) state.layers.push(item); 
                 if(dir===-999) state.layers.unshift(item); 
-                renderCanvas(); 
+                render(); 
                 updateLayersPanel(); 
             }
             
@@ -3836,7 +3459,7 @@
                 state.layers.push(copy); 
                 selectLayer(copy.id); 
                 updateLayersPanel(); 
-                renderCanvas(); 
+                render(); 
             }
             
             function removeSelected() { 
@@ -3845,58 +3468,59 @@
                     state.layers.splice(i,1); 
                     state.selectedId=null; 
                     updateLayerUI(); 
-                    renderCanvas(); 
+                    render(); 
                     updateLayersPanel(); 
                 }
             }
 
-            function renderCanvas() {
-                ctxCanvas.clearRect(0,0,canvasEl.width,canvasEl.height);
-                ctxCanvas.fillStyle='#111'; 
-                ctxCanvas.fillRect(0,0,canvasEl.width,canvasEl.height);
+            function render() {
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                ctx.fillStyle='#111'; 
+                ctx.fillRect(0,0,canvas.width,canvas.height);
                 
                 if(state.showGrid){ 
-                    ctxCanvas.save(); 
-                    ctxCanvas.strokeStyle='rgba(255,255,255,.08)'; 
-                    ctxCanvas.lineWidth=1; 
-                    for(let x=0;x<canvasEl.width;x+=50){ 
-                        ctxCanvas.beginPath(); 
-                        ctxCanvas.moveTo(x,0); 
-                        ctxCanvas.lineTo(x,canvasEl.height); 
-                        ctxCanvas.stroke();
+                    ctx.save(); 
+                    ctx.strokeStyle='rgba(255,255,255,.08)'; 
+                    ctx.lineWidth=1; 
+                    for(let x=0;x<canvas.width;x+=50){ 
+                        ctx.beginPath(); 
+                        ctx.moveTo(x,0); 
+                        ctx.lineTo(x,canvas.height); 
+                        ctx.stroke();
                     } 
-                    for(let y=0;y<canvasEl.height;y+=50){ 
-                        ctxCanvas.beginPath(); 
-                        ctxCanvas.moveTo(0,y); 
-                        ctxCanvas.lineTo(canvasEl.width,y); 
-                        ctxCanvas.stroke();
+                    for(let y=0;y<canvas.height;y+=50){ 
+                        ctx.beginPath(); 
+                        ctx.moveTo(0,y); 
+                        ctx.lineTo(canvas.width,y); 
+                        ctx.stroke();
                     } 
-                    ctxCanvas.restore(); 
+                    ctx.restore(); 
                 }
 
-                ctxCanvas.save(); 
-                ctxCanvas.beginPath(); 
+                ctx.save(); 
+                ctx.translate(0,0); 
+                ctx.beginPath(); 
                 const pathStr=productMap[state.product].path; 
                 const path=new Path2D(pathStr); 
-                ctxCanvas.fillStyle=state.canvasColor; 
-                ctxCanvas.shadowColor='rgba(0,0,0,0.4)'; 
-                ctxCanvas.shadowBlur=20; 
-                ctxCanvas.shadowOffsetY=10; 
-                ctxCanvas.translate(130,80); 
-                ctxCanvas.scale(1.6,1.6); 
-                ctxCanvas.fill(path); 
-                ctxCanvas.restore();
+                ctx.fillStyle=state.canvasColor; 
+                ctx.shadowColor='rgba(0,0,0,0.4)'; 
+                ctx.shadowBlur=20; 
+                ctx.shadowOffsetY=10; 
+                ctx.translate(130,80); 
+                ctx.scale(1.6,1.6); 
+                ctx.fill(path); 
+                ctx.restore();
 
                 for(const layer of state.layers){ 
                     if(!layer.visible) continue; 
-                    ctxCanvas.save(); 
-                    ctxCanvas.globalAlpha=layer.opacity; 
+                    ctx.save(); 
+                    ctx.globalAlpha=layer.opacity; 
                     const x=layer.x; 
                     const y=layer.y; 
-                    ctxCanvas.translate(x,y); 
-                    ctxCanvas.rotate(layer.rotation*Math.PI/180); 
-                    ctxCanvas.scale(layer.flipH?-1:1, layer.flipV?-1:1); 
-                    ctxCanvas.scale(layer.scaleX, layer.scaleY);
+                    ctx.translate(x,y); 
+                    ctx.rotate(layer.rotation*Math.PI/180); 
+                    ctx.scale(layer.flipH?-1:1, layer.flipV?-1:1); 
+                    ctx.scale(layer.scaleX, layer.scaleY);
                     
                     if(layer.type==='text'){
                         const fontParts=[];
@@ -3904,31 +3528,31 @@
                         if(layer.bold) fontParts.push('bold');
                         fontParts.push(`${layer.fontSize}px`);
                         fontParts.push(layer.font);
-                        ctxCanvas.font = fontParts.join(' ');
-                        ctxCanvas.fillStyle = layer.fontColor;
-                        ctxCanvas.textAlign = layer.align;
-                        ctxCanvas.textBaseline='middle';
-                        if(layer.shadow){ ctxCanvas.shadowColor=layer.shadowColor; ctxCanvas.shadowBlur=layer.shadowBlur; }
+                        ctx.font = fontParts.join(' ');
+                        ctx.fillStyle = layer.fontColor;
+                        ctx.textAlign = layer.align;
+                        ctx.textBaseline='middle';
+                        if(layer.shadow){ ctx.shadowColor=layer.shadowColor; ctx.shadowBlur=layer.shadowBlur; }
                         const alignX = layer.align==='left'? -layer.width/2 : layer.align==='right'? layer.width/2 : 0;
-                        ctxCanvas.fillText(layer.text, alignX, 0);
+                        ctx.fillText(layer.text, alignX, 0);
                         if(layer.underline){ 
-                            const w=ctxCanvas.measureText(layer.text).width; 
+                            const w=ctx.measureText(layer.text).width; 
                             let x0=alignX; 
                             if(layer.align==='center') x0 -= w/2; 
                             if(layer.align==='right') x0 -= w; 
-                            ctxCanvas.strokeStyle=layer.fontColor; 
-                            ctxCanvas.lineWidth=2; 
-                            ctxCanvas.beginPath(); 
-                            ctxCanvas.moveTo(x0, 10); 
-                            ctxCanvas.lineTo(x0+w,10); 
-                            ctxCanvas.stroke(); 
+                            ctx.strokeStyle=layer.fontColor; 
+                            ctx.lineWidth=2; 
+                            ctx.beginPath(); 
+                            ctx.moveTo(x0, 10); 
+                            ctx.lineTo(x0+w,10); 
+                            ctx.stroke(); 
                         }
                     } else if(layer.type==='image'){ 
                         const w=layer.width; 
                         const h=layer.height; 
-                        ctxCanvas.drawImage(layer.img, -w/2, -h/2, w, h); 
+                        ctx.drawImage(layer.img, -w/2, -h/2, w, h); 
                     }
-                    ctxCanvas.restore(); 
+                    ctx.restore(); 
                 }
 
                 if(state.selectedId){ 
@@ -3937,30 +3561,30 @@
                         const {x,y}=selected; 
                         const w=selected.width*selected.scaleX; 
                         const h=selected.height*selected.scaleY; 
-                        ctxCanvas.save(); 
-                        ctxCanvas.translate(x,y); 
-                        ctxCanvas.rotate(selected.rotation*Math.PI/180); 
-                        ctxCanvas.strokeStyle='#e8ff00'; 
-                        ctxCanvas.setLineDash([6,4]); 
-                        ctxCanvas.lineWidth=2; 
-                        ctxCanvas.strokeRect(-w/2,-h/2,w,h);
+                        ctx.save(); 
+                        ctx.translate(x,y); 
+                        ctx.rotate(selected.rotation*Math.PI/180); 
+                        ctx.strokeStyle='#e8ff00'; 
+                        ctx.setLineDash([6,4]); 
+                        ctx.lineWidth=2; 
+                        ctx.strokeRect(-w/2,-h/2,w,h);
                         
                         const handles=[[-w/2,-h/2],[0,-h/2],[w/2,-h/2],[-w/2,0],[w/2,0],[-w/2,h/2],[0,h/2],[w/2,h/2]];
-                        ctxCanvas.setLineDash([]);
+                        ctx.setLineDash([]);
                         handles.forEach(([hx,hy])=>{ 
-                            ctxCanvas.fillStyle='#d4af37'; 
-                            ctxCanvas.fillRect(hx-5,hy-5,10,10); 
+                            ctx.fillStyle='#d4af37'; 
+                            ctx.fillRect(hx-5,hy-5,10,10); 
                         });
-                        ctxCanvas.beginPath(); 
-                        ctxCanvas.strokeStyle='#e8ff00'; 
-                        ctxCanvas.moveTo(0,-h/2); 
-                        ctxCanvas.lineTo(0,-h/2-30); 
-                        ctxCanvas.stroke(); 
-                        ctxCanvas.beginPath(); 
-                        ctxCanvas.fillStyle='#e8ff00'; 
-                        ctxCanvas.arc(0,-h/2-40,8,0,Math.PI*2); 
-                        ctxCanvas.fill(); 
-                        ctxCanvas.restore(); 
+                        ctx.beginPath(); 
+                        ctx.strokeStyle='#e8ff00'; 
+                        ctx.moveTo(0,-h/2); 
+                        ctx.lineTo(0,-h/2-30); 
+                        ctx.stroke(); 
+                        ctx.beginPath(); 
+                        ctx.fillStyle='#e8ff00'; 
+                        ctx.arc(0,-h/2-40,8,0,Math.PI*2); 
+                        ctx.fill(); 
+                        ctx.restore(); 
                     }
                 }
                 updatePrice(); 
@@ -3979,7 +3603,7 @@
             }
 
             function onMouseDown(e) { 
-                const r=canvasEl.getBoundingClientRect(); 
+                const r=canvas.getBoundingClientRect(); 
                 const x=(e.clientX-r.left); 
                 const y=(e.clientY-r.top); 
                 let found=null; 
@@ -3994,7 +3618,7 @@
                 if(found){ 
                     selectLayer(found.id); 
                     state.dragState={layerId:found.id, offsetX:x-found.x, offsetY:y-found.y}; 
-                    canvasEl.style.cursor='grabbing'; 
+                    canvas.style.cursor='grabbing'; 
                 } else { 
                     deselect(); 
                 }
@@ -4002,21 +3626,21 @@
             
             function onMouseMove(e) { 
                 if(!state.dragState) return; 
-                const r=canvasEl.getBoundingClientRect(); 
+                const r=canvas.getBoundingClientRect(); 
                 const x=(e.clientX-r.left); 
                 const y=(e.clientY-r.top); 
                 const l=findLayer(state.dragState.layerId); 
                 if(l){ 
                     l.x = x - state.dragState.offsetX; 
                     l.y = y - state.dragState.offsetY; 
-                    renderCanvas(); 
+                    render(); 
                     updateLayerUI(); 
                 }
             }
             
             function onMouseUp() { 
                 state.dragState=null; 
-                canvasEl.style.cursor='grab'; 
+                canvas.style.cursor='grab'; 
             }
 
             function updateOrderSummary() { 
@@ -4109,35 +3733,7 @@
                 updateOrderSummary();
                 renderOrderPreview();
                 setupEvents();
-                renderCanvas();
-                
-                // PODPIĘCIE PRZYCISKU Z HERO (naprawione) – smooth scroll do sekcji shop lub do #products
-                const heroButton = document.getElementById('heroShopButton');
-                if (heroButton) {
-                    heroButton.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        // Najpierw sprawdzamy, czy istnieje sekcja produktów (products-grid albo sekcja shop)
-                        const targetSection = document.getElementById('shop');
-                        if (targetSection) {
-                            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            // Dodatkowo aktywujemy przycisk "Sklep" w nawigacji, żeby UX był spójny
-                            const shopBtn = document.querySelector('.nav-btn[data-section="shop"]');
-                            if (shopBtn) {
-                                shopBtn.click();
-                            } else {
-                                // Fallback – ręczne przełączenie sekcji
-                                showSection('shop');
-                                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-                                if (shopBtn) shopBtn.classList.add('active');
-                            }
-                        } else {
-                            // TODO: dodaj sekcję produktów z id="products" lub klasą products-grid
-                            console.warn("Brak sekcji #shop lub .products-grid – dodaj sekcję produktów z id='products'");
-                            // Komentarz w kodzie (widoczny w HTML, ale to tylko informacja)
-                            // <!-- TODO: dodaj sekcję produktów z id="products" -->
-                        }
-                    });
-                }
+                render();
                 
                 // Opinie rotujące
                 const allReviews = [
@@ -4228,9 +3824,29 @@
             window.closeProdModal = closeProdModal;
             window.sprodQtyChange = sprodQtyChange;
             window.sprodAddToCart = sprodAddToCart;
-            window.wyslijPolecenie = wyslijPolecenie;
+        </script>
+        
+        <!-- Supabase Script -->
+        <input type="email" id="mail_znajomego" placeholder="Wpisz mail kolegi">
+        <button id="wyslij_polecenie">Poleć i zgarnij bonus</button>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script>
+            const SB_URL = "https://oujlhtzyvdplyrezibiy.supabase.co";
+            const SB_KEY = "sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG";
+            const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
+            
+            document.getElementById('wyslij_polecenie').onclick = async () => {
+                const email = document.getElementById('mail_znajomego').value;
+                const { error } = await supabaseClient
+                    .from('polecenia')
+                    .insert([{ email_znajomego: email, kto_poleca: 'Klient_Adelbertus' }]);
+                if (error) {
+                    alert('Ups! Coś nie pykło. Spróbuj rano.');
+                } else {
+                    alert('Sukces! Polecenie zapisane.');
+                }
+            };
         </script>
     </main>
 </body>
 </html>
-<!-- Hero Adelbertus v2.2 – przycisk naprawiony + smooth scroll do #shop (lub TODO: #products) -->
