@@ -15,8 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
-    <!-- EmailJS - do wysyłania zaproszeń -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <!-- EmailJS - zaktualizowana wersja -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
@@ -3006,31 +3006,33 @@
 
         <script>
             // ============================================================
-            // EMAILJS - WYSYŁANIE ZAPROSZEŃ (wklejony kod)
+            // EMAILJS - WYSYŁANIE ZAPROSZEŃ (zaktualizowane dane)
             // ============================================================
-            (function () {
-              emailjs.init("v0XHu9rhknNoqzngJ");
+            (function() {
+                // Inicjalizacja EmailJS z nowym Public Key
+                emailjs.init("VzYZ8Pcs1YfVwebOU");
             })();
 
             function sendReferralEmail() {
-              const email = document.getElementById("referral-email").value;
+                const email = document.getElementById("referral-email").value;
 
-              if (!email) {
-                alert("Wpisz adres e-mail.");
-                return;
-              }
+                if (!email) {
+                    alert("Wpisz adres e-mail.");
+                    return;
+                }
 
-              emailjs.send("service_gwz0ja7", "template_064b7uo", {
-                to_email: email
-              })
-              .then(function () {
-                alert("Zaproszenie wysłane!");
-                document.getElementById("referral-email").value = "";
-              })
-              .catch(function (error) {
-                console.error("Błąd wysyłki:", error);
-                alert("Nie udało się wysłać maila.");
-              });
+                // Użycie nowego Service ID: service_ur3dpv9
+                emailjs.send("service_ur3dpv9", "template_064b7uo", {
+                    to_email: email
+                })
+                .then(function () {
+                    alert("Zaproszenie wysłane!");
+                    document.getElementById("referral-email").value = "";
+                })
+                .catch(function (error) {
+                    console.error("Błąd wysyłki:", error);
+                    alert("Nie udało się wysłać maila.");
+                });
             }
 
             // ============================================================
