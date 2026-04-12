@@ -2832,8 +2832,8 @@
                 <p class="text-gray-600 mb-6">Wyślij znajomemu kod i otrzymaj 10% zniżki na następne zakupy! Twój znajomy też dostanie 5% rabatu!</p>
                 
                 <div class="mb-6">
-                    <label for="ref-email" class="block text-left font-medium mb-2">E-mail znajomego:</label>
-                    <input type="email" id="ref-email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-gold focus:outline-none" placeholder="friend@example.com" required>
+                    <label for="referral-email" class="block text-left font-medium mb-2">E-mail znajomego:</label>
+                    <input type="email" id="referral-email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-gold focus:outline-none" placeholder="friend@example.com" required>
                     <button onclick="wyslijPolecenie()" class="mt-4 bg-gold text-black font-bold px-8 py-3 rounded-full hover:bg-dark-gold transition">
                         <i class="fas fa-paper-plane"></i> Wyślij zaproszenie
                     </button>
@@ -3115,26 +3115,43 @@
             }
 
             async function wyslijPolecenie() {
-                const email = document.getElementById('ref-email').value;
-                if (!email) {
-                    alert("Wpisz adres e-mail znajomego.");
+                const emailInput = document.getElementById("referral-email");
+                if (!emailInput) {
+                    console.error("Nie znaleziono inputa o id 'referral-email'");
+                    alert("Błąd: nie znaleziono pola email");
                     return;
                 }
-                if (supabaseClient) {
-                    const { error } = await supabaseClient
+                
+                const email = emailInput.value;
+                console.log("EMAIL do zapisu:", email);
+                
+                if (!email || email.trim() === "") {
+                    alert("Podaj adres e-mail znajomego");
+                    return;
+                }
+                
+                if (!supabaseClient) {
+                    console.error("Supabase nie jest dostępny");
+                    alert("Błąd: Supabase nie jest dostępny. Spróbuj ponownie później.");
+                    return;
+                }
+                
+                try {
+                    const { data, error } = await supabaseClient
                         .from('referrals')
-                        .insert([{ referred_email: email }]);
-
+                        .insert([{ referred_email: email.trim() }]);
+                    
                     if (error) {
-                        console.error(error);
-                        alert("Błąd zapisu. Spróbuj ponownie później.");
+                        console.error("SUPABASE ERROR:", error);
+                        alert("Błąd zapisu: " + error.message);
                     } else {
+                        console.log("Zapis OK:", data);
                         alert("Polecenie wysłane! Dziękujemy.");
-                        document.getElementById('ref-email').value = '';
+                        emailInput.value = '';
                     }
-                } else {
-                    alert("Supabase nie jest dostępny, ale polecenie zostało zapamiętane.");
-                    document.getElementById('ref-email').value = '';
+                } catch (err) {
+                    console.error("Wyjatek:", err);
+                    alert("Wystąpił błąd podczas zapisu");
                 }
             }
 
@@ -3703,7 +3720,7 @@
             };
 
             const canvasEl = document.getElementById('studioCanvas');
-            const ctxCanvas = canvasEl.getContext('2d');
+            const ctxCanvas = canvasEl ? canvasEl.getContext('2d') : null;
             const productMap = {
                 hoodie: { name: 'Bluza', price: 170, path: 'M80 30 Q55 40 35 70 L35 220 Q30 235 35 250 L35 350 Q35 365 47 370 L110 375 Q125 370 135 357 L147 280 Q155 260 172 240 Q195 220 220 220 L220 70 Q195 40 170 30 Z' },
                 tshirt: { name: 'Koszulka', price: 80, path: 'M80 40 Q60 20 40 40 L40 90 Q35 110 40 130 L40 250 Q40 260 48 266 L70 278 Q80 282 90 276 L110 250 Q120 258 130 266 L150 276 Q160 282 170 278 L190 266 Q198 260 200 250 L200 130 Q205 110 200 90 L200 40 Q180 20 160 40 Z' },
@@ -3991,11 +4008,13 @@
                 const exportPng = document.getElementById('exportPng');
                 if (exportPng) {
                     exportPng.addEventListener('click', ()=>{ 
-                        const data=canvasEl.toDataURL('image/png',1); 
-                        const a=document.createElement('a'); 
-                        a.href=data; 
-                        a.download=`adelbertus-projekt-${Date.now()}.png`; 
-                        a.click(); 
+                        if (canvasEl) {
+                            const data=canvasEl.toDataURL('image/png',1); 
+                            const a=document.createElement('a'); 
+                            a.href=data; 
+                            a.download=`adelbertus-projekt-${Date.now()}.png`; 
+                            a.click(); 
+                        }
                     });
                 }
                 
@@ -4004,7 +4023,7 @@
                     addToCartBtn.addEventListener('click', ()=>{ 
                         const productName = productMap[state.product].name + ' (Projekt)';
                         const price = calcTotal();
-                        const canvasData = canvasEl.toDataURL('image/png');
+                        const canvasData = canvasEl ? canvasEl.toDataURL('image/png') : '';
                         const size = state.orderSize;
                         const colorName = state.orderColor.name;
                         
