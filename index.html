@@ -3006,7 +3006,7 @@
 
         <script>
             // ============================================================
-            // EMAILJS - WYSYŁANIE ZAPROSZEŃ (zaktualizowane dane)
+            // EMAILJS - WYSYŁANIE ZAPROSZEŃ (zaktualizowane dane + walidacja anty-spam)
             // ============================================================
             (function() {
                 // Inicjalizacja EmailJS z nowym Public Key
@@ -3016,8 +3016,33 @@
             function sendReferralEmail() {
                 const email = document.getElementById("referral-email").value;
 
-                if (!email) {
-                    alert("Wpisz adres e-mail.");
+                // ============================================================
+                // WALIDACJA ANTY-SPAM
+                // ============================================================
+                if (!email || email.trim() === "") {
+                    alert("Podaj adres e-mail.");
+                    return;
+                }
+                
+                if (!email.includes("@")) {
+                    alert("Podaj poprawny adres e-mail (musi zawierać @).");
+                    return;
+                }
+                
+                if (email.indexOf("@") === 0 || email.indexOf("@") === email.length - 1) {
+                    alert("Podaj poprawny adres e-mail.");
+                    return;
+                }
+                
+                const domain = email.split("@")[1];
+                if (!domain || domain.indexOf(".") === -1 || domain.indexOf(".") === 0 || domain.indexOf(".") === domain.length - 1) {
+                    alert("Podaj poprawny adres e-mail (np. przyklad@domena.pl).");
+                    return;
+                }
+                
+                // Dodatkowe zabezpieczenie przed zbyt długim e-mailem
+                if (email.length > 100) {
+                    alert("Adres e-mail jest zbyt długi.");
                     return;
                 }
 
@@ -3031,7 +3056,7 @@
                 })
                 .catch(function (error) {
                     console.error("Błąd wysyłki:", error);
-                    alert("Nie udało się wysłać maila.");
+                    alert("Nie udało się wysłać maila. Spróbuj ponownie później.");
                 });
             }
 
