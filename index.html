@@ -350,6 +350,7 @@
         .product-info {
             padding: 1.8rem;
             text-align: center;
+            position: relative;
         }
         
         .product-name {
@@ -397,6 +398,37 @@
             color: #0a0a0a;
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
             transform: scale(1.02);
+        }
+        
+        .hidden-symbol {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            font-size: 10px;
+            opacity: 0.15;
+            font-family: monospace;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .elite-message {
+            text-align: center;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: #888;
+            text-transform: uppercase;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1rem;
+        }
+        
+        .decision-note {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            margin-top: 0.75rem;
+            letter-spacing: 0.5px;
         }
         
         @media (max-width: 1024px) {
@@ -875,6 +907,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         
         .product-card:hover {
@@ -933,6 +966,7 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         
         .product-title {
@@ -1613,6 +1647,7 @@
           padding: 10px;
           cursor: pointer;
           transition: all .2s ease;
+          position: relative;
         }
 
         .product-card-config.active {
@@ -1932,14 +1967,15 @@
             background: #fafafa; border-radius: 16px;
             overflow: hidden; cursor: pointer;
             transition: all 0.2s; border: 1px solid #eee;
+            position: relative;
         }
         .smodal-prod-card:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
         .smodal-prod-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
-        .smodal-prod-card-info { padding: 1rem; text-align: center; }
+        .smodal-prod-card-info { padding: 1rem; text-align: center; position: relative; }
         .smodal-prod-card-name { font-weight: 600; margin-bottom: 0.3rem; }
         .smodal-prod-card-price { color: var(--color-gold); font-weight: 700; }
 
-        .sprod-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .sprod-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; position: relative; }
         .sprod-gallery { display: flex; flex-direction: column; gap: 1rem; }
         .sprod-main-img-wrap {
             background: #f5f5f5; border-radius: 20px;
@@ -1955,7 +1991,7 @@
             object-fit: cover; cursor: pointer; border: 2px solid transparent;
         }
         .sprod-thumbs img.active { border-color: var(--color-gold); }
-        .sprod-details { display: flex; flex-direction: column; gap: 1.5rem; }
+        .sprod-details { display: flex; flex-direction: column; gap: 1.5rem; position: relative; }
         .sprod-title { font-size: 2rem; font-weight: 700; color: var(--color-dark); }
         .sprod-price { font-size: 1.8rem; color: var(--color-gold); font-weight: 700; }
         .sprod-section-label { font-weight: 600; margin-bottom: 0.3rem; color: #333; }
@@ -2012,6 +2048,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
         }
         .shop-cat-tile:hover {
             transform: translateY(-8px);
@@ -2047,6 +2084,7 @@
         }
         .shop-cat-info {
             padding: 1.5rem;
+            position: relative;
         }
         .shop-cat-info h3 {
             font-size: 1.5rem;
@@ -2280,14 +2318,13 @@
                 
                 <div class="hero-text">
                     <h1 class="hero-headline">
-                        <span class="gold">π</span> nie jest liczbą.
+                        Nie dla każdego.
                     </h1>
                     <p class="hero-subheadline">
-                        Jest postawą. Symbolem tych, którzy liczą dalej niż do trzech 
-                        i myślą głębiej niż scrollują.
+                        Jeśli rozumiesz — już jesteś w środku.
                     </p>
-                    <button class="hero-cta btn-pi" id="heroShopButton" aria-label="Odkryj kolekcję Adelbertus π">
-                        Odkryj kolekcję π <i class="fas fa-arrow-right"></i>
+                    <button class="hero-cta btn-pi" id="heroShopButton" aria-label="Wejdź głębiej">
+                        Wejdź głębiej <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
@@ -2320,7 +2357,10 @@
                         <h3 class="product-name">π Profile – Linia Myśli</h3>
                         <p class="product-desc">Deklaracja dla tych, którzy widzą więcej niż powierzchnia.</p>
                         <div class="product-price">129 zł</div>
-                        <button class="product-btn" data-name="π Profile – Linia Myśli" data-price="129">Dodaj do koszyka</button>
+                        <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                        <button class="product-btn" data-name="π Profile – Linia Myśli" data-price="129">Biorę to teraz</button>
+                        <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
+                        <div class="hidden-symbol">π ♈</div>
                     </div>
                 </div>
 
@@ -2339,7 +2379,10 @@
                         <h3 class="product-name">Oko Adelbertusa</h3>
                         <p class="product-desc">Nie patrz – obserwuj. Nie kupuj – rozumiej.</p>
                         <div class="product-price">149 zł</div>
-                        <button class="product-btn" data-name="Oko Adelbertusa" data-price="149">Dodaj do koszyka</button>
+                        <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                        <button class="product-btn" data-name="Oko Adelbertusa" data-price="149">Biorę to teraz</button>
+                        <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
+                        <div class="hidden-symbol">π ♈</div>
                     </div>
                 </div>
 
@@ -2358,7 +2401,10 @@
                         <h3 class="product-name">Dłoń Wszechświata</h3>
                         <p class="product-desc">Trzymasz coś więcej niż tkaninę. Trzymasz deklarację.</p>
                         <div class="product-price">139 zł</div>
-                        <button class="product-btn" data-name="Dłoń Wszechświata" data-price="139">Dodaj do koszyka</button>
+                        <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                        <button class="product-btn" data-name="Dłoń Wszechświata" data-price="139">Biorę to teraz</button>
+                        <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
+                        <div class="hidden-symbol">π ♈</div>
                     </div>
                 </div>
             </div>
@@ -2407,11 +2453,11 @@
 
     <!-- Popup koszyka -->
     <div class="cart-popup" id="cartPopup">
-        <div class="font-bold">✅ Dodano do koszyka!</div>
+        <div class="font-bold">🔥 Dodane — ktoś właśnie ogląda ten model</div>
         <p>Produkt został pomyślnie dodany do Twojego koszyka.</p>
         <div class="cart-popup-buttons">
             <button class="continue-shopping" onclick="hideCartPopup()">Kontynuuj zakupy</button>
-            <button class="go-to-checkout" onclick="goToCheckout()">Idź do kasy</button>
+            <button class="go-to-checkout" onclick="goToCheckout()">Finalizuję zakup</button>
         </div>
     </div>
 
@@ -2483,6 +2529,10 @@
                     </div>
                     <div class="product-info">
                         <div class="product-title">Koszulka "Portret"</div>
+                        <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                        <button class="product-btn add-to-cart-btn" data-name="Koszulka Portret" data-price="80">Biorę to teraz</button>
+                        <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
+                        <div class="hidden-symbol">π ♈</div>
                     </div>
                 </div>
                 
@@ -2497,6 +2547,10 @@
                     </div>
                     <div class="product-info">
                         <div class="product-title">Koszulka "Adelbertus"</div>
+                        <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                        <button class="product-btn add-to-cart-btn" data-name="Koszulka Adelbertus" data-price="80">Biorę to teraz</button>
+                        <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
+                        <div class="hidden-symbol">π ♈</div>
                     </div>
                 </div>
                 
@@ -2511,6 +2565,10 @@
                     </div>
                     <div class="product-info">
                         <div class="product-title">Bluza "Adelbertus"</div>
+                        <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                        <button class="product-btn add-to-cart-btn" data-name="Bluza Adelbertus" data-price="170">Biorę to teraz</button>
+                        <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
+                        <div class="hidden-symbol">π ♈</div>
                     </div>
                 </div>
             </div>
@@ -2524,6 +2582,10 @@
                         </div>
                         <div class="product-info">
                             <div class="product-title">Koszulka "Zakazany Produkt"</div>
+                            <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                            <button class="product-btn add-to-cart-btn" data-name="Koszulka Zakazany Produkt" data-price="80">Biorę to teraz</button>
+                            <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
+                            <div class="hidden-symbol">π ♈</div>
                         </div>
                     </div>
                     <div class="product-card">
@@ -2532,6 +2594,10 @@
                         </div>
                         <div class="product-info">
                             <div class="product-title">Koszulka "Rzymianin"</div>
+                            <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                            <button class="product-btn add-to-cart-btn" data-name="Koszulka Rzymianin" data-price="80">Biorę to teraz</button>
+                            <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
+                            <div class="hidden-symbol">π ♈</div>
                         </div>
                     </div>
                 </div>
@@ -2573,6 +2639,7 @@
                 <h3>Koszulki</h3>
                 <span class="shop-cat-count">16 produktów</span>
                 <span class="shop-cat-cta">Przeglądaj <i class="fas fa-arrow-right"></i></span>
+                <div class="hidden-symbol">π ♈</div>
               </div>
             </div>
 
@@ -2587,6 +2654,7 @@
                 <h3>Bluzy</h3>
                 <span class="shop-cat-count">18 produktów</span>
                 <span class="shop-cat-cta">Przeglądaj <i class="fas fa-arrow-right"></i></span>
+                <div class="hidden-symbol">π ♈</div>
               </div>
             </div>
 
@@ -2601,6 +2669,7 @@
                 <h3>Czapki</h3>
                 <span class="shop-cat-count">7 produktów</span>
                 <span class="shop-cat-cta">Przeglądaj <i class="fas fa-arrow-right"></i></span>
+                <div class="hidden-symbol">π ♈</div>
               </div>
             </div>
           </div>
@@ -2662,9 +2731,9 @@
                         <div class="panel-header">Product Selector + Canvas</div>
                         <div class="panel-body">
                             <div class="product-row">
-                                <div class="product-card-config active" data-product="hoodie"><h4>Bluza</h4><p>170 zł</p></div>
-                                <div class="product-card-config" data-product="tshirt"><h4>Koszulka</h4><p>80 zł</p></div>
-                                <div class="product-card-config" data-product="cap"><h4>Czapka</h4><p>99 zł</p></div>
+                                <div class="product-card-config active" data-product="hoodie"><h4>Bluza</h4><p>170 zł</p><div class="hidden-symbol">π ♈</div></div>
+                                <div class="product-card-config" data-product="tshirt"><h4>Koszulka</h4><p>80 zł</p><div class="hidden-symbol">π ♈</div></div>
+                                <div class="product-card-config" data-product="cap"><h4>Czapka</h4><p>99 zł</p><div class="hidden-symbol">π ♈</div></div>
                             </div>
                             <div class="canvas-wrap">
                                 <div class="canvas-top">
@@ -2716,6 +2785,8 @@
                                 <div class="summary-row"><span>Ilość</span><span id="sumQty">1</span></div>
                                 <div class="summary-row"><span>Cena</span><strong id="sumTotal">170 zł</strong></div>
                             </div>
+                            <div class="decision-note" style="text-align:center; margin-top:8px;">Zostawisz to teraz — może nie wrócić.</div>
+                            <div class="hidden-symbol" style="position:relative; text-align:right; margin-top:4px;">π ♈</div>
                         </div>
                     </div>
                 </div>
@@ -2785,13 +2856,15 @@
                             <button class="sprod-qty-btn" onclick="sprodQtyChange(1)">+</button>
                         </div>
                         <button class="sprod-add-btn" onclick="sprodAddToCart()">
-                            <i class="fas fa-shopping-cart"></i> Dodaj do koszyka
+                            <i class="fas fa-shopping-cart"></i> Biorę to teraz
                         </button>
                         <div class="sprod-benefits">
                             <div><i class="fas fa-check"></i> Premium jakość 180g bawełna</div>
                             <div><i class="fas fa-check"></i> DTF printing technology</div>
                             <div><i class="fas fa-truck"></i> Dostawa 3–7 dni roboczych</div>
                         </div>
+                        <div class="decision-note" style="text-align:center;">Zostawisz to teraz — może nie wrócić.</div>
+                        <div class="hidden-symbol" style="position:relative; text-align:right;">π ♈</div>
                     </div>
                 </div>
             </div>
@@ -2864,6 +2937,7 @@
                         </a>
                         <h4>Old School Wojtek</h4>
                         <p>Partner strategiczny</p>
+                        <div class="hidden-symbol">π ♈</div>
                     </div>
                     
                     <div class="partner-card">
@@ -2872,6 +2946,7 @@
                         </a>
                         <h4>Klaudia</h4>
                         <p>Partner kreatywny</p>
+                        <div class="hidden-symbol">π ♈</div>
                     </div>
                     
                     <div class="partner-card">
@@ -2880,6 +2955,7 @@
                         </a>
                         <h4>Rafał</h4>
                         <p>Partner rozwojowy</p>
+                        <div class="hidden-symbol">π ♈</div>
                     </div>
 
                     <div class="partner-card">
@@ -2888,6 +2964,7 @@
                         </a>
                         <h4>Filipex Riman</h4>
                         <p>Partner budowlany</p>
+                        <div class="hidden-symbol">π ♈</div>
                     </div>
 
                     <div class="partner-card">
@@ -2899,6 +2976,7 @@
                         </a>
                         <h4>Maniek Przewozy</h4>
                         <p>Partner transportowy</p>
+                        <div class="hidden-symbol">π ♈</div>
                     </div>
                 </div>
             </div>
@@ -2950,7 +3028,7 @@
 
         <div id="cartPanel">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold">Twój koszyk</h2>
+                <h2 class="text-2xl font-bold">Twoje zamówienie</h2>
                 <button onclick="toggleCart()" class="text-2xl">&times;</button>
             </div>
             
@@ -2975,6 +3053,8 @@
             </div>
             
             <p class="text-sm text-gray-600 text-center mt-4">Akceptujemy również przelewy bankowe i BLIK</p>
+            <div class="decision-note" style="text-align:center; margin-top:12px;">Zostawisz to teraz — może nie wrócić.</div>
+            <div class="hidden-symbol" style="position:relative; text-align:right; margin-top:8px;">π ♈</div>
         </div>
 
         <!-- Stopka -->
@@ -3107,9 +3187,11 @@
                 _catCurrent = cat;
                 _catPage = 0;
                 const titles = { koszulka:'Koszulki', bluza:'Bluzy', czapka:'Czapki' };
-                document.getElementById('catModalTitle').textContent = titles[cat];
+                const titleEl = document.getElementById('catModalTitle');
+                if (titleEl) titleEl.textContent = titles[cat];
                 renderCatPage();
-                document.getElementById('shopCatModal').classList.add('open');
+                const modal = document.getElementById('shopCatModal');
+                if (modal) modal.classList.add('open');
                 document.body.style.overflow = 'hidden';
             }
 
@@ -3120,7 +3202,8 @@
                 const start = _catPage * CAT_PAGE_SIZE;
                 const slice = products.slice(start, start + CAT_PAGE_SIZE);
 
-                document.getElementById('catPageInfo').textContent = `Strona ${_catPage + 1} z ${totalPages} (${total} produktów)`;
+                const pageInfo = document.getElementById('catPageInfo');
+                if (pageInfo) pageInfo.textContent = `Strona ${_catPage + 1} z ${totalPages} (${total} produktów)`;
                 const prevBtn = document.getElementById('catPrevBtn');
                 const nextBtn = document.getElementById('catNextBtn');
                 if (prevBtn) prevBtn.disabled = _catPage === 0;
@@ -3137,6 +3220,7 @@
                         <div class="smodal-prod-card-info">
                             <div class="smodal-prod-card-name">${prod.name}</div>
                             <div class="smodal-prod-card-price">${prod.price} zł</div>
+                            <div class="hidden-symbol" style="position:absolute; bottom:4px; right:8px;">π ♈</div>
                         </div>`;
                     card.addEventListener('click', () => openProductModal(_catCurrent, start + idx));
                     grid.appendChild(card);
@@ -3167,64 +3251,79 @@
                 _prodCurrent._selectedColor = prod.colors[0];
                 _prodCurrent._selectedSize = prod.sizes[0];
 
-                document.getElementById('sprodTitle').textContent = prod.name;
-                document.getElementById('sprodPrice').textContent = prod.price + ' zł';
-                document.getElementById('sprodMainImg').src = prod.images[0];
-                document.getElementById('sprodQty').value = 1;
+                const titleEl = document.getElementById('sprodTitle');
+                const priceEl = document.getElementById('sprodPrice');
+                const mainImg = document.getElementById('sprodMainImg');
+                const qtyInput = document.getElementById('sprodQty');
+                
+                if (titleEl) titleEl.textContent = prod.name;
+                if (priceEl) priceEl.textContent = prod.price + ' zł';
+                if (mainImg) mainImg.src = prod.images[0];
+                if (qtyInput) qtyInput.value = 1;
 
                 const thumbsEl = document.getElementById('sprodThumbs');
-                thumbsEl.innerHTML = '';
-                prod.images.forEach((src, i) => {
-                    const img = document.createElement('img');
-                    img.src = src;
-                    img.alt = prod.name;
-                    if (i === 0) img.classList.add('active');
-                    img.addEventListener('click', () => {
-                        document.getElementById('sprodMainImg').src = src;
-                        thumbsEl.querySelectorAll('img').forEach(t => t.classList.remove('active'));
-                        img.classList.add('active');
+                if (thumbsEl) {
+                    thumbsEl.innerHTML = '';
+                    prod.images.forEach((src, i) => {
+                        const img = document.createElement('img');
+                        img.src = src;
+                        img.alt = prod.name;
+                        if (i === 0) img.classList.add('active');
+                        img.addEventListener('click', () => {
+                            const main = document.getElementById('sprodMainImg');
+                            if (main) main.src = src;
+                            thumbsEl.querySelectorAll('img').forEach(t => t.classList.remove('active'));
+                            img.classList.add('active');
+                        });
+                        thumbsEl.appendChild(img);
                     });
-                    thumbsEl.appendChild(img);
-                });
+                }
 
                 const colorsEl = document.getElementById('sprodColors');
-                colorsEl.innerHTML = '';
-                const colorNames = { '#000':'Czarny','#fff':'Biały','#ffffff':'Biały','#800020':'Bordowy','#36454F':'Grafitowy','#808080':'Szary','#002b36':'Granatowy','#800080':'Fioletowy','#800000':'Bordowy','#FF4500':'Pomarańczowy','#C41E3A':'Czerwony' };
-                prod.colors.forEach(c => {
-                    const dot = document.createElement('div');
-                    dot.className = 'sprod-color-dot' + (c === prod.colors[0] ? ' active' : '');
-                    dot.style.background = c;
-                    if (c === '#fff' || c === '#ffffff') dot.style.border = '2px solid #ddd';
-                    dot.title = colorNames[c] || c;
-                    dot.addEventListener('click', () => {
-                        colorsEl.querySelectorAll('.sprod-color-dot').forEach(d => d.classList.remove('active'));
-                        dot.classList.add('active');
-                        _prodCurrent._selectedColor = c;
+                if (colorsEl) {
+                    colorsEl.innerHTML = '';
+                    const colorNames = { '#000':'Czarny','#fff':'Biały','#ffffff':'Biały','#800020':'Bordowy','#36454F':'Grafitowy','#808080':'Szary','#002b36':'Granatowy','#800080':'Fioletowy','#800000':'Bordowy','#FF4500':'Pomarańczowy','#C41E3A':'Czerwony' };
+                    prod.colors.forEach(c => {
+                        const dot = document.createElement('div');
+                        dot.className = 'sprod-color-dot' + (c === prod.colors[0] ? ' active' : '');
+                        dot.style.background = c;
+                        if (c === '#fff' || c === '#ffffff') dot.style.border = '2px solid #ddd';
+                        dot.title = colorNames[c] || c;
+                        dot.addEventListener('click', () => {
+                            colorsEl.querySelectorAll('.sprod-color-dot').forEach(d => d.classList.remove('active'));
+                            dot.classList.add('active');
+                            _prodCurrent._selectedColor = c;
+                        });
+                        colorsEl.appendChild(dot);
                     });
-                    colorsEl.appendChild(dot);
-                });
+                }
 
                 const sizesEl = document.getElementById('sprodSizes');
-                sizesEl.innerHTML = '';
-                prod.sizes.forEach(s => {
-                    const btn = document.createElement('button');
-                    btn.className = 'sprod-size-btn' + (s === prod.sizes[0] ? ' active' : '');
-                    btn.textContent = s;
-                    btn.addEventListener('click', () => {
-                        sizesEl.querySelectorAll('.sprod-size-btn').forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                        _prodCurrent._selectedSize = s;
+                if (sizesEl) {
+                    sizesEl.innerHTML = '';
+                    prod.sizes.forEach(s => {
+                        const btn = document.createElement('button');
+                        btn.className = 'sprod-size-btn' + (s === prod.sizes[0] ? ' active' : '');
+                        btn.textContent = s;
+                        btn.addEventListener('click', () => {
+                            sizesEl.querySelectorAll('.sprod-size-btn').forEach(b => b.classList.remove('active'));
+                            btn.classList.add('active');
+                            _prodCurrent._selectedSize = s;
+                        });
+                        sizesEl.appendChild(btn);
                     });
-                    sizesEl.appendChild(btn);
-                });
+                }
 
-                document.getElementById('shopProdModal').classList.add('open');
+                const modal = document.getElementById('shopProdModal');
+                if (modal) modal.classList.add('open');
             }
 
             function sprodQtyChange(dir) {
                 const input = document.getElementById('sprodQty');
-                const val = Math.max(1, Math.min(99, parseInt(input.value) + dir));
-                input.value = val;
+                if (input) {
+                    const val = Math.max(1, Math.min(99, parseInt(input.value) + dir));
+                    input.value = val;
+                }
             }
 
             function sprodAddToCart() {
@@ -3278,7 +3377,7 @@
                 }
                 
                 updateCart();
-                showNotification('✅ Produkt dodany do koszyka');
+                showNotification('🔥 Dodane — ktoś właśnie ogląda ten model');
             }
 
             function updateCart() {
@@ -3294,7 +3393,8 @@
                     if (cart.length === 0) {
                         cartItems.innerHTML = '<p class="text-center text-gray-500">Twój koszyk jest pusty</p>';
                         if (cartTotal) cartTotal.textContent = '0 zł';
-                        document.getElementById('paypal-container').innerHTML = '';
+                        const paypalContainer = document.getElementById('paypal-container');
+                        if (paypalContainer) paypalContainer.innerHTML = '';
                     } else {
                         let total = 0;
                         
@@ -3546,7 +3646,7 @@
                         let price = parseFloat(target.getAttribute('data-price'));
                         
                         if (!name && productCard) {
-                            const nameEl = productCard.querySelector('.product-name');
+                            const nameEl = productCard.querySelector('.product-title') || productCard.querySelector('.product-name');
                             if (nameEl) name = nameEl.textContent.trim();
                         }
                         
@@ -3950,7 +4050,7 @@
                             addToCart(productName, price / state.orderQty, canvasData, size, colorName);
                         }
                         
-                        showNotification('✅ Projekt dodany do koszyka');
+                        showNotification('🔥 Dodane — ktoś właśnie ogląda ten model');
                         showCartPopup();
                     });
                 }
