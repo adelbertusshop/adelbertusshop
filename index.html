@@ -2293,6 +2293,57 @@
                 height: 28px;
             }
         }
+
+        /* Artifact layer styles */
+        .artifact-id {
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            color: #888;
+            margin: 8px 0 12px 0;
+            text-align: center;
+            font-family: monospace;
+            border-top: 1px dashed rgba(212,175,55,0.3);
+            border-bottom: 1px dashed rgba(212,175,55,0.3);
+            padding: 6px 0;
+            display: inline-block;
+            width: 100%;
+        }
+        .artifact-story {
+            background: rgba(0,0,0,0.03);
+            border-left: 3px solid var(--color-gold);
+            padding: 16px;
+            margin: 16px 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #444;
+            font-style: italic;
+        }
+        .artifact-warning {
+            font-size: 0.7rem;
+            color: #b33;
+            text-align: center;
+            margin-top: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .price-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .price-old {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.1rem;
+        }
+        .price-new {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-gold);
+        }
     </style>  
 </head>
 <body>
@@ -2354,9 +2405,9 @@
                         </svg>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">π Profile – Linia Myśli</h3>
+                        <h3 class="product-name">Artefakt: π Profile – Linia Myśli</h3>
                         <p class="product-desc">Deklaracja dla tych, którzy widzą więcej niż powierzchnia.</p>
-                        <div class="product-price">129 zł</div>
+                        <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">129 zł</span></div></div>
                         <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
                         <button class="product-btn" data-name="π Profile – Linia Myśli" data-price="129">Biorę to teraz</button>
                         <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
@@ -2376,9 +2427,9 @@
                         </svg>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Oko Adelbertusa</h3>
+                        <h3 class="product-name">Artefakt: Oko Adelbertusa</h3>
                         <p class="product-desc">Nie patrz – obserwuj. Nie kupuj – rozumiej.</p>
-                        <div class="product-price">149 zł</div>
+                        <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">149 zł</span></div></div>
                         <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
                         <button class="product-btn" data-name="Oko Adelbertusa" data-price="149">Biorę to teraz</button>
                         <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
@@ -2398,9 +2449,9 @@
                         </svg>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Dłoń Wszechświata</h3>
+                        <h3 class="product-name">Artefakt: Dłoń Wszechświata</h3>
                         <p class="product-desc">Trzymasz coś więcej niż tkaninę. Trzymasz deklarację.</p>
-                        <div class="product-price">139 zł</div>
+                        <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">139 zł</span></div></div>
                         <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
                         <button class="product-btn" data-name="Dłoń Wszechświata" data-price="139">Biorę to teraz</button>
                         <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
@@ -2528,8 +2579,9 @@
                         </div>
                     </div>
                     <div class="product-info">
-                        <div class="product-title">Koszulka "Portret"</div>
+                        <div class="product-title">Artefakt: Koszulka "Portret"</div>
                         <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                        <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">80 zł</span></div></div>
                         <button class="product-btn add-to-cart-btn" data-name="Koszulka Portret" data-price="80">Biorę to teraz</button>
                         <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
                         <div class="hidden-symbol">π ♈</div>
@@ -2546,8 +2598,9 @@
                         </div>
                     </div>
                     <div class="product-info">
-                        <div class="product-title">Koszulka "Adelbertus"</div>
+                        <div class="product-title">Artefakt: Koszulka "Adelbertus"</div>
                         <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                        <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">80 zł</span></div></div>
                         <button class="product-btn add-to-cart-btn" data-name="Koszulka Adelbertus" data-price="80">Biorę to teraz</button>
                         <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
                         <div class="hidden-symbol">π ♈</div>
@@ -2564,8 +2617,9 @@
                         </div>
                     </div>
                     <div class="product-info">
-                        <div class="product-title">Bluza "Adelbertus"</div>
+                        <div class="product-title">Artefakt: Bluza "Adelbertus"</div>
                         <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                        <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">170 zł</span></div></div>
                         <button class="product-btn add-to-cart-btn" data-name="Bluza Adelbertus" data-price="170">Biorę to teraz</button>
                         <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
                         <div class="hidden-symbol">π ♈</div>
@@ -2581,8 +2635,9 @@
                             <img src="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Abstract" class="product-image" loading="lazy">
                         </div>
                         <div class="product-info">
-                            <div class="product-title">Koszulka "Zakazany Produkt"</div>
+                            <div class="product-title">Artefakt: Koszulka "Zakazany Produkt"</div>
                             <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                            <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">80 zł</span></div></div>
                             <button class="product-btn add-to-cart-btn" data-name="Koszulka Zakazany Produkt" data-price="80">Biorę to teraz</button>
                             <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
                             <div class="hidden-symbol">π ♈</div>
@@ -2593,8 +2648,9 @@
                             <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image" loading="lazy">
                         </div>
                         <div class="product-info">
-                            <div class="product-title">Koszulka "Rzymianin"</div>
+                            <div class="product-title">Artefakt: Koszulka "Rzymianin"</div>
                             <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
+                            <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">80 zł</span></div></div>
                             <button class="product-btn add-to-cart-btn" data-name="Koszulka Rzymianin" data-price="80">Biorę to teraz</button>
                             <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
                             <div class="hidden-symbol">π ♈</div>
@@ -2844,6 +2900,7 @@
                     </div>
                     <div class="sprod-details">
                         <h2 class="sprod-title" id="sprodTitle"></h2>
+                        <div class="artifact-id">Egzemplarz: #<span id="artifactNumber"></span>/33</div>
                         <div class="sprod-price" id="sprodPrice"></div>
                         <div class="sprod-section-label">Kolor</div>
                         <div class="sprod-colors" id="sprodColors"></div>
@@ -2858,6 +2915,15 @@
                         <button class="sprod-add-btn" onclick="sprodAddToCart()">
                             <i class="fas fa-shopping-cart"></i> Biorę to teraz
                         </button>
+                        <div class="artifact-story">
+                            Nie powstał dla wszystkich.<br><br>
+                            Powstał dla tych, którzy rozumieją, że symbole to język.<br><br>
+                            Nie pytaj, co oznacza.<br>
+                            Jeśli trzeba tłumaczyć — to nie jest dla ciebie.
+                        </div>
+                        <div class="artifact-warning">
+                            Nie wracamy do poprzednich modeli.
+                        </div>
                         <div class="sprod-benefits">
                             <div><i class="fas fa-check"></i> Premium jakość 180g bawełna</div>
                             <div><i class="fas fa-check"></i> DTF printing technology</div>
@@ -3218,8 +3284,8 @@
                     card.innerHTML = `
                         <img src="${prod.images[0]}" alt="${prod.name}" loading="lazy">
                         <div class="smodal-prod-card-info">
-                            <div class="smodal-prod-card-name">${prod.name}</div>
-                            <div class="smodal-prod-card-price">${prod.price} zł</div>
+                            <div class="smodal-prod-card-name">Artefakt: ${prod.name}</div>
+                            <div class="smodal-prod-card-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">${prod.price} zł</span></div></div>
                             <div class="hidden-symbol" style="position:absolute; bottom:4px; right:8px;">π ♈</div>
                         </div>`;
                     card.addEventListener('click', () => openProductModal(_catCurrent, start + idx));
@@ -3256,10 +3322,14 @@
                 const mainImg = document.getElementById('sprodMainImg');
                 const qtyInput = document.getElementById('sprodQty');
                 
-                if (titleEl) titleEl.textContent = prod.name;
-                if (priceEl) priceEl.textContent = prod.price + ' zł';
+                if (titleEl) titleEl.textContent = `Artefakt: ${prod.name}`;
+                if (priceEl) priceEl.innerHTML = `<div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">${prod.price} zł</span></div>`;
                 if (mainImg) mainImg.src = prod.images[0];
                 if (qtyInput) qtyInput.value = 1;
+
+                // random artifact number 1-33
+                const artifactSpan = document.getElementById('artifactNumber');
+                if (artifactSpan) artifactSpan.textContent = Math.floor(Math.random() * 33) + 1;
 
                 const thumbsEl = document.getElementById('sprodThumbs');
                 if (thumbsEl) {
@@ -3377,7 +3447,7 @@
                 }
                 
                 updateCart();
-                showNotification('🔥 Dodane — ktoś właśnie ogląda ten model');
+                showNotification("🜂 Artefakt został przypisany do Ciebie");
             }
 
             function updateCart() {
@@ -3406,7 +3476,7 @@
                             cartItem.innerHTML = `
                                 ${item.image ? `<img src="${item.image}" class="cart-item-image">` : ''}
                                 <div class="flex-1">
-                                    <div class="font-bold">${item.name}</div>
+                                    <div class="font-bold">Artefakt: ${item.name}</div>
                                     <div>${item.price.toFixed(2)} zł × ${item.quantity}</div>
                                     ${item.size ? `<div class="text-sm">Rozmiar: ${item.size}</div>` : ''}
                                     ${item.color ? `<div class="text-sm">Kolor: ${item.color}</div>` : ''}
@@ -3477,7 +3547,7 @@
                 let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
                 
                 cart.forEach((item, index) => {
-                    emailBody += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
+                    emailBody += `${index + 1}. Artefakt: ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
                     if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
                     if (item.color) emailBody += ` (Kolor: ${item.color})`;
                     emailBody += '\n';
@@ -3495,7 +3565,7 @@
                 let message = 'Zamówienie z AdelbertusShop:%0A%0A';
                 
                 cart.forEach((item, index) => {
-                    message += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
+                    message += `${index + 1}. Artefakt: ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
                     if (item.size) message += ` (Rozmiar: ${item.size})`;
                     if (item.color) message += ` (Kolor: ${item.color})`;
                     message += '%0A';
@@ -3647,11 +3717,11 @@
                         
                         if (!name && productCard) {
                             const nameEl = productCard.querySelector('.product-title') || productCard.querySelector('.product-name');
-                            if (nameEl) name = nameEl.textContent.trim();
+                            if (nameEl) name = nameEl.textContent.trim().replace(/^Artefakt:\s*/, '');
                         }
                         
                         if (isNaN(price) && productCard) {
-                            const priceEl = productCard.querySelector('.product-price');
+                            const priceEl = productCard.querySelector('.product-price .price-new');
                             if (priceEl) {
                                 const priceText = priceEl.textContent;
                                 const priceMatch = priceText.match(/(\d+[\.,]?\d*)/);
@@ -4050,7 +4120,7 @@
                             addToCart(productName, price / state.orderQty, canvasData, size, colorName);
                         }
                         
-                        showNotification('🔥 Dodane — ktoś właśnie ogląda ten model');
+                        showNotification("🜂 Artefakt został przypisany do Ciebie");
                         showCartPopup();
                     });
                 }
