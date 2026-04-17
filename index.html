@@ -2534,6 +2534,7 @@
             <button class="nav-btn" data-section="referral"><i class="fas fa-envelope"></i> Poleć znajomego</button>
             <button class="nav-btn" data-section="partners"><i class="fas fa-handshake"></i> Partnerzy</button>
             <button class="nav-btn" data-section="regulations"><i class="fas fa-file-alt"></i> Regulamin</button>
+            <button class="nav-btn" onclick="openSecretAccess()"><i class="fas fa-key"></i> Wejście</button>
         </div>
     </nav>
    
@@ -3086,6 +3087,18 @@
             </div>
         </section>
 
+        <!-- Secret Section -->
+        <div id="secretSection" style="display:none;">
+            <div class="section-title">
+                <h2>Dla wtajemniczonych</h2>
+                <p>Nie wszystko trafia na główną stronę.</p>
+            </div>
+            <div class="bg-black/80 p-8 rounded-2xl text-center text-white">
+                <i class="fas fa-crown text-6xl text-gold mb-4"></i>
+                <p class="text-xl">Witaj w ukrytej części sklepu. Oto produkty niedostępne publicznie.</p>
+            </div>
+        </div>
+
         <!-- Koszyk -->
         <div id="cartIcon">
             <i class="fas fa-shopping-cart"></i>
@@ -3121,6 +3134,17 @@
             <p class="text-sm text-gray-600 text-center mt-4">Akceptujemy również przelewy bankowe i BLIK</p>
             <div class="decision-note" style="text-align:center; margin-top:12px;">Zostawisz to teraz — może nie wrócić.</div>
             <div class="hidden-symbol" style="position:relative; text-align:right; margin-top:8px;">π ♈</div>
+        </div>
+
+        <!-- Secret Modal -->
+        <div id="secretModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; align-items:center; justify-content:center;">
+            <div style="background:#111; padding:30px; border-radius:10px; text-align:center; max-width:300px; margin:auto;">
+                <h2 style="color:#d4af37;">Dostęp</h2>
+                <p style="color:#aaa;">Nie każdy powinien tu być.</p>
+                <input type="text" id="secretCode" placeholder="Wpisz kod" style="width:100%; padding:10px; margin-top:10px; background:#222; color:white; border:1px solid #d4af37; border-radius:5px;">
+                <button onclick="checkSecret()" style="margin-top:15px; background:#d4af37; color:black; border:none; padding:8px 16px; border-radius:5px; cursor:pointer;">Sprawdź</button>
+                <p id="secretError" style="color:red; margin-top:10px;"></p>
+            </div>
         </div>
 
         <!-- Stopka -->
@@ -3205,7 +3229,7 @@
                     { name:'Koszulka "DJ KooL"', price:80, images:['https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
                     { name:'Puzel', price:80, images:['https://i.ibb.co/DDdbtm1R/file-00000000985c6243ba1d82431c2ead9f-2.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
                     { name:'Wybrany', price:80, images:['https://i.ibb.co/JFMF5VFz/file-00000000465c620a87ec4dbf4bd0ce30.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
-                    { name:'Koszulka "Game Over"', price:80, images:['https://i.ibb.co/JFwsTR50/1765139504481.png'], colors:['#000','#fff','#800000'], sizes:['S','M','L','XL','XXL'] },
+                    { name:'Koszulka "Game Over"', price:80, images:['https://i.ibb.co/JFwsTR50/1765139504481.png'], colors:['#000','#800000','#36454F'], sizes:['S','M','L','XL','XXL'] },
                     { name:'Koszulka "Master"', price:80, images:['https://i.ibb.co/pvfCCw30/1765139433826.png'], colors:['#000','#fff','#808080'], sizes:['S','M','L','XL','XXL'] },
                     { name:'Koszulka "Mix Tape"', price:80, images:['https://i.ibb.co/0VmWzt4t/1765139223781.png'], colors:['#000','#fff','#FF4500'], sizes:['S','M','L','XL','XXL'] },
                     { name:'Koszulka "Bóg OldSchoolu"', price:80, images:['https://i.ibb.co/9kqmxvjC/1765139285646.png'], colors:['#000','#fff','#800000'], sizes:['S','M','L','XL','XXL'] },
@@ -3783,6 +3807,32 @@
                         }
                     }
                 }, 4000);
+            }
+
+            // Secret Access Functions
+            function openSecretAccess() {
+                const modal = document.getElementById('secretModal');
+                if (modal) {
+                    modal.style.display = 'flex';
+                }
+            }
+
+            function checkSecret() {
+                const code = document.getElementById('secretCode').value.trim().toLowerCase();
+                
+                if (code === "mlynarz") {
+                    localStorage.setItem('secret_access', 'true');
+                    document.getElementById('secretModal').style.display = 'none';
+                    showNotification('🜂 Dostęp przyznany');
+                    unlockSecretSection();
+                } else {
+                    document.getElementById('secretError').textContent = "Brak dostępu";
+                }
+            }
+
+            function unlockSecretSection() {
+                const section = document.getElementById('secretSection');
+                if (section) section.style.display = 'block';
             }
 
             // Funkcje konfiguratora
@@ -4559,6 +4609,11 @@
                 setupEvents();
                 if (ctxCanvas && canvasEl) renderCanvas();
                 
+                // Secret auto-unlock
+                if (localStorage.getItem('secret_access') === 'true') {
+                    unlockSecretSection();
+                }
+                
                 const heroButton = document.getElementById('heroShopButton');
                 if (heroButton) {
                     heroButton.addEventListener('click', function(e) {
@@ -4640,6 +4695,10 @@
                 if (e.key === 'Escape') {
                     closeProductModal();
                     closeCategoryModal();
+                    const modal = document.getElementById('secretModal');
+                    if (modal && modal.style.display === 'flex') {
+                        modal.style.display = 'none';
+                    }
                 }
             });
 
@@ -4691,6 +4750,8 @@
             window.sprodQtyChange = sprodQtyChange;
             window.sprodAddToCart = sprodAddToCart;
             window.sendReferralEmail = sendReferralEmail;
+            window.openSecretAccess = openSecretAccess;
+            window.checkSecret = checkSecret;
         </script>
     </main>
 </body>
