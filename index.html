@@ -3137,8 +3137,9 @@
         </div>
 
         <!-- Secret Modal -->
-        <div id="secretModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; align-items:center; justify-content:center;">
-            <div style="background:#111; padding:30px; border-radius:10px; text-align:center; max-width:300px; margin:auto;">
+        <div id="secretModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+            <div style="background:#111; padding:30px; border-radius:10px; text-align:center; max-width:300px; margin:auto; position:relative;">
+                <button onclick="closeSecretModal()" style="position:absolute; top:10px; right:15px; background:none; border:none; color:#d4af37; font-size:24px; cursor:pointer;">&times;</button>
                 <h2 style="color:#d4af37;">Dostęp</h2>
                 <p style="color:#aaa;">Nie każdy powinien tu być.</p>
                 <input type="text" id="secretCode" placeholder="Wpisz kod" style="width:100%; padding:10px; margin-top:10px; background:#222; color:white; border:1px solid #d4af37; border-radius:5px;">
@@ -3817,12 +3818,21 @@
                 }
             }
 
+            function closeSecretModal() {
+                const modal = document.getElementById('secretModal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.getElementById('secretCode').value = '';
+                    document.getElementById('secretError').textContent = '';
+                }
+            }
+
             function checkSecret() {
                 const code = document.getElementById('secretCode').value.trim().toLowerCase();
                 
                 if (code === "mlynarz") {
                     localStorage.setItem('secret_access', 'true');
-                    document.getElementById('secretModal').style.display = 'none';
+                    closeSecretModal();
                     showNotification('🜂 Dostęp przyznany');
                     unlockSecretSection();
                 } else {
@@ -4695,10 +4705,7 @@
                 if (e.key === 'Escape') {
                     closeProductModal();
                     closeCategoryModal();
-                    const modal = document.getElementById('secretModal');
-                    if (modal && modal.style.display === 'flex') {
-                        modal.style.display = 'none';
-                    }
+                    closeSecretModal();
                 }
             });
 
@@ -4752,6 +4759,7 @@
             window.sendReferralEmail = sendReferralEmail;
             window.openSecretAccess = openSecretAccess;
             window.checkSecret = checkSecret;
+            window.closeSecretModal = closeSecretModal;
         </script>
     </main>
 </body>
