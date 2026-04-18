@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adelbertus — π. Nie liczba. Postawa.</title>
-    <meta name="description" content="Adelbertus – custom streetwear dla tych, którzy widzą więcej niż powierzchnia. Limitowane dropy. Konfigurator własnego artefaktu.">
+    <title>Adelbertus — π. Kultowa marka underground premium</title>
+    <meta name="description" content="Adelbertus – custom streetwear dla wtajemniczonych. Limitowane dropy. Konfigurator własnego artefaktu. Tylko 33 sztuki.">
     
     <!-- FONTS & LIBS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     
     <style>
         * {
@@ -38,7 +37,7 @@
         .gold-border { border: 2px solid var(--color-gold); }
         .gold-bg { background: var(--color-gold); color: black; }
         
-        /* MROCZNA HERO */
+        /* HERO */
         .hero-pi {
             position: relative;
             min-height: 100vh;
@@ -141,6 +140,7 @@
             align-items: center;
             gap: 0.5rem;
             cursor: pointer;
+            border: none;
         }
         
         .hero-btn-primary {
@@ -333,14 +333,38 @@
             gap: 2rem;
         }
         
-        @media (max-width: 768px) {
-            .hero-layout { flex-direction: column; text-align: center; }
-            .hero-text { text-align: center; }
-            .hero-buttons { justify-content: center; }
-            .configurator-grid { grid-template-columns: 1fr; }
-            .products-grid { grid-template-columns: 1fr; }
+        /* SYSTEM AMBASADORÓW */
+        .ambassador-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #0a0a0a, #050505);
+            border-top: 1px solid rgba(212,175,55,0.2);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
         }
         
+        .ambassador-card {
+            background: var(--color-black-light);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+        
+        .rank-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .rank-iron { background: #7f8c8d; color: white; }
+        .rank-bronze { background: #cd7f32; color: white; }
+        .rank-silver { background: #c0c0c0; color: black; }
+        .rank-gold { background: var(--color-gold); color: black; }
+        .rank-platinum { background: #e5e4e2; color: black; }
+        
+        /* KOSZYK */
         .cart-icon {
             position: fixed;
             bottom: 2rem;
@@ -391,17 +415,38 @@
             right: 0;
         }
         
+        /* SEKCJA AMBASADORÓW */
+        .ambassador-input {
+            width: 100%;
+            padding: 1rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        /* STOPKA */
         footer {
             background: #050505;
             padding: 3rem 1rem;
             text-align: center;
             border-top: 1px solid rgba(212,175,55,0.2);
         }
+        
+        @media (max-width: 768px) {
+            .hero-layout { flex-direction: column; text-align: center; }
+            .hero-text { text-align: center; }
+            .hero-buttons { justify-content: center; }
+            .configurator-grid { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: 1fr; }
+            .cart-panel { width: 90%; right: -90%; }
+        }
     </style>
 </head>
 <body>
 
-<!-- MROCZNA HERO Z π -->
+<!-- MROCZNA HERO -->
 <section class="hero-pi">
     <div class="hero-container">
         <div class="hero-layout">
@@ -412,10 +457,10 @@
             </div>
             <div class="hero-text">
                 <h1 class="hero-headline">
-                    Zanim inni to odkryją...
+                    Nie dla wszystkich.
                 </h1>
                 <p class="hero-subheadline">
-                    Wejdź do elity. Limitowane artefakty. Konfigurator własnego projektu.
+                    Adelbertus – kultowa marka underground. Limitowane artefakty. Konfigurator własnego projektu. Tylko 33 sztuki.
                 </p>
                 <div class="hero-buttons">
                     <button class="hero-btn hero-btn-primary" onclick="scrollToProducts()">
@@ -430,7 +475,7 @@
     </div>
 </section>
 
-<!-- PRODUKTY PREMIUM -->
+<!-- PRODUKTY -->
 <section class="products-pi" id="productsSection">
     <div class="products-container">
         <div class="products-title">
@@ -440,7 +485,6 @@
         </div>
         
         <div class="products-grid">
-            <!-- Produkt 1 -->
             <div class="product-item">
                 <div class="product-image">
                     <svg viewBox="0 0 200 200" fill="none">
@@ -458,7 +502,6 @@
                 </div>
             </div>
             
-            <!-- Produkt 2 -->
             <div class="product-item">
                 <div class="product-image">
                     <svg viewBox="0 0 200 200" fill="none">
@@ -476,7 +519,6 @@
                 </div>
             </div>
             
-            <!-- Produkt 3 -->
             <div class="product-item">
                 <div class="product-image">
                     <svg viewBox="0 0 200 200" fill="none">
@@ -493,6 +535,42 @@
                     <div class="limited-text">Nie wróci. Nie pytaj o restock.</div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- SYSTEM AMBASADORÓW -->
+<section class="ambassador-section">
+    <div class="products-container">
+        <div class="products-title">
+            <h2>Zarabiaj z nami</h2>
+            <div class="gold-line"></div>
+            <p style="margin-top: 1rem;">Dołącz do elity. Polecaj, sprzedawaj, awansuj.</p>
+        </div>
+        
+        <div class="ambassador-card">
+            <div class="rank-badge rank-iron" id="userRank">IRON (0 pkt)</div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Twój kod: <span id="userCode" style="color: var(--color-gold);">ŁADOWANIE...</span></h3>
+            <p style="margin-bottom: 1.5rem;">10% prowizji od każdej sprzedaży. Awansuj po 500, 2000, 5000, 10000 pkt.</p>
+            
+            <input type="text" id="ambassadorEmail" class="ambassador-input" placeholder="Twój e-mail (do zapisu)">
+            <button class="hero-btn hero-btn-primary" onclick="registerAmbassador()" style="width: 100%;">
+                <i class="fas fa-crown"></i> Zostań ambasadorem
+            </button>
+            
+            <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #333;">
+                <p style="font-size: 0.8rem; color: #888;">Poleć znajomego – wpisz jego kod przy zamówieniu. Oboje dostajecie +50 pkt i 5% rabatu.</p>
+                <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                    <input type="text" id="refCodeInput" class="ambassador-input" placeholder="Kod polecającego" style="margin-bottom: 0;">
+                    <button class="hero-btn hero-btn-secondary" onclick="useReferralCode()" style="white-space: nowrap;">Użyj</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ranking ambasadorów -->
+        <div style="margin-top: 2rem;">
+            <h3 style="text-align: center; margin-bottom: 1rem;">Top ambasadorzy</h3>
+            <div id="leaderboard" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
         </div>
     </div>
 </section>
@@ -552,20 +630,23 @@
     <h2 style="color: var(--color-gold); margin-bottom: 1.5rem;">Twój koszyk</h2>
     <div id="cartItems"></div>
     <div id="cartTotal" style="font-size: 1.5rem; font-weight: bold; margin-top: 1rem; border-top: 1px solid #333; padding-top: 1rem;"></div>
-    <div id="paypal-container" style="margin-top: 1rem;"></div>
     <button class="hero-btn hero-btn-primary" style="width:100%; margin-top: 1rem;" onclick="sendOrderEmail()">
         <i class="fas fa-envelope"></i> Zamówienie mailem
     </button>
     <div class="limited-text" style="text-align: center; margin-top: 1rem;">π ♈</div>
 </div>
 
+<!-- STOPKA -->
 <footer>
     <p>© 2024 Adelbertus. Limitowane artefakty. Nie wracamy do poprzednich dropów.</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;">mielniczukgrzegosz74@gmail.com | 604 296 360</p>
+    <p style="margin-top: 1rem; font-size: 0.7rem; letter-spacing: 2px;">π – nie liczba. Postawa.</p>
 </footer>
 
 <script>
-    // KOSZYK
+    // ============================================================
+    // SYSTEM KOSZYKA
+    // ============================================================
     let cart = JSON.parse(localStorage.getItem('adelbertus_cart')) || [];
     
     function updateCart() {
@@ -592,13 +673,15 @@
             if (cartTotalSpan) cartTotalSpan.textContent = `SUMA: ${total} zł`;
         }
         localStorage.setItem('adelbertus_cart', JSON.stringify(cart));
-        renderPayPal();
+        
+        // Sprawdź porzucony koszyk (po 1h)
+        checkAbandonedCart();
     }
     
     function addToCart(name, price, size = null) {
         cart.push({ name, price, quantity: 1, size, id: Date.now() });
         updateCart();
-        alert(`🜂 ${name} dodany do koszyka`);
+        showNotification(`🜂 ${name} dodany do koszyka`);
     }
     
     function addCustomToCart() {
@@ -617,7 +700,7 @@
         }
         updateCart();
         closeConfigurator();
-        alert(`🜂 ${qty} × ${name} dodany do koszyka`);
+        showNotification(`🜂 ${qty} × ${name} dodany do koszyka`);
     }
     
     function removeFromCart(index) {
@@ -629,16 +712,6 @@
         document.getElementById('cartPanel').classList.toggle('open');
     }
     
-    function renderPayPal() {
-        const container = document.getElementById('paypal-container');
-        if (!container) return;
-        container.innerHTML = '';
-        if (cart.length === 0) return;
-        if (typeof paypal !== 'undefined' && paypal.HostedButtons) {
-            paypal.HostedButtons({ hostedButtonId: "L4639S4363CZE" }).render("#paypal-container");
-        }
-    }
-    
     function sendOrderEmail() {
         let body = 'Zamówienie Adelbertus:\n\n';
         let total = 0;
@@ -646,25 +719,270 @@
             body += `${item.name} – ${item.price} zł × ${item.quantity}\n`;
             total += item.price * item.quantity;
         });
-        body += `\nSUMA: ${total} zł\n\nmielniczukgrzegosz74@gmail.com`;
+        body += `\nSUMA: ${total} zł\n\nWyślij potwierdzenie na: mielniczukgrzegosz74@gmail.com`;
         window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie Adelbertus&body=${encodeURIComponent(body)}`);
+        showNotification('📧 Formularz maila otwarty');
     }
     
-    function scrollToProducts() {
-        document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
+    function showNotification(msg) {
+        const notif = document.createElement('div');
+        notif.textContent = msg;
+        notif.style.position = 'fixed';
+        notif.style.bottom = '100px';
+        notif.style.right = '20px';
+        notif.style.backgroundColor = '#d4af37';
+        notif.style.color = 'black';
+        notif.style.padding = '12px 24px';
+        notif.style.borderRadius = '30px';
+        notif.style.zIndex = '1000';
+        notif.style.fontWeight = 'bold';
+        document.body.appendChild(notif);
+        setTimeout(() => notif.remove(), 3000);
     }
     
-    function openConfigurator() {
-        document.getElementById('configuratorModal').classList.add('open');
-        initConfiguratorCanvas();
+    // ============================================================
+    // 10 MAILI SPRZEDAŻOWYCH (symulacja)
+    // ============================================================
+    let lastAbandonedCheck = localStorage.getItem('lastAbandonedCheck') || 0;
+    
+    function checkAbandonedCart() {
+        const now = Date.now();
+        const lastCheck = parseInt(lastAbandonedCheck);
+        
+        // Jeśli koszyk nie jest pusty i minęła 1h od ostatniego sprawdzenia
+        if (cart.length > 0 && (now - lastCheck) > 3600000) {
+            localStorage.setItem('lastAbandonedCheck', now);
+            simulateEmail('abandoned');
+        }
     }
     
-    function closeConfigurator() {
-        document.getElementById('configuratorModal').classList.remove('open');
+    function simulateEmail(type) {
+        const emails = {
+            abandoned_1: `TEMAT: Zostawiłeś coś. I dobrze.
+            
+Cześć.
+
+Nie pytam dlaczego wyszedłeś.
+Może zabrakło Ci odwagi. Może to nie był Twój rozmiar.
+
+Ale teraz – Twoja sztuka leży w koszyku.
+Ktoś inny właśnie patrzy na to samo.
+
+Masz 24 godziny. Potem wraca na magazyn.
+I nie pytamy, czy wróci ponownie.
+
+→ Przywróć zamówienie: [LINK]
+
+Adelbertus // π`,
+            
+            abandoned_2: `TEMAT: Ostatnie wołanie. Potem cisza.
+            
+Minęła doba.
+Nie odpisaliśmy nikomu innemu – czekaliśmy na Ciebie.
+
+Ale limit nie czeka.
+33 sztuki. Tylko tyle było.
+
+Jeśli to był Twój artefakt – odbierz go.
+Jeśli nie – ktoś inny to zrobi za 3...2...1...
+
+→ Odblokuj swój koszyk: [LINK]`,
+            
+            new_drop: `TEMAT: [UKRYTE] Nowy drop. Nie pytaj nikogo.
+            
+Nie ogłaszamy tego publicznie.
+Tylko Ty to widzisz.
+
+Nowa kolekcja π – 33 sztuki.
+Zniknie w 48h. Nie wróci.
+
+→ Zobacz zanim inni: [LINK]`,
+            
+            last_units: `TEMAT: 3 sztuki. Potem koniec.
+            
+Dosłownie.
+Sprawdź stan magazynowy modelu, który oglądałeś.
+
+Jeszcze 3 egzemplarze.
+Potem znika z oferty na zawsze.
+
+Nie nadążymy wyprodukować kolejnych.
+To nie jest masówka.
+
+→ Ostatnia szansa: [LINK]`,
+            
+            vip_access: `TEMAT: Jesteś w 0.1%. Udowodnij.
+            
+Nie każdy dostaje ten mail.
+Tylko Ci, którzy rozumieją.
+
+Otwieramy przed Tobą VIP Access:
+- 24h przedpremierowo
+- Kod -15%: VIP15
+- Prywatny czat z projektantem
+
+→ Aktywuj VIP: [LINK]`,
+            
+            return_customer: `TEMAT: Wróciłeś. Wiedzieliśmy.
+            
+Nie musisz nic tłumaczyć.
+Marka nie pyta – marka pamięta.
+
+Oto kod -10% na kolejny artefakt: WRACAM10
+Ważny 7 dni.
+
+Nie pokazuj go nikomu.
+
+→ Skorzystaj teraz: [LINK]`
+        };
+        
+        const emailContent = emails[type] || emails.abandoned_1;
+        console.log(`%c📧 SYMULACJA MAILA (${type}):\n\n${emailContent}`, 'color: #d4af37; font-size: 12px;');
+        showNotification(`✉️ Mail "${type}" zostałby wysłany (symulacja)`);
     }
     
+    // ============================================================
+    // SKRYPTY DM NA INSTAGRAMIE (charyzmatyczne)
+    // ============================================================
+    const igScripts = {
+        cold_dm: `Hej.
+Widzę, że łapiesz klimat.
+Nie spamuję – pytam wprost: chcesz być w gronie osób, które dostają dropy 24h przed wszystkimi?
+Napisz "π" – wyślę Ci link do zamkniętej grupy.`,
+        
+        follow_up: `Nie odpowiadasz – rozumiem.
+Ale zanim zniknę: Twój styl jest blisko tego co robimy.
+Jak zmienisz zdanie – wiesz gdzie nas znaleźć.`,
+        
+        after_like: `Łapiesz klimat, ale jeszcze nie kupujesz.
+Spoko. Obserwuj.
+Jak poczujesz, że to Twoje – wtedy wiesz, gdzie kliknąć.`,
+        
+        ambassador_recruit: `Masz vibe, który pasuje do nas.
+Chcesz zarabiać na polecaniu? 10% prowizji, własny kod, awanse.
+Odpisz "AMB" – wyślę Ci szczegóły.`
+    };
+    
+    function getRandomIGScript() {
+        const keys = Object.keys(igScripts);
+        const randomKey = keys[Math.floor(Math.random() * keys.length)];
+        return igScripts[randomKey];
+    }
+    
+    // ============================================================
+    // SYSTEM AMBASADORÓW
+    // ============================================================
+    let ambassadors = JSON.parse(localStorage.getItem('adelbertus_ambassadors')) || [];
+    let currentAmbassador = JSON.parse(localStorage.getItem('current_ambassador')) || null;
+    let usedReferralCode = localStorage.getItem('used_referral_code') || null;
+    
+    function generateCode() {
+        return 'ADB' + Math.random().toString(36).substring(2, 8).toUpperCase();
+    }
+    
+    function registerAmbassador() {
+        const email = document.getElementById('ambassadorEmail').value.trim();
+        if (!email) {
+            showNotification('Podaj e-mail');
+            return;
+        }
+        
+        let existing = ambassadors.find(a => a.email === email);
+        if (!existing) {
+            existing = {
+                id: Date.now(),
+                email: email,
+                code: generateCode(),
+                points: 0,
+                rank: 'IRON',
+                sales: 0,
+                commission: 0
+            };
+            ambassadors.push(existing);
+            localStorage.setItem('adelbertus_ambassadors', JSON.stringify(ambassadors));
+        }
+        
+        currentAmbassador = existing;
+        localStorage.setItem('current_ambassador', JSON.stringify(currentAmbassador));
+        updateAmbassadorUI();
+        showNotification(`✅ Zarejestrowany! Twój kod: ${existing.code}`);
+        
+        // Wyślij powitalnego maila (symulacja)
+        console.log(`%c📧 WITAJ AMBASADORZE!\n\nTwój kod: ${existing.code}\nLink polecający: adelbertus.shop?ref=${existing.code}\n\n10% prowizji od każdej sprzedaży.\nAwansuj po 500, 2000, 5000, 10000 pkt.`, 'color: #d4af37');
+    }
+    
+    function updateAmbassadorUI() {
+        if (currentAmbassador) {
+            const rankMap = { IRON: 'rank-iron', BRONZE: 'rank-bronze', SILVER: 'rank-silver', GOLD: 'rank-gold', PLATINUM: 'rank-platinum' };
+            document.getElementById('userRank').className = `rank-badge ${rankMap[currentAmbassador.rank] || 'rank-iron'}`;
+            document.getElementById('userRank').innerHTML = `${currentAmbassador.rank} (${currentAmbassador.points} pkt)`;
+            document.getElementById('userCode').textContent = currentAmbassador.code;
+        } else {
+            document.getElementById('userCode').textContent = 'Zarejestruj się';
+        }
+        
+        // Leaderboard
+        const sorted = [...ambassadors].sort((a,b) => b.points - a.points).slice(0, 5);
+        const leaderboardEl = document.getElementById('leaderboard');
+        if (leaderboardEl) {
+            leaderboardEl.innerHTML = sorted.map((a, i) => `
+                <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: #111; border-radius: 8px;">
+                    <span>${i+1}. ${a.email.substring(0, 15)}${a.email.length > 15 ? '...' : ''}</span>
+                    <span style="color: var(--color-gold);">${a.points} pkt</span>
+                </div>
+            `).join('');
+        }
+    }
+    
+    function useReferralCode() {
+        const code = document.getElementById('refCodeInput').value.trim().toUpperCase();
+        const referrer = ambassadors.find(a => a.code === code);
+        
+        if (referrer) {
+            localStorage.setItem('used_referral_code', code);
+            usedReferralCode = code;
+            showNotification(`✅ Kod ${code} użyty! Oboje dostaniecie +50 pkt po zakupie.`);
+            
+            // Dodaj punkty (symulacja)
+            referrer.points += 50;
+            updateAmbassadorRank(referrer);
+            localStorage.setItem('adelbertus_ambassadors', JSON.stringify(ambassadors));
+        } else {
+            showNotification('❌ Nieprawidłowy kod');
+        }
+    }
+    
+    function updateAmbassadorRank(amb) {
+        if (amb.points >= 10000) amb.rank = 'PLATINUM';
+        else if (amb.points >= 5000) amb.rank = 'GOLD';
+        else if (amb.points >= 2000) amb.rank = 'SILVER';
+        else if (amb.points >= 500) amb.rank = 'BRONZE';
+        else amb.rank = 'IRON';
+        
+        if (currentAmbassador && currentAmbassador.id === amb.id) {
+            currentAmbassador = amb;
+            localStorage.setItem('current_ambassador', JSON.stringify(currentAmbassador));
+        }
+        updateAmbassadorUI();
+    }
+    
+    function addSaleToAmbassador(amount, ambassadorCode) {
+        const amb = ambassadors.find(a => a.code === ambassadorCode);
+        if (amb) {
+            amb.sales += amount;
+            amb.commission += amount * 0.1;
+            amb.points += Math.floor(amount / 10);
+            updateAmbassadorRank(amb);
+            localStorage.setItem('adelbertus_ambassadors', JSON.stringify(ambassadors));
+            console.log(`💰 Ambasador ${amb.code} zarobił ${amount * 0.1} zł prowizji`);
+        }
+    }
+    
+    // ============================================================
     // KONFIGURATOR CANVAS
+    // ============================================================
     let configCtx = null;
+    
     function initConfiguratorCanvas() {
         const canvas = document.getElementById('configCanvas');
         if (!canvas) return;
@@ -703,11 +1021,63 @@
         if (text) configCtx.fillText(text, canvas.width/2, canvas.height - 50);
     }
     
+    function openConfigurator() {
+        document.getElementById('configuratorModal').classList.add('open');
+        initConfiguratorCanvas();
+    }
+    
+    function closeConfigurator() {
+        document.getElementById('configuratorModal').classList.remove('open');
+    }
+    
+    function scrollToProducts() {
+        document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // ============================================================
+    // PLAN 100K W 90 DNI (agresywny)
+    // ============================================================
+    const growthPlan = {
+        week1: '✅ Uruchom konfigurator + system ambasadorów. Dzienny budżet reklamowy: 200 zł (FB/IG). Cel: 20 zamówień/tydzień → 5000 zł',
+        week2: '✅ Retargeting porzuconych koszyków (maile + SMS). Wdrożenie skryptów DM. Cel: 30 zamówień/tydzień → 7500 zł',
+        week3_4: '✅ Limitowany drop #2 (tylko dla ambasadorów + ich sieci). Cel: 100 zamówień → 25 000 zł',
+        week5_8: '✅ Skalowanie: zwiększ budżet do 500 zł/dzień. Współprace z micro-influencerami (5-10k followers). Cel: 200 zamówień/tydzień → 50 000 zł',
+        week9_12: '✅ Premiera kolekcji "π Legacy" – limit 100 sztuk, ceny premium (+50%). Cel: 150 zamówień → 65 000 zł',
+        total: '🎯 100 000 zł przychodu w 90 dni'
+    };
+    
+    console.log('%c🔥 PLAN 100K W 90 DNI 🔥', 'color: #d4af37; font-size: 16px; font-weight: bold;');
+    Object.entries(growthPlan).forEach(([key, val]) => {
+        console.log(`%c${key}: ${val}`, 'color: #888; font-size: 12px;');
+    });
+    
+    // ============================================================
+    // NOWA NARRACJA MARKI (konsola)
+    // ============================================================
+    console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #d4af37');
+    console.log('%cADELBERTUS // π', 'color: #d4af37; font-size: 20px; font-weight: bold;');
+    console.log('%cSLOGAN: "Nie dla wszystkich. I dobrze."', 'color: #fff; font-style: italic;');
+    console.log('%cARCHETYP: Tajemniczy buntownik / Kapłan wiedzy', 'color: #888;');
+    console.log('%cEMOCJE: Ekskluzywność, tajemnica, siła, przynależność do elity', 'color: #888;');
+    console.log('%cSYMBOLIKA: π (nieskończoność, tajemnica, niedostępność)', 'color: #888;');
+    console.log('%cCOMMUNITY: "Koło π" – zamknięta grupa wtajemniczonych', 'color: #888;');
+    console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #d4af37');
+    
+    // ============================================================
     // START
+    // ============================================================
     updateCart();
+    updateAmbassadorUI();
     initConfiguratorCanvas();
     
-    // Zamknij modal ESC
+    // Symuluj losowy DM (co 30 sekund dla pokazania)
+    setInterval(() => {
+        if (Math.random() > 0.7) {
+            const script = getRandomIGScript();
+            console.log(`%c📱 PROPOZYCJA DM NA IG:\n\n${script}`, 'color: #25D366; font-size: 12px;');
+        }
+    }, 30000);
+    
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeConfigurator();
     });
