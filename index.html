@@ -524,311 +524,6 @@
             }
         }
         
-        .chatbot-container {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 1000;
-        }
-
-        .chatbot-button {
-            background: var(--color-gold);
-            color: black;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .chatbot-button.pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-        }
-
-        .chatbot-window {
-            position: absolute;
-            bottom: 70px;
-            left: 0;
-            width: 380px;
-            height: 550px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-            border: 2px solid var(--color-gold);
-            overflow: hidden;
-        }
-
-        .chatbot-header {
-            background: var(--color-gold);
-            color: black;
-            padding: 15px;
-            border-radius: 13px 13px 0 0;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chatbot-close {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .chatbot-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            background: #f8f9fa;
-        }
-
-        .message {
-            padding: 12px 16px;
-            border-radius: 18px;
-            max-width: 85%;
-            word-wrap: break-word;
-            line-height: 1.4;
-        }
-
-        .user-message {
-            background: var(--color-gold);
-            color: black;
-            align-self: flex-end;
-            border-bottom-right-radius: 5px;
-        }
-
-        .bot-message {
-            background: white;
-            color: #333;
-            align-self: flex-start;
-            border-bottom-left-radius: 5px;
-            border: 1px solid #e9ecef;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .product-suggestion {
-            background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 10px;
-            padding: 12px;
-            margin: 8px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .product-suggestion img {
-            width: 100%;
-            border-radius: 8px;
-            margin-bottom: 8px;
-        }
-
-        .product-suggestion .product-name {
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-
-        .product-suggestion .product-price {
-            color: var(--color-gold);
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .product-suggestion button {
-            background: var(--color-gold);
-            border: none;
-            border-radius: 20px;
-            padding: 8px 16px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            width: 100%;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .product-suggestion button:hover {
-            background: var(--color-dark-gold);
-            transform: translateY(-2px);
-        }
-
-        .chatbot-typing {
-            display: none;
-            align-self: flex-start;
-            background: white;
-            padding: 12px 16px;
-            border-radius: 18px;
-            border-bottom-left-radius: 5px;
-            font-style: italic;
-            color: #666;
-            border: 1px solid #e9ecef;
-        }
-
-        .quick-replies {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .quick-reply-btn {
-            background: white;
-            border: 1px solid var(--color-gold);
-            border-radius: 20px;
-            padding: 8px 16px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #333;
-        }
-
-        .quick-reply-btn:hover {
-            background: var(--color-gold);
-            color: black;
-            transform: translateY(-2px);
-        }
-
-        .chatbot-input {
-            display: flex;
-            padding: 15px;
-            border-top: 1px solid #e9ecef;
-            gap: 10px;
-            background: white;
-        }
-
-        .chatbot-input input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid #ddd;
-            border-radius: 25px;
-            outline: none;
-            font-size: 0.9rem;
-        }
-
-        .chatbot-input input:focus {
-            border-color: var(--color-gold);
-        }
-
-        .chatbot-input button {
-            background: var(--color-gold);
-            color: black;
-            border: none;
-            border-radius: 25px;
-            padding: 12px 20px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .chatbot-input button:hover {
-            background: var(--color-dark-gold);
-            transform: translateY(-2px);
-        }
-
-        .suggestion-buttons {
-            display: flex;
-            gap: 8px;
-            margin-top: 8px;
-        }
-
-        .suggestion-btn {
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 15px;
-            padding: 6px 12px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .suggestion-btn:hover {
-            background: var(--color-gold);
-            border-color: var(--color-gold);
-        }
-
-        .size-chart {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 12px;
-            margin: 8px 0;
-            font-size: 0.85rem;
-        }
-
-        .size-chart table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .size-chart th, .size-chart td {
-            border: 1px solid #dee2e6;
-            padding: 4px 8px;
-            text-align: center;
-        }
-
-        .size-chart th {
-            background: var(--color-gold);
-            color: black;
-            font-weight: bold;
-        }
-
-        .order-summary {
-            background: #e9ecef;
-            border-radius: 10px;
-            padding: 12px;
-            margin: 8px 0;
-        }
-
-        .order-item {
-            display: flex;
-            justify-content: between;
-            margin-bottom: 4px;
-        }
-
-        .order-total {
-            border-top: 1px solid #adb5bd;
-            padding-top: 8px;
-            margin-top: 8px;
-            font-weight: bold;
-        }
-        
-        header {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            position: relative;
-        }
-        
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .tagline {
-            font-style: italic;
-            margin-bottom: 2rem;
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
         nav {
             background: rgba(0, 0, 0, 0.7);
             padding: 1rem;
@@ -892,152 +587,6 @@
             background: var(--color-gold);
         }
         
-        .products-grid-old {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .product-image-container {
-            height: 280px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--color-cream);
-            position: relative;
-        }
-        
-        .product-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-            cursor: zoom-in;
-        }
-        
-        .product-image.zoomed {
-            transform: scale(1.8);
-            z-index: 1000;
-            position: relative;
-        }
-        
-        .product-gallery {
-            display: flex;
-            gap: 5px;
-            margin-top: 10px;
-            justify-content: center;
-        }
-        
-        .gallery-thumb {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border: 2px solid transparent;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-thumb.active {
-            border-color: var(--color-gold);
-        }
-        
-        .product-info {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        
-        .product-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-        
-        .product-price {
-            color: var(--color-gold);
-            font-weight: 700;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .product-options {
-            margin-bottom: 1rem;
-        }
-
-        .option-group {
-            margin-bottom: 0.8rem;
-        }
-
-        .option-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-            color: #555;
-        }
-
-        .color-options {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .color-option {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid #ddd;
-            transition: all 0.2s ease;
-        }
-
-        .color-option:hover, .color-option.selected {
-            border-color: var(--color-gold);
-            transform: scale(1.1);
-        }
-
-        .size-options {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .size-option {
-            padding: 0.3rem 0.6rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .size-option:hover, .size-option.selected {
-            border-color: var(--color-gold);
-            background-color: var(--color-gold);
-            color: white;
-        }
-        
         .charity-section {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1840&q=80');
             background-size: cover;
@@ -1047,71 +596,6 @@
             border-radius: 15px;
             text-align: center;
             margin: 2rem 0;
-        }
-        
-        .donors-list {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            text-align: left;
-        }
-        
-        .blog-posts {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .blog-post {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .blog-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .blog-content {
-            padding: 1.5rem;
-        }
-        
-        .reviews {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .review {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .review-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .review-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 1rem;
-        }
-        
-        .review-stars {
-            color: var(--color-gold);
-            margin-bottom: 0.5rem;
         }
         
         footer {
@@ -1251,68 +735,6 @@
             display: none;
         }
 
-        .partners-section {
-            background: white;
-            border-radius: 15px;
-            padding: 3rem 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .partner-card {
-            background: var(--color-cream);
-            padding: 2rem;
-            border-radius: 10px;
-            border: 1px solid #eee;
-            transition: all 0.3s ease;
-        }
-
-        .partner-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .partner-logo {
-            height: 80px;
-            object-fit: contain;
-            margin-bottom: 1rem;
-        }
-
-        .about-section {
-            background: linear-gradient(135deg, var(--color-cream) 0%, white 100%);
-            border-radius: 15px;
-            padding: 3rem;
-            margin: 2rem 0;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .team-member {
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .team-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 1rem;
-            border: 3px solid var(--color-gold);
-        }
-
         .cart-buttons {
             display: flex;
             flex-direction: column;
@@ -1356,15 +778,6 @@
             margin: 0.5rem auto;
             width: 90%;
         }
-
-        .product-image[data-src] {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .product-image.loaded {
-            opacity: 1;
-        }
         
         .image-zoom-overlay {
             position: fixed;
@@ -1384,78 +797,6 @@
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
-        }
-        
-        .product-benefits {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-left: 4px solid var(--color-gold);
-        }
-        
-        .benefit-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-        
-        .benefit-icon {
-            color: var(--color-gold);
-            margin-right: 0.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .target-audience {
-            background: #e8f4fd;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-left: 4px solid #3498db;
-        }
-        
-        .product-reviews {
-            margin: 1.5rem 0;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #e9ecef;
-        }
-        
-        .review-item {
-            padding: 0.8rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .review-item:last-child {
-            border-bottom: none;
-        }
-        
-        .review-author {
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .review-date {
-            color: #666;
-            font-size: 0.8rem;
-        }
-        
-        .add-to-cart-btn-enhanced {
-            background: #e74c3c !important;
-            color: white !important;
-            border: none !important;
-            font-weight: bold !important;
-            padding: 12px 24px !important;
-            border-radius: 25px !important;
-            transition: all 0.3s ease !important;
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3) !important;
-        }
-        
-        .add-to-cart-btn-enhanced:hover {
-            background: #c0392b !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4) !important;
         }
         
         .payment-methods {
@@ -1526,36 +867,6 @@
         .go-to-checkout {
             background: var(--color-gold);
             color: black;
-        }
-        
-        .recommended-products {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-        
-        .related-products {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 10px;
-            border: 1px solid #e9ecef;
-        }
-        
-        .product-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin: 1rem 0;
-        }
-        
-        .product-tag {
-            background: #f1f2f6;
-            padding: 4px 8px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            color: #666;
         }
         
         .configurator-root {
@@ -2150,12 +1461,6 @@
         }
 
         @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
-            }
-            .tagline {
-                font-size: 1rem;
-            }
             .nav-container {
                 display: none;
                 flex-direction: column;
@@ -2172,22 +1477,9 @@
                 margin: 0.3rem 0;
                 text-align: center;
             }
-            .products-grid-old {
-                grid-template-columns: 1fr;
-            }
-            .reviews {
-                grid-template-columns: 1fr;
-            }
             #cartPanel {
                 width: 100%;
                 right: -100%;
-            }
-            .chatbot-window {
-                width: 300px;
-                height: 400px;
-            }
-            .chatbot-container {
-                bottom: 80px;
             }
             .cart-popup {
                 left: 10px;
@@ -2231,9 +1523,6 @@
         }
 
         @media (max-width: 480px) {
-            .logo {
-                font-size: 2rem;
-            }
             .configurator-section .top-title {
                 font-size: 22px;
             }
@@ -2267,10 +1556,6 @@
                 width: 45px;
                 height: 25px;
                 font-size: 0.7rem;
-            }
-            .chatbot-window {
-                width: 280px;
-                height: 380px;
             }
             .editor-grid {
                 grid-template-columns: 1fr;
@@ -2380,10 +1665,6 @@
                 </div>
             </div>
         </div>
-        
-        <div class="scroll-down" onclick="document.getElementById('home').scrollIntoView({behavior: 'smooth'});">
-            <i class="fas fa-chevron-down"></i>
-        </div>
     </section>
 
     <!-- SEKCJA PRODUKTÓW – KOLEKCJA π -->
@@ -2462,39 +1743,6 @@
         </div>
     </section>
 
-    <!-- Chatbot -->
-    <div class="chatbot-container">
-        <button class="chatbot-button pulse" onclick="toggleChatbot()" id="chatbotButton">
-            <i class="fas fa-robot"></i>
-        </button>
-        <div class="chatbot-window" id="chatbotWindow">
-            <div class="chatbot-header">
-                <span>🧠 Asystent Zakupowy Adelbertus</span>
-                <button class="chatbot-close" onclick="toggleChatbot()">×</button>
-            </div>
-            <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">
-                    <strong>👋 Witaj w Adelbertus Shop!</strong><br><br>
-                    Jestem Twoim asystentem zakupowym! Nie tylko odpowiem na pytania, ale <strong>pomogę Ci wybrać i zamówić produkty</strong>.<br><br>
-                    
-                    <strong>Co mogę dla Ciebie zrobić:</strong><br>
-                    • 🛒 Pomóc wybrać i dodać produkty do koszyka<br>
-                    • 📏 Doradzić w doborze rozmiaru<br>
-                    • 🎨 Pokazać dostępne wzory i kolory<br>
-                    • 🚀 Szybko złożyć zamówienie<br>
-                    • ❓ Odpowiedzieć na wszystkie pytania<br><br>
-                    
-                    <em>Napisz co Cię interesuje lub użyj szybkich przycisków poniżej!</em>
-                </div>
-            </div>
-            <div class="chatbot-typing" id="chatbotTyping">Asystent pisze...</div>
-            <div class="chatbot-input">
-                <input type="text" id="chatbotInput" placeholder="Napisz wiadomość..." onkeypress="handleChatbotInput(event)">
-                <button onclick="sendChatbotMessage()"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-    </div>
-
     <!-- Cookie Consent -->
     <div id="cookieConsent" class="cookie-consent">
         <p>Ta strona używa plików cookies dla zapewnienia najlepszej jakości usług. 
@@ -2517,158 +1765,21 @@
         <img src="" alt="" class="zoomed-image" id="zoomedImage">
     </div>
 
-    <!-- Nagłówek -->
-    <header>
-        <div class="logo">AdelbertusShop</div>
-        <p class="tagline">Tworzone z pasją, noszone z dumą</p>
-    </header>
- 
     <!-- Nawigacja -->
     <nav>
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i> Menu</button>
         <div class="nav-container" id="navContainer">
-            <button class="nav-btn active" data-section="home"><i class="fas fa-home"></i> Strona Główna</button>
-            <button class="nav-btn" data-section="shop"><i class="fas fa-tshirt"></i> Sklep</button>
-            <button class="nav-btn" data-section="configurator"><i class="fas fa-paint-brush"></i> Konfigurator</button>
-            <button class="nav-btn" data-section="charity"><i class="fas fa-hand-holding-heart"></i> Zbiórka</button>
-            <button class="nav-btn" data-section="referral"><i class="fas fa-envelope"></i> Poleć znajomego</button>
-            <button class="nav-btn" data-section="partners"><i class="fas fa-handshake"></i> Partnerzy</button>
-            <button class="nav-btn" data-section="regulations"><i class="fas fa-file-alt"></i> Regulamin</button>
-            <button class="nav-btn" onclick="openSecretAccess()"><i class="fas fa-key"></i> Wejście</button>
+            <button class="nav-btn" data-section="shop">Sklep</button>
+            <button class="nav-btn" data-section="configurator">Konfigurator</button>
+            <button class="nav-btn" data-section="charity">Zbiórka</button>
+            <button class="nav-btn" data-section="referral">Poleć znajomego</button>
+            <button class="nav-btn" data-section="regulations">Regulamin</button>
         </div>
     </nav>
    
     <main>
-        <!-- Strona główna -->
-        <section id="home" class="active">
-            <div class="section-title">
-                <h2>Witaj w AdelbertusShop</h2>
-                <p>Nie znajdziesz go nigdzie indziej. Ten znak nie istnieje dla świata. Noszą go tylko ci, którzy wiedzą</p>
-            </div>
-            
-            <div class="charity-section">
-                <h3>Razem możemy więcej</h3>
-                <p>Każdy zakup to wsparcie dla Domu Dziecka "Promyk"</p>
-                <button class="nav-btn gold-bg" style="margin-top: 1.5rem;" data-section="charity">Dowiedz się więcej</button>
-            </div>
-            
-            <div class="section-title">
-                <h3>Nie patrz, jeśli boisz się zmian. Nie kupuj, jeśli nie rozumiesz. To nie jest dla wszystkich.</h3>
-            </div>
-            
-            <div class="products-grid-old">
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" 
-                             alt="Koszulka Rebel" 
-                             class="product-image"
-                             loading="lazy"
-                             onclick="openImageZoom(this.src)">
-                        <div class="product-gallery">
-                            <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" 
-                                 alt="Koszulka Rebel - przód" 
-                                 class="gallery-thumb active"
-                                 onclick="changeProductImage(this, this.closest('.product-card'))">
-                            <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" 
-                                 alt="Koszulka Rebel - tył" 
-                                 class="gallery-thumb"
-                                 onclick="changeProductImage(this, this.closest('.product-card'))">
-                            <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" 
-                                 alt="Koszulka Rebel - detal" 
-                                 class="gallery-thumb"
-                                 onclick="changeProductImage(this, this.closest('.product-card'))">
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Artefakt: Koszulka "Portret"</div>
-                        <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
-                        <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">80 zł</span></div></div>
-                        <button class="product-btn add-to-cart-btn" data-name="Koszulka Portret" data-price="80">Biorę to teraz</button>
-                        <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
-                        <div class="hidden-symbol">π ♈</div>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage" class="product-image" loading="lazy" onclick="openImageZoom(this.src)">
-                        <div class="product-gallery">
-                            <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Koszulka Vintage - przód" class="gallery-thumb active" onclick="changeProductImage(this, this.closest('.product-card'))">
-                            <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulka Vintage - tył" class="gallery-thumb" onclick="changeProductImage(this, this.closest('.product-card'))">
-                            <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Koszulka Vintage - detal" class="gallery-thumb" onclick="changeProductImage(this, this.closest('.product-card'))">
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Artefakt: Koszulka "Adelbertus"</div>
-                        <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
-                        <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">80 zł</span></div></div>
-                        <button class="product-btn add-to-cart-btn" data-name="Koszulka Adelbertus" data-price="80">Biorę to teraz</button>
-                        <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
-                        <div class="hidden-symbol">π ♈</div>
-                    </div>
-                </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-image-container">
-                        <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban" class="product-image" loading="lazy" onclick="openImageZoom(this.src)">
-                        <div class="product-gallery">
-                            <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluza Urban - przód" class="gallery-thumb active" onclick="changeProductImage(this, this.closest('.product-card'))">
-                            <img src="https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg" alt="Bluza Urban - tył" class="gallery-thumb" onclick="changeProductImage(this, this.closest('.product-card'))">
-                            <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Bluza Urban - detal" class="gallery-thumb" onclick="changeProductImage(this, this.closest('.product-card'))">
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">Artefakt: Bluza "Adelbertus"</div>
-                        <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
-                        <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">170 zł</span></div></div>
-                        <button class="product-btn add-to-cart-btn" data-name="Bluza Adelbertus" data-price="170">Biorę to teraz</button>
-                        <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
-                        <div class="hidden-symbol">π ♈</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="recommended-products">
-                <h3 class="section-title">Klienci kupili także...</h3>
-                <div class="products-grid-old">
-                    <div class="product-card">
-                        <div class="product-image-container">
-                            <img src="https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png" alt="Koszulka Abstract" class="product-image" loading="lazy">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-title">Artefakt: Koszulka "Zakazany Produkt"</div>
-                            <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
-                            <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">80 zł</span></div></div>
-                            <button class="product-btn add-to-cart-btn" data-name="Koszulka Zakazany Produkt" data-price="80">Biorę to teraz</button>
-                            <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
-                            <div class="hidden-symbol">π ♈</div>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image-container">
-                            <img src="https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png" alt="Koszulka Geometry" class="product-image" loading="lazy">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-title">Artefakt: Koszulka "Rzymianin"</div>
-                            <div class="elite-message">Nie produkujemy masowo. Każdy model znika i nie wraca.</div>
-                            <div class="product-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">80 zł</span></div></div>
-                            <button class="product-btn add-to-cart-btn" data-name="Koszulka Rzymianin" data-price="80">Biorę to teraz</button>
-                            <div class="decision-note">Zostawisz to teraz — może nie wrócić.</div>
-                            <div class="hidden-symbol">π ♈</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="reviews" style="margin-top: 3rem;">
-                <h3 class="section-title">Co mówią o nas</h3>
-                <div id="rotating-reviews" class="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-                </div>
-            </div>
-        </section>
-        
         <!-- Sklep – Kafelki + modale -->
-        <section id="shop">
+        <section id="shop" class="active">
           <div class="shop-header">
             <h2 class="section-title">Nasze Produkty</h2>
             <div class="ssl-security">
@@ -2989,65 +2100,6 @@
                 <div id="childrenLetter" class="italic text-lg text-gray-100 typing"></div>
             </div>
         </section>
-        
-        <!-- Partnerzy -->
-        <section id="partners">
-            <div class="section-title">
-                <h2>Nasi Partnerzy</h2>
-                <p>Współpracujemy z najlepszymi</p>
-            </div>
-            <div class="partners-section">
-                <div class="partners-grid">
-                    <div class="partner-card">
-                        <a href="https://oldschool-wwwojtek.vercel.app" target="_blank" class="partner-link">
-                            <img src="https://i.ibb.co/Jj0Kb3cX/Messenger-creation-4-E58-DEDD-81-B0-493-E-BB9-B-C22-CAD893-C8-E.jpg" alt="Old School Wojtek" class="partner-logo">
-                        </a>
-                        <h4>Old School Wojtek</h4>
-                        <p>Partner strategiczny</p>
-                        <div class="hidden-symbol">π ♈</div>
-                    </div>
-                    
-                    <div class="partner-card">
-                        <a href="https://klaudia-3hjx.vercel.app" target="_blank" class="partner-link">
-                            <img src="https://i.ibb.co/99S1K3JX/Messenger-creation-FCFB3-CFD-3-BEF-4-D84-90-A8-F6687-B85-EA08.jpg" alt="Klaudia" class="partner-logo">
-                        </a>
-                        <h4>Klaudia</h4>
-                        <p>Partner kreatywny</p>
-                        <div class="hidden-symbol">π ♈</div>
-                    </div>
-                    
-                    <div class="partner-card">
-                        <a href="https://rafa-five-phi.vercel.app" target="_blank" class="partner-link">
-                            <img src="https://i.ibb.co/LDmgftTK/Messenger-creation-34-C98-E94-CF4-A-45-BC-A903-4785-C05-DC7-F2.jpg" alt="Rafał" class="partner-logo">
-                        </a>
-                        <h4>Rafał</h4>
-                        <p>Partner rozwojowy</p>
-                        <div class="hidden-symbol">π ♈</div>
-                    </div>
-
-                    <div class="partner-card">
-                        <a href="https://www.pkt.pl/firma/firma-budowlana-filipex-riman-pisyrakiewicz-9515570" target="_blank" class="partner-link">
-                            <img src="https://i.ibb.co/Fb7bp4rJ/Messenger-creation-64952-AE2-821-C-4-CB0-817-B-2-D516-E67-B84-C.jpg" alt="Filipex Riman" class="partner-logo">
-                        </a>
-                        <h4>Filipex Riman</h4>
-                        <p>Partner budowlany</p>
-                        <div class="hidden-symbol">π ♈</div>
-                    </div>
-
-                    <div class="partner-card">
-                        <a href="https://maniek-przewozy-przew-z.vercel.app" target="_blank" class="partner-link">
-                            <div class="partner-placeholder">
-                                <i class="fas fa-truck fa-3x"></i>
-                                <p>Maniek Przewozy</p>
-                            </div>
-                        </a>
-                        <h4>Maniek Przewozy</h4>
-                        <p>Partner transportowy</p>
-                        <div class="hidden-symbol">π ♈</div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Regulamin -->
         <section id="regulations">
@@ -3087,18 +2139,6 @@
             </div>
         </section>
 
-        <!-- Secret Section -->
-        <div id="secretSection" style="display:none;">
-            <div class="section-title">
-                <h2>Dla wtajemniczonych</h2>
-                <p>Nie wszystko trafia na główną stronę.</p>
-            </div>
-            <div class="bg-black/80 p-8 rounded-2xl text-center text-white">
-                <i class="fas fa-crown text-6xl text-gold mb-4"></i>
-                <p class="text-xl">Witaj w ukrytej części sklepu. Oto produkty niedostępne publicznie.</p>
-            </div>
-        </div>
-
         <!-- Koszyk -->
         <div id="cartIcon">
             <i class="fas fa-shopping-cart"></i>
@@ -3134,18 +2174,6 @@
             <p class="text-sm text-gray-600 text-center mt-4">Akceptujemy również przelewy bankowe i BLIK</p>
             <div class="decision-note" style="text-align:center; margin-top:12px;">Zostawisz to teraz — może nie wrócić.</div>
             <div class="hidden-symbol" style="position:relative; text-align:right; margin-top:8px;">π ♈</div>
-        </div>
-
-        <!-- Secret Modal -->
-        <div id="secretModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
-            <div style="background:#111; padding:30px; border-radius:10px; text-align:center; max-width:300px; margin:auto; position:relative;">
-                <button onclick="closeSecretModal()" style="position:absolute; top:10px; right:15px; background:none; border:none; color:#d4af37; font-size:24px; cursor:pointer;">&times;</button>
-                <h2 style="color:#d4af37;">Dostęp</h2>
-                <p style="color:#aaa;">Nie każdy powinien tu być.</p>
-                <input type="text" id="secretCode" placeholder="Wpisz kod" style="width:100%; padding:10px; margin-top:10px; background:#222; color:white; border:1px solid #d4af37; border-radius:5px;">
-                <button onclick="checkSecret()" style="margin-top:15px; background:#d4af37; color:black; border:none; padding:8px 16px; border-radius:5px; cursor:pointer;">Sprawdź</button>
-                <p id="secretError" style="color:red; margin-top:10px;"></p>
-            </div>
         </div>
 
         <!-- Stopka -->
@@ -3627,13 +2655,6 @@
                 }, 3000);
             }
 
-            function toggleChatbot() {
-                const chatbotWindow = document.getElementById('chatbotWindow');
-                if (chatbotWindow) {
-                    chatbotWindow.style.display = chatbotWindow.style.display === 'flex' ? 'none' : 'flex';
-                }
-            }
-
             function openImageZoom(src) {
                 const overlay = document.getElementById('imageZoomOverlay');
                 const zoomedImg = document.getElementById('zoomedImage');
@@ -3646,20 +2667,6 @@
             function closeImageZoom() {
                 const overlay = document.getElementById('imageZoomOverlay');
                 if (overlay) overlay.style.display = 'none';
-            }
-
-            function changeProductImage(thumb, productCard) {
-                const mainImage = productCard ? productCard.querySelector('.product-image') : null;
-                const galleryThumbs = productCard ? productCard.querySelectorAll('.gallery-thumb') : [];
-                
-                if (galleryThumbs.length) {
-                    galleryThumbs.forEach(t => t.classList.remove('active'));
-                    thumb.classList.add('active');
-                }
-                
-                if (mainImage && thumb) {
-                    mainImage.src = thumb.src;
-                }
             }
 
             function acceptCookies() {
@@ -3718,30 +2725,14 @@
             function initProductOptions() {
                 document.addEventListener('click', function(e) {
                     const target = e.target;
-                    if (target.classList && target.classList.contains('color-option')) {
-                        const options = target.closest('.color-options');
-                        if (options) {
-                            options.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
-                            target.classList.add('selected');
-                        }
-                    }
-                    
-                    if (target.classList && target.classList.contains('size-option')) {
-                        const options = target.closest('.size-options');
-                        if (options) {
-                            options.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
-                            target.classList.add('selected');
-                        }
-                    }
-                    
-                    if (target.classList && (target.classList.contains('add-to-cart-btn') || target.classList.contains('add-to-cart-btn-enhanced') || target.classList.contains('product-btn'))) {
+                    if (target.classList && target.classList.contains('product-btn')) {
                         e.preventDefault();
-                        const productCard = target.closest('.product-card') || target.closest('.product-item');
+                        const productCard = target.closest('.product-item');
                         let name = target.getAttribute('data-name');
                         let price = parseFloat(target.getAttribute('data-price'));
                         
                         if (!name && productCard) {
-                            const nameEl = productCard.querySelector('.product-title') || productCard.querySelector('.product-name');
+                            const nameEl = productCard.querySelector('.product-name');
                             if (nameEl) name = nameEl.textContent.trim().replace(/^Artefakt:\s*/, '');
                         }
                         
@@ -3760,28 +2751,9 @@
                         if (isNaN(price)) price = 80;
                         
                         const image = target.getAttribute('data-image') || null;
-                        
-                        let color = null;
-                        let size = null;
-                        if (productCard) {
-                            const selectedColorOption = productCard.querySelector('.color-options .color-option.selected');
-                            const selectedSizeOption = productCard.querySelector('.size-options .size-option.selected');
-                            if (selectedColorOption) color = selectedColorOption.getAttribute('data-color') || 'Nie wybrano';
-                            if (selectedSizeOption) size = selectedSizeOption.getAttribute('data-size') || 'Nie wybrano';
-                        }
-                        
-                        addToCart(name, price, image, size, color);
+                        addToCart(name, price, image, null, null);
                         showCartPopup();
                     }
-                });
-            }
-
-            function initImageZoom() {
-                const images = document.querySelectorAll('img[loading="lazy"]');
-                images.forEach(img => {
-                    img.addEventListener('load', function() {
-                        this.classList.add('loaded');
-                    });
                 });
             }
 
@@ -3808,41 +2780,6 @@
                         }
                     }
                 }, 4000);
-            }
-
-            // Secret Access Functions
-            function openSecretAccess() {
-                const modal = document.getElementById('secretModal');
-                if (modal) {
-                    modal.style.display = 'flex';
-                }
-            }
-
-            function closeSecretModal() {
-                const modal = document.getElementById('secretModal');
-                if (modal) {
-                    modal.style.display = 'none';
-                    document.getElementById('secretCode').value = '';
-                    document.getElementById('secretError').textContent = '';
-                }
-            }
-
-            function checkSecret() {
-                const code = document.getElementById('secretCode').value.trim().toLowerCase();
-                
-                if (code === "mlynarz") {
-                    localStorage.setItem('secret_access', 'true');
-                    closeSecretModal();
-                    showNotification('🜂 Dostęp przyznany');
-                    unlockSecretSection();
-                } else {
-                    document.getElementById('secretError').textContent = "Brak dostępu";
-                }
-            }
-
-            function unlockSecretSection() {
-                const section = document.getElementById('secretSection');
-                if (section) section.style.display = 'block';
             }
 
             // Funkcje konfiguratora
@@ -4608,7 +3545,6 @@
                 initProductOptions();
                 updateCart();
                 initCookieConsent();
-                initImageZoom();
                 initCharitySection();
                 
                 createSwatches();
@@ -4618,11 +3554,6 @@
                 renderOrderPreview();
                 setupEvents();
                 if (ctxCanvas && canvasEl) renderCanvas();
-                
-                // Secret auto-unlock
-                if (localStorage.getItem('secret_access') === 'true') {
-                    unlockSecretSection();
-                }
                 
                 const heroButton = document.getElementById('heroShopButton');
                 if (heroButton) {
@@ -4642,97 +3573,14 @@
                         }
                     });
                 }
-                
-                const allReviews = [
-                    { name: "Anna K.", text: "Koszulki są niesamowite! Jakość wykonania i oryginalny design - polecam każdemu!", stars: 5 },
-                    { name: "Marek W.", text: "Zamówienie dotarło błyskawicznie, a bluza jest jeszcze lepsza niż na zdjęciach. Na pewno wrócę!", stars: 5 },
-                    { name: "Katarzyna M.", text: "Uwielbiam styl vintage, a Adelbertus robi to perfekcyjnie. Moja nowa ulubiona marka.", stars: 5 },
-                    { name: "Tomasz L.", text: "Świetny kontakt ze sklepem, a produkt zgodny z opisem. Polecam!", stars: 5 }
-                ];
-                
-                const reviewContainer = document.getElementById('rotating-reviews');
-                
-                function displayReviews(index) {
-                    if (!reviewContainer) return;
-                    const reviewsToShow = [];
-                    for (let i = 0; i < 4; i++) {
-                        reviewsToShow.push(allReviews[(index + i) % allReviews.length]);
-                    }
-                    
-                    reviewContainer.innerHTML = reviewsToShow.map(review => `
-                        <div class="review" style="background: white; border-radius: 10px; padding: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                            <div class="review-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
-                                <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #b8941f); display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; color: black;">${review.name.charAt(0)}</div>
-                                <div>
-                                    <div style="font-weight: bold;">${review.name}</div>
-                                    <div class="review-stars" style="color: #d4af37;">${'⭐'.repeat(review.stars)}</div>
-                                </div>
-                            </div>
-                            <p style="font-style: italic;">"${review.text}"</p>
-                        </div>
-                    `).join('');
-                }
-                
-                const lastRotationKey = 'adelbertus_reviews_last_rotation';
-                const lastRotation = localStorage.getItem(lastRotationKey);
-                const now = Date.now();
-                const twoDaysMs = 2 * 24 * 60 * 60 * 1000;
-                
-                let currentIndex = parseInt(localStorage.getItem('adelbertus_reviews_index')) || 0;
-                
-                if (!lastRotation || now - parseInt(lastRotation) > twoDaysMs) {
-                    currentIndex = (currentIndex + 1) % allReviews.length;
-                    localStorage.setItem('adelbertus_reviews_index', currentIndex);
-                    localStorage.setItem(lastRotationKey, now);
-                }
-                
-                displayReviews(currentIndex);
-                
-                setInterval(() => {
-                    const now = Date.now();
-                    const lastRotation = localStorage.getItem(lastRotationKey);
-                    if (now - parseInt(lastRotation) > twoDaysMs) {
-                        let currentIndex = parseInt(localStorage.getItem('adelbertus_reviews_index')) || 0;
-                        currentIndex = (currentIndex + 1) % allReviews.length;
-                        localStorage.setItem('adelbertus_reviews_index', currentIndex);
-                        localStorage.setItem(lastRotationKey, now);
-                        displayReviews(currentIndex);
-                    }
-                }, 3600000);
             });
 
             document.addEventListener('keydown', e => {
                 if (e.key === 'Escape') {
                     closeProductModal();
                     closeCategoryModal();
-                    closeSecretModal();
                 }
             });
-
-            // Chatbot helper (minimal)
-            window.handleChatbotInput = function(e) {
-                if (e.key === 'Enter') sendChatbotMessage();
-            };
-            window.sendChatbotMessage = function() {
-                const input = document.getElementById('chatbotInput');
-                const messages = document.getElementById('chatbotMessages');
-                if (!input || !messages) return;
-                const text = input.value.trim();
-                if (!text) return;
-                const userMsgDiv = document.createElement('div');
-                userMsgDiv.className = 'message user-message';
-                userMsgDiv.textContent = text;
-                messages.appendChild(userMsgDiv);
-                input.value = '';
-                messages.scrollTop = messages.scrollHeight;
-                setTimeout(() => {
-                    const botMsgDiv = document.createElement('div');
-                    botMsgDiv.className = 'message bot-message';
-                    botMsgDiv.innerHTML = 'Dziękujemy za wiadomość! Nasz konsultant skontaktuje się z Tobą wkrótce. Możesz też dodać produkty do koszyka bezpośrednio ze sklepu.';
-                    messages.appendChild(botMsgDiv);
-                    messages.scrollTop = messages.scrollHeight;
-                }, 500);
-            };
 
             window.addToCart = addToCart;
             window.removeFromCart = removeFromCart;
@@ -4741,10 +3589,8 @@
             window.sendOrderEmail = sendOrderEmail;
             window.sendOrderWhatsApp = sendOrderWhatsApp;
             window.acceptCookies = acceptCookies;
-            window.toggleChatbot = toggleChatbot;
             window.openImageZoom = openImageZoom;
             window.closeImageZoom = closeImageZoom;
-            window.changeProductImage = changeProductImage;
             window.hideCartPopup = hideCartPopup;
             window.goToCheckout = goToCheckout;
             window.openCategoryModal = openCategoryModal;
@@ -4757,9 +3603,6 @@
             window.sprodQtyChange = sprodQtyChange;
             window.sprodAddToCart = sprodAddToCart;
             window.sendReferralEmail = sendReferralEmail;
-            window.openSecretAccess = openSecretAccess;
-            window.checkSecret = checkSecret;
-            window.closeSecretModal = closeSecretModal;
         </script>
     </main>
 </body>
