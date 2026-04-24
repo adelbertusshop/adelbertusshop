@@ -1626,6 +1626,16 @@
             color: var(--color-gold);
         }
     </style>  
+<script>
+(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const refCode = urlParams.get('ref');
+    if (refCode) {
+        localStorage.setItem('adelbertus_ref_code', refCode);
+        console.log('System Adelbertus: Przechwycono kod polecający:', refCode);
+    }
+})();
+</script>
 </head>
 <body>
     <section class="hero-pi" id="heroSection">
@@ -3107,6 +3117,25 @@
             if(state.orderQty >= 3) total = Math.round(total * 0.9);
             return total;
         }
+
+async function handleSignUp(email, password) {
+    const savedRefCode = localStorage.getItem('adelbertus_ref_code');
+    const { data, error } = await supabaseClient.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+            data: {
+                referred_by_code: savedRefCode
+            }
+        }
+    });
+    if (error) {
+        console.error('Błąd rejestracji:', error.message);
+    } else {
+        console.log('Użytkownik zarejestrowany! System przypisał polecenie.');
+        localStorage.removeItem('adelbertus_ref_code');
+    }
+}
 
         document.addEventListener('DOMContentLoaded', () => {
             initNavigation();
