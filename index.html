@@ -2132,6 +2132,49 @@
             </div>
         </section>
 
+        <!-- PANEL UŻYTKOWNIKA (DASHBOARD) -->
+        <section id="dashboard">
+            <div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg border border-gray-100 my-8">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Witaj w Kręgu, <span id="user-name">...</span></h2>
+                        <p class="text-gray-500">Twoja aktywność buduje markę Adelbertus</p>
+                    </div>
+                    <div class="text-right">
+                        <span id="rank-badge" class="px-4 py-2 rounded-full bg-black text-white text-sm font-semibold uppercase tracking-widest">
+                            Wczytywanie...
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <p class="text-sm text-gray-500 uppercase">Polecenia</p>
+                        <p id="stat-referrals" class="text-3xl font-bold text-black">0</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <p class="text-sm text-gray-500 uppercase">Punkty</p>
+                        <p id="stat-points" class="text-3xl font-bold text-black">0</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <p class="text-sm text-gray-500 uppercase">Zamówienia</p>
+                        <p id="stat-orders" class="text-3xl font-bold text-black">0</p>
+                    </div>
+                </div>
+
+                <div class="bg-black text-white p-6 rounded-lg mb-8">
+                    <p class="text-sm uppercase tracking-widest mb-2 opacity-70">Twój unikalny kod polecający</p>
+                    <div class="flex items-center gap-4">
+                        <code id="referral-code-display" class="text-2xl font-mono font-bold">ADEL-XXXXXX</code>
+                        <button onclick="copyRefCode()" class="bg-white text-black px-4 py-2 rounded font-bold hover:bg-gray-200 transition">
+                            KOPIUJ
+                        </button>
+                    </div>
+                    <p id="next-rank-info" class="mt-4 text-sm opacity-80 italic">Wczytywanie postępu...</p>
+                </div>
+            </div>
+        </section>
+
         <div id="cartIcon">
             <i class="fas fa-shopping-cart"></i>
             <span id="cartCount">0</span>
@@ -3137,6 +3180,45 @@ async function handleSignUp(email, password) {
     }
 }
 
+async function loadUserDashboard() {
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (!user) {
+        console.log("Użytkownik niezalogowany");
+        return;
+    }
+    const { data: profile, error } = await supabaseClient
+        .from('users_profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+    if (error) {
+        console.error("Błąd pobierania profilu:", error.message);
+        return;
+    }
+    document.getElementById('user-name').innerText = profile.username || profile.email;
+    document.getElementById('stat-referrals').innerText = profile.total_referrals;
+    document.getElementById('stat-points').innerText = profile.points;
+    document.getElementById('stat-orders').innerText = profile.total_orders;
+    document.getElementById('referral-code-display').innerText = profile.referral_code;
+    const rankBadge = document.getElementById('rank-badge');
+    rankBadge.innerText = profile.rank_slug.toUpperCase();
+    let nextRankText = "";
+    if (profile.total_referrals < 3) {
+        nextRankText = `Zaproś jeszcze ${3 - profile.total_referrals} osoby, aby zostać Nosicielem.`;
+    } else if (profile.total_referrals < 10) {
+        nextRankText = `Zaproś jeszcze ${10 - profile.total_referrals} osób, aby zostać Strażnikiem Kręgu.`;
+    } else {
+        nextRankText = "Jesteś legendą Adelbertus!";
+    }
+    document.getElementById('next-rank-info').innerText = nextRankText;
+}
+
+window.copyRefCode = function() {
+    const code = document.getElementById('referral-code-display').innerText;
+    navigator.clipboard.writeText(code);
+    alert("Kod skopiowany: " + code);
+};
+
         document.addEventListener('DOMContentLoaded', () => {
             initNavigation();
             initProductOptions();
@@ -3161,6 +3243,7 @@ async function handleSignUp(email, password) {
                     else { showSection('shop'); document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active')); if(shopBtn) shopBtn.classList.add('active'); }
                 }
             });
+            loadUserDashboard();
         });
         document.addEventListener('keydown', e => { if(e.key === 'Escape'){ window.closeProductModal(); window.closeCategoryModal(); } });
         window.addToCart = addToCart;
