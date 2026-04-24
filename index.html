@@ -3248,5 +3248,44 @@ window.copyRefCode = function() {
         document.addEventListener('keydown', e => { if(e.key === 'Escape'){ window.closeProductModal(); window.closeCategoryModal(); } });
         window.addToCart = addToCart;
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script>
+  // Twoje dane, które właśnie podałeś:
+  const SUPABASE_URL = 'https://oujlhtzyvdplyrezibiy.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG';
+
+  // Inicjalizacja połączenia
+  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  async function zaladujDane() {
+    // Sprawdzamy, kto jest zalogowany
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (user) {
+      // Pobieramy dane z tabeli, którą stworzyliśmy wczoraj
+      const { data: profil, error } = await supabase
+        .from('users_profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+
+      if (profil) {
+        // Wstawiamy dane w odpowiednie miejsca na stronie
+        document.getElementById('user-name').innerText = profil.email;
+        document.getElementById('stat-referrals').innerText = profil.total_referrals;
+        document.getElementById('stat-points').innerText = profil.points;
+        document.getElementById('referral-code-display').innerText = profil.referral_code;
+        document.getElementById('rank-badge').innerText = profil.rank_slug.toUpperCase();
+      }
+    } else {
+      console.log("Nikt nie jest zalogowany.");
+    }
+  }
+
+  // Odpalamy funkcję
+  zaladujDane();
+</script>
 </body>
 </html>
