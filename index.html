@@ -1625,6 +1625,28 @@
             font-weight: 700;
             color: var(--color-gold);
         }
+        
+        /* Dashboard styles */
+        .dashboard-card {
+            background: #121212;
+            border: 1px solid #1f1f1f;
+            border-radius: 24px;
+            transition: all 0.25s ease;
+        }
+        .dashboard-card:hover {
+            border-color: #d4af37;
+            box-shadow: 0 8px 25px -5px rgba(212, 175, 55, 0.15);
+        }
+        .dashboard-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        @media (min-width: 768px) {
+            .dashboard-stat-number {
+                font-size: 3rem;
+            }
+        }
     </style>  
 <script>
 (function() {
@@ -1774,6 +1796,7 @@
             <button class="nav-btn" data-section="charity">Zbiórka</button>
             <button class="nav-btn" data-section="referral">Poleć znajomego</button>
             <button class="nav-btn" data-section="regulations">Regulamin</button>
+            <button class="nav-btn" data-section="dashboard">Mój Krąg</button>
         </div>
     </nav>
    
@@ -2091,7 +2114,7 @@
             
             <div class="bg-white/10 p-6 rounded-lg shadow-md mt-10 border-l-4 border-yellow-400">
                 <h4 class="text-2xl font-bold mb-4 text-yellow-300">✉️ List od dzieci z Domu Dziecka "Promyk"</h4>
-                <div id="childrenLetter" class="italic text-lg text-gray-100 typing"></div>
+                <div id="childrenLetter" class="italic text-lg text-gray-300 typing"></div>
             </div>
         </section>
 
@@ -2132,45 +2155,75 @@
             </div>
         </section>
 
-        <!-- PANEL UŻYTKOWNIKA (DASHBOARD) -->
+        <!-- ========== DASHBOARD - SYSTEM LOJALNOŚCIOWY ========== -->
         <section id="dashboard">
-            <div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg border border-gray-100 my-8">
-                <div class="flex items-center justify-between mb-8">
-                    <div>
-                        <h2 class="text-2xl font-bold text-gray-800">Witaj w Kręgu, <span id="user-name">...</span></h2>
-                        <p class="text-gray-500">Twoja aktywność buduje markę Adelbertus</p>
-                    </div>
-                    <div class="text-right">
-                        <span id="rank-badge" class="px-4 py-2 rounded-full bg-black text-white text-sm font-semibold uppercase tracking-widest">
-                            Wczytywanie...
-                        </span>
-                    </div>
+            <div class="max-w-5xl mx-auto px-4 py-6">
+                <!-- Niezalogowany -->
+                <div id="dashboardNotLogged" class="dashboard-card p-8 md:p-12 text-center hidden">
+                    <div class="text-6xl mb-4">⛓️</div>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-3">
+                        Zaloguj się, aby dołączyć do <span class="gold">Kręgu</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-md mx-auto mb-6">
+                        Tylko wtajemniczeni mają dostęp do lojalnościowych mocy Adelbertus.
+                    </p>
+                    <button id="dashboardGoToShop" class="bg-gold text-black font-bold px-8 py-3 rounded-full hover:bg-yellow-500 transition">
+                        ← Wróć do sklepu
+                    </button>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                        <p class="text-sm text-gray-500 uppercase">Polecenia</p>
-                        <p id="stat-referrals" class="text-3xl font-bold text-black">0</p>
+                <!-- Zalogowany -->
+                <div id="dashboardLogged" class="space-y-6 hidden">
+                    <!-- Header z emailem i rangą -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-5 border-b border-gray-800">
+                        <div>
+                            <div class="text-xs text-gray-500 uppercase tracking-wider">Jesteś w kręgu</div>
+                            <div class="text-xl md:text-2xl font-bold gold" id="userEmail">ładowanie...</div>
+                        </div>
+                        <div>
+                            <span id="rankBadge" class="inline-block px-5 py-2 bg-gold/10 border border-gold/50 text-gold rounded-full text-sm font-black uppercase tracking-wider">
+                                RANGA
+                            </span>
+                        </div>
                     </div>
-                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                        <p class="text-sm text-gray-500 uppercase">Punkty</p>
-                        <p id="stat-points" class="text-3xl font-bold text-black">0</p>
-                    </div>
-                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                        <p class="text-sm text-gray-500 uppercase">Zamówienia</p>
-                        <p id="stat-orders" class="text-3xl font-bold text-black">0</p>
-                    </div>
-                </div>
 
-                <div class="bg-black text-white p-6 rounded-lg mb-8">
-                    <p class="text-sm uppercase tracking-widest mb-2 opacity-70">Twój unikalny kod polecający</p>
-                    <div class="flex items-center gap-4">
-                        <code id="referral-code-display" class="text-2xl font-mono font-bold">ADEL-XXXXXX</code>
-                        <button onclick="copyRefCode()" class="bg-white text-black px-4 py-2 rounded font-bold hover:bg-gray-200 transition">
-                            KOPIUJ
-                        </button>
+                    <!-- Trzy karty statystyk -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div class="dashboard-card p-5 text-center">
+                            <div class="text-3xl mb-2">⚡</div>
+                            <div class="text-gray-400 text-xs uppercase tracking-wider">Polecenia</div>
+                            <div class="dashboard-stat-number gold" id="statTotalReferrals">0</div>
+                        </div>
+                        <div class="dashboard-card p-5 text-center">
+                            <div class="text-3xl mb-2">🪙</div>
+                            <div class="text-gray-400 text-xs uppercase tracking-wider">Punkty</div>
+                            <div class="dashboard-stat-number gold" id="statPoints">0</div>
+                        </div>
+                        <div class="dashboard-card p-5 text-center">
+                            <div class="text-3xl mb-2">👑</div>
+                            <div class="text-gray-400 text-xs uppercase tracking-wider">Status konta</div>
+                            <div class="text-xl font-bold gold" id="statStatus">Aktywny</div>
+                        </div>
                     </div>
-                    <p id="next-rank-info" class="mt-4 text-sm opacity-80 italic">Wczytywanie postępu...</p>
+
+                    <!-- Kod polecający + kopiuj -->
+                    <div class="dashboard-card p-6 text-center bg-gradient-to-br from-black to-gray-900 border-gold/30">
+                        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">Twój unikalny kod polecający</p>
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
+                            <code id="referralCode" class="text-xl md:text-2xl font-mono font-bold gold bg-black/40 px-4 py-2 rounded-lg border border-gold/20">
+                                ADEL-XXXXXX
+                            </code>
+                            <button id="copyCodeBtn" class="bg-gold text-black px-6 py-2 rounded-full font-bold text-sm hover:bg-yellow-400 transition flex items-center gap-2">
+                                📋 KOPIUJ
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-4">Podziel się kodem → Ty i znajomy dostajecie +5% rabatu</p>
+                    </div>
+
+                    <!-- Informacja o następnej randze -->
+                    <div class="text-center text-gray-500 text-sm border-t border-gray-800 pt-5 italic">
+                        <span id="nextRankInfo">Wczytywanie postępu...</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2264,13 +2317,96 @@
         };
 
         // ============================================================
-        // SUPABASE KONFIGURACJA
+        // SUPABASE KONFIGURACJA - ta sama nazwa co w reszcie kodu
         // ============================================================
         const { createClient } = supabase;
-        const supabaseClient = createClient("https://oujlhtzyvdplyrezibiy.supabase.co", "sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG");
+        const adelbertusClient = createClient("https://oujlhtzyvdplyrezibiy.supabase.co", "sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG");
 
         // ============================================================
-        // DANE PRODUKTÓW DO MODALU SKLEPU
+        // DASHBOARD - SYSTEM LOJALNOŚCIOWY
+        // ============================================================
+        const dashboardNotLogged = document.getElementById('dashboardNotLogged');
+        const dashboardLogged = document.getElementById('dashboardLogged');
+        const userEmailSpan = document.getElementById('userEmail');
+        const rankBadgeSpan = document.getElementById('rankBadge');
+        const statTotalReferralsSpan = document.getElementById('statTotalReferrals');
+        const statPointsSpan = document.getElementById('statPoints');
+        const statStatusSpan = document.getElementById('statStatus');
+        const referralCodeSpan = document.getElementById('referralCode');
+        const nextRankInfoSpan = document.getElementById('nextRankInfo');
+
+        async function loadDashboard() {
+            try {
+                const { data: { user }, error: userError } = await adelbertusClient.auth.getUser();
+                
+                if (userError || !user) {
+                    dashboardLogged.classList.add('hidden');
+                    dashboardNotLogged.classList.remove('hidden');
+                    return;
+                }
+                
+                dashboardLogged.classList.remove('hidden');
+                dashboardNotLogged.classList.add('hidden');
+                
+                userEmailSpan.textContent = user.email || 'członek kręgu';
+                
+                const { data: profile, error: profileError } = await adelbertusClient
+                    .from('users_profiles')
+                    .select('rank_slug, total_referrals, points, referral_code')
+                    .eq('id', user.id)
+                    .single();
+                
+                if (profileError || !profile) {
+                    rankBadgeSpan.textContent = 'UCZEŃ';
+                    statTotalReferralsSpan.textContent = '0';
+                    statPointsSpan.textContent = '0';
+                    statStatusSpan.textContent = 'Aktywny';
+                    referralCodeSpan.textContent = 'ADEL-' + user.id.slice(0, 6).toUpperCase();
+                    nextRankInfoSpan.textContent = 'Zakończ pierwsze zamówienie, aby aktywować profil.';
+                    return;
+                }
+                
+                const rank = profile.rank_slug || 'uczeń';
+                rankBadgeSpan.textContent = rank.toUpperCase();
+                statTotalReferralsSpan.textContent = profile.total_referrals ?? 0;
+                statPointsSpan.textContent = profile.points ?? 0;
+                
+                let statusText = 'Aktywny';
+                if (rank === 'legenda') statusText = 'LEGENDA KRĘGU';
+                else if (rank === 'strażnik') statusText = 'Strażnik Kręgu';
+                else if (rank === 'nosiciel') statusText = 'Nosiciel π';
+                statStatusSpan.textContent = statusText;
+                
+                referralCodeSpan.textContent = profile.referral_code || ('ADEL-' + user.id.slice(0, 6).toUpperCase());
+                
+                const totalRef = profile.total_referrals ?? 0;
+                let hint = '';
+                if (totalRef < 3) hint = `🎯 Zaproś jeszcze ${3 - totalRef} osoby → awans na Nosiciela.`;
+                else if (totalRef < 10) hint = `⚔️ Zaproś ${10 - totalRef} osoby → zostaniesz Strażnikiem Kręgu.`;
+                else hint = '🏆 Osiągnąłeś szczyt. Jesteś legendą Adelbertus.';
+                nextRankInfoSpan.textContent = hint;
+                
+            } catch (err) {
+                console.error('Dashboard error:', err);
+            }
+        }
+
+        window.copyReferralCode = function() {
+            const code = referralCodeSpan.innerText;
+            if (!code || code === 'ADEL-XXXXXX') {
+                alert('Kod niedostępny. Zaloguj się.');
+                return;
+            }
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.getElementById('copyCodeBtn');
+                const original = btn.innerHTML;
+                btn.innerHTML = '✅ SKOPIOWANO!';
+                setTimeout(() => { btn.innerHTML = original; }, 1500);
+            }).catch(() => alert('Kopiuj ręcznie: ' + code));
+        };
+
+        // ============================================================
+        // DANE PRODUKTÓW DO MODALU SKLEPU (RESZTA KODU)
         // ============================================================
         const SHOP_PRODUCTS = {
             koszulka: [
@@ -3161,64 +3297,9 @@
             return total;
         }
 
-async function handleSignUp(email, password) {
-    const savedRefCode = localStorage.getItem('adelbertus_ref_code');
-    const { data, error } = await supabaseClient.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-            data: {
-                referred_by_code: savedRefCode
-            }
-        }
-    });
-    if (error) {
-        console.error('Błąd rejestracji:', error.message);
-    } else {
-        console.log('Użytkownik zarejestrowany! System przypisał polecenie.');
-        localStorage.removeItem('adelbertus_ref_code');
-    }
-}
+        function deselect() { state.selectedId = null; if(ctxCanvas && canvasEl) renderCanvas(); updateLayerUI(); }
 
-async function loadUserDashboard() {
-    const { data: { user } } = await supabaseClient.auth.getUser();
-    if (!user) {
-        console.log("Użytkownik niezalogowany");
-        return;
-    }
-    const { data: profile, error } = await supabaseClient
-        .from('users_profiles')
-        .select('*')
-        .eq('id', user.id)
-        .single();
-    if (error) {
-        console.error("Błąd pobierania profilu:", error.message);
-        return;
-    }
-    document.getElementById('user-name').innerText = profile.username || profile.email;
-    document.getElementById('stat-referrals').innerText = profile.total_referrals;
-    document.getElementById('stat-points').innerText = profile.points;
-    document.getElementById('stat-orders').innerText = profile.total_orders;
-    document.getElementById('referral-code-display').innerText = profile.referral_code;
-    const rankBadge = document.getElementById('rank-badge');
-    rankBadge.innerText = profile.rank_slug.toUpperCase();
-    let nextRankText = "";
-    if (profile.total_referrals < 3) {
-        nextRankText = `Zaproś jeszcze ${3 - profile.total_referrals} osoby, aby zostać Nosicielem.`;
-    } else if (profile.total_referrals < 10) {
-        nextRankText = `Zaproś jeszcze ${10 - profile.total_referrals} osób, aby zostać Strażnikiem Kręgu.`;
-    } else {
-        nextRankText = "Jesteś legendą Adelbertus!";
-    }
-    document.getElementById('next-rank-info').innerText = nextRankText;
-}
-
-window.copyRefCode = function() {
-    const code = document.getElementById('referral-code-display').innerText;
-    navigator.clipboard.writeText(code);
-    alert("Kod skopiowany: " + code);
-};
-
+        // ========== INIT WSZYSTKIEGO ==========
         document.addEventListener('DOMContentLoaded', () => {
             initNavigation();
             initProductOptions();
@@ -3243,49 +3324,23 @@ window.copyRefCode = function() {
                     else { showSection('shop'); document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active')); if(shopBtn) shopBtn.classList.add('active'); }
                 }
             });
-            loadUserDashboard();
+            
+            // Inicjalizacja dashboardu
+            loadDashboard();
+            const dashboardGoToShop = document.getElementById('dashboardGoToShop');
+            if (dashboardGoToShop) {
+                dashboardGoToShop.addEventListener('click', () => {
+                    showSection('shop');
+                    const shopBtn = document.querySelector('.nav-btn[data-section="shop"]');
+                    if (shopBtn) shopBtn.classList.add('active');
+                });
+            }
+            const copyCodeBtn = document.getElementById('copyCodeBtn');
+            if (copyCodeBtn) copyCodeBtn.addEventListener('click', window.copyReferralCode);
         });
+        
         document.addEventListener('keydown', e => { if(e.key === 'Escape'){ window.closeProductModal(); window.closeCategoryModal(); } });
         window.addToCart = addToCart;
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-
-<script>
-  // Twoje dane, które właśnie podałeś:
-  const SUPABASE_URL = 'https://oujlhtzyvdplyrezibiy.supabase.co';
-  const SUPABASE_KEY = 'sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG';
-
-  // Inicjalizacja połączenia
-  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-  async function zaladujDane() {
-    // Sprawdzamy, kto jest zalogowany
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (user) {
-      // Pobieramy dane z tabeli, którą stworzyliśmy wczoraj
-      const { data: profil, error } = await supabase
-        .from('users_profiles')
-        .select('*')
-        .eq('id', user.id)
-        .single();
-
-      if (profil) {
-        // Wstawiamy dane w odpowiednie miejsca na stronie
-        document.getElementById('user-name').innerText = profil.email;
-        document.getElementById('stat-referrals').innerText = profil.total_referrals;
-        document.getElementById('stat-points').innerText = profil.points;
-        document.getElementById('referral-code-display').innerText = profil.referral_code;
-        document.getElementById('rank-badge').innerText = profil.rank_slug.toUpperCase();
-      }
-    } else {
-      console.log("Nikt nie jest zalogowany.");
-    }
-  }
-
-  // Odpalamy funkcję
-  zaladujDane();
-</script>
 </body>
 </html>
