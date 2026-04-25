@@ -521,6 +521,91 @@
             }
         }
         
+        /* ---------- STYLE LOGOWANIA (BLACK/GOLD) ---------- */
+        .login-container {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--color-gold);
+            border-radius: 24px;
+            padding: 2rem;
+            max-width: 450px;
+            margin: 4rem auto;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.3);
+        }
+        .login-container h2 {
+            color: var(--color-gold);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .login-input {
+            width: 100%;
+            padding: 12px 16px;
+            margin: 12px 0;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .login-input:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: 0 0 8px rgba(212,175,55,0.5);
+        }
+        .login-btn {
+            background: var(--color-gold);
+            color: black;
+            font-weight: bold;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: 0.2s;
+        }
+        .login-btn:hover {
+            background: #f0c14e;
+            transform: scale(1.02);
+        }
+        .toggle-auth {
+            text-align: center;
+            margin-top: 16px;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        .toggle-auth span {
+            color: var(--color-gold);
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .logout-btn {
+            background: transparent;
+            border: 2px solid var(--color-gold);
+            color: var(--color-gold);
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .logout-btn:hover {
+            background: var(--color-gold);
+            color: black;
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        
         nav {
             background: rgba(0, 0, 0, 0.7);
             padding: 1rem;
@@ -1625,28 +1710,6 @@
             font-weight: 700;
             color: var(--color-gold);
         }
-        
-        /* Dashboard styles */
-        .dashboard-card {
-            background: #121212;
-            border: 1px solid #1f1f1f;
-            border-radius: 24px;
-            transition: all 0.25s ease;
-        }
-        .dashboard-card:hover {
-            border-color: #d4af37;
-            box-shadow: 0 8px 25px -5px rgba(212, 175, 55, 0.15);
-        }
-        .dashboard-stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-        }
-        @media (min-width: 768px) {
-            .dashboard-stat-number {
-                font-size: 3rem;
-            }
-        }
     </style>  
 <script>
 (function() {
@@ -1693,6 +1756,10 @@
             </div>
         </div>
     </section>
+
+    <!-- LOGIN / DASHBOARD DYNAMIC -->
+    <div id="auth-container"></div>
+    <div id="dashboard-container" style="display: none;"></div>
 
     <section id="products" class="products-pi">
         <div class="products-container">
@@ -1796,7 +1863,6 @@
             <button class="nav-btn" data-section="charity">Zbiórka</button>
             <button class="nav-btn" data-section="referral">Poleć znajomego</button>
             <button class="nav-btn" data-section="regulations">Regulamin</button>
-            <button class="nav-btn" data-section="dashboard">Mój Krąg</button>
         </div>
     </nav>
    
@@ -2154,80 +2220,6 @@
                 <p class="text-sm text-center text-gray-500 mt-10">Regulamin obowiązuje od: 01.01.2024</p>
             </div>
         </section>
-
-        <!-- ========== DASHBOARD - SYSTEM LOJALNOŚCIOWY ========== -->
-        <section id="dashboard">
-            <div class="max-w-5xl mx-auto px-4 py-6">
-                <!-- Niezalogowany -->
-                <div id="dashboardNotLogged" class="dashboard-card p-8 md:p-12 text-center hidden">
-                    <div class="text-6xl mb-4">⛓️</div>
-                    <h2 class="text-2xl md:text-3xl font-bold mb-3">
-                        Zaloguj się, aby dołączyć do <span class="gold">Kręgu</span>
-                    </h2>
-                    <p class="text-gray-400 max-w-md mx-auto mb-6">
-                        Tylko wtajemniczeni mają dostęp do lojalnościowych mocy Adelbertus.
-                    </p>
-                    <button id="dashboardGoToShop" class="bg-gold text-black font-bold px-8 py-3 rounded-full hover:bg-yellow-500 transition">
-                        ← Wróć do sklepu
-                    </button>
-                </div>
-
-                <!-- Zalogowany -->
-                <div id="dashboardLogged" class="space-y-6 hidden">
-                    <!-- Header z emailem i rangą -->
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-5 border-b border-gray-800">
-                        <div>
-                            <div class="text-xs text-gray-500 uppercase tracking-wider">Jesteś w kręgu</div>
-                            <div class="text-xl md:text-2xl font-bold gold" id="userEmail">ładowanie...</div>
-                        </div>
-                        <div>
-                            <span id="rankBadge" class="inline-block px-5 py-2 bg-gold/10 border border-gold/50 text-gold rounded-full text-sm font-black uppercase tracking-wider">
-                                RANGA
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Trzy karty statystyk -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        <div class="dashboard-card p-5 text-center">
-                            <div class="text-3xl mb-2">⚡</div>
-                            <div class="text-gray-400 text-xs uppercase tracking-wider">Polecenia</div>
-                            <div class="dashboard-stat-number gold" id="statTotalReferrals">0</div>
-                        </div>
-                        <div class="dashboard-card p-5 text-center">
-                            <div class="text-3xl mb-2">🪙</div>
-                            <div class="text-gray-400 text-xs uppercase tracking-wider">Punkty</div>
-                            <div class="dashboard-stat-number gold" id="statPoints">0</div>
-                        </div>
-                        <div class="dashboard-card p-5 text-center">
-                            <div class="text-3xl mb-2">👑</div>
-                            <div class="text-gray-400 text-xs uppercase tracking-wider">Status konta</div>
-                            <div class="text-xl font-bold gold" id="statStatus">Aktywny</div>
-                        </div>
-                    </div>
-
-                    <!-- Kod polecający + kopiuj -->
-                    <div class="dashboard-card p-6 text-center bg-gradient-to-br from-black to-gray-900 border-gold/30">
-                        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">Twój unikalny kod polecający</p>
-                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
-                            <code id="referralCode" class="text-xl md:text-2xl font-mono font-bold gold bg-black/40 px-4 py-2 rounded-lg border border-gold/20">
-                                ADEL-XXXXXX
-                            </code>
-                            <button id="copyCodeBtn" class="bg-gold text-black px-6 py-2 rounded-full font-bold text-sm hover:bg-yellow-400 transition flex items-center gap-2">
-                                📋 KOPIUJ
-                            </button>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-4">Podziel się kodem → Ty i znajomy dostajecie +5% rabatu</p>
-                    </div>
-
-                    <!-- Informacja o następnej randze -->
-                    <div class="text-center text-gray-500 text-sm border-t border-gray-800 pt-5 italic">
-                        <span id="nextRankInfo">Wczytywanie postępu...</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <div id="cartIcon">
             <i class="fas fa-shopping-cart"></i>
             <span id="cartCount">0</span>
@@ -2317,96 +2309,13 @@
         };
 
         // ============================================================
-        // SUPABASE KONFIGURACJA - ta sama nazwa co w reszcie kodu
+        // SUPABASE KONFIGURACJA
         // ============================================================
         const { createClient } = supabase;
-        const adelbertusClient = createClient("https://oujlhtzyvdplyrezibiy.supabase.co", "sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG");
+        const supabaseClient = createClient("https://oujlhtzyvdplyrezibiy.supabase.co", "sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG");
 
         // ============================================================
-        // DASHBOARD - SYSTEM LOJALNOŚCIOWY
-        // ============================================================
-        const dashboardNotLogged = document.getElementById('dashboardNotLogged');
-        const dashboardLogged = document.getElementById('dashboardLogged');
-        const userEmailSpan = document.getElementById('userEmail');
-        const rankBadgeSpan = document.getElementById('rankBadge');
-        const statTotalReferralsSpan = document.getElementById('statTotalReferrals');
-        const statPointsSpan = document.getElementById('statPoints');
-        const statStatusSpan = document.getElementById('statStatus');
-        const referralCodeSpan = document.getElementById('referralCode');
-        const nextRankInfoSpan = document.getElementById('nextRankInfo');
-
-        async function loadDashboard() {
-            try {
-                const { data: { user }, error: userError } = await adelbertusClient.auth.getUser();
-                
-                if (userError || !user) {
-                    dashboardLogged.classList.add('hidden');
-                    dashboardNotLogged.classList.remove('hidden');
-                    return;
-                }
-                
-                dashboardLogged.classList.remove('hidden');
-                dashboardNotLogged.classList.add('hidden');
-                
-                userEmailSpan.textContent = user.email || 'członek kręgu';
-                
-                const { data: profile, error: profileError } = await adelbertusClient
-                    .from('users_profiles')
-                    .select('rank_slug, total_referrals, points, referral_code')
-                    .eq('id', user.id)
-                    .single();
-                
-                if (profileError || !profile) {
-                    rankBadgeSpan.textContent = 'UCZEŃ';
-                    statTotalReferralsSpan.textContent = '0';
-                    statPointsSpan.textContent = '0';
-                    statStatusSpan.textContent = 'Aktywny';
-                    referralCodeSpan.textContent = 'ADEL-' + user.id.slice(0, 6).toUpperCase();
-                    nextRankInfoSpan.textContent = 'Zakończ pierwsze zamówienie, aby aktywować profil.';
-                    return;
-                }
-                
-                const rank = profile.rank_slug || 'uczeń';
-                rankBadgeSpan.textContent = rank.toUpperCase();
-                statTotalReferralsSpan.textContent = profile.total_referrals ?? 0;
-                statPointsSpan.textContent = profile.points ?? 0;
-                
-                let statusText = 'Aktywny';
-                if (rank === 'legenda') statusText = 'LEGENDA KRĘGU';
-                else if (rank === 'strażnik') statusText = 'Strażnik Kręgu';
-                else if (rank === 'nosiciel') statusText = 'Nosiciel π';
-                statStatusSpan.textContent = statusText;
-                
-                referralCodeSpan.textContent = profile.referral_code || ('ADEL-' + user.id.slice(0, 6).toUpperCase());
-                
-                const totalRef = profile.total_referrals ?? 0;
-                let hint = '';
-                if (totalRef < 3) hint = `🎯 Zaproś jeszcze ${3 - totalRef} osoby → awans na Nosiciela.`;
-                else if (totalRef < 10) hint = `⚔️ Zaproś ${10 - totalRef} osoby → zostaniesz Strażnikiem Kręgu.`;
-                else hint = '🏆 Osiągnąłeś szczyt. Jesteś legendą Adelbertus.';
-                nextRankInfoSpan.textContent = hint;
-                
-            } catch (err) {
-                console.error('Dashboard error:', err);
-            }
-        }
-
-        window.copyReferralCode = function() {
-            const code = referralCodeSpan.innerText;
-            if (!code || code === 'ADEL-XXXXXX') {
-                alert('Kod niedostępny. Zaloguj się.');
-                return;
-            }
-            navigator.clipboard.writeText(code).then(() => {
-                const btn = document.getElementById('copyCodeBtn');
-                const original = btn.innerHTML;
-                btn.innerHTML = '✅ SKOPIOWANO!';
-                setTimeout(() => { btn.innerHTML = original; }, 1500);
-            }).catch(() => alert('Kopiuj ręcznie: ' + code));
-        };
-
-        // ============================================================
-        // DANE PRODUKTÓW DO MODALU SKLEPU (RESZTA KODU)
+        // DANE PRODUKTÓW DO MODALU SKLEPU
         // ============================================================
         const SHOP_PRODUCTS = {
             koszulka: [
@@ -3297,9 +3206,132 @@
             return total;
         }
 
-        function deselect() { state.selectedId = null; if(ctxCanvas && canvasEl) renderCanvas(); updateLayerUI(); }
+        function deselect() { state.selectedId = null; updateLayerUI(); if(ctxCanvas && canvasEl) renderCanvas(); }
 
-        // ========== INIT WSZYSTKIEGO ==========
+        // ========== LOGOWANIE + DASHBOARD ==========
+        const authContainer = document.getElementById('auth-container');
+        const dashContainer = document.getElementById('dashboard-container');
+
+        function renderAuthForm() {
+            authContainer.innerHTML = `
+                <div class="login-container">
+                    <h2>Wejdź do Kręgu</h2>
+                    <form id="auth-form">
+                        <input type="email" id="auth-email" class="login-input" placeholder="E-mail" required>
+                        <input type="password" id="auth-password" class="login-input" placeholder="Hasło" required>
+                        <button type="submit" id="auth-submit-btn" class="login-btn">Zaloguj się</button>
+                    </form>
+                    <div class="toggle-auth">
+                        Nie masz konta? <span id="toggle-register">Zarejestruj się</span>
+                    </div>
+                </div>
+            `;
+            let isLogin = true;
+            const form = document.getElementById('auth-form');
+            const toggleSpan = document.getElementById('toggle-register');
+            const submitBtn = document.getElementById('auth-submit-btn');
+            toggleSpan.addEventListener('click', () => {
+                isLogin = !isLogin;
+                submitBtn.textContent = isLogin ? 'Zaloguj się' : 'Zarejestruj się';
+                toggleSpan.textContent = isLogin ? 'Zarejestruj się' : 'Zaloguj się';
+            });
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('auth-email').value;
+                const password = document.getElementById('auth-password').value;
+                if (isLogin) {
+                    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                    if (error) alert('Błąd logowania: ' + error.message);
+                    else checkUser();
+                } else {
+                    const savedRefCode = localStorage.getItem('adelbertus_ref_code');
+                    const { error } = await supabaseClient.auth.signUp({
+                        email, password,
+                        options: { data: { referred_by_code: savedRefCode } }
+                    });
+                    if (error) alert('Błąd rejestracji: ' + error.message);
+                    else {
+                        alert('Zarejestrowano! Sprawdź maila w celu potwierdzenia.');
+                        localStorage.removeItem('adelbertus_ref_code');
+                    }
+                }
+            });
+        }
+
+        async function renderDashboard(user) {
+            const { data: profile, error } = await supabaseClient
+                .from('users_profiles')
+                .select('*')
+                .eq('id', user.id)
+                .single();
+            if (error || !profile) {
+                dashContainer.innerHTML = '<div class="text-center text-red-500">Błąd ładowania profilu.</div>';
+                return;
+            }
+            dashContainer.innerHTML = `
+                <div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg border border-gray-100 my-8">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">Witaj w Kręgu, <span>${profile.username || profile.email}</span></h2>
+                            <p class="text-gray-500">Twoja aktywność buduje markę Adelbertus</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-4 py-2 rounded-full bg-black text-white text-sm font-semibold uppercase tracking-widest">${profile.rank_slug.toUpperCase()}</span>
+                        </div>
+                        <button id="logout-btn" class="logout-btn">Wyloguj</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-sm text-gray-500 uppercase">Polecenia</p>
+                            <p class="text-3xl font-bold text-black">${profile.total_referrals || 0}</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-sm text-gray-500 uppercase">Punkty</p>
+                            <p class="text-3xl font-bold text-black">${profile.points || 0}</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-sm text-gray-500 uppercase">Zamówienia</p>
+                            <p class="text-3xl font-bold text-black">${profile.total_orders || 0}</p>
+                        </div>
+                    </div>
+                    <div class="bg-black text-white p-6 rounded-lg mb-8">
+                        <p class="text-sm uppercase tracking-widest mb-2 opacity-70">Twój unikalny kod polecający</p>
+                        <div class="flex items-center gap-4">
+                            <code id="dashboard-ref-code" class="text-2xl font-mono font-bold">${profile.referral_code}</code>
+                            <button onclick="copyRefCodeFromDashboard()" class="bg-white text-black px-4 py-2 rounded font-bold hover:bg-gray-200 transition">KOPIUJ</button>
+                        </div>
+                        <p id="dashboard-next-rank" class="mt-4 text-sm opacity-80 italic">
+                            ${profile.total_referrals < 3 ? `Zaproś jeszcze ${3 - profile.total_referrals} osoby, aby zostać Nosicielem.` :
+                              profile.total_referrals < 10 ? `Zaproś jeszcze ${10 - profile.total_referrals} osób, aby zostać Strażnikiem Kręgu.` :
+                              "Jesteś legendą Adelbertus!"}
+                        </p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('logout-btn').addEventListener('click', async () => {
+                await supabaseClient.auth.signOut();
+                checkUser();
+            });
+            window.copyRefCodeFromDashboard = function() {
+                const codeElem = document.getElementById('dashboard-ref-code');
+                if (codeElem) navigator.clipboard.writeText(codeElem.innerText);
+                alert('Kod skopiowany!');
+            };
+        }
+
+        async function checkUser() {
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            if (user) {
+                authContainer.style.display = 'none';
+                dashContainer.style.display = 'block';
+                await renderDashboard(user);
+            } else {
+                authContainer.style.display = 'block';
+                dashContainer.style.display = 'none';
+                renderAuthForm();
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             initNavigation();
             initProductOptions();
@@ -3324,21 +3356,8 @@
                     else { showSection('shop'); document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active')); if(shopBtn) shopBtn.classList.add('active'); }
                 }
             });
-            
-            // Inicjalizacja dashboardu
-            loadDashboard();
-            const dashboardGoToShop = document.getElementById('dashboardGoToShop');
-            if (dashboardGoToShop) {
-                dashboardGoToShop.addEventListener('click', () => {
-                    showSection('shop');
-                    const shopBtn = document.querySelector('.nav-btn[data-section="shop"]');
-                    if (shopBtn) shopBtn.classList.add('active');
-                });
-            }
-            const copyCodeBtn = document.getElementById('copyCodeBtn');
-            if (copyCodeBtn) copyCodeBtn.addEventListener('click', window.copyReferralCode);
+            checkUser();
         });
-        
         document.addEventListener('keydown', e => { if(e.key === 'Escape'){ window.closeProductModal(); window.closeCategoryModal(); } });
         window.addToCart = addToCart;
     </script>
