@@ -1625,83 +1625,6 @@
             font-weight: 700;
             color: var(--color-gold);
         }
-
-        /* Login form styles */
-        .auth-container {
-            max-width: 480px;
-            margin: 4rem auto;
-            background: #0f0f0f;
-            border-radius: 32px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.2);
-            overflow: hidden;
-        }
-        .auth-tabs {
-            display: flex;
-            border-bottom: 1px solid #222;
-        }
-        .auth-tab {
-            flex: 1;
-            text-align: center;
-            padding: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            background: #0a0a0a;
-            color: #888;
-            transition: all 0.2s;
-        }
-        .auth-tab.active {
-            color: var(--color-gold);
-            border-bottom: 2px solid var(--color-gold);
-            background: #111;
-        }
-        .auth-panel {
-            padding: 2rem;
-            background: #0f0f0f;
-        }
-        .auth-input {
-            width: 100%;
-            padding: 0.9rem 1.2rem;
-            margin-bottom: 1rem;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 12px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.2s;
-        }
-        .auth-input:focus {
-            outline: none;
-            border-color: var(--color-gold);
-            box-shadow: 0 0 0 2px rgba(212,175,55,0.2);
-        }
-        .auth-btn {
-            width: 100%;
-            background: var(--color-gold);
-            color: black;
-            font-weight: bold;
-            padding: 1rem;
-            border: none;
-            border-radius: 40px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .auth-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(212,175,55,0.3);
-        }
-        .auth-error {
-            color: #e74c3c;
-            font-size: 0.85rem;
-            margin-top: -0.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        .auth-success {
-            color: #2ecc71;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
     </style>  
 <script>
 (function() {
@@ -1748,11 +1671,6 @@
             </div>
         </div>
     </section>
-
-    <!-- GŁÓWNY KONTENER APLIKACJI - dynamicznie podmieniany między dashboardem a logowaniem -->
-    <div id="app-container">
-        <!-- Tutaj zostanie wstrzyknięty dashboard lub formularz logowania -->
-    </div>
 
     <section id="products" class="products-pi">
         <div class="products-container">
@@ -1856,6 +1774,7 @@
             <button class="nav-btn" data-section="charity">Zbiórka</button>
             <button class="nav-btn" data-section="referral">Poleć znajomego</button>
             <button class="nav-btn" data-section="regulations">Regulamin</button>
+            <button class="nav-btn" data-section="dashboard">Konto</button>
         </div>
     </nav>
    
@@ -2214,6 +2133,10 @@
             </div>
         </section>
 
+        <section id="dashboard">
+            <!-- Dynamically populated by JS -->
+        </section>
+
         <div id="cartIcon">
             <i class="fas fa-shopping-cart"></i>
             <span id="cartCount">0</span>
@@ -2278,200 +2201,143 @@
         </footer>
     </main>
 
-    <script>
+    <script type="module">
+        // ============================================================
+        // EMAILJS - WYSYŁANIE ZAPROSZEŃ
+        // ============================================================
+        import emailjs from 'https://cdn.skypack.dev/@emailjs/browser@4';
+        emailjs.init("VzYZ8Pcs1YfVwebOU");
+
+        window.sendReferralEmail = function() {
+            const email = document.getElementById("referral-email").value;
+            if (!email) {
+                alert("Wpisz adres e-mail.");
+                return;
+            }
+            emailjs.send("service_ur3dpv9", "template_064b7uo", { to_email: email })
+                .then(() => {
+                    alert("Zaproszenie wysłane!");
+                    document.getElementById("referral-email").value = "";
+                })
+                .catch((error) => {
+                    console.error("Błąd wysyłki:", error);
+                    alert("Nie udało się wysłać maila.");
+                });
+        };
+
         // ============================================================
         // SUPABASE KONFIGURACJA
         // ============================================================
-        const supabase = window.supabase.createClient("https://oujlhtzyvdplyrezibiy.supabase.co", "sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG");
+        const { createClient } = supabase;
+        const supabaseClient = createClient("https://oujlhtzyvdplyrezibiy.supabase.co", "sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG");
+
+        // ============================================================
+        // GLOBALNE ZMIENNE
+        // ============================================================
         let currentUser = null;
-        
+        let userReferralStats = { count: 0, total_commission: 0 };
+
         // ============================================================
-        // LOGOWANIE I REJESTRACJA - ELEGANCKI FORMULARZ
+        // FUNKCJE POMOCNICZE
         // ============================================================
-        function renderAuthForm() {
-            const container = document.getElementById('app-container');
-            if (!container) return;
-            container.innerHTML = `
-                <div class="auth-container">
-                    <div class="auth-tabs">
-                        <div class="auth-tab active" data-tab="login">LOGOWANIE</div>
-                        <div class="auth-tab" data-tab="register">REJESTRACJA</div>
-                    </div>
-                    <div id="login-panel" class="auth-panel">
-                        <input type="email" id="login-email" class="auth-input" placeholder="Twój e-mail" autocomplete="email">
-                        <input type="password" id="login-password" class="auth-input" placeholder="Hasło" autocomplete="current-password">
-                        <div id="login-error" class="auth-error"></div>
-                        <button class="auth-btn" onclick="handleLogin()">Zaloguj się</button>
-                    </div>
-                    <div id="register-panel" class="auth-panel" style="display: none;">
-                        <input type="email" id="register-email" class="auth-input" placeholder="Twój e-mail" autocomplete="email">
-                        <input type="password" id="register-password" class="auth-input" placeholder="Hasło (min. 6 znaków)" autocomplete="new-password">
-                        <div id="register-error" class="auth-error"></div>
-                        <button class="auth-btn" onclick="handleRegister()">Załóż konto</button>
-                    </div>
-                </div>
-            `;
-            const tabs = document.querySelectorAll('.auth-tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    const loginPanel = document.getElementById('login-panel');
-                    const registerPanel = document.getElementById('register-panel');
-                    if (tab.dataset.tab === 'login') {
-                        loginPanel.style.display = 'block';
-                        registerPanel.style.display = 'none';
-                    } else {
-                        loginPanel.style.display = 'none';
-                        registerPanel.style.display = 'block';
-                    }
-                });
-            });
+        function formatPrice(amount) {
+            return new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN' }).format(amount);
         }
 
-        window.handleLogin = async () => {
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            const errorDiv = document.getElementById('login-error');
-            errorDiv.innerText = '';
-            if (!email || !password) {
-                errorDiv.innerText = 'Wypełnij wszystkie pola.';
-                return;
-            }
-            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-            if (error) {
-                errorDiv.innerText = error.message;
-                return;
-            }
-            currentUser = data.user;
-            await loadUserDashboard();
-        };
-
-        window.handleRegister = async () => {
-            const email = document.getElementById('register-email').value;
-            const password = document.getElementById('register-password').value;
-            const errorDiv = document.getElementById('register-error');
-            errorDiv.innerText = '';
-            if (!email || !password) {
-                errorDiv.innerText = 'Wypełnij wszystkie pola.';
-                return;
-            }
-            if (password.length < 6) {
-                errorDiv.innerText = 'Hasło musi mieć co najmniej 6 znaków.';
-                return;
-            }
-            const savedRefCode = localStorage.getItem('adelbertus_ref_code');
-            const { data, error } = await supabase.auth.signUp({
-                email: email,
-                password: password,
-                options: {
-                    data: {
-                        referred_by_code: savedRefCode || null
-                    }
+        async function fetchReferralStats(userEmail) {
+            if (!userEmail) return { count: 0, total_commission: 0 };
+            try {
+                const { data, error } = await supabaseClient
+                    .from('polecenia')
+                    .select('kwota')
+                    .eq('referrer', userEmail);
+                if (error) {
+                    console.error("Błąd pobierania poleceń:", error);
+                    return { count: 0, total_commission: 0 };
                 }
-            });
-            if (error) {
-                errorDiv.innerText = error.message;
-                return;
-            }
-            if (data.user) {
-                alert('Rejestracja udana! Możesz się teraz zalogować.');
-                const registerPanel = document.getElementById('register-panel');
-                const loginPanel = document.getElementById('login-panel');
-                if (registerPanel && loginPanel) {
-                    registerPanel.style.display = 'none';
-                    loginPanel.style.display = 'block';
-                    document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
-                    document.querySelector('.auth-tab[data-tab="register"]').classList.remove('active');
+                const count = data ? data.length : 0;
+                let total_commission = 0;
+                if (data) {
+                    total_commission = data.reduce((sum, row) => sum + (parseFloat(row.kwota) || 0), 0);
                 }
+                return { count, total_commission };
+            } catch (err) {
+                console.error("Wyjątek podczas pobierania poleceń:", err);
+                return { count: 0, total_commission: 0 };
             }
-        };
+        }
 
-        // ============================================================
-        // DASHBOARD Z DANYMI Z TABELI "polecenia"
-        // ============================================================
+        async function updateUserProfile(userId, referralCount, totalCommission) {
+            try {
+                const { error } = await supabaseClient
+                    .from('users_profiles')
+                    .update({ 
+                        total_referrals: referralCount,
+                        points: totalCommission 
+                    })
+                    .eq('id', userId);
+                if (error) console.error("Błąd aktualizacji profilu:", error);
+            } catch (err) {
+                console.error("Wyjątek podczas aktualizacji profilu:", err);
+            }
+        }
+
         async function loadUserDashboard() {
-            const { data: { user } } = await supabase.auth.getUser();
+            const { data: { user } } = await supabaseClient.auth.getUser();
             if (!user) {
-                renderAuthForm();
+                renderLoginForm();
                 return;
             }
             currentUser = user;
-            
-            // Pobranie danych z tabeli "polecenia" gdzie referrer == email zalogowanego użytkownika
-            const { data: commissions, error } = await supabase
-                .from('polecenia')
-                .select('kwota')
-                .eq('referrer', user.email);
-            
-            let totalReferrals = 0;
-            let totalCommission = 0;
-            if (!error && commissions) {
-                totalReferrals = commissions.length;
-                totalCommission = commissions.reduce((sum, row) => sum + (row.kwota || 0), 0);
-            }
-            
-            // Pobranie lub utworzenie profilu użytkownika (dla rankingu itp.)
-            let profile = null;
-            const { data: existingProfile, error: profileError } = await supabase
+            const stats = await fetchReferralStats(user.email);
+            userReferralStats = stats;
+            await updateUserProfile(user.id, stats.count, stats.total_commission);
+            const { data: profile, error } = await supabaseClient
                 .from('users_profiles')
                 .select('*')
                 .eq('id', user.id)
                 .single();
-                
-            if (profileError && profileError.code !== 'PGRST116') {
-                console.error("Błąd profilu:", profileError);
+            if (error && error.code !== 'PGRST116') {
+                console.error("Błąd pobierania profilu:", error);
             }
-            
-            if (!existingProfile) {
-                // Tworzymy podstawowy profil
-                const newProfile = {
-                    id: user.id,
-                    email: user.email,
-                    username: user.email.split('@')[0],
-                    total_referrals: totalReferrals,
-                    points: Math.floor(totalCommission),
+            const username = profile?.username || user.email?.split('@')[0] || 'Użytkownik';
+            const referralCode = profile?.referral_code || `ADEL-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+            if (!profile?.referral_code) {
+                await supabaseClient.from('users_profiles').upsert({ 
+                    id: user.id, 
+                    email: user.email, 
+                    username: username,
+                    referral_code: referralCode,
+                    total_referrals: stats.count,
+                    points: stats.total_commission,
                     total_orders: 0,
-                    rank_slug: totalReferrals >= 10 ? 'Strażnik Kręgu' : (totalReferrals >= 3 ? 'Nosiciel' : 'Pielgrzym'),
-                    referral_code: `ADEL-${user.id.slice(0,6).toUpperCase()}`
-                };
-                const { error: insertError } = await supabase.from('users_profiles').insert(newProfile);
-                if (!insertError) profile = newProfile;
-            } else {
-                profile = existingProfile;
-                // Aktualizacja statystyk na podstawie rzeczywistych danych
-                const updates = {
-                    total_referrals: totalReferrals,
-                    points: Math.floor(totalCommission)
-                };
-                await supabase.from('users_profiles').update(updates).eq('id', user.id);
-                profile.total_referrals = totalReferrals;
-                profile.points = Math.floor(totalCommission);
+                    rank_slug: stats.count >= 10 ? "strażnik_kręgu" : (stats.count >= 3 ? "nosiciel" : "wtajemniczony")
+                });
             }
-            
-            const container = document.getElementById('app-container');
-            container.innerHTML = `
+            const rankMap = { wtajemniczony: "WTajemniczony", nosiciel: "Nosiciel", strażnik_kręgu: "Strażnik Kręgu" };
+            const rankSlug = profile?.rank_slug || (stats.count >= 10 ? "strażnik_kręgu" : (stats.count >= 3 ? "nosiciel" : "wtajemniczony"));
+            const dashboardHtml = `
                 <div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg border border-gray-100 my-8">
                     <div class="flex items-center justify-between mb-8">
                         <div>
-                            <h2 class="text-2xl font-bold text-gray-800">Witaj w Kręgu, <span id="user-name">${profile?.username || user.email}</span></h2>
+                            <h2 class="text-2xl font-bold text-gray-800">Witaj w Kręgu, <span id="user-name">${username}</span></h2>
                             <p class="text-gray-500">Twoja aktywność buduje markę Adelbertus</p>
                         </div>
                         <div class="text-right">
                             <span id="rank-badge" class="px-4 py-2 rounded-full bg-black text-white text-sm font-semibold uppercase tracking-widest">
-                                ${profile?.rank_slug || 'Pielgrzym'}
+                                ${rankMap[rankSlug] || "WTajemniczony"}
                             </span>
-                            <button onclick="logoutUser()" class="ml-4 px-4 py-2 rounded-full border border-red-500 text-red-600 text-sm font-semibold hover:bg-red-500 hover:text-white transition">Wyloguj</button>
                         </div>
+                        <button onclick="logoutUser()" class="ml-4 text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Wyloguj</button>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                         <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
                             <p class="text-sm text-gray-500 uppercase">Liczba Poleceń</p>
-                            <p id="stat-referrals" class="text-3xl font-bold text-black">${totalReferrals}</p>
+                            <p id="stat-referrals" class="text-3xl font-bold text-black">${stats.count}</p>
                         </div>
                         <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
                             <p class="text-sm text-gray-500 uppercase">Zarobiona Prowizja</p>
-                            <p id="stat-points" class="text-3xl font-bold text-black">${Math.floor(totalCommission)} zł</p>
+                            <p id="stat-points" class="text-3xl font-bold text-black">${formatPrice(stats.total_commission)}</p>
                         </div>
                         <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
                             <p class="text-sm text-gray-500 uppercase">Zamówienia</p>
@@ -2481,35 +2347,360 @@
                     <div class="bg-black text-white p-6 rounded-lg mb-8">
                         <p class="text-sm uppercase tracking-widest mb-2 opacity-70">Twój unikalny kod polecający</p>
                         <div class="flex items-center gap-4">
-                            <code id="referral-code-display" class="text-2xl font-mono font-bold">${profile?.referral_code || 'ADEL-' + user.id.slice(0,6).toUpperCase()}</code>
-                            <button onclick="copyRefCode()" class="bg-white text-black px-4 py-2 rounded font-bold hover:bg-gray-200 transition">KOPIUJ</button>
+                            <code id="referral-code-display" class="text-2xl font-mono font-bold">${referralCode}</code>
+                            <button onclick="copyRefCode()" class="bg-white text-black px-4 py-2 rounded font-bold hover:bg-gray-200 transition">
+                                KOPIUJ
+                            </button>
                         </div>
                         <p id="next-rank-info" class="mt-4 text-sm opacity-80 italic">
-                            ${totalReferrals < 3 ? `Zaproś jeszcze ${3 - totalReferrals} osoby, aby zostać Nosicielem.` : (totalReferrals < 10 ? `Zaproś jeszcze ${10 - totalReferrals} osób, aby zostać Strażnikiem Kręgu.` : "Jesteś legendą Adelbertus!")}
+                            ${stats.count < 3 ? `Zaproś jeszcze ${3 - stats.count} osoby, aby zostać Nosicielem.` : (stats.count < 10 ? `Zaproś jeszcze ${10 - stats.count} osób, aby zostać Strażnikiem Kręgu.` : "Jesteś legendą Adelbertus!")}
                         </p>
                     </div>
                 </div>
             `;
+            const dashboardSection = document.getElementById('dashboard');
+            if (dashboardSection) dashboardSection.innerHTML = dashboardHtml;
         }
 
-        window.logoutUser = async () => {
-            await supabase.auth.signOut();
+        function renderLoginForm() {
+            const loginHtml = `
+                <div class="max-w-md mx-auto mt-12 p-8 bg-black rounded-2xl shadow-2xl border border-gold">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-shield-alt text-5xl text-gold mb-3"></i>
+                        <h2 class="text-3xl font-bold text-white font-playfair">Dostęp do Kręgu</h2>
+                        <div class="w-16 h-0.5 bg-gold mx-auto my-3"></div>
+                        <p class="text-gray-400 text-sm">Zaloguj się, aby zobaczyć swoje statystyki i kod polecający</p>
+                    </div>
+                    <form id="loginForm" class="space-y-5">
+                        <div>
+                            <label class="block text-gold text-sm font-bold mb-2" for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" required class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-gold transition">
+                        </div>
+                        <div>
+                            <label class="block text-gold text-sm font-bold mb-2" for="loginPassword">Hasło</label>
+                            <input type="password" id="loginPassword" required class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-gold transition">
+                        </div>
+                        <button type="submit" class="w-full bg-gold hover:bg-dark-gold text-black font-bold py-3 rounded-lg transition duration-300 transform hover:scale-105">
+                            Zaloguj się
+                        </button>
+                    </form>
+                    <div class="mt-6 text-center">
+                        <p class="text-gray-400">Nie masz konta? 
+                            <button onclick="showRegisterForm()" class="text-gold hover:underline font-semibold">Zarejestruj się</button>
+                        </p>
+                    </div>
+                    <div id="authMessage" class="mt-4 text-center text-sm text-red-500"></div>
+                    <div class="decision-note text-center mt-6">Zostawisz to teraz — może nie wrócić.</div>
+                    <div class="hidden-symbol text-right mt-2">π ♈</div>
+                </div>
+            `;
+            const dashboardSection = document.getElementById('dashboard');
+            if (dashboardSection) dashboardSection.innerHTML = loginHtml;
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('loginEmail').value;
+                    const password = document.getElementById('loginPassword').value;
+                    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                    if (error) {
+                        document.getElementById('authMessage').innerText = error.message;
+                    } else {
+                        await loadUserDashboard();
+                    }
+                });
+            }
+        }
+
+        window.showRegisterForm = function() {
+            const registerHtml = `
+                <div class="max-w-md mx-auto mt-12 p-8 bg-black rounded-2xl shadow-2xl border border-gold">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-user-plus text-5xl text-gold mb-3"></i>
+                        <h2 class="text-3xl font-bold text-white font-playfair">Dołącz do Kręgu</h2>
+                        <div class="w-16 h-0.5 bg-gold mx-auto my-3"></div>
+                        <p class="text-gray-400 text-sm">Zarejestruj się, aby zacząć polecać i zbierać prowizję</p>
+                    </div>
+                    <form id="registerForm" class="space-y-5">
+                        <div>
+                            <label class="block text-gold text-sm font-bold mb-2" for="regEmail">Email</label>
+                            <input type="email" id="regEmail" required class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-gold transition">
+                        </div>
+                        <div>
+                            <label class="block text-gold text-sm font-bold mb-2" for="regPassword">Hasło</label>
+                            <input type="password" id="regPassword" required class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-gold transition">
+                        </div>
+                        <button type="submit" class="w-full bg-gold hover:bg-dark-gold text-black font-bold py-3 rounded-lg transition duration-300 transform hover:scale-105">
+                            Zarejestruj się
+                        </button>
+                    </form>
+                    <div class="mt-6 text-center">
+                        <p class="text-gray-400">Masz już konto? 
+                            <button onclick="renderLoginForm()" class="text-gold hover:underline font-semibold">Zaloguj się</button>
+                        </p>
+                    </div>
+                    <div id="regMessage" class="mt-4 text-center text-sm text-red-500"></div>
+                    <div class="decision-note text-center mt-6">Zostawisz to teraz — może nie wrócić.</div>
+                    <div class="hidden-symbol text-right mt-2">π ♈</div>
+                </div>
+            `;
+            const dashboardSection = document.getElementById('dashboard');
+            if (dashboardSection) dashboardSection.innerHTML = registerHtml;
+            const registerForm = document.getElementById('registerForm');
+            if (registerForm) {
+                registerForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('regEmail').value;
+                    const password = document.getElementById('regPassword').value;
+                    const savedRefCode = localStorage.getItem('adelbertus_ref_code');
+                    const { data, error } = await supabaseClient.auth.signUp({
+                        email: email,
+                        password: password,
+                        options: { data: { referred_by_code: savedRefCode } }
+                    });
+                    if (error) {
+                        document.getElementById('regMessage').innerText = error.message;
+                    } else {
+                        document.getElementById('regMessage').innerText = "Sprawdź swoją skrzynkę email, aby potwierdzić konto!";
+                        localStorage.removeItem('adelbertus_ref_code');
+                    }
+                });
+            }
+        };
+
+        window.logoutUser = async function() {
+            await supabaseClient.auth.signOut();
             currentUser = null;
-            renderAuthForm();
+            renderLoginForm();
         };
 
         window.copyRefCode = function() {
-            const codeEl = document.getElementById('referral-code-display');
-            if (codeEl) {
-                navigator.clipboard.writeText(codeEl.innerText);
-                alert("Kod skopiowany: " + codeEl.innerText);
+            const codeElement = document.getElementById('referral-code-display');
+            if (codeElement) {
+                navigator.clipboard.writeText(codeElement.innerText);
+                alert("Kod skopiowany!");
             }
         };
 
         // ============================================================
-        // RESZTA FUNKCJI SKLEPU (BEZ ZMIAN - ZACHOWANE ORYGINALNE)
+        // DANE PRODUKTÓW DO MODALU SKLEPU
         // ============================================================
+        const SHOP_PRODUCTS = {
+            koszulka: [
+                { name:'Koszulka "Portret"', price:80, images:['https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg','https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg','https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "Rock"', price:80, images:['https://i.ibb.co/fzDrpppx/Screenshot-2025-09-05-17-19-30.png','https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "Maska ice"', price:80, images:['https://i.ibb.co/1fWw0hhY/Screenshot-20250714-002113-Files-by-Google-2.jpg','https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "Zakazany Produkt"', price:80, images:['https://i.ibb.co/7tJ0Xdj0/file-00000000fd5861f78cb774cd7808e871.png','https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "Rzymianin"', price:80, images:['https://i.ibb.co/Kj7jpDKj/file-0000000014a861f4bd0cd14065b487dc.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "Symbol PI"', price:80, images:['https://i.ibb.co/JFcZBZQx/Resizer-17510539315581.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "Ufaj Zanim"', price:80, images:['https://i.ibb.co/wZgwDc26/Messenger-creation-2528-E953-6-E45-4661-A646-E12970-E90-CC0-1.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "kod QR"', price:80, images:['https://i.ibb.co/C5L9XQZL/Messenger-creation-01-A6-CAA5-4033-4-C60-A136-560204-FF72-A0.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "DJ KooL"', price:80, images:['https://i.ibb.co/j9Js8VDs/file-00000000c71c6246b9d78afc2a6c0a39.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Puzel', price:80, images:['https://i.ibb.co/DDdbtm1R/file-00000000985c6243ba1d82431c2ead9f-2.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Wybrany', price:80, images:['https://i.ibb.co/JFMF5VFz/file-00000000465c620a87ec4dbf4bd0ce30.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "Game Over"', price:80, images:['https://i.ibb.co/JFwsTR50/1765139504481.png'], colors:['#000','#800000','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "Master"', price:80, images:['https://i.ibb.co/pvfCCw30/1765139433826.png'], colors:['#000','#fff','#808080'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "Mix Tape"', price:80, images:['https://i.ibb.co/0VmWzt4t/1765139223781.png'], colors:['#000','#fff','#FF4500'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "Bóg OldSchoolu"', price:80, images:['https://i.ibb.co/9kqmxvjC/1765139285646.png'], colors:['#000','#fff','#800000'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Koszulka "Step Outside"', price:80, images:['https://i.ibb.co/TM5Y3K2k/Screenshot-20251126-225355-Chrome-2.jpg'], colors:['#000','#fff','#808080'], sizes:['S','M','L','XL','XXL'] },
+            ],
+            bluza: [
+                { name:'Bluza "Urban"', price:170, images:['https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Rock"', price:170, images:['https://i.ibb.co/fzDrpppx/Screenshot-2025-09-05-17-19-30.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Street"', price:170, images:['https://i.ibb.co/fVgHHVhb/Messenger-creation-E0864653-904-F-476-C-8839-8809-D0610996.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Premium"', price:170, images:['https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Comfort"', price:170, images:['https://i.ibb.co/hFcpQxP8/Messenger-creation-8-EAC032-B-3-F98-42-C0-B8-C5-6-ED87-AEFC4-F1.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Style"', price:170, images:['https://i.ibb.co/fYpmmnwf/file-00000000f8a86246ac7ca2f0cc1f55c3.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Fashion"', price:170, images:['https://i.ibb.co/nMqH7CXH/Messenger-creation-9-EE42-DE8-FCD2-4964-ABED-62-C3-A4-A75657.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Postać"', price:170, images:['https://i.ibb.co/4nvSL5MZ/Screenshot-20251206-174259-Chrome-2.jpg'], colors:['#000','#fff','#808080'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Street Protest"', price:170, images:['https://i.ibb.co/yH14sh7/1765058892064.png'], colors:['#000','#800000','#36454F'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "System"', price:170, images:['https://i.ibb.co/BHdWxR2K/1765059602383.png'], colors:['#000','#002b36','#800080'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Old School"', price:170, images:['https://i.ibb.co/27Xx6Gvg/1765059124080.png'], colors:['#000','#fff','#808080'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Game Over"', price:170, images:['https://i.ibb.co/KcSxZtKs/1765058809631.png'], colors:['#000','#fff','#800000'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Jestem"', price:170, images:['https://i.ibb.co/PZfXBw4r/1765059013678.png'], colors:['#000','#fff','#808080'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Samotność"', price:170, images:['https://i.ibb.co/CpLNV2xF/1765280750258-1.jpg'], colors:['#000','#808080','#002b36'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Maska"', price:170, images:['https://i.ibb.co/VWKjcRYJ/1765280808416-1.jpg'], colors:['#000','#fff','#808080'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Wojownik"', price:170, images:['https://i.ibb.co/0RCYxJ9x/1765281063951-1.jpg'], colors:['#000','#808080','#800000'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Kiss"', price:170, images:['https://i.ibb.co/7dyWTbWt/1765281231206-1.jpg'], colors:['#000','#fff','#C41E3A'], sizes:['S','M','L','XL','XXL'] },
+                { name:'Bluza "Kontrolowany"', price:170, images:['https://i.ibb.co/hxkHhmGz/1765137452776.png'], colors:['#000','#808080','#800000'], sizes:['S','M','L','XL','XXL'] },
+            ],
+            czapka: [
+                { name:'Czapka "Classic"', price:99, images:['https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL'] },
+                { name:'Czapka "Sport"', price:99, images:['https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL'] },
+                { name:'Czapka "Adelbertus"', price:90, images:['https://i.ibb.co/FLQYNBnj/Screenshot-2025-08-24-13-01-48.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL'] },
+                { name:'Czapka "Adelbertus" Zimowa', price:90, images:['https://i.ibb.co/Pv6HCvQk/Screenshot-2025-08-24-12-44-15.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL'] },
+                { name:'Czapka "Symbol Pi"', price:90, images:['https://i.ibb.co/MyCYBwj3/Screenshot-2025-08-24-13-16-08.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL'] },
+                { name:'Czapka "Street"', price:99, images:['https://i.ibb.co/qYnKKPjJ/Messenger-creation-86-A81650-FAB1-4-DF9-B75-E-5-EB295822-CBD.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL'] },
+                { name:'Czapka "Premium"', price:99, images:['https://i.ibb.co/35PSSHJj/Screenshot-20250608-161603-Chat-GPT-3.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
+            ]
+        };
+
+        let _catCurrent = null;
+        let _catPage = 0;
+        const CAT_PAGE_SIZE = 9;
+        let _prodCurrent = null;
+
+        window.openCategoryModal = function(cat) {
+            _catCurrent = cat;
+            _catPage = 0;
+            const titles = { koszulka:'Koszulki', bluza:'Bluzy', czapka:'Czapki' };
+            const titleEl = document.getElementById('catModalTitle');
+            if (titleEl) titleEl.textContent = titles[cat];
+            renderCatPage();
+            const modal = document.getElementById('shopCatModal');
+            if (modal) modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+
+        function renderCatPage() {
+            const products = SHOP_PRODUCTS[_catCurrent];
+            const total = products.length;
+            const totalPages = Math.ceil(total / CAT_PAGE_SIZE);
+            const start = _catPage * CAT_PAGE_SIZE;
+            const slice = products.slice(start, start + CAT_PAGE_SIZE);
+            const pageInfo = document.getElementById('catPageInfo');
+            if (pageInfo) pageInfo.textContent = `Strona ${_catPage + 1} z ${totalPages} (${total} produktów)`;
+            const prevBtn = document.getElementById('catPrevBtn');
+            const nextBtn = document.getElementById('catNextBtn');
+            if (prevBtn) prevBtn.disabled = _catPage === 0;
+            if (nextBtn) nextBtn.disabled = _catPage >= totalPages - 1;
+            const grid = document.getElementById('catModalGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            slice.forEach((prod, idx) => {
+                const card = document.createElement('div');
+                card.className = 'smodal-prod-card';
+                card.innerHTML = `
+                    <img src="${prod.images[0]}" alt="${prod.name}" loading="lazy">
+                    <div class="smodal-prod-card-info">
+                        <div class="smodal-prod-card-name">Artefakt: ${prod.name}</div>
+                        <div class="smodal-prod-card-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">${prod.price} zł</span></div></div>
+                        <div class="hidden-symbol" style="position:absolute; bottom:4px; right:8px;">π ♈</div>
+                    </div>`;
+                card.addEventListener('click', () => openProductModal(_catCurrent, start + idx));
+                grid.appendChild(card);
+            });
+        }
+
+        window.catChangePage = function(dir) {
+            const products = SHOP_PRODUCTS[_catCurrent];
+            const totalPages = Math.ceil(products.length / CAT_PAGE_SIZE);
+            _catPage = Math.max(0, Math.min(totalPages - 1, _catPage + dir));
+            renderCatPage();
+        };
+
+        window.closeCategoryModal = function() {
+            const modal = document.getElementById('shopCatModal');
+            if (modal) modal.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+
+        window.closeCatModal = function(e) {
+            if (e.target === document.getElementById('shopCatModal')) window.closeCategoryModal();
+        };
+
+        function openProductModal(cat, idx) {
+            const prod = SHOP_PRODUCTS[cat][idx];
+            _prodCurrent = { ...prod };
+            _prodCurrent._selectedColor = prod.colors[0];
+            _prodCurrent._selectedSize = prod.sizes[0];
+            const titleEl = document.getElementById('sprodTitle');
+            const priceEl = document.getElementById('sprodPrice');
+            const mainImg = document.getElementById('sprodMainImg');
+            const qtyInput = document.getElementById('sprodQty');
+            if (titleEl) titleEl.textContent = `Artefakt: ${prod.name}`;
+            if (priceEl) priceEl.innerHTML = `<div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">${prod.price} zł</span></div>`;
+            if (mainImg) mainImg.src = prod.images[0];
+            if (qtyInput) qtyInput.value = 1;
+            const artifactSpan = document.getElementById('artifactNumber');
+            if (artifactSpan) artifactSpan.textContent = Math.floor(Math.random() * 33) + 1;
+            const thumbsEl = document.getElementById('sprodThumbs');
+            if (thumbsEl) {
+                thumbsEl.innerHTML = '';
+                prod.images.forEach((src, i) => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = prod.name;
+                    if (i === 0) img.classList.add('active');
+                    img.addEventListener('click', () => {
+                        const main = document.getElementById('sprodMainImg');
+                        if (main) main.src = src;
+                        thumbsEl.querySelectorAll('img').forEach(t => t.classList.remove('active'));
+                        img.classList.add('active');
+                    });
+                    thumbsEl.appendChild(img);
+                });
+            }
+            const colorsEl = document.getElementById('sprodColors');
+            if (colorsEl) {
+                colorsEl.innerHTML = '';
+                const colorNames = { '#000':'Czarny','#fff':'Biały','#ffffff':'Biały','#800020':'Bordowy','#36454F':'Grafitowy','#808080':'Szary','#002b36':'Granatowy','#800080':'Fioletowy','#800000':'Bordowy','#FF4500':'Pomarańczowy','#C41E3A':'Czerwony' };
+                prod.colors.forEach(c => {
+                    const dot = document.createElement('div');
+                    dot.className = 'sprod-color-dot' + (c === prod.colors[0] ? ' active' : '');
+                    dot.style.background = c;
+                    if (c === '#fff' || c === '#ffffff') dot.style.border = '2px solid #ddd';
+                    dot.title = colorNames[c] || c;
+                    dot.addEventListener('click', () => {
+                        colorsEl.querySelectorAll('.sprod-color-dot').forEach(d => d.classList.remove('active'));
+                        dot.classList.add('active');
+                        _prodCurrent._selectedColor = c;
+                    });
+                    colorsEl.appendChild(dot);
+                });
+            }
+            const sizesEl = document.getElementById('sprodSizes');
+            if (sizesEl) {
+                sizesEl.innerHTML = '';
+                prod.sizes.forEach(s => {
+                    const btn = document.createElement('button');
+                    btn.className = 'sprod-size-btn' + (s === prod.sizes[0] ? ' active' : '');
+                    btn.textContent = s;
+                    btn.addEventListener('click', () => {
+                        sizesEl.querySelectorAll('.sprod-size-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        _prodCurrent._selectedSize = s;
+                    });
+                    sizesEl.appendChild(btn);
+                });
+            }
+            const modal = document.getElementById('shopProdModal');
+            if (modal) modal.classList.add('open');
+        }
+
+        window.sprodQtyChange = function(dir) {
+            const input = document.getElementById('sprodQty');
+            if (input) {
+                const val = Math.max(1, Math.min(99, parseInt(input.value) + dir));
+                input.value = val;
+            }
+        };
+
+        window.sprodAddToCart = function() {
+            if (!_prodCurrent) return;
+            const qty = parseInt(document.getElementById('sprodQty').value) || 1;
+            const colorNames = { '#000':'Czarny','#fff':'Biały','#ffffff':'Biały','#800020':'Bordowy','#36454F':'Grafitowy','#808080':'Szary','#002b36':'Granatowy','#800080':'Fioletowy','#800000':'Bordowy','#FF4500':'Pomarańczowy','#C41E3A':'Czerwony' };
+            const colorName = colorNames[_prodCurrent._selectedColor] || _prodCurrent._selectedColor;
+            for (let i = 0; i < qty; i++) {
+                addToCart(_prodCurrent.name, _prodCurrent.price, _prodCurrent.images[0], _prodCurrent._selectedSize, colorName);
+            }
+            showCartPopup();
+            window.closeProductModal();
+            window.closeCategoryModal();
+        };
+
+        window.closeProductModal = function() {
+            const modal = document.getElementById('shopProdModal');
+            if (modal) modal.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+
+        window.closeProdModal = function(e) {
+            if (e.target === document.getElementById('shopProdModal')) window.closeProductModal();
+        };
+
         let cart = JSON.parse(localStorage.getItem('adelbertus_cart')) || [];
+
         function addToCart(name, price, image = null, size = null, color = null) {
             const cleanName = name.replace(/\s*\([^)]*\)/g, '').trim();
             const existingIndex = cart.findIndex(item => item.name === cleanName && item.size === size && item.color === color);
@@ -2522,6 +2713,7 @@
             updateCart();
             showNotification("🜂 Artefakt został przypisany do Ciebie");
         }
+
         function updateCart() {
             const cartCount = document.getElementById('cartCount');
             const cartItems = document.getElementById('cartItems');
@@ -2558,45 +2750,651 @@
             }
             localStorage.setItem('adelbertus_cart', JSON.stringify(cart));
         }
-        window.removeFromCart = function(index) { cart.splice(index, 1); updateCart(); };
-        function renderPayPalButton() { const container = document.getElementById('paypal-container'); if (!container) return; container.innerHTML = ''; if (cart.length === 0) return; if (typeof paypal !== 'undefined' && paypal.HostedButtons) { try { paypal.HostedButtons({ hostedButtonId: "L4639S4363CZE" }).render("#paypal-container"); } catch(e) { console.warn("PayPal render error:", e); } } }
-        function showCartPopup() { const popup = document.getElementById('cartPopup'); if (popup) { popup.style.display = 'block'; setTimeout(() => { popup.style.display = 'none'; }, 5000); } }
-        window.hideCartPopup = function() { const popup = document.getElementById('cartPopup'); if (popup) popup.style.display = 'none'; };
-        window.toggleCart = function() { const panel = document.getElementById('cartPanel'); if (panel) panel.classList.toggle('open'); };
-        window.goToCheckout = function() { window.toggleCart(); window.hideCartPopup(); };
-        window.sendOrderEmail = function() { let emailBody = 'Zamówienie z AdelbertusShop:\n\n'; cart.forEach((item, index) => { emailBody += `${index + 1}. Artefakt: ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`; if (item.size) emailBody += ` (Rozmiar: ${item.size})`; if (item.color) emailBody += ` (Kolor: ${item.color})`; emailBody += '\n'; }); const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0); emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\nData: ${new Date().toLocaleString('pl-PL')}\n\nProszę o potwierdzenie zamówienia i podanie terminu realizacji.`; window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`); };
-        window.sendOrderWhatsApp = function() { let message = 'Zamówienie z AdelbertusShop:%0A%0A'; cart.forEach((item, index) => { message += `${index + 1}. Artefakt: ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`; if (item.size) message += ` (Rozmiar: ${item.size})`; if (item.color) message += ` (Kolor: ${item.color})`; message += '%0A'; }); const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0); message += `%0ASUMA: ${total.toFixed(2)} zł%0A%0AData: ${new Date().toLocaleString('pl-PL')}%0A%0AProszę o potwierdzenie zamówienia.`; window.open(`https://wa.me/48604296360?text=${message}`); };
-        function showNotification(message) { const notification = document.createElement('div'); notification.textContent = message; notification.style.position = 'fixed'; notification.style.bottom = '20px'; notification.style.left = '50%'; notification.style.transform = 'translateX(-50%)'; notification.style.backgroundColor = '#d4af37'; notification.style.color = 'black'; notification.style.padding = '12px 24px'; notification.style.borderRadius = '30px'; notification.style.zIndex = '1000'; notification.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)'; notification.style.fontWeight = 'bold'; document.body.appendChild(notification); setTimeout(() => notification.remove(), 3000); }
-        window.openImageZoom = function(src) { const overlay = document.getElementById('imageZoomOverlay'); const zoomedImg = document.getElementById('zoomedImage'); if (overlay && zoomedImg) { zoomedImg.src = src; overlay.style.display = 'flex'; } };
-        window.closeImageZoom = function() { const overlay = document.getElementById('imageZoomOverlay'); if (overlay) overlay.style.display = 'none'; };
-        window.acceptCookies = function() { localStorage.setItem('cookies_accepted', 'true'); const consent = document.getElementById('cookieConsent'); if (consent) consent.style.display = 'none'; };
-        function initCookieConsent() { if (!localStorage.getItem('cookies_accepted')) { const consent = document.getElementById('cookieConsent'); if (consent) consent.style.display = 'block'; } }
-        window.toggleMobileMenu = function() { const navContainer = document.getElementById('navContainer'); if (navContainer) navContainer.classList.toggle('show'); };
-        function showSection(sectionId) { document.querySelectorAll('section').forEach(section => section.classList.remove('active')); const targetSection = document.getElementById(sectionId); if (targetSection) targetSection.classList.add('active'); if (window.innerWidth <= 768) { const navContainer = document.getElementById('navContainer'); if (navContainer) navContainer.classList.remove('show'); } }
-        function initNavigation() { const navButtons = document.querySelectorAll('.nav-btn'); navButtons.forEach(button => { button.addEventListener('click', function(e) { if (this.hasAttribute('data-section')) { e.preventDefault(); navButtons.forEach(btn => btn.classList.remove('active')); this.classList.add('active'); const sectionId = this.getAttribute('data-section'); showSection(sectionId); } }); }); const cartIcon = document.getElementById('cartIcon'); if (cartIcon) cartIcon.addEventListener('click', window.toggleCart); }
-        function initProductOptions() { document.addEventListener('click', function(e) { const target = e.target; if (target.classList && target.classList.contains('product-btn')) { e.preventDefault(); const productCard = target.closest('.product-item'); let name = target.getAttribute('data-name'); let price = parseFloat(target.getAttribute('data-price')); if (!name && productCard) { const nameEl = productCard.querySelector('.product-name'); if (nameEl) name = nameEl.textContent.trim().replace(/^Artefakt:\s*/, ''); } if (isNaN(price) && productCard) { const priceEl = productCard.querySelector('.product-price .price-new'); if (priceEl) { const priceText = priceEl.textContent; const priceMatch = priceText.match(/(\d+[\.,]?\d*)/); if (priceMatch) price = parseFloat(priceMatch[1].replace(',', '.')); } } if (!name) name = 'Produkt bez nazwy'; if (isNaN(price)) price = 80; const image = target.getAttribute('data-image') || null; addToCart(name, price, image, null, null); showCartPopup(); } }); }
-        function initCharitySection() { const donors = [ {name: "Anna K.", amount: 50}, {name: "Marek Z.", amount: 100}, {name: "👑 Sekretny Darczyńca", amount: 250}, {name: "Natalia P.", amount: 75}, {name: "Bartek L.", amount: 30} ]; let donorIndex = 0; setInterval(() => { const list = document.getElementById('donorsList'); if (list) { const li = document.createElement('li'); li.className = 'donor-entry'; li.textContent = `${donors[donorIndex].name} – ${donors[donorIndex].amount} zł`; list.prepend(li); donorIndex = (donorIndex + 1) % donors.length; if (list.children.length > 12) list.removeChild(list.lastChild); } }, 4000); }
 
-        // ============================================================
-        // SPRAWDZENIE SESJI PRZY STARCIE
-        // ============================================================
-        async function checkSession() {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (user) {
-                currentUser = user;
-                await loadUserDashboard();
-            } else {
-                renderAuthForm();
+        window.removeFromCart = function(index) {
+            cart.splice(index, 1);
+            updateCart();
+        };
+
+        function renderPayPalButton() {
+            const container = document.getElementById('paypal-container');
+            if (!container) return;
+            container.innerHTML = '';
+            if (cart.length === 0) return;
+            if (typeof paypal !== 'undefined' && paypal.HostedButtons) {
+                try {
+                    paypal.HostedButtons({ hostedButtonId: "L4639S4363CZE" }).render("#paypal-container");
+                } catch(e) { console.warn("PayPal render error:", e); }
             }
         }
-        
+
+        function showCartPopup() {
+            const popup = document.getElementById('cartPopup');
+            if (popup) {
+                popup.style.display = 'block';
+                setTimeout(() => { popup.style.display = 'none'; }, 5000);
+            }
+        }
+
+        window.hideCartPopup = function() {
+            const popup = document.getElementById('cartPopup');
+            if (popup) popup.style.display = 'none';
+        };
+
+        window.toggleCart = function() {
+            const panel = document.getElementById('cartPanel');
+            if (panel) panel.classList.toggle('open');
+        };
+
+        window.goToCheckout = function() {
+            window.toggleCart();
+            window.hideCartPopup();
+        };
+
+        window.sendOrderEmail = function() {
+            let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
+            cart.forEach((item, index) => {
+                emailBody += `${index + 1}. Artefakt: ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
+                if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
+                if (item.color) emailBody += ` (Kolor: ${item.color})`;
+                emailBody += '\n';
+            });
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\nData: ${new Date().toLocaleString('pl-PL')}\n\nProszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
+            window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
+        };
+
+        window.sendOrderWhatsApp = function() {
+            let message = 'Zamówienie z AdelbertusShop:%0A%0A';
+            cart.forEach((item, index) => {
+                message += `${index + 1}. Artefakt: ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
+                if (item.size) message += ` (Rozmiar: ${item.size})`;
+                if (item.color) message += ` (Kolor: ${item.color})`;
+                message += '%0A';
+            });
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `%0ASUMA: ${total.toFixed(2)} zł%0A%0AData: ${new Date().toLocaleString('pl-PL')}%0A%0AProszę o potwierdzenie zamówienia.`;
+            window.open(`https://wa.me/48604296360?text=${message}`);
+        };
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.left = '50%';
+            notification.style.transform = 'translateX(-50%)';
+            notification.style.backgroundColor = '#d4af37';
+            notification.style.color = 'black';
+            notification.style.padding = '12px 24px';
+            notification.style.borderRadius = '30px';
+            notification.style.zIndex = '1000';
+            notification.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+            notification.style.fontWeight = 'bold';
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        window.openImageZoom = function(src) {
+            const overlay = document.getElementById('imageZoomOverlay');
+            const zoomedImg = document.getElementById('zoomedImage');
+            if (overlay && zoomedImg) {
+                zoomedImg.src = src;
+                overlay.style.display = 'flex';
+            }
+        };
+
+        window.closeImageZoom = function() {
+            const overlay = document.getElementById('imageZoomOverlay');
+            if (overlay) overlay.style.display = 'none';
+        };
+
+        window.acceptCookies = function() {
+            localStorage.setItem('cookies_accepted', 'true');
+            const consent = document.getElementById('cookieConsent');
+            if (consent) consent.style.display = 'none';
+        };
+
+        function initCookieConsent() {
+            if (!localStorage.getItem('cookies_accepted')) {
+                const consent = document.getElementById('cookieConsent');
+                if (consent) consent.style.display = 'block';
+            }
+        }
+
+        window.toggleMobileMenu = function() {
+            const navContainer = document.getElementById('navContainer');
+            if (navContainer) navContainer.classList.toggle('show');
+        };
+
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => section.classList.remove('active'));
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) targetSection.classList.add('active');
+            if (window.innerWidth <= 768) {
+                const navContainer = document.getElementById('navContainer');
+                if (navContainer) navContainer.classList.remove('show');
+            }
+        }
+
+        function initNavigation() {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.hasAttribute('data-section')) {
+                        e.preventDefault();
+                        navButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                        const sectionId = this.getAttribute('data-section');
+                        showSection(sectionId);
+                    }
+                });
+            });
+            const cartIcon = document.getElementById('cartIcon');
+            if (cartIcon) cartIcon.addEventListener('click', window.toggleCart);
+        }
+
+        function initProductOptions() {
+            document.addEventListener('click', function(e) {
+                const target = e.target;
+                if (target.classList && target.classList.contains('product-btn')) {
+                    e.preventDefault();
+                    const productCard = target.closest('.product-item');
+                    let name = target.getAttribute('data-name');
+                    let price = parseFloat(target.getAttribute('data-price'));
+                    if (!name && productCard) {
+                        const nameEl = productCard.querySelector('.product-name');
+                        if (nameEl) name = nameEl.textContent.trim().replace(/^Artefakt:\s*/, '');
+                    }
+                    if (isNaN(price) && productCard) {
+                        const priceEl = productCard.querySelector('.product-price .price-new');
+                        if (priceEl) {
+                            const priceText = priceEl.textContent;
+                            const priceMatch = priceText.match(/(\d+[\.,]?\d*)/);
+                            if (priceMatch) price = parseFloat(priceMatch[1].replace(',', '.'));
+                        }
+                    }
+                    if (!name) name = 'Produkt bez nazwy';
+                    if (isNaN(price)) price = 80;
+                    const image = target.getAttribute('data-image') || null;
+                    addToCart(name, price, image, null, null);
+                    showCartPopup();
+                }
+            });
+        }
+
+        function initCharitySection() {
+            const donors = [
+                {name: "Anna K.", amount: 50}, {name: "Marek Z.", amount: 100}, {name: "👑 Sekretny Darczyńca", amount: 250},
+                {name: "Natalia P.", amount: 75}, {name: "Bartek L.", amount: 30}
+            ];
+            let donorIndex = 0;
+            setInterval(() => {
+                const list = document.getElementById('donorsList');
+                if (list) {
+                    const li = document.createElement('li');
+                    li.className = 'donor-entry';
+                    li.textContent = `${donors[donorIndex].name} – ${donors[donorIndex].amount} zł`;
+                    list.prepend(li);
+                    donorIndex = (donorIndex + 1) % donors.length;
+                    if (list.children.length > 12) list.removeChild(list.lastChild);
+                }
+            }, 4000);
+        }
+
+        // ========== KONFIGURATOR ==========
+        const state = {
+            product: 'hoodie', canvasColor: '#ffffff', orderColor: { hex: '#000000', name: 'Czarny' }, orderSize: 'L', orderQty: 1,
+            zoom: 1, showGrid: false, layers: [], selectedId: null, dragState: null, nextId: 1
+        };
+        const canvasEl = document.getElementById('studioCanvas');
+        let ctxCanvas = canvasEl ? canvasEl.getContext('2d') : null;
+        const productMap = {
+            hoodie: { name: 'Bluza', price: 170, path: 'M80 30 Q55 40 35 70 L35 220 Q30 235 35 250 L35 350 Q35 365 47 370 L110 375 Q125 370 135 357 L147 280 Q155 260 172 240 Q195 220 220 220 L220 70 Q195 40 170 30 Z' },
+            tshirt: { name: 'Koszulka', price: 80, path: 'M80 40 Q60 20 40 40 L40 90 Q35 110 40 130 L40 250 Q40 260 48 266 L70 278 Q80 282 90 276 L110 250 Q120 258 130 266 L150 276 Q160 282 170 278 L190 266 Q198 260 200 250 L200 130 Q205 110 200 90 L200 40 Q180 20 160 40 Z' },
+            cap: { name: 'Czapka', price: 99, path: 'M50 120 Q30 80 50 50 Q90 20 140 35 Q180 45 220 80 Q250 110 240 140 Q220 170 170 175 L106 180 Q80 184 60 170 Q45 155 50 120 Z' }
+        };
+
+        function createSwatches() {
+            const parent = document.getElementById('colorSwatches');
+            if (!parent) return;
+            const colors = ['#ffffff','#0a0a0a','#1a1a2e','#c0392b','#27ae60','#f39c12','#8e44ad','#7f8c8d','#e8c5a0','#2c3e50','#e74c3c','#16a085','#d35400','#2980b9','#8b0000','#228b22','#4b0082','#808000'];
+            parent.innerHTML = '';
+            colors.forEach(c => {
+                const b = document.createElement('button');
+                b.className = 'swatch';
+                b.style.background = c;
+                b.title = c;
+                b.dataset.color = c;
+                b.onclick = () => { state.canvasColor = c; if(ctxCanvas && canvasEl) renderCanvas(); markActiveSwatch(); };
+                parent.appendChild(b);
+            });
+            markActiveSwatch();
+        }
+
+        function markActiveSwatch() {
+            document.querySelectorAll('#colorSwatches .swatch').forEach(s => { s.classList.toggle('active', s.dataset.color === state.canvasColor); });
+        }
+
+        function createOrderSwatches() {
+            const parent = document.getElementById('orderColorGrid');
+            if (!parent) return;
+            const ordered = [
+                {hex:'#000000',name:'Czarny'},{hex:'#ffffff',name:'Biały'},{hex:'#800020',name:'Bordowy'},{hex:'#3f3f3f',name:'Grafitowy'},
+                {hex:'#1e3f6b',name:'Granat'},{hex:'#8a8a8a',name:'Szary'},{hex:'#2d5c45',name:'Butelkowa zieleń'},{hex:'#8d935f',name:'Khaki'},
+                {hex:'#f4c8d1',name:'Jasny róż'},{hex:'#e8c5a0',name:'Beż'}
+            ];
+            ordered.forEach(c => {
+                const b = document.createElement('button');
+                b.className = 'swatch';
+                b.style.background = c.hex;
+                b.title = c.name;
+                b.style.width = '46px';
+                b.style.height = '46px';
+                b.onclick = () => { state.orderColor = c; updateOrderSummary(); renderOrderPreview(); markOrderActive(); };
+                parent.appendChild(b);
+            });
+            markOrderActive();
+        }
+
+        function markOrderActive() {
+            document.querySelectorAll('#orderColorGrid .swatch').forEach(s => { s.classList.toggle('active', s.style.backgroundColor === rgbFromHex(state.orderColor.hex)); });
+        }
+
+        function rgbFromHex(h) {
+            const c = h.replace('#','');
+            const r = parseInt(c.substring(0,2),16), g = parseInt(c.substring(2,4),16), b = parseInt(c.substring(4,6),16);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        function createFontOptions() {
+            const fonts = ['Bebas Neue','Impact','Georgia','Courier New','Verdana','Arial Black','Comic Sans MS','Palatino','Trebuchet MS','Futura','DM Sans','Space Mono'];
+            const sel = document.getElementById('fontFamily');
+            if (!sel) return;
+            fonts.forEach(f => { const o = document.createElement('option'); o.value = f; o.textContent = f; sel.appendChild(o); });
+            sel.value = 'Bebas Neue';
+        }
+
+        function setupEvents() {
+            document.querySelectorAll('.product-card-config').forEach(c => {
+                c.addEventListener('click', () => {
+                    document.querySelectorAll('.product-card-config').forEach(x => x.classList.remove('active'));
+                    c.classList.add('active');
+                    state.product = c.dataset.product;
+                    const activeName = document.getElementById('activeName');
+                    if (activeName) activeName.textContent = productMap[state.product].name;
+                    if (ctxCanvas && canvasEl) renderCanvas();
+                    updateOrderSummary();
+                    updatePrice();
+                });
+            });
+            const gridToggle = document.getElementById('gridToggle');
+            if (gridToggle) gridToggle.onclick = () => { state.showGrid = !state.showGrid; gridToggle.textContent = state.showGrid ? 'Ukryj siatkę' : 'Pokaż siatkę'; if (ctxCanvas && canvasEl) renderCanvas(); };
+            const liveText = document.getElementById('liveText');
+            if (liveText) liveText.addEventListener('input', (e) => { if(!state.selectedId) return; const l = findLayer(state.selectedId); if(l && l.type==='text'){ l.text = e.target.value; if(ctxCanvas && canvasEl) renderCanvas(); updateLayerUI(); } });
+            const fontFamily = document.getElementById('fontFamily');
+            if (fontFamily) fontFamily.addEventListener('change', (e) => { const l = findLayer(state.selectedId); if(l && l.type==='text'){ l.font = e.target.value; if(ctxCanvas && canvasEl) renderCanvas(); updateLayerUI(); } });
+            const fontSize = document.getElementById('fontSize');
+            if (fontSize) fontSize.addEventListener('input', (e) => { const v = Number(e.target.value); const label = document.getElementById('fontSizeLabel'); if(label) label.textContent=v; const l = findLayer(state.selectedId); if(l && l.type==='text'){ l.fontSize=v; if(ctxCanvas && canvasEl) renderCanvas(); updateLayerUI(); } });
+            const textColor = document.getElementById('textColor');
+            if (textColor) textColor.addEventListener('input', (e) => { const l = findLayer(state.selectedId); if(l && l.type==='text'){ l.fontColor=e.target.value; if(ctxCanvas && canvasEl) renderCanvas(); updateLayerUI(); } });
+            const addTextBtn = document.getElementById('addTextBtn');
+            if (addTextBtn) addTextBtn.addEventListener('click', () => { const txtInput = document.getElementById('liveText'); const txt = txtInput ? txtInput.value.trim() : ''; addTextLayer(txt || 'Tekst'); });
+            ['boldBtn','italicBtn','underlineBtn'].forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) btn.addEventListener('click', e => { e.target.classList.toggle('active'); const l = findLayer(state.selectedId); if(l && l.type==='text'){ if(id==='boldBtn') l.bold=!l.bold; if(id==='italicBtn') l.italic=!l.italic; if(id==='underlineBtn') l.underline=!l.underline; if(ctxCanvas && canvasEl) renderCanvas(); updateLayerUI(); } });
+            });
+            const presets = ['#ffffff','#000000','#e8ff00','#ff2a2a','#4bd74b','#4b8bff','#c55eff','#ffd84d'];
+            const presetDiv = document.getElementById('presetTextColors');
+            if (presetDiv) {
+                presets.forEach(c => {
+                    const b = document.createElement('button');
+                    b.className = 'swatch';
+                    b.style.background = c;
+                    b.style.width = '28px';
+                    b.style.height = '28px';
+                    b.addEventListener('click', () => { const textColorInput = document.getElementById('textColor'); if(textColorInput) textColorInput.value=c; const l = findLayer(state.selectedId); if(l && l.type==='text'){ l.fontColor=c; if(ctxCanvas && canvasEl) renderCanvas(); updateLayerUI(); } });
+                    presetDiv.appendChild(b);
+                });
+            }
+            const dropZone = document.getElementById('dropZone');
+            if (dropZone) {
+                dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor='#e8ff00'; });
+                dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor='#555'; });
+                dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.style.borderColor='#555'; const f = e.dataTransfer.files[0]; if(f) handleFileUpload(f); });
+                dropZone.addEventListener('click', () => { const inp = document.createElement('input'); inp.type='file'; inp.accept='image/png,image/jpeg,image/svg+xml,image/webp'; inp.onchange = () => { if(inp.files[0]) handleFileUpload(inp.files[0]); }; inp.click(); });
+            }
+            const addImageBtn = document.getElementById('addImageBtn');
+            if (addImageBtn) addImageBtn.addEventListener('click', () => { const inp = document.createElement('input'); inp.type='file'; inp.accept='image/png,image/jpeg,image/svg+xml,image/webp'; inp.onchange = () => { if(inp.files[0]) handleFileUpload(inp.files[0]); }; inp.click(); });
+            const bringForward = document.getElementById('bringForward'); if (bringForward) bringForward.addEventListener('click', () => reorderSelected(1));
+            const sendBackward = document.getElementById('sendBackward'); if (sendBackward) sendBackward.addEventListener('click', () => reorderSelected(-1));
+            const toFront = document.getElementById('toFront'); if (toFront) toFront.addEventListener('click', () => reorderSelected(999));
+            const toBack = document.getElementById('toBack'); if (toBack) toBack.addEventListener('click', () => reorderSelected(-999));
+            const duplicateLayer = document.getElementById('duplicateLayer'); if (duplicateLayer) duplicateLayer.addEventListener('click', duplicateSelected);
+            const deleteLayer = document.getElementById('deleteLayer'); if (deleteLayer) deleteLayer.addEventListener('click', () => { if(confirm('Usuń warstwę?')) removeSelected(); });
+            ['layerX','layerY','layerRotation','layerScale','layerOpacity'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.addEventListener('input', () => { if(!state.selectedId) return; const l = findLayer(state.selectedId); if(!l) return; if(id==='layerX') l.x=Number(el.value); if(id==='layerY') l.y=Number(el.value); if(id==='layerRotation') l.rotation=Number(el.value); if(id==='layerScale'){ const v=Number(el.value)/100; l.scaleX=v; l.scaleY=v; } if(id==='layerOpacity') l.opacity=Number(el.value)/100; if(ctxCanvas && canvasEl) renderCanvas(); updateLayerUI(); });
+            });
+            const sizeGrid = document.getElementById('sizeGrid');
+            if (sizeGrid) {
+                const sizes = ['XS','S','M','L','XL','XXL','2XL','3XL'];
+                sizes.forEach(s => {
+                    const btn = document.createElement('button');
+                    btn.className = 'size-btn' + (s === 'L' ? ' active' : '');
+                    btn.textContent = s;
+                    btn.addEventListener('click', () => { document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); state.orderSize = s; updateOrderSummary(); });
+                    sizeGrid.appendChild(btn);
+                });
+            }
+            const sizeGuideBtn = document.getElementById('sizeGuideBtn');
+            if (sizeGuideBtn) sizeGuideBtn.addEventListener('click', () => { const g = document.getElementById('sizeGuide'); if(g) g.style.display = g.style.display === 'none' ? 'block' : 'none'; });
+            const qtyMinus = document.getElementById('qtyMinus'); if (qtyMinus) qtyMinus.addEventListener('click', () => { const inp = document.getElementById('qtyInput'); if(inp){ inp.value = Math.max(1, Number(inp.value)-1); state.orderQty = Number(inp.value); updateOrderSummary(); updatePrice(); } });
+            const qtyPlus = document.getElementById('qtyPlus'); if (qtyPlus) qtyPlus.addEventListener('click', () => { const inp = document.getElementById('qtyInput'); if(inp){ inp.value = Math.min(99, Number(inp.value)+1); state.orderQty = Number(inp.value); updateOrderSummary(); updatePrice(); } });
+            const qtyInput = document.getElementById('qtyInput'); if (qtyInput) qtyInput.addEventListener('input', () => { let v = Math.max(1, Math.min(99, Number(qtyInput.value)||1)); qtyInput.value=v; state.orderQty=v; updateOrderSummary(); updatePrice(); });
+            const exportPng = document.getElementById('exportPng'); if (exportPng && canvasEl) exportPng.addEventListener('click', () => { const data = canvasEl.toDataURL('image/png',1); const a = document.createElement('a'); a.href=data; a.download=`adelbertus-projekt-${Date.now()}.png`; a.click(); });
+            const addToCartBtn = document.getElementById('addToCartBtn'); if (addToCartBtn) addToCartBtn.addEventListener('click', () => { const productName = productMap[state.product].name + ' (Projekt)'; const price = calcTotal(); let canvasData = null; if(canvasEl) canvasData = canvasEl.toDataURL('image/png'); const size = state.orderSize; const colorName = state.orderColor.name; for(let i=0;i<state.orderQty;i++) addToCart(productName, price / state.orderQty, canvasData, size, colorName); showNotification("🜂 Artefakt został przypisany do Ciebie"); showCartPopup(); });
+            if (canvasEl) {
+                canvasEl.addEventListener('mousedown', onMouseDown);
+                window.addEventListener('mousemove', onMouseMove);
+                window.addEventListener('mouseup', onMouseUp);
+                canvasEl.addEventListener('wheel', e => { e.preventDefault(); const delta = e.deltaY > 0 ? -0.05 : 0.05; state.zoom = Math.min(2, Math.max(0.5, state.zoom + delta)); const zoomLabel = document.getElementById('zoomLabel'); if(zoomLabel) zoomLabel.textContent = `Zoom ${Math.round(state.zoom*100)}%`; if(ctxCanvas && canvasEl) renderCanvas(); });
+            }
+        }
+
+        function addTextLayer(text) {
+            const layer = { id: state.nextId++, type:'text', name:`Text ${state.nextId-1}`, x:250, y:280, width:200, height:60, rotation:0, scaleX:1, scaleY:1, opacity:1, visible:true, locked:false, flipH:false, flipV:false, text, font: document.getElementById('fontFamily') ? document.getElementById('fontFamily').value : 'Bebas Neue', fontSize: document.getElementById('fontSize') ? Number(document.getElementById('fontSize').value) : 36, fontColor: document.getElementById('textColor') ? document.getElementById('textColor').value : '#ffffff', bold:false, italic:false, underline:false, align:'center', letterSpacing:0, shadow:false, shadowColor:'#000000', shadowBlur:0 };
+            state.layers.push(layer); selectLayer(layer.id); if(ctxCanvas && canvasEl) renderCanvas(); updateLayersPanel();
+        }
+
+        function handleFileUpload(file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const img = new Image();
+                img.onload = () => {
+                    const scale = Math.min(200 / Math.max(img.width, img.height), 1);
+                    const w = img.width * scale;
+                    const h = img.height * scale;
+                    const layer = { id: state.nextId++, type:'image', name:`Image ${state.nextId-1}`, x:250, y:280, width:w, height:h, rotation:0, scaleX:1, scaleY:1, opacity:1, visible:true, locked:false, flipH:false, flipV:false, img };
+                    state.layers.push(layer); selectLayer(layer.id); if(ctxCanvas && canvasEl) renderCanvas(); updateLayersPanel();
+                };
+                img.src = reader.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function findLayer(id) { return state.layers.find(l => l.id === id); }
+        function selectLayer(id) { state.selectedId = id; updateLayerUI(); if(ctxCanvas && canvasEl) renderCanvas(); }
+        function updateLayerUI() {
+            const selected = findLayer(state.selectedId);
+            const name = selected ? selected.name : 'Brak wybranej warstwy';
+            const selectedLayerName = document.getElementById('selectedLayerName');
+            if (selectedLayerName) selectedLayerName.textContent = name;
+            if(selected){
+                const layerX = document.getElementById('layerX'); if(layerX) layerX.value = Math.round(selected.x);
+                const layerY = document.getElementById('layerY'); if(layerY) layerY.value = Math.round(selected.y);
+                const layerRotation = document.getElementById('layerRotation'); if(layerRotation) layerRotation.value = selected.rotation;
+                const layerScale = document.getElementById('layerScale'); if(layerScale) layerScale.value = Math.round(selected.scaleX*100);
+                const layerOpacity = document.getElementById('layerOpacity'); if(layerOpacity) layerOpacity.value = Math.round(selected.opacity*100);
+            }
+            updateLayersPanel();
+        }
+
+        function updateLayersPanel() {
+            const el = document.getElementById('layersList');
+            if (!el) return;
+            el.innerHTML = '';
+            [...state.layers].reverse().forEach(layer => {
+                const li = document.createElement('li');
+                li.className = 'layer-item' + (state.selectedId === layer.id ? ' active' : '');
+                li.innerHTML = `<div class="thumb"></div><div style="flex:1">${layer.name}</div><div>${layer.visible?'<i class="fa fa-eye"></i>':'<i class="fa fa-eye-slash"></i>'}</div>`;
+                li.onclick = () => { selectLayer(layer.id); };
+                el.appendChild(li);
+            });
+        }
+
+        function reorderSelected(dir) {
+            const i = state.layers.findIndex(l => l.id === state.selectedId);
+            if(i < 0) return;
+            const item = state.layers.splice(i,1)[0];
+            if(dir > 0) state.layers.splice(Math.min(state.layers.length, i+1),0,item);
+            else state.layers.splice(Math.max(0, i-1),0,item);
+            if(dir === 999) state.layers.push(item);
+            if(dir === -999) state.layers.unshift(item);
+            if(ctxCanvas && canvasEl) renderCanvas();
+            updateLayersPanel();
+        }
+
+        function duplicateSelected() {
+            const l = findLayer(state.selectedId);
+            if(!l) return;
+            const copy = { ...l, id: state.nextId++, name: l.name+' copy', x: l.x+15, y: l.y+15 };
+            if(l.type === 'image') copy.img = l.img;
+            state.layers.push(copy);
+            selectLayer(copy.id);
+            updateLayersPanel();
+            if(ctxCanvas && canvasEl) renderCanvas();
+        }
+
+        function removeSelected() {
+            const i = state.layers.findIndex(l => l.id === state.selectedId);
+            if(i >= 0){
+                state.layers.splice(i,1);
+                state.selectedId = null;
+                updateLayerUI();
+                if(ctxCanvas && canvasEl) renderCanvas();
+                updateLayersPanel();
+            }
+        }
+
+        function renderCanvas() {
+            if (!ctxCanvas || !canvasEl) return;
+            ctxCanvas.clearRect(0,0,canvasEl.width,canvasEl.height);
+            ctxCanvas.fillStyle='#111'; ctxCanvas.fillRect(0,0,canvasEl.width,canvasEl.height);
+            if(state.showGrid){
+                ctxCanvas.save();
+                ctxCanvas.strokeStyle='rgba(255,255,255,.08)';
+                ctxCanvas.lineWidth=1;
+                for(let x=0;x<canvasEl.width;x+=50){ ctxCanvas.beginPath(); ctxCanvas.moveTo(x,0); ctxCanvas.lineTo(x,canvasEl.height); ctxCanvas.stroke(); }
+                for(let y=0;y<canvasEl.height;y+=50){ ctxCanvas.beginPath(); ctxCanvas.moveTo(0,y); ctxCanvas.lineTo(canvasEl.width,y); ctxCanvas.stroke(); }
+                ctxCanvas.restore();
+            }
+            ctxCanvas.save();
+            ctxCanvas.beginPath();
+            const pathStr = productMap[state.product].path;
+            const path = new Path2D(pathStr);
+            ctxCanvas.fillStyle = state.canvasColor;
+            ctxCanvas.shadowColor = 'rgba(0,0,0,0.4)';
+            ctxCanvas.shadowBlur = 20;
+            ctxCanvas.shadowOffsetY = 10;
+            ctxCanvas.translate(130,80);
+            ctxCanvas.scale(1.6,1.6);
+            ctxCanvas.fill(path);
+            ctxCanvas.restore();
+            for(const layer of state.layers){
+                if(!layer.visible) continue;
+                ctxCanvas.save();
+                ctxCanvas.globalAlpha = layer.opacity;
+                const x = layer.x, y = layer.y;
+                ctxCanvas.translate(x,y);
+                ctxCanvas.rotate(layer.rotation * Math.PI / 180);
+                ctxCanvas.scale(layer.flipH ? -1 : 1, layer.flipV ? -1 : 1);
+                ctxCanvas.scale(layer.scaleX, layer.scaleY);
+                if(layer.type === 'text'){
+                    const fontParts = [];
+                    if(layer.italic) fontParts.push('italic');
+                    if(layer.bold) fontParts.push('bold');
+                    fontParts.push(`${layer.fontSize}px`);
+                    fontParts.push(layer.font);
+                    ctxCanvas.font = fontParts.join(' ');
+                    ctxCanvas.fillStyle = layer.fontColor;
+                    ctxCanvas.textAlign = layer.align;
+                    ctxCanvas.textBaseline = 'middle';
+                    if(layer.shadow){ ctxCanvas.shadowColor = layer.shadowColor; ctxCanvas.shadowBlur = layer.shadowBlur; }
+                    const alignX = layer.align === 'left' ? -layer.width/2 : layer.align === 'right' ? layer.width/2 : 0;
+                    ctxCanvas.fillText(layer.text, alignX, 0);
+                    if(layer.underline){
+                        const w = ctxCanvas.measureText(layer.text).width;
+                        let x0 = alignX;
+                        if(layer.align === 'center') x0 -= w/2;
+                        if(layer.align === 'right') x0 -= w;
+                        ctxCanvas.strokeStyle = layer.fontColor;
+                        ctxCanvas.lineWidth = 2;
+                        ctxCanvas.beginPath();
+                        ctxCanvas.moveTo(x0, 10);
+                        ctxCanvas.lineTo(x0+w, 10);
+                        ctxCanvas.stroke();
+                    }
+                } else if(layer.type === 'image'){
+                    const w = layer.width, h = layer.height;
+                    ctxCanvas.drawImage(layer.img, -w/2, -h/2, w, h);
+                }
+                ctxCanvas.restore();
+            }
+            if(state.selectedId){
+                const selected = findLayer(state.selectedId);
+                if(selected){
+                    const {x,y} = selected;
+                    const w = selected.width * selected.scaleX;
+                    const h = selected.height * selected.scaleY;
+                    ctxCanvas.save();
+                    ctxCanvas.translate(x,y);
+                    ctxCanvas.rotate(selected.rotation * Math.PI / 180);
+                    ctxCanvas.strokeStyle = '#e8ff00';
+                    ctxCanvas.setLineDash([6,4]);
+                    ctxCanvas.lineWidth = 2;
+                    ctxCanvas.strokeRect(-w/2, -h/2, w, h);
+                    const handles = [[-w/2,-h/2],[0,-h/2],[w/2,-h/2],[-w/2,0],[w/2,0],[-w/2,h/2],[0,h/2],[w/2,h/2]];
+                    ctxCanvas.setLineDash([]);
+                    handles.forEach(([hx,hy]) => { ctxCanvas.fillStyle='#d4af37'; ctxCanvas.fillRect(hx-5,hy-5,10,10); });
+                    ctxCanvas.beginPath();
+                    ctxCanvas.strokeStyle='#e8ff00';
+                    ctxCanvas.moveTo(0,-h/2);
+                    ctxCanvas.lineTo(0,-h/2-30);
+                    ctxCanvas.stroke();
+                    ctxCanvas.beginPath();
+                    ctxCanvas.fillStyle='#e8ff00';
+                    ctxCanvas.arc(0,-h/2-40,8,0,Math.PI*2);
+                    ctxCanvas.fill();
+                    ctxCanvas.restore();
+                }
+            }
+            updatePrice(); updateOrderSummary();
+        }
+
+        function pointInLayer(x,y,layer) {
+            const dx = x - layer.x;
+            const dy = y - layer.y;
+            const angle = -layer.rotation * Math.PI / 180;
+            const rx = dx * Math.cos(angle) - dy * Math.sin(angle);
+            const ry = dx * Math.sin(angle) + dy * Math.cos(angle);
+            const w = layer.width * layer.scaleX;
+            const h = layer.height * layer.scaleY;
+            return rx >= -w/2 && rx <= w/2 && ry >= -h/2 && ry <= h/2;
+        }
+
+        function onMouseDown(e) {
+            if (!canvasEl) return;
+            const r = canvasEl.getBoundingClientRect();
+            const x = (e.clientX - r.left);
+            const y = (e.clientY - r.top);
+            let found = null;
+            for(let i = state.layers.length-1; i >= 0; i--){
+                const l = state.layers[i];
+                if(!l.visible || l.locked) continue;
+                if(pointInLayer(x,y,l)){ found = l; break; }
+            }
+            if(found){
+                selectLayer(found.id);
+                state.dragState = { layerId: found.id, offsetX: x - found.x, offsetY: y - found.y };
+                canvasEl.style.cursor = 'grabbing';
+            } else { deselect(); }
+        }
+
+        function onMouseMove(e) {
+            if(!state.dragState || !canvasEl) return;
+            const r = canvasEl.getBoundingClientRect();
+            const x = (e.clientX - r.left);
+            const y = (e.clientY - r.top);
+            const l = findLayer(state.dragState.layerId);
+            if(l){ l.x = x - state.dragState.offsetX; l.y = y - state.dragState.offsetY; if(ctxCanvas && canvasEl) renderCanvas(); updateLayerUI(); }
+        }
+
+        function onMouseUp() { state.dragState = null; if(canvasEl) canvasEl.style.cursor = 'grab'; }
+
+        function updateOrderSummary() {
+            const sumProduct = document.getElementById('sumProduct'); if(sumProduct) sumProduct.textContent = productMap[state.product].name;
+            const sumColor = document.getElementById('sumColor'); if(sumColor) sumColor.innerHTML = `<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${state.orderColor.hex};margin-right:6px;"></span>${state.orderColor.name}`;
+            const sumSize = document.getElementById('sumSize'); if(sumSize) sumSize.textContent = state.orderSize;
+            const sumQty = document.getElementById('sumQty'); if(sumQty) sumQty.textContent = state.orderQty;
+            const sumTotal = document.getElementById('sumTotal'); if(sumTotal) sumTotal.textContent = formatPrice(calcTotal());
+            const orderColorSelected = document.getElementById('orderColorSelected'); if(orderColorSelected) orderColorSelected.innerHTML = `<div style="width:28px;height:28px;border-radius:6px;background:${state.orderColor.hex};border:1px solid #444;"></div><span style="margin-left:8px;">${state.orderColor.name}</span>`;
+            updatePrice();
+        }
+
+        function renderOrderPreview() {
+            const mini = document.getElementById('orderPreview');
+            if (!mini) return;
+            mini.innerHTML = '';
+            const c = document.createElement('canvas');
+            c.width = 72; c.height = 72;
+            const cc = c.getContext('2d');
+            cc.fillStyle = state.orderColor.hex;
+            cc.fillRect(0,0,72,72);
+            cc.fillStyle = '#222';
+            cc.beginPath();
+            if(state.product === 'hoodie'){ cc.moveTo(10,20); cc.quadraticCurveTo(20,8,35,10); cc.quadraticCurveTo(50,12,62,20); cc.lineTo(62,52); cc.quadraticCurveTo(50,64,35,63); cc.quadraticCurveTo(20,62,10,52); cc.closePath(); }
+            else if(state.product === 'tshirt'){ cc.moveTo(10,18); cc.lineTo(62,18); cc.lineTo(62,52); cc.lineTo(10,52); cc.closePath(); }
+            else { cc.moveTo(8,38); cc.quadraticCurveTo(32,10,64,30); cc.quadraticCurveTo(58,50,24,54); cc.closePath(); }
+            cc.fill();
+            mini.appendChild(c);
+        }
+
+        function updatePrice() {
+            const unit = productMap[state.product].price;
+            const qty = state.orderQty;
+            let total = unit * qty;
+            const breakdown = document.getElementById('priceBreakdown');
+            if(breakdown){
+                if(qty >= 3){
+                    const discounted = Math.round(total * 0.9);
+                    breakdown.innerHTML = `<span style="text-decoration:line-through;">${unit}×${qty}=${total} zł</span> <span style="color:#4ead4e;">${discounted} zł (-10%)</span>`;
+                    total = discounted;
+                } else { breakdown.textContent = `${unit}×${qty}=${total} zł`; }
+            }
+            const priceTag = document.getElementById('priceTag'); if(priceTag) priceTag.textContent = `${total} zł`;
+            const sumTotal = document.getElementById('sumTotal'); if(sumTotal) sumTotal.textContent = `${total} zł`;
+        }
+
+        function formatPrice(v) { return `${v} zł`; }
+        function calcTotal() {
+            const unit = productMap[state.product].price;
+            let total = unit * state.orderQty;
+            if(state.orderQty >= 3) total = Math.round(total * 0.9);
+            return total;
+        }
+
+        supabaseClient.auth.onAuthStateChange(async (event, session) => {
+            if (event === 'SIGNED_IN') {
+                await loadUserDashboard();
+            } else if (event === 'SIGNED_OUT') {
+                renderLoginForm();
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             initNavigation();
             initProductOptions();
             updateCart();
             initCookieConsent();
             initCharitySection();
-            checkSession();
+            createSwatches();
+            createOrderSwatches();
+            createFontOptions();
+            updateOrderSummary();
+            renderOrderPreview();
+            setupEvents();
+            if(ctxCanvas && canvasEl) renderCanvas();
             const heroButton = document.getElementById('heroShopButton');
             if(heroButton) heroButton.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -2608,7 +3406,9 @@
                     else { showSection('shop'); document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active')); if(shopBtn) shopBtn.classList.add('active'); }
                 }
             });
+            loadUserDashboard();
         });
+        document.addEventListener('keydown', e => { if(e.key === 'Escape'){ window.closeProductModal(); window.closeCategoryModal(); } });
         window.addToCart = addToCart;
     </script>
 </body>
