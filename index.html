@@ -521,6 +521,91 @@
             }
         }
         
+        /* ---------- STYLE LOGOWANIA (BLACK/GOLD) ---------- */
+        .login-container {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--color-gold);
+            border-radius: 24px;
+            padding: 2rem;
+            max-width: 450px;
+            margin: 4rem auto;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.3);
+        }
+        .login-container h2 {
+            color: var(--color-gold);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .login-input {
+            width: 100%;
+            padding: 12px 16px;
+            margin: 12px 0;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .login-input:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: 0 0 8px rgba(212,175,55,0.5);
+        }
+        .login-btn {
+            background: var(--color-gold);
+            color: black;
+            font-weight: bold;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: 0.2s;
+        }
+        .login-btn:hover {
+            background: #f0c14e;
+            transform: scale(1.02);
+        }
+        .toggle-auth {
+            text-align: center;
+            margin-top: 16px;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        .toggle-auth span {
+            color: var(--color-gold);
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .logout-btn {
+            background: transparent;
+            border: 2px solid var(--color-gold);
+            color: var(--color-gold);
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .logout-btn:hover {
+            background: var(--color-gold);
+            color: black;
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        
         nav {
             background: rgba(0, 0, 0, 0.7);
             padding: 1rem;
@@ -1672,6 +1757,10 @@
         </div>
     </section>
 
+    <!-- LOGIN / DASHBOARD DYNAMIC -->
+    <div id="auth-container"></div>
+    <div id="dashboard-container" style="display: none;"></div>
+
     <section id="products" class="products-pi">
         <div class="products-container">
             <div class="products-title">
@@ -1774,7 +1863,6 @@
             <button class="nav-btn" data-section="charity">Zbiórka</button>
             <button class="nav-btn" data-section="referral">Poleć znajomego</button>
             <button class="nav-btn" data-section="regulations">Regulamin</button>
-            <button class="nav-btn" data-section="dashboard">Konto</button>
         </div>
     </nav>
    
@@ -2092,7 +2180,7 @@
             
             <div class="bg-white/10 p-6 rounded-lg shadow-md mt-10 border-l-4 border-yellow-400">
                 <h4 class="text-2xl font-bold mb-4 text-yellow-300">✉️ List od dzieci z Domu Dziecka "Promyk"</h4>
-                <div id="childrenLetter" class="italic text-lg text-gray-100 typing"></div>
+                <div id="childrenLetter" class="italic text-lg text-gray-300 typing"></div>
             </div>
         </section>
 
@@ -2132,11 +2220,6 @@
                 <p class="text-sm text-center text-gray-500 mt-10">Regulamin obowiązuje od: 01.01.2024</p>
             </div>
         </section>
-
-        <section id="dashboard">
-            <!-- Dynamically populated by JS -->
-        </section>
-
         <div id="cartIcon">
             <i class="fas fa-shopping-cart"></i>
             <span id="cartCount">0</span>
@@ -2230,257 +2313,6 @@
         // ============================================================
         const { createClient } = supabase;
         const supabaseClient = createClient("https://oujlhtzyvdplyrezibiy.supabase.co", "sb_publishable_JZBxEamVDWCPxHxEhlhHNg_dpug9inG");
-
-        // ============================================================
-        // GLOBALNE ZMIENNE
-        // ============================================================
-        let currentUser = null;
-        let userReferralStats = { count: 0, total_commission: 0 };
-
-        // ============================================================
-        // FUNKCJE POMOCNICZE
-        // ============================================================
-        function formatPrice(amount) {
-            return new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN' }).format(amount);
-        }
-
-        async function fetchReferralStats(userEmail) {
-            if (!userEmail) return { count: 0, total_commission: 0 };
-            try {
-                const { data, error } = await supabaseClient
-                    .from('polecenia')
-                    .select('kwota')
-                    .eq('referrer', userEmail);
-                if (error) {
-                    console.error("Błąd pobierania poleceń:", error);
-                    return { count: 0, total_commission: 0 };
-                }
-                const count = data ? data.length : 0;
-                let total_commission = 0;
-                if (data) {
-                    total_commission = data.reduce((sum, row) => sum + (parseFloat(row.kwota) || 0), 0);
-                }
-                return { count, total_commission };
-            } catch (err) {
-                console.error("Wyjątek podczas pobierania poleceń:", err);
-                return { count: 0, total_commission: 0 };
-            }
-        }
-
-        async function updateUserProfile(userId, referralCount, totalCommission) {
-            try {
-                const { error } = await supabaseClient
-                    .from('users_profiles')
-                    .update({ 
-                        total_referrals: referralCount,
-                        points: totalCommission 
-                    })
-                    .eq('id', userId);
-                if (error) console.error("Błąd aktualizacji profilu:", error);
-            } catch (err) {
-                console.error("Wyjątek podczas aktualizacji profilu:", err);
-            }
-        }
-
-        async function loadUserDashboard() {
-            const { data: { user } } = await supabaseClient.auth.getUser();
-            if (!user) {
-                renderLoginForm();
-                return;
-            }
-            currentUser = user;
-            const stats = await fetchReferralStats(user.email);
-            userReferralStats = stats;
-            await updateUserProfile(user.id, stats.count, stats.total_commission);
-            const { data: profile, error } = await supabaseClient
-                .from('users_profiles')
-                .select('*')
-                .eq('id', user.id)
-                .single();
-            if (error && error.code !== 'PGRST116') {
-                console.error("Błąd pobierania profilu:", error);
-            }
-            const username = profile?.username || user.email?.split('@')[0] || 'Użytkownik';
-            const referralCode = profile?.referral_code || `ADEL-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
-            if (!profile?.referral_code) {
-                await supabaseClient.from('users_profiles').upsert({ 
-                    id: user.id, 
-                    email: user.email, 
-                    username: username,
-                    referral_code: referralCode,
-                    total_referrals: stats.count,
-                    points: stats.total_commission,
-                    total_orders: 0,
-                    rank_slug: stats.count >= 10 ? "strażnik_kręgu" : (stats.count >= 3 ? "nosiciel" : "wtajemniczony")
-                });
-            }
-            const rankMap = { wtajemniczony: "WTajemniczony", nosiciel: "Nosiciel", strażnik_kręgu: "Strażnik Kręgu" };
-            const rankSlug = profile?.rank_slug || (stats.count >= 10 ? "strażnik_kręgu" : (stats.count >= 3 ? "nosiciel" : "wtajemniczony"));
-            const dashboardHtml = `
-                <div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg border border-gray-100 my-8">
-                    <div class="flex items-center justify-between mb-8">
-                        <div>
-                            <h2 class="text-2xl font-bold text-gray-800">Witaj w Kręgu, <span id="user-name">${username}</span></h2>
-                            <p class="text-gray-500">Twoja aktywność buduje markę Adelbertus</p>
-                        </div>
-                        <div class="text-right">
-                            <span id="rank-badge" class="px-4 py-2 rounded-full bg-black text-white text-sm font-semibold uppercase tracking-widest">
-                                ${rankMap[rankSlug] || "WTajemniczony"}
-                            </span>
-                        </div>
-                        <button onclick="logoutUser()" class="ml-4 text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Wyloguj</button>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                            <p class="text-sm text-gray-500 uppercase">Liczba Poleceń</p>
-                            <p id="stat-referrals" class="text-3xl font-bold text-black">${stats.count}</p>
-                        </div>
-                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                            <p class="text-sm text-gray-500 uppercase">Zarobiona Prowizja</p>
-                            <p id="stat-points" class="text-3xl font-bold text-black">${formatPrice(stats.total_commission)}</p>
-                        </div>
-                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                            <p class="text-sm text-gray-500 uppercase">Zamówienia</p>
-                            <p id="stat-orders" class="text-3xl font-bold text-black">${profile?.total_orders || 0}</p>
-                        </div>
-                    </div>
-                    <div class="bg-black text-white p-6 rounded-lg mb-8">
-                        <p class="text-sm uppercase tracking-widest mb-2 opacity-70">Twój unikalny kod polecający</p>
-                        <div class="flex items-center gap-4">
-                            <code id="referral-code-display" class="text-2xl font-mono font-bold">${referralCode}</code>
-                            <button onclick="copyRefCode()" class="bg-white text-black px-4 py-2 rounded font-bold hover:bg-gray-200 transition">
-                                KOPIUJ
-                            </button>
-                        </div>
-                        <p id="next-rank-info" class="mt-4 text-sm opacity-80 italic">
-                            ${stats.count < 3 ? `Zaproś jeszcze ${3 - stats.count} osoby, aby zostać Nosicielem.` : (stats.count < 10 ? `Zaproś jeszcze ${10 - stats.count} osób, aby zostać Strażnikiem Kręgu.` : "Jesteś legendą Adelbertus!")}
-                        </p>
-                    </div>
-                </div>
-            `;
-            const dashboardSection = document.getElementById('dashboard');
-            if (dashboardSection) dashboardSection.innerHTML = dashboardHtml;
-        }
-
-        function renderLoginForm() {
-            const loginHtml = `
-                <div class="max-w-md mx-auto mt-12 p-8 bg-black rounded-2xl shadow-2xl border border-gold">
-                    <div class="text-center mb-6">
-                        <i class="fas fa-shield-alt text-5xl text-gold mb-3"></i>
-                        <h2 class="text-3xl font-bold text-white font-playfair">Dostęp do Kręgu</h2>
-                        <div class="w-16 h-0.5 bg-gold mx-auto my-3"></div>
-                        <p class="text-gray-400 text-sm">Zaloguj się, aby zobaczyć swoje statystyki i kod polecający</p>
-                    </div>
-                    <form id="loginForm" class="space-y-5">
-                        <div>
-                            <label class="block text-gold text-sm font-bold mb-2" for="loginEmail">Email</label>
-                            <input type="email" id="loginEmail" required class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-gold transition">
-                        </div>
-                        <div>
-                            <label class="block text-gold text-sm font-bold mb-2" for="loginPassword">Hasło</label>
-                            <input type="password" id="loginPassword" required class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-gold transition">
-                        </div>
-                        <button type="submit" class="w-full bg-gold hover:bg-dark-gold text-black font-bold py-3 rounded-lg transition duration-300 transform hover:scale-105">
-                            Zaloguj się
-                        </button>
-                    </form>
-                    <div class="mt-6 text-center">
-                        <p class="text-gray-400">Nie masz konta? 
-                            <button onclick="showRegisterForm()" class="text-gold hover:underline font-semibold">Zarejestruj się</button>
-                        </p>
-                    </div>
-                    <div id="authMessage" class="mt-4 text-center text-sm text-red-500"></div>
-                    <div class="decision-note text-center mt-6">Zostawisz to teraz — może nie wrócić.</div>
-                    <div class="hidden-symbol text-right mt-2">π ♈</div>
-                </div>
-            `;
-            const dashboardSection = document.getElementById('dashboard');
-            if (dashboardSection) dashboardSection.innerHTML = loginHtml;
-            const loginForm = document.getElementById('loginForm');
-            if (loginForm) {
-                loginForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const email = document.getElementById('loginEmail').value;
-                    const password = document.getElementById('loginPassword').value;
-                    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
-                    if (error) {
-                        document.getElementById('authMessage').innerText = error.message;
-                    } else {
-                        await loadUserDashboard();
-                    }
-                });
-            }
-        }
-
-        window.showRegisterForm = function() {
-            const registerHtml = `
-                <div class="max-w-md mx-auto mt-12 p-8 bg-black rounded-2xl shadow-2xl border border-gold">
-                    <div class="text-center mb-6">
-                        <i class="fas fa-user-plus text-5xl text-gold mb-3"></i>
-                        <h2 class="text-3xl font-bold text-white font-playfair">Dołącz do Kręgu</h2>
-                        <div class="w-16 h-0.5 bg-gold mx-auto my-3"></div>
-                        <p class="text-gray-400 text-sm">Zarejestruj się, aby zacząć polecać i zbierać prowizję</p>
-                    </div>
-                    <form id="registerForm" class="space-y-5">
-                        <div>
-                            <label class="block text-gold text-sm font-bold mb-2" for="regEmail">Email</label>
-                            <input type="email" id="regEmail" required class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-gold transition">
-                        </div>
-                        <div>
-                            <label class="block text-gold text-sm font-bold mb-2" for="regPassword">Hasło</label>
-                            <input type="password" id="regPassword" required class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-gold transition">
-                        </div>
-                        <button type="submit" class="w-full bg-gold hover:bg-dark-gold text-black font-bold py-3 rounded-lg transition duration-300 transform hover:scale-105">
-                            Zarejestruj się
-                        </button>
-                    </form>
-                    <div class="mt-6 text-center">
-                        <p class="text-gray-400">Masz już konto? 
-                            <button onclick="renderLoginForm()" class="text-gold hover:underline font-semibold">Zaloguj się</button>
-                        </p>
-                    </div>
-                    <div id="regMessage" class="mt-4 text-center text-sm text-red-500"></div>
-                    <div class="decision-note text-center mt-6">Zostawisz to teraz — może nie wrócić.</div>
-                    <div class="hidden-symbol text-right mt-2">π ♈</div>
-                </div>
-            `;
-            const dashboardSection = document.getElementById('dashboard');
-            if (dashboardSection) dashboardSection.innerHTML = registerHtml;
-            const registerForm = document.getElementById('registerForm');
-            if (registerForm) {
-                registerForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const email = document.getElementById('regEmail').value;
-                    const password = document.getElementById('regPassword').value;
-                    const savedRefCode = localStorage.getItem('adelbertus_ref_code');
-                    const { data, error } = await supabaseClient.auth.signUp({
-                        email: email,
-                        password: password,
-                        options: { data: { referred_by_code: savedRefCode } }
-                    });
-                    if (error) {
-                        document.getElementById('regMessage').innerText = error.message;
-                    } else {
-                        document.getElementById('regMessage').innerText = "Sprawdź swoją skrzynkę email, aby potwierdzić konto!";
-                        localStorage.removeItem('adelbertus_ref_code');
-                    }
-                });
-            }
-        };
-
-        window.logoutUser = async function() {
-            await supabaseClient.auth.signOut();
-            currentUser = null;
-            renderLoginForm();
-        };
-
-        window.copyRefCode = function() {
-            const codeElement = document.getElementById('referral-code-display');
-            if (codeElement) {
-                navigator.clipboard.writeText(codeElement.innerText);
-                alert("Kod skopiowany!");
-            }
-        };
 
         // ============================================================
         // DANE PRODUKTÓW DO MODALU SKLEPU
@@ -3374,13 +3206,131 @@
             return total;
         }
 
-        supabaseClient.auth.onAuthStateChange(async (event, session) => {
-            if (event === 'SIGNED_IN') {
-                await loadUserDashboard();
-            } else if (event === 'SIGNED_OUT') {
-                renderLoginForm();
+        function deselect() { state.selectedId = null; updateLayerUI(); if(ctxCanvas && canvasEl) renderCanvas(); }
+
+        // ========== LOGOWANIE + DASHBOARD ==========
+        const authContainer = document.getElementById('auth-container');
+        const dashContainer = document.getElementById('dashboard-container');
+
+        function renderAuthForm() {
+            authContainer.innerHTML = `
+                <div class="login-container">
+                    <h2>Wejdź do Kręgu</h2>
+                    <form id="auth-form">
+                        <input type="email" id="auth-email" class="login-input" placeholder="E-mail" required>
+                        <input type="password" id="auth-password" class="login-input" placeholder="Hasło" required>
+                        <button type="submit" id="auth-submit-btn" class="login-btn">Zaloguj się</button>
+                    </form>
+                    <div class="toggle-auth">
+                        Nie masz konta? <span id="toggle-register">Zarejestruj się</span>
+                    </div>
+                </div>
+            `;
+            let isLogin = true;
+            const form = document.getElementById('auth-form');
+            const toggleSpan = document.getElementById('toggle-register');
+            const submitBtn = document.getElementById('auth-submit-btn');
+            toggleSpan.addEventListener('click', () => {
+                isLogin = !isLogin;
+                submitBtn.textContent = isLogin ? 'Zaloguj się' : 'Zarejestruj się';
+                toggleSpan.textContent = isLogin ? 'Zarejestruj się' : 'Zaloguj się';
+            });
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('auth-email').value;
+                const password = document.getElementById('auth-password').value;
+                if (isLogin) {
+                    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                    if (error) alert('Błąd logowania: ' + error.message);
+                    else checkUser();
+                } else {
+                    const savedRefCode = localStorage.getItem('adelbertus_ref_code');
+                    const { error } = await supabaseClient.auth.signUp({
+                        email, password,
+                        options: { data: { referred_by_code: savedRefCode } }
+                    });
+                    if (error) alert('Błąd rejestracji: ' + error.message);
+                    else {
+                        alert('Zarejestrowano! Sprawdź maila w celu potwierdzenia.');
+                        localStorage.removeItem('adelbertus_ref_code');
+                    }
+                }
+            });
+        }
+
+        async function renderDashboard(user) {
+            const { data: profile, error } = await supabaseClient
+                .from('users_profiles')
+                .select('*')
+                .eq('id', user.id)
+                .single();
+            if (error || !profile) {
+                dashContainer.innerHTML = '<div class="text-center text-red-500">Błąd ładowania profilu.</div>';
+                return;
             }
-        });
+            dashContainer.innerHTML = `
+                <div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg border border-gray-100 my-8">
+                    <div class="dashboard-header">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">Witaj w Kręgu, <span>${profile.username || profile.email}</span></h2>
+                            <p class="text-gray-500">Twoja aktywność buduje markę Adelbertus</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-4 py-2 rounded-full bg-black text-white text-sm font-semibold uppercase tracking-widest">${profile.rank_slug.toUpperCase()}</span>
+                        </div>
+                        <button id="logout-btn" class="logout-btn">Wyloguj</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-sm text-gray-500 uppercase">Polecenia</p>
+                            <p class="text-3xl font-bold text-black">${profile.total_referrals || 0}</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-sm text-gray-500 uppercase">Punkty</p>
+                            <p class="text-3xl font-bold text-black">${profile.points || 0}</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-sm text-gray-500 uppercase">Zamówienia</p>
+                            <p class="text-3xl font-bold text-black">${profile.total_orders || 0}</p>
+                        </div>
+                    </div>
+                    <div class="bg-black text-white p-6 rounded-lg mb-8">
+                        <p class="text-sm uppercase tracking-widest mb-2 opacity-70">Twój unikalny kod polecający</p>
+                        <div class="flex items-center gap-4">
+                            <code id="dashboard-ref-code" class="text-2xl font-mono font-bold">${profile.referral_code}</code>
+                            <button onclick="copyRefCodeFromDashboard()" class="bg-white text-black px-4 py-2 rounded font-bold hover:bg-gray-200 transition">KOPIUJ</button>
+                        </div>
+                        <p id="dashboard-next-rank" class="mt-4 text-sm opacity-80 italic">
+                            ${profile.total_referrals < 3 ? `Zaproś jeszcze ${3 - profile.total_referrals} osoby, aby zostać Nosicielem.` :
+                              profile.total_referrals < 10 ? `Zaproś jeszcze ${10 - profile.total_referrals} osób, aby zostać Strażnikiem Kręgu.` :
+                              "Jesteś legendą Adelbertus!"}
+                        </p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('logout-btn').addEventListener('click', async () => {
+                await supabaseClient.auth.signOut();
+                checkUser();
+            });
+            window.copyRefCodeFromDashboard = function() {
+                const codeElem = document.getElementById('dashboard-ref-code');
+                if (codeElem) navigator.clipboard.writeText(codeElem.innerText);
+                alert('Kod skopiowany!');
+            };
+        }
+
+        async function checkUser() {
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            if (user) {
+                authContainer.style.display = 'none';
+                dashContainer.style.display = 'block';
+                await renderDashboard(user);
+            } else {
+                authContainer.style.display = 'block';
+                dashContainer.style.display = 'none';
+                renderAuthForm();
+            }
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
             initNavigation();
@@ -3406,7 +3356,7 @@
                     else { showSection('shop'); document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active')); if(shopBtn) shopBtn.classList.add('active'); }
                 }
             });
-            loadUserDashboard();
+            checkUser();
         });
         document.addEventListener('keydown', e => { if(e.key === 'Escape'){ window.closeProductModal(); window.closeCategoryModal(); } });
         window.addToCart = addToCart;
