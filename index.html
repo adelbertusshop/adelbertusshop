@@ -92,9 +92,9 @@
     <!-- ===== TAILWIND ===== -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- ===== SUPABASE + EMAILJS (async) ===== -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+    <!-- ===== SUPABASE + EMAILJS (sync - required before page scripts) ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <!-- ===== PAYPAL (loaded after DOM) ===== -->
     <script>
@@ -3155,4 +3155,5 @@
     </script>
 </body>
 </html>
+
 
