@@ -3,18 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>AdelbertusShop — π nie jest liczbą. Jest postawą.</title>
-    <meta name="description" content="Adelbertus – custom clothing dla tych, którzy liczą dalej niż do trzech i myślą głębiej niż scrollują. Odkryj kolekcję π.">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
-    <script src="https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN"></script>
+
+    <!-- ===== SEO ===== -->
+    <title>AdelbertusShop — Bluzy i Koszulki z Nadrukiem | Polska Marka Odzieżowa</title>
+    <meta name="description" content="Adelbertus — polska marka odzieżowa. Bluzy z nadrukiem od 170 zł, koszulki od 80 zł, czapki od 90 zł. Custom clothing, konfigurator DRIP STUDIO, wysyłka w 48h.">
+    <meta name="keywords" content="bluzy z nadrukiem, koszulki custom, polska marka odzieżowa, streetwear, Adelbertus, odzież na zamówienie, DRIP STUDIO">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="AdelbertusShop">
+    <link rel="canonical" href="https://adelbertusshop.com/">
+
+    <!-- ===== OPEN GRAPH ===== -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adelbertusshop.com/">
+    <meta property="og:title" content="AdelbertusShop — Bluzy i Koszulki z Nadrukiem">
+    <meta property="og:description" content="Polska marka odzieżowa. Bluzy od 170 zł, koszulki od 80 zł. Custom clothing z konfiguratorem DRIP STUDIO.">
+    <meta property="og:image" content="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="AdelbertusShop">
+
+    <!-- ===== TWITTER CARD ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AdelbertusShop — Bluzy i Koszulki z Nadrukiem">
+    <meta name="twitter:description" content="Polska marka odzieżowa. Bluzy od 170 zł, koszulki od 80 zł. Custom clothing z konfiguratorem DRIP STUDIO.">
+    <meta name="twitter:image" content="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg">
+
+    <!-- ===== SCHEMA.ORG — ClothingStore ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ClothingStore",
+        "name": "AdelbertusShop",
+        "url": "https://adelbertusshop.com",
+        "description": "Polska marka odzieżowa. Custom clothing — bluzy, koszulki, czapki z nadrukiem na zamówienie.",
+        "image": "https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg",
+        "priceRange": "80-170 PLN",
+        "currenciesAccepted": "PLN",
+        "paymentAccepted": "PayPal, BLIK, Przelew",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+48604296360",
+            "contactType": "customer service",
+            "availableLanguage": "Polish"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Kolekcja Adelbertus",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": { "@type": "Product", "name": "Koszulki z nadrukiem", "description": "Custom koszulki z unikalnymi nadrukami" },
+                    "price": "80",
+                    "priceCurrency": "PLN"
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": { "@type": "Product", "name": "Bluzy z nadrukiem", "description": "Premium bluzy streetwear z nadrukami" },
+                    "price": "170",
+                    "priceCurrency": "PLN"
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": { "@type": "Product", "name": "Czapki", "description": "Czapki z logo Adelbertus" },
+                    "price": "90",
+                    "priceCurrency": "PLN"
+                }
+            ]
+        }
+    }
+    </script>
+
+    <!-- ===== PERFORMANCE: Preconnect critical origins ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link rel="preconnect" href="https://i.ibb.co" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://www.paypal.com">
+
+    <!-- ===== FONTS: Only what's actually used ===== -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- ===== CSS: Font Awesome (deferred) ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- ===== TAILWIND ===== -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- ===== SUPABASE + EMAILJS (async) ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+
+    <!-- ===== PAYPAL (loaded after DOM) ===== -->
+    <script>
+    window.addEventListener('load', function() {
+        var s = document.createElement('script');
+        s.src = 'https://www.paypal.com/sdk/js?client-id=BAApXIlx_i9yxgPZvc4vuso00U8LSVbTZl57n3Pcfr0LfvppkHOPgUjsoN8-QLjxxH-Qb1DlbNOd-Pb2Z4&components=hosted-buttons&disable-funding=venmo&currency=PLN';
+        s.onload = function() { window._paypalReady = true; };
+        document.head.appendChild(s);
+    });
+    </script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
@@ -1798,7 +1888,7 @@
           <div class="shop-category-grid">
             <div class="shop-cat-tile" data-category="koszulka" onclick="openCategoryModal('koszulka')">
               <div class="shop-cat-img-wrap">
-                <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulki">
+                <img src="https://i.ibb.co/Z6x5MTH6/Screenshot-20250714-002343-Files-by-Google-2.jpg" alt="Koszulki" loading="lazy">
                 <div class="shop-cat-overlay">
                   <span class="shop-cat-badge">od 80 zł</span>
                 </div>
@@ -1813,7 +1903,7 @@
 
             <div class="shop-cat-tile" data-category="bluza" onclick="openCategoryModal('bluza')">
               <div class="shop-cat-img-wrap">
-                <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluzy">
+                <img src="https://i.ibb.co/kgrCffk4/Screenshot-20250714-002247-Files-by-Google-2.jpg" alt="Bluzy" loading="lazy">
                 <div class="shop-cat-overlay">
                   <span class="shop-cat-badge">od 170 zł</span>
                 </div>
@@ -1828,7 +1918,7 @@
 
             <div class="shop-cat-tile" data-category="czapka" onclick="openCategoryModal('czapka')">
               <div class="shop-cat-img-wrap">
-                <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapki">
+                <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapki" loading="lazy">
                 <div class="shop-cat-overlay">
                   <span class="shop-cat-badge">od 99 zł</span>
                 </div>
@@ -2712,10 +2802,16 @@
             if (!container) return;
             container.innerHTML = '';
             if (cart.length === 0) return;
-            if (typeof paypal !== 'undefined' && paypal.HostedButtons) {
-                try {
-                    paypal.HostedButtons({ hostedButtonId: "L4639S4363CZE" }).render("#paypal-container");
-                } catch(e) { console.warn("PayPal render error:", e); }
+            const tryRender = () => {
+                if (typeof paypal !== 'undefined' && paypal.HostedButtons) {
+                    try {
+                        paypal.HostedButtons({ hostedButtonId: "L4639S4363CZE" }).render("#paypal-container");
+                    } catch(e) { console.warn("PayPal render error:", e); }
+                } else {
+                    setTimeout(tryRender, 500);
+                }
+            };
+            tryRender();
             }
         }
 
@@ -3059,3 +3155,4 @@
     </script>
 </body>
 </html>
+
