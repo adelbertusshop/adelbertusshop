@@ -1715,6 +1715,141 @@
             font-weight: 700;
             color: var(--color-gold);
         }
+        /* ===== PREMIUM PRODUCT CARDS ===== */
+        .smodal-prod-card {
+            position: relative;
+            background: #111;
+            border: 1px solid rgba(255,215,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .smodal-prod-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255,215,0,0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,215,0,0.08);
+        }
+        .smodal-prod-img-wrap {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            background: #0a0a0a;
+        }
+        .smodal-prod-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            display: block;
+        }
+        .smodal-prod-card:hover .smodal-prod-img-wrap img {
+            transform: scale(1.08);
+        }
+        .smodal-prod-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .smodal-prod-card:hover .smodal-prod-overlay {
+            opacity: 1;
+        }
+        .smodal-quick-view {
+            background: rgba(255,215,0,0.95);
+            color: #000;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 10px 20px;
+        }
+        .smodal-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            z-index: 2;
+        }
+        .smodal-badge-hot {
+            background: #c0392b;
+            color: #fff;
+        }
+        .smodal-badge-new {
+            background: #f39c12;
+            color: #000;
+        }
+        .smodal-prod-card-info {
+            padding: 14px;
+            position: relative;
+        }
+        .smodal-prod-card-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #f0ebe0;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .smodal-sizes-preview {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .smodal-sizes-preview span {
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            border: 1px solid rgba(255,215,0,0.2);
+            color: rgba(255,215,0,0.6);
+            letter-spacing: 0.05em;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .smodal-prod-card-price {
+            margin-bottom: 12px;
+        }
+        .smodal-add-btn {
+            width: 100%;
+            padding: 9px 0;
+            background: transparent;
+            border: 1px solid rgba(255,215,0,0.4);
+            color: #ffd700;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .smodal-add-btn:hover {
+            background: #ffd700;
+            color: #000;
+            border-color: #ffd700;
+        }
+
+        /* Category tiles premium upgrade */
+        .shop-cat-tile {
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        }
+        .shop-cat-tile:hover {
+            transform: translateY(-8px) !important;
+            box-shadow: 0 24px 48px rgba(0,0,0,0.6), 0 0 24px rgba(255,215,0,0.1) !important;
+        }
+        .shop-cat-img-wrap img {
+            transition: transform 0.6s ease !important;
+        }
+        .shop-cat-tile:hover .shop-cat-img-wrap img {
+            transform: scale(1.06) !important;
+        }
+
     </style>  
 <script>
 (function() {
@@ -1920,7 +2055,7 @@
               <div class="shop-cat-img-wrap">
                 <img src="https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png" alt="Czapki" loading="lazy">
                 <div class="shop-cat-overlay">
-                  <span class="shop-cat-badge">od 99 zł</span>
+                  <span class="shop-cat-badge">od 60 zł</span>
                 </div>
               </div>
               <div class="shop-cat-info">
@@ -2570,9 +2705,9 @@
                 { name:'Bluza "Premium"', price:170, images:['https://i.ibb.co/N2t3thBF/Messenger-creation-C3-B74628-A8-E4-4293-B46-D-754-D2-C97-F8-CC.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL','XXL'] },
             ],
             czapka: [
-                { name:'Czapka "Classic"', price:99, images:['https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL'] },
-                { name:'Czapka "Sport"', price:99, images:['https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL'] },
-                { name:'Czapka "Adelbertus"', price:90, images:['https://i.ibb.co/FLQYNBnj/Screenshot-2025-08-24-13-01-48.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL'] },
+                { name:'Czapka "Classic"', price:60, images:['https://i.ibb.co/7tmM2QRP/file-000000004d38620a9f9d0d8d43926ba0.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL'] },
+                { name:'Czapka "Sport"', price:60, images:['https://i.ibb.co/WNYfpVSv/Messenger-creation-BA0-DA340-47-E5-44-EB-BE4-B-B502-F85536-FC.jpg'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL'] },
+                { name:'Czapka "Adelbertus"', price:60, images:['https://i.ibb.co/FLQYNBnj/Screenshot-2025-08-24-13-01-48.png'], colors:['#000','#fff','#800020','#36454F'], sizes:['S','M','L','XL'] },
             ]
         };
 
@@ -2612,10 +2747,24 @@
                 const card = document.createElement('div');
                 card.className = 'smodal-prod-card';
                 card.innerHTML = `
-                    <img src="${prod.images[0]}" alt="${prod.name}" loading="lazy">
+                    <div class="smodal-prod-img-wrap">
+                        <img src="${prod.images[0]}" alt="${prod.name}" loading="lazy">
+                        <div class="smodal-prod-overlay">
+                            <span class="smodal-quick-view">Szybki podgląd</span>
+                        </div>
+                        ${idx === 0 ? '<span class="smodal-badge smodal-badge-hot">🔥 BESTSELLER</span>' : ''}
+                        ${idx === slice.length - 1 ? '<span class="smodal-badge smodal-badge-new">NOWOŚĆ</span>' : ''}
+                    </div>
                     <div class="smodal-prod-card-info">
-                        <div class="smodal-prod-card-name">Artefakt: ${prod.name}</div>
-                        <div class="smodal-prod-card-price"><div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">${prod.price} zł</span></div></div>
+                        <div class="smodal-prod-card-name">${prod.name}</div>
+                        <div class="smodal-sizes-preview">${prod.sizes.map(s => `<span>${s}</span>`).join('')}</div>
+                        <div class="smodal-prod-card-price">
+                            <div class="price-wrapper">
+                                <span class="price-old">${Math.round(prod.price * 1.25)} zł</span>
+                                <span class="price-new">${prod.price} zł</span>
+                            </div>
+                        </div>
+                        <button class="smodal-add-btn">Do koszyka →</button>
                         <div class="hidden-symbol" style="position:absolute; bottom:4px; right:8px;">π ♈</div>
                     </div>`;
                 card.addEventListener('click', () => openProductModal(_catCurrent, start + idx));
@@ -2650,7 +2799,7 @@
             const mainImg = document.getElementById('sprodMainImg');
             const qtyInput = document.getElementById('sprodQty');
             if (titleEl) titleEl.textContent = `Artefakt: ${prod.name}`;
-            if (priceEl) priceEl.innerHTML = `<div class="price-wrapper"><span class="price-old">120 zł</span><span class="price-new">${prod.price} zł</span></div>`;
+            if (priceEl) priceEl.innerHTML = `<div class="price-wrapper"><span class="price-old">${Math.round(prod.price * 1.25)} zł</span><span class="price-new">${prod.price} zł</span></div>`;
             if (mainImg) mainImg.src = prod.images[0];
             if (qtyInput) qtyInput.value = 1;
             const artifactSpan = document.getElementById('artifactNumber');
@@ -3154,6 +3303,7 @@
     </script>
 </body>
 </html>
+
 
 
 
