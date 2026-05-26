@@ -2398,7 +2398,7 @@
 
     <script type="module">
         import emailjs from 'https://cdn.skypack.dev/@emailjs/browser@4';
-        emailjs.init("VzYZ8Pcs1YfVwebOU");
+        emailjs.init("XLc3EHKvNjMA4X6jC");
 
         // ===== CUSTOM ORDER FORM =====
         const customOrderForm = document.getElementById('customOrderForm');
@@ -2426,11 +2426,15 @@
                 txt.textContent = 'Wysyłanie...';
 
                 try {
-                    await emailjs.send('service_kdttscu', 'template_wrz8hxi', {
-                        'nazwa użytkownika': name,
-                        'adres e-mail użytkownika': email,
-                        'user_email': email,
-                        'wiadomość': `CUSTOM ORDER\n\nProdukt: ${product}\nKolor: ${color}\nRozmiar: ${size}\nTelefon: ${phone || 'nie podano'}\nInspiracja: ${ref || 'brak'}\n\nOpis grafiki:\n${desc}`
+                    await emailjs.send('service_qh3ecos', 'template_c66z5jb', {
+                        co_name: name,
+                        co_email: email,
+                        co_product: product,
+                        co_color: color,
+                        co_size: size,
+                        co_phone: phone || 'nie podano',
+                        co_ref: ref || 'brak',
+                        co_desc: desc
                     });
                     document.getElementById('co_success').style.display = 'block';
                     document.getElementById('co_error').style.display = 'none';
@@ -2452,7 +2456,7 @@
                 alert("Wpisz adres e-mail.");
                 return;
             }
-            emailjs.send("service_ur3dpv9", "template_064b7uo", { to_email: email })
+            emailjs.send("service_qh3ecos", "template_c66z5jb", { to_email: email })
                 .then(() => {
                     alert("Zaproszenie wysłane!");
                     document.getElementById("referral-email").value = "";
@@ -3319,4 +3323,5 @@
     </script>
 </body>
 </html>
+
 
