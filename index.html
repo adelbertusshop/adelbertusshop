@@ -2070,119 +2070,88 @@
         </section>
 
         <section id="configurator">
-            <div class="configurator-section">
-                <div class="top-row">
-                    <h1 class="top-title">AdelbertusShop - Premium Konfigurator</h1>
-                    <p class="subtle">Brutalist streetwear design studio</p>
+            <div style="max-width:900px;margin:0 auto;padding:3rem 1.5rem;">
+                <div style="text-align:center;margin-bottom:3rem;">
+                    <div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:0.4em;color:var(--color-gold);text-transform:uppercase;margin-bottom:1rem;">// Custom Order</div>
+                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);color:#f0ebe0;line-height:1.2;margin-bottom:1rem;">Zamów własną<br><span style="color:var(--color-gold);">grafikę</span></h2>
+                    <p style="color:#8a8070;font-size:1rem;line-height:1.8;max-width:500px;margin:0 auto;">Opisz co chcesz — a my to wykonamy. Żadnych kompromisów, żadnych szablonów. Twój projekt, nasze wykonanie.</p>
                 </div>
-                <div class="configurator">
-                    <div class="panel" style="grid-row: span 2;">
-                        <div class="panel-header">Design Tools</div>
-                        <div class="panel-body">
-                            <div class="section"><h3>Product color</h3><div id="colorSwatches" class="tool-grid"></div></div>
-                            <div class="section"><h3>Tekst</h3>
-                                <div class="field-row"><input id="liveText" type="text" placeholder="Wpisz tekst..."/></div>
-                                <div class="field-row"><select id="fontFamily"></select></div>
-                                <div class="field-row"><label style="width:100%">Rozmiar: <span id="fontSizeLabel">36</span>px</label><input id="fontSize" type="range" min="12" max="120" value="36"/></div>
-                                <div class="field-row"><input id="textColor" type="color" value="#ffffff"/><div class="toggle-group" id="presetTextColors"></div></div>
-                                <div class="field-row"><div class="toggle" id="boldBtn">B</div><div class="toggle" id="italicBtn">I</div><div class="toggle" id="underlineBtn">U</div></div>
-                                <div class="field-row"><button class="btn primary" id="addTextBtn">ADD TEXT</button></div>
-                            </div>
-                            <div class="section"><h3>Image Upload</h3>
-                                <div id="dropZone" style="border:1px dashed #555; border-radius:8px; padding:12px; text-align:center; color:#ccc;">Przeciągnij obraz lub kliknij</div>
-                                <div class="field-row" style="margin-top:8px;"><button class="btn" id="addImageBtn">ADD IMAGE</button></div>
-                            </div>
-                            <div class="section"><h3>Warstwy</h3>
-                                <div class="layer-controls" id="layerControlPanel">
-                                    <div class="field-row"><span id="selectedLayerName">Brak wybranej warstwy</span></div>
-                                    <div class="editor-grid">
-                                        <div><label>X</label><input id="layerX" type="number" /></div>
-                                        <div><label>Y</label><input id="layerY" type="number" /></div>
-                                        <div><label>Rotacja</label><input id="layerRotation" type="range" min="0" max="360" /></div>
-                                        <div><label>Skala</label><input id="layerScale" type="range" min="50" max="300" /></div>
-                                        <div style="grid-column: span 2;"><label>Opacity</label><input id="layerOpacity" type="range" min="0" max="100" /></div>
-                                    </div>
-                                    <div class="field-row">
-                                        <button class="btn btn-small" id="bringForward">↗</button>
-                                        <button class="btn btn-small" id="sendBackward">↙</button>
-                                        <button class="btn btn-small" id="toFront">⤴</button>
-                                        <button class="btn btn-small" id="toBack">⤵</button>
-                                    </div>
-                                    <div class="field-row">
-                                        <button class="btn btn-small" id="duplicateLayer">Kopiuj</button>
-                                        <button class="btn btn-small" id="deleteLayer">Usuń</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h3>Lista warstw</h3>
-                                <ul id="layersList" class="layers-list"></ul>
-                            </div>
-                        </div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(212,175,55,0.1);margin-bottom:3rem;">
+                    <div style="background:#111;padding:2rem;text-align:center;">
+                        <div style="font-size:2rem;margin-bottom:0.75rem;">✍️</div>
+                        <div style="font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--color-gold);text-transform:uppercase;margin-bottom:0.5rem;">Krok 1</div>
+                        <div style="font-size:0.9rem;color:#f0ebe0;font-weight:600;">Opisz projekt</div>
+                        <div style="font-size:0.8rem;color:#5a5248;margin-top:0.25rem;line-height:1.5;">Wypełnij formularz poniżej</div>
                     </div>
-                    <div class="panel">
-                        <div class="panel-header">Product Selector + Canvas</div>
-                        <div class="panel-body">
-                            <div class="product-row">
-                                <div class="product-card-config active" data-product="hoodie"><h4>Bluza</h4><p>170 zł</p><div class="hidden-symbol">π ♈</div></div>
-                                <div class="product-card-config" data-product="tshirt"><h4>Koszulka</h4><p>80 zł</p><div class="hidden-symbol">π ♈</div></div>
-                                <div class="product-card-config" data-product="cap"><h4>Czapka</h4><p>99 zł</p><div class="hidden-symbol">π ♈</div></div>
-                            </div>
-                            <div class="canvas-wrap">
-                                <div class="canvas-top">
-                                    <div id="activeName">Bluza</div>
-                                    <div>
-                                        <button class="btn btn-small" id="gridToggle">Pokaż siatkę</button> 
-                                        <span id="zoomLabel">Zoom 100%</span>
-                                    </div>
-                                </div>
-                                <canvas id="studioCanvas" width="500" height="560"></canvas>
-                                <div class="field-row"><label class="help">Przeciągnij, skaluj, obracaj, kliknij warstwę aby edytować</label></div>
-                            </div>
-                        </div>
+                    <div style="background:#111;padding:2rem;text-align:center;">
+                        <div style="font-size:2rem;margin-bottom:0.75rem;">🎨</div>
+                        <div style="font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--color-gold);text-transform:uppercase;margin-bottom:0.5rem;">Krok 2</div>
+                        <div style="font-size:0.9rem;color:#f0ebe0;font-weight:600;">Tworzymy grafikę</div>
+                        <div style="font-size:0.8rem;color:#5a5248;margin-top:0.25rem;line-height:1.5;">Dostaniesz propozycję w 48h</div>
                     </div>
-                    <div class="panel" style="grid-row: span 2;">
-                        <div class="panel-header">Order Options</div>
-                        <div class="panel-body">
-                            <div class="section"><h3>Kolor produktu do druku</h3>
-                                <div id="orderColorGrid" class="tool-grid"></div>
-                                <div id="orderColorSelected" class="field-row"></div>
-                                <div class="mini-silhouette" id="orderPreview"></div>
-                            </div>
-                            <div class="section"><h3>Rozmiar</h3>
-                                <div class="size-grid" id="sizeGrid"></div>
-                                <div class="field-row"><button class="btn btn-small" id="sizeGuideBtn">Size guide</button></div>
-                                <div id="sizeGuide" class="help" style="display:none;">XS 50/67, S 52/69, M 54/71, L 57/74, XL 60/76, XXL 63/78, 2XL 66/80</div>
-                            </div>
-                            <div class="section"><h3>Ilość</h3>
-                                <div class="field-row">
-                                    <button class="btn btn-small" id="qtyMinus">−</button>
-                                    <input id="qtyInput" type="number" min="1" max="99" value="1" style="width:60px; text-align:center;"/>
-                                    <button class="btn btn-small" id="qtyPlus">+</button>
-                                </div>
-                                <div id="bulkHint" class="help"></div>
-                            </div>
-                            <div class="section"><h3>Cena</h3>
-                                <div class="field-row"><div style="font-size:1.9rem; font-weight:800; color:#e8ff00;" id="priceTag">170 zł</div></div>
-                                <div id="priceBreakdown" class="help"></div>
-                            </div>
-                            <div class="field-row">
-                                <button class="btn primary" id="exportPng">⬇ EKSPORTUJ PNG</button>
-                                <button class="btn primary" id="addToCartBtn">🛒 DODAJ DO KOSZYKA</button>
-                            </div>
-                            <div class="order-summary">
-                                <h3 style="margin:0 0 8px;font-size:1rem;">Podsumowanie</h3>
-                                <div class="summary-row"><span>Produkt</span><strong id="sumProduct">Bluza</strong></div>
-                                <div class="summary-row"><span>Kolor produktu</span><span id="sumColor">Czarny</span></div>
-                                <div class="summary-row"><span>Rozmiar</span><span id="sumSize">L</span></div>
-                                <div class="summary-row"><span>Ilość</span><span id="sumQty">1</span></div>
-                                <div class="summary-row"><span>Cena</span><strong id="sumTotal">170 zł</strong></div>
-                            </div>
-                            <div class="decision-note" style="text-align:center; margin-top:8px;">Zostawisz to teraz — może nie wrócić.</div>
-                            <div class="hidden-symbol" style="position:relative; text-align:right; margin-top:4px;">π ♈</div>
-                        </div>
+                    <div style="background:#111;padding:2rem;text-align:center;">
+                        <div style="font-size:2rem;margin-bottom:0.75rem;">📦</div>
+                        <div style="font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--color-gold);text-transform:uppercase;margin-bottom:0.5rem;">Krok 3</div>
+                        <div style="font-size:0.9rem;color:#f0ebe0;font-weight:600;">Zatwierdzasz i płacisz</div>
+                        <div style="font-size:0.8rem;color:#5a5248;margin-top:0.25rem;line-height:1.5;">Wysyłka w 3–7 dni roboczych</div>
                     </div>
                 </div>
+                <form id="customOrderForm" style="background:#111;border:1px solid rgba(212,175,55,0.2);padding:2.5rem;display:flex;flex-direction:column;gap:1.5rem;">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+                        <div>
+                            <label style="display:block;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--color-gold);text-transform:uppercase;margin-bottom:0.5rem;">// Imię i nazwisko</label>
+                            <input type="text" id="co_name" name="co_name" placeholder="Jan Kowalski" style="width:100%;background:#0a0a0a;border:1px solid rgba(212,175,55,0.15);color:#f0ebe0;padding:0.875rem 1rem;font-size:0.9rem;outline:none;font-family:'DM Sans',sans-serif;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--color-gold)'" onblur="this.style.borderColor='rgba(212,175,55,0.15)'">
+                        </div>
+                        <div>
+                            <label style="display:block;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--color-gold);text-transform:uppercase;margin-bottom:0.5rem;">// Email</label>
+                            <input type="email" id="co_email" name="co_email" placeholder="jan@email.pl" style="width:100%;background:#0a0a0a;border:1px solid rgba(212,175,55,0.15);color:#f0ebe0;padding:0.875rem 1rem;font-size:0.9rem;outline:none;font-family:'DM Sans',sans-serif;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--color-gold)'" onblur="this.style.borderColor='rgba(212,175,55,0.15)'">
+                        </div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;">
+                        <div>
+                            <label style="display:block;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--color-gold);text-transform:uppercase;margin-bottom:0.5rem;">// Produkt</label>
+                            <select id="co_product" name="co_product" style="width:100%;background:#0a0a0a;border:1px solid rgba(212,175,55,0.15);color:#f0ebe0;padding:0.875rem 1rem;font-size:0.9rem;outline:none;font-family:'DM Sans',sans-serif;appearance:none;cursor:pointer;">
+                                <option value="koszulka">Koszulka — 80 zł</option>
+                                <option value="bluza">Bluza — 170 zł</option>
+                                <option value="czapka">Czapka — 60 zł</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display:block;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--color-gold);text-transform:uppercase;margin-bottom:0.5rem;">// Kolor produktu</label>
+                            <select id="co_color" name="co_color" style="width:100%;background:#0a0a0a;border:1px solid rgba(212,175,55,0.15);color:#f0ebe0;padding:0.875rem 1rem;font-size:0.9rem;outline:none;font-family:'DM Sans',sans-serif;appearance:none;cursor:pointer;">
+                                <option>Czarny</option>
+                                <option>Biały</option>
+                                <option>Bordowy</option>
+                                <option>Grafitowy</option>
+                                <option>Szary</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display:block;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--color-gold);text-transform:uppercase;margin-bottom:0.5rem;">// Rozmiar</label>
+                            <select id="co_size" name="co_size" style="width:100%;background:#0a0a0a;border:1px solid rgba(212,175,55,0.15);color:#f0ebe0;padding:0.875rem 1rem;font-size:0.9rem;outline:none;font-family:'DM Sans',sans-serif;appearance:none;cursor:pointer;">
+                                <option>S</option><option>M</option><option selected>L</option><option>XL</option><option>XXL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label style="display:block;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--color-gold);text-transform:uppercase;margin-bottom:0.5rem;">// Opisz swoją grafikę</label>
+                        <textarea id="co_desc" name="co_desc" rows="5" placeholder="Opisz dokładnie jaka grafika Cię interesuje — motyw, styl, kolory, tekst, nastrój. Im więcej szczegółów, tym lepszy efekt końcowy..." style="width:100%;background:#0a0a0a;border:1px solid rgba(212,175,55,0.15);color:#f0ebe0;padding:0.875rem 1rem;font-size:0.9rem;outline:none;font-family:'DM Sans',sans-serif;resize:vertical;min-height:120px;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--color-gold)'" onblur="this.style.borderColor='rgba(212,175,55,0.15)'"></textarea>
+                    </div>
+                    <div>
+                        <label style="display:block;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--color-gold);text-transform:uppercase;margin-bottom:0.5rem;">// Inspiracja / link (opcjonalnie)</label>
+                        <input type="text" id="co_ref" name="co_ref" placeholder="https://... lub opisz słowami" style="width:100%;background:#0a0a0a;border:1px solid rgba(212,175,55,0.15);color:#f0ebe0;padding:0.875rem 1rem;font-size:0.9rem;outline:none;font-family:'DM Sans',sans-serif;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--color-gold)'" onblur="this.style.borderColor='rgba(212,175,55,0.15)'">
+                    </div>
+                    <div>
+                        <label style="display:block;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--color-gold);text-transform:uppercase;margin-bottom:0.5rem;">// Telefon (opcjonalnie)</label>
+                        <input type="tel" id="co_phone" name="co_phone" placeholder="+48 600 000 000" style="width:100%;background:#0a0a0a;border:1px solid rgba(212,175,55,0.15);color:#f0ebe0;padding:0.875rem 1rem;font-size:0.9rem;outline:none;font-family:'DM Sans',sans-serif;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--color-gold)'" onblur="this.style.borderColor='rgba(212,175,55,0.15)'">
+                    </div>
+                    <div id="co_success" style="display:none;background:rgba(0,200,100,0.08);border:1px solid rgba(0,200,100,0.3);color:#00c864;padding:1rem;font-family:'Courier New',monospace;font-size:0.85rem;">✓ Zamówienie wysłane — odezwiemy się w ciągu 48h.</div>
+                    <div id="co_error" style="display:none;background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.3);color:#ff5050;padding:1rem;font-family:'Courier New',monospace;font-size:0.85rem;">✗ Błąd wysyłki — napisz na adres sklepu.</div>
+                    <button type="submit" id="co_submit" style="width:100%;padding:1.1rem;background:var(--color-gold);color:#000;border:none;font-weight:700;font-size:0.9rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;font-family:'Montserrat',sans-serif;transition:background 0.25s;" onmouseover="this.style.background='#e8c870'" onmouseout="this.style.background='var(--color-gold)'">
+                        <span id="co_submit_text">Wyślij zamówienie →</span>
+                    </button>
+                    <p style="text-align:center;font-size:0.75rem;color:#5a5248;line-height:1.7;">Bezpłatna wycena. Płatność dopiero po zatwierdzeniu projektu.<br>Dostawa 3–7 dni roboczych · Darmowa przy zamówieniu od 200 zł</p>
+                </form>
             </div>
         </section>
 
@@ -2191,10 +2160,10 @@
                 <h2>Poleć znajomego</h2>
                 <p>Podziel się swoim kodem i zbieraj punkty!</p>
             </div>
-            <div class="bg-white rounded-2xl shadow-xl p-8 max-w-2xl mx-auto text-center">
+            <div style="background:#111;border:1px solid rgba(212,175,55,0.2);border-radius:4px;padding:2rem;max-width:700px;margin:0 auto;text-align:center;">
                 <i class="fas fa-gift text-6xl text-gold mb-4"></i>
-                <h3 class="text-2xl font-bold mb-2">Zaproś przyjaciela</h3>
-                <p class="text-gray-600 mb-6">Wyślij znajomemu kod i otrzymaj 10% zniżki na następne zakupy! Twój znajomy też dostanie 5% rabatu!</p>
+                <h3 style="font-size:1.5rem;font-weight:700;color:#f0ebe0;margin-bottom:0.5rem;">Zaproś przyjaciela</h3>
+                <p style="color:#8a8070;margin-bottom:1.5rem;line-height:1.7;">Wyślij znajomemu kod i otrzymaj 10% zniżki na następne zakupy! Twój znajomy też dostanie 5% rabatu!</p>
                 
                 <div class="mb-6">
                     <label for="referral-email" class="block text-left font-medium mb-2">E-mail znajomego:</label>
@@ -2291,13 +2260,13 @@
             
             <div class="grid md:grid-cols-3 gap-8 text-center">
                 <div class="p-6 bg-black/40 rounded-xl border border-purple-700 shadow-md hover:scale-105 transition">
-                    <h4 class="text-2xl font-bold mb-2">📱 BLIK TRANSFER</h4>
+                    <h4 style="font-size:1.5rem;font-weight:700;color:#f0ebe0;margin-bottom:0.5rem;">📱 BLIK TRANSFER</h4>
                     <div class="text-3xl font-mono font-bold text-green-400">573-939-925</div>
                     <p class="mt-2 text-sm">dopisz kod: <span class="font-bold">POMOC</span></p>
                 </div>
                 
                 <div class="p-6 bg-black/40 rounded-xl border border-purple-700 shadow-md hover:scale-105 transition">
-                    <h4 class="text-2xl font-bold mb-2">💳 PayPal</h4>
+                    <h4 style="font-size:1.5rem;font-weight:700;color:#f0ebe0;margin-bottom:0.5rem;">💳 PayPal</h4>
                     <a href="https://www.paypal.com/donate/?hosted_button_id=VG9UP4MTHHWYU" target="_blank" 
                        class="mt-4 inline-block bg-yellow-400 text-black font-bold px-4 py-2 rounded-lg hover:bg-yellow-300 transition">
                         ➡️ Przekaż darowiznę
@@ -2305,7 +2274,7 @@
                 </div>
                 
                 <div class="p-6 bg-black/40 rounded-xl border border-purple-700 shadow-md hover:scale-105 transition">
-                    <h4 class="text-2xl font-bold mb-2">📦 Dary rzeczowe</h4>
+                    <h4 style="font-size:1.5rem;font-weight:700;color:#f0ebe0;margin-bottom:0.5rem;">📦 Dary rzeczowe</h4>
                     <p>Tel: <span class="font-bold">604 296 360</span></p>
                     <p>Email: <span class="font-bold">mielniczukgrzegosz74@gmail.com</span></p>
                 </div>
@@ -2431,6 +2400,52 @@
         import emailjs from 'https://cdn.skypack.dev/@emailjs/browser@4';
         emailjs.init("VzYZ8Pcs1YfVwebOU");
 
+        // ===== CUSTOM ORDER FORM =====
+        const customOrderForm = document.getElementById('customOrderForm');
+        if (customOrderForm) {
+            customOrderForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const name    = document.getElementById('co_name').value.trim();
+                const email   = document.getElementById('co_email').value.trim();
+                const product = document.getElementById('co_product').value;
+                const color   = document.getElementById('co_color').value;
+                const size    = document.getElementById('co_size').value;
+                const desc    = document.getElementById('co_desc').value.trim();
+                const ref     = document.getElementById('co_ref').value.trim();
+                const phone   = document.getElementById('co_phone').value.trim();
+
+                if (!name || !email || !desc) {
+                    document.getElementById('co_error').style.display = 'block';
+                    document.getElementById('co_error').textContent = '✗ Wypełnij wymagane pola: imię, email i opis grafiki.';
+                    return;
+                }
+
+                const btn = document.getElementById('co_submit');
+                const txt = document.getElementById('co_submit_text');
+                btn.disabled = true;
+                txt.textContent = 'Wysyłanie...';
+
+                try {
+                    await emailjs.send('service_kdttscu', 'template_wrz8hxi', {
+                        'nazwa użytkownika': name,
+                        'adres e-mail użytkownika': email,
+                        'user_email': email,
+                        'wiadomość': `CUSTOM ORDER\n\nProdukt: ${product}\nKolor: ${color}\nRozmiar: ${size}\nTelefon: ${phone || 'nie podano'}\nInspiracja: ${ref || 'brak'}\n\nOpis grafiki:\n${desc}`
+                    });
+                    document.getElementById('co_success').style.display = 'block';
+                    document.getElementById('co_error').style.display = 'none';
+                    customOrderForm.reset();
+                } catch(err) {
+                    document.getElementById('co_error').style.display = 'block';
+                    document.getElementById('co_error').textContent = '✗ Błąd wysyłki — zadzwoń: 604 296 360';
+                    console.error(err);
+                } finally {
+                    btn.disabled = false;
+                    txt.textContent = 'Wyślij zamówienie →';
+                }
+            });
+        }
+
         window.sendReferralEmail = function() {
             const email = document.getElementById("referral-email").value;
             if (!email) {
@@ -2515,42 +2530,40 @@
             const rankMap = { wtajemniczony: "WTajemniczony", nosiciel: "Nosiciel", strażnik_kręgu: "Strażnik Kręgu" };
             const rankSlug = profile?.rank_slug || (stats.count >= 10 ? "strażnik_kręgu" : (stats.count >= 3 ? "nosiciel" : "wtajemniczony"));
             const dashboardHtml = `
-                <div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg border border-gray-100 my-8">
-                    <div class="flex items-center justify-between mb-8">
+                <div style="max-width:800px;margin:2rem auto;padding:2rem;background:#111;border:1px solid rgba(212,175,55,0.2);">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
                         <div>
-                            <h2 class="text-2xl font-bold text-gray-800">Witaj w Kręgu, <span id="user-name">${username}</span></h2>
-                            <p class="text-gray-500">Twoja aktywność buduje markę Adelbertus</p>
+                            <h2 style="font-size:1.5rem;font-weight:700;color:#f0ebe0;">Witaj w Kręgu, <span id="user-name">${username}</span></h2>
+                            <p style="color:#5a5248;font-size:0.85rem;margin-top:0.25rem;">Twoja aktywność buduje markę Adelbertus</p>
                         </div>
-                        <div class="text-right">
-                            <span id="rank-badge" class="px-4 py-2 rounded-full bg-black text-white text-sm font-semibold uppercase tracking-widest">
-                                ${rankMap[rankSlug] || "WTajemniczony"}
+                        <div style="display:flex;align-items:center;gap:1rem;">
+                            <span id="rank-badge" style="padding:0.4rem 1rem;background:#000;color:var(--color-gold);font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(212,175,55,0.4);">
+                                ${rankMap[rankSlug] || "WTAJEMNICZONY"}
                             </span>
-                        </div>
-                        <button onclick="logoutUser()" class="ml-4 text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Wyloguj</button>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                            <p class="text-sm text-gray-500 uppercase">Liczba Poleceń</p>
-                            <p id="stat-referrals" class="text-3xl font-bold text-black">${stats.count}</p>
-                        </div>
-                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                            <p class="text-sm text-gray-500 uppercase">Zarobiona Prowizja</p>
-                            <p id="stat-points" class="text-3xl font-bold text-black">${formatPrice(stats.total_commission)}</p>
-                        </div>
-                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                            <p class="text-sm text-gray-500 uppercase">Zamówienia</p>
-                            <p id="stat-orders" class="text-3xl font-bold text-black">${profile?.total_orders || 0}</p>
+                            <button onclick="logoutUser()" style="background:#c0392b;color:#fff;border:none;padding:0.4rem 1rem;font-size:0.8rem;font-weight:600;cursor:pointer;">Wyloguj</button>
                         </div>
                     </div>
-                    <div class="bg-black text-white p-6 rounded-lg mb-8">
-                        <p class="text-sm uppercase tracking-widest mb-2 opacity-70">Twój unikalny kod polecający</p>
-                        <div class="flex items-center gap-4">
-                            <code id="referral-code-display" class="text-2xl font-mono font-bold">${referralCode}</code>
-                            <button onclick="copyRefCode()" class="bg-white text-black px-4 py-2 rounded font-bold hover:bg-gray-200 transition">
-                                KOPIUJ
-                            </button>
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(212,175,55,0.1);margin-bottom:2rem;">
+                        <div style="background:#0a0a0a;padding:1.5rem;">
+                            <p style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.2em;color:#5a5248;text-transform:uppercase;margin-bottom:0.5rem;">Liczba Poleceń</p>
+                            <p id="stat-referrals" style="font-size:2.5rem;font-weight:700;color:#f0ebe0;font-family:'Playfair Display',serif;">${stats.count}</p>
                         </div>
-                        <p id="next-rank-info" class="mt-4 text-sm opacity-80 italic">
+                        <div style="background:#0a0a0a;padding:1.5rem;">
+                            <p style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.2em;color:#5a5248;text-transform:uppercase;margin-bottom:0.5rem;">Zarobiona Prowizja</p>
+                            <p id="stat-points" style="font-size:2.5rem;font-weight:700;color:var(--color-gold);font-family:'Playfair Display',serif;">${formatPrice(stats.total_commission)}</p>
+                        </div>
+                        <div style="background:#0a0a0a;padding:1.5rem;">
+                            <p style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.2em;color:#5a5248;text-transform:uppercase;margin-bottom:0.5rem;">Zamówienia</p>
+                            <p id="stat-orders" style="font-size:2.5rem;font-weight:700;color:#f0ebe0;font-family:'Playfair Display',serif;">${profile?.total_orders || 0}</p>
+                        </div>
+                    </div>
+                    <div style="background:#000;border:1px solid rgba(212,175,55,0.3);padding:2rem;margin-bottom:1.5rem;">
+                        <p style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.3em;color:#5a5248;text-transform:uppercase;margin-bottom:1rem;">Twój unikalny kod polecający</p>
+                        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+                            <code id="referral-code-display" style="font-size:1.8rem;font-weight:700;color:var(--color-gold);font-family:'Courier New',monospace;letter-spacing:0.1em;">${referralCode}</code>
+                            <button onclick="copyRefCode()" style="background:var(--color-gold);color:#000;border:none;padding:0.5rem 1.25rem;font-weight:700;font-size:0.8rem;letter-spacing:0.1em;cursor:pointer;font-family:'Montserrat',sans-serif;">KOPIUJ</button>
+                        </div>
+                        <p id="next-rank-info" style="margin-top:1rem;font-size:0.85rem;color:#5a5248;font-style:italic;">
                             ${stats.count < 3 ? `Zaproś jeszcze ${3 - stats.count} osoby, aby zostać Nosicielem.` : (stats.count < 10 ? `Zaproś jeszcze ${10 - stats.count} osób, aby zostać Strażnikiem Kręgu.` : "Jesteś legendą Adelbertus!")}
                         </p>
                     </div>
@@ -3306,5 +3319,4 @@
     </script>
 </body>
 </html>
-
 
