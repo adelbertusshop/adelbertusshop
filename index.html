@@ -2260,9 +2260,16 @@
             
             <div class="grid md:grid-cols-3 gap-8 text-center">
                 <div class="p-6 bg-black/40 rounded-xl border border-purple-700 shadow-md hover:scale-105 transition">
-                    <h4 style="font-size:1.5rem;font-weight:700;color:#f0ebe0;margin-bottom:0.5rem;">📱 BLIK TRANSFER</h4>
-                    <div class="text-3xl font-mono font-bold text-green-400">573-939-925</div>
-                    <p class="mt-2 text-sm">dopisz kod: <span class="font-bold">POMOC</span></p>
+                    <h4 style="font-size:1.5rem;font-weight:700;color:#f0ebe0;margin-bottom:0.75rem;">📱 BLIK / Revolut</h4>
+                    <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
+                        <div class="text-2xl font-mono font-bold text-green-400">604 296 360</div>
+                        <button onclick="navigator.clipboard.writeText('604296360');this.textContent='✓';setTimeout(()=>this.textContent='Kopiuj',2000)" style="background:var(--color-gold);color:#000;border:none;padding:4px 10px;font-size:0.65rem;font-weight:700;cursor:pointer;border-radius:4px;">Kopiuj</button>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
+                        <div class="text-2xl font-mono font-bold text-green-400">573 939 925</div>
+                        <button onclick="navigator.clipboard.writeText('573939925');this.textContent='✓';setTimeout(()=>this.textContent='Kopiuj',2000)" style="background:var(--color-gold);color:#000;border:none;padding:4px 10px;font-size:0.65rem;font-weight:700;cursor:pointer;border-radius:4px;">Kopiuj</button>
+                    </div>
+                    <p class="mt-2 text-sm text-gray-400">W tytule: <span class="font-bold text-white">POMOC</span></p>
                 </div>
                 
                 <div class="p-6 bg-black/40 rounded-xl border border-purple-700 shadow-md hover:scale-105 transition">
@@ -2342,18 +2349,39 @@
                 <h2 class="text-2xl font-bold">Twoje zamówienie</h2>
                 <button onclick="toggleCart()" class="text-2xl">&times;</button>
             </div>
-            
+
             <div id="cartItems" class="mb-6"></div>
-            
+
             <div class="cart-total">
                 <div class="flex justify-between text-xl font-bold">
                     <span>Suma:</span>
                     <span id="cartTotal">0 zł</span>
                 </div>
             </div>
-            
+
+            <!-- BLIK & Revolut -->
+            <div style="margin:1.25rem 0;background:#0a0a0a;border:1px solid rgba(212,175,55,0.3);padding:1.25rem;display:flex;flex-direction:column;gap:1rem;">
+                <div style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.3em;color:var(--color-gold);text-transform:uppercase;margin-bottom:0.25rem;">// Zapłać BLIKiem lub Revolut</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
+                    <div>
+                        <div style="font-size:0.7rem;color:#5a5248;margin-bottom:2px;">📱 BLIK / Revolut — Grzegorz</div>
+                        <div style="font-size:1.3rem;font-weight:700;color:#f0ebe0;font-family:'Courier New',monospace;letter-spacing:0.1em;">604 296 360</div>
+                    </div>
+                    <button onclick="navigator.clipboard.writeText('604296360');this.textContent='✓ Skopiowano!';setTimeout(()=>this.textContent='Kopiuj',2000)" style="background:var(--color-gold);color:#000;border:none;padding:6px 14px;font-size:0.7rem;font-weight:700;cursor:pointer;letter-spacing:0.1em;font-family:'Montserrat',sans-serif;">Kopiuj</button>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
+                    <div>
+                        <div style="font-size:0.7rem;color:#5a5248;margin-bottom:2px;">📱 BLIK / Revolut — drugi numer</div>
+                        <div style="font-size:1.3rem;font-weight:700;color:#f0ebe0;font-family:'Courier New',monospace;letter-spacing:0.1em;">573 939 925</div>
+                    </div>
+                    <button onclick="navigator.clipboard.writeText('573939925');this.textContent='✓ Skopiowano!';setTimeout(()=>this.textContent='Kopiuj',2000)" style="background:var(--color-gold);color:#000;border:none;padding:6px 14px;font-size:0.7rem;font-weight:700;cursor:pointer;letter-spacing:0.1em;font-family:'Montserrat',sans-serif;">Kopiuj</button>
+                </div>
+                <div style="font-size:0.72rem;color:#5a5248;line-height:1.6;">W tytule przelewu podaj swoje imię + nazwę produktu.<br>Po płatności wyślij potwierdzenie na WhatsApp lub email.</div>
+            </div>
+
+            <!-- PayPal -->
             <div id="paypal-container" class="mt-4"></div>
-            
+
             <div class="cart-buttons">
                 <button onclick="sendOrderEmail()" class="email-order-btn">
                     <i class="fas fa-envelope"></i> Wyślij zamówienie mailem
@@ -2362,10 +2390,9 @@
                     <i class="fab fa-whatsapp"></i> Zamów przez WhatsApp
                 </button>
             </div>
-            
-            <p class="text-sm text-gray-600 text-center mt-4">Akceptujemy również przelewy bankowe i BLIK</p>
-            <div class="decision-note" style="text-align:center; margin-top:12px;">Zostawisz to teraz — może nie wrócić.</div>
-            <div class="hidden-symbol" style="position:relative; text-align:right; margin-top:8px;">π ♈</div>
+
+            <div class="decision-note" style="text-align:center;margin-top:12px;">Zostawisz to teraz — może nie wrócić.</div>
+            <div class="hidden-symbol" style="position:relative;text-align:right;margin-top:8px;">π ♈</div>
         </div>
 
         <footer>
@@ -2957,7 +2984,7 @@
                         cartItem.innerHTML = `
                             ${item.image ? `<img src="${item.image}" class="cart-item-image">` : ''}
                             <div class="flex-1">
-                                <div class="font-bold">Artefakt: ${item.name}</div>
+                                <div class="font-bold">${item.name}</div>
                                 <div>${item.price.toFixed(2)} zł × ${item.quantity}</div>
                                 ${item.size ? `<div class="text-sm">Rozmiar: ${item.size}</div>` : ''}
                                 ${item.color ? `<div class="text-sm">Kolor: ${item.color}</div>` : ''}
@@ -3335,3 +3362,4 @@
     </script>
 </body>
 </html>
+
