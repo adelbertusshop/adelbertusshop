@@ -1,0 +1,27 @@
+{
+  "name": "adelbertusshop",
+  "version": "1.0.0",
+  "description": "AdelbertusShop - Polska marka odzieżowa. Custom clothing, bluzy i koszulki z nadrukiem.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adelbertusshop/adelbertusshop.git"
+  },
+  "keywords": [
+    "ecommerce",
+    "clothing",
+    "custom-apparel"
+  ],
+  "author": "AdelbertusShop",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adelbertusshop/adelbertusshop/issues"
+  },
+  "homepage": "https://github.com/adelbertusshop/adelbertusshop#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
