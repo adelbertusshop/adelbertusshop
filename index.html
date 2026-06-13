@@ -15,7 +15,7 @@
         // ===== TELEGRAM ALERTS =====
         async function sendTelegramAlert(message) {
             try {
-                await fetch('https://api.telegram.org/bot8840357705:AAG25sIiPl1uCHixMHfjJwWugnldCZeBUcw/sendMessage', {
+              process.env.TELEGRAM_BOT_TOKEN
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
