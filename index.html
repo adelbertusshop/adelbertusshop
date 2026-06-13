@@ -4,6 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
+    <!-- ===== GOOGLE ANALYTICS 4 ===== -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5XMN5ETW8W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-5XMN5ETW8W');
+
+        // Śledzenie zdarzeń e-commerce
+        window._gaAddToCart = function(name, price, category) {
+            gtag('event', 'add_to_cart', {
+                currency: 'PLN',
+                value: price,
+                items: [{ item_name: name, price: price, item_category: category }]
+            });
+        };
+        window._gaViewItem = function(name, price, category) {
+            gtag('event', 'view_item', {
+                currency: 'PLN',
+                value: price,
+                items: [{ item_name: name, price: price, item_category: category }]
+            });
+        };
+        window._gaBeginCheckout = function(total) {
+            gtag('event', 'begin_checkout', { currency: 'PLN', value: total });
+        };
+        window._gaCustomOrder = function() {
+            gtag('event', 'generate_lead', { currency: 'PLN', event_category: 'Custom Order' });
+        };
+    </script>
+
     <!-- ===== SEO ===== -->
     <title>AdelbertusShop — Bluzy i Koszulki z Nadrukiem | Polska Marka Odzieżowa</title>
     <meta name="description" content="Adelbertus — polska marka odzieżowa. Bluzy z nadrukiem od 170 zł, koszulki od 80 zł, czapki od 90 zł. Custom clothing, konfigurator DRIP STUDIO, wysyłka w 48h.">
@@ -2466,6 +2497,7 @@
                     document.getElementById('co_success').style.display = 'block';
                     document.getElementById('co_error').style.display = 'none';
                     customOrderForm.reset();
+                    if (window._gaCustomOrder) _gaCustomOrder();
                 } catch(err) {
                     document.getElementById('co_error').style.display = 'block';
                     document.getElementById('co_error').textContent = '✗ Błąd wysyłki — zadzwoń: 604 296 360';
@@ -2960,7 +2992,8 @@
                 cart.push({ name: cleanName, price: price, quantity: 1, image: image, size: size, color: color, id: Date.now() + Math.random() });
             }
             updateCart();
-            showNotification("🜂 Artefakt został przypisany do Ciebie");
+            showNotification("🜂 Produkt dodany do koszyka");
+            if (window._gaAddToCart) _gaAddToCart(name, price, 'Sklep');
         }
 
         function updateCart() {
@@ -3037,7 +3070,13 @@
 
         window.toggleCart = function() {
             const panel = document.getElementById('cartPanel');
-            if (panel) panel.classList.toggle('open');
+            if (panel) {
+                panel.classList.toggle('open');
+                if (panel.classList.contains('open') && cart.length > 0) {
+                    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    if (window._gaBeginCheckout) _gaBeginCheckout(total);
+                }
+            }
         };
 
         window.goToCheckout = function() {
@@ -3362,4 +3401,5 @@
     </script>
 </body>
 </html>
+
 
