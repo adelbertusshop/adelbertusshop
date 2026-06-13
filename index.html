@@ -12,6 +12,22 @@
         gtag('js', new Date());
         gtag('config', 'G-5XMN5ETW8W');
 
+        // ===== TELEGRAM ALERTS =====
+        async function sendTelegramAlert(message) {
+            try {
+                await fetch('https://api.telegram.org/bot8840357705:AAG25sIiPl1uCHixMHfjJwWugnldCZeBUcw/sendMessage', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: '8625497851',
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+            } catch(e) { console.warn('Telegram alert error:', e); }
+        }
+        window._tgAlert = sendTelegramAlert;
+
         // Śledzenie zdarzeń e-commerce
         window._gaAddToCart = function(name, price, category) {
             gtag('event', 'add_to_cart', {
@@ -2498,6 +2514,7 @@
                     document.getElementById('co_error').style.display = 'none';
                     customOrderForm.reset();
                     if (window._gaCustomOrder) _gaCustomOrder();
+                    if (window._tgAlert) _tgAlert(`🎨 *CUSTOM ORDER!*\n\nImię: ${name}\nEmail: ${email}\nProdukt: ${product} (${color}, ${size})\n\n📝 ${desc.substring(0,200)}${desc.length>200?'...':''}\n\n_AdelbertusShop_`);
                 } catch(err) {
                     document.getElementById('co_error').style.display = 'block';
                     document.getElementById('co_error').textContent = '✗ Błąd wysyłki — zadzwoń: 604 296 360';
@@ -2994,6 +3011,7 @@
             updateCart();
             showNotification("🜂 Produkt dodany do koszyka");
             if (window._gaAddToCart) _gaAddToCart(name, price, 'Sklep');
+            if (window._tgAlert) _tgAlert(`🛒 *Produkt w koszyku*\n\n📦 ${name}\n💰 ${price} zł\n\n_AdelbertusShop_`);
         }
 
         function updateCart() {
@@ -3087,26 +3105,48 @@
         window.sendOrderEmail = function() {
             let emailBody = 'Zamówienie z AdelbertusShop:\n\n';
             cart.forEach((item, index) => {
-                emailBody += `${index + 1}. Artefakt: ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
+                emailBody += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
                 if (item.size) emailBody += ` (Rozmiar: ${item.size})`;
                 if (item.color) emailBody += ` (Kolor: ${item.color})`;
                 emailBody += '\n';
             });
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             emailBody += `\nSUMA: ${total.toFixed(2)} zł\n\nData: ${new Date().toLocaleString('pl-PL')}\n\nProszę o potwierdzenie zamówienia i podanie terminu realizacji.`;
+
+            if (window._tgAlert) {
+                let tgMsg = `🛍️ *NOWE ZAMÓWIENIE — EMAIL!*\n\n`;
+                cart.forEach((item, i) => {
+                    tgMsg += `${i+1}. ${item.name} x${item.quantity}`;
+                    if (item.size) tgMsg += ` (${item.size})`;
+                    tgMsg += '\n';
+                });
+                tgMsg += `\n💰 *SUMA: ${total.toFixed(2)} zł*\n_AdelbertusShop_`;
+                _tgAlert(tgMsg);
+            }
             window.open(`mailto:mielniczukgrzegosz74@gmail.com?subject=Zamówienie z AdelbertusShop&body=${encodeURIComponent(emailBody)}`);
         };
 
         window.sendOrderWhatsApp = function() {
             let message = 'Zamówienie z AdelbertusShop:%0A%0A';
             cart.forEach((item, index) => {
-                message += `${index + 1}. Artefakt: ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
+                message += `${index + 1}. ${item.name} - ${item.price.toFixed(2)} zł × ${item.quantity}`;
                 if (item.size) message += ` (Rozmiar: ${item.size})`;
                 if (item.color) message += ` (Kolor: ${item.color})`;
                 message += '%0A';
             });
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             message += `%0ASUMA: ${total.toFixed(2)} zł%0A%0AData: ${new Date().toLocaleString('pl-PL')}%0A%0AProszę o potwierdzenie zamówienia.`;
+
+            if (window._tgAlert) {
+                let tgMsg = `📱 *NOWE ZAMÓWIENIE — WHATSAPP!*\n\n`;
+                cart.forEach((item, i) => {
+                    tgMsg += `${i+1}. ${item.name} x${item.quantity}`;
+                    if (item.size) tgMsg += ` (${item.size})`;
+                    tgMsg += '\n';
+                });
+                tgMsg += `\n💰 *SUMA: ${total.toFixed(2)} zł*\n_AdelbertusShop_`;
+                _tgAlert(tgMsg);
+            }
             window.open(`https://wa.me/48604296360?text=${message}`);
         };
 
